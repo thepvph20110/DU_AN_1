@@ -9,6 +9,6 @@ package enumclass;
  * @author DANG VAN SY
  */
 public enum trangThaiKhachHang {
-    Khach_Hang_Moi,
-    Khach_Hang_Cu
+    CANH_CAO,
+    BINH_THUONG
 }

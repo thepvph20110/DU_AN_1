@@ -30,8 +30,10 @@ public class PhuPhi {
     @Column(length = 36)
     private UUID id;
     private String maPhuPhi;
+    @Column(columnDefinition = "nvarchar(Max)")
     private String tenPhuPhi;
     private double giaPhuPhi;
+    @Column(columnDefinition = "nvarchar(Max)")
     private String moTa;
     @Column(nullable = false)
     private trangThaiPhuPhi trangThai = trangThaiPhuPhi.Co;
