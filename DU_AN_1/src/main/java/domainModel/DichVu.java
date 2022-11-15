@@ -41,6 +41,7 @@ public class DichVu {
     private NuocUong nuocUong;
     private int soLuongNuocUong;
     private double donGia;
+   @Column(columnDefinition = "nvarchar(Max)")
     private String moTa;
     @Column(nullable = false)
     private trangThaiDichVu trangThai = trangThaiDichVu.Dang_Su_Dung;
