@@ -35,4 +35,7 @@ public class NhaSanXuat {
     @Column(name = "ten",columnDefinition = "nvarchar(Max)")
     private String tenNSX;
 
+    public Object[]toData(){
+        return new Object[] {id,maNSX,tenNSX};
+    }
 }

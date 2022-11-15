@@ -35,4 +35,7 @@ public class MauSac {
     @Column(name = "ten",columnDefinition = "nvarchar(Max)")
     private String tenMauSac;
 
+    public Object[]todata(){
+        return new Object[] {id,maMauSac,tenMauSac};
+    }
 }
