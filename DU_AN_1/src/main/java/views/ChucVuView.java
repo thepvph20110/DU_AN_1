@@ -194,7 +194,7 @@ public class ChucVuView extends javax.swing.JFrame {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
-        QLChucVu qLChucVu = new QLChucVu(null, txtMaCV.getText(), txtTenCV.getText(), trangThaiChucVu.Quan_Li_San);
+        QLChucVu qLChucVu = new QLChucVu(null, txtMaCV.getText(), txtTenCV.getText(), trangThaiChucVu.HOAT_DONG);
         JOptionPane.showMessageDialog(rootPane, chucVuService.save(qLChucVu));
         addToRow(chucVuService.getAll());
     }//GEN-LAST:event_btnThemActionPerformed
@@ -214,7 +214,7 @@ public class ChucVuView extends javax.swing.JFrame {
         if (row < 0) {
             JOptionPane.showMessageDialog(rootPane, "Vui Long Chon");
         } else {
-            QLChucVu qLChucVu = new QLChucVu(null, txtMaCV.getText(), txtTenCV.getText(), trangThaiChucVu.Quan_Li_San);
+            QLChucVu qLChucVu = new QLChucVu(null, txtMaCV.getText(), txtTenCV.getText(), trangThaiChucVu.HOAT_DONG);
             JOptionPane.showMessageDialog(rootPane, chucVuService.update(qLChucVu,id));
             addToRow(chucVuService.getAll());
         }

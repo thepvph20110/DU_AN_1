@@ -26,7 +26,7 @@ public class ChucVuServiceImpl implements IChucVuService {
     public List<QLChucVu> getAll() {
         List<QLChucVu> qLChucVus = new ArrayList<>();
         for (ChucVu chucVu : chucVuRepo.getAll()) {
-            QLChucVu qLChucVu = new QLChucVu(chucVu.getId(), chucVu.getMaChucVu(), chucVu.getTenChucVu(), trangThaiChucVu.Quan_Li_San);
+            QLChucVu qLChucVu = new QLChucVu(chucVu.getId(), chucVu.getMaChucVu(), chucVu.getTenChucVu(), trangThaiChucVu.HOAT_DONG);
             qLChucVus.add(qLChucVu);
         }
         return qLChucVus;
