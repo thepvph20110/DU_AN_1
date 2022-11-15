@@ -34,8 +34,7 @@ public class ThanhToan {
     private String maThanhToan;
     @Column(name = "loaiHinhTT")
     private loaiHinhThanhToan hinhThanhToan = loaiHinhThanhToan.Tien_Mat;
+    @Column(columnDefinition = "nvarchar(Max)")
     private String moTa;
-    @Column(nullable = false)
-    private trangThaiThanhToan trangThai = trangThaiThanhToan.Da_Thanh_Toan;
 
 }
