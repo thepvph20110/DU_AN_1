@@ -53,7 +53,7 @@
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                           <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="597" max="32767" attributes="0"/>
+                          <EmptySpace pref="604" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
@@ -167,9 +167,6 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\TAI_LIEU_HOC_TAP\Du_An_1\DU_AN_1\src\main\java\icon\ball.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Home"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Hand Cursor"/>
@@ -189,7 +186,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\TAI_LIEU_HOC_TAP\Du_An_1\DU_AN_1\src\main\java\icon\ca.png"/>
+                  <Image iconType="2" name="D:\TAI_LIEU_HOC_TAP\Du_An_1\DU_AN_1\src\main\java\views\icon\ca.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n L&#xed; Ca"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -217,7 +214,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\TAI_LIEU_HOC_TAP\Du_An_1\DU_AN_1\src\main\java\icon\service.png"/>
+                  <Image iconType="2" name="D:\TAI_LIEU_HOC_TAP\Du_An_1\DU_AN_1\src\main\java\views\icon\service.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="D&#x1ecb;ch V&#x1ee5;"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -242,7 +239,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\TAI_LIEU_HOC_TAP\Du_An_1\DU_AN_1\src\main\java\icon\bill.png"/>
+                  <Image iconType="2" name="D:\TAI_LIEU_HOC_TAP\Du_An_1\DU_AN_1\src\main\java\views\icon\bill.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="H&#xf3;a &#x110;&#x1a1;n"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -271,7 +268,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\TAI_LIEU_HOC_TAP\Du_An_1\DU_AN_1\src\main\java\icon\callss.png"/>
+                  <Image iconType="2" name="D:\TAI_LIEU_HOC_TAP\Du_An_1\DU_AN_1\src\main\java\views\icon\callss.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Li&#xea;n H&#x1ec7; "/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -296,7 +293,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\TAI_LIEU_HOC_TAP\Du_An_1\DU_AN_1\src\main\java\icon\Login32.png"/>
+                  <Image iconType="2" name="D:\TAI_LIEU_HOC_TAP\Du_An_1\DU_AN_1\src\main\java\views\icon\Login32.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="&#x110;&#x103;ng Nh&#x1ead;p"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -326,7 +323,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\TAI_LIEU_HOC_TAP\Du_An_1\DU_AN_1\src\main\java\icon\booking.png"/>
+                  <Image iconType="2" name="D:\TAI_LIEU_HOC_TAP\Du_An_1\DU_AN_1\src\main\java\views\icon\stadium.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n L&#xed; S&#xe2;n"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -354,7 +351,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\TAI_LIEU_HOC_TAP\Du_An_1\DU_AN_1\src\main\java\icon\booking.png"/>
+                  <Image iconType="2" name="D:\TAI_LIEU_HOC_TAP\Du_An_1\DU_AN_1\src\main\java\views\icon\booking.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="L&#x1ecb;ch &#x110;&#x1eb7;t"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -409,9 +406,6 @@
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ab" green="7f" red="b" type="rgb"/>
                 </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\TAI_LIEU_HOC_TAP\Du_An_1\DU_AN_1\src\main\java\icon\search.png"/>
-                </Property>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Hand Cursor"/>
                 </Property>
@@ -447,7 +441,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="1340" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="1323" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
