@@ -23,7 +23,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-        @Entity
+@Entity
 public class KichThuoc {
 
     @Id

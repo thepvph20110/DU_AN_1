@@ -5,7 +5,6 @@
 package domainmodel;
 
 import enumclass.trangThaiChucVu;
-import java.util.Date;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,9 +31,9 @@ public class ChucVu {
     private UUID id;
     @Column(name = "maCV")
     private String maChucVu;
-    @Column(name = "tenCV")
+    @Column(name = "tenCV",columnDefinition = "nvarchar(Max)")
     private String tenChucVu;
     @Column(nullable = false)
-    private trangThaiChucVu trangThai = trangThaiChucVu.Chu_San;
+    private trangThaiChucVu trangThai = trangThaiChucVu.HOAT_DONG;
 
 }
