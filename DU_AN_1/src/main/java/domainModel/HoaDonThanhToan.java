@@ -4,8 +4,7 @@
  */
 package domainmodel;
 
-import enumclass.trangThaiHoaDon;
-import enumclass.trangThaiHoaDonThanhToan;
+
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -41,7 +40,6 @@ public class HoaDonThanhToan {
     @JoinColumn(name = "idThanhToan")
     private ThanhToan thanhToan;
     private double tongTien;
+    @Column(columnDefinition = "nvarchar(Max)")
     private String ghiChu;
-    @Column(nullable = false)
-    private trangThaiHoaDonThanhToan trangThai = trangThaiHoaDonThanhToan.DA_THANH_TOAN;
 }

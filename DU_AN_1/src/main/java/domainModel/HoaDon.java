@@ -16,7 +16,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Cleanup;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -39,12 +38,10 @@ public class HoaDon {
     @ManyToOne
     @JoinColumn(name = "idDichVu")
     private DichVu dichVu;
-    @ManyToOne
-    @JoinColumn(name = "idSanCa")
-    private SanCa sanCa;
     private Date ngayThanhToan;
     private double donGia;
     private double tongTien;
+    @Column(columnDefinition = "nvarchar(Max)")
     private String ghiChu;
     @Column(nullable = false)
     private trangThaiHoaDon trangThai = trangThaiHoaDon.CHUA_THANH_TOAN;
