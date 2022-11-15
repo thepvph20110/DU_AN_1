@@ -16,7 +16,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.Value;
 
 
 @Table(name = "NhaSanXuat")
@@ -33,7 +32,7 @@ public class NhaSanXuat {
     private UUID id;
     @Column(name = "ma")
     private String maNSX;
-    @Column(name = "ten")
+    @Column(name = "ten",columnDefinition = "nvarchar(Max)")
     private String tenNSX;
 
 }

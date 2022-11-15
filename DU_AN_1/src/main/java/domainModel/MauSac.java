@@ -32,7 +32,7 @@ public class MauSac {
     private UUID id;
     @Column(name = "ma")
     private String maMauSac;
-    @Column(name = "ten")
+    @Column(name = "ten",columnDefinition = "nvarchar(Max)")
     private String tenMauSac;
 
 }

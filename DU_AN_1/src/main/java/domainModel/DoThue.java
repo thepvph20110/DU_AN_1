@@ -32,6 +32,7 @@ public class DoThue {
     @Column(length = 36)
     private UUID id;
     private String maDoThue;
+    @Column(columnDefinition = "nvarchar(Max)")
     private String tenDoThue;
     @ManyToOne
     @JoinColumn(name = "idKichThuoc")

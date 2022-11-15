@@ -4,6 +4,7 @@
  */
 package domainmodel;
 
+import enumclass.trangThaiSanBong;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,10 +32,12 @@ public class SanBong {
     @Column(length = 36)
     private UUID id;
     private String maSanBong;
+    @Column(columnDefinition = "nvarchar(Max)")
     private String tenSanBong;
     private long giaSan;
     private int sucChua;
     @ManyToOne
     @JoinColumn(name = "idLoaiSan", nullable = false)
     private LoaiSan loaiSan;
+    private trangThaiSanBong trangThai = trangThaiSanBong.HOAT_DONG;
 }
