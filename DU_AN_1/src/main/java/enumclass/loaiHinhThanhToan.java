@@ -10,5 +10,6 @@ package enumclass;
  */
 public enum loaiHinhThanhToan {
     Tien_Mat,
-    Chuyen_Khoan
+    Chuyen_Khoan,
+    CHUYEN_KHOAN_VA_TIEN_MAT
 }

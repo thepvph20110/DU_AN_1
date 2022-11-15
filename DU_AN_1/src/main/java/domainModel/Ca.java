@@ -6,7 +6,6 @@ package domainmodel;
 
 import enumclass.trangThaiCa;
 import java.sql.Time;
-import java.util.Date;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,10 +32,11 @@ public class Ca {
     @Column(length = 36)
     private UUID id;
     private String maCa;
+    @Column(columnDefinition = "nvarchar(Max)")
     private String tenCa;
     private Time thoiGianBatDau;
     private Time thoiGianKetThuc;
     private double giaCa;
     @Column(nullable = false)
-    private trangThaiCa trangThai= trangThaiCa.HOAT_DONG;
+    private trangThaiCa trangThai= trangThaiCa.GIO_BINH_THUONG;
 }
