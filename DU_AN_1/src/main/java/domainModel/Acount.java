@@ -32,13 +32,15 @@ public class Acount {
     @Column(length = 36)
     private UUID id;
     private String maAcount;
+    @Column(columnDefinition = "nvarchar(Max)")
     private String tenAcount;
     @ManyToOne
     @JoinColumn(name = "ChucVuId")
     private ChucVu chucVu;
     private String matKhau;
+    @Column(columnDefinition = "nvarchar(Max)")
     private String moTa;
     @Column(nullable = false)
-    private trangThaiAcount trangThai = trangThaiAcount.Da_Xac_Minh;
+    private trangThaiAcount trangThai = trangThaiAcount.Chua_Xac_Minh;
 
 }
