@@ -21,9 +21,7 @@ public class Home extends javax.swing.JFrame {
 
     public Home() {
         initComponents();
-        for (int i = 1; i <= 6; i++) {
-            
-        }
+
     }
 
     @SuppressWarnings("unchecked")
