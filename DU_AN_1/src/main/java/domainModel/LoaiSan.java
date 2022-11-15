@@ -4,8 +4,6 @@
  */
 package domainmodel;
 
-import enumclass.trangThaiCa;
-import java.util.Date;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,9 +30,9 @@ public class LoaiSan {
     @Column(length = 36)
     private UUID id;
     private String maLoaiSan;
+    @Column(columnDefinition = "nvarchar(Max)")
     private String tenLoaiSan;
     @Column(length = 255)
     private String moTa;
-    @Column(nullable = false)
-    private trangThaiCa trangThai= trangThaiCa.HOAT_DONG;
+
 }

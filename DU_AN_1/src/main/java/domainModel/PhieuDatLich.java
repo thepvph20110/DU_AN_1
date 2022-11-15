@@ -6,6 +6,7 @@ package domainmodel;
 
 import enumclass.trangThaiPhieuDL;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -38,10 +40,13 @@ public class PhieuDatLich {
     @ManyToOne
     @JoinColumn(name = "idKhachHang")
     private KhachHang khachHang;
-    private Date gioBatDau;
-    private Date gioKetThuc;
+    
+    private Date ngayTaoPhieu;
+    private Date NgayDenSan;
     private Date ngayCheckIn;
-    private long tongTienSanCa;
+    @Column(columnDefinition = "nvarchar(Max)")
+    private String ghiChu;
+    private double tongTienSan;
     @Column(nullable = false)
     private trangThaiPhieuDL trangThai = trangThaiPhieuDL.CHUA_NHAN_SAN;
 }
