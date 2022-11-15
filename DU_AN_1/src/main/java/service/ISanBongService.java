@@ -4,10 +4,20 @@
  */
 package service;
 
+import java.util.List;
+import modelview.QLSanBong;
+
 /**
  *
  * @author hp
  */
 public interface ISanBongService {
-    
+
+    List<QLSanBong> getAll();
+
+    String save(QLSanBong qLSanBong);
+
+    String update(QLSanBong qLSanBong);
+
+    String delete(QLSanBong qLSanBong);
 }

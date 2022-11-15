@@ -4,7 +4,6 @@
  */
 package modelview;
 
-import enumclass.trangThaiCa;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,5 +25,8 @@ public class QLLoaiSan {
     private String maLoaiSan;
     private String tenLoaiSan;
     private String moTa;
-    private trangThaiCa trangThai= trangThaiCa.HOAT_DONG;
+    
+    public Object[] toDataRow(){
+        return new Object[]{id, maLoaiSan, tenLoaiSan, moTa};
+    }
 }

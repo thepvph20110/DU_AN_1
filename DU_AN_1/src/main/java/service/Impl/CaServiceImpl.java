@@ -54,9 +54,9 @@ public class CaServiceImpl implements ICaService {
     public String update(QLCa qLCa) {
         Ca ca = new Ca(qLCa.getId(), qLCa.getMaCa(), qLCa.getTenCa(), qLCa.getThoiGianBatDau(), qLCa.getThoiGianKetThuc(), qLCa.getGiaCa(), qLCa.getTrangThai());
         if (re.saveOrUpdate(ca)) {
-            return "Save Complete";
+            return "Update Complete";
         } else {
-            return "Save Fail";
+            return "Update Fail";
         }
     }
 

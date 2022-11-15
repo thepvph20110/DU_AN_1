@@ -29,7 +29,7 @@ public class QLCa {
     private Time thoiGianBatDau;
     private Time thoiGianKetThuc;
     private double giaCa;
-    private trangThaiCa trangThai= trangThaiCa.HOAT_DONG;
+    private trangThaiCa trangThai= trangThaiCa.GIO_BINH_THUONG;
     
     public Object toDataRow(){
         return new Object[] {id, maCa, tenCa, thoiGianBatDau, thoiGianKetThuc, giaCa, trangThai};

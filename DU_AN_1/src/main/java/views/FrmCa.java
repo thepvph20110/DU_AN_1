@@ -6,13 +6,8 @@ package views;
 
 import enumclass.trangThaiCa;
 import java.sql.Time;
-import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.SimpleTimeZone;
-import java.util.UUID;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import service.ICaService;
@@ -58,8 +53,8 @@ public class FrmCa extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        radioHoatDong = new javax.swing.JRadioButton();
-        radioKhongHoatDong = new javax.swing.JRadioButton();
+        radioGioBinhThuong = new javax.swing.JRadioButton();
+        radioGioCaoDiem = new javax.swing.JRadioButton();
         txtGiaCa = new javax.swing.JTextField();
         txtTenCa = new javax.swing.JTextField();
         txtThoiGianBD = new javax.swing.JTextField();
@@ -86,12 +81,12 @@ public class FrmCa extends javax.swing.JFrame {
 
         jLabel6.setText("Trạng Thái");
 
-        buttonGroup1.add(radioHoatDong);
-        radioHoatDong.setSelected(true);
-        radioHoatDong.setText("Hoạt Động ");
+        buttonGroup1.add(radioGioBinhThuong);
+        radioGioBinhThuong.setSelected(true);
+        radioGioBinhThuong.setText("Giờ Bình Thường");
 
-        buttonGroup1.add(radioKhongHoatDong);
-        radioKhongHoatDong.setText("Không Hoạt Động ");
+        buttonGroup1.add(radioGioCaoDiem);
+        radioGioCaoDiem.setText("Giờ Cao Điểm");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setText("QUẢN LÝ CA");
@@ -172,17 +167,19 @@ public class FrmCa extends javax.swing.JFrame {
                                     .addComponent(jLabel5)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(btnUpdate)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(btnUpdate)
+                                                .addGap(50, 50, 50))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jLabel6)
                                                 .addGap(34, 34, 34)
-                                                .addComponent(radioHoatDong, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(18, 18, 18)
-                                        .addComponent(radioKhongHoatDong))))))
+                                                .addComponent(radioGioBinhThuong)
+                                                .addGap(36, 36, 36)))
+                                        .addComponent(radioGioCaoDiem))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(259, 259, 259)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(173, Short.MAX_VALUE))
+                .addContainerGap(167, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,8 +209,8 @@ public class FrmCa extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(radioHoatDong)
-                    .addComponent(radioKhongHoatDong))
+                    .addComponent(radioGioBinhThuong)
+                    .addComponent(radioGioCaoDiem))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSave)
@@ -300,10 +297,10 @@ public class FrmCa extends javax.swing.JFrame {
         txtTenCa.setText(qLCa.getTenCa());
         txtTGKetThuc.setText(String.valueOf(qLCa.getThoiGianKetThuc()));
         txtThoiGianBD.setText(String.valueOf(qLCa.getThoiGianKetThuc()));
-        if (qLCa.getTrangThai() == trangThaiCa.KHONG_HOAT_DONG) {
-            radioKhongHoatDong.setSelected(true);
+        if (qLCa.getTrangThai() == trangThaiCa.GIO_CAO_DIEM) {
+            radioGioCaoDiem.setSelected(true);
         } else {
-            radioHoatDong.setSelected(true);
+            radioGioBinhThuong.setSelected(true);
         }
     }
 
@@ -314,43 +311,59 @@ public class FrmCa extends javax.swing.JFrame {
         String thoiGianKetThuc = txtTGKetThuc.getText();
         String gia = txtGiaCa.getText();
         QLCa qlCa = new QLCa();
-        if (radioHoatDong.isSelected()) {
-            qlCa.setTrangThai(trangThaiCa.HOAT_DONG);
+        if (radioGioBinhThuong.isSelected()) {
+            qlCa.setTrangThai(trangThaiCa.GIO_BINH_THUONG);
         } else {
-            qlCa.setTrangThai(trangThaiCa.KHONG_HOAT_DONG);
+            qlCa.setTrangThai(trangThaiCa.GIO_CAO_DIEM);
         }
-        QLCa qLCa = new QLCa(null, maCa, tenCa, Time.valueOf(thoiGianBatDau), Time.valueOf(thoiGianKetThuc), Double.valueOf(gia), qlCa.getTrangThai());
-        JOptionPane.showMessageDialog(this, ics.save(qLCa));
-        listQLCa = ics.getAll();
-        showData(listQLCa);
+        if (maCa.length() == 0 || tenCa.length() == 0 || thoiGianBatDau.length() == 0 || thoiGianKetThuc.length() == 0 || gia.length() == 0) {
+            JOptionPane.showMessageDialog(this, "IsEmpty");
+        } else if (!gia.matches("^[0-9]+$")) {
+            JOptionPane.showMessageDialog(this, "Please enter number Gia");
+        } else if (!maCa.matches("^[a-zA-Z_0-9 0-9]+$") || !tenCa.matches("^[a-zA-Z_0-9 0-9]+$")) {
+            JOptionPane.showMessageDialog(this, "Please re-enter");
 
+        } else if (!thoiGianBatDau.matches("^\\d{2}:\\d{2}:\\d{2}$") || !thoiGianKetThuc.matches("^\\d{2}:\\d{2}:\\d{2}$")) {
+            JOptionPane.showMessageDialog(this, "Incorrect format time (hh:mm:ss)");
+        } else {
+            QLCa qLCa = new QLCa(null, maCa, tenCa, Time.valueOf(thoiGianBatDau), Time.valueOf(thoiGianKetThuc), Double.valueOf(gia), qlCa.getTrangThai());
+            JOptionPane.showMessageDialog(this, ics.save(qLCa));
+            listQLCa = ics.getAll();
+            showData(listQLCa);
+        }
     }
 
     private void update() {
-        String maCa = txtMaCa.getText();
-        String tenCa = txtTenCa.getText();
-        String thoiGianBatDau = txtThoiGianBD.getText();
-        String thoiGianKetThuc = txtTGKetThuc.getText();
-        String gia = txtGiaCa.getText();
+        String maCa = txtMaCa.getText().trim();
+        String tenCa = txtTenCa.getText().trim();
+        String thoiGianBatDau = txtThoiGianBD.getText().trim();
+        String thoiGianKetThuc = txtTGKetThuc.getText().trim();
+        String gia = txtGiaCa.getText().trim();
         QLCa qlCa = new QLCa();
-        if (radioHoatDong.isSelected()) {
-            qlCa.setTrangThai(trangThaiCa.HOAT_DONG);
+        if (radioGioBinhThuong.isSelected()) {
+            qlCa.setTrangThai(trangThaiCa.GIO_BINH_THUONG);
         } else {
-            qlCa.setTrangThai(trangThaiCa.KHONG_HOAT_DONG);
+            qlCa.setTrangThai(trangThaiCa.GIO_CAO_DIEM);
         }
-        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
-        if(maCa.isEmpty() || tenCa.isEmpty() || thoiGianBatDau.isEmpty() || thoiGianKetThuc.isEmpty() || gia.isEmpty()){
-            JOptionPane.showMessageDialog(this, "IsEmpty");
-        }else if(thoiGianBatDau.matches(String.valueOf(sdf)) || thoiGianKetThuc.matches(String.valueOf(sdf))){
-            JOptionPane.showMessageDialog(this, "Error Format Time");
-        }else{
-        QLCa qLCa = new QLCa(mountClick().getId(), maCa, tenCa, Time.valueOf(thoiGianBatDau), Time.valueOf(thoiGianKetThuc), Double.valueOf(gia), qlCa.getTrangThai());
-        JOptionPane.showMessageDialog(this, ics.update(qLCa));
-        listQLCa = ics.getAll();
-        showData(listQLCa);
-        JOptionPane.showMessageDialog(this, ics.update(qLCa));
-        listQLCa = ics.getAll();
-        showData(listQLCa);
+        if (jTable1.getSelectedRow() < 0) {
+            JOptionPane.showMessageDialog(this, "Selected row ???");
+
+        } else {
+            if (maCa.length() == 0 || tenCa.length() == 0 || thoiGianBatDau.length() == 0 || thoiGianKetThuc.length() == 0 || gia.length() == 0) {
+                JOptionPane.showMessageDialog(this, "IsEmpty");
+            } else if (!gia.matches("^[0-9]+$")) {
+                JOptionPane.showMessageDialog(this, "Please enter number Gia");
+            } else if (!maCa.matches("^[a-zA-Z_0-9 0-9]+$") || !tenCa.matches("^[a-zA-Z_0-9 0-9]+$")) {
+                JOptionPane.showMessageDialog(this, "Please re-enter");
+
+            } else if (!thoiGianBatDau.matches("^\\d{2}:\\d{2}:\\d{2}$") || !thoiGianKetThuc.matches("^\\d{2}:\\d{2}:\\d{2}$")) {
+                JOptionPane.showMessageDialog(this, "Incorrect format time (hh:mm:ss)");
+            } else {
+                QLCa qLCa = new QLCa(mountClick().getId(), maCa, tenCa, Time.valueOf(thoiGianBatDau), Time.valueOf(thoiGianKetThuc), Double.valueOf(gia), qlCa.getTrangThai());
+                JOptionPane.showMessageDialog(this, ics.update(qLCa));
+                listQLCa = ics.getAll();
+                showData(listQLCa);
+            }
         }
     }
 
@@ -361,15 +374,20 @@ public class FrmCa extends javax.swing.JFrame {
         String thoiGianKetThuc = txtTGKetThuc.getText();
         String gia = txtGiaCa.getText();
         QLCa qlCa = new QLCa();
-        if (radioHoatDong.isSelected()) {
-            qlCa.setTrangThai(trangThaiCa.HOAT_DONG);
+        if (radioGioBinhThuong.isSelected()) {
+            qlCa.setTrangThai(trangThaiCa.GIO_BINH_THUONG);
         } else {
-            qlCa.setTrangThai(trangThaiCa.KHONG_HOAT_DONG);
+            qlCa.setTrangThai(trangThaiCa.GIO_CAO_DIEM);
         }
-        QLCa qLCa = new QLCa(mountClick().getId(), maCa, tenCa, Time.valueOf(thoiGianBatDau), Time.valueOf(thoiGianKetThuc), Double.valueOf(gia), qlCa.getTrangThai());
-        JOptionPane.showMessageDialog(this, ics.delete(qLCa));
-        listQLCa = ics.getAll();
-        showData(listQLCa);
+        if (jTable1.getSelectedRow() < 0) {
+            JOptionPane.showMessageDialog(this, "Selected row ???");
+
+        } else {
+            QLCa qLCa = new QLCa(mountClick().getId(), maCa, tenCa, Time.valueOf(thoiGianBatDau), Time.valueOf(thoiGianKetThuc), Double.valueOf(gia), qlCa.getTrangThai());
+            JOptionPane.showMessageDialog(this, ics.delete(qLCa));
+            listQLCa = ics.getAll();
+            showData(listQLCa);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -386,8 +404,8 @@ public class FrmCa extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JRadioButton radioHoatDong;
-    private javax.swing.JRadioButton radioKhongHoatDong;
+    private javax.swing.JRadioButton radioGioBinhThuong;
+    private javax.swing.JRadioButton radioGioCaoDiem;
     private javax.swing.JTextField txtGiaCa;
     private javax.swing.JTextField txtMaCa;
     private javax.swing.JTextField txtTGKetThuc;

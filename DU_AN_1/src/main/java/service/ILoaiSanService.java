@@ -4,10 +4,21 @@
  */
 package service;
 
+import java.util.List;
+import modelview.QLLoaiSan;
+
 /**
  *
  * @author hp
  */
 public interface ILoaiSanService {
-    
+
+    List<QLLoaiSan> getAll();
+
+    String save(QLLoaiSan qLLoaiSan);
+
+    String update(QLLoaiSan qLLoaiSan);
+
+    String delete(QLLoaiSan qLLoaiSan);
+
 }
