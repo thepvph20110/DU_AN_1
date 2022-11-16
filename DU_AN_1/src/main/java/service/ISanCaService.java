@@ -4,10 +4,20 @@
  */
 package service;
 
+import java.util.List;
+import modelview.QLSanCa;
+
 /**
  *
  * @author hp
  */
 public interface ISanCaService {
     
+    List<QLSanCa> getAll();
+    
+    String save(QLSanCa qLSanCa);
+    
+    String update(QLSanCa qLSanCa);
+    
+    String delete(QLSanCa qLSanCa);
 }

@@ -339,7 +339,7 @@ public class FrmSanBong extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "IsEmpty");
         } else if (!giaSan.matches("^[0-9]+$") || !sucChua.matches("^[0-9]+$")) {
             JOptionPane.showMessageDialog(this, "Please enter number");
-        } else if (!maSanBong.matches("^[a-zA-Z_0-9 0-9]+$") || !tenSanBong.matches("^[a-zA-Z_0-9 0-9]+$")) {
+        } else if (!maSanBong.matches("^[a-zA-Z0-9 a-zA-Z0-9]+$") || !tenSanBong.matches("^[a-zA-Z0-9 a-zA-Z0-9]+$")) {
             JOptionPane.showMessageDialog(this, "Please re-enter");
 
         } else {
