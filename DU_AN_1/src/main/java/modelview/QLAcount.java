@@ -4,6 +4,7 @@
  */
 package modelview;
 
+import domainmodel.ChucVu;
 import enumclass.trangThaiAcount;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
@@ -24,9 +25,14 @@ public class QLAcount {
     private UUID id;
     private String maAcount;
     private String tenAcount;
-    private String tenChucVu;
+    private ChucVu chucVu;
     private String matKhau;
     private String moTa;
     private trangThaiAcount trangThai = trangThaiAcount.Da_Xac_Minh;
     
+    
+   public Object[] toDataRow(){
+        return new Object[]{maAcount,tenAcount,chucVu.getTenChucVu(),moTa};
+    }
+   
 }
