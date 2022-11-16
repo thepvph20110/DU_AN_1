@@ -23,7 +23,7 @@ public class KichThuocRepositoryImpl implements IKichThuocRepository {
     @Override
     public List<KichThuoc> getAll() {
         String hql = "FROM KichThuoc";
-        Query q = session.createQuery("hql");
+        Query q = session.createQuery(hql);
         return q.getResultList();
     }
     
@@ -63,7 +63,7 @@ public class KichThuocRepositoryImpl implements IKichThuocRepository {
 
     @Override
     public KichThuoc getOne(String ma) {
-        String hql = " FROM KichThuoc kt WHERE kt.Ma = :MaKichThuoc ";
+        String hql = " FROM KichThuoc kt WHERE kt.maSize = :MaKichThuoc ";
             return session.createQuery(hql, KichThuoc.class).setParameter("MaKichThuoc", ma).uniqueResult();
     }
 }

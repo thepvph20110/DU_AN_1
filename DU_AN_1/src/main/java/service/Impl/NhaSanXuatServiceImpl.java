@@ -31,5 +31,10 @@ public class NhaSanXuatServiceImpl implements INhaSanXuatService{
     public String Delete(NhaSanXuat nhaSanXuat) {
         return nhaSanXuatRepositoryImpl.Delete(nhaSanXuat);
     }
+
+    @Override
+    public NhaSanXuat getOne(String ma) {
+        return nhaSanXuatRepositoryImpl.getOne(ma);
+    }
     
 }

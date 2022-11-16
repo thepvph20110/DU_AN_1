@@ -4,6 +4,7 @@
  */
 package repository;
 
+import domainmodel.DoThue;
 import java.util.List;
 import modelview.QLDoThue;
 
@@ -13,10 +14,10 @@ import modelview.QLDoThue;
  */
 public interface IDoThueRepository {
     
-    List<QLDoThue> getAll();
+    List<DoThue> getAll();
     
-    String AddorUpdate(QLDoThue qLDoThue);
+    String AddorUpdate(DoThue doThue);
     
-    String Delete(QLDoThue qLDoThue);
+    String Delete(DoThue doThue);
     
 }

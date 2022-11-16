@@ -35,6 +35,12 @@ public class NhaSanXuat {
     @Column(name = "ten",columnDefinition = "nvarchar(Max)")
     private String tenNSX;
 
+    public NhaSanXuat(UUID id) {
+        this.id = id;
+    }
+
+    
+    
     public Object[]toData(){
         return new Object[] {id,maNSX,tenNSX};
     }

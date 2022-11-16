@@ -46,4 +46,9 @@ public class MauSacServiceImpl implements IMauSacService {
         return mauSacRepositoryImpl.Delete(mauSac);
     }
 
+    @Override
+    public MauSac getOne(String ma) {
+        return mauSacRepositoryImpl.getOne(ma);
+    }
+
 }

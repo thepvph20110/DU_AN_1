@@ -35,6 +35,12 @@ public class KichThuoc {
     @Column(name = "size")
     private int size;
 
+    public KichThuoc(UUID id) {
+        this.id = id;
+    }
+
+    
+    
     public Object[]todata(){
        return new Object[] {id,maSize,size};
     } 

@@ -31,6 +31,11 @@ public class KichThuocServiceImpl implements IKichThuocService{
     public String Delete(KichThuoc kichThuoc) {
         return kichThuocRepositoryImpl.Delete(kichThuoc);
     }
+
+    @Override
+    public KichThuoc getOne(String ma) {
+        return kichThuocRepositoryImpl.getOne(ma);
+    }
     
     
     

@@ -23,7 +23,7 @@ public class NhaSanXuatRepositoryImpl implements INhaSanXuatRepository {
     @Override
     public List<NhaSanXuat> getAll() {
         String hql = "FROM NhaSanXuat";
-        Query q = session.createQuery("hql");
+        Query q = session.createQuery(hql);
         return q.getResultList();
     }
 
@@ -60,7 +60,7 @@ public class NhaSanXuatRepositoryImpl implements INhaSanXuatRepository {
 
     @Override
     public NhaSanXuat getOne(String ma) {
-        String hql = " FROM NhaSanXuat nsx WHERE nsx.Ma = :MaNSX ";
+        String hql = " FROM NhaSanXuat nsx WHERE nsx.maNSX = :MaNSX ";
             return session.createQuery(hql, NhaSanXuat.class).setParameter("MaNSX", ma).uniqueResult();
     }
 }

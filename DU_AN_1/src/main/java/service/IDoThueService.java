@@ -4,20 +4,18 @@
  */
 package service;
 
-import domainmodel.KichThuoc;
 import java.util.List;
+import modelview.QLDoThue;
 
 /**
  *
  * @author Admin
  */
-public interface IKichThuocService {
+public interface IDoThueService {
 
-    List<KichThuoc> getAll();
+    List<QLDoThue> getAll();
 
-    String AddorUpdate(KichThuoc kichThuoc);
+    String AddorUpdate(QLDoThue qLDoThue);
 
-    String Delete(KichThuoc kichThuoc);
-
-    KichThuoc getOne(String ma);
+    String Delete(QLDoThue qLDoThue);
 }

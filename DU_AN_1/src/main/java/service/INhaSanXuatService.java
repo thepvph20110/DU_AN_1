@@ -19,4 +19,5 @@ public interface INhaSanXuatService {
 
     String Delete(NhaSanXuat nhaSanXuat);
     
+    NhaSanXuat getOne(String ma);
 }

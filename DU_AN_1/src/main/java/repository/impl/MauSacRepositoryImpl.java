@@ -42,10 +42,7 @@ public class MauSacRepositoryImpl implements IMauSacRepository {
             return "Bạn đã Thêm Hoặc Sửa thất bại";
         }
     }
-    public static void main(String[] args) {
-        MauSac ms = new MauSac(null, "MS01", "Mau Den");
-        System.out.println(new MauSacRepositoryImpl().AddorUpdate(ms));
-    }
+    
 
     @Override
     public String Delete(MauSac mauSac) {
@@ -61,10 +58,13 @@ public class MauSacRepositoryImpl implements IMauSacRepository {
             return "Xoá thất bại";
         }
     }
-
+public static void main(String[] args) {
+        System.out.println(new MauSacRepositoryImpl().getOne("MS01"));
+    }
     @Override
     public MauSac getOne(String ma) {
-        String hql = " FROM MauSac ms WHERE ms.Ma = :MaMauSac ";
-            return session.createQuery(hql, MauSac.class).setParameter("MaMauSac", ma).uniqueResult();
+        String hql = " FROM MauSac ms WHERE ms.maMauSac = :MaMS ";
+            return session.createQuery(hql, MauSac.class).setParameter("MaMS", ma).uniqueResult();
     }
+    
 }
