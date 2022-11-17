@@ -55,44 +55,14 @@ import utill.HibernateConfig;
  * @author Admin
  */
 public class GenDB {
+    
     //Tạo DB trong SQL SERVER = SOFT2041_PTPM
     //Sau đó tiến hành chạy đển zen bảng
 
     public static void main(String[] args) {
 
-        Configuration conf = new Configuration();
-        Properties prop = HibernateConfig.getProperties();
-        prop.put(Environment.HBM2DDL_AUTO, "create");
-        // Tạo đối tượng ServiceRegistry từ hibernate.cfg.xml
-        ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
-                .applySettings(prop)
-                .build();
-
-        // tạo lớp giao tiếp với jdbc
-        conf.setProperties(prop);
-        conf.addAnnotatedClass(SanBong.class);
-        conf.addAnnotatedClass(Ca.class);
-        conf.addAnnotatedClass(LoaiSan.class);
-        conf.addAnnotatedClass(SanCa.class);
-        conf.addAnnotatedClass(ChucVu.class);
-        conf.addAnnotatedClass(Acount.class);
-        conf.addAnnotatedClass(KhachHang.class);
-        conf.addAnnotatedClass(MauSac.class);
-        conf.addAnnotatedClass(NhaSanXuat.class);
-        conf.addAnnotatedClass(KichThuoc.class);
-        conf.addAnnotatedClass(DoThue.class);
-        conf.addAnnotatedClass(NuocUong.class);
-        conf.addAnnotatedClass(PhieuDatLich.class);
-        conf.addAnnotatedClass(DichVu.class);
-        conf.addAnnotatedClass(HoaDon.class);
-        conf.addAnnotatedClass(PhuPhi.class);
-        conf.addAnnotatedClass(ThanhToan.class);
-        conf.addAnnotatedClass(PhuPhi_HoaDon.class);
-        conf.addAnnotatedClass(HoaDonThanhToan.class);
-        SessionFactory factory = conf.buildSessionFactory(serviceRegistry);
-        Session session = factory.openSession();
-        // tạo giao dịch tương ứng 
-        Transaction trans = session.beginTransaction();
+        try (Session session = HibernateConfig.getFACTORY().openSession()){
+             Transaction trans = session.beginTransaction();
 
         //Gen Nha San Xuat
         NhaSanXuat nsx1 = new NhaSanXuat();
@@ -332,9 +302,9 @@ public class GenDB {
         ca2.setGiaCa(20);
         ca2.setMaCa("CA002");
         ca2.setTenCa("Ca 2");
-        Time tCa2bd = new Time(9, 15, 0);
+        Time tCa2bd = new Time(9,30, 0);
         ca2.setThoiGianBatDau(tCa2bd);
-        Time tCa2kt = new Time(11, 15, 0);
+        Time tCa2kt = new Time(11, 30, 0);
         ca2.setThoiGianKetThuc(tCa2kt);
         ca2.setTrangThai(trangThaiCa.GIO_BINH_THUONG);
         session.save(ca2);
@@ -354,9 +324,9 @@ public class GenDB {
         ca4.setGiaCa(20);
         ca4.setMaCa("CA004");
         ca4.setTenCa("Ca 4");
-        Time tCa4bd = new Time(16, 15, 0);
+        Time tCa4bd = new Time(16, 30, 0);
         ca4.setThoiGianBatDau(tCa4bd);
-        Time tCa4kt = new Time(18, 15, 0);
+        Time tCa4kt = new Time(18, 30, 0);
         ca4.setThoiGianKetThuc(tCa4kt);
         ca4.setTrangThai(trangThaiCa.GIO_BINH_THUONG);
         session.save(ca4);
@@ -365,9 +335,9 @@ public class GenDB {
         ca5.setGiaCa(30);
         ca5.setMaCa("CA005");
         ca5.setTenCa("Ca 5");
-        Time tCa5bd = new Time(18, 30, 0);
+        Time tCa5bd = new Time(19, 00, 0);
         ca5.setThoiGianBatDau(tCa5bd);
-        Time tCa5kt = new Time(20, 30, 0);
+        Time tCa5kt = new Time(21, 00, 0);
         ca5.setThoiGianKetThuc(tCa5kt);
         ca5.setTrangThai(trangThaiCa.GIO_CAO_DIEM);
         session.save(ca5);
@@ -376,7 +346,7 @@ public class GenDB {
         ca6.setGiaCa(30);
         ca6.setMaCa("CA006");
         ca6.setTenCa("Ca 6");
-        Time tCa6bd = new Time(21, 0, 0);
+        Time tCa6bd = new Time(21, 30, 0);
         ca6.setThoiGianBatDau(tCa6bd);
         Time tCa6kt = new Time(23, 30, 0);
         ca6.setThoiGianKetThuc(tCa6kt);
@@ -572,8 +542,8 @@ public class GenDB {
         Date nds1 = new Date(2022, 8, 13, 14, 30);
         pdl1.setNgayDenSan(nds1);
         pdl1.setGhiChu("Ahihi Đồ Ngốc");
-        Date nci = new Date(2022, 8, 13, 15, 0);
-        pdl1.setNgayCheckIn(nci);
+        Time tgCI1 = new Time(20,20, 10);
+        pdl1.setTgCheckIn(tgCI1);
         Date ntp = new Date(2022, 8, 13, 14, 55);
         pdl1.setNgayTaoPhieu(ntp);
         pdl1.setTongTienSan(550);
@@ -587,8 +557,8 @@ public class GenDB {
         Date nds2 = new Date(2022, 8, 13, 19, 40);
         pdl2.setNgayDenSan(nds2);
         pdl2.setGhiChu("Ahihi Đồ Ngốc");
-        Date nci2 = new Date(2022, 8, 13, 19, 55);
-        pdl2.setNgayCheckIn(nci2);
+        Time tgCI2 = new Time(12,20, 10);
+        pdl2.setTgCheckIn(tgCI2);
         Date ntp2 = new Date(2022, 8, 13, 19, 39);
         pdl2.setNgayTaoPhieu(ntp2);
         pdl2.setTongTienSan(600);
@@ -602,8 +572,8 @@ public class GenDB {
         Date nds3 = new Date(2022, 8, 13, 6, 49);
         pdl3.setNgayDenSan(nds3);
         pdl3.setGhiChu("Ahihi Đồ Ngốc");
-        Date nci3 = new Date(2022, 8, 13, 6, 55);
-        pdl3.setNgayCheckIn(nci3);
+        Time tgCI3 = new Time(05,20, 10);
+        pdl3.setTgCheckIn(tgCI3);
         Date ntp3 = new Date(2022, 8, 13, 6, 30);
         pdl3.setNgayTaoPhieu(ntp3);
         pdl3.setTongTienSan(700);
@@ -722,5 +692,8 @@ public class GenDB {
 
         // db generator : gen bảng tự động
         trans.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
