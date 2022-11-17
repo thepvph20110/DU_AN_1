@@ -33,8 +33,8 @@ public class PhieuDatLichRepositoryImpl {
             
             
             // tạo 1 phiếu đặt lịch và truyền khóa ngoại vào
-            PhieuDatLich phieuDatLich = new  PhieuDatLich(null, acount, khachHang,dateFormat.parse("12-02-2033") , 
-                    dateFormat.parse("12-02-2033"), dateFormat.parse("12-02-2033"), "dd", 12222, trangThaiPhieuDL.CHUA_NHAN_SAN);
+//            PhieuDatLich phieuDatLich = new  PhieuDatLich(null, acount, khachHang,dateFormat.parse("12-02-2033") , 
+//                    dateFormat.parse("12-02-2033"), dateFormat.parse("12-02-2033"), "dd", 12222, trangThaiPhieuDL.CHUA_NHAN_SAN);
             
             
             session.getTransaction().begin();
@@ -42,7 +42,7 @@ public class PhieuDatLichRepositoryImpl {
             session.save(chucVu);
             session.save(acount); 
             session.save(khachHang);
-            session.save(phieuDatLich);
+//            session.save(phieuDatLich);
            
             
             session.getTransaction().commit();

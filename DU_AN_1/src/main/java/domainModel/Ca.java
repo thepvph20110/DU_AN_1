@@ -6,6 +6,7 @@ package domainmodel;
 
 import enumclass.trangThaiCa;
 import java.sql.Time;
+import java.util.Date;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +14,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,8 +37,10 @@ public class Ca {
     private String maCa;
     @Column(columnDefinition = "nvarchar(Max)")
     private String tenCa;
+    @Column(columnDefinition = "time")
     private Time thoiGianBatDau;
-    private Time thoiGianKetThuc;
+    @Column(columnDefinition = "time")
+    private Date thoiGianKetThuc;
     private double giaCa;
     @Column(nullable = false)
     private trangThaiCa trangThai= trangThaiCa.GIO_BINH_THUONG;
