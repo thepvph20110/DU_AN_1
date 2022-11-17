@@ -37,9 +37,7 @@ public class MauSacServiceImpl implements IMauSacService {
             return "Trùng Mã";
         }else if (mauSac.getMaMauSac().isBlank() || mauSac.getTenMauSac().isBlank()) {
             return "Mã Màu Sắc - Tên Màu Sắc ĐANG TRỐNG";
-        }else if (!mauSac.getMaMauSac().matches("[a-z A-Z]+") || !mauSac.getTenMauSac().matches("[a-z A-Z]+")) {
-            return "Mã Màu Sắc - Tên Màu Sắc SAI ĐỊNH DẠNG";
-        }   else {
+        }else {
             return mauSacRepositoryImpl.AddorUpdate(mauSac);
         }
 
