@@ -5,6 +5,8 @@
 package views;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.util.Calendar;
@@ -14,6 +16,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneLayout;
 import javax.swing.border.Border;
 
 /**
@@ -22,10 +26,30 @@ import javax.swing.border.Border;
  */
 public class Home extends javax.swing.JFrame {
 
+    public JPanel panel = new JPanel();
+    public JFrame frame = new JFrame();
+
     public Home() {
         initComponents();
         time();
         showDongHo();
+        addSanPane();
+    }
+
+    public void addSanPane() {
+        frame.setLayout(new FlowLayout());
+        jPanel8 = new JPanel();
+        paneTong = new JScrollPane();
+        paneTong.setLayout(new ScrollPaneLayout());
+        panel.setPreferredSize(new Dimension(1333, 324));
+        panel.setBackground(new Color(186, 228, 229));
+        jPanel8.add(panel);
+        jPanel8.show();
+        paneTong.add(jPanel8);
+//        paneTong.show();
+        frame.add(paneTong);
+        frame.show();
+
     }
 
     private void time() {
@@ -84,6 +108,7 @@ public class Home extends javax.swing.JFrame {
         lbDangNhap = new javax.swing.JLabel();
         lbQLSan = new javax.swing.JLabel();
         lbLichDat = new javax.swing.JLabel();
+        lbThongKe = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         searchText1 = new views.SearchText();
@@ -258,6 +283,22 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        lbThongKe.setBackground(new java.awt.Color(11, 127, 171));
+        lbThongKe.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lbThongKe.setForeground(new java.awt.Color(255, 255, 255));
+        lbThongKe.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1\\DU_AN_1\\src\\main\\java\\views\\icon\\ThongKe.png")); // NOI18N
+        lbThongKe.setText("Thống Kê");
+        lbThongKe.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lbThongKe.setOpaque(true);
+        lbThongKe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lbThongKeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lbThongKeMouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -266,18 +307,16 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lbQLSan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lbQLCa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lbDichVu, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lbHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lbDangNhap, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lbLienHe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lbHoaDon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lbHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(37, 37, 37))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(lbLichDat, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(lbThongKe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbLienHe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbHoaDon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbDichVu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbDangNhap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbQLCa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbQLSan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbLichDat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -297,8 +336,10 @@ public class Home extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addComponent(lbLienHe, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
+                .addComponent(lbThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
                 .addComponent(lbDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(151, 151, 151))
+                .addGap(93, 93, 93))
         );
 
         jPanel1.setBackground(new java.awt.Color(11, 127, 171));
@@ -360,7 +401,7 @@ public class Home extends javax.swing.JFrame {
         lbTime.setForeground(new java.awt.Color(255, 0, 51));
         lbTime.setText("Time");
 
-        jPanel8.setBackground(new java.awt.Color(243, 240, 248));
+        jPanel8.setBackground(new java.awt.Color(11, 127, 171));
 
         panSan1.setBackground(new java.awt.Color(186, 228, 229));
         panSan1.setForeground(new java.awt.Color(186, 228, 229));
@@ -780,11 +821,11 @@ public class Home extends javax.swing.JFrame {
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(47, 47, 47)
+                .addContainerGap()
                 .addComponent(panSan1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54)
+                .addGap(28, 28, 28)
                 .addComponent(panSan2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(73, 73, 73))
         );
 
         paneTong.setViewportView(jPanel8);
@@ -921,13 +962,21 @@ public class Home extends javax.swing.JFrame {
         lbQLCa.setBackground(new Color(40, 67, 135));
     }//GEN-LAST:event_lbQLCaMouseEntered
 
-    private void Pane1San1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Pane1San1MousePressed
+    private void lbThongKeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbThongKeMouseEntered
+        lbThongKe.setBackground(new Color(40, 67, 135));
+    }//GEN-LAST:event_lbThongKeMouseEntered
 
-    }//GEN-LAST:event_Pane1San1MousePressed
+    private void lbThongKeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbThongKeMouseExited
+        lbThongKe.setBackground(new Color(11, 127, 171));
+    }//GEN-LAST:event_lbThongKeMouseExited
 
     private void Pane1San2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Pane1San2MousePressed
         // TODO add your handling code here:
     }//GEN-LAST:event_Pane1San2MousePressed
+
+    private void Pane1San1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Pane1San1MousePressed
+
+    }//GEN-LAST:event_Pane1San1MousePressed
 
     /**
      * @param args the command line arguments
@@ -1007,6 +1056,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel lbSearch;
     private javax.swing.JLabel lbTenSan1;
     private javax.swing.JLabel lbTenSan2;
+    private javax.swing.JLabel lbThongKe;
     private javax.swing.JLabel lbTime;
     private javax.swing.JPanel panSan1;
     private javax.swing.JPanel panSan2;
