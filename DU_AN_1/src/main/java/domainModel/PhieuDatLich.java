@@ -40,7 +40,9 @@ public class PhieuDatLich {
     @ManyToOne
     @JoinColumn(name = "idKhachHang")
     private KhachHang khachHang;
-    
+    @ManyToOne
+    @JoinColumn(name = "idSanCa", nullable = false)
+    private SanCa sanCa;
     private Date ngayTaoPhieu;
     private Date NgayDenSan;
     private Date ngayCheckIn;
