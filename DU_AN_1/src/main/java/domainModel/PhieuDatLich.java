@@ -51,7 +51,7 @@ public class PhieuDatLich {
     private Date NgayDenSan;
     @Column(columnDefinition = "time")
     private Time tgCheckIn;
-    @Column(columnDefinition = "nvarchar")
+    @Column(columnDefinition = "nvarchar(Max)")
     private String ghiChu;
     private double tongTienSan;
     @Column(nullable = false)
