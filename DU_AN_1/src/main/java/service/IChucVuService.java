@@ -16,9 +16,9 @@ public interface IChucVuService {
 
     List<QLChucVu> getAll();
 
-    String save(QLChucVu  qLChucVu);
+    String save(QLChucVu qLChucVu);
 
-    String update(QLChucVu  qLChucVu,UUID id);
+    String update(QLChucVu qLChucVu, UUID id);
 
     String delete(UUID id);
 }
