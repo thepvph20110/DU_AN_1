@@ -14,7 +14,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,12 +35,13 @@ public class HoaDon {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(length = 36)
     private UUID id;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "idPhieuDatLich")
     private PhieuDatLich phieuDatLich;
     @ManyToOne
     @JoinColumn(name = "idDichVu")
     private DichVu dichVu;
+    @Column(columnDefinition = "date")
     private Date ngayThanhToan;
     private double donGia;
     private double tongTien;
