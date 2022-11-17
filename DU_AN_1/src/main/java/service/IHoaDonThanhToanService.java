@@ -13,9 +13,9 @@ import modelview.QLHoaDonThanhToan;
  * @author ASUS
  */
 public interface IHoaDonThanhToanService {
-    
+
     List<QLHoaDonThanhToan> getHoaDonThanhToan(int position, int pageSize);
-    
+
     List<QLHoaDonThanhToan> getHoaDonThanhToanNoPagination();
 
     String createNewHoaDonThanhToan(QLHoaDonThanhToan hoaDonThanhToan);

@@ -27,49 +27,50 @@ public class HoaDonThanhToanServiceImpl implements IHoaDonThanhToanService {
         List<QLHoaDonThanhToan> listQLHoaDonThanhToan = new ArrayList<>();
         for (HoaDonThanhToan x : listHoaDonThanhToan) {
             //id,maThanhToan, hoaDon, thanhToan, tongTien, ghiChu
-            listQLHoaDonThanhToan.add(new QLHoaDonThanhToan(x.getId(), x.getMaThanhToan(), x.getHoaDon().getId(),
-                    x.getThanhToan(), x.getTongTien(), x.getGhiChu()));
+            listQLHoaDonThanhToan.add(new QLHoaDonThanhToan(x.getId(), x.getMaThanhToan(),x.getHoaDon().getGhiChu(),
+                    x.getThanhToan().getMaThanhToan(), x.getTongTien(), x.getGhiChu()));
         }
         return listQLHoaDonThanhToan;
     }
 
     @Override
     public List<QLHoaDonThanhToan> getHoaDonThanhToanNoPagination() {
-        List<HoaDonThanhToan> listHoaDonThanhToan = hoaDonThanhToanRepositoryImpl.fillAllHoaDonThanhToan();
-
-        List<QLHoaDonThanhToan> listQLHoaDonThanhToan = new ArrayList<>();
-
-        for (HoaDonThanhToan x : listHoaDonThanhToan) {
-            listQLHoaDonThanhToan.add(new QLHoaDonThanhToan(x.getId(), x.getMaThanhToan(), x.getHoaDon(),
-                    x.getThanhToan(), x.getTongTien(), x.getGhiChu()));
-        }
-        return listQLHoaDonThanhToan;
+//        List<HoaDonThanhToan> listHoaDonThanhToan = hoaDonThanhToanRepositoryImpl.fillAllHoaDonThanhToan();
+//
+//        List<QLHoaDonThanhToan> listQLHoaDonThanhToan = new ArrayList<>();
+//
+//        for (HoaDonThanhToan x : listHoaDonThanhToan) {
+//            listQLHoaDonThanhToan.add(new QLHoaDonThanhToan(x.getId(), x.getMaThanhToan(), x.getHoaDon(),
+//                    x.getThanhToan(), x.getTongTien(), x.getGhiChu()));
+//        }
+//        return listQLHoaDonThanhToan;
+        return null;
     }
 
     @Override
     public String createNewHoaDonThanhToan(QLHoaDonThanhToan hoaDonThanhToan) {
-        hoaDonThanhToan.setId(null);
-        boolean save = hoaDonThanhToanRepositoryImpl.saveOrUpdate(new HoaDonThanhToan(hoaDonThanhToan.getId(),
-                hoaDonThanhToan.getMaThanhToan(), hoaDonThanhToan.getHoaDon(),
-                hoaDonThanhToan.getThanhToan(), hoaDonThanhToan.getTongTien(), hoaDonThanhToan.getGhiChu()));
-        if (save) {
-            return "Tạo mới Hóa Đơn Thanh Toán Thành Công";
-        } else {
-            return "Tạo mới Hóa Đơn Thanh Toán Không Công";
-        }
-
+//        hoaDonThanhToan.setId(null);
+//        boolean save = hoaDonThanhToanRepositoryImpl.saveOrUpdate(new HoaDonThanhToan(hoaDonThanhToan.getId(),
+//                hoaDonThanhToan.getMaThanhToan(), hoaDonThanhToan.getHoaDon(),
+//                hoaDonThanhToan.getThanhToan(), hoaDonThanhToan.getTongTien(), hoaDonThanhToan.getGhiChu()));
+//        if (save) {
+//            return "Tạo mới Hóa Đơn Thanh Toán Thành Công";
+//        } else {
+//            return "Tạo mới Hóa Đơn Thanh Toán Không Công";
+//        }
+    return null;
     }
 
     @Override
     public String updateHoaDonThanhToanById(QLHoaDonThanhToan hoaDonThanhToan) {
-        boolean save = hoaDonThanhToanRepositoryImpl.saveOrUpdate(new HoaDonThanhToan(hoaDonThanhToan.getId(),
-                hoaDonThanhToan.getMaThanhToan(), hoaDonThanhToan.getHoaDon(),
-                hoaDonThanhToan.getThanhToan(), hoaDonThanhToan.getTongTien(), hoaDonThanhToan.getGhiChu()));
-        if (save) {
-            return "Cập Nhập Hóa Đơn Thanh Toán Thành Công";
-        } else {
-            return "Cập Nhập Hóa Đơn Thanh Toán Không Công";
-        }
+//        boolean save = hoaDonThanhToanRepositoryImpl.saveOrUpdate(new HoaDonThanhToan(hoaDonThanhToan.getId(), hoaDonThanhToan.getMaThanhToan(),hoaDonThanhToan.getHoaDon().getGhiChu(),
+//                    hoaDonThanhToan.getThanhToan().getMaThanhToan(), hoaDonThanhToan.getTongTien(), hoaDonThanhToan.getGhiChu()));
+//        if (save) {
+//            return "Cập Nhập Hóa Đơn Thanh Toán Thành Công";
+//        } else {
+//            return "Cập Nhập Hóa Đơn Thanh Toán Không Công";
+//        }
+    return null;
     }
 
     @Override

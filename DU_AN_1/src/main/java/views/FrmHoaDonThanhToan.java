@@ -64,23 +64,24 @@ public class FrmHoaDonThanhToan extends javax.swing.JFrame {
     }
 
     private QLHoaDonThanhToan getHoaDonDichVuFromInput() {
-        QLHoaDonThanhToan qlHoaDonThanhToan = new QLHoaDonThanhToan();
-        qlHoaDonThanhToan.setMaThanhToan(UUID.fromString(txtMa.getText()));
-        // select all lấy ra tiền trong hóa đơn
-        // tổng tiền = tiền trong hóa đơn 
-        HoaDon hoaDon = new HoaDon();
-        hoaDon.setId(UUID.fromString(cbbHoaDon.getSelectedItem().toString()));
-        qlHoaDonThanhToan.setHoaDon(hoaDon);
-        qlHoaDonThanhToan.setTongTien(Double.parseDouble(txtTongTien.getText()));
-
-        // hình thức thanh toán.
-        ThanhToan thanhToan = new ThanhToan();
-        thanhToan.setId(UUID.fromString(cbbThanhToan.getSelectedItem().toString()));
-
-        qlHoaDonThanhToan.setThanhToan(thanhToan);
-        qlHoaDonThanhToan.setGhiChu(txtGhiChu.getText());
-
-        return qlHoaDonThanhToan;
+//        QLHoaDonThanhToan qlHoaDonThanhToan = new QLHoaDonThanhToan();
+//        qlHoaDonThanhToan.setMaThanhToan(UUID.fromString(txtMa.getText()));
+//        // select all lấy ra tiền trong hóa đơn
+//        // tổng tiền = tiền trong hóa đơn 
+//        HoaDon hoaDon = new HoaDon();
+//        hoaDon.setId(UUID.fromString(cbbHoaDon.getSelectedItem().toString()));
+//        qlHoaDonThanhToan.setHoaDon(hoaDon);
+//        qlHoaDonThanhToan.setTongTien(Double.parseDouble(txtTongTien.getText()));
+//
+//        // hình thức thanh toán.
+//        ThanhToan thanhToan = new ThanhToan();
+//        thanhToan.setId(UUID.fromString(cbbThanhToan.getSelectedItem().toString()));
+//
+//        qlHoaDonThanhToan.setThanhToan(thanhToan);
+//        qlHoaDonThanhToan.setGhiChu(txtGhiChu.getText());
+//
+//        return qlHoaDonThanhToan;
+        return null;
     }
 
     @SuppressWarnings("unchecked")
@@ -410,7 +411,7 @@ public class FrmHoaDonThanhToan extends javax.swing.JFrame {
         cbbThanhToan.setSelectedItem(tbHoaDonThanhToan.getValueAt(index, 3).toString());
         txtTongTien.setText(tbHoaDonThanhToan.getValueAt(index, 4).toString());
         txtGhiChu.setText(tbHoaDonThanhToan.getValueAt(index, 5).toString());
-        
+
     }//GEN-LAST:event_tbHoaDonThanhToanMouseClicked
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed

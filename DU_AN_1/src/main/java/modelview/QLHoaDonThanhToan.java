@@ -4,6 +4,7 @@
  */
 package modelview;
 
+import domainmodel.HoaDon;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,7 +17,7 @@ import lombok.Setter;
 @Setter
 public class QLHoaDonThanhToan {
     private UUID id;
-    private UUID maThanhToan;
+    private String maThanhToan;
     private String hoaDon;
     private String thanhToan;
     private double tongTien;
