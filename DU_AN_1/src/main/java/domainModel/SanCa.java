@@ -38,11 +38,9 @@ public class SanCa {
     @JoinColumn(name = "idCa", nullable = false)
     private Ca ca;
     @ManyToOne
-    @JoinColumn(name = "phieuDatLichID")
-    private PhieuDatLich phieuDatLich;
-    @ManyToOne
-    @JoinColumn(name = "idSanBong", nullable = false)
-    private SanBong sanBong;
+    @JoinColumn(name = "idSanBong")
+    private SanBong sanbong;
+    private Date ngayTao;
     private double giaCa;
     @Column(nullable = false)
     private trangThaiSanCa trangThai = trangThaiSanCa.DANG_TRONG;
