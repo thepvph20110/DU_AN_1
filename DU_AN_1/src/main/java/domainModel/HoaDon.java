@@ -41,6 +41,7 @@ public class HoaDon {
     @ManyToOne
     @JoinColumn(name = "idDichVu")
     private DichVu dichVu;
+    @Column(columnDefinition = "date")
     private Date ngayThanhToan;
     private double donGia;
     private double tongTien;

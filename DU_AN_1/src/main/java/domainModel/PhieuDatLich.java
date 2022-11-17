@@ -5,6 +5,7 @@
 package domainmodel;
 
 import enumclass.trangThaiPhieuDL;
+import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -44,10 +45,13 @@ public class PhieuDatLich {
     @OneToOne
     @JoinColumn(name = "idSanCa", nullable = false)
     private SanCa sanCa;
+    @Column(columnDefinition = "date")
     private Date ngayTaoPhieu;
+    @Column(columnDefinition = "date")
     private Date NgayDenSan;
-    private Date ngayCheckIn;
-    @Column(columnDefinition = "nvarchar(Max)")
+    @Column(columnDefinition = "time")
+    private Time tgCheckIn;
+    @Column(columnDefinition = "nvarchar")
     private String ghiChu;
     private double tongTienSan;
     @Column(nullable = false)
