@@ -4,9 +4,7 @@
  */
 package modelview;
 
-import domainmodel.DichVu;
-import domainmodel.PhieuDatLich;
-import enumclass.trangThaiHoaDon;
+import enumclass.trangThaiSanCa;
 import java.util.Date;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
@@ -16,22 +14,23 @@ import lombok.Setter;
 
 /**
  *
- * @author ADMIN
+ * @author hp
  */
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class QLHoaDon {
-    
+public class QLSanCa {
+
     private UUID id;
-    private PhieuDatLich phieuDatLich;
-    private DichVu dichVu;
-    private Date ngayThanhToan;
-    private double donGia;
-    private double tongTien;
-    private String ghiChu;
-    private trangThaiHoaDon trangThai = trangThaiHoaDon.CHUA_THANH_TOAN;
-    
-    
+    private String ca;
+    private String sanBong;
+    private Date ngayTao;
+    private double giaCa;
+    private trangThaiSanCa trangThai = trangThaiSanCa.DANG_TRONG;
+
+    public Object[] toDataRow() {
+        return new Object[]{id, ngayTao, giaCa, ca, sanBong, trangThai};
+    }
+
 }

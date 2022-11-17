@@ -4,38 +4,39 @@
  */
 package repository.impl;
 
-import domainmodel.HoaDon;
+import domainmodel.Acount;
+import domainmodel.ChucVu;
 import java.util.List;
 import java.util.UUID;
 import javax.persistence.Query;
 import org.hibernate.Session;
-import repository.IHoaDonRepository;
+import repository.IAcountRepository;
 import utill.HibernateConfig;
 
 /**
  *
- * @author ADMIN
+ * @author Admin
  */
-public class HoaDonRepositoryImpl implements IHoaDonRepository{
+public class AcountRepository implements IAcountRepository{
 
     @Override
-    public List<HoaDon> getAll() {
-         List<HoaDon> listHds;
+    public List<Acount> getAll() {
+        List<Acount> listAcount;
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
-            Query q = session.createQuery("FROM HoaDon");
-            listHds = q.getResultList();
+            Query q = session.createQuery("FROM Acount");
+            listAcount = q.getResultList();
         }catch(Exception e){
             e.printStackTrace();
             return null;
         }
-        return listHds;
+        return listAcount;
     }
 
     @Override
-    public boolean save(HoaDon hoaDon) {
-         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+    public boolean save(Acount acount) {
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             session.getTransaction().begin();
-            session.save(hoaDon);
+            session.save(acount);
             session.getTransaction().commit();
         } catch (Exception e) {
             System.out.println(e);
@@ -45,10 +46,10 @@ public class HoaDonRepositoryImpl implements IHoaDonRepository{
     }
 
     @Override
-    public boolean update(HoaDon hoaDon) {
+    public boolean update(Acount acount) {
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             session.getTransaction().begin();
-            session.saveOrUpdate(hoaDon);
+            session.saveOrUpdate(acount);
             session.getTransaction().commit();
         } catch (Exception e) {
             System.out.println(e);
@@ -60,7 +61,7 @@ public class HoaDonRepositoryImpl implements IHoaDonRepository{
     @Override
     public boolean delete(UUID id) {
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
-            String hql = "DELETE FROM HoaDon WHERE id = :id";
+            String hql = "DELETE FROM Acount WHERE id = :id";
             Query query = session.createQuery(hql);
             query.setParameter("id", id);
             session.getTransaction().begin();
@@ -72,5 +73,6 @@ public class HoaDonRepositoryImpl implements IHoaDonRepository{
         }
         return true;
     }
+
     
 }
