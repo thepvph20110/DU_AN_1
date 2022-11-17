@@ -32,29 +32,29 @@ public class ThanhToanServiceImpl implements IThanhToanService {
     @Override
     public List<QLThanhToan> getAllThanhToans() {
         lstQLThanhToan.clear();
-        var x = repository.getAllThanhToans();
-        for (ThanhToan t : x) {
-            lstQLThanhToan.add(new QLThanhToan(t.getId(), t.getMaThanhToan(), t.getHinhThanhToan(), t.getMoTa()));
+        var lstThanhToan = repository.getAllThanhToans();
+        for (ThanhToan thanhToan : lstThanhToan) {
+            lstQLThanhToan.add(new QLThanhToan(thanhToan.getId(), thanhToan.getMaThanhToan(), thanhToan.getHinhThanhToan(), thanhToan.getMoTa()));
         }
         return lstQLThanhToan;
     }
 
     @Override
     public boolean save(QLThanhToan qLThanhToan) {
-        boolean x = repository.save(new ThanhToan(null, qLThanhToan.getMaThanhToan(), qLThanhToan.getHinhThanhToan(), qLThanhToan.getMoTa()));
-        return x;
+        boolean save = repository.save(new ThanhToan(null, qLThanhToan.getMaThanhToan(), qLThanhToan.getHinhThanhToan(), qLThanhToan.getMoTa()));
+        return save;
     }
 
     @Override
     public boolean update(QLThanhToan qLThanhToan) {
-        boolean x = repository.save(new ThanhToan(qLThanhToan.getId(), qLThanhToan.getMaThanhToan(), qLThanhToan.getHinhThanhToan(), qLThanhToan.getMoTa()));
-        return x;
+        boolean update = repository.save(new ThanhToan(qLThanhToan.getId(), qLThanhToan.getMaThanhToan(), qLThanhToan.getHinhThanhToan(), qLThanhToan.getMoTa()));
+        return update;
     }
 
     @Override
     public boolean delete(QLThanhToan qLThanhToan) {
-        boolean x = repository.delete(new ThanhToan(qLThanhToan.getId(), qLThanhToan.getMaThanhToan(), qLThanhToan.getHinhThanhToan(), qLThanhToan.getMoTa()));
-        return x;
+        boolean delete = repository.delete(new ThanhToan(qLThanhToan.getId(), qLThanhToan.getMaThanhToan(), qLThanhToan.getHinhThanhToan(), qLThanhToan.getMoTa()));
+        return delete;
     }
 
     public static void main(String[] args) {
