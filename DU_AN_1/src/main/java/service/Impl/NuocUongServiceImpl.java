@@ -11,13 +11,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import modelview.QLNuocUong;
+import repository.INuocUongRepository;
 import repository.impl.NuocUongRepositoryImpl;
 import service.INuocUongService;
 
 public class NuocUongServiceImpl implements INuocUongService {
 
-    private NuocUongRepositoryImpl nuocUongRepositoryImpl = new NuocUongRepositoryImpl();
+    private INuocUongRepository nuocUongRepositoryImpl = new NuocUongRepositoryImpl();
     private Map<String, Object> map = new HashMap<>();
+
     @Override
     public List<QLNuocUong> getNuocUong(int firstResult, int maxResults) {
         List<NuocUong> listNuocUong = nuocUongRepositoryImpl.fillAll(firstResult, maxResults);
@@ -26,7 +28,16 @@ public class NuocUongServiceImpl implements INuocUongService {
 
         for (NuocUong x : listNuocUong) {
             //id, maNuocUong, tenNuocUong, soLuong, gia, trangThai
-            listQLNuocUong.add(new QLNuocUong(x.getId(), x.getMaNuocUong(), x.getTenNuocUong(), x.getSoLuong(), x.getGia(), x.getTrangThai()));
+            listQLNuocUong.add(
+                    new QLNuocUong(
+                            x.getId(),
+                            x.getMaNuocUong(),
+                            x.getTenNuocUong(),
+                            x.getSoLuong(),
+                            x.getGia(),
+                            x.getTrangThai()
+                    )
+            );
         }
 
         return listQLNuocUong;
@@ -34,16 +45,24 @@ public class NuocUongServiceImpl implements INuocUongService {
 
     @Override
     public String createNewNuocUong(QLNuocUong nuocUong) {
-        
-        nuocUong.setId(null);
-        if(map.containsKey(nuocUong.getMaNuocUong())){
+        if (map.containsKey(nuocUong.getMaNuocUong())) {
             return "Mã trùng";
         }
-        
-        if(map.containsKey(nuocUong.getTenNuocUong())){
+
+        if (map.containsKey(nuocUong.getTenNuocUong())) {
             return "Tên Nước trùng";
         }
-        boolean save = nuocUongRepositoryImpl.saveOrUpdate(new NuocUong(nuocUong.getId(), nuocUong.getMaNuocUong(), nuocUong.getTenNuocUong(), nuocUong.getSoLuong(), nuocUong.getGia(), nuocUong.getTrangThai()));
+        nuocUong.setId(null);
+        boolean save = nuocUongRepositoryImpl.saveOrUpdate(
+                new NuocUong(
+                        nuocUong.getId(),
+                        nuocUong.getMaNuocUong(),
+                        nuocUong.getTenNuocUong(),
+                        nuocUong.getSoLuong(),
+                        nuocUong.getGia(),
+                        nuocUong.getTrangThai()
+                )
+        );
         if (save) {
             return "Tạo mới Nước Uống Thành Công";
         } else {
@@ -53,7 +72,15 @@ public class NuocUongServiceImpl implements INuocUongService {
 
     @Override
     public String updateNuocUongById(QLNuocUong nuocUong) {
-        boolean save = nuocUongRepositoryImpl.saveOrUpdate(new NuocUong(nuocUong.getId(), nuocUong.getMaNuocUong(), nuocUong.getTenNuocUong(), nuocUong.getSoLuong(), nuocUong.getGia(), nuocUong.getTrangThai()));
+        boolean save = nuocUongRepositoryImpl.saveOrUpdate(
+                new NuocUong(nuocUong.getId(),
+                        nuocUong.getMaNuocUong(),
+                        nuocUong.getTenNuocUong(),
+                        nuocUong.getSoLuong(),
+                        nuocUong.getGia(),
+                        nuocUong.getTrangThai()
+                )
+        );
         if (save) {
             return "Cập Nhập Nước Uống Thành Công";
         } else {
@@ -87,7 +114,16 @@ public class NuocUongServiceImpl implements INuocUongService {
             map.put(x.getMaNuocUong(), x);
             map.put(x.getTenNuocUong(), x);
             //id, maNuocUong, tenNuocUong, soLuong, gia, trangThai
-            listQLNuocUong.add(new QLNuocUong(x.getId(), x.getMaNuocUong(), x.getTenNuocUong(), x.getSoLuong(), x.getGia(), x.getTrangThai()));
+            listQLNuocUong.add(
+                    new QLNuocUong(
+                            x.getId(),
+                            x.getMaNuocUong(),
+                            x.getTenNuocUong(),
+                            x.getSoLuong(),
+                            x.getGia(),
+                            x.getTrangThai()
+                    )
+            );
         }
 
         return listQLNuocUong;

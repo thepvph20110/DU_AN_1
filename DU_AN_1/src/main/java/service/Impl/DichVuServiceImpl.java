@@ -13,16 +13,20 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import modelview.QLDichVu;
+import repository.IDichVuRepository;
+import repository.IDoThueRepository;
 import repository.INuocUongRepository;
 import repository.impl.DichVuRepositoryImpl;
+import repository.impl.DoThueRepositoryImpl;
 import repository.impl.NuocUongRepositoryImpl;
 import service.IDichVuService;
 
 public class DichVuServiceImpl implements IDichVuService {
 
-    private DichVuRepositoryImpl dichVuRepositoryImpl = new DichVuRepositoryImpl();
+    private IDichVuRepository dichVuRepositoryImpl = new DichVuRepositoryImpl();
     private Map<String, Object> map = new HashMap<>();
     private INuocUongRepository nuocUongRepositoryImpl = new NuocUongRepositoryImpl();
+    private IDoThueRepository doThueRepositoryImpl = new DoThueRepositoryImpl();
 
     @Override
     public List<QLDichVu> getDichVu(int position, int pageSize) {
@@ -41,19 +45,35 @@ public class DichVuServiceImpl implements IDichVuService {
 
     @Override
     public List<QLDichVu> getDichVuNoPagination() {
-//  map dịch vụ
-        List<DichVu> listDichVu = dichVuRepositoryImpl.fillAllDichVu();
+
+//  map nước uống
         List<NuocUong> listNuocUong = nuocUongRepositoryImpl.fillAllNuocUong();
         listNuocUong.forEach(nuocUong -> {
             map.put(nuocUong.getTenNuocUong(), nuocUong);
         });
 // map đồ thuê
-
+        List<DoThue> listDoThue = doThueRepositoryImpl.getAll();
+        listDoThue.forEach(doThue -> {
+            map.put(doThue.getTenDoThue(), doThue);
+        });
+// chạy for add
+        List<DichVu> listDichVu = dichVuRepositoryImpl.fillAllDichVu();
         List<QLDichVu> listQLDichVu = new ArrayList<>();
         for (DichVu x : listDichVu) {
             map.put(x.getMaDichVu(), x);
             //id, maDichVu, doThue, soLuongDoThue, nuocUong, soLuongNuocUong, donGia, moTa, trangThai
-            listQLDichVu.add(new QLDichVu(x.getId(), x.getMaDichVu(), x.getDoThue().getTenDoThue(), x.getSoLuongDoThue(), x.getNuocUong().getTenNuocUong(), x.getSoLuongNuocUong(), x.getDonGia(), x.getMoTa(), x.getTrangThai()));
+            listQLDichVu.add(
+                    new QLDichVu(
+                            x.getId(),
+                            x.getMaDichVu(),
+                            x.getDoThue().getTenDoThue(),
+                            x.getSoLuongDoThue(),
+                            x.getNuocUong().getTenNuocUong(),
+                            x.getSoLuongNuocUong(),
+                            x.getDonGia(), x.getMoTa(),
+                            x.getTrangThai()
+                    )
+            );
         }
         return listQLDichVu;
     }
@@ -74,7 +94,17 @@ public class DichVuServiceImpl implements IDichVuService {
             return "Mã trùng";
         }
 
-        boolean save = dichVuRepositoryImpl.saveOrUpdate(new DichVu(dichVu.getId(), dichVu.getMaDichVu(), doThue, dichVu.getSoLuongDoThue(), nuocUong, dichVu.getSoLuongNuocUong(), dichVu.getDonGia(), dichVu.getMoTa(), dichVu.getTrangThai()));
+        boolean save = dichVuRepositoryImpl.saveOrUpdate(
+                new DichVu(
+                        dichVu.getId(),
+                        dichVu.getMaDichVu(),
+                        doThue,
+                        dichVu.getSoLuongDoThue(),
+                        nuocUong, dichVu.getSoLuongNuocUong(),
+                        dichVu.getDonGia(), dichVu.getMoTa(),
+                        dichVu.getTrangThai()
+                )
+        );
         if (save) {
             return "Tạo mới Dịch Vụ Thành Công";
         } else {
@@ -84,7 +114,6 @@ public class DichVuServiceImpl implements IDichVuService {
 
     @Override
     public String updateDichVuById(QLDichVu dichVu) {
-        dichVu.setId(null);
         NuocUong nuocUong = new NuocUong();
         if (map.containsKey(dichVu.getTenNuocUong())) {
             nuocUong = (NuocUong) map.get(dichVu.getTenNuocUong());
@@ -94,8 +123,16 @@ public class DichVuServiceImpl implements IDichVuService {
         if (map.containsKey(dichVu.getTenDoThue())) {
             doThue = (DoThue) map.get(dichVu.getTenDoThue());
         }
-        boolean save = dichVuRepositoryImpl.saveOrUpdate(new DichVu(dichVu.getId(), dichVu.getMaDichVu(),doThue, dichVu.getSoLuongDoThue(),nuocUong, dichVu.getSoLuongNuocUong(), dichVu.getDonGia(), dichVu.getMoTa(), dichVu.getTrangThai()));
-
+        boolean save = dichVuRepositoryImpl.saveOrUpdate(
+                new DichVu(dichVu.getId(), 
+                        dichVu.getMaDichVu(), 
+                        doThue, dichVu.getSoLuongDoThue(), 
+                        nuocUong, dichVu.getSoLuongNuocUong(), 
+                        dichVu.getDonGia(), 
+                        dichVu.getMoTa(), 
+                        dichVu.getTrangThai()
+                )
+        );
         if (save) {
             return "Cập nhập Dịch Vụ Thành Công";
         } else {

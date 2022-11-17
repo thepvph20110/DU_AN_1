@@ -4,7 +4,6 @@
  */
 package views;
 
-import domainmodel.NuocUong;
 import enumclass.trangThaiDichVu;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,9 +12,11 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelview.QLDichVu;
+import modelview.QLDoThue;
 import modelview.QLNuocUong;
 import service.IDichVuService;
 import service.Impl.DichVuServiceImpl;
+import service.Impl.DoThueServiceImpl;
 import service.Impl.NuocUongServiceImpl;
 
 /**
@@ -52,6 +53,8 @@ public class FrmDichVu extends javax.swing.JFrame {
 
         txtDonGiaDV.setEditable(false);
 
+        fixCungSoLuong();
+
     }
 
     private void loadDataToTable() {
@@ -73,27 +76,40 @@ public class FrmDichVu extends javax.swing.JFrame {
 
     private void loadCBBNuocUong() {
         List<QLNuocUong> listQLNuocUong = new NuocUongServiceImpl().getNuocUongNoPagination();
-        for (QLNuocUong x : listQLNuocUong) {
-            listCBBNuocUong.add(x.getTenNuocUong());
+        for (QLNuocUong qlNuocUong : listQLNuocUong) {
+            listCBBNuocUong.add(qlNuocUong.getTenNuocUong());
         }
 
-        for (String c : listCBBNuocUong) {
-            dcbmNuocUong.addElement(c);
+        for (String nuocUong : listCBBNuocUong) {
+            dcbmNuocUong.addElement(nuocUong);
         }
     }
 
     private void loadCBBDoThue() {
-        listCBBDoThue.add("Áo Lưới Tập");
-        listCBBDoThue.add("Áo Lưới Vip");
-        listCBBDoThue.add("Bóng B2");
-        for (String lists : listCBBDoThue) {
-            dcbmDoThue.addElement(lists);
+        List<QLDoThue> listQLDoThue = new DoThueServiceImpl().getAll();
+        for (QLDoThue qlDoThue : listQLDoThue) {
+            listCBBDoThue.add(qlDoThue.getTenDoThue());
         }
 
+        for (String doThue : listCBBDoThue) {
+            dcbmDoThue.addElement(doThue);
+        }
+    }
+
+    private void fixCungSoLuong() {
+        txtSoLuongDoThue.setText("0");
+        txtSoLuongNuocUong.setText("0");
+        txtDonGiaDV.setText(String.valueOf(getDonGia()));
     }
 
     private double getDonGia() {
         double giaNuoc = 0;
+        int soLuongNuoc = 0;
+        double giaDoThue = 0;
+        int soLuongDoThue = 0;
+        double donGia = 0;
+
+        soLuongNuoc = Integer.parseInt(txtSoLuongNuocUong.getText());
         List<QLNuocUong> qlNuocUong = new NuocUongServiceImpl().getNuocUongNoPagination();
         for (QLNuocUong list : qlNuocUong) {
             if (cbbNuocUong.getSelectedItem().equals(list.getTenNuocUong())) {
@@ -101,8 +117,16 @@ public class FrmDichVu extends javax.swing.JFrame {
 
             }
         }
-        return giaNuoc;
 
+        soLuongDoThue = Integer.parseInt(txtSoLuongDoThue.getText());
+        List<QLDoThue> qlDoThue = new DoThueServiceImpl().getAll();
+        for (QLDoThue list : qlDoThue) {
+            if (cbbNuocUong.getSelectedItem().equals(list.getTenDoThue())) {
+                giaNuoc = list.getDonGia();
+            }
+        }
+
+        return donGia = (giaNuoc * soLuongNuoc) + (giaDoThue * soLuongDoThue);
     }
 
     private QLDichVu getDichVuFromInput() {
@@ -119,9 +143,9 @@ public class FrmDichVu extends javax.swing.JFrame {
         } else {
             qlDichVu.setTrangThai(trangThaiDichVu.NGUNG_Su_Dung);
         }
-
-        txtDonGiaDV.setText(String.valueOf(qlDichVu.getSoLuongNuocUong() * getDonGia()));
+        txtDonGiaDV.setText(String.valueOf(getDonGia()));
         qlDichVu.setDonGia(Double.parseDouble(txtDonGiaDV.getText()));
+        qlDichVu.setMoTa(jtaMoTa.getText());
 
         return qlDichVu;
     }
@@ -534,6 +558,8 @@ public class FrmDichVu extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Bạn đã chọn hủy thêm Dịch Vụ");
         }
         loadDataToTable();
+
+        System.out.println("" + txtDonGiaDV.getText());
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnCapNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhapActionPerformed
