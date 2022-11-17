@@ -24,7 +24,7 @@ public class QLSanBong {
     private UUID id;
     private String maSanBong;
     private String tenSanBong;
-    private long giaSan;
+    private double giaSan;
     private int sucChua;
     private String tenLoaiSan;
     private trangThaiSanBong trangThai = trangThaiSanBong.HOAT_DONG;

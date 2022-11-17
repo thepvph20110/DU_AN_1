@@ -40,7 +40,7 @@ public class SanBongServiceImpl implements ISanBongService {
         }
         listQLSanBong.clear();
         for (SanBong sanBong : re.getAll()) {
-            listQLSanBong.add(new QLSanBong(sanBong.getId(), sanBong.getMaSanBong(), sanBong.getTenSanBong(), sanBong.getGiaSan(), sanBong.getSucChua(), sanBong.getLoaiSan().getTenLoaiSan(), sanBong.getTrangThai()));
+            listQLSanBong.add(new QLSanBong(sanBong.getId(), sanBong.getMaSanBong(), sanBong.getTenSanBong(),sanBong.getGiaSan(), sanBong.getSucChua(), sanBong.getLoaiSan().getTenLoaiSan(), sanBong.getTrangThai()));
         }
         return listQLSanBong;
     }

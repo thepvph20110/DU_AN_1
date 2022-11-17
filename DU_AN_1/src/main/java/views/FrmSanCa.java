@@ -55,7 +55,7 @@ public class FrmSanCa extends javax.swing.JFrame {
         //listQLPhieuDatLich = 
         loadCbbCa();
         loadCbbSanBong();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-mm-yyyy");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
         Date date = new Date();
         txtNgayTao.setText(simpleDateFormat.format(date));
         showData(listQLSanBong);
@@ -326,7 +326,7 @@ public class FrmSanCa extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-mm-yyyy");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
         Date date;
         try {
             String giaCa = txtGiaCa.getText().trim();
