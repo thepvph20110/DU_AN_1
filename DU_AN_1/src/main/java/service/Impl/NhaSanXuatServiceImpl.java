@@ -5,7 +5,10 @@
 package service.Impl;
 
 import domainmodel.NhaSanXuat;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import repository.impl.NhaSanXuatRepositoryImpl;
 import service.INhaSanXuatService;
 
@@ -16,15 +19,25 @@ import service.INhaSanXuatService;
 public class NhaSanXuatServiceImpl implements INhaSanXuatService{
 
     private NhaSanXuatRepositoryImpl  nhaSanXuatRepositoryImpl = new NhaSanXuatRepositoryImpl();
+    private List<NhaSanXuat> listNSX = new ArrayList<>();
+    private Map<String, Object> mapma = new HashMap();
     
     @Override
     public List<NhaSanXuat> getAll() {
-        return nhaSanXuatRepositoryImpl.getAll();
+        listNSX = nhaSanXuatRepositoryImpl.getAll();
+        for (NhaSanXuat nhaSanXuat : listNSX) {
+            mapma.put(nhaSanXuat.getMaNSX(), nhaSanXuat.getTenNSX());
+        }
+        return listNSX;
     }
 
     @Override
     public String AddorUpdate(NhaSanXuat nhaSanXuat) {
-        return nhaSanXuatRepositoryImpl.AddorUpdate(nhaSanXuat);
+        if (mapma.containsKey(nhaSanXuat.getMaNSX())) {
+            return "Trùng Mã";
+        }else{
+            return nhaSanXuatRepositoryImpl.AddorUpdate(nhaSanXuat);
+        }
     }
 
     @Override

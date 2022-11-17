@@ -5,7 +5,10 @@
 package service.Impl;
 
 import domainmodel.KichThuoc;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import repository.impl.KichThuocRepositoryImpl;
 import service.IKichThuocService;
 
@@ -13,18 +16,31 @@ import service.IKichThuocService;
  *
  * @author Admin
  */
-public class KichThuocServiceImpl implements IKichThuocService{
-    
+public class KichThuocServiceImpl implements IKichThuocService {
+
     private KichThuocRepositoryImpl kichThuocRepositoryImpl = new KichThuocRepositoryImpl();
+    private List<KichThuoc> listKthuoc = new ArrayList<>();
+    private Map<String, Object> mapma = new HashMap();
 
     @Override
     public List<KichThuoc> getAll() {
-        return kichThuocRepositoryImpl.getAll();
+        listKthuoc = kichThuocRepositoryImpl.getAll();
+        for (KichThuoc kichThuoc : listKthuoc) {
+            mapma.put(kichThuoc.getMaSize(), kichThuoc.getSize());
+        }
+        return listKthuoc;
     }
 
     @Override
     public String AddorUpdate(KichThuoc kichThuoc) {
-        return kichThuocRepositoryImpl.AddorUpdate(kichThuoc);
+        if (mapma.containsKey(kichThuoc.getMaSize())) {
+            return "Trùng Mã";
+        } else if (kichThuoc.getMaSize().isBlank() || String.valueOf(kichThuoc.getSize()).isBlank()) {
+            return "Mã SIZE - SIZE ĐANG TRỐNG";
+        }
+        {
+            return kichThuocRepositoryImpl.AddorUpdate(kichThuoc);
+        }
     }
 
     @Override
@@ -36,7 +52,5 @@ public class KichThuocServiceImpl implements IKichThuocService{
     public KichThuoc getOne(String ma) {
         return kichThuocRepositoryImpl.getOne(ma);
     }
-    
-    
-    
+
 }
