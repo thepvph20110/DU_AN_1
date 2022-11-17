@@ -6,10 +6,15 @@ package service.Impl;
 
 import domainmodel.LoaiSan;
 import domainmodel.SanBong;
+import enumclass.trangThaiSanBong;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import modelview.QLLoaiSan;
 import modelview.QLSanBong;
+import repository.ILoaiSanRepository;
+import repository.impl.LoaiSanRepository;
 import repository.impl.SanBongRepository;
 import service.ISanBongService;
 
@@ -21,22 +26,36 @@ public class SanBongServiceImpl implements ISanBongService {
 
     private final List<QLSanBong> listQLSanBong = new ArrayList<>();
     private final SanBongRepository re = new SanBongRepository();
+    private Map<String, Object> map = new HashMap<>();
+    private ILoaiSanRepository ire = new LoaiSanRepository();
 
     @Override
+     
+
     public List<QLSanBong> getAll() {
+        List<LoaiSan> listLoaiSan = ire.getAll();
+
+        for (LoaiSan loaiSan : listLoaiSan) {
+            map.put(loaiSan.getTenLoaiSan(), loaiSan);
+            map.put(loaiSan.getMaLoaiSan(), loaiSan);
+        }
         listQLSanBong.clear();
         for (SanBong sanBong : re.getAll()) {
-            QLLoaiSan loaiSan = new QLLoaiSan(sanBong.getLoaiSan().getId(), sanBong.getLoaiSan().getMaLoaiSan(), sanBong.getLoaiSan().getTenLoaiSan(), sanBong.getLoaiSan().getMoTa());
-            QLSanBong qLSanBong = new QLSanBong(sanBong.getId(), sanBong.getMaSanBong(), sanBong.getTenSanBong(), sanBong.getGiaSan(), sanBong.getSucChua(), loaiSan, sanBong.getTrangThai());
-            listQLSanBong.add(qLSanBong);
+            listQLSanBong.add(new QLSanBong(sanBong.getId(), sanBong.getMaSanBong(), sanBong.getTenSanBong(), sanBong.getGiaSan(), sanBong.getSucChua(), sanBong.getLoaiSan().getTenLoaiSan(), sanBong.getTrangThai()));
         }
         return listQLSanBong;
     }
 
     @Override
     public String save(QLSanBong qLSanBong) {
-        LoaiSan loaiSan = new LoaiSan(qLSanBong.getQLloaiSan().getId(), null, null, null);
-        SanBong sanBong = new SanBong(null, qLSanBong.getMaSanBong(), qLSanBong.getTenSanBong(), qLSanBong.getGiaSan(), qLSanBong.getSucChua(), loaiSan, qLSanBong.getTrangThai());
+//        if(map.containsKey(qLSanBong.getMaSanBong()) || map.containsKey(qLSanBong.getTenLoaiSan())){
+//            return "Ma or Ten Trung";
+//        }
+        LoaiSan loaiSan = new LoaiSan();
+        if(map.containsKey(qLSanBong.getTenLoaiSan())){
+            loaiSan =(LoaiSan) map.get(qLSanBong.getTenLoaiSan());
+        }
+        SanBong sanBong = new SanBong(null, qLSanBong.getMaSanBong(), qLSanBong.getTenLoaiSan(), qLSanBong.getGiaSan(), qLSanBong.getSucChua(), loaiSan, qLSanBong.getTrangThai());
         if (re.saveOrUpdate(sanBong)) {
             return "Save Complete";
         } else {
@@ -46,8 +65,14 @@ public class SanBongServiceImpl implements ISanBongService {
 
     @Override
     public String update(QLSanBong qLSanBong) {
-        LoaiSan loaiSan = new LoaiSan(qLSanBong.getQLloaiSan().getId(), null, null, null);
-        SanBong sanBong = new SanBong(qLSanBong.getId(), qLSanBong.getMaSanBong(), qLSanBong.getTenSanBong(), qLSanBong.getGiaSan(), qLSanBong.getSucChua(), loaiSan, qLSanBong.getTrangThai());
+        if(map.containsKey(qLSanBong.getMaSanBong()) || map.containsKey(qLSanBong.getTenLoaiSan())){
+            return "Ma or Ten Trung";
+        }
+        LoaiSan loaiSan = new LoaiSan();
+        if(map.containsKey(qLSanBong.getTenLoaiSan())){
+            loaiSan =(LoaiSan) map.get(qLSanBong.getTenLoaiSan());
+        }
+        SanBong sanBong = new SanBong(qLSanBong.getId(), qLSanBong.getMaSanBong(), qLSanBong.getTenLoaiSan(), qLSanBong.getGiaSan(), qLSanBong.getSucChua(), loaiSan, qLSanBong.getTrangThai());
         if (re.saveOrUpdate(sanBong)) {
             return "Save Complete";
         } else {
@@ -57,8 +82,10 @@ public class SanBongServiceImpl implements ISanBongService {
 
     @Override
     public String delete(QLSanBong qLSanBong) {
-        LoaiSan loaiSan = new LoaiSan(qLSanBong.getQLloaiSan().getId(), null, null, null);
-        SanBong sanBong = new SanBong(qLSanBong.getId(), qLSanBong.getMaSanBong(), qLSanBong.getTenSanBong(), qLSanBong.getGiaSan(), qLSanBong.getSucChua(), loaiSan, qLSanBong.getTrangThai());
+        LoaiSan loaiSan = new LoaiSan();
+        if(map.containsKey(qLSanBong.getTenLoaiSan())){
+            loaiSan =(LoaiSan) map.get(qLSanBong.getTenLoaiSan());
+        }SanBong sanBong = new SanBong(qLSanBong.getId(), qLSanBong.getMaSanBong(), qLSanBong.getTenSanBong(), qLSanBong.getGiaSan(), qLSanBong.getSucChua(), loaiSan, qLSanBong.getTrangThai());
         if (re.deleteSanBong(sanBong)) {
             return "Save Complete";
         } else {

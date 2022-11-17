@@ -19,6 +19,7 @@ public class LoaiSanServiceImpl implements ILoaiSanService {
 
     private final List<QLLoaiSan> listQLLoaiSan = new ArrayList<>();
     private final LoaiSanRepository re = new LoaiSanRepository();
+    
 
     @Override
     public List<QLLoaiSan> getAll() {
@@ -44,9 +45,9 @@ public class LoaiSanServiceImpl implements ILoaiSanService {
     public String update(QLLoaiSan qLLoaiSan) {
         LoaiSan loaiSan = new LoaiSan(qLLoaiSan.getId(), qLLoaiSan.getMaLoaiSan(), qLLoaiSan.getTenLoaiSan(), qLLoaiSan.getMoTa());
         if (re.saveOrUpdate(loaiSan)) {
-            return "Save Complete";
+            return "Update Complete";
         } else {
-            return "Save Fail";
+            return "Update Fail";
         }
     }
 
@@ -54,9 +55,9 @@ public class LoaiSanServiceImpl implements ILoaiSanService {
     public String delete(QLLoaiSan qLLoaiSan) {
         LoaiSan loaiSan = new LoaiSan(qLLoaiSan.getId(), qLLoaiSan.getMaLoaiSan(), qLLoaiSan.getTenLoaiSan(), qLLoaiSan.getMoTa());
         if (re.deleteLoaiSan(loaiSan)) {
-            return "Save Complete";
+            return "Delete Complete";
         } else {
-            return "Save Fail";
+            return "Delete Fail";
         }
     }
 

@@ -6,7 +6,9 @@ package service.Impl;
 
 import domainmodel.Ca;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import service.ICaService;
 import modelview.QLCa;
 import repository.impl.CaRepository;
@@ -19,11 +21,14 @@ public class CaServiceImpl implements ICaService {
 
     private final CaRepository re = new CaRepository();
     private final List<QLCa> listQLCa = new ArrayList<>();
+    private Map<String, Object> map = new HashMap<>();
 
     @Override
     public List<QLCa> getAll() {
         listQLCa.clear();
         for (Ca ca : re.getAll()) {
+            map.put(ca.getMaCa(), ca);
+            map.put(ca.getTenCa(),ca);
             QLCa qLCa = new QLCa(ca.getId(), ca.getMaCa(), ca.getTenCa(), ca.getThoiGianBatDau(), ca.getThoiGianKetThuc(), ca.getGiaCa(), ca.getTrangThai());
             listQLCa.add(qLCa);
         }
@@ -32,6 +37,9 @@ public class CaServiceImpl implements ICaService {
 
     @Override
     public String save(QLCa qLCa) {
+        if(map.containsKey(qLCa.getMaCa()) || map.containsKey(qLCa.getTenCa())){
+            return "Ma trung";
+        }
         Ca ca = new Ca(null, qLCa.getMaCa(), qLCa.getTenCa(), qLCa.getThoiGianBatDau(), qLCa.getThoiGianKetThuc(), qLCa.getGiaCa(), qLCa.getTrangThai());
         if (re.saveOrUpdate(ca)) {
             return "Save Complete";
@@ -42,6 +50,9 @@ public class CaServiceImpl implements ICaService {
 
     @Override
     public String delete(QLCa qLCa) {
+        if(map.containsKey(qLCa.getMaCa()) || map.containsKey(qLCa.getTenCa())){
+            return "Ma trung";
+        }
         Ca ca = new Ca(qLCa.getId(), qLCa.getMaCa(), qLCa.getTenCa(), qLCa.getThoiGianBatDau(), qLCa.getThoiGianKetThuc(), qLCa.getGiaCa(), qLCa.getTrangThai());
         if (re.deleteCa(ca)) {
             return "Delete Complete";

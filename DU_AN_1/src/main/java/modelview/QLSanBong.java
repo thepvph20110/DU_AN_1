@@ -26,11 +26,11 @@ public class QLSanBong {
     private String tenSanBong;
     private long giaSan;
     private int sucChua;
-    private QLLoaiSan QLloaiSan;
+    private String tenLoaiSan;
     private trangThaiSanBong trangThai = trangThaiSanBong.HOAT_DONG;
     
     public Object[] toDataRow(){
-        return new Object[]{id, maSanBong, tenSanBong, giaSan, sucChua, QLloaiSan.getTenLoaiSan(), trangThai};
+        return new Object[]{id, maSanBong, tenSanBong, giaSan, sucChua, trangThai, tenLoaiSan};
     }
 
 }

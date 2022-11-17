@@ -313,17 +313,6 @@ public class FrmSanBong extends javax.swing.JFrame {
         }
     }
 
-    private UUID setIdLoaiSan() {
-        String ten = (String) cbbLoaiSan.getSelectedItem();
-        UUID id = null;
-        for (QLLoaiSan qLLoaiSan : listQLLoaiSan) {
-            if (qLLoaiSan.getTenLoaiSan().equals(ten)) {
-                id = qLLoaiSan.getId();
-            }
-        }
-        return id;
-    }
-
     private void save() {
         String maSanBong = txtMaSanBong.getText().trim();
         String tenSanBong = txtTenSanBong.getText().trim();
@@ -337,14 +326,9 @@ public class FrmSanBong extends javax.swing.JFrame {
         }
         if (maSanBong.length() == 0 || tenSanBong.length() == 0 || giaSan.length() == 0 || sucChua.length() == 0) {
             JOptionPane.showMessageDialog(this, "IsEmpty");
-        } else if (!giaSan.matches("^[0-9]+$") || !sucChua.matches("^[0-9]+$")) {
-            JOptionPane.showMessageDialog(this, "Please enter number");
-        } else if (!maSanBong.matches("^[a-zA-Z0-9 a-zA-Z0-9]+$") || !tenSanBong.matches("^[a-zA-Z0-9 a-zA-Z0-9]+$")) {
-            JOptionPane.showMessageDialog(this, "Please re-enter");
+        }  else {
 
-        } else {
-            QLLoaiSan loaiSan = new QLLoaiSan(setIdLoaiSan(), null, null, null);
-            QLSanBong qLSanBong = new QLSanBong(null, maSanBong, tenSanBong, Long.valueOf(giaSan), Integer.valueOf(sucChua), loaiSan, qlsb.getTrangThai());
+            QLSanBong qLSanBong = new QLSanBong(null, maSanBong, tenSanBong, Long.valueOf(giaSan), Integer.valueOf(sucChua), cbbLoaiSan.getSelectedItem().toString(), qlsb.getTrangThai());
             JOptionPane.showMessageDialog(this, iSanBongService.save(qLSanBong));
             listQLSanBong = iSanBongService.getAll();
             showData(listQLSanBong);
@@ -373,8 +357,7 @@ public class FrmSanBong extends javax.swing.JFrame {
             } else if (!maSanBong.matches("^[a-zA-Z_0-9 0-9]+$") || !tenSanBong.matches("^[a-zA-Z_0-9 0-9]+$")) {
                 JOptionPane.showMessageDialog(this, "Please re-enter");
             } else {
-                QLLoaiSan loaiSan = new QLLoaiSan(setIdLoaiSan(), null, null, null);
-                QLSanBong qLSanBong = new QLSanBong(mountClick().getId(), maSanBong, tenSanBong, Long.valueOf(giaSan), Integer.valueOf(sucChua), loaiSan, qlsb.getTrangThai());
+                QLSanBong qLSanBong = new QLSanBong(mountClick().getId(), maSanBong, tenSanBong, Long.valueOf(giaSan), Integer.valueOf(sucChua), cbbLoaiSan.getSelectedItem().toString(), qlsb.getTrangThai());
                 JOptionPane.showMessageDialog(this, iSanBongService.update(qLSanBong));
                 listQLSanBong = iSanBongService.getAll();
                 showData(listQLSanBong);
@@ -397,8 +380,7 @@ public class FrmSanBong extends javax.swing.JFrame {
         if (jTable1.getSelectedRow() < 0) {
             JOptionPane.showMessageDialog(this, "Selected Row ???");
         } else {
-            QLLoaiSan loaiSan = new QLLoaiSan(setIdLoaiSan(), null, null, null);
-            QLSanBong qLSanBong = new QLSanBong(mountClick().getId(), maSanBong, tenSanBong, Long.valueOf(giaSan), Integer.valueOf(sucChua), loaiSan, qlsb.getTrangThai());
+            QLSanBong qLSanBong = new QLSanBong(mountClick().getId(), maSanBong, tenSanBong, Long.valueOf(giaSan), Integer.valueOf(sucChua), cbbLoaiSan.getSelectedItem().toString(), qlsb.getTrangThai());
             JOptionPane.showMessageDialog(this, iSanBongService.delete(qLSanBong));
             listQLSanBong = iSanBongService.getAll();
             showData(listQLSanBong);
@@ -417,7 +399,7 @@ public class FrmSanBong extends javax.swing.JFrame {
         } else {
             radioSuaChua.setSelected(true);
         }
-        cbbLoaiSan.setSelectedItem(qlsb.getQLloaiSan().getTenLoaiSan());
+        cbbLoaiSan.setSelectedItem(qlsb.getTenLoaiSan());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

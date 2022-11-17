@@ -351,8 +351,6 @@ public class FrmCa extends javax.swing.JFrame {
         } else {
             if (maCa.length() == 0 || tenCa.length() == 0 || thoiGianBatDau.length() == 0 || thoiGianKetThuc.length() == 0 || gia.length() == 0) {
                 JOptionPane.showMessageDialog(this, "IsEmpty");
-            } else if (!gia.matches("^[0-9]+$")) {
-                JOptionPane.showMessageDialog(this, "Please enter number Gia");
             } else if (!maCa.matches("^[a-zA-Z_0-9 0-9]+$") || !tenCa.matches("^[a-zA-Z_0-9 0-9]+$")) {
                 JOptionPane.showMessageDialog(this, "Please re-enter");
 
