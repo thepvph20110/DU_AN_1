@@ -1,0 +1,10 @@
+diff a/DU_AN_1/src/main/java/domainModel/Ca.java b/DU_AN_1/src/main/java/domainModel/Ca.java	(rejected hunks)
+@@ -14,6 +14,8 @@
+ import javax.persistence.GenerationType;
+ import javax.persistence.Id;
+ import javax.persistence.Table;
++import javax.persistence.Temporal;
++import javax.persistence.TemporalType;
+ import lombok.AllArgsConstructor;
+ import lombok.Getter;
+ import lombok.NoArgsConstructor;
