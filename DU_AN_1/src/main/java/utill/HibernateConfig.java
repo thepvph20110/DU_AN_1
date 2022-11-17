@@ -30,6 +30,19 @@ public class HibernateConfig {
 
     private static final SessionFactory FACTORY;
 
+    public static Properties getProperties() {
+        Properties properties = new Properties();
+        properties.put(Environment.DIALECT, "org.hibernate.dialect.SQLServerDialect");
+        properties.put(Environment.DRIVER, "com.microsoft.sqlserver.jdbc.SQLServerDriver");
+        properties.put(Environment.URL, "jdbc:sqlserver://localhost:1433;databaseName=QLSanBongDongDe;encrypt=true;trustServerCertificate=true");
+        properties.put(Environment.USER, "sa");
+        properties.put(Environment.PASS, "12332123asd");
+        properties.put(Environment.SHOW_SQL, "true");
+        //gen DB tự động
+//        properties.put(Environment.HBM2DDL_AUTO, "create");
+        return properties;
+    }
+
     static {
         Configuration conf = new Configuration();
 
