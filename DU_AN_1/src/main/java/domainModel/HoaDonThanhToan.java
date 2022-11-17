@@ -32,7 +32,7 @@ public class HoaDonThanhToan {
     @Column(length = 36)
     private UUID id;
     @Column(name = "maTT")
-    private UUID maThanhToan;
+    private String maThanhToan;
     @ManyToOne
     @JoinColumn(name = "idHoaDon")
     private HoaDon hoaDon;
