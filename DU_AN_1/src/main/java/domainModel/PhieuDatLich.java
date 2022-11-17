@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -40,7 +41,7 @@ public class PhieuDatLich {
     @ManyToOne
     @JoinColumn(name = "idKhachHang")
     private KhachHang khachHang;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "idSanCa", nullable = false)
     private SanCa sanCa;
     private Date ngayTaoPhieu;
