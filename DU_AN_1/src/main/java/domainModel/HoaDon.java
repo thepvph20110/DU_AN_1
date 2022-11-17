@@ -16,6 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -39,6 +41,7 @@ public class HoaDon {
     @ManyToOne
     @JoinColumn(name = "idDichVu")
     private DichVu dichVu;
+    @Column(columnDefinition = "date")
     private Date ngayThanhToan;
     private double donGia;
     private double tongTien;
