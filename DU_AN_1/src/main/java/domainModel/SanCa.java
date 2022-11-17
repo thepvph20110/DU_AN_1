@@ -40,6 +40,7 @@ public class SanCa {
     @ManyToOne
     @JoinColumn(name = "idSanBong")
     private SanBong sanbong;
+    @Column(columnDefinition = "date")
     private Date ngayTao;
     private double giaCa;
     @Column(nullable = false)
