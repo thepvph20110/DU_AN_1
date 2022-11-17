@@ -34,7 +34,9 @@ public class Ca {
     private String maCa;
     @Column(columnDefinition = "nvarchar(Max)")
     private String tenCa;
+    @Column(columnDefinition = "time")
     private Time thoiGianBatDau;
+    @Column(columnDefinition = "time")
     private Time thoiGianKetThuc;
     private double giaCa;
     @Column(nullable = false)
