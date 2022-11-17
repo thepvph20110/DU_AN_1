@@ -50,9 +50,6 @@ public class CaServiceImpl implements ICaService {
 
     @Override
     public String delete(QLCa qLCa) {
-        if(map.containsKey(qLCa.getMaCa()) || map.containsKey(qLCa.getTenCa())){
-            return "Ma trung";
-        }
         Ca ca = new Ca(qLCa.getId(), qLCa.getMaCa(), qLCa.getTenCa(), qLCa.getThoiGianBatDau(), qLCa.getThoiGianKetThuc(), qLCa.getGiaCa(), qLCa.getTrangThai());
         if (re.deleteCa(ca)) {
             return "Delete Complete";

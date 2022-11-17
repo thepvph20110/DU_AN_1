@@ -237,8 +237,6 @@ public class FrmLoaiSan extends javax.swing.JFrame {
         String moTa = txtMoTa.getText().trim();
         if (maLoaiSan.length() == 0 || tenLoaiSan.length() == 0 || moTa.length() == 0) {
             JOptionPane.showMessageDialog(this, "IsEmpty");
-        } else if (!maLoaiSan.matches("^[a-zA-Z0-9 a-zA-Z0-9]+") || !tenLoaiSan.matches("^[a-zA-Z0-9 a-zA-Z0-9]+") || !moTa.matches("^[a-zA-Z0-9 a-zA-Z0-9]+")) {
-            JOptionPane.showMessageDialog(this, "Please re-enter");
         } else {
             QLLoaiSan qLLoaiSan = new QLLoaiSan(null, maLoaiSan, tenLoaiSan, moTa);
             JOptionPane.showMessageDialog(this, ilss.save(qLLoaiSan));
@@ -256,8 +254,6 @@ public class FrmLoaiSan extends javax.swing.JFrame {
         } else {
             if (maLoaiSan.length() == 0 || tenLoaiSan.length() == 0 || moTa.length() == 0) {
                 JOptionPane.showMessageDialog(this, "IsEmpty");
-            } else if (!maLoaiSan.matches("^[a-zA-Z0-9 a-zA-Z0-9]+$") || !tenLoaiSan.matches("^[a-zA-Z0-9 a-zA-Z0-9]+$") || !moTa.matches("^[a-zA-Z0-9 a-zA-Z0-9]+$")) {
-                JOptionPane.showMessageDialog(this, "Please re-enter");
             } else {
                 QLLoaiSan qLLoaiSan = new QLLoaiSan(mountClick().getId(), maLoaiSan, tenLoaiSan, moTa);
                 JOptionPane.showMessageDialog(this, ilss.update(qLLoaiSan));

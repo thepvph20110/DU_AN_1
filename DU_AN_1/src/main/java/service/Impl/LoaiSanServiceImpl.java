@@ -6,7 +6,9 @@ package service.Impl;
 
 import domainmodel.LoaiSan;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import modelview.QLLoaiSan;
 import repository.impl.LoaiSanRepository;
 import service.ILoaiSanService;
@@ -19,12 +21,15 @@ public class LoaiSanServiceImpl implements ILoaiSanService {
 
     private final List<QLLoaiSan> listQLLoaiSan = new ArrayList<>();
     private final LoaiSanRepository re = new LoaiSanRepository();
+    private Map<String, Object> map = new HashMap<>();
     
 
     @Override
     public List<QLLoaiSan> getAll() {
         listQLLoaiSan.clear();
         for (LoaiSan loaiSan : re.getAll()) {
+            map.put(loaiSan.getMaLoaiSan(), loaiSan);
+            map.put(loaiSan.getTenLoaiSan(), loaiSan);
             QLLoaiSan qLLoaiSan = new QLLoaiSan(loaiSan.getId(), loaiSan.getMaLoaiSan(), loaiSan.getTenLoaiSan(), loaiSan.getMoTa());
             listQLLoaiSan.add(qLLoaiSan);
         }
@@ -33,6 +38,9 @@ public class LoaiSanServiceImpl implements ILoaiSanService {
 
     @Override
     public String save(QLLoaiSan qLLoaiSan) {
+        if(map.containsKey(qLLoaiSan.getMaLoaiSan()) || map.containsKey(qLLoaiSan.getTenLoaiSan())){
+            return "Ma trung";
+        }
         LoaiSan loaiSan = new LoaiSan(null, qLLoaiSan.getMaLoaiSan(), qLLoaiSan.getTenLoaiSan(), qLLoaiSan.getMoTa());
         if (re.saveOrUpdate(loaiSan)) {
             return "Save Complete";

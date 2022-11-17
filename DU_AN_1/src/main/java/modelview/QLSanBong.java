@@ -28,9 +28,9 @@ public class QLSanBong {
     private int sucChua;
     private String tenLoaiSan;
     private trangThaiSanBong trangThai = trangThaiSanBong.HOAT_DONG;
-    
-    public Object[] toDataRow(){
-        return new Object[]{id, maSanBong, tenSanBong, giaSan, sucChua, trangThai, tenLoaiSan};
+
+    public Object[] toDataRow() {
+        return new Object[]{id, giaSan, maSanBong, sucChua, tenSanBong, trangThai, tenLoaiSan};
     }
 
 }
