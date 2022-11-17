@@ -4,10 +4,21 @@
  */
 package service;
 
+import java.util.List;
+import java.util.UUID;
+import modelview.QLHoaDon;
+
 /**
  *
  * @author ADMIN
  */
 public interface IHoaDonService {
-    
+
+    List<QLHoaDon> getAll();
+
+    String save(QLHoaDon qLHoaDon);
+
+    String update(QLHoaDon qLHoaDon, UUID id);
+
+    String delete(UUID id);
 }
