@@ -13,11 +13,12 @@ import modelview.QLAcount;
  * @author Admin
  */
 public interface IAcountService {
+
     List<QLAcount> getAll();
 
-    String save(QLAcount  qLAcount);
+    String save(QLAcount qLAcount);
 
-    String update(QLAcount  qLAcount,UUID id);
+    String update(QLAcount qLAcount, UUID id);
 
     String delete(UUID id);
 }

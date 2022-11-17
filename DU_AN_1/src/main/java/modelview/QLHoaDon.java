@@ -33,4 +33,5 @@ public class QLHoaDon {
     private String ghiChu;
     private trangThaiHoaDon trangThai = trangThaiHoaDon.CHUA_THANH_TOAN;
     
+    
 }
