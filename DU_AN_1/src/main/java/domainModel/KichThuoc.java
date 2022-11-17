@@ -4,7 +4,6 @@
  */
 package domainmodel;
 
-
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,7 +15,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 
 @Table(name = "Size")
 @AllArgsConstructor
@@ -35,13 +33,7 @@ public class KichThuoc {
     @Column(name = "size")
     private int size;
 
-    public KichThuoc(UUID id) {
-        this.id = id;
+    public Object[] todata() {
+        return new Object[]{id, maSize, size};
     }
-
-    
-    
-    public Object[]todata(){
-       return new Object[] {id,maSize,size};
-    } 
 }

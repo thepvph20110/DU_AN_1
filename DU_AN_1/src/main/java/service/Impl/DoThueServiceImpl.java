@@ -71,5 +71,4 @@ public class DoThueServiceImpl implements IDoThueService {
         DoThue dt = new DoThue(qLDoThue.getId(), qLDoThue.getMaDoThue(), qLDoThue.getTenDoThue(), kt, ms, nsx, qLDoThue.getSoLuong(), qLDoThue.getDonGia(), qLDoThue.getTrangThai());
         return doThueRepositoryImpl.Delete(dt);
     }
-
 }

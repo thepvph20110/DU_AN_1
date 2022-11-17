@@ -61,6 +61,6 @@ public class NhaSanXuatRepositoryImpl implements INhaSanXuatRepository {
     @Override
     public NhaSanXuat getOne(String ma) {
         String hql = " FROM NhaSanXuat nsx WHERE nsx.maNSX = :MaNSX ";
-            return session.createQuery(hql, NhaSanXuat.class).setParameter("MaNSX", ma).uniqueResult();
+        return session.createQuery(hql, NhaSanXuat.class).setParameter("MaNSX", ma).uniqueResult();
     }
 }

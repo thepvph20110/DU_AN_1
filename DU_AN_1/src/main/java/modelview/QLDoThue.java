@@ -35,19 +35,12 @@ public class QLDoThue {
     private double donGia;
     private trangThaiDoThue trangThai = trangThaiDoThue.Con_Hang;
 
-   
-    
     @Override
     public String toString() {
         return "QLDoThue{" + "id=" + id + ", maDoThue=" + maDoThue + ", tenDoThue=" + tenDoThue + ", maKichThuoc=" + maKichThuoc + ", tenKichThuoc=" + tenKichThuoc + ", maMauSac=" + maMauSac + ", tenMauSac=" + tenMauSac + ", maNhaSanXuat=" + maNhaSanXuat + ", tenNhaSanXuat=" + tenNhaSanXuat + ", soLuong=" + soLuong + ", donGia=" + donGia + ", trangThai=" + trangThai + '}';
     }
-    public Object[]toData(){
-        return new Object[] {id,maDoThue,tenDoThue,maMauSac,maKichThuoc,maNhaSanXuat,soLuong,donGia,trangThai};
+
+    public Object[] toData() {
+        return new Object[]{id, maDoThue, tenDoThue, maMauSac, maKichThuoc, maNhaSanXuat, soLuong, donGia, trangThai};
     }
-    
-
-    
-    
-    
-
 }

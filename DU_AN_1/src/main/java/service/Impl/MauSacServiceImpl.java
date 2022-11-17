@@ -35,9 +35,9 @@ public class MauSacServiceImpl implements IMauSacService {
     public String AddorUpdate(MauSac mauSac) {
         if (mapma.containsKey(mauSac.getMaMauSac())) {
             return "Trùng Mã";
-        }else if (mauSac.getMaMauSac().isBlank() || mauSac.getTenMauSac().isBlank()) {
+        } else if (mauSac.getMaMauSac().isBlank() || mauSac.getTenMauSac().isBlank()) {
             return "Mã Màu Sắc - Tên Màu Sắc ĐANG TRỐNG";
-        }else {
+        } else {
             return mauSacRepositoryImpl.AddorUpdate(mauSac);
         }
 

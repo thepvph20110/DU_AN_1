@@ -27,7 +27,7 @@ public class DoThueRepositoryImpl implements IDoThueRepository {
         Query q = session.createQuery(hql);
         return q.getResultList();
     }
-    
+
     @Override
     public String AddorUpdate(DoThue doThue) {
         Transaction transaction = null;

@@ -17,16 +17,16 @@ import utill.HibernateConfig;
  * @author Admin
  */
 public class KichThuocRepositoryImpl implements IKichThuocRepository {
-    
+
     private Session session = new HibernateConfig().getFACTORY().openSession();
-    
+
     @Override
     public List<KichThuoc> getAll() {
         String hql = "FROM KichThuoc";
         Query q = session.createQuery(hql);
         return q.getResultList();
     }
-    
+
     @Override
     public String AddorUpdate(KichThuoc kichThuoc) {
         Transaction transaction = null;
@@ -42,10 +42,12 @@ public class KichThuocRepositoryImpl implements IKichThuocRepository {
             return "Bạn đã Thêm Hoặc Sửa thất bại";
         }
     }
+
     public static void main(String[] args) {
         KichThuoc kt = new KichThuoc(null, "SZ01", 35);
         System.out.println(new KichThuocRepositoryImpl().AddorUpdate(kt));
     }
+
     @Override
     public String Delete(KichThuoc kichThuoc) {
         try {
@@ -64,6 +66,6 @@ public class KichThuocRepositoryImpl implements IKichThuocRepository {
     @Override
     public KichThuoc getOne(String ma) {
         String hql = " FROM KichThuoc kt WHERE kt.maSize = :MaKichThuoc ";
-            return session.createQuery(hql, KichThuoc.class).setParameter("MaKichThuoc", ma).uniqueResult();
+        return session.createQuery(hql, KichThuoc.class).setParameter("MaKichThuoc", ma).uniqueResult();
     }
 }

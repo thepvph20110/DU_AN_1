@@ -4,7 +4,6 @@
  */
 package domainmodel;
 
-
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,7 +15,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 
 @Table(name = "NhaSanXuat")
 @AllArgsConstructor
@@ -32,16 +30,10 @@ public class NhaSanXuat {
     private UUID id;
     @Column(name = "ma")
     private String maNSX;
-    @Column(name = "ten",columnDefinition = "nvarchar(Max)")
+    @Column(name = "ten", columnDefinition = "nvarchar(Max)")
     private String tenNSX;
 
-    public NhaSanXuat(UUID id) {
-        this.id = id;
-    }
-
-    
-    
-    public Object[]toData(){
-        return new Object[] {id,maNSX,tenNSX};
+    public Object[] toData() {
+        return new Object[]{id, maNSX, tenNSX};
     }
 }
