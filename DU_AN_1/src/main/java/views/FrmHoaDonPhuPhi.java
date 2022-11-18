@@ -79,7 +79,8 @@ public class FrmHoaDonPhuPhi extends javax.swing.JFrame {
         QLHoaDon_PhuPhi qLHoaDon_PhuPhi = new QLHoaDon_PhuPhi();
         qLHoaDon_PhuPhi.setId(null);
         UUID idHoaDon = getIDHoaDon();
-        QLHoaDon qLHoaDon = new QLHoaDon(idHoaDon);
+        QLHoaDon qLHoaDon = new QLHoaDon();
+        qLHoaDon.setId(idHoaDon);
         qLHoaDon_PhuPhi.setHoaDon(qLHoaDon);
         UUID idPhuPhi = getIDPhuPhi();
         QLPhuPhi qLPhuPhi = new QLPhuPhi(idPhuPhi);
@@ -97,7 +98,8 @@ public class FrmHoaDonPhuPhi extends javax.swing.JFrame {
         UUID id = UUID.fromString((String) txtID.getText());
         qLHoaDon_PhuPhi.setId(id);
         UUID idHoaDon = getIDHoaDon();
-        QLHoaDon qLHoaDon = new QLHoaDon(idHoaDon);
+        QLHoaDon qLHoaDon = new QLHoaDon();
+        qLHoaDon.setId(idHoaDon);
         qLHoaDon_PhuPhi.setHoaDon(qLHoaDon);
         UUID idPhuPhi = getIDPhuPhi();
         QLPhuPhi qLPhuPhi = new QLPhuPhi(idPhuPhi);
@@ -336,9 +338,9 @@ public class FrmHoaDonPhuPhi extends javax.swing.JFrame {
         cbbHoaDon.setSelectedItem(idHoaDon);
         String maPhuPhi = String.valueOf(qLHoaDon_PhuPhi.getPhuPhi().getMaPhuPhi());
         cbbPhuPhi.setSelectedItem(maPhuPhi);
-        if(qLHoaDon_PhuPhi.getTrangThai() == trangThaiPhuPhiHoaDon.Da_Tra){
+        if (qLHoaDon_PhuPhi.getTrangThai() == trangThaiPhuPhiHoaDon.Da_Tra) {
             rdoDaTra.setSelected(true);
-        }else{
+        } else {
             rdoCHuaTra.setSelected(true);
         }
     }//GEN-LAST:event_tbPhuPhiHoaDonMouseClicked
