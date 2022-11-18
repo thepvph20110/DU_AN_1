@@ -190,6 +190,7 @@ public class FrmDichVu extends javax.swing.JFrame {
         rdoNgungSD = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Dịch Vụ");
 
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
