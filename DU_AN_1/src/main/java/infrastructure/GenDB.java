@@ -40,14 +40,8 @@ import enumclass.trangThaiSanCa;
 import java.sql.Time;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Properties;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.cfg.Environment;
-import org.hibernate.service.ServiceRegistry;
 import utill.HibernateConfig;
 
 /**
