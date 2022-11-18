@@ -32,10 +32,6 @@ public class QLHoaDon {
     private double tongTien;
     private String ghiChu;
     private trangThaiHoaDon trangThai = trangThaiHoaDon.CHUA_THANH_TOAN;
-
-    public QLHoaDon(UUID id) {
-        this.id = id;
-    }
     
     
 }
