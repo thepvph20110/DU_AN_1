@@ -198,40 +198,6 @@ public class GenDB {
         nc4.setTenNuocUong("Nước Tranh Muối");
         nc4.setTrangThai(trangThaiNuocUong.Con_Hang);
         session.save(nc4);
-
-        //Gen Dịch Vụ
-        DichVu dv1 = new DichVu();
-        dv1.setDonGia(300);
-        dv1.setMaDichVu("DV001");
-        dv1.setMoTa("Ngon Bổ Rẻ");
-        dv1.setSoLuongDoThue(24);
-        dv1.setSoLuongNuocUong(10);
-        dv1.setNuocUong(nc4);
-        dv1.setTrangThai(trangThaiDichVu.Dang_Su_Dung);
-        dv1.setDoThue(dt4);
-        session.save(dv1);
-
-        DichVu dv2 = new DichVu();
-        dv2.setDonGia(400);
-        dv2.setMaDichVu("DV002");
-        dv2.setMoTa("Ngon Bổ Rẻ");
-        dv2.setSoLuongDoThue(14);
-        dv2.setSoLuongNuocUong(14);
-        dv2.setNuocUong(nc3);
-        dv2.setTrangThai(trangThaiDichVu.Dang_Su_Dung);
-        dv2.setDoThue(dt3);
-        session.save(dv2);
-
-        DichVu dv3 = new DichVu();
-        dv3.setDonGia(300);
-        dv3.setMaDichVu("DV001");
-        dv3.setMoTa("Ngon Bổ Rẻ");
-        dv3.setSoLuongDoThue(24);
-        dv3.setSoLuongNuocUong(10);
-        dv3.setNuocUong(nc1);
-        dv3.setTrangThai(trangThaiDichVu.Dang_Su_Dung);
-        dv3.setDoThue(dt1);
-        session.save(dv3);
         
         //Gen Loại Sân
         LoaiSan ls1 = new LoaiSan();
@@ -577,40 +543,6 @@ public class GenDB {
         pdl3.setSanCa(san1ca1);
         session.save(pdl3);
 
-        //Gen HoaDon
-        HoaDon hd1 = new HoaDon();
-        hd1.setDonGia(230);
-        hd1.setGhiChu("HDHA");
-        Date ntt1 = new Date(2022, 13, 8, 19, 22);
-        hd1.setNgayThanhToan(ntt1);
-        hd1.setTongTien(2000);
-        hd1.setTrangThai(trangThaiHoaDon.DA_THANH_TOAN);
-        hd1.setDichVu(dv3);
-        hd1.setPhieuDatLich(pdl3);
-        session.save(hd1);
-        
-        HoaDon hd2 = new HoaDon();
-        hd2.setDonGia(220);
-        hd2.setGhiChu("ccxcx");
-        Date ntt2 = new Date(2022, 13, 8, 20, 22);
-        hd2.setNgayThanhToan(ntt2);
-        hd2.setTongTien(1900);
-        hd2.setTrangThai(trangThaiHoaDon.DA_THANH_TOAN);
-        hd2.setPhieuDatLich(pdl2);
-        hd2.setDichVu(dv2);
-        session.save(hd2);
-        
-        HoaDon hd3 = new HoaDon();
-        hd3.setDonGia(230);
-        hd3.setGhiChu("HDHA");
-        Date ntt3 = new Date(2022, 13, 8, 17, 22);
-        hd3.setNgayThanhToan(ntt3);
-        hd3.setTongTien(2000);
-        hd3.setTrangThai(trangThaiHoaDon.DA_THANH_TOAN);
-        hd3.setDichVu(dv3);
-        hd3.setPhieuDatLich(pdl2);
-        session.save(hd3);
-        
         //Gen Thanh Toan
         ThanhToan tt1 = new ThanhToan();
         tt1.setMaThanhToan("TT001");
@@ -623,6 +555,74 @@ public class GenDB {
         tt2.setMoTa("Aggd");
         tt2.setHinhThanhToan(loaiHinhThanhToan.Tien_Mat);
         session.save(tt2);
+        
+        //Gen HoaDon
+        HoaDon hd1 = new HoaDon();
+        hd1.setDonGia(230);
+        hd1.setGhiChu("HDHA");
+        Date ntt1 = new Date(2022, 13, 8, 19, 22);
+        hd1.setNgayThanhToan(ntt1);
+        hd1.setTongTien(2000);
+        hd1.setTrangThai(trangThaiHoaDon.DA_THANH_TOAN);
+        hd1.setPhieuDatLich(pdl3);
+        session.save(hd1);
+        
+        HoaDon hd2 = new HoaDon();
+        hd2.setDonGia(220);
+        hd2.setGhiChu("ccxcx");
+        Date ntt2 = new Date(2022, 13, 8, 20, 22);
+        hd2.setNgayThanhToan(ntt2);
+        hd2.setTongTien(1900);
+        hd2.setTrangThai(trangThaiHoaDon.DA_THANH_TOAN);
+        hd2.setPhieuDatLich(pdl2);
+        session.save(hd2);
+        
+        HoaDon hd3 = new HoaDon();
+        hd3.setDonGia(230);
+        hd3.setGhiChu("HDHA");
+        Date ntt3 = new Date(2022, 13, 8, 17, 22);
+        hd3.setNgayThanhToan(ntt3);
+        hd3.setTongTien(2000);
+        hd3.setTrangThai(trangThaiHoaDon.DA_THANH_TOAN);
+        hd3.setPhieuDatLich(pdl2);
+        session.save(hd3);
+
+        //Gen Dịch Vụ
+        DichVu dv1 = new DichVu();
+        dv1.setDonGia(300);
+        dv1.setMaDichVu("DV001");
+        dv1.setMoTa("Ngon Bổ Rẻ");
+        dv1.setSoLuongDoThue(24);
+        dv1.setSoLuongNuocUong(10);
+        dv1.setNuocUong(nc4);
+        dv1.setHoaDon(hd1);
+        dv1.setTrangThai(trangThaiDichVu.Dang_Su_Dung);
+        dv1.setDoThue(dt4);
+        session.save(dv1);
+
+        DichVu dv2 = new DichVu();
+        dv2.setDonGia(400);
+        dv2.setMaDichVu("DV002");
+        dv2.setMoTa("Ngon Bổ Rẻ");
+        dv2.setSoLuongDoThue(14);
+        dv2.setSoLuongNuocUong(14);
+        dv2.setNuocUong(nc3);
+        dv2.setHoaDon(hd1);
+        dv2.setTrangThai(trangThaiDichVu.Dang_Su_Dung);
+        dv2.setDoThue(dt3);
+        session.save(dv2);
+
+        DichVu dv3 = new DichVu();
+        dv3.setDonGia(300);
+        dv3.setMaDichVu("DV001");
+        dv3.setMoTa("Ngon Bổ Rẻ");
+        dv3.setSoLuongDoThue(24);
+        dv3.setSoLuongNuocUong(10);
+        dv3.setHoaDon(hd2);
+        dv3.setNuocUong(nc1);
+        dv3.setTrangThai(trangThaiDichVu.Dang_Su_Dung);
+        dv3.setDoThue(dt1);
+        session.save(dv3);
         
         //Gen HoaDon Thanh Toan
         
@@ -682,7 +682,6 @@ public class GenDB {
         pphd3.setPhuPhi(pp1);
         pphd3.setHoaDon(hd3);
         session.save(pphd3);
-        
 
         // db generator : gen bảng tự động
         trans.commit();
