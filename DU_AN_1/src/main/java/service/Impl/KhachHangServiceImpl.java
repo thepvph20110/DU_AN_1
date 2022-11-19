@@ -25,7 +25,7 @@ public class KhachHangServiceImpl implements IKhachHangService {
 
         List<QLKhachHang> listQLKhachHang = new ArrayList<>();
         for (KhachHang KhachHang : re.getAll()) {
-            QLKhachHang khachHang = new QLKhachHang(KhachHang.getId(), KhachHang.getMaKhachHang(), KhachHang.getTenKhachHang(), KhachHang.getSoDienThoai(), KhachHang.getGhiChu(), KhachHang.getTrangThai());
+            QLKhachHang khachHang = new QLKhachHang(KhachHang.getId(), KhachHang.getMaKhachHang(), KhachHang.getTenKhachHang(),KhachHang.getMail(),KhachHang.getMaQR(), KhachHang.getSoDienThoai(), KhachHang.getGhiChu(), KhachHang.getTrangThai());
             listQLKhachHang.add(khachHang);
         }
         return listQLKhachHang;
@@ -33,7 +33,7 @@ public class KhachHangServiceImpl implements IKhachHangService {
 
     @Override
     public String save(QLKhachHang qLKhachHang) {
-        KhachHang khachHang = new KhachHang(null, qLKhachHang.getMaKhachHang(), qLKhachHang.getTenKhachHang(), qLKhachHang.getSoDienThoai(), qLKhachHang.getGhiChu(), qLKhachHang.getTrangThai());
+        KhachHang khachHang = new KhachHang(null, qLKhachHang.getMaKhachHang(), qLKhachHang.getTenKhachHang(),qLKhachHang.getMail(),qLKhachHang.getMaQR(), qLKhachHang.getSoDienThoai(), qLKhachHang.getGhiChu(), qLKhachHang.getTrangThai());
         if (re.saveOrUpdate(khachHang)) {
             return "Save complete";
         } else {
@@ -43,7 +43,7 @@ public class KhachHangServiceImpl implements IKhachHangService {
 
     @Override
     public String update(QLKhachHang qLKhachHang) {
-        KhachHang khachHang = new KhachHang(qLKhachHang.getId(), qLKhachHang.getMaKhachHang(), qLKhachHang.getTenKhachHang(), qLKhachHang.getSoDienThoai(), qLKhachHang.getGhiChu(), qLKhachHang.getTrangThai());
+        KhachHang khachHang = new KhachHang(qLKhachHang.getId(), qLKhachHang.getMaKhachHang(), qLKhachHang.getTenKhachHang(),qLKhachHang.getMail(),qLKhachHang.getMaQR(), qLKhachHang.getSoDienThoai(), qLKhachHang.getGhiChu(), qLKhachHang.getTrangThai());
         if (re.saveOrUpdate(khachHang)) {
             return "Update complete";
         } else {
@@ -53,7 +53,7 @@ public class KhachHangServiceImpl implements IKhachHangService {
 
     @Override
     public String delete(QLKhachHang qLKhachHang) {
-        KhachHang khachHang = new KhachHang(qLKhachHang.getId(), qLKhachHang.getMaKhachHang(), qLKhachHang.getTenKhachHang(), qLKhachHang.getSoDienThoai(), qLKhachHang.getGhiChu(), qLKhachHang.getTrangThai());
+        KhachHang khachHang = new KhachHang(qLKhachHang.getId(), qLKhachHang.getMaKhachHang(), qLKhachHang.getTenKhachHang(),qLKhachHang.getMail(),qLKhachHang.getMaQR(), qLKhachHang.getSoDienThoai(), qLKhachHang.getGhiChu(), qLKhachHang.getTrangThai());
         if (re.delete(khachHang)) {
             return "Delete complete";
         } else {
