@@ -4,7 +4,6 @@
  */
 package modelview;
 
-import domainmodel.DichVu;
 import domainmodel.PhieuDatLich;
 import enumclass.trangThaiHoaDon;
 import java.util.Date;
@@ -26,7 +25,6 @@ public class QLHoaDon {
     
     private UUID id;
     private PhieuDatLich phieuDatLich;
-    private DichVu dichVu;
     private Date ngayThanhToan;
     private double donGia;
     private double tongTien;

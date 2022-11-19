@@ -24,4 +24,10 @@ public class QLPhuPhi {
     private String moTa;
 
     private trangThaiPhuPhi trangThai = trangThaiPhuPhi.Co;
+
+    public QLPhuPhi(UUID id) {
+        this.id = id;
+    }
+    
+    
 }
