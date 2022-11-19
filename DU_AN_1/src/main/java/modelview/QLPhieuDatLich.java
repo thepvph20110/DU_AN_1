@@ -1,7 +1,6 @@
 package modelview;
 
 import enumclass.trangThaiPhieuDL;
-import java.sql.Time;
 import java.util.Date;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
@@ -17,18 +16,12 @@ import lombok.Setter;
 public class QLPhieuDatLich {
 
     private UUID id;
-    private String acount;
-    private String khachHang;
-    private String sanCa;
+    private QLKhachHang qLkhachHang;
     private Date ngayTaoPhieu;
     private Date NgayDenSan;
-    private Time tgCheckIn;
+    private Date ngayCheckIn;
     private String ghiChu;
     private double tongTienSan;
     private trangThaiPhieuDL trangThai = trangThaiPhieuDL.CHUA_NHAN_SAN;
-    
-    public Object toDataRow(){
-        return new Object[] {id, acount, khachHang, sanCa, ngayTaoPhieu, NgayDenSan, tgCheckIn, ghiChu, tongTienSan, trangThai};
-    }
 
 }

@@ -4,16 +4,10 @@
  */
 package repository;
 
-import domainmodel.PhieuDatLich;
-import java.util.List;
-
 /**
  *
  * @author ADMIN
  */
 public interface IPhieuDatLichRepository {
     
-    List<PhieuDatLich> getAll();
-    
-    boolean saveOrUpdate(PhieuDatLich phieuDatLich);
 }

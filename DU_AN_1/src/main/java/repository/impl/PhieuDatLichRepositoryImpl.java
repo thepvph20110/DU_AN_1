@@ -4,51 +4,54 @@
  */
 package repository.impl;
 
+import domainmodel.Acount;
+import domainmodel.ChucVu;
+import domainmodel.KhachHang;
 import domainmodel.PhieuDatLich;
-import java.util.List;
+import enumclass.trangThaiAcount;
+import enumclass.trangThaiChucVu;
+import enumclass.trangThaiKhachHang;
+import enumclass.trangThaiPhieuDL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.hibernate.query.Query;
-import repository.IPhieuDatLichRepository;
 import utill.HibernateConfig;
 
 /**
  *
  * @author ADMIN
  */
-public class PhieuDatLichRepositoryImpl implements IPhieuDatLichRepository{
-
-    @Override
-    public List<PhieuDatLich> getAll() {
-        String hql = "From PhieuDatLich";
-        try(Session session = new HibernateConfig().getFACTORY().openSession()) {
-            Query q = session.createQuery(hql);
-            return q.getResultList();
+public class PhieuDatLichRepositoryImpl {
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    public void createPhieuDatLich() {
+        try (Session session = HibernateConfig.getFACTORY().openSession()) {
+            
+            // chức vụ , acount, khách hàng là khóa ngoại của phiếu đặt lịch
+            ChucVu chucVu = new ChucVu(null, "CV1", "Quản lý", trangThaiChucVu.HOAT_DONG);
+            Acount acount = new Acount(null, "QL1", "nguyễn văn a", chucVu, "123", "aa", trangThaiAcount.Da_Xac_Minh);
+            KhachHang khachHang = new KhachHang(null, "KH1", "nguyễn văn b", "0333333", "ttt", trangThaiKhachHang.BINH_THUONG);
+            
+            
+            // tạo 1 phiếu đặt lịch và truyền khóa ngoại vào
+//            PhieuDatLich phieuDatLich = new  PhieuDatLich(null, acount, khachHang,dateFormat.parse("12-02-2033") , 
+//                    dateFormat.parse("12-02-2033"), dateFormat.parse("12-02-2033"), "dd", 12222, trangThaiPhieuDL.CHUA_NHAN_SAN);
+            
+            
+            session.getTransaction().begin();
+            
+            session.save(chucVu);
+            session.save(acount); 
+            session.save(khachHang);
+//            session.save(phieuDatLich);
+           
+            
+            session.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace(System.out);
         }
-        return null;
     }
-
-    @Override
-    public boolean saveOrUpdate(PhieuDatLich phieuDatLich) {
-        boolean check;
-        Transaction transaction = null;
-        try(Session session = new HibernateConfig().getFACTORY().openSession()) {
-            transaction = session.beginTransaction();
-            session.saveOrUpdate(phieuDatLich);
-            check = true;
-            transaction.commit();
-        } catch (Exception e) {
-            e.printStackTrace(System.out);
-            check = false;
-            transaction.rollback();
-        }
-        return check;
-    }
-    
     public static void main(String[] args) {
-        System.out.println(new PhieuDatLichRepositoryImpl().getAll());
+        new PhieuDatLichRepositoryImpl().createPhieuDatLich();
     }
     
 }
