@@ -153,11 +153,12 @@ public class Home extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel3.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel3.setBackground(new java.awt.Color(166, 145, 92));
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel3.setForeground(new java.awt.Color(11, 127, 171));
+        jPanel3.setForeground(new java.awt.Color(166, 145, 92));
+        jPanel3.setToolTipText("");
 
-        lbHome.setBackground(new java.awt.Color(102, 102, 102));
+        lbHome.setBackground(new java.awt.Color(166, 145, 92));
         lbHome.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         lbHome.setForeground(new java.awt.Color(255, 255, 255));
         lbHome.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1\\DU_AN_1\\src\\main\\java\\views\\icon\\ball.png")); // NOI18N
@@ -165,7 +166,7 @@ public class Home extends javax.swing.JFrame {
         lbHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbHome.setOpaque(true);
 
-        lbQLCa.setBackground(new java.awt.Color(102, 102, 102));
+        lbQLCa.setBackground(new java.awt.Color(166, 145, 92));
         lbQLCa.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbQLCa.setForeground(new java.awt.Color(255, 255, 255));
         lbQLCa.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1\\DU_AN_1\\src\\main\\java\\views\\icon\\ca.png")); // NOI18N
@@ -181,7 +182,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        lbDichVu.setBackground(new java.awt.Color(102, 102, 102));
+        lbDichVu.setBackground(new java.awt.Color(166, 145, 92));
         lbDichVu.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbDichVu.setForeground(new java.awt.Color(255, 255, 255));
         lbDichVu.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1\\DU_AN_1\\src\\main\\java\\views\\icon\\service.png")); // NOI18N
@@ -197,7 +198,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        lbHoaDon.setBackground(new java.awt.Color(102, 102, 102));
+        lbHoaDon.setBackground(new java.awt.Color(166, 145, 92));
         lbHoaDon.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbHoaDon.setForeground(new java.awt.Color(255, 255, 255));
         lbHoaDon.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1\\DU_AN_1\\src\\main\\java\\views\\icon\\bill.png")); // NOI18N
@@ -217,7 +218,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        lbLienHe.setBackground(new java.awt.Color(102, 102, 102));
+        lbLienHe.setBackground(new java.awt.Color(166, 145, 92));
         lbLienHe.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbLienHe.setForeground(new java.awt.Color(255, 255, 255));
         lbLienHe.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1\\DU_AN_1\\src\\main\\java\\views\\icon\\callss.png")); // NOI18N
@@ -233,7 +234,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        lbDangXuat.setBackground(new java.awt.Color(102, 102, 102));
+        lbDangXuat.setBackground(new java.awt.Color(166, 145, 92));
         lbDangXuat.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbDangXuat.setForeground(new java.awt.Color(255, 255, 255));
         lbDangXuat.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1\\DU_AN_1\\src\\main\\java\\views\\icon\\Login32.png")); // NOI18N
@@ -253,7 +254,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        lbQLSan.setBackground(new java.awt.Color(102, 102, 102));
+        lbQLSan.setBackground(new java.awt.Color(166, 145, 92));
         lbQLSan.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbQLSan.setForeground(new java.awt.Color(255, 255, 255));
         lbQLSan.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1\\DU_AN_1\\src\\main\\java\\views\\icon\\stadium.png")); // NOI18N
@@ -269,7 +270,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        lbLichDat.setBackground(new java.awt.Color(102, 102, 102));
+        lbLichDat.setBackground(new java.awt.Color(166, 145, 92));
         lbLichDat.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbLichDat.setForeground(new java.awt.Color(255, 255, 255));
         lbLichDat.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1\\DU_AN_1\\src\\main\\java\\views\\icon\\booking.png")); // NOI18N
@@ -285,7 +286,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        lbThongKe.setBackground(new java.awt.Color(102, 102, 102));
+        lbThongKe.setBackground(new java.awt.Color(166, 145, 92));
         lbThongKe.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbThongKe.setForeground(new java.awt.Color(255, 255, 255));
         lbThongKe.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1\\DU_AN_1\\src\\main\\java\\views\\icon\\ThongKe.png")); // NOI18N
@@ -301,7 +302,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        lbQuetQR.setBackground(new java.awt.Color(102, 102, 102));
+        lbQuetQR.setBackground(new java.awt.Color(166, 145, 92));
         lbQuetQR.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbQuetQR.setForeground(new java.awt.Color(255, 255, 255));
         lbQuetQR.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1\\DU_AN_1\\src\\main\\java\\views\\icon\\QR.png")); // NOI18N
@@ -919,7 +920,7 @@ public class Home extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lbLichDatMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLichDatMouseExited
-        lbLichDat.setBackground(new Color(102, 102, 102));
+        lbLichDat.setBackground(new Color(166,145,92));
     }//GEN-LAST:event_lbLichDatMouseExited
 
     private void lbLichDatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLichDatMouseEntered
@@ -927,7 +928,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_lbLichDatMouseEntered
 
     private void lbQLSanMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbQLSanMouseExited
-        lbQLSan.setBackground(new Color(102, 102, 102));
+        lbQLSan.setBackground(new Color(166,145,92));
     }//GEN-LAST:event_lbQLSanMouseExited
 
     private void lbQLSanMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbQLSanMouseEntered
@@ -935,7 +936,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_lbQLSanMouseEntered
 
     private void lbDangXuatMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDangXuatMouseExited
-        lbDangXuat.setBackground(new Color(102, 102, 102));
+        lbDangXuat.setBackground(new Color(166,145,92));
     }//GEN-LAST:event_lbDangXuatMouseExited
 
     private void lbDangXuatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDangXuatMouseEntered
@@ -947,7 +948,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_lbDangXuatMouseClicked
 
     private void lbLienHeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLienHeMouseExited
-        lbLienHe.setBackground(new Color(102, 102, 102));
+        lbLienHe.setBackground(new Color(166,145,92));
     }//GEN-LAST:event_lbLienHeMouseExited
 
     private void lbLienHeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLienHeMouseEntered
@@ -955,7 +956,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_lbLienHeMouseEntered
 
     private void lbHoaDonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbHoaDonMouseExited
-        lbHoaDon.setBackground(new Color(102, 102, 102));
+        lbHoaDon.setBackground(new Color(166,145,92));
     }//GEN-LAST:event_lbHoaDonMouseExited
 
     private void lbHoaDonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbHoaDonMouseEntered
@@ -963,11 +964,11 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_lbHoaDonMouseEntered
 
     private void lbHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbHoaDonMouseClicked
-        lbHoaDon.setBackground(new Color(11, 127, 171));
+        lbHoaDon.setBackground(new Color(166,145,92));
     }//GEN-LAST:event_lbHoaDonMouseClicked
 
     private void lbDichVuMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDichVuMouseExited
-        lbDichVu.setBackground(new Color(102, 102, 102));
+        lbDichVu.setBackground(new Color(166,145,92));
     }//GEN-LAST:event_lbDichVuMouseExited
 
     private void lbDichVuMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDichVuMouseEntered
@@ -975,7 +976,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_lbDichVuMouseEntered
 
     private void lbQLCaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbQLCaMouseExited
-        lbQLCa.setBackground(new Color(102, 102, 102));
+        lbQLCa.setBackground(new Color(166,145,92));
     }//GEN-LAST:event_lbQLCaMouseExited
 
     private void lbQLCaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbQLCaMouseEntered
@@ -987,7 +988,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_lbThongKeMouseEntered
 
     private void lbThongKeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbThongKeMouseExited
-        lbThongKe.setBackground(new Color(102, 102, 102));
+        lbThongKe.setBackground(new Color(166,145,92));
     }//GEN-LAST:event_lbThongKeMouseExited
 
     private void Pane1San2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Pane1San2MousePressed
@@ -1003,7 +1004,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_lbQuetQRMouseEntered
 
     private void lbQuetQRMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbQuetQRMouseExited
-        lbQuetQR.setBackground(new Color(102, 102, 102));
+        lbQuetQR.setBackground(new Color(166,145,92));
     }//GEN-LAST:event_lbQuetQRMouseExited
 
     private void searchText1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchText1ActionPerformed
