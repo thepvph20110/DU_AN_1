@@ -20,6 +20,7 @@ import service.IPhieuDatLichService;
  */
 public class PhieuDatLichServiceImpl implements IPhieuDatLichService{
     
+
     private IPhieuDatLichRepository phieuRepo = new PhieuDatLichRepositoryImpl();
 
     @Override
@@ -70,3 +71,4 @@ public class PhieuDatLichServiceImpl implements IPhieuDatLichService{
         System.out.println(lichServiceImpl.getAll().size());
     }
 }
+
