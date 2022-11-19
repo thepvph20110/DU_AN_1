@@ -307,26 +307,26 @@ public class FrmHoaDonPhuPhi extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        QLHoaDon_PhuPhi qLHoaDon_PhuPhi = getFormInput();
-        iHoaDon_PhuPhiService.save(qLHoaDon_PhuPhi);
-        lstHoaDon_PhuPhis = iHoaDon_PhuPhiService.getALlLHoaDon_PhuPhis();
-        loadDataTable(lstHoaDon_PhuPhis);
+//        QLHoaDon_PhuPhi qLHoaDon_PhuPhi = getFormInput();
+//        iHoaDon_PhuPhiService.save(qLHoaDon_PhuPhi);
+//        lstHoaDon_PhuPhis = iHoaDon_PhuPhiService.getALlLHoaDon_PhuPhis();
+//        loadDataTable(lstHoaDon_PhuPhis);
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         // TODO add your handling code here:
-        QLHoaDon_PhuPhi qLHoaDon_PhuPhi = getFormInputUpdate();
-        iHoaDon_PhuPhiService.update(qLHoaDon_PhuPhi);
-        lstHoaDon_PhuPhis = iHoaDon_PhuPhiService.getALlLHoaDon_PhuPhis();
-        loadDataTable(lstHoaDon_PhuPhis);
+//        QLHoaDon_PhuPhi qLHoaDon_PhuPhi = getFormInputUpdate();
+//        iHoaDon_PhuPhiService.update(qLHoaDon_PhuPhi);
+//        lstHoaDon_PhuPhis = iHoaDon_PhuPhiService.getALlLHoaDon_PhuPhis();
+//        loadDataTable(lstHoaDon_PhuPhis);
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // TODO add your handling code here:
-        QLHoaDon_PhuPhi qLHoaDon_PhuPhi = getFormInputUpdate();
-        iHoaDon_PhuPhiService.delete(qLHoaDon_PhuPhi);
-        lstHoaDon_PhuPhis = iHoaDon_PhuPhiService.getALlLHoaDon_PhuPhis();
-        loadDataTable(lstHoaDon_PhuPhis);
+//        QLHoaDon_PhuPhi qLHoaDon_PhuPhi = getFormInputUpdate();
+//        iHoaDon_PhuPhiService.delete(qLHoaDon_PhuPhi);
+//        lstHoaDon_PhuPhis = iHoaDon_PhuPhiService.getALlLHoaDon_PhuPhis();
+//        loadDataTable(lstHoaDon_PhuPhis);
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void tbPhuPhiHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPhuPhiHoaDonMouseClicked
