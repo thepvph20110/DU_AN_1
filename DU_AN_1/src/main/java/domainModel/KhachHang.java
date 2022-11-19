@@ -16,6 +16,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 @Table(name = "KhachHang")
 @AllArgsConstructor
@@ -32,6 +33,11 @@ public class KhachHang {
     private String maKhachHang;
     @Column(columnDefinition = "nvarchar(Max)")
     private String tenKhachHang;
+    private String mail;
+    
+    @Column(length = 36)
+    private String maQR=UUID.randomUUID().toString();
+    
     @Column(name = "sdt")
     private String soDienThoai;
     @Column(columnDefinition = "nvarchar(Max)")

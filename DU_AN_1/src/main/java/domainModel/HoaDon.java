@@ -6,14 +6,17 @@ package domainmodel;
 
 import enumclass.trangThaiHoaDon;
 import java.util.Date;
+import java.util.Set;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -33,10 +36,14 @@ public class HoaDon {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(length = 36)
     private UUID id;
+    
+    private String maHoaDon;
     @OneToOne
     @JoinColumn(name = "idPhieuDatLich")
     private PhieuDatLich phieuDatLich;
-   
+    
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "hoaDon")
+    private Set<DichVu> dichVu;
     @Column(columnDefinition = "date")
     private Date ngayThanhToan;
     private double donGia;
