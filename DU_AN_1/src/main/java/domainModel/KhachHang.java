@@ -38,5 +38,5 @@ public class KhachHang {
     private String ghiChu;
     @Column(nullable = false)
     private trangThaiKhachHang trangThai = trangThaiKhachHang.BINH_THUONG;
-
+    
 }
