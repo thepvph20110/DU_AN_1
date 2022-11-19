@@ -12,8 +12,10 @@ import modelview.QLAcount;
 import modelview.QLKhachHang;
 import modelview.QLSanCa;
 import service.IAcountService;
+import service.IKhachHangService;
 import service.ISanCaService;
 import service.Impl.AcountServiceImpl;
+import service.Impl.KhachHangServiceImpl;
 import service.Impl.SanCaServiceImpl;
 
 /**
@@ -26,12 +28,15 @@ public class AddPhieuDatLich extends javax.swing.JFrame {
     private List<QLKhachHang> listKhachHang = new ArrayList<>();
     private ISanCaService iSanCaService = new SanCaServiceImpl();
     private IAcountService iAcountService = new AcountServiceImpl();
+    private IKhachHangService iKhachHangService = new KhachHangServiceImpl();
     /**
      * Creates new form AddPhieuDatLich
      */
     public AddPhieuDatLich() {
         initComponents();
         listAcount = iAcountService.getAll();
+        listKhachHang = iKhachHangService.getAll();
+        listQLSanCa = iSanCaService.getAll();
         loadCbbAcount();
         Date d = new Date();
         NgayTaoPhieu.setDate(d);

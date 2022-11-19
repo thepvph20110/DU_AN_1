@@ -112,7 +112,7 @@ public class SanCaServiceImpl implements ISanCaService {
     }
     
     public static void main(String[] args) {
-        System.out.println(new SanCaServiceImpl().getAll());
+        System.out.println(new SanCaServiceImpl().getAll().size());
     }
 
 }
