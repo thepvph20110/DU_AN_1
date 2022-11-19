@@ -115,23 +115,23 @@ public class DichVuServiceImpl implements IDichVuService {
             return "Mã trùng";
         }
         HoaDon hoaDon = new HoaDon();
-        if(map.containsKey(hoaDon.getId())){
+        if (map.containsKey(hoaDon.getId())) {
             hoaDon = (HoaDon) map.get(dichVu.getHoaDon());
         }
-        
-//id, maDichVu, tenDoThue, soLuongDoThue, hoaDon, tenNuocUong, soLuongNuocUong, donGia, moTa,trangThai
 
+//id, maDichVu, tenDoThue, soLuongDoThue, hoaDon, tenNuocUong, soLuongNuocUong, donGia, moTa,trangThai
         boolean save = dichVuRepositoryImpl.saveOrUpdate(
                 new DichVu(
-                        dichVu.getId(), 
-                        doThue, 
-                        dichVu.getSoLuongDoThue(), 
-                        hoaDon, 
+                        dichVu.getId(),
+                        dichVu.getMaDichVu(),
+                        doThue,
+                        dichVu.getSoLuongDoThue(),
+                        hoaDon,
                         nuocUong,
                         dichVu.getSoLuongNuocUong(),
                         dichVu.getDonGia(),
-                        dichVu.getMoTa()
-                )
+                        dichVu.getMoTa(),
+                        dichVu.getTrangThai())
         );
         if (save) {
             return "Tạo mới Dịch Vụ Thành Công";
@@ -151,11 +151,19 @@ public class DichVuServiceImpl implements IDichVuService {
         if (map.containsKey(dichVu.getTenDoThue())) {
             doThue = (DoThue) map.get(dichVu.getTenDoThue());
         }
+
+        HoaDon hoaDon = new HoaDon();
+        if (map.containsKey(hoaDon.getId())) {
+            hoaDon = (HoaDon) map.get(dichVu.getHoaDon());
+        }
         boolean save = dichVuRepositoryImpl.saveOrUpdate(
                 new DichVu(dichVu.getId(),
                         dichVu.getMaDichVu(),
-                        doThue, dichVu.getSoLuongDoThue(),
-                        nuocUong, dichVu.getSoLuongNuocUong(),
+                        doThue,
+                        dichVu.getSoLuongDoThue(),
+                        hoaDon,
+                        nuocUong,
+                        dichVu.getSoLuongNuocUong(),
                         dichVu.getDonGia(),
                         dichVu.getMoTa(),
                         dichVu.getTrangThai()
