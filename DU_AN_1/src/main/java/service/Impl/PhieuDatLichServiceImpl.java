@@ -4,12 +4,17 @@
  */
 package service.Impl;
 
+import domainmodel.Acount;
+import domainmodel.KhachHang;
 import domainmodel.PhieuDatLich;
-import enumclass.trangThaiPhieuDL;
+import domainmodel.SanCa;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import modelview.QLAcount;
+import modelview.QLKhachHang;
 import modelview.QLPhieuDatLich;
+import modelview.QLSanCa;
 import repository.IPhieuDatLichRepository;
 import repository.impl.PhieuDatLichRepositoryImpl;
 import service.IPhieuDatLichService;
@@ -27,9 +32,10 @@ public class PhieuDatLichServiceImpl implements IPhieuDatLichService{
     public List<QLPhieuDatLich> getAll() {
         List<QLPhieuDatLich> lPhieuDatLichs = new ArrayList<>();
         for (PhieuDatLich phieuDatLich : phieuRepo.getAll()) {
-            QLPhieuDatLich qLPhieuDatLich = new QLPhieuDatLich(phieuDatLich.getId(),phieuDatLich.getAcount(),phieuDatLich.getKhachHang(),phieuDatLich.getSanCa(),
-                                                 phieuDatLich.getNgayTaoPhieu(),phieuDatLich.getNgayDenSan(),phieuDatLich.getTgCheckIn(),phieuDatLich.getGhiChu(),phieuDatLich.getTongTienSan()
-                                                ,phieuDatLich.getTrangThai());
+            QLAcount qLAcount = new QLAcount(phieuDatLich.getAcount().getId(), null, phieuDatLich.getAcount().getTenAcount(), null, null, null, null);
+            QLKhachHang qLKhachHang = new QLKhachHang(phieuDatLich.getKhachHang().getId(), null, phieuDatLich.getKhachHang().getTenKhachHang(), null, null, null);
+            QLSanCa qLSanCa = new QLSanCa(phieuDatLich.getSanCa().getId(), phieuDatLich.getSanCa().getCa().getTenCa(), null, null, 0, null);
+            QLPhieuDatLich qLPhieuDatLich = new QLPhieuDatLich(phieuDatLich.getId(), qLAcount, qLKhachHang, qLSanCa, phieuDatLich.getNgayTaoPhieu(), phieuDatLich.getNgayDenSan(), phieuDatLich.getTgCheckIn(), phieuDatLich.getGhiChu(), phieuDatLich.getTongTienSan(), phieuDatLich.getTrangThai());
             lPhieuDatLichs.add(qLPhieuDatLich);
         }
         
@@ -38,10 +44,11 @@ public class PhieuDatLichServiceImpl implements IPhieuDatLichService{
 
     @Override
     public String save(QLPhieuDatLich phieuDatLich) {
-        PhieuDatLich phieuDatLichDomain = new PhieuDatLich(phieuDatLich.getId(),phieuDatLich.getAcount(),phieuDatLich.getKhachHang(),phieuDatLich.getSanCa(),
-                                                 phieuDatLich.getNgayTaoPhieu(),phieuDatLich.getNgayDenSan(),phieuDatLich.getTgCheckIn(),phieuDatLich.getGhiChu(),phieuDatLich.getTongTienSan()
-                                                ,phieuDatLich.getTrangThai());
-        if (phieuRepo.save(phieuDatLichDomain) == true) {
+        Acount acount = new Acount(phieuDatLich.getAcount().getId(), null, null, null, null, null, null);
+        KhachHang khachHang = new KhachHang(phieuDatLich.getKhachHang().getId(), null, null, null, null, null);
+        SanCa sanCa = new SanCa(phieuDatLich.getSanCa().getId(), null, null, null, 0, null);
+        PhieuDatLich pdl = new PhieuDatLich(null, acount, khachHang, sanCa, phieuDatLich.getNgayTaoPhieu(), phieuDatLich.getNgayDenSan(), phieuDatLich.getTgCheckIn(), phieuDatLich.getGhiChu(), phieuDatLich.getTongTienSan(), phieuDatLich.getTrangThai());
+        if (phieuRepo.save(pdl) == true) {
             return "Lưu Thành Công";
         }
         return "Lưu Thất Bại";
@@ -49,10 +56,11 @@ public class PhieuDatLichServiceImpl implements IPhieuDatLichService{
 
     @Override
     public String update(QLPhieuDatLich phieuDatLich) {
-        PhieuDatLich phieuDatLichDomain = new PhieuDatLich(phieuDatLich.getId(),phieuDatLich.getAcount(),phieuDatLich.getKhachHang(),phieuDatLich.getSanCa(),
-                                                 phieuDatLich.getNgayTaoPhieu(),phieuDatLich.getNgayDenSan(),phieuDatLich.getTgCheckIn(),phieuDatLich.getGhiChu(),phieuDatLich.getTongTienSan()
-                                                ,phieuDatLich.getTrangThai());
-        if (phieuRepo.update(phieuDatLichDomain) == true) {
+        Acount acount = new Acount(phieuDatLich.getAcount().getId(), null, null, null, null, null, null);
+        KhachHang khachHang = new KhachHang(phieuDatLich.getKhachHang().getId(), null, null, null, null, null);
+        SanCa sanCa = new SanCa(phieuDatLich.getSanCa().getId(), null, null, null, 0, null);
+        PhieuDatLich pdl = new PhieuDatLich(phieuDatLich.getId(), acount, khachHang, sanCa, phieuDatLich.getNgayTaoPhieu(), phieuDatLich.getNgayDenSan(), phieuDatLich.getTgCheckIn(), phieuDatLich.getGhiChu(), phieuDatLich.getTongTienSan(), phieuDatLich.getTrangThai());
+        if (phieuRepo.update(pdl) == true) {
             return "Sửa Thành Công";
         }
         return "Sửa Thất Bại";
