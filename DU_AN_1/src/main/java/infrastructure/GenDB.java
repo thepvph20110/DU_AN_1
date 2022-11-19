@@ -454,6 +454,7 @@ public class GenDB {
         kh1.setMaKhachHang("KH001");
         kh1.setSoDienThoai("0987654321");
         kh1.setTenKhachHang("Thể Fan");
+        kh1.setMail("nguyenvana@gmail.com");
         kh1.setTrangThai(trangThaiKhachHang.BINH_THUONG);
         session.save(kh1);
 
@@ -462,6 +463,7 @@ public class GenDB {
         kh2.setMaKhachHang("KH002");
         kh2.setSoDienThoai("0987654432");
         kh2.setTenKhachHang("Sỹ Gà");
+        kh2.setMail("tranthib@gmail.com");
         kh2.setTrangThai(trangThaiKhachHang.BINH_THUONG);
         session.save(kh2);
 
@@ -470,6 +472,7 @@ public class GenDB {
         kh3.setMaKhachHang("KH003");
         kh3.setSoDienThoai("0988888888");
         kh3.setTenKhachHang("Lâm Xung");
+        kh3.setMail("hohuuc@gmail.com");
         kh3.setTrangThai(trangThaiKhachHang.BINH_THUONG);
         session.save(kh3);
 
