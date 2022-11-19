@@ -110,5 +110,9 @@ public class SanCaServiceImpl implements ISanCaService {
             return "Delete Fail";
         }
     }
+    
+    public static void main(String[] args) {
+        System.out.println(new SanCaServiceImpl().getAll());
+    }
 
 }

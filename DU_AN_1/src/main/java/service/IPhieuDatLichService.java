@@ -13,7 +13,7 @@ import modelview.QLPhieuDatLich;
  * @author ADMIN
  */
 public interface IPhieuDatLichService {
-    
+
     List<QLPhieuDatLich> getAll();
 
     String save(QLPhieuDatLich qLPhieuDatLich);
@@ -22,3 +22,4 @@ public interface IPhieuDatLichService {
 
     String delete(UUID id);
 }
+
