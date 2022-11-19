@@ -72,5 +72,9 @@ public class HoaDonRepositoryImpl implements IHoaDonRepository{
         }
         return true;
     }
-    
+    public static void main(String[] args) {
+        HoaDonRepositoryImpl hd = new HoaDonRepositoryImpl();
+        List<HoaDon> lst = hd.getAll();
+        System.out.println(lst);
+    }
 }
