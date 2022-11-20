@@ -29,7 +29,7 @@ public class FrmKhachHang extends javax.swing.JFrame {
     public FrmKhachHang() {
         initComponents();
         jTable1.setModel(dtm);
-        String[] header = {"ID", "Mã KH", "Tên KH","Email","Mã QR", "SÐT", "Ghi Chú", "Trạng thái"};
+        String[] header = {"ID", "Mã KH", "Tên KH","Email", "SÐT", "Ghi Chú", "Trạng thái"};
         dtm.setColumnIdentifiers(header);
         listKhachHang = iKhachHangService.getAll();
         showData(listKhachHang);
@@ -222,7 +222,7 @@ public class FrmKhachHang extends javax.swing.JFrame {
         if (ten.length() == 0 || ma.length() == 0 || ghiChu.length() == 0 || sdt.length() == 0) {
             JOptionPane.showMessageDialog(this, "Null");
         } else {
-            QLKhachHang khachHang = new QLKhachHang(null, ma, ten,email, qLKhachHang.getMaQR(), sdt, ghiChu, qLKhachHang.getTrangThai());
+            QLKhachHang khachHang = new QLKhachHang(null, ma, ten,email, sdt, ghiChu, qLKhachHang.getTrangThai());
             JOptionPane.showMessageDialog(this, iKhachHangService.save(khachHang));
             listKhachHang = iKhachHangService.getAll();
             showData(listKhachHang);
@@ -248,7 +248,7 @@ public class FrmKhachHang extends javax.swing.JFrame {
             if (ten.length() == 0 || ma.length() == 0 || ghiChu.length() == 0 || sdt.length() == 0 || email.length()==0) {
                 JOptionPane.showMessageDialog(this, "Null");
             } else {
-                QLKhachHang khachHang = new QLKhachHang(mountClick().getId(), ma, ten,email, qLKhachHang.getMaQR(), sdt, ghiChu, qLKhachHang.getTrangThai());
+                QLKhachHang khachHang = new QLKhachHang(mountClick().getId(), ma, ten,email, sdt, ghiChu, qLKhachHang.getTrangThai());
                 JOptionPane.showMessageDialog(this, iKhachHangService.update(khachHang));
                 listKhachHang = iKhachHangService.getAll();
                 showData(listKhachHang);
@@ -272,7 +272,7 @@ public class FrmKhachHang extends javax.swing.JFrame {
         if (row < 0) {
             JOptionPane.showMessageDialog(this, "Selected row ??");
         } else {
-            QLKhachHang khachHang = new QLKhachHang(mountClick().getId(), ma, ten,email, qLKhachHang.getMaQR(), sdt, ghiChu, qLKhachHang.getTrangThai());
+            QLKhachHang khachHang = new QLKhachHang(mountClick().getId(), ma, ten,email, sdt, ghiChu, qLKhachHang.getTrangThai());
             JOptionPane.showMessageDialog(this, iKhachHangService.delete(khachHang));
             listKhachHang = iKhachHangService.getAll();
             showData(listKhachHang);

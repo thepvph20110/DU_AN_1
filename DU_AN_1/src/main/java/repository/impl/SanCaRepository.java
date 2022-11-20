@@ -20,7 +20,7 @@ public class SanCaRepository implements ISanCaRepository{
 
     @Override
     public List<SanCa> getAll() {
-        String hql = "From SanCa";
+        String hql = "From SanCa WHERE giaCa =250";
         try(Session session = new HibernateConfig().getFACTORY().openSession()) {
             Query q = session.createQuery(hql);
             return q.getResultList();

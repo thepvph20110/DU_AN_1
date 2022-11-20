@@ -24,6 +24,7 @@ public class QLPhieuDatLich {
     private Date NgayDenSan;
     private Time tgCheckIn;
     private String ghiChu;
+    private String maQR = UUID.randomUUID().toString();
     private double tongTienSan;
     private trangThaiPhieuDL trangThai = trangThaiPhieuDL.CHUA_NHAN_SAN;
     
