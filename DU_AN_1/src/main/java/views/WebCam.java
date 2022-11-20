@@ -1,4 +1,4 @@
-package utill;
+package views;
 
 import com.github.sarxos.webcam.WebcamPanel;
 import com.github.sarxos.webcam.Webcam;
@@ -11,6 +11,8 @@ import com.google.zxing.Result;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
 import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -28,16 +30,16 @@ import javax.swing.JOptionPane;
  * @author DANG VAN SY
  */
 public class WebCam extends javax.swing.JFrame implements Runnable, ThreadFactory {
-    
+
     private WebcamPanel webcamPanel = null;
     private Webcam webCam = null;
     private Executor executor = Executors.newSingleThreadExecutor(this);
-    
+
     public WebCam() {
         initComponents();
         HienThi();
     }
-    
+
     public void HienThi() {
         itnitWebCam();
         txtQR.enable(false);
@@ -100,20 +102,21 @@ public class WebCam extends javax.swing.JFrame implements Runnable, ThreadFactor
     }// </editor-fold>//GEN-END:initComponents
 
     private void lbExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbExitMouseClicked
-        System.exit(0);
+
+        this.dispose();
     }//GEN-LAST:event_lbExitMouseClicked
     private void itnitWebCam() {
         Dimension size = WebcamResolution.QVGA.getSize();
         webCam = Webcam.getWebcams().get(0);
         webCam.setViewSize(size);
-        
+
         webcamPanel = new WebcamPanel(webCam);
         webcamPanel.setPreferredSize(size);
 //        paneWebCam.se
         paneWebCam.add(webcamPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 180));
         executor.execute(this);
     }
-    
+
     @Override
     public void run() {
         do {
@@ -122,7 +125,7 @@ public class WebCam extends javax.swing.JFrame implements Runnable, ThreadFactor
             } catch (InterruptedException ex) {
                 Logger.getLogger(WebCam.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
             Result result = null;
             BufferedImage image = null;
             if (webCam.isOpen()) {
@@ -143,7 +146,7 @@ public class WebCam extends javax.swing.JFrame implements Runnable, ThreadFactor
             }
         } while (true);
     }
-    
+
     @Override
     public Thread newThread(Runnable r) {
         Thread t = new Thread(r, " ");
