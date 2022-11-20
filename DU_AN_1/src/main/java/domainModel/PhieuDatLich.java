@@ -53,6 +53,8 @@ public class PhieuDatLich {
     private Time tgCheckIn;
     @Column(columnDefinition = "nvarchar(Max)")
     private String ghiChu;
+    @Column(length = 36)
+    private String maQR = UUID.randomUUID().toString();
     private double tongTienSan;
     @Column(nullable = false)
     private trangThaiPhieuDL trangThai = trangThaiPhieuDL.CHUA_NHAN_SAN;
