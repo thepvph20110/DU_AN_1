@@ -1,8 +1,5 @@
 package modelview;
 
-import domainmodel.Acount;
-import domainmodel.KhachHang;
-import domainmodel.SanCa;
 import enumclass.trangThaiPhieuDL;
 import java.sql.Time;
 import java.util.Date;
@@ -20,14 +17,19 @@ import lombok.Setter;
 public class QLPhieuDatLich {
 
     private UUID id;
-    private Acount acount;
-    private KhachHang khachHang;
-    private SanCa sanCa;
+    private QLAcount acount;
+    private QLKhachHang khachHang;
+    private QLSanCa sanCa;
     private Date ngayTaoPhieu;
     private Date NgayDenSan;
     private Time tgCheckIn;
     private String ghiChu;
+    private String maQR = UUID.randomUUID().toString();
     private double tongTienSan;
     private trangThaiPhieuDL trangThai = trangThaiPhieuDL.CHUA_NHAN_SAN;
+    
+    public Object toDataRow(){
+        return new Object[] {id, acount.getTenAcount(), khachHang.getTenKhachHang(),sanCa.getCa(), ngayTaoPhieu, NgayDenSan, tgCheckIn, ghiChu, tongTienSan, trangThai};
+    }
 
 }
