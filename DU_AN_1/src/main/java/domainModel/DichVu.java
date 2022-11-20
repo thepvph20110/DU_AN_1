@@ -37,6 +37,9 @@ public class DichVu {
     private DoThue doThue;
     private int soLuongDoThue;
     @ManyToOne
+    @JoinColumn(name = "idHoaDon")
+    private HoaDon hoaDon;
+    @ManyToOne
     @JoinColumn(name = "idNuocUong")
     private NuocUong nuocUong;
     private int soLuongNuocUong;

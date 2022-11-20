@@ -22,29 +22,29 @@ public class PhuPhiServiceImpl implements IPhuPhiService {
     @Override
     public List<QLPhuPhi> getAllQLPhuPhis() {
         lstQLPhuPhis.clear();
-        var x = repository.getAllPhuPhi();
-        for (PhuPhi p : x) {
-            lstQLPhuPhis.add(new QLPhuPhi(p.getId(), p.getMaPhuPhi(), p.getTenPhuPhi(), p.getGiaPhuPhi(), p.getMoTa(), p.getTrangThai()));
+        var lstPhuPhi = repository.getAllPhuPhi();
+        for (PhuPhi phuPhi : lstPhuPhi) {
+            lstQLPhuPhis.add(new QLPhuPhi(phuPhi.getId(), phuPhi.getMaPhuPhi(), phuPhi.getTenPhuPhi(), phuPhi.getGiaPhuPhi(), phuPhi.getMoTa(), phuPhi.getTrangThai()));
         }
         return lstQLPhuPhis;
     }
 
     @Override
     public boolean save(QLPhuPhi qLphuPhi) {
-        boolean x = repository.save(new PhuPhi(null, qLphuPhi.getMaPhuPhi(), qLphuPhi.getTenPhuPhi(), qLphuPhi.getGiaPhuPhi(), qLphuPhi.getMoTa(), qLphuPhi.getTrangThai()));
-        return x;
+        boolean save = repository.save(new PhuPhi(null, qLphuPhi.getMaPhuPhi(), qLphuPhi.getTenPhuPhi(), qLphuPhi.getGiaPhuPhi(), qLphuPhi.getMoTa(), qLphuPhi.getTrangThai()));
+        return save;
     }
 
     @Override
     public boolean update(QLPhuPhi qLphuPhi) {
-        boolean x = repository.save(new PhuPhi(qLphuPhi.getId(), qLphuPhi.getMaPhuPhi(), qLphuPhi.getTenPhuPhi(), qLphuPhi.getGiaPhuPhi(), qLphuPhi.getMoTa(), qLphuPhi.getTrangThai()));
-        return x;
+        boolean update = repository.save(new PhuPhi(qLphuPhi.getId(), qLphuPhi.getMaPhuPhi(), qLphuPhi.getTenPhuPhi(), qLphuPhi.getGiaPhuPhi(), qLphuPhi.getMoTa(), qLphuPhi.getTrangThai()));
+        return update;
     }
 
     @Override
     public boolean delete(QLPhuPhi qLphuPhi) {
-        boolean x = repository.delete(new PhuPhi(qLphuPhi.getId(), qLphuPhi.getMaPhuPhi(), qLphuPhi.getTenPhuPhi(), qLphuPhi.getGiaPhuPhi(), qLphuPhi.getMoTa(), qLphuPhi.getTrangThai()));
-        return x;
+        boolean delete = repository.delete(new PhuPhi(qLphuPhi.getId(), qLphuPhi.getMaPhuPhi(), qLphuPhi.getTenPhuPhi(), qLphuPhi.getGiaPhuPhi(), qLphuPhi.getMoTa(), qLphuPhi.getTrangThai()));
+        return delete;
     }
 
 }

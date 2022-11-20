@@ -16,6 +16,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 @Table(name = "KhachHang")
 @AllArgsConstructor
@@ -32,11 +33,12 @@ public class KhachHang {
     private String maKhachHang;
     @Column(columnDefinition = "nvarchar(Max)")
     private String tenKhachHang;
+    private String mail;
     @Column(name = "sdt")
     private String soDienThoai;
     @Column(columnDefinition = "nvarchar(Max)")
     private String ghiChu;
     @Column(nullable = false)
     private trangThaiKhachHang trangThai = trangThaiKhachHang.BINH_THUONG;
-
+    
 }

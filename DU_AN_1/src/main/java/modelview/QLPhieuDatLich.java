@@ -1,6 +1,10 @@
 package modelview;
 
+import domainmodel.Acount;
+import domainmodel.KhachHang;
+import domainmodel.SanCa;
 import enumclass.trangThaiPhieuDL;
+import java.sql.Time;
 import java.util.Date;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
@@ -16,10 +20,12 @@ import lombok.Setter;
 public class QLPhieuDatLich {
 
     private UUID id;
-    private QLKhachHang qLkhachHang;
+    private Acount acount;
+    private KhachHang khachHang;
+    private SanCa sanCa;
     private Date ngayTaoPhieu;
     private Date NgayDenSan;
-    private Date ngayCheckIn;
+    private Time tgCheckIn;
     private String ghiChu;
     private double tongTienSan;
     private trangThaiPhieuDL trangThai = trangThaiPhieuDL.CHUA_NHAN_SAN;

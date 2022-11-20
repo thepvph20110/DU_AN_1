@@ -4,10 +4,22 @@
  */
 package repository;
 
+import domainmodel.PhieuDatLich;
+import java.util.List;
+import java.util.UUID;
+
 /**
  *
  * @author ADMIN
  */
 public interface IPhieuDatLichRepository {
+    
+     List<PhieuDatLich> getAll();
+    
+    boolean save(PhieuDatLich phieuDatLich);
+    
+    boolean update(PhieuDatLich phieuDatLich);
+    
+    boolean delete(UUID id);
     
 }
