@@ -22,4 +22,8 @@ public interface IHoaDonRepository {
 
     boolean delete(UUID id);
     
+    List<HoaDon> getAllByTrangThai();
+    
+    List<HoaDon> searchByTen(String name);
+    
 }
