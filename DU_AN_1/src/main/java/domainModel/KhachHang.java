@@ -34,10 +34,6 @@ public class KhachHang {
     @Column(columnDefinition = "nvarchar(Max)")
     private String tenKhachHang;
     private String mail;
-    
-    @Column(length = 36)
-    private String maQR=UUID.randomUUID().toString();
-    
     @Column(name = "sdt")
     private String soDienThoai;
     @Column(columnDefinition = "nvarchar(Max)")
