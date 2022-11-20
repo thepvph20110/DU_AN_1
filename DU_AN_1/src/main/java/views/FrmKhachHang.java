@@ -29,7 +29,7 @@ public class FrmKhachHang extends javax.swing.JFrame {
     public FrmKhachHang() {
         initComponents();
         jTable1.setModel(dtm);
-        String[] header = {"ID", "Mã KH", "Tên KH", "SÐT", "Ghi Chú", "Trạng thái"};
+        String[] header = {"ID", "Mã KH", "Tên KH","Email", "SÐT", "Ghi Chú", "Trạng thái"};
         dtm.setColumnIdentifiers(header);
         listKhachHang = iKhachHangService.getAll();
         showData(listKhachHang);
@@ -62,6 +62,8 @@ public class FrmKhachHang extends javax.swing.JFrame {
         btnDelete = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel6 = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -124,24 +126,36 @@ public class FrmKhachHang extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jTable1);
 
+        jLabel6.setText("Email");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnSave)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel1)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnSave)
+                        .addGap(94, 94, 94)
+                        .addComponent(btnUpdate)
+                        .addGap(107, 107, 107)
+                        .addComponent(btnDelete))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtMaKH, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtSoDT, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -149,17 +163,8 @@ public class FrmKhachHang extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(radioCanhBao, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(radioBinhThuong))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(94, 94, 94)
-                        .addComponent(btnUpdate)
-                        .addGap(107, 107, 107)
-                        .addComponent(btnDelete)))
+                                .addComponent(radioBinhThuong)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,23 +181,27 @@ public class FrmKhachHang extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtSoDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(radioCanhBao)
                     .addComponent(radioBinhThuong))
-                .addGap(34, 34, 34)
+                .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSave)
                     .addComponent(btnUpdate)
                     .addComponent(btnDelete))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(32, 32, 32)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addGap(19, 19, 19))
         );
 
         pack();
@@ -203,6 +212,7 @@ public class FrmKhachHang extends javax.swing.JFrame {
         String ma = txtMaKH.getText().trim();
         String ghiChu = txtGhiChu.getText().trim();
         String sdt = txtSoDT.getText().trim();
+        String email = txtEmail.getText().trim();
         QLKhachHang qLKhachHang = new QLKhachHang();
         if (radioBinhThuong.isSelected()) {
             qLKhachHang.setTrangThai(trangThaiKhachHang.BINH_THUONG);
@@ -212,7 +222,7 @@ public class FrmKhachHang extends javax.swing.JFrame {
         if (ten.length() == 0 || ma.length() == 0 || ghiChu.length() == 0 || sdt.length() == 0) {
             JOptionPane.showMessageDialog(this, "Null");
         } else {
-            QLKhachHang khachHang = new QLKhachHang(null, ma, ten, sdt, ghiChu, qLKhachHang.getTrangThai());
+            QLKhachHang khachHang = new QLKhachHang(null, ma, ten,email, sdt, ghiChu, qLKhachHang.getTrangThai());
             JOptionPane.showMessageDialog(this, iKhachHangService.save(khachHang));
             listKhachHang = iKhachHangService.getAll();
             showData(listKhachHang);
@@ -225,6 +235,7 @@ public class FrmKhachHang extends javax.swing.JFrame {
         String ma = txtMaKH.getText().trim();
         String ghiChu = txtGhiChu.getText().trim();
         String sdt = txtSoDT.getText().trim();
+        String email = txtEmail.getText().trim();
         QLKhachHang qLKhachHang = new QLKhachHang();
         if (radioBinhThuong.isSelected()) {
             qLKhachHang.setTrangThai(trangThaiKhachHang.BINH_THUONG);
@@ -234,10 +245,10 @@ public class FrmKhachHang extends javax.swing.JFrame {
         if (row < 0) {
             JOptionPane.showMessageDialog(this, "Selected row ??");
         } else {
-            if (ten.length() == 0 || ma.length() == 0 || ghiChu.length() == 0 || sdt.length() == 0) {
+            if (ten.length() == 0 || ma.length() == 0 || ghiChu.length() == 0 || sdt.length() == 0 || email.length()==0) {
                 JOptionPane.showMessageDialog(this, "Null");
             } else {
-                QLKhachHang khachHang = new QLKhachHang(mountClick().getId(), ma, ten, sdt, ghiChu, qLKhachHang.getTrangThai());
+                QLKhachHang khachHang = new QLKhachHang(mountClick().getId(), ma, ten,email, sdt, ghiChu, qLKhachHang.getTrangThai());
                 JOptionPane.showMessageDialog(this, iKhachHangService.update(khachHang));
                 listKhachHang = iKhachHangService.getAll();
                 showData(listKhachHang);
@@ -251,6 +262,7 @@ public class FrmKhachHang extends javax.swing.JFrame {
         String ma = txtMaKH.getText().trim();
         String ghiChu = txtGhiChu.getText().trim();
         String sdt = txtSoDT.getText().trim();
+        String email = txtEmail.getText().trim();
         QLKhachHang qLKhachHang = new QLKhachHang();
         if (radioBinhThuong.isSelected()) {
             qLKhachHang.setTrangThai(trangThaiKhachHang.BINH_THUONG);
@@ -260,7 +272,7 @@ public class FrmKhachHang extends javax.swing.JFrame {
         if (row < 0) {
             JOptionPane.showMessageDialog(this, "Selected row ??");
         } else {
-            QLKhachHang khachHang = new QLKhachHang(mountClick().getId(), ma, ten, sdt, ghiChu, qLKhachHang.getTrangThai());
+            QLKhachHang khachHang = new QLKhachHang(mountClick().getId(), ma, ten,email, sdt, ghiChu, qLKhachHang.getTrangThai());
             JOptionPane.showMessageDialog(this, iKhachHangService.delete(khachHang));
             listKhachHang = iKhachHangService.getAll();
             showData(listKhachHang);
@@ -344,11 +356,13 @@ public class FrmKhachHang extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JRadioButton radioBinhThuong;
     private javax.swing.JRadioButton radioCanhBao;
+    private javax.swing.JTextField txtEmail;
     private javax.swing.JTextArea txtGhiChu;
     private javax.swing.JTextField txtMaKH;
     private javax.swing.JTextField txtSoDT;
