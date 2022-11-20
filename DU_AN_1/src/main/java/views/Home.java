@@ -229,7 +229,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-<<<<<<< HEAD
+
         lbDangXuat.setBackground(new java.awt.Color(166, 145, 92));
         lbDangXuat.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbDangXuat.setForeground(new java.awt.Color(255, 255, 255));
@@ -239,16 +239,7 @@ public class Home extends javax.swing.JFrame {
         lbDangXuat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbDangXuat.setOpaque(true);
         lbDangXuat.addMouseListener(new java.awt.event.MouseAdapter() {
-=======
-        lbDangNhap.setBackground(new java.awt.Color(11, 127, 171));
-        lbDangNhap.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbDangNhap.setForeground(new java.awt.Color(255, 255, 255));
-        lbDangNhap.setText("Đăng Nhập");
-        lbDangNhap.setToolTipText("");
-        lbDangNhap.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lbDangNhap.setOpaque(true);
-        lbDangNhap.addMouseListener(new java.awt.event.MouseAdapter() {
->>>>>>> 75d4fc1104fabd3f97bd2db40cf5b3e1aa9ac319
+
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lbDangXuatMouseClicked(evt);
             }
@@ -377,7 +368,7 @@ public class Home extends javax.swing.JFrame {
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel1.setOpaque(true);
 
-<<<<<<< HEAD
+
         searchText1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchText1ActionPerformed(evt);
@@ -386,10 +377,7 @@ public class Home extends javax.swing.JFrame {
 
         lbSearch.setBackground(new java.awt.Color(255, 255, 255));
         lbSearch.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1\\DU_AN_1\\src\\main\\java\\views\\icon\\search.png")); // NOI18N
-=======
-        lbSearch.setBackground(new java.awt.Color(11, 127, 171));
-        lbSearch.setIcon(new javax.swing.ImageIcon("D:\\DU_AN_1\\DU_AN_1\\src\\main\\java\\views\\icon\\search.png")); // NOI18N
->>>>>>> 75d4fc1104fabd3f97bd2db40cf5b3e1aa9ac319
+
         lbSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbSearch.setOpaque(true);
 
