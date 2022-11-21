@@ -4,7 +4,6 @@
  */
 package modelview;
 
-import domainmodel.HoaDon;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,7 +23,7 @@ public class QLHoaDonThanhToan {
     private String ghiChu;
     
     public Object[] toRowData() {
-        return new Object[]{id,maThanhToan, hoaDon, thanhToan, tongTien, ghiChu};
+        return new Object[]{id ,maThanhToan, hoaDon, thanhToan, tongTien, ghiChu};
     }
     
 }

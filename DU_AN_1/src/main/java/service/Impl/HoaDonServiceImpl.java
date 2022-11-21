@@ -19,7 +19,7 @@ import service.IHoaDonService;
  * @author ADMIN
  */
 public class HoaDonServiceImpl implements IHoaDonService {
-    
+
     private IHoaDonRepository hoaDonRepo = new HoaDonRepositoryImpl();
 
     @Override
@@ -27,7 +27,7 @@ public class HoaDonServiceImpl implements IHoaDonService {
         List<QLHoaDon> lHoaDons = new ArrayList<>();
         for (HoaDon hoaDon : hoaDonRepo.getAll()) {
             QLHoaDon qLHoaDon = new QLHoaDon(hoaDon.getId(), hoaDon.getPhieuDatLich(), hoaDon.getNgayThanhToan(),
-                        hoaDon.getDonGia(), hoaDon.getTongTien(), hoaDon.getGhiChu(), hoaDon.getTrangThai());
+                    hoaDon.getDonGia(), hoaDon.getTongTien(), hoaDon.getGhiChu(), hoaDon.getTrangThai());
             lHoaDons.add(qLHoaDon);
         }
         return lHoaDons;
@@ -36,8 +36,8 @@ public class HoaDonServiceImpl implements IHoaDonService {
     @Override
     public String save(QLHoaDon qLHoaDon) {
         HoaDon hoaDon = new HoaDon(qLHoaDon.getId(), qLHoaDon.getPhieuDatLich(), qLHoaDon.getNgayThanhToan(),
-                        qLHoaDon.getDonGia(), qLHoaDon.getTongTien(), qLHoaDon.getGhiChu(), qLHoaDon.getTrangThai());
-        if(hoaDonRepo.save(hoaDon) == true){
+                qLHoaDon.getDonGia(), qLHoaDon.getTongTien(), qLHoaDon.getGhiChu(), qLHoaDon.getTrangThai());
+        if (hoaDonRepo.save(hoaDon) == true) {
             return "Thêm Thành Công";
         }
         return "Thêm Thất Bại";
@@ -46,8 +46,8 @@ public class HoaDonServiceImpl implements IHoaDonService {
     @Override
     public String update(QLHoaDon qLHoaDon, UUID id) {
         HoaDon hoaDon = new HoaDon(qLHoaDon.getId(), qLHoaDon.getPhieuDatLich(), qLHoaDon.getNgayThanhToan(),
-                        qLHoaDon.getDonGia(), qLHoaDon.getTongTien(), qLHoaDon.getGhiChu(), qLHoaDon.getTrangThai());
-        if(hoaDonRepo.update(hoaDon) == true){
+                qLHoaDon.getDonGia(), qLHoaDon.getTongTien(), qLHoaDon.getGhiChu(), qLHoaDon.getTrangThai());
+        if (hoaDonRepo.update(hoaDon) == true) {
             return "Sửa Thành Công";
         }
         return "Sửa Thất Bại";
@@ -55,7 +55,7 @@ public class HoaDonServiceImpl implements IHoaDonService {
 
     @Override
     public String delete(UUID id) {
-        if(hoaDonRepo.delete(id) == true){
+        if (hoaDonRepo.delete(id) == true) {
             return "Xóa Thành Công";
         }
         return "Xóa Thất Bại";

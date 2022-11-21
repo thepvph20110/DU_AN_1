@@ -40,17 +40,20 @@ public class HoaDonThanhToanRepositoryImpl implements IHoaDonThanhToanRepository
     @Override
     public boolean saveOrUpdate(HoaDonThanhToan hoaDonThanhToan) {
         boolean check = false;
-        Transaction tran = null;
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            Transaction tran = session.getTransaction();
             tran.begin();
-            session.saveOrUpdate(hoaDonThanhToan);
-            check = true;
-            tran.commit();
-        } catch (Exception e) {
-            e.printStackTrace(System.out);
-            tran.rollback();
+            try {
+                session.saveOrUpdate(hoaDonThanhToan);
+                check = true;
+                tran.commit();
+            } catch (Exception e) {
+                e.printStackTrace(System.out);
+            }
+        }finally{
+            return check;
         }
-        return check;
+        
     }
 
     @Override
