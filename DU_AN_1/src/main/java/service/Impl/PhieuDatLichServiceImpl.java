@@ -33,7 +33,7 @@ public class PhieuDatLichServiceImpl implements IPhieuDatLichService{
         List<QLPhieuDatLich> lPhieuDatLichs = new ArrayList<>();
         for (PhieuDatLich phieuDatLich : phieuRepo.getAll()) {
             QLAcount qLAcount = new QLAcount(phieuDatLich.getAcount().getId(), null, phieuDatLich.getAcount().getTenAcount(), null, null, null, null);
-            QLKhachHang qLKhachHang = new QLKhachHang(phieuDatLich.getKhachHang().getId(), null, phieuDatLich.getKhachHang().getTenKhachHang(),null, null, null, null);
+            QLKhachHang qLKhachHang = new QLKhachHang(phieuDatLich.getKhachHang().getId(), null, phieuDatLich.getKhachHang().getTenKhachHang(),null, null, null, null,null);
             QLSanCa qLSanCa = new QLSanCa(phieuDatLich.getSanCa().getId(), phieuDatLich.getSanCa().getCa().getTenCa(), null, null, 0, null);
             QLPhieuDatLich qLPhieuDatLich = new QLPhieuDatLich(phieuDatLich.getId(), qLAcount, qLKhachHang, qLSanCa, phieuDatLich.getNgayTaoPhieu(), phieuDatLich.getNgayDenSan(), phieuDatLich.getTgCheckIn(), phieuDatLich.getGhiChu(),phieuDatLich.getMaQR(), phieuDatLich.getTongTienSan(), phieuDatLich.getTrangThai());
             lPhieuDatLichs.add(qLPhieuDatLich);
@@ -77,6 +77,11 @@ public class PhieuDatLichServiceImpl implements IPhieuDatLichService{
     public static void main(String[] args) {
         PhieuDatLichServiceImpl lichServiceImpl = new PhieuDatLichServiceImpl();
         System.out.println(lichServiceImpl.getAll().size());
+    }
+
+    @Override
+    public List<PhieuDatLich> getPhieuDatLichByTT() {
+        return phieuRepo.getPhieuDatLichByTT();
     }
 }
 

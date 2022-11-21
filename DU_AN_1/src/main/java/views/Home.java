@@ -21,40 +21,46 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneLayout;
 import javax.swing.border.Border;
+import modelview.QLAcount;
 import modelview.QLKhachHang;
 import modelview.QLSanCa;
+import service.IAcountService;
+import service.ISanCaService;
+import service.Impl.AcountServiceImpl;
+import service.Impl.SanCaServiceImpl;
 
 /**
  *
  * @author DANG VAN SY
  */
 public class Home extends javax.swing.JFrame {
-    
+    private ISanCaService sanCaService = new SanCaServiceImpl();
+    private IAcountService acountService = new AcountServiceImpl();
     public JPanel panel = new JPanel();
-    public JFrame frame = new JFrame();
+
     
     public Home() {
         initComponents();
         time();
         showDongHo();
-        addSanPane();
+//        addSanPane();
     }
     
-    public void addSanPane() {
-        frame.setLayout(new FlowLayout());
-        jPanel8 = new JPanel();
-        paneTong = new JScrollPane();
-        paneTong.setLayout(new ScrollPaneLayout());
-        panel.setPreferredSize(new Dimension(1333, 324));
-        panel.setBackground(new Color(186, 228, 229));
-        jPanel8.add(panel);
-        jPanel8.show();
-        paneTong.add(jPanel8);
-//        paneTong.show();
-        frame.add(paneTong);
-        frame.show();
-        
-    }
+//    public void addSanPane() {
+//        frame.setLayout(new FlowLayout());
+//        jPanel8 = new JPanel();
+//        paneTong = new JScrollPane();
+//        paneTong.setLayout(new ScrollPaneLayout());
+//        panel.setPreferredSize(new Dimension(1333, 324));
+//        panel.setBackground(new Color(186, 228, 229));
+//        jPanel8.add(panel);
+//        jPanel8.show();
+//        paneTong.add(jPanel8);
+////        paneTong.show();
+//        frame.add(paneTong);
+//        frame.show();
+//        
+//    }
     
     private void time() {
         Date date = new Date();
@@ -1385,8 +1391,9 @@ public class Home extends javax.swing.JFrame {
     private void btnDatLichActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatLichActionPerformed
         // TODO add your handling code here:
         QLKhachHang khachHang = new QLKhachHang();
-        QLSanCa qLSanCa = new QLSanCa();
-        new FrmPhieuDatLich(khachHang,qLSanCa).setVisible(true);
+        QLSanCa qLSanCa = sanCaService.getOne();
+        QLAcount qLAcount = acountService.getOne();
+        new FrmPhieuDatLich(khachHang,qLSanCa,qLAcount).setVisible(true);
     }//GEN-LAST:event_btnDatLichActionPerformed
 
     /**
