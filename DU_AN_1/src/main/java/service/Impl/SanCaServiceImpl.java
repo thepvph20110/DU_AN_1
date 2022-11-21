@@ -110,9 +110,16 @@ public class SanCaServiceImpl implements ISanCaService {
             return "Delete Fail";
         }
     }
-    
+
     public static void main(String[] args) {
         System.out.println(new SanCaServiceImpl().getAll().size());
+    }
+
+    @Override
+    public QLSanCa getOne() {
+        SanCa sanCa = re.getOne();
+        QLSanCa qlsc = new QLSanCa(sanCa.getId(), sanCa.getCa().getTenCa(), sanCa.getSanbong().getTenSanBong(), (sanCa.getNgayTao()), sanCa.getGiaCa(), sanCa.getTrangThai());
+        return qlsc;
     }
 
 }
