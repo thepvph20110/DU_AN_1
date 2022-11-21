@@ -38,23 +38,23 @@ public class PhieuDatLichServiceImpl implements IPhieuDatLichService{
 
     @Override
     public String save(QLPhieuDatLich phieuDatLich) {
-        PhieuDatLich phieuDatLichDomain = new PhieuDatLich(phieuDatLich.getId(),phieuDatLich.getAcount(),phieuDatLich.getKhachHang(),phieuDatLich.getSanCa(),
-                                                 phieuDatLich.getNgayTaoPhieu(),phieuDatLich.getNgayDenSan(),phieuDatLich.getTgCheckIn(),phieuDatLich.getGhiChu(),phieuDatLich.getTongTienSan()
-                                                ,phieuDatLich.getTrangThai());
-        if (phieuRepo.save(phieuDatLichDomain) == true) {
-            return "Lưu Thành Công";
-        }
+//        PhieuDatLich phieuDatLichDomain = new PhieuDatLich(phieuDatLich.getId(),phieuDatLich.getAcount(),phieuDatLich.getKhachHang(),phieuDatLich.getSanCa(),
+//                                                 phieuDatLich.getNgayTaoPhieu(),phieuDatLich.getNgayDenSan(),phieuDatLich.getTgCheckIn(),phieuDatLich.getGhiChu(),phieuDatLich.getTongTienSan()
+//                                                ,phieuDatLich.getTrangThai());
+//        if (phieuRepo.save(phieuDatLichDomain) == true) {
+//            return "Lưu Thành Công";
+//        }
         return "Lưu Thất Bại";
     }
 
     @Override
     public String update(QLPhieuDatLich phieuDatLich) {
-        PhieuDatLich phieuDatLichDomain = new PhieuDatLich(phieuDatLich.getId(),phieuDatLich.getAcount(),phieuDatLich.getKhachHang(),phieuDatLich.getSanCa(),
-                                                 phieuDatLich.getNgayTaoPhieu(),phieuDatLich.getNgayDenSan(),phieuDatLich.getTgCheckIn(),phieuDatLich.getGhiChu(),phieuDatLich.getTongTienSan()
-                                                ,phieuDatLich.getTrangThai());
-        if (phieuRepo.update(phieuDatLichDomain) == true) {
-            return "Sửa Thành Công";
-        }
+//        PhieuDatLich phieuDatLichDomain = new PhieuDatLich(phieuDatLich.getId(),phieuDatLich.getAcount(),phieuDatLich.getKhachHang(),phieuDatLich.getSanCa(),
+//                                                 phieuDatLich.getNgayTaoPhieu(),phieuDatLich.getNgayDenSan(),phieuDatLich.getTgCheckIn(),phieuDatLich.getGhiChu(),phieuDatLich.getTongTienSan()
+//                                                ,phieuDatLich.getTrangThai());
+//        if (phieuRepo.update(phieuDatLichDomain) == true) {
+//            return "Sửa Thành Công";
+//        }
         return "Sửa Thất Bại";
     }
 

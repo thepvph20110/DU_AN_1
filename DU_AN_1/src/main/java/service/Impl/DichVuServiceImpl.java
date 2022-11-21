@@ -74,12 +74,13 @@ public class DichVuServiceImpl implements IDichVuService {
             return "Mã trùng";
         }
 
-        boolean save = dichVuRepositoryImpl.saveOrUpdate(new DichVu(dichVu.getId(), dichVu.getMaDichVu(), doThue, dichVu.getSoLuongDoThue(), nuocUong, dichVu.getSoLuongNuocUong(), dichVu.getDonGia(), dichVu.getMoTa(), dichVu.getTrangThai()));
-        if (save) {
-            return "Tạo mới Dịch Vụ Thành Công";
-        } else {
-            return "Tạo mới Dịch Vụ Không Công";
-        }
+//        boolean save = dichVuRepositoryImpl.saveOrUpdate(new DichVu(dichVu.getId(), dichVu.getMaDichVu(), doThue, dichVu.getSoLuongDoThue(), nuocUong, dichVu.getSoLuongNuocUong(), dichVu.getDonGia(), dichVu.getMoTa(), dichVu.getTrangThai()));
+//        if (save) {
+//            return "Tạo mới Dịch Vụ Thành Công";
+//        } else {
+//            return "Tạo mới Dịch Vụ Không Công";
+//        }
+        return null;
     }
 
     @Override
@@ -94,13 +95,14 @@ public class DichVuServiceImpl implements IDichVuService {
         if (map.containsKey(dichVu.getTenDoThue())) {
             doThue = (DoThue) map.get(dichVu.getTenDoThue());
         }
-        boolean save = dichVuRepositoryImpl.saveOrUpdate(new DichVu(dichVu.getId(), dichVu.getMaDichVu(),doThue, dichVu.getSoLuongDoThue(),nuocUong, dichVu.getSoLuongNuocUong(), dichVu.getDonGia(), dichVu.getMoTa(), dichVu.getTrangThai()));
-
-        if (save) {
-            return "Cập nhập Dịch Vụ Thành Công";
-        } else {
-            return "Cập Nhập Dịch Vụ Không Công";
-        }
+//        boolean save = dichVuRepositoryImpl.saveOrUpdate(new DichVu(dichVu.getId(), dichVu.getMaDichVu(),doThue, dichVu.getSoLuongDoThue(),nuocUong, dichVu.getSoLuongNuocUong(), dichVu.getDonGia(), dichVu.getMoTa(), dichVu.getTrangThai()));
+//
+//        if (save) {
+//            return "Cập nhập Dịch Vụ Thành Công";
+//        } else {
+//            return "Cập Nhập Dịch Vụ Không Công";
+//        }
+        return null;
 
     }
 

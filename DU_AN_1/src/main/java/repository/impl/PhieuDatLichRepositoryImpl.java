@@ -33,7 +33,7 @@ public class PhieuDatLichRepositoryImpl implements IPhieuDatLichRepository{
             // chức vụ , acount, khách hàng là khóa ngoại của phiếu đặt lịch
             ChucVu chucVu = new ChucVu(null, "CV1", "Quản lý", trangThaiChucVu.HOAT_DONG);
             Acount acount = new Acount(null, "QL1", "nguyễn văn a", chucVu, "123", "aa", trangThaiAcount.Da_Xac_Minh);
-            KhachHang khachHang = new KhachHang(null, "KH1", "nguyễn văn b", "0333333", "ttt", trangThaiKhachHang.BINH_THUONG);
+//            KhachHang khachHang = new KhachHang(null, "KH1", "nguyễn văn b", "0333333", "ttt", trangThaiKhachHang.BINH_THUONG);
             
             
             // tạo 1 phiếu đặt lịch và truyền khóa ngoại vào
@@ -45,7 +45,7 @@ public class PhieuDatLichRepositoryImpl implements IPhieuDatLichRepository{
             
             session.save(chucVu);
             session.save(acount); 
-            session.save(khachHang);
+//            session.save(khachHang);
 //            session.save(phieuDatLich);
            
             
