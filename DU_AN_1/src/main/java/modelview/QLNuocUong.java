@@ -26,4 +26,8 @@ public class QLNuocUong {
     public Object[] toRowData(){
         return new Object[]{id, maNuocUong, tenNuocUong, soLuong, gia, trangThai};
     }
+    
+    public Object[] toRowDataNuocUong(){
+        return new Object[]{ maNuocUong, tenNuocUong, gia};
+    }
 }

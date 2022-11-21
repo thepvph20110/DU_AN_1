@@ -83,4 +83,9 @@ public class HoaDonServiceImpl implements IHoaDonService {
         return lHoaDons;
     }
 
+    @Override
+    public HoaDon findByHoaDonId(UUID uuid) {
+        return hoaDonRepo.findByHoaDonId(uuid);
+    }
+
 }

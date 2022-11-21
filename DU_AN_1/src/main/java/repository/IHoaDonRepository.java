@@ -26,4 +26,5 @@ public interface IHoaDonRepository {
     
     List<HoaDon> searchByTen(String name);
     
+    HoaDon findByHoaDonId(UUID uuid);
 }

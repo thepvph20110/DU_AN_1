@@ -106,5 +106,19 @@ public class HoaDonRepositoryImpl implements IHoaDonRepository{
         }
         return listHds;
     }
+
+    @Override
+    public HoaDon findByHoaDonId(UUID uuid) {
+        HoaDon hoaDon;
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            Query q = session.createQuery("FROM HoaDon hd WHERE hd.id =:id");
+            q.setParameter("id", uuid);
+            hoaDon = (HoaDon) q.getSingleResult();
+        }catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }
+        return hoaDon;
+    }
     
 }

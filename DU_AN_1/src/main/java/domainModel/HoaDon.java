@@ -42,7 +42,7 @@ public class HoaDon {
     @JoinColumn(name = "idPhieuDatLich")
     private PhieuDatLich phieuDatLich;
     
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "hoaDon")
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "hoaDon")
     private Set<DichVu> dichVu;
     @Column(columnDefinition = "date")
     private Date ngayThanhToan;

@@ -89,8 +89,7 @@ public class DichVuRepositoryImpl implements IDichVuRepository {
 
     public static void main(String[] args) {
         DichVuRepositoryImpl dv = new DichVuRepositoryImpl();
-
-        System.out.println(dv.fillAll(0, 0).size());
+        System.out.println(dv.findByIdHoaDon(UUID.fromString("77cced0f-7124-4a5e-9a9b-19b8eff7a25d")).size());
     }
 
     @Override
@@ -105,5 +104,49 @@ public class DichVuRepositoryImpl implements IDichVuRepository {
             e.printStackTrace(System.out);
         }
         return null;
+    }
+
+    @Override
+    public List<DichVu> findByIdHoaDon(UUID uuid) {
+        List<DichVu> listDV;
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            Query q = session.createQuery("FROM DichVu dv WHERE dv.hoaDon.id =:id");
+            q.setParameter("id", uuid);
+            listDV = q.getResultList();
+        }catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }
+        return listDV;
+    }
+
+    @Override
+    public List<DichVu> findByIdHoaDonAndNuocUong(UUID idHoaDon, UUID idNuocUong) {
+        List<DichVu> listDV = new ArrayList<>();
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            Query q = session.createQuery("FROM DichVu dv WHERE dv.hoaDon.id =:hoaDonId AND dv.nuocUong.id =:idNuocUong");
+            q.setParameter("hoaDonId", idHoaDon);
+            q.setParameter("idNuocUong", idNuocUong);
+            listDV = q.getResultList();
+        }catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }
+        return listDV;
+    }
+
+    @Override
+    public List<DichVu> findByIdHoaDonAndDoThue(UUID idHoaDon, UUID idDoThue) {
+        List<DichVu> listDV = new ArrayList<>();
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            Query q = session.createQuery("FROM DichVu dv WHERE dv.hoaDon.id =:hoaDonId AND dv.doThue.id =:idDoThue");
+            q.setParameter("hoaDonId", idHoaDon);
+            q.setParameter("idDoThue", idDoThue);
+            listDV = q.getResultList();
+        }catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }
+        return listDV;
     }
 }
