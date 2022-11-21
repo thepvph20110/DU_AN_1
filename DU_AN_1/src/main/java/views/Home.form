@@ -202,7 +202,7 @@
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="lbDangXuat" alignment="0" max="32767" attributes="0"/>
                                   <Component id="lbThongKe" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="lbLienHe" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="lbLichSu" alignment="0" max="32767" attributes="0"/>
                                   <Component id="lbHoaDon" alignment="0" max="32767" attributes="0"/>
                                   <Component id="lbDichVu" alignment="0" max="32767" attributes="0"/>
                                   <Component id="lbQLCa" alignment="0" max="32767" attributes="0"/>
@@ -234,7 +234,7 @@
                       <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="lbHoaDon" min="-2" pref="37" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="lbLienHe" min="-2" pref="37" max="-2" attributes="0"/>
+                      <Component id="lbLichSu" min="-2" pref="37" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="lbThongKe" min="-2" pref="37" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
@@ -349,7 +349,7 @@
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JLabel" name="lbLienHe">
+            <Component class="javax.swing.JLabel" name="lbLichSu">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="5c" green="91" red="a6" type="rgb"/>
@@ -361,17 +361,18 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\TAI_LIEU_HOC_TAP\Du_An_1\DU_AN_1\src\main\java\views\icon\callss.png"/>
+                  <Image iconType="2" name="D:\TAI_LIEU_HOC_TAP\Du_An_1\DU_AN_1\src\main\java\views\icon\history.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Li&#xea;n H&#x1ec7; "/>
+                <Property name="text" type="java.lang.String" value="L&#x1ecb;ch S&#x1eed;"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Hand Cursor"/>
                 </Property>
                 <Property name="opaque" type="boolean" value="true"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbLienHeMouseEntered"/>
-                <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbLienHeMouseExited"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbLichSuMouseClicked"/>
+                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbLichSuMouseEntered"/>
+                <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbLichSuMouseExited"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lbDangXuat">
@@ -1094,13 +1095,15 @@
                               <Group type="102" attributes="0">
                                   <EmptySpace pref="56" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                          <Component id="lbTrangThaiS1C5" min="-2" max="-2" attributes="0"/>
-                                          <Group type="102" attributes="0">
-                                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                                              <Component id="jLabel14" min="-2" pref="40" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="lbTrangThaiS1C5" min="-2" max="-2" attributes="0"/>
+                                              <Group type="102" attributes="0">
+                                                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                                                  <Component id="jLabel14" min="-2" pref="40" max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
+                                          <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
                                           <Component id="lbLoaiSanS1C5" min="-2" pref="74" max="-2" attributes="0"/>

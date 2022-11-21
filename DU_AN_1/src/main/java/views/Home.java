@@ -36,7 +36,7 @@ public class Home extends javax.swing.JFrame {
         showDongHo();
         addSanPane();
     }
-  
+    
     public void addSanPane() {
         frame.setLayout(new FlowLayout());
         jPanel8 = new JPanel();
@@ -111,7 +111,7 @@ public class Home extends javax.swing.JFrame {
         lbQLCa = new javax.swing.JLabel();
         lbDichVu = new javax.swing.JLabel();
         lbHoaDon = new javax.swing.JLabel();
-        lbLienHe = new javax.swing.JLabel();
+        lbLichSu = new javax.swing.JLabel();
         lbDangXuat = new javax.swing.JLabel();
         lbQLSan = new javax.swing.JLabel();
         lbLichDat = new javax.swing.JLabel();
@@ -289,19 +289,22 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        lbLienHe.setBackground(new java.awt.Color(166, 145, 92));
-        lbLienHe.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbLienHe.setForeground(new java.awt.Color(255, 255, 255));
-        lbLienHe.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1\\DU_AN_1\\src\\main\\java\\views\\icon\\callss.png")); // NOI18N
-        lbLienHe.setText("Liên Hệ ");
-        lbLienHe.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lbLienHe.setOpaque(true);
-        lbLienHe.addMouseListener(new java.awt.event.MouseAdapter() {
+        lbLichSu.setBackground(new java.awt.Color(166, 145, 92));
+        lbLichSu.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lbLichSu.setForeground(new java.awt.Color(255, 255, 255));
+        lbLichSu.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1\\DU_AN_1\\src\\main\\java\\views\\icon\\history.png")); // NOI18N
+        lbLichSu.setText("Lịch Sử");
+        lbLichSu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lbLichSu.setOpaque(true);
+        lbLichSu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbLichSuMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lbLienHeMouseEntered(evt);
+                lbLichSuMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                lbLienHeMouseExited(evt);
+                lbLichSuMouseExited(evt);
             }
         });
 
@@ -407,7 +410,7 @@ public class Home extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lbDangXuat, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lbThongKe, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lbLienHe, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lbLichSu, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lbHoaDon, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lbDichVu, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lbQLCa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -434,7 +437,7 @@ public class Home extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addComponent(lbHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
-                .addComponent(lbLienHe, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbLichSu, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addComponent(lbThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
@@ -713,12 +716,13 @@ public class Home extends javax.swing.JFrame {
             .addGroup(Pane5San1Layout.createSequentialGroup()
                 .addContainerGap(56, Short.MAX_VALUE)
                 .addGroup(Pane5San1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Pane5San1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lbTrangThaiS1C5)
-                        .addGroup(Pane5San1Layout.createSequentialGroup()
-                            .addGap(19, 19, 19)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(69, 69, 69)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Pane5San1Layout.createSequentialGroup()
+                        .addGroup(Pane5San1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbTrangThaiS1C5)
+                            .addGroup(Pane5San1Layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(54, 54, 54))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Pane5San1Layout.createSequentialGroup()
                         .addComponent(lbLoaiSanS1C5, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(46, 46, 46))))
@@ -1286,13 +1290,13 @@ public class Home extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Hello");
     }//GEN-LAST:event_lbDangXuatMouseClicked
 
-    private void lbLienHeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLienHeMouseExited
-        lbLienHe.setBackground(new Color(166, 145, 92));
-    }//GEN-LAST:event_lbLienHeMouseExited
+    private void lbLichSuMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLichSuMouseExited
+        lbLichSu.setBackground(new Color(166, 145, 92));
+    }//GEN-LAST:event_lbLichSuMouseExited
 
-    private void lbLienHeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLienHeMouseEntered
-        lbLienHe.setBackground(new Color(13, 180, 185));
-    }//GEN-LAST:event_lbLienHeMouseEntered
+    private void lbLichSuMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLichSuMouseEntered
+        lbLichSu.setBackground(new Color(13, 180, 185));
+    }//GEN-LAST:event_lbLichSuMouseEntered
 
     private void lbHoaDonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbHoaDonMouseExited
         lbHoaDon.setBackground(new Color(166, 145, 92));
@@ -1349,7 +1353,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_lbCheckInMouseReleased
 
     private void CheckQRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckQRActionPerformed
-         new WebCam().setVisible(true);
+        new WebCam().setVisible(true);
     }//GEN-LAST:event_CheckQRActionPerformed
 
     private void CheckPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckPhoneActionPerformed
@@ -1369,6 +1373,10 @@ public class Home extends javax.swing.JFrame {
     private void xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xoaActionPerformed
         JOptionPane.showMessageDialog(this, "Xóa oke ");
     }//GEN-LAST:event_xoaActionPerformed
+
+    private void lbLichSuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLichSuMouseClicked
+        new FrmLichSuDatSan().setVisible(true);       
+    }//GEN-LAST:event_lbLichSuMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1453,7 +1461,7 @@ public class Home extends javax.swing.JFrame {
     private static javax.swing.JLabel lbHoaDon;
     private javax.swing.JLabel lbHome;
     private static javax.swing.JLabel lbLichDat;
-    private javax.swing.JLabel lbLienHe;
+    private javax.swing.JLabel lbLichSu;
     private javax.swing.JLabel lbLoaiSanS1C1;
     private javax.swing.JLabel lbLoaiSanS1C2;
     private javax.swing.JLabel lbLoaiSanS1C3;
