@@ -38,7 +38,6 @@ public class DichVuServiceImpl implements IDichVuService {
         List<DichVu> listDichVu = dichVuRepositoryImpl.fillAll(position, pageSize);
 
         List<QLDichVu> listQLDichVu = new ArrayList<>();
-//id, maDichVu, tenDoThue, soLuongDoThue, hoaDon, tenNuocUong, soLuongNuocUong, donGia, moTa,trangThai
         for (DichVu dichVu : listDichVu) {
             listQLDichVu.add(new QLDichVu(
                     dichVu.getId(),
@@ -114,13 +113,10 @@ public class DichVuServiceImpl implements IDichVuService {
         if (map.containsKey(dichVu.getMaDichVu())) {
             return "Mã trùng";
         }
-        boolean save = dichVuRepositoryImpl.saveOrUpdate(new DichVu(dichVu.getId(), dichVu.getMaDichVu(), doThue, dichVu.getSoLuongDoThue(), nuocUong, dichVu.getSoLuongNuocUong(), dichVu.getDonGia(), dichVu.getMoTa(), dichVu.getTrangThai()));
         HoaDon hoaDon = new HoaDon();
         if (map.containsKey(hoaDon.getId())) {
             hoaDon = (HoaDon) map.get(dichVu.getHoaDon());
         }
-
-//id, maDichVu, tenDoThue, soLuongDoThue, hoaDon, tenNuocUong, soLuongNuocUong, donGia, moTa,trangThai
         boolean save = dichVuRepositoryImpl.saveOrUpdate(
                 new DichVu(
                         dichVu.getId(),
@@ -153,9 +149,6 @@ public class DichVuServiceImpl implements IDichVuService {
         if (map.containsKey(dichVu.getTenDoThue())) {
             doThue = (DoThue) map.get(dichVu.getTenDoThue());
         }
-
-        boolean save = dichVuRepositoryImpl.saveOrUpdate(new DichVu(dichVu.getId(), dichVu.getMaDichVu(), doThue, dichVu.getSoLuongDoThue(), nuocUong, dichVu.getSoLuongNuocUong(), dichVu.getDonGia(), dichVu.getMoTa(), dichVu.getTrangThai()));
-
 
         HoaDon hoaDon = new HoaDon();
         if (map.containsKey(hoaDon.getId())) {
