@@ -10,6 +10,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelview.QLKhachHang;
+import modelview.QLSanCa;
 import service.IKhachHangService;
 import service.Impl.KhachHangServiceImpl;
 
@@ -22,14 +23,16 @@ public class FrmKhachHang extends javax.swing.JFrame {
     private List<QLKhachHang> listKhachHang = new ArrayList<>();
     private IKhachHangService iKhachHangService = new KhachHangServiceImpl();
     private DefaultTableModel dtm = new DefaultTableModel();
+    private QLSanCa sanCa = new QLSanCa();
 
     /**
      * Creates new form FrmKhachHang
      */
-    public FrmKhachHang() {
+    public FrmKhachHang(QLSanCa qLSanCa) {
         initComponents();
+        sanCa= qLSanCa;
         jTable1.setModel(dtm);
-        String[] header = {"ID", "Mã KH", "Tên KH","Email", "SÐT", "Ghi Chú", "Trạng thái"};
+        String[] header = {"ID", "Mã KH", "Tên KH", "Email", "SÐT", "Ghi Chú", "Trạng thái"};
         dtm.setColumnIdentifiers(header);
         listKhachHang = iKhachHangService.getAll();
         showData(listKhachHang);
@@ -222,7 +225,7 @@ public class FrmKhachHang extends javax.swing.JFrame {
         if (ten.length() == 0 || ma.length() == 0 || ghiChu.length() == 0 || sdt.length() == 0) {
             JOptionPane.showMessageDialog(this, "Null");
         } else {
-            QLKhachHang khachHang = new QLKhachHang(null, ma, ten,email, sdt, ghiChu, qLKhachHang.getTrangThai());
+            QLKhachHang khachHang = new QLKhachHang(null, ma, ten, email, sdt, ghiChu, qLKhachHang.getTrangThai());
             JOptionPane.showMessageDialog(this, iKhachHangService.save(khachHang));
             listKhachHang = iKhachHangService.getAll();
             showData(listKhachHang);
@@ -245,10 +248,10 @@ public class FrmKhachHang extends javax.swing.JFrame {
         if (row < 0) {
             JOptionPane.showMessageDialog(this, "Selected row ??");
         } else {
-            if (ten.length() == 0 || ma.length() == 0 || ghiChu.length() == 0 || sdt.length() == 0 || email.length()==0) {
+            if (ten.length() == 0 || ma.length() == 0 || ghiChu.length() == 0 || sdt.length() == 0 || email.length() == 0) {
                 JOptionPane.showMessageDialog(this, "Null");
             } else {
-                QLKhachHang khachHang = new QLKhachHang(mountClick().getId(), ma, ten,email, sdt, ghiChu, qLKhachHang.getTrangThai());
+                QLKhachHang khachHang = new QLKhachHang(mountClick().getId(), ma, ten, email, sdt, ghiChu, qLKhachHang.getTrangThai());
                 JOptionPane.showMessageDialog(this, iKhachHangService.update(khachHang));
                 listKhachHang = iKhachHangService.getAll();
                 showData(listKhachHang);
@@ -272,7 +275,7 @@ public class FrmKhachHang extends javax.swing.JFrame {
         if (row < 0) {
             JOptionPane.showMessageDialog(this, "Selected row ??");
         } else {
-            QLKhachHang khachHang = new QLKhachHang(mountClick().getId(), ma, ten,email, sdt, ghiChu, qLKhachHang.getTrangThai());
+            QLKhachHang khachHang = new QLKhachHang(mountClick().getId(), ma, ten, email, sdt, ghiChu, qLKhachHang.getTrangThai());
             JOptionPane.showMessageDialog(this, iKhachHangService.delete(khachHang));
             listKhachHang = iKhachHangService.getAll();
             showData(listKhachHang);
@@ -281,8 +284,14 @@ public class FrmKhachHang extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        int check = JOptionPane.showConfirmDialog(rootPane, "Xác nhận thêm khách hàng", "Thông Báo", JOptionPane.YES_NO_OPTION);
         int index = jTable1.getSelectedRow();
         fillData(index);
+        QLKhachHang qLKhachHang = listKhachHang.get(index);
+        if (check == JOptionPane.YES_OPTION) {
+            new FrmPhieuDatLich(qLKhachHang,sanCa).setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_jTable1MouseClicked
 
     private QLKhachHang mountClick() {
@@ -314,37 +323,7 @@ public class FrmKhachHang extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmKhachHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmKhachHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmKhachHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmKhachHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmKhachHang().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;

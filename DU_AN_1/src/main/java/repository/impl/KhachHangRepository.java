@@ -46,7 +46,7 @@ public class KhachHangRepository implements IKhachHangRepository{
         }
         return check;
     }
-
+    
     @Override
     public boolean delete(KhachHang khachHang) {
         boolean check;
