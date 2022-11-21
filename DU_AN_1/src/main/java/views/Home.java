@@ -46,8 +46,8 @@ public class Home extends javax.swing.JFrame {
     public JLabel labelLoaiSan;
     public JLabel labelSan;
     public JPopupMenu jPopupMenu = new JPopupMenu();
-    JMenuItem itemtt;
-    JMenuItem itemxoa;
+    public JMenuItem itemtt;
+    public JMenuItem itemxoa;
     public JLabel labelTrangThai;
 
     public Home() {
@@ -57,6 +57,7 @@ public class Home extends javax.swing.JFrame {
         AddSan();
 
     }
+
     public void AddSan() {
 
 //        PaneTong.setLayout(new BoxLayout(PaneTong, BoxLayout.X_AXIS));
@@ -132,6 +133,7 @@ public class Home extends javax.swing.JFrame {
         }
 
     }
+
     private void time() {
         Date date = new Date();
         lbTime.setText(date.toString());
