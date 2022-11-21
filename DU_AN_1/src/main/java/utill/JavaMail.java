@@ -30,7 +30,7 @@ import javax.mail.internet.MimeMultipart;
  */
 public class JavaMail {
 
-    public String sendMail(PhieuDatLich phieuDatLich, ByteArrayOutputStream byteArrayOuputStream) {
+    public String sendMail(PhieuDatLich phieuDatLich,ByteArrayOutputStream byteArrayOuputStream) {
         final String from = "hshsggdh235@gmail.com";
         final String password = "tvrmnzhlbihpdvpk";
         final String to = phieuDatLich.getKhachHang().getMail();
