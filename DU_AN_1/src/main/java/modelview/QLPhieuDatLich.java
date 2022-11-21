@@ -29,7 +29,7 @@ public class QLPhieuDatLich {
     private trangThaiPhieuDL trangThai = trangThaiPhieuDL.CHUA_NHAN_SAN;
     
     public Object toDataRow(){
-        return new Object[] {id, acount.getTenAcount(), khachHang.getTenKhachHang(),sanCa.getCa(), ngayTaoPhieu, NgayDenSan, tgCheckIn, ghiChu, tongTienSan, trangThai};
+        return new Object[] {id, acount.getTenAcount(), khachHang.getTenKhachHang(),sanCa.getTenCa(), ngayTaoPhieu, NgayDenSan, tgCheckIn, ghiChu, tongTienSan, trangThai};
     }
 
 }

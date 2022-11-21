@@ -45,14 +45,16 @@ public class SanCaServiceImpl implements ISanCaService {
         for (SanBong sanBong : listSanBong) {
             map.put(sanBong.getTenSanBong(), sanBong);
             map.put(sanBong.getMaSanBong(), sanBong);
+            map.put(String.valueOf(sanBong.getGiaSan()), sanBong);
         }
         for (Ca ca : listQLCa) {
             map.put(ca.getMaCa(), ca);
             map.put(ca.getTenCa(), ca);
+            map.put(String.valueOf(ca.getGiaCa()), ca);
         }
         for (SanCa sanCa : re.getAll()) {
-            QLSanCa qlsc = new QLSanCa(sanCa.getId(), sanCa.getCa().getTenCa(), sanCa.getSanbong().getTenSanBong(), (sanCa.getNgayTao()), sanCa.getGiaCa(), sanCa.getTrangThai());
-            listQLSanCa.add(qlsc);
+            QLSanCa qLSanCa = new QLSanCa(sanCa.getId(), sanCa.getCa().getTenCa(), sanCa.getSanbong().getTenSanBong(), sanCa.getNgayTao(),sanCa.getSanbong().getGiaSan()+sanCa.getCa().getGiaCa() , sanCa.getTrangThai());
+            listQLSanCa.add(qLSanCa);
         }
         return listQLSanCa;
     }
@@ -60,55 +62,55 @@ public class SanCaServiceImpl implements ISanCaService {
     @Override
     public String save(QLSanCa qLSanCa) {
         Ca ca = new Ca();
-        if (map.containsKey(qLSanCa.getCa())) {
-            ca = (Ca) map.get(qLSanCa.getCa());
+        if (map.containsKey(qLSanCa.getTenCa())) {
+            ca = (Ca) map.get(qLSanCa.getTenCa());
         }
         SanBong sanBong = new SanBong();
-        if (map.containsKey(qLSanCa.getSanBong())) {
-            sanBong = (SanBong) map.get(qLSanCa.getSanBong());
+        if (map.containsKey(qLSanCa.getTenSanBong())) {
+            sanBong = (SanBong) map.get(qLSanCa.getTenSanBong());
         }
-        SanCa sanCa = new SanCa(null, ca, sanBong, qLSanCa.getNgayTao(), ca.getGiaCa()+sanBong.getGiaSan(), qLSanCa.getTrangThai());
+        SanCa sanCa = new SanCa(null, ca, sanBong, new Date(),ca.getGiaCa()+sanBong.getGiaSan(), qLSanCa.getTrangThai());
         if (re.saveOrUpdate(sanCa)) {
             return "Save Complete";
         } else {
             return "Save Fail";
-        }
+       }
     }
 
     @Override
     public String update(QLSanCa qLSanCa) {
         Ca ca = new Ca();
-        if (map.containsKey(qLSanCa.getCa())) {
-            ca = (Ca) map.get(qLSanCa.getCa());
+        if (map.containsKey(qLSanCa.getTenCa())) {
+            ca = (Ca) map.get(qLSanCa.getTenCa());
         }
         SanBong sanBong = new SanBong();
-        if (map.containsKey(qLSanCa.getSanBong())) {
-            sanBong = (SanBong) map.get(qLSanCa.getSanBong());
+        if (map.containsKey(qLSanCa.getTenSanBong())) {
+            sanBong = (SanBong) map.get(qLSanCa.getTenSanBong());
         }
-        SanCa sanCa = new SanCa(qLSanCa.getId(), ca, sanBong, qLSanCa.getNgayTao(), qLSanCa.getGiaCa(), qLSanCa.getTrangThai());
+        SanCa sanCa = new SanCa(qLSanCa.getId(), ca, sanBong, new Date(),ca.getGiaCa()+sanBong.getGiaSan(), qLSanCa.getTrangThai());
         if (re.saveOrUpdate(sanCa)) {
             return "Update Complete";
         } else {
             return "Update Fail";
-        }
+       }
     }
 
     @Override
     public String delete(QLSanCa qLSanCa) {
         Ca ca = new Ca();
-        if (map.containsKey(qLSanCa.getCa())) {
-            ca = (Ca) map.get(qLSanCa.getCa());
+        if (map.containsKey(qLSanCa.getTenCa())) {
+            ca = (Ca) map.get(qLSanCa.getTenCa());
         }
         SanBong sanBong = new SanBong();
-        if (map.containsKey(qLSanCa.getSanBong())) {
-            ca = (Ca) map.get(qLSanCa.getSanBong());
+        if (map.containsKey(qLSanCa.getTenSanBong())) {
+            sanBong = (SanBong) map.get(qLSanCa.getTenSanBong());
         }
-        SanCa sanCa = new SanCa(qLSanCa.getId(), ca, sanBong, qLSanCa.getNgayTao(), qLSanCa.getGiaCa(), qLSanCa.getTrangThai());
+        SanCa sanCa = new SanCa(qLSanCa.getId(), ca, sanBong, new Date(),ca.getGiaCa()+sanBong.getGiaSan(), qLSanCa.getTrangThai());
         if (re.deleteSanCa(sanCa)) {
-            return "Delete Complete";
+            return "Update Complete";
         } else {
-            return "Delete Fail";
-        }
+            return "Update Fail";
+       }
     }
 
     public static void main(String[] args) {
@@ -119,7 +121,8 @@ public class SanCaServiceImpl implements ISanCaService {
     public QLSanCa getOne() {
         SanCa sanCa = re.getOne();
         QLSanCa qlsc = new QLSanCa(sanCa.getId(), sanCa.getCa().getTenCa(), sanCa.getSanbong().getTenSanBong(), (sanCa.getNgayTao()), sanCa.getGiaCa(), sanCa.getTrangThai());
-        return qlsc;
+        
+        return null;
     }
 
 }
