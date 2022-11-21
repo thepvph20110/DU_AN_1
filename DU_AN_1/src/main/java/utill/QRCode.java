@@ -9,8 +9,7 @@ import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
+
 
 /**
  *
@@ -18,7 +17,7 @@ import java.io.FileOutputStream;
  */
 public class QRCode {
 
-    public static ByteArrayOutputStream getQRCodeImage(String text, int width, int height) {
+    public ByteArrayOutputStream getQRCodeImage(String text, int width, int height) {
         try {
             QRCodeWriter qRCodeWriter = new QRCodeWriter();
             BitMatrix bitMatrix = qRCodeWriter.encode(text, BarcodeFormat.QR_CODE, width, height);

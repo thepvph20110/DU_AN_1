@@ -32,9 +32,10 @@ public class HoaDonPhuPhiServiceImpl implements IHoaDon_PhuPhiService {
         var lstHDPhuPhi = repository.getAllPhuPhi_HoaDons();
         for (PhuPhi_HoaDon phuPhi_HoaDon : lstHDPhuPhi) {
             QLPhuPhi qLPhuPhi = new QLPhuPhi(phuPhi_HoaDon.getPhuPhi().getId(), phuPhi_HoaDon.getPhuPhi().getMaPhuPhi(), phuPhi_HoaDon.getPhuPhi().getTenPhuPhi(), phuPhi_HoaDon.getPhuPhi().getGiaPhuPhi(), phuPhi_HoaDon.getPhuPhi().getMoTa(), phuPhi_HoaDon.getPhuPhi().getTrangThai());
-            QLHoaDon qLHoaDon = new QLHoaDon(phuPhi_HoaDon.getHoaDon().getId(), phuPhi_HoaDon.getHoaDon().getPhieuDatLich(), phuPhi_HoaDon.getHoaDon().getNgayThanhToan(),
-                    phuPhi_HoaDon.getHoaDon().getDonGia(), phuPhi_HoaDon.getHoaDon().getTongTien(), phuPhi_HoaDon.getHoaDon().getGhiChu(), phuPhi_HoaDon.getHoaDon().getTrangThai());
-            QLHoaDon_PhuPhi qLHoaDon_PhuPhi = new QLHoaDon_PhuPhi(phuPhi_HoaDon.getId(), qLHoaDon, qLPhuPhi, phuPhi_HoaDon.getTrangThai());
+//            QLHoaDon hoaDon = new QLHoaDon(phuPhi_HoaDon.getHoaDon().getId(), phuPhi_HoaDon.getHoaDon().getPhieuDatLich(), phuPhi_HoaDon.getHoaDon().getNgayThanhToan(),
+//                    phuPhi_HoaDon.getHoaDon().getDonGia(), phuPhi_HoaDon.getHoaDon().getTongTien(), phuPhi_HoaDon.getHoaDon().getGhiChu(), phuPhi_HoaDon.getHoaDon().getTrangThai());
+            QLHoaDon hoaDon= new QLHoaDon();
+            QLHoaDon_PhuPhi qLHoaDon_PhuPhi = new QLHoaDon_PhuPhi(phuPhi_HoaDon.getId(), hoaDon, qLPhuPhi, phuPhi_HoaDon.getTrangThai());
             lstQLHoaDonPhuPhi.add(qLHoaDon_PhuPhi);
         }
         return lstQLHoaDonPhuPhi;
@@ -43,8 +44,9 @@ public class HoaDonPhuPhiServiceImpl implements IHoaDon_PhuPhiService {
     @Override
     public boolean save(QLHoaDon_PhuPhi phuPhi_HoaDon) {
         PhuPhi phuPhi = new PhuPhi(phuPhi_HoaDon.getPhuPhi().getId(), phuPhi_HoaDon.getPhuPhi().getMaPhuPhi(), phuPhi_HoaDon.getPhuPhi().getTenPhuPhi(), phuPhi_HoaDon.getPhuPhi().getGiaPhuPhi(), phuPhi_HoaDon.getPhuPhi().getMoTa(), phuPhi_HoaDon.getPhuPhi().getTrangThai());
-        HoaDon hoaDon = new HoaDon(phuPhi_HoaDon.getHoaDon().getId(), phuPhi_HoaDon.getHoaDon().getPhieuDatLich(), phuPhi_HoaDon.getHoaDon().getNgayThanhToan(),
-                phuPhi_HoaDon.getHoaDon().getDonGia(), phuPhi_HoaDon.getHoaDon().getTongTien(), phuPhi_HoaDon.getHoaDon().getGhiChu(), phuPhi_HoaDon.getHoaDon().getTrangThai());
+//        HoaDon hoaDon = new HoaDon(phuPhi_HoaDon.getHoaDon().getId(), phuPhi_HoaDon.getHoaDon().getPhieuDatLich(), phuPhi_HoaDon.getHoaDon().getNgayThanhToan(),
+//                phuPhi_HoaDon.getHoaDon().getDonGia(), phuPhi_HoaDon.getHoaDon().getTongTien(), phuPhi_HoaDon.getHoaDon().getGhiChu(), phuPhi_HoaDon.getHoaDon().getTrangThai());
+        HoaDon hoaDon = new HoaDon();
         boolean save = repository.save(new PhuPhi_HoaDon(phuPhi_HoaDon.getId(), hoaDon, phuPhi, phuPhi_HoaDon.getTrangThai()));
         return save;
     }
@@ -52,8 +54,9 @@ public class HoaDonPhuPhiServiceImpl implements IHoaDon_PhuPhiService {
     @Override
     public boolean update(QLHoaDon_PhuPhi phuPhi_HoaDon) {
         PhuPhi phuPhi = new PhuPhi(phuPhi_HoaDon.getPhuPhi().getId(), phuPhi_HoaDon.getPhuPhi().getMaPhuPhi(), phuPhi_HoaDon.getPhuPhi().getTenPhuPhi(), phuPhi_HoaDon.getPhuPhi().getGiaPhuPhi(), phuPhi_HoaDon.getPhuPhi().getMoTa(), phuPhi_HoaDon.getPhuPhi().getTrangThai());
-        HoaDon hoaDon = new HoaDon(phuPhi_HoaDon.getHoaDon().getId(), phuPhi_HoaDon.getHoaDon().getPhieuDatLich(), phuPhi_HoaDon.getHoaDon().getNgayThanhToan(),
-                phuPhi_HoaDon.getHoaDon().getDonGia(), phuPhi_HoaDon.getHoaDon().getTongTien(), phuPhi_HoaDon.getHoaDon().getGhiChu(), phuPhi_HoaDon.getHoaDon().getTrangThai());
+//        HoaDon hoaDon = new HoaDon(phuPhi_HoaDon.getHoaDon().getId(), phuPhi_HoaDon.getHoaDon().getPhieuDatLich(), phuPhi_HoaDon.getHoaDon().getNgayThanhToan(),
+//                phuPhi_HoaDon.getHoaDon().getDonGia(), phuPhi_HoaDon.getHoaDon().getTongTien(), phuPhi_HoaDon.getHoaDon().getGhiChu(), phuPhi_HoaDon.getHoaDon().getTrangThai());
+        HoaDon hoaDon = new HoaDon();
         boolean update = repository.save(new PhuPhi_HoaDon(phuPhi_HoaDon.getId(), hoaDon, phuPhi, phuPhi_HoaDon.getTrangThai()));
         return update;
     }
@@ -61,8 +64,9 @@ public class HoaDonPhuPhiServiceImpl implements IHoaDon_PhuPhiService {
     @Override
     public boolean delete(QLHoaDon_PhuPhi phuPhi_HoaDon) {
         PhuPhi phuPhi = new PhuPhi(phuPhi_HoaDon.getPhuPhi().getId(), phuPhi_HoaDon.getPhuPhi().getMaPhuPhi(), phuPhi_HoaDon.getPhuPhi().getTenPhuPhi(), phuPhi_HoaDon.getPhuPhi().getGiaPhuPhi(), phuPhi_HoaDon.getPhuPhi().getMoTa(), phuPhi_HoaDon.getPhuPhi().getTrangThai());
-        HoaDon hoaDon = new HoaDon(phuPhi_HoaDon.getHoaDon().getId(), phuPhi_HoaDon.getHoaDon().getPhieuDatLich(), phuPhi_HoaDon.getHoaDon().getNgayThanhToan(),
-                phuPhi_HoaDon.getHoaDon().getDonGia(), phuPhi_HoaDon.getHoaDon().getTongTien(), phuPhi_HoaDon.getHoaDon().getGhiChu(), phuPhi_HoaDon.getHoaDon().getTrangThai());
+//        HoaDon hoaDon = new HoaDon(phuPhi_HoaDon.getHoaDon().getId(), phuPhi_HoaDon.getHoaDon().getPhieuDatLich(), phuPhi_HoaDon.getHoaDon().getNgayThanhToan(),
+//                phuPhi_HoaDon.getHoaDon().getDonGia(), phuPhi_HoaDon.getHoaDon().getTongTien(), phuPhi_HoaDon.getHoaDon().getGhiChu(), phuPhi_HoaDon.getHoaDon().getTrangThai());
+        HoaDon hoaDon = new HoaDon();
         boolean delete = repository.delete(new PhuPhi_HoaDon(phuPhi_HoaDon.getId(), hoaDon, phuPhi, phuPhi_HoaDon.getTrangThai()));
         return delete;
     }

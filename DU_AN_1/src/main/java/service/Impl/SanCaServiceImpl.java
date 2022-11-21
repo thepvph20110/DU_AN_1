@@ -67,7 +67,7 @@ public class SanCaServiceImpl implements ISanCaService {
         if (map.containsKey(qLSanCa.getSanBong())) {
             sanBong = (SanBong) map.get(qLSanCa.getSanBong());
         }
-        SanCa sanCa = new SanCa(null, ca, sanBong, qLSanCa.getNgayTao(), qLSanCa.getGiaCa(), qLSanCa.getTrangThai());
+        SanCa sanCa = new SanCa(null, ca, sanBong, qLSanCa.getNgayTao(), ca.getGiaCa()+sanBong.getGiaSan(), qLSanCa.getTrangThai());
         if (re.saveOrUpdate(sanCa)) {
             return "Save Complete";
         } else {

@@ -114,16 +114,12 @@ public class DichVuServiceImpl implements IDichVuService {
         if (map.containsKey(dichVu.getMaDichVu())) {
             return "Mã trùng";
         }
+      
         HoaDon hoaDon = new HoaDon();
         if (map.containsKey(hoaDon.getId())) {
             hoaDon = (HoaDon) map.get(dichVu.getHoaDon());
         }
 
-
-        HoaDon hoaDon = new HoaDon();
-        if (map.containsKey(hoaDon.getId())) {
-            hoaDon = (HoaDon) map.get(dichVu.getHoaDon());
-        }
 
         boolean save = dichVuRepositoryImpl.saveOrUpdate(
                 new DichVu(
