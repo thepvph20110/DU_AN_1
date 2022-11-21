@@ -12,6 +12,9 @@ import java.util.List;
  * @author hp
  */
 public interface ISanCaRepository {
+    
+    SanCa getOne();
+    
     List<SanCa> getAll();
     
     boolean saveOrUpdate(SanCa sanCa);

@@ -9,6 +9,7 @@ import domainmodel.ChucVu;
 import java.util.List;
 import java.util.UUID;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import org.hibernate.Session;
 import repository.IAcountRepository;
 import utill.HibernateConfig;
@@ -17,7 +18,7 @@ import utill.HibernateConfig;
  *
  * @author Admin
  */
-public class AcountRepository implements IAcountRepository{
+public class AcountRepository implements IAcountRepository {
 
     @Override
     public List<Acount> getAll() {
@@ -25,7 +26,7 @@ public class AcountRepository implements IAcountRepository{
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             Query q = session.createQuery("FROM Acount");
             listAcount = q.getResultList();
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
@@ -74,5 +75,24 @@ public class AcountRepository implements IAcountRepository{
         return true;
     }
 
-    
+    @Override
+    public Acount getOne() {
+        Acount acount;
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            String hql = "From Acount ";
+            TypedQuery<Acount> query = session.createQuery(hql, Acount.class);
+            query.setFirstResult(0);
+            query.setMaxResults(1);
+            acount = query.getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+            acount = null;
+        }
+        return acount;
+    }
+
+    public static void main(String[] args) {
+        Acount ac = new AcountRepository().getOne();
+        System.out.println("" + ac.getTenAcount());
+    }
 }
