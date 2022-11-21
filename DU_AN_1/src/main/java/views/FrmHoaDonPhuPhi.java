@@ -78,13 +78,16 @@ public class FrmHoaDonPhuPhi extends javax.swing.JFrame {
     private QLHoaDon_PhuPhi getFormInput() {
         QLHoaDon_PhuPhi qLHoaDon_PhuPhi = new QLHoaDon_PhuPhi();
         qLHoaDon_PhuPhi.setId(null);
+        
         UUID idHoaDon = getIDHoaDon();
         QLHoaDon qLHoaDon = new QLHoaDon();
         qLHoaDon.setId(idHoaDon);
         qLHoaDon_PhuPhi.setHoaDon(qLHoaDon);
+        
         UUID idPhuPhi = getIDPhuPhi();
         QLPhuPhi qLPhuPhi = new QLPhuPhi(idPhuPhi);
         qLHoaDon_PhuPhi.setPhuPhi(qLPhuPhi);
+        
         if (rdoDaTra.isSelected()) {
             qLHoaDon_PhuPhi.setTrangThai(trangThaiPhuPhiHoaDon.Da_Tra);
         } else {
