@@ -81,6 +81,7 @@ public class DichVuServiceImpl implements IDichVuService {
         for (DichVu dichVu : listDichVu) {
             map.put(dichVu.getMaDichVu(), dichVu);
 
+
             listQLDichVu.add(
                     new QLDichVu(
                             dichVu.getId(),
@@ -113,11 +114,17 @@ public class DichVuServiceImpl implements IDichVuService {
         if (map.containsKey(dichVu.getMaDichVu())) {
             return "Mã trùng";
         }
+        HoaDon hoaDon = new HoaDon();
+        if (map.containsKey(hoaDon.getId())) {
+            hoaDon = (HoaDon) map.get(dichVu.getHoaDon());
+        }
+
 
         HoaDon hoaDon = new HoaDon();
         if (map.containsKey(hoaDon.getId())) {
             hoaDon = (HoaDon) map.get(dichVu.getHoaDon());
         }
+
         boolean save = dichVuRepositoryImpl.saveOrUpdate(
                 new DichVu(
                         dichVu.getId(),
@@ -150,6 +157,7 @@ public class DichVuServiceImpl implements IDichVuService {
         if (map.containsKey(dichVu.getTenDoThue())) {
             doThue = (DoThue) map.get(dichVu.getTenDoThue());
         }
+
         HoaDon hoaDon = new HoaDon();
         if (map.containsKey(hoaDon.getId())) {
             hoaDon = (HoaDon) map.get(dichVu.getHoaDon());

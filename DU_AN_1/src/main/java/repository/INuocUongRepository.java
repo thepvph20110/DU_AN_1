@@ -25,4 +25,6 @@ public interface INuocUongRepository {
     boolean delete(UUID id);
     
     long totalCount();
+    
+    NuocUong findByID(UUID id);
 }
