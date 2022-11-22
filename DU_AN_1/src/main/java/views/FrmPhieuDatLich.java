@@ -290,7 +290,7 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
         Date ngayDen = dateNgayDen.getDate();
         String ghiChu = txtGhiChu.getText();
         Date ngayTao = new Date();
-        QLPhieuDatLich qLPhieuDatLich = new QLPhieuDatLich(null, acount, khachHang, sanCa, ngayTao, ngayDen, null, ghiChu, maQr, sanCa.getGiaCa(), trangThaiPhieuDL.CHUA_NHAN_SAN);
+        QLPhieuDatLich qLPhieuDatLich = new QLPhieuDatLich(null, acount, khachHang, sanCa, ngayTao, ngayDen, null, ghiChu, maQr, sanCa.getGiaCaSan(), trangThaiPhieuDL.CHUA_NHAN_SAN);
         try {
             String check = phieuDatLichService.save(qLPhieuDatLich);
             if (check.equalsIgnoreCase("Lưu Thành Công")) {

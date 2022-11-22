@@ -429,7 +429,7 @@ public class AddPhieuDatLich extends javax.swing.JFrame {
 
     private void loadCbbSanCa() {
         for (QLSanCa qLSanCa : listQLSanCa) {
-            cbbSanCa.addItem(qLSanCa.getCa());
+            cbbSanCa.addItem(qLSanCa.getTenCa());
         }
     }
 
@@ -446,7 +446,7 @@ public class AddPhieuDatLich extends javax.swing.JFrame {
         TongTienSan.setText(String.valueOf(qLPhieuDatLich.getTongTienSan()));
         cbbAcount.setSelectedItem(qLPhieuDatLich.getAcount().getTenAcount());
         cbbKhachHang.setSelectedItem(qLPhieuDatLich.getKhachHang().getTenKhachHang());
-        cbbSanCa.setSelectedItem(qLPhieuDatLich.getSanCa().getCa());
+        cbbSanCa.setSelectedItem(qLPhieuDatLich.getSanCa().getTenCa());
         NgayDenSan.setDate(qLPhieuDatLich.getNgayDenSan());
         NgayTaoPhieu.setDate(qLPhieuDatLich.getNgayTaoPhieu());
         if (qLPhieuDatLich.getTrangThai() == trangThaiPhieuDL.CHUA_NHAN_SAN) {
@@ -484,7 +484,7 @@ public class AddPhieuDatLich extends javax.swing.JFrame {
         String ten = (String) cbbSanCa.getSelectedItem();
         UUID id = null;
         for (QLSanCa qLSanCa : listQLSanCa) {
-            if (qLSanCa.getCa().equals(ten)) {
+            if (qLSanCa.getTenCa().equals(ten)) {
                 id = qLSanCa.getId();
             }
         }
