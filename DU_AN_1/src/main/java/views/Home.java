@@ -47,7 +47,7 @@ import service.Impl.SanCaServiceImpl;
  * @author DANG VAN SY
  */
 public class Home extends javax.swing.JFrame {
-
+    
     public JPanel panelCa;
     public JPanel panelSan;
     public JLabel labelCa;
@@ -62,30 +62,33 @@ public class Home extends javax.swing.JFrame {
     private List<QLSanBong> listSanBong = new ArrayList<>();
     private ISanCaService sanCaService = new SanCaServiceImpl();
     private ISanBongService sanBongService = new SanBongServiceImpl();
+    public List<JPanel> listPaneCa = new ArrayList<>();
 
     public Home() {
         initComponents();
         time();
         showDongHo();
         AddSan();
-
+        
     }
-
+    
     public void AddSan() {
         listSanCa = sanCaService.getAll();
         listSanBong = sanBongService.getAll();
         System.out.println(listSanCa);
 //        PaneTong.setLayout(new BoxLayout(PaneTong, BoxLayout.X_AXIS));
         PaneTong.setLayout(new GridLayout(10000, 1, 20, 20));
-
+        
         JMenuItem itemtt = new JMenuItem("Đổi trạng thái");
         JMenuItem itemxoa = new JMenuItem("Xóa");
-
+        
         itemtt.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(panelSan, "heloo");
-
+//                JOptionPane.showMessageDialog(panelSan, "heloo");
+                int a = panelSan.getX();
+                panelCa = listPaneCa.get(a);
+                panelCa.setBackground(Color.red);            
             }
         });
         itemxoa.addActionListener(new ActionListener() {
@@ -108,7 +111,7 @@ public class Home extends javax.swing.JFrame {
 //            }
 
             panelSan.setBorder(border);
-
+            
             panelSan.setPreferredSize(new Dimension(1325, 200));
             panelSan.setLayout(new GridLayout(1, 6, 20, 20));
             for (int j = 1; j <= listSanCa.size(); j++) {
@@ -130,12 +133,12 @@ public class Home extends javax.swing.JFrame {
                     public void mouseReleased(java.awt.event.MouseEvent evt) {
                         panelCaInMouseReleased(evt);
                     }
-
+                    
                     private void panelCaInMouseReleased(MouseEvent evt) {
                         if (evt.isPopupTrigger()) {
                             jPopupMenu.show(null, evt.getXOnScreen(), evt.getYOnScreen());
                         }
-
+                        
                     }
                 });
                 panelCa.setLayout(new FlowLayout(10, 65, 20));
@@ -156,21 +159,22 @@ public class Home extends javax.swing.JFrame {
                 panelCa.add(labelThoiGian);
                 panelCa.add(labelLoaiSan);
                 panelCa.add(labelTrangThai);
+                listPaneCa.add(panelCa);
                 panelSan.add(panelCa);
-
+                
             }
             PaneTong.add(panelSan);
         }
-
+        
     }
-
+    
     private void time() {
         Date date = new Date();
         lbTime.setText(date.toString());
         jDate.setBackground(new Color(22, 69, 62));
         jDate.setDate(date);
     }
-
+    
     public void showDongHo() {
         Thread t = new Thread() {
             public void run() {
@@ -205,7 +209,7 @@ public class Home extends javax.swing.JFrame {
         };
         t.start();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
