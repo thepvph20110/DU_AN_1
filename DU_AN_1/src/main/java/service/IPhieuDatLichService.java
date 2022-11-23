@@ -4,6 +4,7 @@
  */
 package service;
 
+import domainmodel.PhieuDatLich;
 import java.util.List;
 import java.util.UUID;
 import modelview.QLPhieuDatLich;
@@ -21,5 +22,8 @@ public interface IPhieuDatLichService {
     String update(QLPhieuDatLich qLPhieuDatLich);
 
     String delete(UUID id);
+    
+    String updateTrangThai(PhieuDatLich phieuDatLich);
+    
 }
 
