@@ -6,6 +6,7 @@ package domainmodel;
 
 import enumclass.trangThaiDoThue;
 import java.util.UUID;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,13 +37,13 @@ public class DoThue {
     private String maDoThue;
     @Column(columnDefinition = "nvarchar(Max)")
     private String tenDoThue;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idKichThuoc")
     private KichThuoc kichThuoc;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idMauSac")
     private MauSac mauSac;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idNSX")
     private NhaSanXuat nhaSanXuat;
     private int soLuong;
