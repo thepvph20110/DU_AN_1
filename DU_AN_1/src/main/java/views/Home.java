@@ -164,7 +164,7 @@ public class Home extends javax.swing.JFrame {
                     labelThoiGian.setFont(new Font("Tahoma", 1, 14));
                     labelLoaiSan.setForeground(Color.white);
                     labelLoaiSan.setFont(new Font("Tahoma", 1, 14));
-                    labelTrangThai = new JLabel(" " + qLSanCa.getTrangThai());
+                    labelTrangThai = new JLabel(" " +j);
                     labelTrangThai.setForeground(Color.white);
                     labelTrangThai.setPreferredSize(new Dimension(100, 17));
                     panelCa.add(labelCa);
