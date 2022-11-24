@@ -27,6 +27,7 @@ public class QLKhachHang {
     private String mail;
     private String soDienThoai;
     private String ghiChu;
+    private String maQR;
     private trangThaiKhachHang trangThai = trangThaiKhachHang.BINH_THUONG;
     
     public Object toDataRow(){

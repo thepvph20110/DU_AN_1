@@ -25,7 +25,7 @@ public class KhachHangServiceImpl implements IKhachHangService {
 
         List<QLKhachHang> listQLKhachHang = new ArrayList<>();
         for (KhachHang KhachHang : re.getAll()) {
-            QLKhachHang khachHang = new QLKhachHang(KhachHang.getId(), KhachHang.getMaKhachHang(), KhachHang.getTenKhachHang(),KhachHang.getMail(), KhachHang.getSoDienThoai(), KhachHang.getGhiChu(), KhachHang.getTrangThai());
+            QLKhachHang khachHang = new QLKhachHang(KhachHang.getId(), KhachHang.getMaKhachHang(), KhachHang.getTenKhachHang(),KhachHang.getMail(), KhachHang.getSoDienThoai(), KhachHang.getGhiChu(), null,KhachHang.getTrangThai());
             listQLKhachHang.add(khachHang);
         }
         return listQLKhachHang;

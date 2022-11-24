@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelview.QLAcount;
 import modelview.QLKhachHang;
 import modelview.QLSanCa;
 import service.IKhachHangService;
@@ -24,13 +25,15 @@ public class FrmKhachHang extends javax.swing.JFrame {
     private IKhachHangService iKhachHangService = new KhachHangServiceImpl();
     private DefaultTableModel dtm = new DefaultTableModel();
     private QLSanCa sanCa = new QLSanCa();
+    private QLAcount acount = new QLAcount();
 
     /**
      * Creates new form FrmKhachHang
      */
-    public FrmKhachHang(QLSanCa qLSanCa) {
+    public FrmKhachHang(QLSanCa qLSanCa, QLAcount qlAcount) {
         initComponents();
-        sanCa= qLSanCa;
+        acount = qlAcount;
+        sanCa = qLSanCa;
         jTable1.setModel(dtm);
         String[] header = {"ID", "Mã KH", "Tên KH", "Email", "SÐT", "Ghi Chú", "Trạng thái"};
         dtm.setColumnIdentifiers(header);
@@ -222,14 +225,10 @@ public class FrmKhachHang extends javax.swing.JFrame {
         } else {
             qLKhachHang.setTrangThai(trangThaiKhachHang.CANH_CAO);
         }
-        if (ten.length() == 0 || ma.length() == 0 || ghiChu.length() == 0 || sdt.length() == 0) {
-            JOptionPane.showMessageDialog(this, "Null");
-        } else {
-            QLKhachHang khachHang = new QLKhachHang(null, ma, ten, email, sdt, ghiChu, qLKhachHang.getTrangThai());
-            JOptionPane.showMessageDialog(this, iKhachHangService.save(khachHang));
-            listKhachHang = iKhachHangService.getAll();
-            showData(listKhachHang);
-        }
+        QLKhachHang khachHang = new QLKhachHang(null, ma, ten, email, sdt, ghiChu, null, qLKhachHang.getTrangThai());
+        JOptionPane.showMessageDialog(this, iKhachHangService.save(khachHang));
+        listKhachHang = iKhachHangService.getAll();
+        showData(listKhachHang);
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
@@ -251,7 +250,7 @@ public class FrmKhachHang extends javax.swing.JFrame {
             if (ten.length() == 0 || ma.length() == 0 || ghiChu.length() == 0 || sdt.length() == 0 || email.length() == 0) {
                 JOptionPane.showMessageDialog(this, "Null");
             } else {
-                QLKhachHang khachHang = new QLKhachHang(mountClick().getId(), ma, ten, email, sdt, ghiChu, qLKhachHang.getTrangThai());
+                QLKhachHang khachHang = new QLKhachHang(mountClick().getId(), ma, ten, email, sdt, ghiChu, null, qLKhachHang.getTrangThai());
                 JOptionPane.showMessageDialog(this, iKhachHangService.update(khachHang));
                 listKhachHang = iKhachHangService.getAll();
                 showData(listKhachHang);
@@ -275,7 +274,7 @@ public class FrmKhachHang extends javax.swing.JFrame {
         if (row < 0) {
             JOptionPane.showMessageDialog(this, "Selected row ??");
         } else {
-            QLKhachHang khachHang = new QLKhachHang(mountClick().getId(), ma, ten, email, sdt, ghiChu, qLKhachHang.getTrangThai());
+            QLKhachHang khachHang = new QLKhachHang(mountClick().getId(), ma, ten, email, sdt, ghiChu, null, qLKhachHang.getTrangThai());
             JOptionPane.showMessageDialog(this, iKhachHangService.delete(khachHang));
             listKhachHang = iKhachHangService.getAll();
             showData(listKhachHang);
@@ -289,7 +288,7 @@ public class FrmKhachHang extends javax.swing.JFrame {
         fillData(index);
         QLKhachHang qLKhachHang = listKhachHang.get(index);
         if (check == JOptionPane.YES_OPTION) {
-            new FrmPhieuDatLich(qLKhachHang,sanCa).setVisible(true);
+            new FrmPhieuDatLich(qLKhachHang, sanCa, acount).setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_jTable1MouseClicked
@@ -323,7 +322,6 @@ public class FrmKhachHang extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
