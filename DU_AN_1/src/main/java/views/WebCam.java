@@ -10,14 +10,23 @@ import com.google.zxing.NotFoundException;
 import com.google.zxing.Result;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
+import domainmodel.PhieuDatLich;
 import java.awt.Dimension;
+import java.awt.Window;
 import java.awt.image.BufferedImage;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
+import modelview.QLPhieuDatLich;
+import net.bytebuddy.asm.Advice;
+import service.IPhieuDatLichService;
+import service.Impl.PhieuDatLichServiceImpl;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -32,15 +41,19 @@ public class WebCam extends javax.swing.JFrame implements Runnable, ThreadFactor
     private WebcamPanel webcamPanel = null;
     private Webcam webCam = null;
     private Executor executor = Executors.newSingleThreadExecutor(this);
+    private Map<String,PhieuDatLich> map = new HashMap<>();
+    private IPhieuDatLichService phieuDatLichService = new PhieuDatLichServiceImpl();
 
     public WebCam() {
         initComponents();
         HienThi();
+        for (PhieuDatLich phieuDatLich : phieuDatLichService.getPhieuDatLichByTT()) {
+            map.put(phieuDatLich.getMaQR(), phieuDatLich);
+        }
     }
 
     public void HienThi() {
         itnitWebCam();
-        txtQR.enable(false);
         this.setLocationRelativeTo(null);
     }
 
@@ -55,8 +68,8 @@ public class WebCam extends javax.swing.JFrame implements Runnable, ThreadFactor
 
         jPanel1 = new javax.swing.JPanel();
         paneWebCam = new javax.swing.JPanel();
-        txtQR = new javax.swing.JTextField();
         lbExit = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -67,8 +80,7 @@ public class WebCam extends javax.swing.JFrame implements Runnable, ThreadFactor
 
         paneWebCam.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         paneWebCam.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(paneWebCam, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 270, 180));
-        jPanel1.add(txtQR, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 270, 30));
+        jPanel1.add(paneWebCam, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 270, 180));
 
         lbExit.setText(" X");
         lbExit.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -80,6 +92,10 @@ public class WebCam extends javax.swing.JFrame implements Runnable, ThreadFactor
             }
         });
         jPanel1.add(lbExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 20, 20));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("WEBCAM");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 37, 80, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,7 +116,6 @@ public class WebCam extends javax.swing.JFrame implements Runnable, ThreadFactor
     }// </editor-fold>//GEN-END:initComponents
 
     private void lbExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbExitMouseClicked
-
         this.dispose();
     }//GEN-LAST:event_lbExitMouseClicked
     private void itnitWebCam() {
@@ -139,8 +154,10 @@ public class WebCam extends javax.swing.JFrame implements Runnable, ThreadFactor
                 Logger.getLogger(WebCam.class.getName()).log(Level.SEVERE, null, ex);
             }
             if (result != null) {
-                txtQR.setText(result.getText());
-                JOptionPane.showMessageDialog(this, "Đã tìm thấy");
+                PhieuDatLich phieuDatLich = map.get(result.getText()); 
+                this.dispose();
+                new FrmPhieuDatSan(phieuDatLich).setVisible(true);
+                return;
             }
         } while (true);
     }
@@ -188,10 +205,10 @@ public class WebCam extends javax.swing.JFrame implements Runnable, ThreadFactor
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbExit;
     private javax.swing.JPanel paneWebCam;
-    private javax.swing.JTextField txtQR;
     // End of variables declaration//GEN-END:variables
 
 }

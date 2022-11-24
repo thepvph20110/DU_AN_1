@@ -275,13 +275,6 @@ public class FrmSanCa extends javax.swing.JFrame {
         QLSanBong qLSanBong = new QLSanBong();
         String tenSanBong = cbbSanBong.getSelectedItem()+"";
         String tenca = cbbCa.getSelectedItem()+"";
-        if (radioChoNhanSan.isSelected()) {
-            qLSanCa.setTrangThai(trangThaiSanCa.CHO_NHAN_SAN);
-        } else if (radioKhongTrong.isSelected()) {
-            qLSanCa.setTrangThai(trangThaiSanCa.KHONG_TRONG);
-        } else {
-            qLSanCa.setTrangThai(trangThaiSanCa.DANG_TRONG);
-        }
         QLSanCa qlsc = new QLSanCa(null, tenca, tenSanBong, new Date(), 0, qLSanCa.getTrangThai());
         JOptionPane.showMessageDialog(this, iSanCaService.save(qlsc));
         listQLSanCa = iSanCaService.getAll();
@@ -291,6 +284,7 @@ public class FrmSanCa extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+
 
         QLSanCa qLSanCa = new QLSanCa();
         QLCa qLCa = new QLCa();
