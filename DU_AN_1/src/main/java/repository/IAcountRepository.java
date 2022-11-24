@@ -22,6 +22,6 @@ public interface IAcountRepository {
     
     boolean update(Acount acount);
     
-    boolean delete(UUID id);
+    boolean delete(String id);
     
 }

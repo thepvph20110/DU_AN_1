@@ -210,7 +210,7 @@ public class ChucVuView extends javax.swing.JFrame {
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         // TODO add your handling code here:
         int row = jTable1.getSelectedRow();
-        UUID id = chucVuService.getAll().get(row).getId();
+        String id = chucVuService.getAll().get(row).getId();
         if (row < 0) {
             JOptionPane.showMessageDialog(rootPane, "Vui Long Chon");
         } else {
@@ -227,8 +227,8 @@ public class ChucVuView extends javax.swing.JFrame {
         if (row < 0) {
             JOptionPane.showMessageDialog(rootPane, "Vui Long Chon");
         } else {
-            UUID uuid = chucVuService.getAll().get(row).getId();
-            JOptionPane.showMessageDialog(rootPane, chucVuService.delete(uuid));
+            String id = chucVuService.getAll().get(row).getId();
+            JOptionPane.showMessageDialog(rootPane, chucVuService.delete(id));
             addToRow(chucVuService.getAll());
         }
     }//GEN-LAST:event_btnXoaActionPerformed

@@ -5,7 +5,6 @@
 package modelView;
 
 import enumclass.trangThaiChucVu;
-import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

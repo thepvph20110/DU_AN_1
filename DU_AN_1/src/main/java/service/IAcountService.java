@@ -20,7 +20,7 @@ public interface IAcountService {
 
     String save(QLAcount qLAcount);
 
-    String update(QLAcount qLAcount, UUID id);
+    String update(QLAcount qLAcount, String id);
 
-    String delete(UUID id);
+    String delete(String id);
 }

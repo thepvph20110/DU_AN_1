@@ -5,7 +5,6 @@
 package service.Impl;
 
 import domainmodel.HoaDon;
-import enumclass.trangThaiHoaDon;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -47,7 +46,7 @@ public class HoaDonServiceImpl implements IHoaDonService {
     }
 
     @Override
-    public String update(QLHoaDon qLHoaDon, UUID id) {
+    public String update(QLHoaDon qLHoaDon, String id) {
 
         HoaDon hoaDon = new HoaDon(qLHoaDon.getId(), qLHoaDon.getMaHoaDon(), qLHoaDon.getPhieuDatLich(), null, qLHoaDon.getNgayThanhToan(),
                 qLHoaDon.getDonGia(), qLHoaDon.getTongTien(), qLHoaDon.getGhiChu(), qLHoaDon.getTrangThai());
@@ -59,7 +58,7 @@ public class HoaDonServiceImpl implements IHoaDonService {
     }
 
     @Override
-    public String delete(UUID id) {
+    public String delete(String id) {
         if (hoaDonRepo.delete(id) == true) {
             return "Xóa Thành Công";
         }
@@ -89,7 +88,7 @@ public class HoaDonServiceImpl implements IHoaDonService {
     }
 
     @Override
-    public HoaDon findByHoaDonId(UUID uuid) {
+    public HoaDon findByHoaDonId(String uuid) {
         return hoaDonRepo.findByHoaDonId(uuid);
     }
 

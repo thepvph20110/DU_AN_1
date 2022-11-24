@@ -19,13 +19,13 @@ public interface IHoaDonService {
 
     String save(QLHoaDon qLHoaDon);
 
-    String update(QLHoaDon qLHoaDon, UUID id);
+    String update(QLHoaDon qLHoaDon, String id);
 
-    String delete(UUID id);
+    String delete(String id);
     
     List<QLHoaDon> getAllByTrangThai();
     
     List<QLHoaDon> searchByName(String name);
     
-    HoaDon findByHoaDonId(UUID uuid);
+    HoaDon findByHoaDonId(String uuid);
 }

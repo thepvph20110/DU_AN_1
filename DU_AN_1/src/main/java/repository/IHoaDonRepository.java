@@ -20,11 +20,11 @@ public interface IHoaDonRepository {
 
     boolean update(HoaDon hoaDon);
 
-    boolean delete(UUID id);
+    boolean delete(String id);
     
     List<HoaDon> getAllByTrangThai();
     
     List<HoaDon> searchByTen(String name);
     
-    HoaDon findByHoaDonId(UUID uuid);
+    HoaDon findByHoaDonId(String uuid);
 }

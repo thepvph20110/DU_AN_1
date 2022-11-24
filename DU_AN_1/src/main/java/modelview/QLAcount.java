@@ -6,7 +6,6 @@ package modelview;
 
 import domainmodel.ChucVu;
 import enumclass.trangThaiAcount;
-import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
