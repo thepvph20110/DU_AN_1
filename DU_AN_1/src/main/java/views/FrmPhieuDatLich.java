@@ -327,7 +327,7 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
 
     private void btnDatLichActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatLichActionPerformed
         // TODO add your handling code here:
-        UUID maPhieuLichDat = UUID.randomUUID();
+        String maPhieuLichDat = UUID.randomUUID().toString();
         Date ngayDen = dateNgayDen.getDate();
         String ghiChu = txtGhiChu.getText();
         Date ngayTao = new Date();
@@ -340,7 +340,7 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
                 sanCa.setTrangThai(trangThaiSanCa.CHO_NHAN_SAN);
                 JOptionPane.showMessageDialog(rootPane, new JavaMail().sendMail(mapCa.get(sanCa.getTenCa()), qLPhieuDatLich, byteArrayOutputStream));
                 sanCaService.update(sanCa);
-                PhieuDatLich phieuDatLich = new PhieuDatLich("4751a917-4f6d-4b6a-8e93-be38f83cea7d", null, null, null, null, null, null, null, null, 0, trangThaiPhieuDL.CHUA_NHAN_SAN);
+                PhieuDatLich phieuDatLich = new PhieuDatLich(maPhieuLichDat, null, null, null, null, null, null, null, null, 0, trangThaiPhieuDL.CHUA_NHAN_SAN);
                 QLHoaDon qLHoaDon = new QLHoaDon(null, null, phieuDatLich, null, ngayTao, 0, 0, null, trangThaiHoaDon.CHUA_THANH_TOAN);
                 hoaDonService.save(qLHoaDon);
                 this.dispose();
