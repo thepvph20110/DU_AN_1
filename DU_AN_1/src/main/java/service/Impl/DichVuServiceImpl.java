@@ -180,7 +180,7 @@ public class DichVuServiceImpl implements IDichVuService {
     }
 
     @Override
-    public String deleteDichVuById(UUID id) {
+    public String deleteDichVuById(String id) {
         boolean delete = dichVuRepositoryImpl.delete(id);
         if (delete) {
             return "Xóa Dịch Vụ Thành Công";

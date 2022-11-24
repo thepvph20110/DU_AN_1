@@ -21,7 +21,7 @@ import lombok.Setter;
 @Setter
 public class QLKhachHang {
 
-    private UUID id;
+    private String id;
     private String maKhachHang;
     private String tenKhachHang;
     private String mail;

@@ -22,7 +22,7 @@ public interface IHoaDonThanhToanService {
 
     String updateHoaDonThanhToanById(QLHoaDonThanhToan hoaDonThanhToan);
 
-    String deleteHoaDonThanhToanById(UUID id);
+    String deleteHoaDonThanhToanById(String id);
 
     long countAllHoaDonThanhToan();
 }

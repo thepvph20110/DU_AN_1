@@ -78,10 +78,20 @@ public class ThanhToanRepository implements IThanhToanRepository {
 
     public static void main(String[] args) {
         ThanhToanRepository tt = new ThanhToanRepository();
-//        List<ThanhToan> lst = tt.getAllThanhToans();
-//        System.out.println(lst);
-//        UUID uu = UUID.fromString("0xC9EBF059A96943FFBF63F61FE89905E00000000000000000000000000000000000000000");
-//        ThanhToan tsv = new ThanhToan(null, "TT5", loaiHinhThanhToan.Chuyen_Khoan, "ok", trangThaiThanhToan.Da_Thanh_Toan);
-//        tt.save();
+        System.out.println(tt.findOneByTrangThai(loaiHinhThanhToan.Tien_Mat).toString());
+        
+    }
+
+    @Override
+    public ThanhToan findOneByTrangThai(loaiHinhThanhToan loaiHinh) {
+        try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
+            String hql = "FROM ThanhToan tt WHERE tt.hinhThanhToan =:trangThai";
+            Query query = session.createQuery(hql);
+            query.setParameter("trangThai", loaiHinh);
+            return (ThanhToan) query.getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

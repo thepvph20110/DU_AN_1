@@ -61,10 +61,10 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
         sanCa = qLSanCa;
         setTitle("Phiếu Đặt Lịch");
 
-        txtTenSanca.setText(qLSanCa.getSanBong() + " - " + qLSanCa.getCa());
+        txtTenSanca.setText(qLSanCa.getTenSanBong()+ " - " + qLSanCa.getTenCa());
         txtTenSanca.setEnabled(false);
 
-        txtTienSanBong.setText(sanCa.getGiaCa()+"");
+        txtTienSanBong.setText(sanCa.getGiaCaSan()+"");
         txtTienSanBong.setEnabled(false);
 
         txtTenKhachHang.setText(khachHang.getTenKhachHang());
@@ -331,14 +331,16 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
         Date ngayDen = dateNgayDen.getDate();
         String ghiChu = txtGhiChu.getText();
         Date ngayTao = new Date();
-        QLPhieuDatLich qLPhieuDatLich = new QLPhieuDatLich(maPhieuLichDat, acount, khachHang, sanCa, ngayTao, ngayDen, null, ghiChu, maQr, sanCa.getGiaCa(), trangThaiPhieuDL.CHUA_NHAN_SAN);
+
+        QLPhieuDatLich qLPhieuDatLich = new QLPhieuDatLich(maPhieuLichDat, acount, khachHang, sanCa, ngayTao, ngayDen, null, ghiChu, maQr, sanCa.getGiaCaSan(), trangThaiPhieuDL.CHUA_NHAN_SAN);
+
         try {
             String check = phieuDatLichService.save(qLPhieuDatLich);
             if (check.equalsIgnoreCase("Lưu Thành Công")) {
                 sanCa.setTrangThai(trangThaiSanCa.CHO_NHAN_SAN);
-                JOptionPane.showMessageDialog(rootPane, new JavaMail().sendMail(mapCa.get(sanCa.getCa()), qLPhieuDatLich, byteArrayOutputStream));
+                JOptionPane.showMessageDialog(rootPane, new JavaMail().sendMail(mapCa.get(sanCa.getTenCa()), qLPhieuDatLich, byteArrayOutputStream));
                 sanCaService.update(sanCa);
-                PhieuDatLich phieuDatLich = new PhieuDatLich(UUID.fromString("4751a917-4f6d-4b6a-8e93-be38f83cea7d"), null, null, null, null, null, null, null, null, 0, trangThaiPhieuDL.CHUA_NHAN_SAN);
+                PhieuDatLich phieuDatLich = new PhieuDatLich("4751a917-4f6d-4b6a-8e93-be38f83cea7d", null, null, null, null, null, null, null, null, 0, trangThaiPhieuDL.CHUA_NHAN_SAN);
                 QLHoaDon qLHoaDon = new QLHoaDon(null, null, phieuDatLich, null, ngayTao, 0, 0, null, trangThaiHoaDon.CHUA_THANH_TOAN);
                 hoaDonService.save(qLHoaDon);
                 this.dispose();

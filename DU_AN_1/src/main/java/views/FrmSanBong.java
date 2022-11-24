@@ -328,7 +328,7 @@ public class FrmSanBong extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "IsEmpty");
         }  else {
 
-            QLSanBong qLSanBong = new QLSanBong(null, maSanBong, tenSanBong, Long.valueOf(giaSan), Integer.valueOf(sucChua), cbbLoaiSan.getSelectedItem().toString(), qlsb.getTrangThai());
+            QLSanBong qLSanBong = new QLSanBong(null, maSanBong, tenSanBong, Double.valueOf(giaSan), Integer.valueOf(sucChua), cbbLoaiSan.getSelectedItem().toString(), qlsb.getTrangThai());
             JOptionPane.showMessageDialog(this, iSanBongService.save(qLSanBong));
             listQLSanBong = iSanBongService.getAll();
             showData(listQLSanBong);
@@ -350,20 +350,14 @@ public class FrmSanBong extends javax.swing.JFrame {
         if (jTable1.getSelectedRow() < 0) {
             JOptionPane.showMessageDialog(this, "Selected Row ???");
         } else {
-            if (maSanBong.length() == 0 || tenSanBong.length() == 0 || giaSan.length() == 0 || sucChua.length() == 0) {
-                JOptionPane.showMessageDialog(this, "IsEmpty");
-            } else if (!giaSan.matches("^[0-9]+$") || !sucChua.matches("^[0-9]+$")) {
-                JOptionPane.showMessageDialog(this, "Please enter number");
-            } else if (!maSanBong.matches("^[a-zA-Z_0-9 0-9]+$") || !tenSanBong.matches("^[a-zA-Z_0-9 0-9]+$")) {
-                JOptionPane.showMessageDialog(this, "Please re-enter");
-            } else {
-                QLSanBong qLSanBong = new QLSanBong(mountClick().getId(), maSanBong, tenSanBong, Long.valueOf(giaSan), Integer.valueOf(sucChua), cbbLoaiSan.getSelectedItem().toString(), qlsb.getTrangThai());
+            
+                QLSanBong qLSanBong = new QLSanBong(mountClick().getId(), maSanBong, tenSanBong, Double.valueOf(giaSan), Integer.valueOf(sucChua), cbbLoaiSan.getSelectedItem().toString(), qlsb.getTrangThai());
                 JOptionPane.showMessageDialog(this, iSanBongService.update(qLSanBong));
                 listQLSanBong = iSanBongService.getAll();
                 showData(listQLSanBong);
 
             }
-        }
+        
     }
 
     private void delete() {
@@ -380,7 +374,7 @@ public class FrmSanBong extends javax.swing.JFrame {
         if (jTable1.getSelectedRow() < 0) {
             JOptionPane.showMessageDialog(this, "Selected Row ???");
         } else {
-            QLSanBong qLSanBong = new QLSanBong(mountClick().getId(), maSanBong, tenSanBong, Long.valueOf(giaSan), Integer.valueOf(sucChua), cbbLoaiSan.getSelectedItem().toString(), qlsb.getTrangThai());
+            QLSanBong qLSanBong = new QLSanBong(mountClick().getId(), maSanBong, tenSanBong, Double.valueOf(giaSan), Integer.valueOf(sucChua), cbbLoaiSan.getSelectedItem().toString(), qlsb.getTrangThai());
             JOptionPane.showMessageDialog(this, iSanBongService.delete(qLSanBong));
             listQLSanBong = iSanBongService.getAll();
             showData(listQLSanBong);

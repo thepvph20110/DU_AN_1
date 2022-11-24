@@ -55,7 +55,7 @@ public class NuocUongRepositoryImpl implements INuocUongRepository {
     }
 
     @Override
-    public boolean delete(UUID id) {
+    public boolean delete(String id) {
         int check = 0;
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             Transaction tran = session.getTransaction();
@@ -121,7 +121,7 @@ public class NuocUongRepositoryImpl implements INuocUongRepository {
     }
 
     @Override
-    public NuocUong findByID(UUID id) {
+    public NuocUong findByID(String id) {
         String hql = " From NuocUong nc WHERE nc.id =:id ";
         NuocUong nuocUong = null;
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {

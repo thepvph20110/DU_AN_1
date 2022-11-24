@@ -252,7 +252,11 @@ public class Home extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         lbHome = new javax.swing.JLabel();
         lbQLCa = new javax.swing.JLabel();
+<<<<<<< HEAD
         lbHoaD = new javax.swing.JLabel();
+=======
+        lbDichVu = new javax.swing.JLabel();
+>>>>>>> 86fa3e5fc86a78d786729c8592d245e4d7fcd80c
         lbLichSu = new javax.swing.JLabel();
         lbDangXuat = new javax.swing.JLabel();
         lbQLSan = new javax.swing.JLabel();
@@ -346,6 +350,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+<<<<<<< HEAD
         lbHoaD.setBackground(new java.awt.Color(166, 145, 92));
         lbHoaD.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbHoaD.setForeground(new java.awt.Color(255, 255, 255));
@@ -353,11 +358,24 @@ public class Home extends javax.swing.JFrame {
         lbHoaD.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbHoaD.setOpaque(true);
         lbHoaD.addMouseListener(new java.awt.event.MouseAdapter() {
+=======
+        lbDichVu.setBackground(new java.awt.Color(166, 145, 92));
+        lbDichVu.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lbDichVu.setForeground(new java.awt.Color(255, 255, 255));
+        lbDichVu.setText("Dịch Vụ");
+        lbDichVu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lbDichVu.setOpaque(true);
+        lbDichVu.addMouseListener(new java.awt.event.MouseAdapter() {
+>>>>>>> 86fa3e5fc86a78d786729c8592d245e4d7fcd80c
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 lbHoaDMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
+<<<<<<< HEAD
                 lbHoaDMouseExited(evt);
+=======
+                lbDichVuMouseExited(evt);
+>>>>>>> 86fa3e5fc86a78d786729c8592d245e4d7fcd80c
             }
         });
 
@@ -495,7 +513,11 @@ public class Home extends javax.swing.JFrame {
                             .addComponent(lbDangXuat, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lbThongKe, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lbLichSu, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+<<<<<<< HEAD
                             .addComponent(lbHoaD, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+=======
+                            .addComponent(lbDichVu, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+>>>>>>> 86fa3e5fc86a78d786729c8592d245e4d7fcd80c
                             .addComponent(lbQLCa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lbQLSan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lbLichDat, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -520,9 +542,15 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(lbQLSan, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addComponent(lbQLCa, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+<<<<<<< HEAD
                 .addGap(120, 120, 120)
                 .addComponent(lbHoaD, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
+=======
+                .addGap(40, 40, 40)
+                .addComponent(lbDichVu, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(117, 117, 117)
+>>>>>>> 86fa3e5fc86a78d786729c8592d245e4d7fcd80c
                 .addComponent(lbLichSu, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addComponent(lbThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -770,6 +798,7 @@ public class Home extends javax.swing.JFrame {
         lbLichSu.setBackground(new Color(13, 180, 185));
     }//GEN-LAST:event_lbLichSuMouseEntered
 
+<<<<<<< HEAD
     private void lbHoaDMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbHoaDMouseExited
         lbHoaD.setBackground(new Color(166, 145, 92));
     }//GEN-LAST:event_lbHoaDMouseExited
@@ -777,6 +806,15 @@ public class Home extends javax.swing.JFrame {
     private void lbHoaDMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbHoaDMouseEntered
         lbHoaD.setBackground(new Color(13, 180, 185));
     }//GEN-LAST:event_lbHoaDMouseEntered
+=======
+    private void lbDichVuMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDichVuMouseExited
+        lbDichVu.setBackground(new Color(166, 145, 92));
+    }//GEN-LAST:event_lbDichVuMouseExited
+
+    private void lbDichVuMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDichVuMouseEntered
+        lbDichVu.setBackground(new Color(13, 180, 185));
+    }//GEN-LAST:event_lbDichVuMouseEntered
+>>>>>>> 86fa3e5fc86a78d786729c8592d245e4d7fcd80c
 
     private void lbQLCaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbQLCaMouseExited
         lbQLCa.setBackground(new Color(166, 145, 92));
@@ -918,8 +956,12 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private static javax.swing.JLabel lbCheckIn;
     private static javax.swing.JLabel lbDangXuat;
+<<<<<<< HEAD
     private javax.swing.JLabel lbDichVu1;
     private javax.swing.JLabel lbHoaD;
+=======
+    private javax.swing.JLabel lbDichVu;
+>>>>>>> 86fa3e5fc86a78d786729c8592d245e4d7fcd80c
     private javax.swing.JLabel lbHome;
     private static javax.swing.JLabel lbLichDat;
     private javax.swing.JLabel lbLichSu;

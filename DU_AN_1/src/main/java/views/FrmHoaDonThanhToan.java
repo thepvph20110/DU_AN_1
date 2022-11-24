@@ -111,7 +111,7 @@ public class FrmHoaDonThanhToan extends javax.swing.JFrame {
 
     private QLHoaDonThanhToan getHoaDonThanhToanFromInput() {
         QLHoaDonThanhToan qlHoaDonThanhToan = new QLHoaDonThanhToan();
-        qlHoaDonThanhToan.setMaThanhToan(txtMaHoaDonTT.getText());
+        qlHoaDonThanhToan.setMaHDTT(txtMaHoaDonTT.getText());
         qlHoaDonThanhToan.setHoaDon(cbbHoaDon.getSelectedItem().toString());
         qlHoaDonThanhToan.setThanhToan(cbbThanhToan.getSelectedItem().toString());
         qlHoaDonThanhToan.setGhiChu(txtGhiChu.getText());
@@ -455,7 +455,7 @@ public class FrmHoaDonThanhToan extends javax.swing.JFrame {
             return;
         }
         QLHoaDonThanhToan qLHoaDonThanhToan = getHoaDonThanhToanFromInput();
-        qLHoaDonThanhToan.setId(UUID.fromString(tbHoaDonThanhToan.getValueAt(index, 0).toString()));
+        qLHoaDonThanhToan.setId(tbHoaDonThanhToan.getValueAt(index, 0).toString());
         int checkConFirm = JOptionPane.showConfirmDialog(this, "Bạn Có Muốn Cập Nhập Hóa Đơn Thanh Toán", "Xác Nhận", JOptionPane.YES_NO_OPTION);
         if (checkConFirm == JOptionPane.YES_OPTION) {
             JOptionPane.showMessageDialog(this, hoaDonThanhToanService.updateHoaDonThanhToanById(qLHoaDonThanhToan));
@@ -471,7 +471,7 @@ public class FrmHoaDonThanhToan extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Xin mời chọn đối tượng");
             return;
         }
-        UUID id = UUID.fromString(tbHoaDonThanhToan.getValueAt(index, 0).toString());
+        String id = tbHoaDonThanhToan.getValueAt(index, 0).toString();
         int checkConFirm = JOptionPane.showConfirmDialog(this, "Bạn Có Muốn Xóa Hóa Đơn Thanh Toán", "Xác Nhận", JOptionPane.YES_NO_OPTION);
         if (checkConFirm == JOptionPane.YES_OPTION) {
             JOptionPane.showMessageDialog(this, hoaDonThanhToanService.deleteHoaDonThanhToanById(id));

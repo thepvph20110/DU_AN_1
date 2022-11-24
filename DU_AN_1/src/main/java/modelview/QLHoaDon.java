@@ -9,7 +9,6 @@ import domainmodel.PhieuDatLich;
 import enumclass.trangThaiHoaDon;
 import java.util.Date;
 import java.util.Set;
-import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,7 +24,7 @@ import lombok.Setter;
 @Setter
 public class QLHoaDon {
     
-    private UUID id;
+    private String id;
     private String maHoaDon;
     private PhieuDatLich phieuDatLich;
     private Set<DichVu> dichVu;

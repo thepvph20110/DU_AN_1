@@ -22,7 +22,7 @@ import lombok.Setter;
 @Setter
 public class QLDoThue {
 
-    private UUID id;
+    private String id;
     private String maDoThue;
     private String tenDoThue;
     private String maKichThuoc;

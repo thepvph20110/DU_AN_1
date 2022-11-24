@@ -13,7 +13,7 @@ import lombok.Setter;
 @Setter
 public class QLHoaDon_PhuPhi {
 
-    private UUID id;
+    private String id;
 
     private QLHoaDon hoaDon;
 
