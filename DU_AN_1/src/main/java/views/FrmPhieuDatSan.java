@@ -263,7 +263,7 @@ public class FrmPhieuDatSan extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHuyLichActionPerformed
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
-        Runtime.getRuntime().exit(0);
+        this.dispose();
     }//GEN-LAST:event_btnThoatActionPerformed
 
     /**

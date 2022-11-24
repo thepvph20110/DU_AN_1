@@ -20,7 +20,7 @@ public class SanBongRepository implements ISanBongRepository {
 
     @Override
     public List<SanBong> getAll() {
-        String hql = "From SanBong";
+        String hql = "From SanBong ";
         try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
             Query q = session.createQuery(hql);
             return q.getResultList();

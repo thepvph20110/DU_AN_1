@@ -32,7 +32,9 @@ public class PhieuDatLichServiceImpl implements IPhieuDatLichService {
         List<QLPhieuDatLich> lPhieuDatLichs = new ArrayList<>();
         for (PhieuDatLich phieuDatLich : phieuRepo.getAll()) {
             QLAcount qLAcount = new QLAcount(phieuDatLich.getAcount().getId(), null, phieuDatLich.getAcount().getTenAcount(), null, null, null, null);
-            QLKhachHang qLKhachHang = new QLKhachHang(phieuDatLich.getKhachHang().getId(), null, phieuDatLich.getKhachHang().getTenKhachHang(), null, null, null, null);
+
+            QLKhachHang qLKhachHang = new QLKhachHang(phieuDatLich.getKhachHang().getId(), null, phieuDatLich.getKhachHang().getTenKhachHang(), null, null, null, null, null);
+
             QLSanCa qLSanCa = new QLSanCa(phieuDatLich.getSanCa().getId(), phieuDatLich.getSanCa().getCa().getTenCa(), null, null, 0, null);
             QLPhieuDatLich qLPhieuDatLich = new QLPhieuDatLich(phieuDatLich.getId(), qLAcount, qLKhachHang, qLSanCa, phieuDatLich.getNgayTaoPhieu(), phieuDatLich.getNgayDenSan(), phieuDatLich.getTgCheckIn(), phieuDatLich.getGhiChu(), phieuDatLich.getMaQR(), phieuDatLich.getTongTienSan(), phieuDatLich.getTrangThai());
             lPhieuDatLichs.add(qLPhieuDatLich);
@@ -79,14 +81,16 @@ public class PhieuDatLichServiceImpl implements IPhieuDatLichService {
     }
 
     @Override
+    public List<PhieuDatLich> getPhieuDatLichByTT() {
+        return phieuRepo.getPhieuDatLichByTT();
+    }
+
+    @Override
     public String updateTrangThai(PhieuDatLich phieuDatLich) {
-        Acount acount = new Acount(phieuDatLich.getAcount().getId(), null, null, null, null, null, null);
-        KhachHang khachHang = new KhachHang(phieuDatLich.getKhachHang().getId(), null, null, null, null, null, null);
-        SanCa sanCa = new SanCa(phieuDatLich.getSanCa().getId(), null, null, null, 0, null);
-        PhieuDatLich pdl = new PhieuDatLich(phieuDatLich.getId(), acount, khachHang, sanCa, phieuDatLich.getNgayTaoPhieu(), phieuDatLich.getNgayDenSan(), phieuDatLich.getTgCheckIn(), phieuDatLich.getGhiChu(), phieuDatLich.getMaQR(), phieuDatLich.getTongTienSan(), phieuDatLich.getTrangThai());
-        if (phieuRepo.update(pdl) == true) {
+        if (phieuRepo.update(phieuDatLich) == true) {
             return "Sửa Trạng Thái Thành Công";
         }
         return "Sửa Trạng Thái Thất Bại";
     }
+
 }

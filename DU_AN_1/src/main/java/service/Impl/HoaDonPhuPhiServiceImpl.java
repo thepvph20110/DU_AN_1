@@ -72,14 +72,14 @@ public class HoaDonPhuPhiServiceImpl implements IHoaDon_PhuPhiService {
     }
 
     public static void main(String[] args) {
-        HoaDonPhuPhiServiceImpl sv = new HoaDonPhuPhiServiceImpl();
-        QLHoaDon hd = new QLHoaDon();
-        UUID id = UUID.fromString((String) "2f7e566a-ab0a-4f86-ad8f-f4e949917d83");
-        hd.setId(id);
-        QLPhuPhi pp = new QLPhuPhi();
-        UUID ids = UUID.fromString((String) "17229236-8a0a-494d-9271-0999179ebd29");
-        pp.setId(ids);
-        QLHoaDon_PhuPhi ql = new QLHoaDon_PhuPhi(null, hd, pp, trangThaiPhuPhiHoaDon.Da_Tra);
-        sv.save(ql);
+//        HoaDonPhuPhiServiceImpl sv = new HoaDonPhuPhiServiceImpl();
+//        QLHoaDon hd = new QLHoaDon();
+//        UUID id = UUID.fromString((String) "2f7e566a-ab0a-4f86-ad8f-f4e949917d83");
+//        hd.setId(id);
+//        QLPhuPhi pp = new QLPhuPhi();
+//        UUID ids = UUID.fromString((String) "17229236-8a0a-494d-9271-0999179ebd29");
+//        pp.setId(ids);
+//        QLHoaDon_PhuPhi ql = new QLHoaDon_PhuPhi(null, hd, pp, trangThaiPhuPhiHoaDon.Da_Tra);
+//        sv.save(ql);
     }
 }

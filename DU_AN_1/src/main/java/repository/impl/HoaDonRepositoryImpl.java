@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.UUID;
 import javax.persistence.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import repository.IHoaDonRepository;
 import utill.HibernateConfig;
 
@@ -34,11 +35,13 @@ public class HoaDonRepositoryImpl implements IHoaDonRepository{
 
     @Override
     public boolean save(HoaDon hoaDon) {
+        Transaction transaction = null;
          try ( Session session = HibernateConfig.getFACTORY().openSession()) {
-            session.getTransaction().begin();
+            transaction= session.beginTransaction();
             session.save(hoaDon);
-            session.getTransaction().commit();
+           transaction.commit();
         } catch (Exception e) {
+            transaction.rollback();
             System.out.println(e);
             return false;
         }
