@@ -6,6 +6,7 @@ package domainmodel;
 
 
 import java.util.UUID;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,10 +36,10 @@ public class HoaDonThanhToan {
     private String id;
     @Column(name = "maHDTT")
     private String maHDTT;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idHoaDon")
     private HoaDon hoaDon;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idThanhToan")
     private ThanhToan thanhToan;
     private double tongTien;

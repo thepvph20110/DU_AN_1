@@ -6,6 +6,7 @@ package domainmodel;
 
 import enumclass.trangThaiSanBong;
 import java.util.UUID;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -38,7 +39,7 @@ public class SanBong {
     private String tenSanBong;
     private double giaSan;
     private int sucChua;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idLoaiSan", nullable = false)
     private LoaiSan loaiSan;
     private trangThaiSanBong trangThai = trangThaiSanBong.HOAT_DONG;

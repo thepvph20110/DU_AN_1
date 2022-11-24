@@ -6,6 +6,7 @@ package domainmodel;
 
 import enumclass.trangThaiDichVu;
 import java.util.UUID;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,14 +35,14 @@ public class DichVu {
     @Column(name = "id", updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
     private String id;
     private String maDichVu;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idDoThue")
     private DoThue doThue;
     private int soLuongDoThue;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idHoaDon")
     private HoaDon hoaDon;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idNuocUong")
     private NuocUong nuocUong;
     private int soLuongNuocUong;
