@@ -40,9 +40,9 @@ public class FrmHoaDonPhuPhi extends javax.swing.JFrame {
         return id;
     }
 
-    private UUID getIDPhuPhi() {
+    private String getIDPhuPhi() {
         String maPhuPhi = (String) cbbPhuPhi.getSelectedItem();
-        UUID id = null;
+        String id = null;
         for (int i = 0; i < lstQLPhuPhis.size(); i++) {
             if (lstQLPhuPhis.get(i).getMaPhuPhi().equals(maPhuPhi)) {
                 id = lstQLPhuPhis.get(i).getId();
@@ -84,7 +84,7 @@ public class FrmHoaDonPhuPhi extends javax.swing.JFrame {
         qLHoaDon.setId(idHoaDon);
         qLHoaDon_PhuPhi.setHoaDon(qLHoaDon);
         
-        UUID idPhuPhi = getIDPhuPhi();
+        String idPhuPhi = getIDPhuPhi();
         QLPhuPhi qLPhuPhi = new QLPhuPhi(idPhuPhi);
         qLHoaDon_PhuPhi.setPhuPhi(qLPhuPhi);
         
@@ -98,13 +98,13 @@ public class FrmHoaDonPhuPhi extends javax.swing.JFrame {
 
     private QLHoaDon_PhuPhi getFormInputUpdate() {
         QLHoaDon_PhuPhi qLHoaDon_PhuPhi = new QLHoaDon_PhuPhi();
-        UUID id = UUID.fromString((String) txtID.getText());
+        String id = txtID.getText();
         qLHoaDon_PhuPhi.setId(id);
         UUID idHoaDon = getIDHoaDon();
         QLHoaDon qLHoaDon = new QLHoaDon();
         qLHoaDon.setId(idHoaDon);
         qLHoaDon_PhuPhi.setHoaDon(qLHoaDon);
-        UUID idPhuPhi = getIDPhuPhi();
+        String idPhuPhi = getIDPhuPhi();
         QLPhuPhi qLPhuPhi = new QLPhuPhi(idPhuPhi);
         qLHoaDon_PhuPhi.setPhuPhi(qLPhuPhi);
         if (rdoDaTra.isSelected()) {
