@@ -41,7 +41,7 @@ public class FrmQLPhuPhi extends javax.swing.JFrame {
 
     private QLPhuPhi formInputqLPhuPhiUpdate() {
         QLPhuPhi ql = new QLPhuPhi();
-        UUID id = UUID.fromString(txtID.getText());
+        String id = txtID.getText();
         ql.setId(id);
         String ma = txtMa.getText();
         ql.setMaPhuPhi(ma);
