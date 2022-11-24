@@ -79,7 +79,7 @@ public class FrmHoaDonPhuPhi extends javax.swing.JFrame {
         QLHoaDon_PhuPhi qLHoaDon_PhuPhi = new QLHoaDon_PhuPhi();
         qLHoaDon_PhuPhi.setId(null);
         
-        UUID idHoaDon = getIDHoaDon();
+        String idHoaDon = getIDHoaDon();
         QLHoaDon qLHoaDon = new QLHoaDon();
         qLHoaDon.setId(idHoaDon);
         qLHoaDon_PhuPhi.setHoaDon(qLHoaDon);

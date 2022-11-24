@@ -327,7 +327,7 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
 
     private void btnDatLichActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatLichActionPerformed
         // TODO add your handling code here:
-        UUID maPhieuLichDat = UUID.randomUUID();
+        String maPhieuLichDat = UUID.randomUUID().toString();
         Date ngayDen = dateNgayDen.getDate();
         String ghiChu = txtGhiChu.getText();
         Date ngayTao = new Date();

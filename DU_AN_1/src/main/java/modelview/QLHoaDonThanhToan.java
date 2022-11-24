@@ -15,6 +15,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class QLHoaDonThanhToan {
+    private String id;
     private String maHDTT;
     private String hoaDon;
     private String thanhToan;
