@@ -8,6 +8,7 @@ import enumclass.trangThaiHoaDon;
 import java.util.Date;
 import java.util.Set;
 import java.util.UUID;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -40,7 +41,7 @@ public class HoaDon {
     private String id;
     
     private String maHoaDon;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idPhieuDatLich")
     private PhieuDatLich phieuDatLich;
     

@@ -39,10 +39,10 @@ public class PhieuDatLich {
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(name = "id", updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
     private String id;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idAcount")
     private Acount acount;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idKhachHang")
     private KhachHang khachHang;
     @OneToOne(cascade = CascadeType.ALL)
