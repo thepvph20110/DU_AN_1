@@ -5,6 +5,7 @@
 package modelview;
 
 import enumclass.trangThaiSanCa;
+import java.sql.Time;
 import java.util.Date;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
@@ -25,12 +26,15 @@ public class QLSanCa {
     private UUID id;
     private String tenCa;
     private String tenSanBong;
+    private int sucChua;
+    private Time thoiGianBatDau;
+    private Time thoiGianKetThuc;
     private Date ngayTao;
     private double giaCaSan;
     private trangThaiSanCa trangThai = trangThaiSanCa.DANG_TRONG;
 
     public Object[] toDataRow() {
-        return new Object[]{id, ngayTao, tenCa, tenSanBong, giaCaSan, trangThai};
+        return new Object[]{id, ngayTao, tenCa, tenSanBong,sucChua, thoiGianBatDau, thoiGianKetThuc, giaCaSan, trangThai};
     }
 
 }

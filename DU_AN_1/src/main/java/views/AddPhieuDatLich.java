@@ -349,7 +349,7 @@ public class AddPhieuDatLich extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Format time");
         } else {
             QLKhachHang khachHang = new QLKhachHang(setKhachHang(), null, null, null, null, null, null,null);
-            QLSanCa sanCa = new QLSanCa(setSanCa(), null, null, null, 0, null);
+            QLSanCa sanCa = new QLSanCa(setSanCa(), null, null,0,null,null, null, 0, null);
             QLAcount acount = new QLAcount(setAcount(), null, null, null, null, null, null);
             QLPhieuDatLich lich = new QLPhieuDatLich(null, acount, khachHang, sanCa, d, ngayDenSan, Time.valueOf(time), ghiChu,qLPhieuDatLich.getMaQR(), Double.valueOf(tongTien), qLPhieuDatLich.getTrangThai());
             JOptionPane.showMessageDialog(this, iPhieuDatLichService.save(lich));
@@ -384,7 +384,7 @@ public class AddPhieuDatLich extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Format time");
             } else {
                 QLKhachHang khachHang = new QLKhachHang(setKhachHang(), null, null, null, null, null, null,null);
-                QLSanCa sanCa = new QLSanCa(setSanCa(), null, null, null, 0, null);
+                QLSanCa sanCa = new QLSanCa(setSanCa(), null, null,0,null,null, null, 0, null);
                 QLAcount acount = new QLAcount(setAcount(), null, null, null, null, null, null);
                 QLPhieuDatLich lich = new QLPhieuDatLich(mountClick().getId(), acount, khachHang, sanCa, d, ngayDenSan, Time.valueOf(time), ghiChu,qLPhieuDatLich.getMaQR(), Double.valueOf(tongTien), qLPhieuDatLich.getTrangThai());
                 JOptionPane.showMessageDialog(this, iPhieuDatLichService.update(lich));

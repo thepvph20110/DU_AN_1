@@ -47,7 +47,7 @@ public class FrmSanCa extends javax.swing.JFrame {
     public FrmSanCa() {
         initComponents();
         jTable1.setModel(dtm);
-        String[] header = {"ID", "Ngày tạo", "Ca", "Sân bóng", "Giá Ca", "Trạng thái"};
+        String[] header = {"ID", "Ngày tạo", "Ca", "Sân bóng","Sức chứa","TG Bắt Đầu","TG Kết Thúc", "Giá Ca", "Trạng thái"};
         dtm.setColumnIdentifiers(header);
         listQLCa = iCaService.getAll();
         listQLSanBong = iSanBongService.getAll();
@@ -275,7 +275,7 @@ public class FrmSanCa extends javax.swing.JFrame {
         QLSanBong qLSanBong = new QLSanBong();
         String tenSanBong = cbbSanBong.getSelectedItem()+"";
         String tenca = cbbCa.getSelectedItem()+"";
-        QLSanCa qlsc = new QLSanCa(null, tenca, tenSanBong, new Date(), 0, qLSanCa.getTrangThai());
+        QLSanCa qlsc = new QLSanCa(null, tenca, tenSanBong,0,null,null, new Date(), 0, qLSanCa.getTrangThai());
         JOptionPane.showMessageDialog(this, iSanCaService.save(qlsc));
         listQLSanCa = iSanCaService.getAll();
         showData(listQLSanBong);
@@ -298,7 +298,7 @@ public class FrmSanCa extends javax.swing.JFrame {
         } else {
             qLSanCa.setTrangThai(trangThaiSanCa.DANG_TRONG);
         }
-        QLSanCa qlsc = new QLSanCa(mountClick().getId(), tenca, tenSanBong, new Date(), 0, qLSanCa.getTrangThai());
+        QLSanCa qlsc = new QLSanCa(mountClick().getId(), tenca, tenSanBong,0,null,null, new Date(), 0, qLSanCa.getTrangThai());
         JOptionPane.showMessageDialog(this, iSanCaService.update(qlsc));
         listQLSanCa = iSanCaService.getAll();
         showData(listQLSanBong);
@@ -318,7 +318,7 @@ public class FrmSanCa extends javax.swing.JFrame {
         } else {
             qLSanCa.setTrangThai(trangThaiSanCa.DANG_TRONG);
         }
-        QLSanCa qlsc = new QLSanCa(mountClick().getId(), tenca, tenSanBong, new Date(), 0, qLSanCa.getTrangThai());
+        QLSanCa qlsc = new QLSanCa(mountClick().getId(), tenca, tenSanBong,0,null,null, new Date(), 0, qLSanCa.getTrangThai());
         JOptionPane.showMessageDialog(this, iSanCaService.update(qlsc));
         listQLSanCa = iSanCaService.getAll();
         showData(listQLSanBong);
