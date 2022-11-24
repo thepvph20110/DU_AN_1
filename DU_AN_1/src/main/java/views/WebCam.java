@@ -116,7 +116,6 @@ public class WebCam extends javax.swing.JFrame implements Runnable, ThreadFactor
     }// </editor-fold>//GEN-END:initComponents
 
     private void lbExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbExitMouseClicked
-        this.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         this.dispose();
     }//GEN-LAST:event_lbExitMouseClicked
     private void itnitWebCam() {
@@ -155,9 +154,9 @@ public class WebCam extends javax.swing.JFrame implements Runnable, ThreadFactor
                 Logger.getLogger(WebCam.class.getName()).log(Level.SEVERE, null, ex);
             }
             if (result != null) {
-                PhieuDatLich phieuDatLich = map.get(result.getText());
-                System.out.println("AAAAAAAAAAAAAAAAAAAAA: "+result.getText());
+                PhieuDatLich phieuDatLich = map.get(result.getText()); 
                 this.dispose();
+                new FrmPhieuDatSan(phieuDatLich).setVisible(true);
                 return;
             }
         } while (true);
