@@ -33,25 +33,6 @@ import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneLayout;
 import javax.swing.border.Border;
-<<<<<<< HEAD
-<<<<<<< HEAD
-import javax.swing.border.TitledBorder;
-=======
-import modelview.QLAcount;
->>>>>>> acceb2419cc15f426a814e5cba3e404d0c4281e6
-import modelview.QLKhachHang;
-import modelview.QLSanBong;
-import modelview.QLSanCa;
-<<<<<<< HEAD
-import service.ISanBongService;
-import service.ISanCaService;
-import service.Impl.SanBongServiceImpl;
-=======
-import service.IAcountService;
-import service.ISanCaService;
-import service.Impl.AcountServiceImpl;
->>>>>>> acceb2419cc15f426a814e5cba3e404d0c4281e6
-=======
 import javax.swing.border.TitledBorder;
 import modelview.QLAcount;
 import modelview.QLKhachHang;
@@ -63,7 +44,17 @@ import service.Impl.SanBongServiceImpl;
 import service.IAcountService;
 import service.ISanCaService;
 import service.Impl.AcountServiceImpl;
->>>>>>> a461aab29b932192bcc93406c1f367b0f4f77366
+import javax.swing.border.TitledBorder;
+import modelview.QLAcount;
+import modelview.QLKhachHang;
+import modelview.QLSanBong;
+import modelview.QLSanCa;
+import service.ISanBongService;
+import service.ISanCaService;
+import service.Impl.SanBongServiceImpl;
+import service.IAcountService;
+import service.ISanCaService;
+import service.Impl.AcountServiceImpl;
 import service.Impl.SanCaServiceImpl;
 
 /**
@@ -71,10 +62,6 @@ import service.Impl.SanCaServiceImpl;
  * @author DANG VAN SY
  */
 public class Home extends javax.swing.JFrame {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> a461aab29b932192bcc93406c1f367b0f4f77366
     
     public JPanel panelCa;
     public JPanel panelSan;
@@ -92,29 +79,15 @@ public class Home extends javax.swing.JFrame {
     private ISanBongService sanBongService = new SanBongServiceImpl();
     public List<JPanel> listPaneCa = new ArrayList<>();
 
-<<<<<<< HEAD
-=======
-=======
->>>>>>> a461aab29b932192bcc93406c1f367b0f4f77366
     private ISanCaService sanCaService = new SanCaServiceImpl();
     private IAcountService acountService = new AcountServiceImpl();
     public JPanel panel = new JPanel();
 
     
-<<<<<<< HEAD
->>>>>>> acceb2419cc15f426a814e5cba3e404d0c4281e6
-=======
-
->>>>>>> a461aab29b932192bcc93406c1f367b0f4f77366
     public Home() {
         initComponents();
         time();
         showDongHo();
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> a461aab29b932192bcc93406c1f367b0f4f77366
         AddSan();
         
     }
@@ -210,11 +183,6 @@ public class Home extends javax.swing.JFrame {
         }
         
     }
-<<<<<<< HEAD
-=======
-=======
-
->>>>>>> a461aab29b932192bcc93406c1f367b0f4f77366
 //        addSanPane();
     }
     
@@ -233,11 +201,6 @@ public class Home extends javax.swing.JFrame {
 //        frame.show();
 //        
 //    }
-<<<<<<< HEAD
->>>>>>> acceb2419cc15f426a814e5cba3e404d0c4281e6
-=======
-
->>>>>>> a461aab29b932192bcc93406c1f367b0f4f77366
     
     private void time() {
         Date date = new Date();
@@ -376,17 +339,7 @@ public class Home extends javax.swing.JFrame {
         lbQLCa.setBackground(new java.awt.Color(166, 145, 92));
         lbQLCa.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbQLCa.setForeground(new java.awt.Color(255, 255, 255));
-<<<<<<< HEAD
-<<<<<<< HEAD
         lbQLCa.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\ca.png")); // NOI18N
-=======
-        lbQLCa.setIcon(new javax.swing.ImageIcon("D:\\DU_AN_1\\DU_AN_1\\src\\main\\java\\views\\icon\\ca.png")); // NOI18N
->>>>>>> acceb2419cc15f426a814e5cba3e404d0c4281e6
-=======
-
-        lbQLCa.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\ca.png")); // NOI18N
-
->>>>>>> a461aab29b932192bcc93406c1f367b0f4f77366
         lbQLCa.setText("Quản Lí Ca");
         lbQLCa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbQLCa.setOpaque(true);
@@ -405,17 +358,7 @@ public class Home extends javax.swing.JFrame {
         lbDichVu.setBackground(new java.awt.Color(166, 145, 92));
         lbDichVu.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbDichVu.setForeground(new java.awt.Color(255, 255, 255));
-<<<<<<< HEAD
-<<<<<<< HEAD
         lbDichVu.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\service.png")); // NOI18N
-=======
-        lbDichVu.setIcon(new javax.swing.ImageIcon("D:\\DU_AN_1\\DU_AN_1\\src\\main\\java\\views\\icon\\service.png")); // NOI18N
->>>>>>> acceb2419cc15f426a814e5cba3e404d0c4281e6
-=======
-
-        lbDichVu.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\service.png")); // NOI18N
-
->>>>>>> a461aab29b932192bcc93406c1f367b0f4f77366
         lbDichVu.setText("Dịch Vụ");
         lbDichVu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbDichVu.setOpaque(true);
@@ -431,17 +374,7 @@ public class Home extends javax.swing.JFrame {
         lbHoaDon.setBackground(new java.awt.Color(166, 145, 92));
         lbHoaDon.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbHoaDon.setForeground(new java.awt.Color(255, 255, 255));
-<<<<<<< HEAD
-<<<<<<< HEAD
         lbHoaDon.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\bill.png")); // NOI18N
-=======
-        lbHoaDon.setIcon(new javax.swing.ImageIcon("D:\\DU_AN_1\\DU_AN_1\\src\\main\\java\\views\\icon\\bill.png")); // NOI18N
->>>>>>> acceb2419cc15f426a814e5cba3e404d0c4281e6
-=======
-
-        lbHoaDon.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\bill.png")); // NOI18N
-
->>>>>>> a461aab29b932192bcc93406c1f367b0f4f77366
         lbHoaDon.setText("Hóa Đơn");
         lbHoaDon.setToolTipText("");
         lbHoaDon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -464,17 +397,7 @@ public class Home extends javax.swing.JFrame {
         lbLichSu.setBackground(new java.awt.Color(166, 145, 92));
         lbLichSu.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbLichSu.setForeground(new java.awt.Color(255, 255, 255));
-<<<<<<< HEAD
-<<<<<<< HEAD
         lbLichSu.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\history.png")); // NOI18N
-=======
-        lbLichSu.setIcon(new javax.swing.ImageIcon("D:\\DU_AN_1\\DU_AN_1\\src\\main\\java\\views\\icon\\history.png")); // NOI18N
->>>>>>> acceb2419cc15f426a814e5cba3e404d0c4281e6
-=======
-
-        lbLichSu.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\history.png")); // NOI18N
-
->>>>>>> a461aab29b932192bcc93406c1f367b0f4f77366
         lbLichSu.setText("Lịch Sử");
         lbLichSu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbLichSu.setOpaque(true);
@@ -493,17 +416,7 @@ public class Home extends javax.swing.JFrame {
         lbDangXuat.setBackground(new java.awt.Color(166, 145, 92));
         lbDangXuat.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbDangXuat.setForeground(new java.awt.Color(255, 255, 255));
-<<<<<<< HEAD
-<<<<<<< HEAD
         lbDangXuat.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\logout.png")); // NOI18N
-=======
-        lbDangXuat.setIcon(new javax.swing.ImageIcon("D:\\DU_AN_1\\DU_AN_1\\src\\main\\java\\views\\icon\\Login32.png")); // NOI18N
->>>>>>> acceb2419cc15f426a814e5cba3e404d0c4281e6
-=======
-
-        lbDangXuat.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\logout.png")); // NOI18N
-
->>>>>>> a461aab29b932192bcc93406c1f367b0f4f77366
         lbDangXuat.setText("Đăng Xuất");
         lbDangXuat.setToolTipText("");
         lbDangXuat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -523,17 +436,7 @@ public class Home extends javax.swing.JFrame {
         lbQLSan.setBackground(new java.awt.Color(166, 145, 92));
         lbQLSan.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbQLSan.setForeground(new java.awt.Color(255, 255, 255));
-<<<<<<< HEAD
-<<<<<<< HEAD
         lbQLSan.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\stadium.png")); // NOI18N
-=======
-        lbQLSan.setIcon(new javax.swing.ImageIcon("D:\\DU_AN_1\\DU_AN_1\\src\\main\\java\\views\\icon\\stadium.png")); // NOI18N
->>>>>>> acceb2419cc15f426a814e5cba3e404d0c4281e6
-=======
-
-        lbQLSan.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\stadium.png")); // NOI18N
-
->>>>>>> a461aab29b932192bcc93406c1f367b0f4f77366
         lbQLSan.setText("Quản Lí Sân");
         lbQLSan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbQLSan.setOpaque(true);
@@ -552,17 +455,7 @@ public class Home extends javax.swing.JFrame {
         lbLichDat.setBackground(new java.awt.Color(166, 145, 92));
         lbLichDat.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbLichDat.setForeground(new java.awt.Color(255, 255, 255));
-<<<<<<< HEAD
-<<<<<<< HEAD
         lbLichDat.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\booking.png")); // NOI18N
-=======
-        lbLichDat.setIcon(new javax.swing.ImageIcon("D:\\DU_AN_1\\DU_AN_1\\src\\main\\java\\views\\icon\\booking.png")); // NOI18N
->>>>>>> acceb2419cc15f426a814e5cba3e404d0c4281e6
-=======
-
-        lbLichDat.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\booking.png")); // NOI18N
-
->>>>>>> a461aab29b932192bcc93406c1f367b0f4f77366
         lbLichDat.setText("Lịch Đặt");
         lbLichDat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbLichDat.setOpaque(true);
@@ -578,17 +471,7 @@ public class Home extends javax.swing.JFrame {
         lbThongKe.setBackground(new java.awt.Color(166, 145, 92));
         lbThongKe.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbThongKe.setForeground(new java.awt.Color(255, 255, 255));
-<<<<<<< HEAD
-<<<<<<< HEAD
         lbThongKe.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\ThongKe.png")); // NOI18N
-=======
-        lbThongKe.setIcon(new javax.swing.ImageIcon("D:\\DU_AN_1\\DU_AN_1\\src\\main\\java\\views\\icon\\ThongKe.png")); // NOI18N
->>>>>>> acceb2419cc15f426a814e5cba3e404d0c4281e6
-=======
-
-        lbThongKe.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\ThongKe.png")); // NOI18N
-
->>>>>>> a461aab29b932192bcc93406c1f367b0f4f77366
         lbThongKe.setText("Thống Kê");
         lbThongKe.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbThongKe.setOpaque(true);
@@ -604,17 +487,7 @@ public class Home extends javax.swing.JFrame {
         lbCheckIn.setBackground(new java.awt.Color(166, 145, 92));
         lbCheckIn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbCheckIn.setForeground(new java.awt.Color(255, 255, 255));
-<<<<<<< HEAD
-<<<<<<< HEAD
         lbCheckIn.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\Check.png")); // NOI18N
-=======
-        lbCheckIn.setIcon(new javax.swing.ImageIcon("D:\\DU_AN_1\\DU_AN_1\\src\\main\\java\\views\\icon\\Check.png")); // NOI18N
->>>>>>> acceb2419cc15f426a814e5cba3e404d0c4281e6
-=======
-
-        lbCheckIn.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\Check.png")); // NOI18N
-
->>>>>>> a461aab29b932192bcc93406c1f367b0f4f77366
         lbCheckIn.setText("Check In");
         lbCheckIn.setToolTipText("");
         lbCheckIn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -693,17 +566,7 @@ public class Home extends javax.swing.JFrame {
         });
 
         lbSearch.setBackground(new java.awt.Color(255, 255, 255));
-<<<<<<< HEAD
-<<<<<<< HEAD
         lbSearch.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\search.png")); // NOI18N
-=======
-        lbSearch.setIcon(new javax.swing.ImageIcon("D:\\DU_AN_1\\DU_AN_1\\src\\main\\java\\views\\icon\\search.png")); // NOI18N
->>>>>>> acceb2419cc15f426a814e5cba3e404d0c4281e6
-=======
-
-        lbSearch.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\search.png")); // NOI18N
-
->>>>>>> a461aab29b932192bcc93406c1f367b0f4f77366
         lbSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbSearch.setOpaque(true);
 
@@ -1013,11 +876,6 @@ public class Home extends javax.swing.JFrame {
     private void btnDatLichActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatLichActionPerformed
         // TODO add your handling code here:
         QLKhachHang khachHang = new QLKhachHang();
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> a461aab29b932192bcc93406c1f367b0f4f77366
         QLSanCa qLSanCa = new QLSanCa();
         new FrmPhieuDatLich(khachHang, qLSanCa).setVisible(true);
     }//GEN-LAST:event_btnDatLichActionPerformed
@@ -1034,8 +892,6 @@ public class Home extends javax.swing.JFrame {
     private void lbQLCaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbQLCaMouseClicked
         new FrmCa().setVisible(true);
     }//GEN-LAST:event_lbQLCaMouseClicked
-<<<<<<< HEAD
-=======
         QLSanCa qLSanCa = sanCaService.getOne();
         QLAcount qLAcount = acountService.getOne();
         new FrmPhieuDatLich(khachHang,qLSanCa,qLAcount).setVisible(true);
@@ -1045,10 +901,6 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
         new FrmHoaDon().setVisible(true);
     }//GEN-LAST:event_lbHoaDonMousePressed
->>>>>>> acceb2419cc15f426a814e5cba3e404d0c4281e6
-=======
-
->>>>>>> a461aab29b932192bcc93406c1f367b0f4f77366
 
     /**
      * @param args the command line arguments
