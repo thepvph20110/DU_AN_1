@@ -16,7 +16,7 @@ public interface IHoaDonThanhToanRepository {
     
     boolean saveOrUpdate(HoaDonThanhToan hoaDonThanhToan);
 
-    boolean delete(UUID id);
+    boolean delete(String id);
 
     long totalCount();
 }
