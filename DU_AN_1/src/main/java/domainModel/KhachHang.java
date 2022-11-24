@@ -27,9 +27,10 @@ import org.hibernate.annotations.GenericGenerator;
 public class KhachHang {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(length = 36)
-    private UUID id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(name = "id", updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
+    private String id;
     private String maKhachHang;
     @Column(columnDefinition = "nvarchar(Max)")
     private String tenKhachHang;
