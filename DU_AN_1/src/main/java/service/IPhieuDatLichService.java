@@ -21,7 +21,7 @@ public interface IPhieuDatLichService {
     
     String update(QLPhieuDatLich qLPhieuDatLich);
 
-    String delete(UUID id);
+    String delete(String id);
     
     List<PhieuDatLich> getPhieuDatLichByTT();
     

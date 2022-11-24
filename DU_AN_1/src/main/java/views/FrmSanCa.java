@@ -319,7 +319,7 @@ public class FrmSanCa extends javax.swing.JFrame {
             qLSanCa.setTrangThai(trangThaiSanCa.DANG_TRONG);
         }
         QLSanCa qlsc = new QLSanCa(mountClick().getId(), tenca, tenSanBong,0,null,null, new Date(), 0, qLSanCa.getTrangThai());
-        JOptionPane.showMessageDialog(this, iSanCaService.update(qlsc));
+        JOptionPane.showMessageDialog(this, iSanCaService.delete(qlsc));
         listQLSanCa = iSanCaService.getAll();
         showData(listQLSanBong);
 

@@ -458,9 +458,9 @@ public class AddPhieuDatLich extends javax.swing.JFrame {
         }
     }
 
-    private UUID setAcount() {
+    private String setAcount() {
         String ten = (String) cbbAcount.getSelectedItem();
-        UUID id = null;
+        String id = null;
         for (QLAcount qLAcount : listAcount) {
             if (qLAcount.getTenAcount().equals(ten)) {
                 id = qLAcount.getId();
@@ -469,9 +469,9 @@ public class AddPhieuDatLich extends javax.swing.JFrame {
         return id;
     }
 
-    private UUID setKhachHang() {
+    private String setKhachHang() {
         String ten = (String) cbbKhachHang.getSelectedItem();
-        UUID id = null;
+        String id = null;
         for (QLKhachHang qLKhachHang : listKhachHang) {
             if (qLKhachHang.getTenKhachHang().equals(ten)) {
                 id = qLKhachHang.getId();
@@ -480,9 +480,9 @@ public class AddPhieuDatLich extends javax.swing.JFrame {
         return id;
     }
 
-    private UUID setSanCa() {
+    private String setSanCa() {
         String ten = (String) cbbSanCa.getSelectedItem();
-        UUID id = null;
+        String id = null;
         for (QLSanCa qLSanCa : listQLSanCa) {
             if (qLSanCa.getTenCa().equals(ten)) {
                 id = qLSanCa.getId();

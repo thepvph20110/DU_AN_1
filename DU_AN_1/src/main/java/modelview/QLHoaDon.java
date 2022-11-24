@@ -25,7 +25,7 @@ import lombok.Setter;
 @Setter
 public class QLHoaDon {
     
-    private UUID id;
+    private String id;
     private String maHoaDon;
     private PhieuDatLich phieuDatLich;
     private Set<DichVu> dichVu;

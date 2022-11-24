@@ -68,7 +68,7 @@ public class PhieuDatLichServiceImpl implements IPhieuDatLichService {
     }
 
     @Override
-    public String delete(UUID id) {
+    public String delete(String id) {
         if (phieuRepo.delete(id) == true) {
             return "Xóa Thành Công";
         }

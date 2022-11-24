@@ -16,7 +16,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class QLNuocUong {
 
-    private UUID id;
+    private String id;
     private String maNuocUong;
     private String tenNuocUong;
     private int soLuong;

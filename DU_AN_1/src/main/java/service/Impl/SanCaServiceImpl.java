@@ -110,9 +110,9 @@ public class SanCaServiceImpl implements ISanCaService {
         }
         SanCa sanCa = new SanCa(qLSanCa.getId(), ca, sanBong, new Date(),ca.getGiaCa()+sanBong.getGiaSan(), qLSanCa.getTrangThai());
         if (re.deleteSanCa(sanCa)) {
-            return "Update Complete";
+            return "Delete Complete";
         } else {
-            return "Update Fail";
+            return "Delete Fail";
        }
     }
 

@@ -15,7 +15,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class QLHoaDonThanhToan {
-    private UUID id;
+    private String id;
     private String maThanhToan;
     private String hoaDon;
     private String thanhToan;
