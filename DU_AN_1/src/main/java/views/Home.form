@@ -209,11 +209,7 @@
                                   <Component id="lbDangXuat" alignment="0" max="32767" attributes="0"/>
                                   <Component id="lbThongKe" alignment="0" max="32767" attributes="0"/>
                                   <Component id="lbLichSu" alignment="0" max="32767" attributes="0"/>
-<<<<<<< HEAD
                                   <Component id="lbHoaD" alignment="0" max="32767" attributes="0"/>
-=======
-                                  <Component id="lbDichVu" alignment="0" max="32767" attributes="0"/>
->>>>>>> 86fa3e5fc86a78d786729c8592d245e4d7fcd80c
                                   <Component id="lbQLCa" alignment="0" max="32767" attributes="0"/>
                                   <Component id="lbQLSan" alignment="0" max="32767" attributes="0"/>
                                   <Component id="lbLichDat" alignment="0" max="32767" attributes="0"/>
@@ -245,15 +241,9 @@
                       <Component id="lbQLSan" min="-2" pref="37" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="lbQLCa" min="-2" pref="37" max="-2" attributes="0"/>
-<<<<<<< HEAD
                       <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
                       <Component id="lbHoaD" min="-2" pref="37" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-=======
-                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="lbDichVu" min="-2" pref="37" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
->>>>>>> 86fa3e5fc86a78d786729c8592d245e4d7fcd80c
                       <Component id="lbLichSu" min="-2" pref="37" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="lbThongKe" min="-2" pref="37" max="-2" attributes="0"/>
@@ -327,24 +317,15 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-<<<<<<< HEAD
                 <Property name="text" type="java.lang.String" value="H&#xf3;a &#x110;&#x1a1;n"/>
-=======
-                <Property name="text" type="java.lang.String" value="D&#x1ecb;ch V&#x1ee5;"/>
->>>>>>> 86fa3e5fc86a78d786729c8592d245e4d7fcd80c
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Hand Cursor"/>
                 </Property>
                 <Property name="opaque" type="boolean" value="true"/>
               </Properties>
               <Events>
-<<<<<<< HEAD
                 <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbHoaDMouseEntered"/>
                 <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbHoaDMouseExited"/>
-=======
-                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbDichVuMouseEntered"/>
-                <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbDichVuMouseExited"/>
->>>>>>> 86fa3e5fc86a78d786729c8592d245e4d7fcd80c
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lbLichSu">
