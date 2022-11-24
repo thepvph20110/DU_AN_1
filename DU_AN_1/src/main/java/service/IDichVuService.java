@@ -22,7 +22,7 @@ public interface IDichVuService {
 
     String updateDichVuById(QLDichVu dichVu);
 
-    String deleteDichVuById(UUID id);
+    String deleteDichVuById(String id);
 
     long countAllDichVu();
 }

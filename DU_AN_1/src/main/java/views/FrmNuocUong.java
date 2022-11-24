@@ -439,7 +439,7 @@ public class FrmNuocUong extends javax.swing.JFrame {
             return;
         }
         QLNuocUong qlNuocUong = getNuocUongFromInput();
-        qlNuocUong.setId(UUID.fromString(tbNuocUong.getValueAt(index, 0).toString()));
+        qlNuocUong.setId(tbNuocUong.getValueAt(index, 0).toString());
 
         int checkConFirm = JOptionPane.showConfirmDialog(this, "Bạn Có Muốn Update Nước "
                 + "Uống", "Xác Nhận", JOptionPane.YES_NO_OPTION);
@@ -457,7 +457,7 @@ public class FrmNuocUong extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Xin mời chọn đối tượng");
             return;
         }
-        UUID id = UUID.fromString(this.tbNuocUong.getValueAt(index, 0).toString());
+        String id = this.tbNuocUong.getValueAt(index, 0).toString();
         int checkConFirm = JOptionPane.showConfirmDialog(this, "Bạn Có Muốn Delete Nước Uống", "Xác Nhận", JOptionPane.YES_NO_OPTION);
         if (checkConFirm == JOptionPane.YES_OPTION) {
             JOptionPane.showMessageDialog(rootPane, nuocUongService.deleteNuocUongById(id));

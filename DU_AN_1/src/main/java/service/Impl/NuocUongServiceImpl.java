@@ -89,7 +89,7 @@ public class NuocUongServiceImpl implements INuocUongService {
     }
 
     @Override
-    public String deleteNuocUongById(UUID id) {
+    public String deleteNuocUongById(String id) {
         boolean delete = nuocUongRepositoryImpl.delete(id);
         if (delete) {
             return "Xóa Nước Uống Thành Công";

@@ -22,9 +22,9 @@ public interface INuocUongRepository {
 
     boolean saveOrUpdate(NuocUong nuocUong);
 
-    boolean delete(UUID id);
+    boolean delete(String id);
     
     long totalCount();
     
-    NuocUong findByID(UUID id);
+    NuocUong findByID(String id);
 }

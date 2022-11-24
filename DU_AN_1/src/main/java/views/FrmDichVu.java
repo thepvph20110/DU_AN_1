@@ -609,7 +609,7 @@ public class FrmDichVu extends javax.swing.JFrame {
             return;
         }
         QLDichVu qlDichVu = getDichVuFromInput();
-        qlDichVu.setId(UUID.fromString(this.tbDichVu.getValueAt(index, 0).toString()));
+        qlDichVu.setId(this.tbDichVu.getValueAt(index, 0).toString());
 
         int checkConFirm = JOptionPane.showConfirmDialog(this, "Bạn Có Muốn Update Dịch Vụ", "Xác Nhận", JOptionPane.YES_NO_OPTION);
         if (checkConFirm == JOptionPane.YES_OPTION) {
@@ -626,7 +626,7 @@ public class FrmDichVu extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Xin mời chọn đối tượng");
             return;
         }
-        UUID id = UUID.fromString(this.tbDichVu.getValueAt(index, 0).toString());
+        String id = this.tbDichVu.getValueAt(index, 0).toString();
         int checkConFirm = JOptionPane.showConfirmDialog(this, "Bạn Có Muốn Delete dịch vụ", "Xác Nhận", JOptionPane.YES_NO_OPTION);
         if (checkConFirm == JOptionPane.YES_OPTION) {
             JOptionPane.showMessageDialog(rootPane, dichVuService.deleteDichVuById(id));

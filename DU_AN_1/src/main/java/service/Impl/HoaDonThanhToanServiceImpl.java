@@ -42,7 +42,7 @@ public class HoaDonThanhToanServiceImpl implements IHoaDonThanhToanService {
             listQLHoaDonThanhToan.add(
                     new QLHoaDonThanhToan(
                             hoaDonTT.getId(),
-                            hoaDonTT.getMaThanhToan(),
+                            hoaDonTT.getMaHDTT(),
                             String.valueOf(hoaDonTT.getHoaDon().getId()),
                             hoaDonTT.getThanhToan().getMaThanhToan(),
                             hoaDonTT.getTongTien(),
@@ -72,7 +72,7 @@ public class HoaDonThanhToanServiceImpl implements IHoaDonThanhToanService {
             listQLHoaDonThanhToan.add(
                     new QLHoaDonThanhToan(
                             hoaDonTT.getId(),
-                            hoaDonTT.getMaThanhToan(),
+                            hoaDonTT.getMaHDTT(),
                             String.valueOf(hoaDonTT.getHoaDon().getId()),
                             hoaDonTT.getThanhToan().getMaThanhToan(),
                             hoaDonTT.getTongTien(),
@@ -96,7 +96,7 @@ public class HoaDonThanhToanServiceImpl implements IHoaDonThanhToanService {
         boolean save = hoaDonThanhToanRepositoryImpl.saveOrUpdate(
                 new HoaDonThanhToan(
                         hoaDonThanhToan.getId(),
-                        hoaDonThanhToan.getMaThanhToan(),
+                        hoaDonThanhToan.getMaHDTT(),
                         hoaDon,
                         thanhToan,
                         hoaDonThanhToan.getTongTien(),
@@ -124,7 +124,7 @@ public class HoaDonThanhToanServiceImpl implements IHoaDonThanhToanService {
         boolean update = hoaDonThanhToanRepositoryImpl.saveOrUpdate(
                 new HoaDonThanhToan(
                         hoaDonThanhToan.getId(),
-                        hoaDonThanhToan.getMaThanhToan(),
+                        hoaDonThanhToan.getMaHDTT(),
                         hoaDon,
                         thanhToan,
                         hoaDonThanhToan.getTongTien(),
@@ -140,7 +140,7 @@ public class HoaDonThanhToanServiceImpl implements IHoaDonThanhToanService {
     }
 
     @Override
-    public String deleteHoaDonThanhToanById(UUID id) {
+    public String deleteHoaDonThanhToanById(String id) {
         boolean delete = hoaDonThanhToanRepositoryImpl.delete(id);
         if (delete) {
             return "Xóa Hóa Đơn Thanh Toán Thành Công";
