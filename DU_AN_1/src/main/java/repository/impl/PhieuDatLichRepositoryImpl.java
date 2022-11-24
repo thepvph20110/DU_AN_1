@@ -27,6 +27,7 @@ import utill.HibernateConfig;
  */
 public class PhieuDatLichRepositoryImpl implements IPhieuDatLichRepository{
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
     public void createPhieuDatLich() {
         try (Session session = HibernateConfig.getFACTORY().openSession()) {
             
@@ -57,6 +58,8 @@ public class PhieuDatLichRepositoryImpl implements IPhieuDatLichRepository{
     public static void main(String[] args) {
         new PhieuDatLichRepositoryImpl().createPhieuDatLich();
     }
+
+
 
     @Override
     public List<PhieuDatLich> getAll() {
@@ -98,7 +101,7 @@ public class PhieuDatLichRepositoryImpl implements IPhieuDatLichRepository{
     }
 
     @Override
-    public boolean delete(UUID id) {
+    public boolean delete(String id) {
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             String hql = "DELETE FROM PhieuDatLich WHERE id = :id";
             Query query = session.createQuery(hql);
@@ -112,5 +115,19 @@ public class PhieuDatLichRepositoryImpl implements IPhieuDatLichRepository{
         }
         return true;
     }
-    
+
+    @Override
+    public List<PhieuDatLich> getPhieuDatLichByTT() {
+        List<PhieuDatLich> listPhieus;
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            Query q = session.createQuery("FROM PhieuDatLich where trangThai ='0'");
+            listPhieus = q.getResultList();
+        }catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }
+        return listPhieus;
+    }
+
+ 
 }

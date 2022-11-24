@@ -16,19 +16,26 @@ import lombok.Setter;
 @AllArgsConstructor
 public class QLDichVu {
 
+
     private UUID id;
     private String maDichVu;
-    // DoThue
+
+
     private String tenDoThue;
     private int soLuongDoThue;
-    // Nước Uống
+
+    private String hoaDon;
+
+
     private String tenNuocUong;
     private int soLuongNuocUong;
     private double donGia;
+
     private String moTa;
     private trangThaiDichVu trangThai = trangThaiDichVu.Dang_Su_Dung;
-
-    public Object[] toRowData() {
-        return new Object[]{id, maDichVu, tenDoThue, soLuongDoThue, tenNuocUong, soLuongNuocUong, donGia, moTa, trangThai};
+    
+    public Object[] toRowData(){
+        return new Object[]{id, maDichVu, tenDoThue, soLuongDoThue, hoaDon, tenNuocUong, soLuongNuocUong, donGia, moTa,trangThai};
     }
+    
 }

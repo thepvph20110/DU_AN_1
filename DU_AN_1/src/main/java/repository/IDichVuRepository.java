@@ -17,6 +17,12 @@ public interface IDichVuRepository {
     List<DichVu> fillAll(int position, int pageSize);
     
     List<DichVu> fillAllDichVu();
+    
+    List<DichVu> findByIdHoaDon(UUID uuid);
+    
+    List<DichVu> findByIdHoaDonAndNuocUong(UUID idHoaDon,UUID idNuocUong);
+    
+    List<DichVu> findByIdHoaDonAndDoThue(UUID idHoaDon,UUID idDoThue);
 
     boolean saveOrUpdate(DichVu dichVu);
 

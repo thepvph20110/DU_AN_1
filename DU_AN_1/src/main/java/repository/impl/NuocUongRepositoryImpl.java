@@ -120,4 +120,19 @@ public class NuocUongRepositoryImpl implements INuocUongRepository {
         System.out.println("" + id);
     }
 
+    @Override
+    public NuocUong findByID(UUID id) {
+        String hql = " From NuocUong nc WHERE nc.id =:id ";
+        NuocUong nuocUong = null;
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            TypedQuery<NuocUong> query = session.createQuery(hql, NuocUong.class);
+            query.setParameter("id", id);
+            nuocUong = query.getSingleResult();
+            return nuocUong;
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return nuocUong;
+    }
+
 }

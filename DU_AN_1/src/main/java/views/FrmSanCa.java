@@ -283,14 +283,12 @@ public class FrmSanCa extends javax.swing.JFrame {
             } else {
                 qLSanCa.setTrangThai(trangThaiSanCa.DANG_TRONG);
             }
-            if (giaCa.length() == 0 || !giaCa.matches("^[0-9]+$")) {
-                JOptionPane.showMessageDialog(this, "Please re-enter");
-            } else {
-                QLSanCa qlsc = new QLSanCa(null, cbbCa.getSelectedItem().toString(), cbbSanBong.getSelectedItem().toString(), date, Double.valueOf(giaCa), qLSanCa.getTrangThai());
+            
+                QLSanCa qlsc = new QLSanCa(null, cbbCa.getSelectedItem().toString(),cbbSanBong.getSelectedItem().toString(), new Date(), WIDTH, trangThaiSanCa.DANG_TRONG);
                 JOptionPane.showMessageDialog(this, iSanCaService.save(qlsc));
                 listQLSanCa = iSanCaService.getAll();
                 showData(listQLSanBong);
-            }
+            
         } catch (ParseException ex) {
             Logger.getLogger(FrmSanCa.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -300,9 +298,11 @@ public class FrmSanCa extends javax.swing.JFrame {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-mm-yyyy");
         Date date;
         try {
+            int index = jTable1.getSelectedRow();
             String giaCa = txtGiaCa.getText().trim();
             date = simpleDateFormat.parse(txtNgayTao.getText());
             QLSanCa qLSanCa = new QLSanCa();
+            qLSanCa.setId(listQLCa.get(index).getId());
             if (radioChoNhanSan.isSelected()) {
                 qLSanCa.setTrangThai(trangThaiSanCa.CHO_NHAN_SAN);
             } else if (radioKhongTrong.isSelected()) {
@@ -310,14 +310,13 @@ public class FrmSanCa extends javax.swing.JFrame {
             } else {
                 qLSanCa.setTrangThai(trangThaiSanCa.DANG_TRONG);
             }
-            if (giaCa.length() == 0 || !giaCa.matches("^[0-9]+$")) {
-                JOptionPane.showMessageDialog(this, "Please re-enter");
-            } else {
-                QLSanCa qlsc = new QLSanCa(mountClick().getId(), cbbCa.getSelectedItem().toString(), cbbSanBong.getSelectedItem().toString(), date, Double.valueOf(giaCa), qLSanCa.getTrangThai());
+          
+                QLSanCa qlsc = new QLSanCa(qLSanCa.getId(), cbbCa.getSelectedItem().toString(),cbbSanBong.getSelectedItem().toString(), new Date(), WIDTH, trangThaiSanCa.DANG_TRONG);
+                JOptionPane.showMessageDialog(this, iSanCaService.save(qlsc));
                 JOptionPane.showMessageDialog(this, iSanCaService.update(qlsc));
                 listQLSanCa = iSanCaService.getAll();
                 showData(listQLSanBong);
-            }
+            
 
         } catch (ParseException ex) {
             Logger.getLogger(FrmSanCa.class.getName()).log(Level.SEVERE, null, ex);

@@ -16,6 +16,8 @@ public interface IAcountRepository {
     
     List<Acount> getAll();
     
+    Acount getOne();
+    
     boolean save(Acount acount);
     
     boolean update(Acount acount);

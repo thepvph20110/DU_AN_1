@@ -14,6 +14,8 @@ import modelview.QLAcount;
  */
 public interface IAcountService {
 
+    QLAcount getOne();
+            
     List<QLAcount> getAll();
 
     String save(QLAcount qLAcount);

@@ -7,6 +7,7 @@ package repository.impl;
 import domainmodel.SanCa;
 import java.util.List;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import repository.ISanCaRepository;
@@ -20,7 +21,7 @@ public class SanCaRepository implements ISanCaRepository{
 
     @Override
     public List<SanCa> getAll() {
-        String hql = "From SanCa";
+        String hql = "From SanCa where giaCa ='250'";
         try(Session session = new HibernateConfig().getFACTORY().openSession()) {
             Query q = session.createQuery(hql);
             return q.getResultList();
@@ -62,6 +63,22 @@ public class SanCaRepository implements ISanCaRepository{
             transaction.rollback();
         }
         return check;
+    }
+
+    @Override
+    public SanCa getOne() {
+         SanCa sanCa;
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            String hql = "From SanCa where giaca ='250'";
+            TypedQuery<SanCa> query = session.createQuery(hql, SanCa.class);
+            query.setFirstResult(0);
+            query.setMaxResults(1);
+            sanCa = query.getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+            sanCa = null;
+        }
+        return sanCa;
     }
     
 }

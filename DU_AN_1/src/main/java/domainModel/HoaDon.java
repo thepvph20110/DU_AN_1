@@ -8,6 +8,7 @@ import enumclass.trangThaiHoaDon;
 import java.util.Date;
 import java.util.Set;
 import java.util.UUID;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -23,6 +24,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 @Table(name = "HoaDon")
 @AllArgsConstructor
@@ -33,16 +35,17 @@ import lombok.Setter;
 public class HoaDon {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(length = 36)
-    private UUID id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(name = "id", updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
+    private String id;
     
     private String maHoaDon;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idPhieuDatLich")
     private PhieuDatLich phieuDatLich;
     
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "hoaDon")
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "hoaDon")
     private Set<DichVu> dichVu;
     @Column(columnDefinition = "date")
     private Date ngayThanhToan;

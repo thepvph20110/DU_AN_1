@@ -24,11 +24,13 @@ public class QLKhachHang {
     private UUID id;
     private String maKhachHang;
     private String tenKhachHang;
+    private String mail;
     private String soDienThoai;
     private String ghiChu;
+    private String maQR;
     private trangThaiKhachHang trangThai = trangThaiKhachHang.BINH_THUONG;
     
     public Object toDataRow(){
-        return new Object[] {id, maKhachHang, tenKhachHang, soDienThoai, ghiChu, trangThai};
+        return new Object[] {id, maKhachHang, tenKhachHang,mail, soDienThoai, ghiChu, trangThai};
     }
 }

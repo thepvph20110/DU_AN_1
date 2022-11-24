@@ -4,6 +4,7 @@
  */
 package service;
 
+import domainmodel.HoaDon;
 import java.util.List;
 import java.util.UUID;
 import modelview.QLHoaDon;
@@ -21,4 +22,10 @@ public interface IHoaDonService {
     String update(QLHoaDon qLHoaDon, UUID id);
 
     String delete(UUID id);
+    
+    List<QLHoaDon> getAllByTrangThai();
+    
+    List<QLHoaDon> searchByName(String name);
+    
+    HoaDon findByHoaDonId(UUID uuid);
 }

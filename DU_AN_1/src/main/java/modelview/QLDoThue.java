@@ -22,7 +22,7 @@ import lombok.Setter;
 @Setter
 public class QLDoThue {
 
-    private UUID id;
+    private String id;
     private String maDoThue;
     private String tenDoThue;
     private String maKichThuoc;
@@ -43,4 +43,9 @@ public class QLDoThue {
     public Object[] toData() {
         return new Object[]{id, maDoThue, tenDoThue, maMauSac, maKichThuoc, maNhaSanXuat, soLuong, donGia, trangThai};
     }
+    
+    public Object[] toRowDataDoThue(){
+        return new Object[]{ maDoThue, tenDoThue, donGia};
+    }
+    
 }

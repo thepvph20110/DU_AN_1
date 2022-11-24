@@ -67,7 +67,7 @@ public class SanCaServiceImpl implements ISanCaService {
         if (map.containsKey(qLSanCa.getSanBong())) {
             sanBong = (SanBong) map.get(qLSanCa.getSanBong());
         }
-        SanCa sanCa = new SanCa(null, ca, sanBong, qLSanCa.getNgayTao(), qLSanCa.getGiaCa(), qLSanCa.getTrangThai());
+        SanCa sanCa = new SanCa(null, ca, sanBong, qLSanCa.getNgayTao(), ca.getGiaCa()+sanBong.getGiaSan(), qLSanCa.getTrangThai());
         if (re.saveOrUpdate(sanCa)) {
             return "Save Complete";
         } else {
@@ -110,9 +110,16 @@ public class SanCaServiceImpl implements ISanCaService {
             return "Delete Fail";
         }
     }
-    
+
     public static void main(String[] args) {
-        System.out.println(new SanCaServiceImpl().getAll());
+        System.out.println(new SanCaServiceImpl().getAll().size());
+    }
+
+    @Override
+    public QLSanCa getOne() {
+        SanCa sanCa = re.getOne();
+        QLSanCa qlsc = new QLSanCa(sanCa.getId(), sanCa.getCa().getTenCa(), sanCa.getSanbong().getTenSanBong(), (sanCa.getNgayTao()), sanCa.getGiaCa(), sanCa.getTrangThai());
+        return qlsc;
     }
 
 }

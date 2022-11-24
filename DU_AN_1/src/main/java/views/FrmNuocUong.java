@@ -14,10 +14,6 @@ import modelview.QLNuocUong;
 import service.INuocUongService;
 import service.Impl.NuocUongServiceImpl;
 
-/**
- *
- * @author ASUS
- */
 public class FrmNuocUong extends javax.swing.JFrame {
 
     private INuocUongService nuocUongService = new NuocUongServiceImpl();
@@ -123,6 +119,7 @@ public class FrmNuocUong extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Nước Uống");
         setResizable(false);
 
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -436,7 +433,7 @@ public class FrmNuocUong extends javax.swing.JFrame {
     }//GEN-LAST:event_tbNuocUongMouseClicked
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        int index = this.tbNuocUong.getSelectedRow();
+        index = this.tbNuocUong.getSelectedRow();
         if (index == -1) {
             JOptionPane.showMessageDialog(rootPane, "Xin mời chọn đối tượng");
             return;
