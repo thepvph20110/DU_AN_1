@@ -285,10 +285,14 @@
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
 <<<<<<< HEAD
+<<<<<<< HEAD
                   <Image iconType="2" name="D:\TAI_LIEU_HOC_TAP\Du_An_1_V1\DU_AN_1\src\main\java\views\icon\ca.png"/>
 =======
                   <Image iconType="2" name="D:\DU_AN_1\DU_AN_1\src\main\java\views\icon\ca.png"/>
 >>>>>>> acceb2419cc15f426a814e5cba3e404d0c4281e6
+=======
+                  <Image iconType="2" name="D:\TAI_LIEU_HOC_TAP\Du_An_1_V1\DU_AN_1\src\main\java\views\icon\ca.png"/>
+>>>>>>> a461aab29b932192bcc93406c1f367b0f4f77366
                 </Property>
                 <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n L&#xed; Ca"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -318,10 +322,16 @@
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
 <<<<<<< HEAD
+<<<<<<< HEAD
                   <Image iconType="2" name="D:\TAI_LIEU_HOC_TAP\Du_An_1_V1\DU_AN_1\src\main\java\views\icon\service.png"/>
 =======
                   <Image iconType="2" name="D:\DU_AN_1\DU_AN_1\src\main\java\views\icon\service.png"/>
 >>>>>>> acceb2419cc15f426a814e5cba3e404d0c4281e6
+=======
+
+                  <Image iconType="2" name="D:\TAI_LIEU_HOC_TAP\Du_An_1_V1\DU_AN_1\src\main\java\views\icon\service.png"/>
+
+>>>>>>> a461aab29b932192bcc93406c1f367b0f4f77366
                 </Property>
                 <Property name="text" type="java.lang.String" value="D&#x1ecb;ch V&#x1ee5;"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -347,10 +357,15 @@
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
 <<<<<<< HEAD
+<<<<<<< HEAD
                   <Image iconType="2" name="D:\TAI_LIEU_HOC_TAP\Du_An_1_V1\DU_AN_1\src\main\java\views\icon\bill.png"/>
 =======
                   <Image iconType="2" name="D:\DU_AN_1\DU_AN_1\src\main\java\views\icon\bill.png"/>
 >>>>>>> acceb2419cc15f426a814e5cba3e404d0c4281e6
+=======
+                  <Image iconType="2" name="D:\TAI_LIEU_HOC_TAP\Du_An_1_V1\DU_AN_1\src\main\java\views\icon\bill.png"/>
+
+>>>>>>> a461aab29b932192bcc93406c1f367b0f4f77366
                 </Property>
                 <Property name="text" type="java.lang.String" value="H&#xf3;a &#x110;&#x1a1;n"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -382,10 +397,15 @@
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
 <<<<<<< HEAD
+<<<<<<< HEAD
                   <Image iconType="2" name="D:\TAI_LIEU_HOC_TAP\Du_An_1_V1\DU_AN_1\src\main\java\views\icon\history.png"/>
 =======
                   <Image iconType="2" name="D:\DU_AN_1\DU_AN_1\src\main\java\views\icon\history.png"/>
 >>>>>>> acceb2419cc15f426a814e5cba3e404d0c4281e6
+=======
+                  <Image iconType="2" name="D:\TAI_LIEU_HOC_TAP\Du_An_1_V1\DU_AN_1\src\main\java\views\icon\history.png"/>
+
+>>>>>>> a461aab29b932192bcc93406c1f367b0f4f77366
                 </Property>
                 <Property name="text" type="java.lang.String" value="L&#x1ecb;ch S&#x1eed;"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -412,10 +432,15 @@
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
 <<<<<<< HEAD
+<<<<<<< HEAD
                   <Image iconType="2" name="D:\TAI_LIEU_HOC_TAP\Du_An_1_V1\DU_AN_1\src\main\java\views\icon\logout.png"/>
 =======
                   <Image iconType="2" name="D:\DU_AN_1\DU_AN_1\src\main\java\views\icon\Login32.png"/>
 >>>>>>> acceb2419cc15f426a814e5cba3e404d0c4281e6
+=======
+                  <Image iconType="2" name="D:\TAI_LIEU_HOC_TAP\Du_An_1_V1\DU_AN_1\src\main\java\views\icon\logout.png"/>
+
+>>>>>>> a461aab29b932192bcc93406c1f367b0f4f77366
                 </Property>
                 <Property name="text" type="java.lang.String" value="&#x110;&#x103;ng Xu&#x1ea5;t"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -446,10 +471,15 @@
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
 <<<<<<< HEAD
+<<<<<<< HEAD
                   <Image iconType="2" name="D:\TAI_LIEU_HOC_TAP\Du_An_1_V1\DU_AN_1\src\main\java\views\icon\stadium.png"/>
 =======
                   <Image iconType="2" name="D:\DU_AN_1\DU_AN_1\src\main\java\views\icon\stadium.png"/>
 >>>>>>> acceb2419cc15f426a814e5cba3e404d0c4281e6
+=======
+                  <Image iconType="2" name="D:\TAI_LIEU_HOC_TAP\Du_An_1_V1\DU_AN_1\src\main\java\views\icon\stadium.png"/>
+
+>>>>>>> a461aab29b932192bcc93406c1f367b0f4f77366
                 </Property>
                 <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n L&#xed; S&#xe2;n"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -479,10 +509,15 @@
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
 <<<<<<< HEAD
+<<<<<<< HEAD
                   <Image iconType="2" name="D:\TAI_LIEU_HOC_TAP\Du_An_1_V1\DU_AN_1\src\main\java\views\icon\booking.png"/>
 =======
                   <Image iconType="2" name="D:\DU_AN_1\DU_AN_1\src\main\java\views\icon\booking.png"/>
 >>>>>>> acceb2419cc15f426a814e5cba3e404d0c4281e6
+=======
+                  <Image iconType="2" name="D:\TAI_LIEU_HOC_TAP\Du_An_1_V1\DU_AN_1\src\main\java\views\icon\booking.png"/>
+
+>>>>>>> a461aab29b932192bcc93406c1f367b0f4f77366
                 </Property>
                 <Property name="text" type="java.lang.String" value="L&#x1ecb;ch &#x110;&#x1eb7;t"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -511,10 +546,15 @@
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
 <<<<<<< HEAD
+<<<<<<< HEAD
                   <Image iconType="2" name="D:\TAI_LIEU_HOC_TAP\Du_An_1_V1\DU_AN_1\src\main\java\views\icon\ThongKe.png"/>
 =======
                   <Image iconType="2" name="D:\DU_AN_1\DU_AN_1\src\main\java\views\icon\ThongKe.png"/>
 >>>>>>> acceb2419cc15f426a814e5cba3e404d0c4281e6
+=======
+                  <Image iconType="2" name="D:\TAI_LIEU_HOC_TAP\Du_An_1_V1\DU_AN_1\src\main\java\views\icon\ThongKe.png"/>
+
+>>>>>>> a461aab29b932192bcc93406c1f367b0f4f77366
                 </Property>
                 <Property name="text" type="java.lang.String" value="Th&#x1ed1;ng K&#xea;"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -540,10 +580,15 @@
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
 <<<<<<< HEAD
+<<<<<<< HEAD
                   <Image iconType="2" name="D:\TAI_LIEU_HOC_TAP\Du_An_1_V1\DU_AN_1\src\main\java\views\icon\Check.png"/>
 =======
                   <Image iconType="2" name="D:\DU_AN_1\DU_AN_1\src\main\java\views\icon\Check.png"/>
 >>>>>>> acceb2419cc15f426a814e5cba3e404d0c4281e6
+=======
+                  <Image iconType="2" name="D:\TAI_LIEU_HOC_TAP\Du_An_1_V1\DU_AN_1\src\main\java\views\icon\Check.png"/>
+
+>>>>>>> a461aab29b932192bcc93406c1f367b0f4f77366
                 </Property>
                 <Property name="text" type="java.lang.String" value="Check In"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -625,10 +670,15 @@
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
 <<<<<<< HEAD
+<<<<<<< HEAD
                   <Image iconType="2" name="D:\TAI_LIEU_HOC_TAP\Du_An_1_V1\DU_AN_1\src\main\java\views\icon\search.png"/>
 =======
                   <Image iconType="2" name="D:\DU_AN_1\DU_AN_1\src\main\java\views\icon\search.png"/>
 >>>>>>> acceb2419cc15f426a814e5cba3e404d0c4281e6
+=======
+                  <Image iconType="2" name="D:\TAI_LIEU_HOC_TAP\Du_An_1_V1\DU_AN_1\src\main\java\views\icon\search.png"/>
+
+>>>>>>> a461aab29b932192bcc93406c1f367b0f4f77366
                 </Property>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Hand Cursor"/>
