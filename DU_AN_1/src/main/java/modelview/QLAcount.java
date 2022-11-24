@@ -6,7 +6,6 @@ package modelview;
 
 import domainmodel.ChucVu;
 import enumclass.trangThaiAcount;
-import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,7 +21,7 @@ import lombok.Setter;
 @Setter
 public class QLAcount {
 
-    private UUID id;
+    private String id;
     private String maAcount;
     private String tenAcount;
     private ChucVu chucVu;

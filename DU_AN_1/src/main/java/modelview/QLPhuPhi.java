@@ -13,7 +13,7 @@ import lombok.Setter;
 @Setter
 public class QLPhuPhi {
 
-    private UUID id;
+    private String id;
 
     private String maPhuPhi;
 
@@ -25,7 +25,7 @@ public class QLPhuPhi {
 
     private trangThaiPhuPhi trangThai = trangThaiPhuPhi.Co;
 
-    public QLPhuPhi(UUID id) {
+    public QLPhuPhi(String id) {
         this.id = id;
     }
     

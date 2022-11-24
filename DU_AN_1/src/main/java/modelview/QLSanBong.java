@@ -21,7 +21,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class QLSanBong {
 
-    private UUID id;
+    private String id;
     private String maSanBong;
     private String tenSanBong;
     private double giaSan;

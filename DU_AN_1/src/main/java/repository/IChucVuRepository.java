@@ -20,5 +20,5 @@ public interface IChucVuRepository {
     
     boolean update(ChucVu chucVu);
     
-    boolean delete(UUID id);
+    boolean delete(String id);
 }

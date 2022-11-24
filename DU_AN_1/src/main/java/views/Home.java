@@ -67,8 +67,7 @@ public class Home extends javax.swing.JFrame {
     private ISanCaService sanCaService = new SanCaServiceImpl();
     private ISanBongService sanBongService = new SanBongServiceImpl();
     public List<JPanel> listPaneCa = new ArrayList<>();
-
-    private ISanCaService sanCaService = new SanCaServiceImpl();
+    
     private IAcountService acountService = new AcountServiceImpl();
     public JPanel panel = new JPanel();
 
@@ -176,7 +175,6 @@ public class Home extends javax.swing.JFrame {
     }
 
 //        addSanPane();
-    }
     
 //    public void addSanPane() {
 //        frame.setLayout(new FlowLayout());
@@ -252,7 +250,6 @@ public class Home extends javax.swing.JFrame {
         lbHome = new javax.swing.JLabel();
         lbQLCa = new javax.swing.JLabel();
         lbDichVu = new javax.swing.JLabel();
-        lbHoaDon = new javax.swing.JLabel();
         lbLichSu = new javax.swing.JLabel();
         lbDangXuat = new javax.swing.JLabel();
         lbQLSan = new javax.swing.JLabel();
@@ -324,7 +321,6 @@ public class Home extends javax.swing.JFrame {
         lbHome.setBackground(new java.awt.Color(166, 145, 92));
         lbHome.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         lbHome.setForeground(new java.awt.Color(255, 255, 255));
-        lbHome.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\ball.png")); // NOI18N
         lbHome.setText("Home");
         lbHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbHome.setOpaque(true);
@@ -332,9 +328,6 @@ public class Home extends javax.swing.JFrame {
         lbQLCa.setBackground(new java.awt.Color(166, 145, 92));
         lbQLCa.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbQLCa.setForeground(new java.awt.Color(255, 255, 255));
-
-        lbQLCa.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\ca.png")); // NOI18N
-
         lbQLCa.setText("Quản Lí Ca");
         lbQLCa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbQLCa.setOpaque(true);
@@ -353,9 +346,6 @@ public class Home extends javax.swing.JFrame {
         lbDichVu.setBackground(new java.awt.Color(166, 145, 92));
         lbDichVu.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbDichVu.setForeground(new java.awt.Color(255, 255, 255));
-
-        lbDichVu.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\service.png")); // NOI18N
-
         lbDichVu.setText("Dịch Vụ");
         lbDichVu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbDichVu.setOpaque(true);
@@ -368,37 +358,9 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        lbHoaDon.setBackground(new java.awt.Color(166, 145, 92));
-        lbHoaDon.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbHoaDon.setForeground(new java.awt.Color(255, 255, 255));
-
-        lbHoaDon.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\bill.png")); // NOI18N
-
-        lbHoaDon.setText("Hóa Đơn");
-        lbHoaDon.setToolTipText("");
-        lbHoaDon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lbHoaDon.setOpaque(true);
-        lbHoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lbHoaDonMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lbHoaDonMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lbHoaDonMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                lbHoaDonMousePressed(evt);
-            }
-        });
-
         lbLichSu.setBackground(new java.awt.Color(166, 145, 92));
         lbLichSu.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbLichSu.setForeground(new java.awt.Color(255, 255, 255));
-
-        lbLichSu.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\history.png")); // NOI18N
-
         lbLichSu.setText("Lịch Sử");
         lbLichSu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbLichSu.setOpaque(true);
@@ -417,9 +379,6 @@ public class Home extends javax.swing.JFrame {
         lbDangXuat.setBackground(new java.awt.Color(166, 145, 92));
         lbDangXuat.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbDangXuat.setForeground(new java.awt.Color(255, 255, 255));
-
-        lbDangXuat.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\logout.png")); // NOI18N
-
         lbDangXuat.setText("Đăng Xuất");
         lbDangXuat.setToolTipText("");
         lbDangXuat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -439,9 +398,6 @@ public class Home extends javax.swing.JFrame {
         lbQLSan.setBackground(new java.awt.Color(166, 145, 92));
         lbQLSan.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbQLSan.setForeground(new java.awt.Color(255, 255, 255));
-
-        lbQLSan.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\stadium.png")); // NOI18N
-
         lbQLSan.setText("Quản Lí Sân");
         lbQLSan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbQLSan.setOpaque(true);
@@ -460,9 +416,6 @@ public class Home extends javax.swing.JFrame {
         lbLichDat.setBackground(new java.awt.Color(166, 145, 92));
         lbLichDat.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbLichDat.setForeground(new java.awt.Color(255, 255, 255));
-
-        lbLichDat.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\booking.png")); // NOI18N
-
         lbLichDat.setText("Lịch Đặt");
         lbLichDat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbLichDat.setOpaque(true);
@@ -478,9 +431,6 @@ public class Home extends javax.swing.JFrame {
         lbThongKe.setBackground(new java.awt.Color(166, 145, 92));
         lbThongKe.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbThongKe.setForeground(new java.awt.Color(255, 255, 255));
-
-        lbThongKe.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\ThongKe.png")); // NOI18N
-
         lbThongKe.setText("Thống Kê");
         lbThongKe.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbThongKe.setOpaque(true);
@@ -496,9 +446,6 @@ public class Home extends javax.swing.JFrame {
         lbCheckIn.setBackground(new java.awt.Color(166, 145, 92));
         lbCheckIn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbCheckIn.setForeground(new java.awt.Color(255, 255, 255));
-
-        lbCheckIn.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\Check.png")); // NOI18N
-
         lbCheckIn.setText("Check In");
         lbCheckIn.setToolTipText("");
         lbCheckIn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -530,7 +477,6 @@ public class Home extends javax.swing.JFrame {
                             .addComponent(lbDangXuat, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lbThongKe, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lbLichSu, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lbHoaDon, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lbDichVu, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lbQLCa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lbQLSan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -553,9 +499,7 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(lbQLCa, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addComponent(lbDichVu, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(lbHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
+                .addGap(117, 117, 117)
                 .addComponent(lbLichSu, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addComponent(lbThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -577,9 +521,6 @@ public class Home extends javax.swing.JFrame {
         });
 
         lbSearch.setBackground(new java.awt.Color(255, 255, 255));
-
-        lbSearch.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\search.png")); // NOI18N
-
         lbSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbSearch.setOpaque(true);
 
@@ -682,7 +623,6 @@ public class Home extends javax.swing.JFrame {
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\refech.png")); // NOI18N
         jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel4.setOpaque(true);
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -812,18 +752,6 @@ public class Home extends javax.swing.JFrame {
         lbLichSu.setBackground(new Color(13, 180, 185));
     }//GEN-LAST:event_lbLichSuMouseEntered
 
-    private void lbHoaDonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbHoaDonMouseExited
-        lbHoaDon.setBackground(new Color(166, 145, 92));
-    }//GEN-LAST:event_lbHoaDonMouseExited
-
-    private void lbHoaDonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbHoaDonMouseEntered
-        lbHoaDon.setBackground(new Color(13, 180, 185));
-    }//GEN-LAST:event_lbHoaDonMouseEntered
-
-    private void lbHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbHoaDonMouseClicked
-        lbHoaDon.setBackground(new Color(166, 145, 92));
-    }//GEN-LAST:event_lbHoaDonMouseClicked
-
     private void lbDichVuMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDichVuMouseExited
         lbDichVu.setBackground(new Color(166, 145, 92));
     }//GEN-LAST:event_lbDichVuMouseExited
@@ -891,7 +819,7 @@ public class Home extends javax.swing.JFrame {
         QLKhachHang khachHang = new QLKhachHang();
 
         QLSanCa qLSanCa = new QLSanCa();
-        new FrmPhieuDatLich(khachHang, qLSanCa).setVisible(true);
+//        new FrmPhieuDatLich(khachHang, qLSanCa).setVisible(true);
     }//GEN-LAST:event_btnDatLichActionPerformed
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
@@ -966,7 +894,6 @@ public class Home extends javax.swing.JFrame {
     private static javax.swing.JLabel lbCheckIn;
     private static javax.swing.JLabel lbDangXuat;
     private javax.swing.JLabel lbDichVu;
-    private static javax.swing.JLabel lbHoaDon;
     private javax.swing.JLabel lbHome;
     private static javax.swing.JLabel lbLichDat;
     private javax.swing.JLabel lbLichSu;

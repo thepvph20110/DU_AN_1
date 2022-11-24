@@ -30,12 +30,12 @@ public class PhieuDatLichServiceImpl implements IPhieuDatLichService {
     @Override
     public List<QLPhieuDatLich> getAll() {
         List<QLPhieuDatLich> lPhieuDatLichs = new ArrayList<>();
-        for (PhieuDatLich phieuDatLich : phieuRepo.getAll()) {
+        for (PhieuDatLich phieuDatLich : phieuRepo.getAll()) {  
             QLAcount qLAcount = new QLAcount(phieuDatLich.getAcount().getId(), null, phieuDatLich.getAcount().getTenAcount(), null, null, null, null);
 
             QLKhachHang qLKhachHang = new QLKhachHang(phieuDatLich.getKhachHang().getId(), null, phieuDatLich.getKhachHang().getTenKhachHang(), null, null, null, null, null);
 
-            QLSanCa qLSanCa = new QLSanCa(phieuDatLich.getSanCa().getId(), phieuDatLich.getSanCa().getCa().getTenCa(), null, null, 0, null);
+            QLSanCa qLSanCa = new QLSanCa(phieuDatLich.getSanCa().getId(), phieuDatLich.getSanCa().getCa().getTenCa(), null,0,null,null, null, 0, null);
             QLPhieuDatLich qLPhieuDatLich = new QLPhieuDatLich(phieuDatLich.getId(), qLAcount, qLKhachHang, qLSanCa, phieuDatLich.getNgayTaoPhieu(), phieuDatLich.getNgayDenSan(), phieuDatLich.getTgCheckIn(), phieuDatLich.getGhiChu(), phieuDatLich.getMaQR(), phieuDatLich.getTongTienSan(), phieuDatLich.getTrangThai());
             lPhieuDatLichs.add(qLPhieuDatLich);
         }
@@ -68,7 +68,7 @@ public class PhieuDatLichServiceImpl implements IPhieuDatLichService {
     }
 
     @Override
-    public String delete(UUID id) {
+    public String delete(String id) {
         if (phieuRepo.delete(id) == true) {
             return "Xóa Thành Công";
         }

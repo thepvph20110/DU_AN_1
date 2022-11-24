@@ -23,7 +23,7 @@ import lombok.Setter;
 @Setter
 
 public class QLCa {
-    private UUID id;
+    private String id;
     private String maCa;
     private String tenCa;
     private Time thoiGianBatDau;

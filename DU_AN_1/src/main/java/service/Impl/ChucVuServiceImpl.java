@@ -46,7 +46,7 @@ public class ChucVuServiceImpl implements IChucVuService {
     }
 
     @Override
-    public String update(QLChucVu qLChucVu, UUID id) {
+    public String update(QLChucVu qLChucVu, String id) {
         if (qLChucVu.getMaChucVu().isEmpty() && qLChucVu.getTenChucVu().isEmpty()) {
             return "Không Được Để Trống !!";
         }
@@ -58,7 +58,7 @@ public class ChucVuServiceImpl implements IChucVuService {
     }
 
     @Override
-    public String delete(UUID id) {
+    public String delete(String id) {
         if (chucVuRepo.delete(id) == true) {
             return "Xóa Thành Công";
         }

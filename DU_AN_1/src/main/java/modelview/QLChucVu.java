@@ -5,7 +5,6 @@
 package modelView;
 
 import enumclass.trangThaiChucVu;
-import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,7 +20,7 @@ import lombok.Setter;
 @Setter
 public class QLChucVu {
 
-    private UUID id;
+    private String id;
     private String maChucVu;
     private String tenChucVu;
     private trangThaiChucVu trangThai;

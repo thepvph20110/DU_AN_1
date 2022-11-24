@@ -21,7 +21,7 @@ import lombok.Setter;
 @Setter
 public class QLLoaiSan {
 
-    private UUID id;
+    private String id;
     private String maLoaiSan;
     private String tenLoaiSan;
     private String moTa;

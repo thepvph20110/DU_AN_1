@@ -237,7 +237,7 @@ public class FrmQLThanhToan extends javax.swing.JFrame {
 
     private QLThanhToan formInputQLThanhToanUpdate() {
         QLThanhToan ql = new QLThanhToan();
-        UUID id = UUID.fromString(txtID.getText());
+        String id = txtID.getText();
         ql.setId(id);
         String ma = txtMa.getText();
         ql.setMaThanhToan(ma);

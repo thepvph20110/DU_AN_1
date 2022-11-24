@@ -44,7 +44,7 @@ public class AcountServiceImpl implements IAcountService {
     }
 
     @Override
-    public String update(QLAcount qLAcount, UUID id) {
+    public String update(QLAcount qLAcount, String id) {
         Acount acount = new Acount(id, qLAcount.getMaAcount(), qLAcount.getTenAcount(), qLAcount.getChucVu(),
                 qLAcount.getMatKhau(), qLAcount.getMoTa(), trangThaiAcount.Da_Xac_Minh);
         if (acountRepo.update(acount) == true) {
@@ -54,7 +54,7 @@ public class AcountServiceImpl implements IAcountService {
     }
 
     @Override
-    public String delete(UUID id) {
+    public String delete(String id) {
         if (acountRepo.delete(id) == true) {
             return "Xóa Thành Công";
         }
