@@ -21,6 +21,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 @Table(name = "SanCa")
 @AllArgsConstructor
@@ -31,9 +32,10 @@ import lombok.Setter;
 public class SanCa {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(length = 36)
-    private UUID id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(name = "id", updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
+    private String id;
     @ManyToOne
     @JoinColumn(name = "idCa", nullable = false)
     private Ca ca;
@@ -42,7 +44,7 @@ public class SanCa {
     private SanBong sanbong;
     @Column(columnDefinition = "date")
     private Date ngayTao;
-    private double giaCa;
+    private double giaSanCa;
     @Column(nullable = false)
     private trangThaiSanCa trangThai = trangThaiSanCa.DANG_TRONG;
 }
