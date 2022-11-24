@@ -16,7 +16,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class QLPhieuDatLich {
 
-    private UUID id;
+    private String id;
     private QLAcount acount;
     private QLKhachHang khachHang;
     private QLSanCa sanCa;
@@ -29,7 +29,7 @@ public class QLPhieuDatLich {
     private trangThaiPhieuDL trangThai = trangThaiPhieuDL.CHUA_NHAN_SAN;
     
     public Object toDataRow(){
-        return new Object[] {id, acount.getTenAcount(), khachHang.getTenKhachHang(),sanCa.getCa(), ngayTaoPhieu, NgayDenSan, tgCheckIn, ghiChu, tongTienSan, trangThai};
+        return new Object[] {id, acount.getTenAcount(), khachHang.getTenKhachHang(),sanCa.getTenCa(), ngayTaoPhieu, NgayDenSan, tgCheckIn, ghiChu, tongTienSan, trangThai};
     }
 
 }

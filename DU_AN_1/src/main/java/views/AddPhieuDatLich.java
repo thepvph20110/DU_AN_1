@@ -349,7 +349,7 @@ public class AddPhieuDatLich extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Format time");
         } else {
             QLKhachHang khachHang = new QLKhachHang(setKhachHang(), null, null, null, null, null, null,null);
-            QLSanCa sanCa = new QLSanCa(setSanCa(), null, null, null, 0, null);
+            QLSanCa sanCa = new QLSanCa(setSanCa(), null, null,0,null,null, null, 0, null);
             QLAcount acount = new QLAcount(setAcount(), null, null, null, null, null, null);
             QLPhieuDatLich lich = new QLPhieuDatLich(null, acount, khachHang, sanCa, d, ngayDenSan, Time.valueOf(time), ghiChu,qLPhieuDatLich.getMaQR(), Double.valueOf(tongTien), qLPhieuDatLich.getTrangThai());
             JOptionPane.showMessageDialog(this, iPhieuDatLichService.save(lich));
@@ -384,7 +384,7 @@ public class AddPhieuDatLich extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Format time");
             } else {
                 QLKhachHang khachHang = new QLKhachHang(setKhachHang(), null, null, null, null, null, null,null);
-                QLSanCa sanCa = new QLSanCa(setSanCa(), null, null, null, 0, null);
+                QLSanCa sanCa = new QLSanCa(setSanCa(), null, null,0,null,null, null, 0, null);
                 QLAcount acount = new QLAcount(setAcount(), null, null, null, null, null, null);
                 QLPhieuDatLich lich = new QLPhieuDatLich(mountClick().getId(), acount, khachHang, sanCa, d, ngayDenSan, Time.valueOf(time), ghiChu,qLPhieuDatLich.getMaQR(), Double.valueOf(tongTien), qLPhieuDatLich.getTrangThai());
                 JOptionPane.showMessageDialog(this, iPhieuDatLichService.update(lich));
@@ -429,7 +429,7 @@ public class AddPhieuDatLich extends javax.swing.JFrame {
 
     private void loadCbbSanCa() {
         for (QLSanCa qLSanCa : listQLSanCa) {
-            cbbSanCa.addItem(qLSanCa.getCa());
+            cbbSanCa.addItem(qLSanCa.getTenCa());
         }
     }
 
@@ -446,7 +446,7 @@ public class AddPhieuDatLich extends javax.swing.JFrame {
         TongTienSan.setText(String.valueOf(qLPhieuDatLich.getTongTienSan()));
         cbbAcount.setSelectedItem(qLPhieuDatLich.getAcount().getTenAcount());
         cbbKhachHang.setSelectedItem(qLPhieuDatLich.getKhachHang().getTenKhachHang());
-        cbbSanCa.setSelectedItem(qLPhieuDatLich.getSanCa().getCa());
+        cbbSanCa.setSelectedItem(qLPhieuDatLich.getSanCa().getTenCa());
         NgayDenSan.setDate(qLPhieuDatLich.getNgayDenSan());
         NgayTaoPhieu.setDate(qLPhieuDatLich.getNgayTaoPhieu());
         if (qLPhieuDatLich.getTrangThai() == trangThaiPhieuDL.CHUA_NHAN_SAN) {
@@ -458,9 +458,9 @@ public class AddPhieuDatLich extends javax.swing.JFrame {
         }
     }
 
-    private UUID setAcount() {
+    private String setAcount() {
         String ten = (String) cbbAcount.getSelectedItem();
-        UUID id = null;
+        String id = null;
         for (QLAcount qLAcount : listAcount) {
             if (qLAcount.getTenAcount().equals(ten)) {
                 id = qLAcount.getId();
@@ -469,9 +469,9 @@ public class AddPhieuDatLich extends javax.swing.JFrame {
         return id;
     }
 
-    private UUID setKhachHang() {
+    private String setKhachHang() {
         String ten = (String) cbbKhachHang.getSelectedItem();
-        UUID id = null;
+        String id = null;
         for (QLKhachHang qLKhachHang : listKhachHang) {
             if (qLKhachHang.getTenKhachHang().equals(ten)) {
                 id = qLKhachHang.getId();
@@ -480,11 +480,11 @@ public class AddPhieuDatLich extends javax.swing.JFrame {
         return id;
     }
 
-    private UUID setSanCa() {
+    private String setSanCa() {
         String ten = (String) cbbSanCa.getSelectedItem();
-        UUID id = null;
+        String id = null;
         for (QLSanCa qLSanCa : listQLSanCa) {
-            if (qLSanCa.getCa().equals(ten)) {
+            if (qLSanCa.getTenCa().equals(ten)) {
                 id = qLSanCa.getId();
             }
         }

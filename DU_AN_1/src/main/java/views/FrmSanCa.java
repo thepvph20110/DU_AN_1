@@ -47,7 +47,7 @@ public class FrmSanCa extends javax.swing.JFrame {
     public FrmSanCa() {
         initComponents();
         jTable1.setModel(dtm);
-        String[] header = {"ID", "Ngày tạo", "Giá Ca", "Ca", "Sân bóng", "Trạng thái"};
+        String[] header = {"ID", "Ngày tạo", "Ca", "Sân bóng","Sức chứa","TG Bắt Đầu","TG Kết Thúc", "Giá Ca", "Trạng thái"};
         dtm.setColumnIdentifiers(header);
         listQLCa = iCaService.getAll();
         listQLSanBong = iSanBongService.getAll();
@@ -55,9 +55,8 @@ public class FrmSanCa extends javax.swing.JFrame {
         //listQLPhieuDatLich = 
         loadCbbCa();
         loadCbbSanBong();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
         Date date = new Date();
-        txtNgayTao.setText(simpleDateFormat.format(date));
+        jDateNgayTao.setDate(date);
         showData(listQLSanBong);
     }
 
@@ -89,7 +88,7 @@ public class FrmSanCa extends javax.swing.JFrame {
         btnDelete = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        txtNgayTao = new javax.swing.JTextField();
+        jDateNgayTao = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -181,14 +180,6 @@ public class FrmSanCa extends javax.swing.JFrame {
                                 .addGap(89, 89, 89)
                                 .addComponent(btnDelete))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(57, 57, 57)
-                                .addComponent(txtNgayTao, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(69, 69, 69)
-                                .addComponent(txtGiaCa, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel5))
@@ -203,7 +194,15 @@ public class FrmSanCa extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(radioChoNhanSan, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(radioKhongTrong, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(radioKhongTrong, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4))
+                                .addGap(57, 57, 57)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtGiaCa, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                                    .addComponent(jDateNgayTao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -212,35 +211,36 @@ public class FrmSanCa extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtNgayTao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(txtGiaCa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(cbbCa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(cbbSanBong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(radioTrong)
-                    .addComponent(radioChoNhanSan)
-                    .addComponent(radioKhongTrong))
-                .addGap(43, 43, 43)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSave)
-                    .addComponent(btnDelete)
-                    .addComponent(btnUpdate))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(33, 33, 33)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(txtGiaCa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(cbbCa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(cbbSanBong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(radioTrong)
+                            .addComponent(radioChoNhanSan)
+                            .addComponent(radioKhongTrong))
+                        .addGap(43, 43, 43)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnSave)
+                            .addComponent(btnDelete)
+                            .addComponent(btnUpdate))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jDateNgayTao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -270,86 +270,59 @@ public class FrmSanCa extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-mm-yyyy");
-        Date date;
-        try {
-            String giaCa = txtGiaCa.getText().trim();
-            date = simpleDateFormat.parse(txtNgayTao.getText());
-            QLSanCa qLSanCa = new QLSanCa();
-            if (radioChoNhanSan.isSelected()) {
-                qLSanCa.setTrangThai(trangThaiSanCa.CHO_NHAN_SAN);
-            } else if (radioKhongTrong.isSelected()) {
-                qLSanCa.setTrangThai(trangThaiSanCa.KHONG_TRONG);
-            } else {
-                qLSanCa.setTrangThai(trangThaiSanCa.DANG_TRONG);
-            }
-            
-                QLSanCa qlsc = new QLSanCa(null, cbbCa.getSelectedItem().toString(),cbbSanBong.getSelectedItem().toString(), new Date(), WIDTH, trangThaiSanCa.DANG_TRONG);
-                JOptionPane.showMessageDialog(this, iSanCaService.save(qlsc));
-                listQLSanCa = iSanCaService.getAll();
-                showData(listQLSanBong);
-            
-        } catch (ParseException ex) {
-            Logger.getLogger(FrmSanCa.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        QLSanCa qLSanCa = new QLSanCa();
+        QLCa qLCa = new QLCa();
+        QLSanBong qLSanBong = new QLSanBong();
+        String tenSanBong = cbbSanBong.getSelectedItem()+"";
+        String tenca = cbbCa.getSelectedItem()+"";
+        QLSanCa qlsc = new QLSanCa(null, tenca, tenSanBong,0,null,null, new Date(), 0, qLSanCa.getTrangThai());
+        JOptionPane.showMessageDialog(this, iSanCaService.save(qlsc));
+        listQLSanCa = iSanCaService.getAll();
+        showData(listQLSanBong);
+        //}
+
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-mm-yyyy");
-        Date date;
-        try {
-            int index = jTable1.getSelectedRow();
-            String giaCa = txtGiaCa.getText().trim();
-            date = simpleDateFormat.parse(txtNgayTao.getText());
-            QLSanCa qLSanCa = new QLSanCa();
-            qLSanCa.setId(listQLCa.get(index).getId());
-            if (radioChoNhanSan.isSelected()) {
-                qLSanCa.setTrangThai(trangThaiSanCa.CHO_NHAN_SAN);
-            } else if (radioKhongTrong.isSelected()) {
-                qLSanCa.setTrangThai(trangThaiSanCa.KHONG_TRONG);
-            } else {
-                qLSanCa.setTrangThai(trangThaiSanCa.DANG_TRONG);
-            }
-          
-                QLSanCa qlsc = new QLSanCa(qLSanCa.getId(), cbbCa.getSelectedItem().toString(),cbbSanBong.getSelectedItem().toString(), new Date(), WIDTH, trangThaiSanCa.DANG_TRONG);
-                JOptionPane.showMessageDialog(this, iSanCaService.save(qlsc));
-                JOptionPane.showMessageDialog(this, iSanCaService.update(qlsc));
-                listQLSanCa = iSanCaService.getAll();
-                showData(listQLSanBong);
-            
 
-        } catch (ParseException ex) {
-            Logger.getLogger(FrmSanCa.class.getName()).log(Level.SEVERE, null, ex);
+
+        QLSanCa qLSanCa = new QLSanCa();
+        QLCa qLCa = new QLCa();
+        QLSanBong qLSanBong = new QLSanBong();
+        String tenSanBong = cbbSanBong.getSelectedItem()+"";
+        String tenca = cbbCa.getSelectedItem()+"";
+        if (radioChoNhanSan.isSelected()) {
+            qLSanCa.setTrangThai(trangThaiSanCa.CHO_NHAN_SAN);
+        } else if (radioKhongTrong.isSelected()) {
+            qLSanCa.setTrangThai(trangThaiSanCa.KHONG_TRONG);
+        } else {
+            qLSanCa.setTrangThai(trangThaiSanCa.DANG_TRONG);
         }
+        QLSanCa qlsc = new QLSanCa(mountClick().getId(), tenca, tenSanBong,0,null,null, new Date(), 0, qLSanCa.getTrangThai());
+        JOptionPane.showMessageDialog(this, iSanCaService.update(qlsc));
+        listQLSanCa = iSanCaService.getAll();
+        showData(listQLSanBong);
 
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        Date date;
-        try {
-            String giaCa = txtGiaCa.getText().trim();
-            date = simpleDateFormat.parse(txtNgayTao.getText());
-            QLSanCa qLSanCa = new QLSanCa();
-            if (radioChoNhanSan.isSelected()) {
-                qLSanCa.setTrangThai(trangThaiSanCa.CHO_NHAN_SAN);
-            } else if (radioKhongTrong.isSelected()) {
-                qLSanCa.setTrangThai(trangThaiSanCa.KHONG_TRONG);
-            } else {
-                qLSanCa.setTrangThai(trangThaiSanCa.DANG_TRONG);
-            }
-            if (giaCa.length() == 0 || !giaCa.matches("^[0-9]+$")) {
-                JOptionPane.showMessageDialog(this, "Please re-enter");
-            } else {
-                QLSanCa qlsc = new QLSanCa(mountClick().getId(), cbbCa.getSelectedItem().toString(), cbbSanBong.getSelectedItem().toString(), date, Double.valueOf(giaCa), qLSanCa.getTrangThai());
-                JOptionPane.showMessageDialog(this, iSanCaService.delete(qlsc));
-                listQLSanCa = iSanCaService.getAll();
-                showData(listQLSanBong);
-            }
-
-        } catch (ParseException ex) {
-            Logger.getLogger(FrmSanCa.class.getName()).log(Level.SEVERE, null, ex);
+        QLSanCa qLSanCa = new QLSanCa();
+        QLCa qLCa = new QLCa();
+        QLSanBong qLSanBong = new QLSanBong();
+        String tenSanBong = cbbSanBong.getSelectedItem()+"";
+        String tenca = cbbCa.getSelectedItem()+"";
+        if (radioChoNhanSan.isSelected()) {
+            qLSanCa.setTrangThai(trangThaiSanCa.CHO_NHAN_SAN);
+        } else if (radioKhongTrong.isSelected()) {
+            qLSanCa.setTrangThai(trangThaiSanCa.KHONG_TRONG);
+        } else {
+            qLSanCa.setTrangThai(trangThaiSanCa.DANG_TRONG);
         }
+        QLSanCa qlsc = new QLSanCa(mountClick().getId(), tenca, tenSanBong,0,null,null, new Date(), 0, qLSanCa.getTrangThai());
+        JOptionPane.showMessageDialog(this, iSanCaService.delete(qlsc));
+        listQLSanCa = iSanCaService.getAll();
+        showData(listQLSanBong);
+
 
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -396,10 +369,10 @@ public class FrmSanCa extends javax.swing.JFrame {
 
     private void fillData(int index) {
         QLSanCa qLSanCa = listQLSanCa.get(index);
-        txtGiaCa.setText(String.valueOf(qLSanCa.getGiaCa()));
-        txtNgayTao.setText(String.valueOf(qLSanCa.getNgayTao()));
-        cbbCa.setSelectedItem(qLSanCa.getCa());
-        cbbSanBong.setSelectedItem(qLSanCa.getSanBong());
+        txtGiaCa.setText(String.valueOf(qLSanCa.getGiaCaSan()));
+        jDateNgayTao.setDate(qLSanCa.getNgayTao());
+        cbbCa.setSelectedItem(qLSanCa.getTenCa());
+        cbbSanBong.setSelectedItem(qLSanCa.getTenSanBong());
         if (qLSanCa.getTrangThai() == trangThaiSanCa.CHO_NHAN_SAN) {
             radioChoNhanSan.setSelected(true);
         } else if (qLSanCa.getTrangThai() == trangThaiSanCa.DANG_TRONG) {
@@ -436,6 +409,7 @@ public class FrmSanCa extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbbCa;
     private javax.swing.JComboBox<String> cbbSanBong;
+    private com.toedter.calendar.JDateChooser jDateNgayTao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -449,6 +423,5 @@ public class FrmSanCa extends javax.swing.JFrame {
     private javax.swing.JRadioButton radioKhongTrong;
     private javax.swing.JRadioButton radioTrong;
     private javax.swing.JTextField txtGiaCa;
-    private javax.swing.JTextField txtNgayTao;
     // End of variables declaration//GEN-END:variables
 }

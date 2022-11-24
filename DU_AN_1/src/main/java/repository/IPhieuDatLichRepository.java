@@ -22,6 +22,6 @@ public interface IPhieuDatLichRepository {
 
     boolean update(PhieuDatLich phieuDatLich);
 
-    boolean delete(UUID id);
+    boolean delete(String id);
 
 }
