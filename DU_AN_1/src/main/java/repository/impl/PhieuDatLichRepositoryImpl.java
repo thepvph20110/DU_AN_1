@@ -101,7 +101,7 @@ public class PhieuDatLichRepositoryImpl implements IPhieuDatLichRepository{
     }
 
     @Override
-    public boolean delete(String id) {
+    public boolean delete(UUID id) {
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             String hql = "DELETE FROM PhieuDatLich WHERE id = :id";
             Query query = session.createQuery(hql);

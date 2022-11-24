@@ -91,7 +91,7 @@ public class HoaDonThanhToanRepositoryImpl implements IHoaDonThanhToanRepository
 
     @Override
     public List<HoaDonThanhToan> fillAllHoaDonThanhToan() {
-        String hql = "Select  h From HoaDonThanhToan h";
+        String hql = "Select h From HoaDonThanhToan h";
         List<HoaDonThanhToan> lists = new ArrayList<>();
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             TypedQuery<HoaDonThanhToan> query = session.createQuery(hql, HoaDonThanhToan.class);

@@ -89,7 +89,7 @@ public class DichVuRepositoryImpl implements IDichVuRepository {
 
     public static void main(String[] args) {
         DichVuRepositoryImpl dv = new DichVuRepositoryImpl();
-        System.out.println(dv.findByIdHoaDon(UUID.fromString("77cced0f-7124-4a5e-9a9b-19b8eff7a25d")).size());
+        System.out.println(dv.findByIdHoaDon("77cced0f-7124-4a5e-9a9b-19b8eff7a25d").size());
     }
 
     @Override
@@ -107,7 +107,7 @@ public class DichVuRepositoryImpl implements IDichVuRepository {
     }
 
     @Override
-    public List<DichVu> findByIdHoaDon(UUID uuid) {
+    public List<DichVu> findByIdHoaDon(String uuid) {
         List<DichVu> listDV;
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             Query q = session.createQuery("FROM DichVu dv WHERE dv.hoaDon.id =:id");
@@ -121,7 +121,7 @@ public class DichVuRepositoryImpl implements IDichVuRepository {
     }
 
     @Override
-    public List<DichVu> findByIdHoaDonAndNuocUong(UUID idHoaDon, UUID idNuocUong) {
+    public List<DichVu> findByIdHoaDonAndNuocUong(String idHoaDon, String idNuocUong) {
         List<DichVu> listDV = new ArrayList<>();
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             Query q = session.createQuery("FROM DichVu dv WHERE dv.hoaDon.id =:hoaDonId AND dv.nuocUong.id =:idNuocUong");
@@ -136,7 +136,7 @@ public class DichVuRepositoryImpl implements IDichVuRepository {
     }
 
     @Override
-    public List<DichVu> findByIdHoaDonAndDoThue(UUID idHoaDon, UUID idDoThue) {
+    public List<DichVu> findByIdHoaDonAndDoThue(String idHoaDon, String idDoThue) {
         List<DichVu> listDV = new ArrayList<>();
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             Query q = session.createQuery("FROM DichVu dv WHERE dv.hoaDon.id =:hoaDonId AND dv.doThue.id =:idDoThue");

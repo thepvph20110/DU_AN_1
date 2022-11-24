@@ -97,7 +97,7 @@ public class JavaMail {
                     + "        <label style=\"color: blue;font-size: 17px;font-weight: bold;\">Người Đặt: </label> <span>" + phieuDatLich.getKhachHang().getTenKhachHang() + "</span>\n"
                     + "        <br>\n"
                     + "        <br>\n"
-                    + "        <label style=\"color: blue;font-size: 17px;font-weight: bold;\">Tên sân bóng: </label><span>" + phieuDatLich.getSanCa().getSanBong() + "</span>\n"
+                    + "        <label style=\"color: blue;font-size: 17px;font-weight: bold;\">Tên sân bóng: </label><span>" + phieuDatLich.getSanCa().getTenSanBong()+ "</span>\n"
                     + "        <br>\n"
                     + "        <br>\n"
                     + "        <label style=\"color: blue;font-size: 17px;font-weight: bold;\">Ngày nhận sân: </label><span>" + phieuDatLich.getNgayDenSan() + "</span>\n"

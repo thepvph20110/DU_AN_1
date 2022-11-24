@@ -111,11 +111,11 @@ public class HoaDonRepositoryImpl implements IHoaDonRepository{
     }
 
     @Override
-    public HoaDon findByHoaDonId(UUID uuid) {
+    public HoaDon findByHoaDonId(UUID id) {
         HoaDon hoaDon;
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             Query q = session.createQuery("FROM HoaDon hd WHERE hd.id =:id");
-            q.setParameter("id", uuid);
+            q.setParameter("id", id);
             hoaDon = (HoaDon) q.getSingleResult();
         }catch(Exception e){
             e.printStackTrace();

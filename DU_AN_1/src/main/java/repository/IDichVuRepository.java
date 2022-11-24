@@ -18,11 +18,11 @@ public interface IDichVuRepository {
     
     List<DichVu> fillAllDichVu();
     
-    List<DichVu> findByIdHoaDon(UUID uuid);
+    List<DichVu> findByIdHoaDon(String uuid);
     
-    List<DichVu> findByIdHoaDonAndNuocUong(UUID idHoaDon,UUID idNuocUong);
+    List<DichVu> findByIdHoaDonAndNuocUong(String idHoaDon,String idNuocUong);
     
-    List<DichVu> findByIdHoaDonAndDoThue(UUID idHoaDon,UUID idDoThue);
+    List<DichVu> findByIdHoaDonAndDoThue(String idHoaDon,String idDoThue);
 
     boolean saveOrUpdate(DichVu dichVu);
 

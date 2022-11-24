@@ -15,15 +15,14 @@ import lombok.Setter;
 @Getter
 @Setter
 public class QLHoaDonThanhToan {
-    private UUID id;
-    private String maThanhToan;
+    private UUID maHDTT;
     private String hoaDon;
     private String thanhToan;
     private double tongTien;
     private String ghiChu;
     
     public Object[] toRowData() {
-        return new Object[]{id ,maThanhToan, hoaDon, thanhToan, tongTien, ghiChu};
+        return new Object[]{maHDTT, hoaDon, thanhToan, tongTien, ghiChu};
     }
     
 }

@@ -28,122 +28,81 @@ public class PhieuDatLichServiceImpl implements IPhieuDatLichService {
 
     @Override
     public List<QLPhieuDatLich> getAll() {
-//        List<QLPhieuDatLich> lPhieuDatLichs = new ArrayList<>();
-//        for (PhieuDatLich phieuDatLich : phieuRepo.getAll()) {
-//            QLAcount qLAcount = new QLAcount(phieuDatLich.getAcount().getId(), null, phieuDatLich.getAcount().getTenAcount(), null, null, null, null);
-//
-//            QLKhachHang qLKhachHang = new QLKhachHang(phieuDatLich.getKhachHang().getId(), null, phieuDatLich.getKhachHang().getTenKhachHang(), null, null, null, null, null);
-//
-//            QLSanCa qLSanCa = new QLSanCa(phieuDatLich.getSanCa().getId(), phieuDatLich.getSanCa().getCa().getTenCa(), null, null, 0, null);
-//            QLPhieuDatLich qLPhieuDatLich = new QLPhieuDatLich(phieuDatLich.getId(), qLAcount, qLKhachHang, qLSanCa, phieuDatLich.getNgayTaoPhieu(), phieuDatLich.getNgayDenSan(), phieuDatLich.getTgCheckIn(), phieuDatLich.getGhiChu(), phieuDatLich.getMaQR(), phieuDatLich.getTongTienSan(), phieuDatLich.getTrangThai());
-//            lPhieuDatLichs.add(qLPhieuDatLich);
-//        }
-//
-//        return lPhieuDatLichs;
-        return null;
-//        List<QLPhieuDatLich> lPhieuDatLichs = new ArrayList<>();
-//        for (PhieuDatLich phieuDatLich : phieuRepo.getAll()) {
-//            QLAcount qLAcount = new QLAcount(phieuDatLich.getAcount().getId(), null, phieuDatLich.getAcount().getTenAcount(), null, null, null, null);
-//
-//            QLKhachHang qLKhachHang = new QLKhachHang(phieuDatLich.getKhachHang().getId(), null, phieuDatLich.getKhachHang().getTenKhachHang(), null, null, null, null, null);
-//
-//            QLSanCa qLSanCa = new QLSanCa(phieuDatLich.getSanCa().getId(), phieuDatLich.getSanCa().getCa().getTenCa(), null, null, 0, null);
-//            QLPhieuDatLich qLPhieuDatLich = new QLPhieuDatLich(phieuDatLich.getId(), qLAcount, qLKhachHang, qLSanCa, phieuDatLich.getNgayTaoPhieu(), phieuDatLich.getNgayDenSan(), phieuDatLich.getTgCheckIn(), phieuDatLich.getGhiChu(), phieuDatLich.getMaQR(), phieuDatLich.getTongTienSan(), phieuDatLich.getTrangThai());
-//            lPhieuDatLichs.add(qLPhieuDatLich);
-//        }
-//
-//        return lPhieuDatLichs;
+
+        List<QLPhieuDatLich> lPhieuDatLichs = new ArrayList<>();
+        for (PhieuDatLich phieuDatLich : phieuRepo.getAll()) {
+            QLAcount qLAcount = new QLAcount(phieuDatLich.getAcount().getId(), null, phieuDatLich.getAcount().getTenAcount(), null, null, null, null);
+
+            QLKhachHang qLKhachHang = new QLKhachHang(phieuDatLich.getKhachHang().getId(), null, phieuDatLich.getKhachHang().getTenKhachHang(), null, null, null, null, null);
+
+            QLSanCa qLSanCa = new QLSanCa(phieuDatLich.getSanCa().getId(), phieuDatLich.getSanCa().getCa().getTenCa(), null, null, 0, null);
+            QLPhieuDatLich qLPhieuDatLich = new QLPhieuDatLich(phieuDatLich.getId(), qLAcount, qLKhachHang, qLSanCa, phieuDatLich.getNgayTaoPhieu(), phieuDatLich.getNgayDenSan(), phieuDatLich.getTgCheckIn(), phieuDatLich.getGhiChu(), phieuDatLich.getMaQR(), phieuDatLich.getTongTienSan(), phieuDatLich.getTrangThai());
+            lPhieuDatLichs.add(qLPhieuDatLich);
+        }
+
+        return lPhieuDatLichs;
+    
     }
 
     @Override
     public String save(QLPhieuDatLich phieuDatLich) {
 
-//        PhieuDatLich phieuDatLichDomain = new PhieuDatLich(phieuDatLich.getId(),phieuDatLich.getAcount(),phieuDatLich.getKhachHang(),phieuDatLich.getSanCa(),
-//                                                 phieuDatLich.getNgayTaoPhieu(),phieuDatLich.getNgayDenSan(),phieuDatLich.getTgCheckIn(),phieuDatLich.getGhiChu(),phieuDatLich.getTongTienSan()
-//                                                ,phieuDatLich.getTrangThai());
-//        if (phieuRepo.save(phieuDatLichDomain) == true) {
-//            return "Lưu Thành Công";
-//        }
-//
-//        Acount acount = new Acount(phieuDatLich.getAcount().getId(), null, null, null, null, null, null);
-//        KhachHang khachHang = new KhachHang(phieuDatLich.getKhachHang().getId(), null, null, null, null, null, null);
-//        SanCa sanCa = new SanCa(phieuDatLich.getSanCa().getId(), null, null, null, 0, null);
-//        PhieuDatLich pdl = new PhieuDatLich(null, acount, khachHang, sanCa, phieuDatLich.getNgayTaoPhieu(), phieuDatLich.getNgayDenSan(), phieuDatLich.getTgCheckIn(), phieuDatLich.getGhiChu(), phieuDatLich.getMaQR(), phieuDatLich.getTongTienSan(), phieuDatLich.getTrangThai());
-//        if (phieuRepo.save(pdl) == true) {
-//            return "Lưu Thành Công";
-//        }
-//
-//        return "Lưu Thất Bại";
-        return null;
+        PhieuDatLich phieuDatLichDomain = new PhieuDatLich(phieuDatLich.getId(),phieuDatLich.getAcount(),phieuDatLich.getKhachHang(),phieuDatLich.getSanCa(),
+                                                 phieuDatLich.getNgayTaoPhieu(),phieuDatLich.getNgayDenSan(),phieuDatLich.getTgCheckIn(),phieuDatLich.getGhiChu(),phieuDatLich.getTongTienSan()
+                                                ,phieuDatLich.getTrangThai());
+        if (phieuRepo.save(phieuDatLichDomain) == true) {
+            return "Lưu Thành Công";
+        }
 
-//        PhieuDatLich phieuDatLichDomain = new PhieuDatLich(phieuDatLich.getId(),phieuDatLich.getAcount(),phieuDatLich.getKhachHang(),phieuDatLich.getSanCa(),
-//                                                 phieuDatLich.getNgayTaoPhieu(),phieuDatLich.getNgayDenSan(),phieuDatLich.getTgCheckIn(),phieuDatLich.getGhiChu(),phieuDatLich.getTongTienSan()
-//                                                ,phieuDatLich.getTrangThai());
-//        if (phieuRepo.save(phieuDatLichDomain) == true) {
-//            return "Lưu Thành Công";
-//        }
-//
-//        Acount acount = new Acount(phieuDatLich.getAcount().getId(), null, null, null, null, null, null);
-//        KhachHang khachHang = new KhachHang(phieuDatLich.getKhachHang().getId(), null, null, null, null, null, null);
-//        SanCa sanCa = new SanCa(phieuDatLich.getSanCa().getId(), null, null, null, 0, null);
-//        PhieuDatLich pdl = new PhieuDatLich(null, acount, khachHang, sanCa, phieuDatLich.getNgayTaoPhieu(), phieuDatLich.getNgayDenSan(), phieuDatLich.getTgCheckIn(), phieuDatLich.getGhiChu(), phieuDatLich.getMaQR(), phieuDatLich.getTongTienSan(), phieuDatLich.getTrangThai());
-//        if (phieuRepo.save(pdl) == true) {
-//            return "Lưu Thành Công";
-//        }
-//
-//        return "Lưu Thất Bại";
+        Acount acount = new Acount(phieuDatLich.getAcount().getId(), null, null, null, null, null, null);
+        KhachHang khachHang = new KhachHang(phieuDatLich.getKhachHang().getId(), null, null, null, null, null, null);
+        SanCa sanCa = new SanCa(phieuDatLich.getSanCa().getId(), null, null, null, 0, null);
+        PhieuDatLich pdl = new PhieuDatLich(null, acount, khachHang, sanCa, phieuDatLich.getNgayTaoPhieu(), phieuDatLich.getNgayDenSan(), phieuDatLich.getTgCheckIn(), phieuDatLich.getGhiChu(), phieuDatLich.getMaQR(), phieuDatLich.getTongTienSan(), phieuDatLich.getTrangThai());
+        if (phieuRepo.save(pdl) == true) {
+            return "Lưu Thành Công";
+        }
+
+        return "Lưu Thất Bại";
+
     }
 
     @Override
     public String update(QLPhieuDatLich phieuDatLich) {
 
-//        PhieuDatLich phieuDatLichDomain = new PhieuDatLich(phieuDatLich.getId(),phieuDatLich.getAcount(),phieuDatLich.getKhachHang(),phieuDatLich.getSanCa(),
-//                                                 phieuDatLich.getNgayTaoPhieu(),phieuDatLich.getNgayDenSan(),phieuDatLich.getTgCheckIn(),phieuDatLich.getGhiChu(),phieuDatLich.getTongTienSan()
-//                                                ,phieuDatLich.getTrangThai());
-//        if (phieuRepo.update(phieuDatLichDomain) == true) {
-//            return "Sửa Thành Công";
-//        }
+        PhieuDatLich phieuDatLichDomain = new PhieuDatLich(phieuDatLich.getId(),phieuDatLich.getAcount(),phieuDatLich.getKhachHang(),phieuDatLich.getSanCa(),
+                                                 phieuDatLich.getNgayTaoPhieu(),phieuDatLich.getNgayDenSan(),phieuDatLich.getTgCheckIn(),phieuDatLich.getGhiChu(),phieuDatLich.getTongTienSan()
+                                                ,phieuDatLich.getTrangThai());
+        if (phieuRepo.update(phieuDatLichDomain) == true) {
+            return "Sửa Thành Công";
+        }
 
-//        Acount acount = new Acount(phieuDatLich.getAcount().getId(), null, null, null, null, null, null);
-//        KhachHang khachHang = new KhachHang(phieuDatLich.getKhachHang().getId(), null, null, null, null, null, null);
-//        SanCa sanCa = new SanCa(phieuDatLich.getSanCa().getId(), null, null, null, 0, null);
-//        PhieuDatLich pdl = new PhieuDatLich(phieuDatLich.getId(), acount, khachHang, sanCa, phieuDatLich.getNgayTaoPhieu(), phieuDatLich.getNgayDenSan(), phieuDatLich.getTgCheckIn(), phieuDatLich.getGhiChu(), phieuDatLich.getMaQR(), phieuDatLich.getTongTienSan(), phieuDatLich.getTrangThai());
-//        if (phieuRepo.update(pdl) == true) {
-//            return "Sửa Thành Công";
-//        }
-//
-//        return "Sửa Thất Bại";
-        return null;
+        Acount acount = new Acount(phieuDatLich.getAcount().getId(), null, null, null, null, null, null);
+        KhachHang khachHang = new KhachHang(phieuDatLich.getKhachHang().getId(), null, null, null, null, null, null);
+        SanCa sanCa = new SanCa(phieuDatLich.getSanCa().getId(), null, null, null, 0, null);
+        PhieuDatLich pdl = new PhieuDatLich(phieuDatLich.getId(), acount, khachHang, sanCa, phieuDatLich.getNgayTaoPhieu(), phieuDatLich.getNgayDenSan(), phieuDatLich.getTgCheckIn(), phieuDatLich.getGhiChu(), phieuDatLich.getMaQR(), phieuDatLich.getTongTienSan(), phieuDatLich.getTrangThai());
+        if (phieuRepo.update(pdl) == true) {
+            return "Sửa Thành Công";
+        }
 
-//        PhieuDatLich phieuDatLichDomain = new PhieuDatLich(phieuDatLich.getId(),phieuDatLich.getAcount(),phieuDatLich.getKhachHang(),phieuDatLich.getSanCa(),
-//                                                 phieuDatLich.getNgayTaoPhieu(),phieuDatLich.getNgayDenSan(),phieuDatLich.getTgCheckIn(),phieuDatLich.getGhiChu(),phieuDatLich.getTongTienSan()
-//                                                ,phieuDatLich.getTrangThai());
-//        if (phieuRepo.update(phieuDatLichDomain) == true) {
-//            return "Sửa Thành Công";
-//        }
+        return "Sửa Thất Bại";
 
-//        Acount acount = new Acount(phieuDatLich.getAcount().getId(), null, null, null, null, null, null);
-//        KhachHang khachHang = new KhachHang(phieuDatLich.getKhachHang().getId(), null, null, null, null, null, null);
-//        SanCa sanCa = new SanCa(phieuDatLich.getSanCa().getId(), null, null, null, 0, null);
-//        PhieuDatLich pdl = new PhieuDatLich(phieuDatLich.getId(), acount, khachHang, sanCa, phieuDatLich.getNgayTaoPhieu(), phieuDatLich.getNgayDenSan(), phieuDatLich.getTgCheckIn(), phieuDatLich.getGhiChu(), phieuDatLich.getMaQR(), phieuDatLich.getTongTienSan(), phieuDatLich.getTrangThai());
-//        if (phieuRepo.update(pdl) == true) {
-//            return "Sửa Thành Công";
-//        }
-//
-//        return "Sửa Thất Bại";
     }
 
     @Override
-    public String delete(String id) {
-//        if (phieuRepo.delete(id) == true) {
-//            return "Xóa Thành Công";
-//        }
-//        return "Xóa Thất Bại";
+    public String delete(UUID id) {
+        if (phieuRepo.delete(id) == true) {
+            return "Xóa Thành Công";
+        }
+        return "Xóa Thất Bại";
         return null;
-//        if (phieuRepo.delete(id) == true) {
-//            return "Xóa Thành Công";
-//        }
-//        return "Xóa Thất Bại";
+        if (phieuRepo.delete(id) == true) {
+            return "Xóa Thành Công";
+        }
+        return "Xóa Thất Bại";
+        if (phieuRepo.delete(id) == true) {
+            return "Xóa Thành Công";
+        }
+        return "Xóa Thất Bại";
     }
 
     public static void main(String[] args) {
@@ -153,22 +112,22 @@ public class PhieuDatLichServiceImpl implements IPhieuDatLichService {
 
     @Override
     public List<PhieuDatLich> getPhieuDatLichByTT() {
-//        return phieuRepo.getPhieuDatLichByTT();
+        return phieuRepo.getPhieuDatLichByTT();
         return null;
-//        return phieuRepo.getPhieuDatLichByTT();
+        return phieuRepo.getPhieuDatLichByTT();
     }
 
     @Override
     public String updateTrangThai(PhieuDatLich phieuDatLich) {
-//        if (phieuRepo.update(phieuDatLich) == true) {
-//            return "Sửa Trạng Thái Thành Công";
-//        }
-//        return "Sửa Trạng Thái Thất Bại";
+        if (phieuRepo.update(phieuDatLich) == true) {
+            return "Sửa Trạng Thái Thành Công";
+        }
+        return "Sửa Trạng Thái Thất Bại";
         return null;
-//        if (phieuRepo.update(phieuDatLich) == true) {
-//            return "Sửa Trạng Thái Thành Công";
-//        }
-//        return "Sửa Trạng Thái Thất Bại";
+        if (phieuRepo.update(phieuDatLich) == true) {
+            return "Sửa Trạng Thái Thành Công";
+        }
+        return "Sửa Trạng Thái Thất Bại";
     }
 
     

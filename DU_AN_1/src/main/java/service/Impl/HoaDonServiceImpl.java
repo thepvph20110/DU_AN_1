@@ -5,7 +5,6 @@
 package service.Impl;
 
 import domainmodel.HoaDon;
-import enumclass.trangThaiHoaDon;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -37,11 +36,11 @@ public class HoaDonServiceImpl implements IHoaDonService {
     @Override
     public String save(QLHoaDon qLHoaDon) {
 
-//        HoaDon hoaDon = new HoaDon(qLHoaDon.getId(), qLHoaDon.getPhieuDatLich(), qLHoaDon.getNgayThanhToan(),
-//                        qLHoaDon.getDonGia(), qLHoaDon.getTongTien(), qLHoaDon.getGhiChu(), qLHoaDon.getTrangThai());
-//        if(hoaDonRepo.save(hoaDon) == true){
-//            return "Thêm Thành Công";
-//        }
+        HoaDon hoaDon = new HoaDon(qLHoaDon.getId(), qLHoaDon.getPhieuDatLich(), qLHoaDon.getNgayThanhToan(),
+                        qLHoaDon.getDonGia(), qLHoaDon.getTongTien(), qLHoaDon.getGhiChu(), qLHoaDon.getTrangThai());
+        if(hoaDonRepo.save(hoaDon) == true){
+            return "Thêm Thành Công";
+        }
 
 
         HoaDon hoaDon = new HoaDon(qLHoaDon.getId(), qLHoaDon.getMaHoaDon(), qLHoaDon.getPhieuDatLich(), null, qLHoaDon.getNgayThanhToan(),
@@ -55,13 +54,14 @@ public class HoaDonServiceImpl implements IHoaDonService {
     }
 
     @Override
-    public String update(QLHoaDon qLHoaDon, String id) {
+    public String update(QLHoaDon qLHoaDon, UUID id) {
+        HoaDon hoaDon = new HoaDon(qLHoaDon.getId(), qLHoaDon.getPhieuDatLich(), qLHoaDon.getNgayThanhToan(),
+                        qLHoaDon.getDonGia(), qLHoaDon.getTongTien(), qLHoaDon.getGhiChu(), qLHoaDon.getTrangThai());
+        if(hoaDonRepo.update(hoaDon) == true){
+            return "Sửa Thành Công";
+        }
 
-//        HoaDon hoaDon = new HoaDon(qLHoaDon.getId(), qLHoaDon.getPhieuDatLich(), qLHoaDon.getNgayThanhToan(),
-//                        qLHoaDon.getDonGia(), qLHoaDon.getTongTien(), qLHoaDon.getGhiChu(), qLHoaDon.getTrangThai());
-//        if(hoaDonRepo.update(hoaDon) == true){
-//            return "Sửa Thành Công";
-//        }
+
 
 
         HoaDon hoaDon = new HoaDon(qLHoaDon.getId(), qLHoaDon.getMaHoaDon(), qLHoaDon.getPhieuDatLich(), null, qLHoaDon.getNgayThanhToan(),
@@ -75,7 +75,7 @@ public class HoaDonServiceImpl implements IHoaDonService {
     }
 
     @Override
-    public String delete(String id) {
+    public String delete(UUID id) {
         if (hoaDonRepo.delete(id) == true) {
             return "Xóa Thành Công";
         }
@@ -105,7 +105,7 @@ public class HoaDonServiceImpl implements IHoaDonService {
     }
 
     @Override
-    public HoaDon findByHoaDonId(String uuid) {
+    public HoaDon findByHoaDonId(UUID uuid) {
         return hoaDonRepo.findByHoaDonId(uuid);
     }
 

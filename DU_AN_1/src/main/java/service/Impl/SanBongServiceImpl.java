@@ -83,9 +83,9 @@ public class SanBongServiceImpl implements ISanBongService {
             loaiSan =(LoaiSan) map.get(qLSanBong.getTenLoaiSan());
         }SanBong sanBong = new SanBong(qLSanBong.getId(), qLSanBong.getMaSanBong(), qLSanBong.getTenSanBong(), qLSanBong.getGiaSan(), qLSanBong.getSucChua(), loaiSan, qLSanBong.getTrangThai());
         if (re.deleteSanBong(sanBong)) {
-            return "Save Complete";
+            return "Delete Complete";
         } else {
-            return "Save Fail";
+            return "Delete Fail";
         }
     }
     
