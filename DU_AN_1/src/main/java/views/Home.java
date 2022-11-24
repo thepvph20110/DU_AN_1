@@ -33,13 +33,23 @@ import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneLayout;
 import javax.swing.border.Border;
+<<<<<<< HEAD
 import javax.swing.border.TitledBorder;
+=======
+import modelview.QLAcount;
+>>>>>>> acceb2419cc15f426a814e5cba3e404d0c4281e6
 import modelview.QLKhachHang;
 import modelview.QLSanBong;
 import modelview.QLSanCa;
+<<<<<<< HEAD
 import service.ISanBongService;
 import service.ISanCaService;
 import service.Impl.SanBongServiceImpl;
+=======
+import service.IAcountService;
+import service.ISanCaService;
+import service.Impl.AcountServiceImpl;
+>>>>>>> acceb2419cc15f426a814e5cba3e404d0c4281e6
 import service.Impl.SanCaServiceImpl;
 
 /**
@@ -47,6 +57,7 @@ import service.Impl.SanCaServiceImpl;
  * @author DANG VAN SY
  */
 public class Home extends javax.swing.JFrame {
+<<<<<<< HEAD
     
     public JPanel panelCa;
     public JPanel panelSan;
@@ -64,10 +75,18 @@ public class Home extends javax.swing.JFrame {
     private ISanBongService sanBongService = new SanBongServiceImpl();
     public List<JPanel> listPaneCa = new ArrayList<>();
 
+=======
+    private ISanCaService sanCaService = new SanCaServiceImpl();
+    private IAcountService acountService = new AcountServiceImpl();
+    public JPanel panel = new JPanel();
+
+    
+>>>>>>> acceb2419cc15f426a814e5cba3e404d0c4281e6
     public Home() {
         initComponents();
         time();
         showDongHo();
+<<<<<<< HEAD
         AddSan();
         
     }
@@ -163,6 +182,26 @@ public class Home extends javax.swing.JFrame {
         }
         
     }
+=======
+//        addSanPane();
+    }
+    
+//    public void addSanPane() {
+//        frame.setLayout(new FlowLayout());
+//        jPanel8 = new JPanel();
+//        paneTong = new JScrollPane();
+//        paneTong.setLayout(new ScrollPaneLayout());
+//        panel.setPreferredSize(new Dimension(1333, 324));
+//        panel.setBackground(new Color(186, 228, 229));
+//        jPanel8.add(panel);
+//        jPanel8.show();
+//        paneTong.add(jPanel8);
+////        paneTong.show();
+//        frame.add(paneTong);
+//        frame.show();
+//        
+//    }
+>>>>>>> acceb2419cc15f426a814e5cba3e404d0c4281e6
     
     private void time() {
         Date date = new Date();
@@ -301,7 +340,11 @@ public class Home extends javax.swing.JFrame {
         lbQLCa.setBackground(new java.awt.Color(166, 145, 92));
         lbQLCa.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbQLCa.setForeground(new java.awt.Color(255, 255, 255));
+<<<<<<< HEAD
         lbQLCa.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\ca.png")); // NOI18N
+=======
+        lbQLCa.setIcon(new javax.swing.ImageIcon("D:\\DU_AN_1\\DU_AN_1\\src\\main\\java\\views\\icon\\ca.png")); // NOI18N
+>>>>>>> acceb2419cc15f426a814e5cba3e404d0c4281e6
         lbQLCa.setText("Quản Lí Ca");
         lbQLCa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbQLCa.setOpaque(true);
@@ -320,7 +363,11 @@ public class Home extends javax.swing.JFrame {
         lbDichVu.setBackground(new java.awt.Color(166, 145, 92));
         lbDichVu.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbDichVu.setForeground(new java.awt.Color(255, 255, 255));
+<<<<<<< HEAD
         lbDichVu.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\service.png")); // NOI18N
+=======
+        lbDichVu.setIcon(new javax.swing.ImageIcon("D:\\DU_AN_1\\DU_AN_1\\src\\main\\java\\views\\icon\\service.png")); // NOI18N
+>>>>>>> acceb2419cc15f426a814e5cba3e404d0c4281e6
         lbDichVu.setText("Dịch Vụ");
         lbDichVu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbDichVu.setOpaque(true);
@@ -336,7 +383,11 @@ public class Home extends javax.swing.JFrame {
         lbHoaDon.setBackground(new java.awt.Color(166, 145, 92));
         lbHoaDon.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbHoaDon.setForeground(new java.awt.Color(255, 255, 255));
+<<<<<<< HEAD
         lbHoaDon.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\bill.png")); // NOI18N
+=======
+        lbHoaDon.setIcon(new javax.swing.ImageIcon("D:\\DU_AN_1\\DU_AN_1\\src\\main\\java\\views\\icon\\bill.png")); // NOI18N
+>>>>>>> acceb2419cc15f426a814e5cba3e404d0c4281e6
         lbHoaDon.setText("Hóa Đơn");
         lbHoaDon.setToolTipText("");
         lbHoaDon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -351,12 +402,19 @@ public class Home extends javax.swing.JFrame {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 lbHoaDonMouseExited(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lbHoaDonMousePressed(evt);
+            }
         });
 
         lbLichSu.setBackground(new java.awt.Color(166, 145, 92));
         lbLichSu.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbLichSu.setForeground(new java.awt.Color(255, 255, 255));
+<<<<<<< HEAD
         lbLichSu.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\history.png")); // NOI18N
+=======
+        lbLichSu.setIcon(new javax.swing.ImageIcon("D:\\DU_AN_1\\DU_AN_1\\src\\main\\java\\views\\icon\\history.png")); // NOI18N
+>>>>>>> acceb2419cc15f426a814e5cba3e404d0c4281e6
         lbLichSu.setText("Lịch Sử");
         lbLichSu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbLichSu.setOpaque(true);
@@ -375,7 +433,11 @@ public class Home extends javax.swing.JFrame {
         lbDangXuat.setBackground(new java.awt.Color(166, 145, 92));
         lbDangXuat.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbDangXuat.setForeground(new java.awt.Color(255, 255, 255));
+<<<<<<< HEAD
         lbDangXuat.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\logout.png")); // NOI18N
+=======
+        lbDangXuat.setIcon(new javax.swing.ImageIcon("D:\\DU_AN_1\\DU_AN_1\\src\\main\\java\\views\\icon\\Login32.png")); // NOI18N
+>>>>>>> acceb2419cc15f426a814e5cba3e404d0c4281e6
         lbDangXuat.setText("Đăng Xuất");
         lbDangXuat.setToolTipText("");
         lbDangXuat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -395,7 +457,11 @@ public class Home extends javax.swing.JFrame {
         lbQLSan.setBackground(new java.awt.Color(166, 145, 92));
         lbQLSan.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbQLSan.setForeground(new java.awt.Color(255, 255, 255));
+<<<<<<< HEAD
         lbQLSan.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\stadium.png")); // NOI18N
+=======
+        lbQLSan.setIcon(new javax.swing.ImageIcon("D:\\DU_AN_1\\DU_AN_1\\src\\main\\java\\views\\icon\\stadium.png")); // NOI18N
+>>>>>>> acceb2419cc15f426a814e5cba3e404d0c4281e6
         lbQLSan.setText("Quản Lí Sân");
         lbQLSan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbQLSan.setOpaque(true);
@@ -414,7 +480,11 @@ public class Home extends javax.swing.JFrame {
         lbLichDat.setBackground(new java.awt.Color(166, 145, 92));
         lbLichDat.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbLichDat.setForeground(new java.awt.Color(255, 255, 255));
+<<<<<<< HEAD
         lbLichDat.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\booking.png")); // NOI18N
+=======
+        lbLichDat.setIcon(new javax.swing.ImageIcon("D:\\DU_AN_1\\DU_AN_1\\src\\main\\java\\views\\icon\\booking.png")); // NOI18N
+>>>>>>> acceb2419cc15f426a814e5cba3e404d0c4281e6
         lbLichDat.setText("Lịch Đặt");
         lbLichDat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbLichDat.setOpaque(true);
@@ -430,7 +500,11 @@ public class Home extends javax.swing.JFrame {
         lbThongKe.setBackground(new java.awt.Color(166, 145, 92));
         lbThongKe.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbThongKe.setForeground(new java.awt.Color(255, 255, 255));
+<<<<<<< HEAD
         lbThongKe.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\ThongKe.png")); // NOI18N
+=======
+        lbThongKe.setIcon(new javax.swing.ImageIcon("D:\\DU_AN_1\\DU_AN_1\\src\\main\\java\\views\\icon\\ThongKe.png")); // NOI18N
+>>>>>>> acceb2419cc15f426a814e5cba3e404d0c4281e6
         lbThongKe.setText("Thống Kê");
         lbThongKe.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbThongKe.setOpaque(true);
@@ -446,7 +520,11 @@ public class Home extends javax.swing.JFrame {
         lbCheckIn.setBackground(new java.awt.Color(166, 145, 92));
         lbCheckIn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbCheckIn.setForeground(new java.awt.Color(255, 255, 255));
+<<<<<<< HEAD
         lbCheckIn.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\Check.png")); // NOI18N
+=======
+        lbCheckIn.setIcon(new javax.swing.ImageIcon("D:\\DU_AN_1\\DU_AN_1\\src\\main\\java\\views\\icon\\Check.png")); // NOI18N
+>>>>>>> acceb2419cc15f426a814e5cba3e404d0c4281e6
         lbCheckIn.setText("Check In");
         lbCheckIn.setToolTipText("");
         lbCheckIn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -525,7 +603,11 @@ public class Home extends javax.swing.JFrame {
         });
 
         lbSearch.setBackground(new java.awt.Color(255, 255, 255));
+<<<<<<< HEAD
         lbSearch.setIcon(new javax.swing.ImageIcon("D:\\TAI_LIEU_HOC_TAP\\Du_An_1_V1\\DU_AN_1\\src\\main\\java\\views\\icon\\search.png")); // NOI18N
+=======
+        lbSearch.setIcon(new javax.swing.ImageIcon("D:\\DU_AN_1\\DU_AN_1\\src\\main\\java\\views\\icon\\search.png")); // NOI18N
+>>>>>>> acceb2419cc15f426a814e5cba3e404d0c4281e6
         lbSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbSearch.setOpaque(true);
 
@@ -835,6 +917,7 @@ public class Home extends javax.swing.JFrame {
     private void btnDatLichActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatLichActionPerformed
         // TODO add your handling code here:
         QLKhachHang khachHang = new QLKhachHang();
+<<<<<<< HEAD
         QLSanCa qLSanCa = new QLSanCa();
         new FrmPhieuDatLich(khachHang, qLSanCa).setVisible(true);
     }//GEN-LAST:event_btnDatLichActionPerformed
@@ -851,6 +934,17 @@ public class Home extends javax.swing.JFrame {
     private void lbQLCaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbQLCaMouseClicked
         new FrmCa().setVisible(true);
     }//GEN-LAST:event_lbQLCaMouseClicked
+=======
+        QLSanCa qLSanCa = sanCaService.getOne();
+        QLAcount qLAcount = acountService.getOne();
+        new FrmPhieuDatLich(khachHang,qLSanCa,qLAcount).setVisible(true);
+    }//GEN-LAST:event_btnDatLichActionPerformed
+
+    private void lbHoaDonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbHoaDonMousePressed
+        // TODO add your handling code here:
+        new FrmHoaDon().setVisible(true);
+    }//GEN-LAST:event_lbHoaDonMousePressed
+>>>>>>> acceb2419cc15f426a814e5cba3e404d0c4281e6
 
     /**
      * @param args the command line arguments

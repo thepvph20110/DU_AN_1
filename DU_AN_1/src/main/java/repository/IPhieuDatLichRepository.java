@@ -13,13 +13,15 @@ import java.util.UUID;
  * @author ADMIN
  */
 public interface IPhieuDatLichRepository {
+
+    List<PhieuDatLich> getAll();
     
-     List<PhieuDatLich> getAll();
-    
+    List<PhieuDatLich> getPhieuDatLichByTT();
+ 
     boolean save(PhieuDatLich phieuDatLich);
-    
+
     boolean update(PhieuDatLich phieuDatLich);
-    
+
     boolean delete(UUID id);
-    
+
 }
