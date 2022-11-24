@@ -116,13 +116,9 @@ public class Home extends javax.swing.JFrame {
             panelSan.setLayout(new GridLayout(1, 6, 20, 20));
             for (int j = 1; j <= listSanCa.size(); j++) {
                 panelCa = new JPanel();
-                for (QLSanCa qLSanBong : listSanCa) {
-                    if (qLSanBong.getTrangThai() == trangThaiSanCa.CHO_NHAN_SAN) {
-                        panelCa.setBackground(new Color(255, 255, 0));
-                    } else {
-                        panelCa.setBackground(new Color(186, 228, 229));
-                    }
-                }
+                for (QLSanCa qLSanCa : listSanCa) {
+                    
+               
                 panelCa.setLayout(new FlowLayout());
                 panelCa.add(jPopupMenu);
                 panelCa.setPreferredSize(new Dimension(174, 254));
@@ -152,7 +148,7 @@ public class Home extends javax.swing.JFrame {
                 labelThoiGian.setFont(new Font("Tahoma", 1, 14));
                 labelLoaiSan.setForeground(Color.white);
                 labelLoaiSan.setFont(new Font("Tahoma", 1, 14));
-                labelTrangThai = new JLabel("Trạng Thái" + " " + i);
+                labelTrangThai = new JLabel(" "+qLSanCa.getTrangThai());
                 labelTrangThai.setForeground(Color.white);
                 labelTrangThai.setPreferredSize(new Dimension(100, 17));
                 panelCa.add(labelCa);
@@ -161,7 +157,7 @@ public class Home extends javax.swing.JFrame {
                 panelCa.add(labelTrangThai);
                 listPaneCa.add(panelCa);
                 panelSan.add(panelCa);
-                
+                 }
             }
             PaneTong.add(panelSan);
         }
