@@ -46,6 +46,7 @@ import service.ISanCaService;
 import service.Impl.AcountServiceImpl;
 import javax.swing.border.TitledBorder;
 import modelview.QLAcount;
+import modelview.QLCa;
 import modelview.QLKhachHang;
 import modelview.QLSanBong;
 import modelview.QLSanCa;
@@ -53,8 +54,10 @@ import service.ISanBongService;
 import service.ISanCaService;
 import service.Impl.SanBongServiceImpl;
 import service.IAcountService;
+import service.ICaService;
 import service.ISanCaService;
 import service.Impl.AcountServiceImpl;
+import service.Impl.CaServiceImpl;
 import service.Impl.SanCaServiceImpl;
 
 /**
@@ -75,8 +78,10 @@ public class Home extends javax.swing.JFrame {
     public JLabel labelTrangThai;
     private List<QLSanCa> listSanCa = new ArrayList<>();
     private List<QLSanBong> listSanBong = new ArrayList<>();
+    private List<QLCa> listCa = new ArrayList<>();
     private ISanCaService sanCaService = new SanCaServiceImpl();
     private ISanBongService sanBongService = new SanBongServiceImpl();
+    private ICaService caService = new CaServiceImpl();
     public List<JPanel> listPaneCa = new ArrayList<>();
     private IAcountService acountService = new AcountServiceImpl();
     public JPanel panel = new JPanel();
@@ -92,6 +97,7 @@ public class Home extends javax.swing.JFrame {
     public void AddSan() {
         listSanCa = sanCaService.getAll();
         listSanBong = sanBongService.getAll();
+        listCa = caService.getAll();
         System.out.println(listSanCa);
 //        PaneTong.setLayout(new BoxLayout(PaneTong, BoxLayout.X_AXIS));
         PaneTong.setLayout(new GridLayout(10000, 1, 20, 20));
@@ -119,22 +125,12 @@ public class Home extends javax.swing.JFrame {
         for (int i = 1; i <= listSanBong.size(); i++) {
             TitledBorder border = new TitledBorder("Sân" + " " + i);
             panelSan = new JPanel();
-//            for (QLSanCa qLSanBong : listSanCa) {
-//                if (qLSanBong.getTrangThai() == trangThaiSanCa.CHO_NHAN_SAN) {
-//                    panelSan.setBackground(new Color(255, 0, 51));
-//                } else {
-//                    panelSan.setBackground(new Color(186, 228, 229));
-//                }
-//            }
-
             panelSan.setBorder(border);
-
             panelSan.setPreferredSize(new Dimension(1325, 200));
             panelSan.setLayout(new GridLayout(1, 6, 20, 20));
-            for (int j = 1; j <= listSanCa.size(); j++) {
+            for (int j = 1; j <= listCa.size(); j++) {
                 panelCa = new JPanel();
                 for (QLSanCa qLSanCa : listSanCa) {
-
                     panelCa.setLayout(new FlowLayout());
                     panelCa.add(jPopupMenu);
                     panelCa.setPreferredSize(new Dimension(174, 254));
@@ -145,7 +141,6 @@ public class Home extends javax.swing.JFrame {
                         public void mouseReleased(java.awt.event.MouseEvent evt) {
                             panelCaInMouseReleased(evt);
                         }
-
                         private void panelCaInMouseReleased(MouseEvent evt) {
                             if (evt.isPopupTrigger()) {
                                 jPopupMenu.show(null, evt.getXOnScreen(), evt.getYOnScreen());
@@ -153,20 +148,19 @@ public class Home extends javax.swing.JFrame {
 
                         }
                     });
-                    panelCa.setLayout(new FlowLayout(10, 65, 20));
+                    panelCa.setLayout(new FlowLayout(10, 20, 30));
                     labelCa = new JLabel("Ca" + " " + j);
-                    labelCa.setLayout(new FlowLayout(10, 75, 20));
                     labelThoiGian = new JLabel("Thời gian");
-                    labelLoaiSan = new JLabel("Loại sân" + " " + j);
+                    labelLoaiSan = new JLabel("Loại sân" + " " + qLSanCa.getSucChua());
                     labelCa.setForeground(Color.white);
                     labelCa.setFont(new Font("Tahoma", 1, 16));
                     labelThoiGian.setForeground(Color.white);
                     labelThoiGian.setFont(new Font("Tahoma", 1, 14));
                     labelLoaiSan.setForeground(Color.white);
                     labelLoaiSan.setFont(new Font("Tahoma", 1, 14));
-                    labelTrangThai = new JLabel(" " +j);
+                    labelTrangThai = new JLabel(" Trạng thái: " + qLSanCa.getTrangThai());
                     labelTrangThai.setForeground(Color.white);
-                    labelTrangThai.setPreferredSize(new Dimension(100, 17));
+                    labelTrangThai.setPreferredSize(new Dimension(160, 17));
                     panelCa.add(labelCa);
                     panelCa.add(labelThoiGian);
                     panelCa.add(labelLoaiSan);
@@ -179,23 +173,7 @@ public class Home extends javax.swing.JFrame {
         }
 
     }
-//        addSanPane();
 
-//    public void addSanPane() {
-//        frame.setLayout(new FlowLayout());
-//        jPanel8 = new JPanel();
-//        paneTong = new JScrollPane();
-//        paneTong.setLayout(new ScrollPaneLayout());
-//        panel.setPreferredSize(new Dimension(1333, 324));
-//        panel.setBackground(new Color(186, 228, 229));
-//        jPanel8.add(panel);
-//        jPanel8.show();
-//        paneTong.add(jPanel8);
-////        paneTong.show();
-//        frame.add(paneTong);
-//        frame.show();
-//        
-//    }
     private void time() {
         Date date = new Date();
         lbTime.setText(date.toString());
@@ -598,7 +576,7 @@ public class Home extends javax.swing.JFrame {
         PaneTong.setLayout(PaneTongLayout);
         PaneTongLayout.setHorizontalGroup(
             PaneTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1357, Short.MAX_VALUE)
+            .addGap(0, 1387, Short.MAX_VALUE)
         );
         PaneTongLayout.setVerticalGroup(
             PaneTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -685,7 +663,7 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(btnDatLich)
                         .addGap(41, 41, 41))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(paneTong)
+                        .addComponent(paneTong, javax.swing.GroupLayout.DEFAULT_SIZE, 1406, Short.MAX_VALUE)
                         .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
@@ -719,9 +697,7 @@ public class Home extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 10, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -859,7 +835,6 @@ public class Home extends javax.swing.JFrame {
     private void lbDichVu1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDichVu1MouseExited
         // TODO add your handling code here:
     }//GEN-LAST:event_lbDichVu1MouseExited
-
 
     /**
      * @param args the command line arguments
