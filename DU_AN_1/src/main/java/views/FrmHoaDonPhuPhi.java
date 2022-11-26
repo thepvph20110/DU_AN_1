@@ -35,8 +35,8 @@ public class FrmHoaDonPhuPhi extends javax.swing.JFrame {
         showDataCbbPhuPhi();
     }
 
-    private UUID getIDHoaDon() {
-        UUID id = UUID.fromString((String) cbbHoaDon.getSelectedItem());
+    private String getIDHoaDon() {
+        String id = (String) cbbHoaDon.getSelectedItem();
         return id;
     }
 
@@ -79,7 +79,7 @@ public class FrmHoaDonPhuPhi extends javax.swing.JFrame {
         QLHoaDon_PhuPhi qLHoaDon_PhuPhi = new QLHoaDon_PhuPhi();
         qLHoaDon_PhuPhi.setId(null);
         
-        UUID idHoaDon = getIDHoaDon();
+        String idHoaDon = getIDHoaDon();
         QLHoaDon qLHoaDon = new QLHoaDon();
         qLHoaDon.setId(idHoaDon);
         qLHoaDon_PhuPhi.setHoaDon(qLHoaDon);
@@ -100,7 +100,7 @@ public class FrmHoaDonPhuPhi extends javax.swing.JFrame {
         QLHoaDon_PhuPhi qLHoaDon_PhuPhi = new QLHoaDon_PhuPhi();
         String id = txtID.getText();
         qLHoaDon_PhuPhi.setId(id);
-        UUID idHoaDon = getIDHoaDon();
+        String idHoaDon = getIDHoaDon();
         QLHoaDon qLHoaDon = new QLHoaDon();
         qLHoaDon.setId(idHoaDon);
         qLHoaDon_PhuPhi.setHoaDon(qLHoaDon);
