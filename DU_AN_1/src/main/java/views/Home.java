@@ -21,7 +21,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -85,13 +87,16 @@ public class Home extends javax.swing.JFrame {
     public List<JPanel> listPaneCa = new ArrayList<>();
     private IAcountService acountService = new AcountServiceImpl();
     public JPanel panel = new JPanel();
+    private Map<String, Object> map = new HashMap<>();
 
     public Home() {
         initComponents();
         time();
         showDongHo();
         AddSan();
-
+        for (QLSanCa qLSanCa : listSanCa) {
+            map.put(qLSanCa.getTenSanBong(), qLSanCa);
+        }
     }
 
     public void AddSan() {
@@ -122,53 +127,137 @@ public class Home extends javax.swing.JFrame {
         });
         jPopupMenu.add(itemtt);
         jPopupMenu.add(itemxoa);
-        for (int i = 1; i <= listSanBong.size(); i++) {
-            TitledBorder border = new TitledBorder("Sân" + " " + i);
+        for (int i = 0; i < listSanBong.size(); i++) {
+            TitledBorder border = new TitledBorder(listSanBong.get(i).getTenSanBong());
             panelSan = new JPanel();
             panelSan.setBorder(border);
             panelSan.setPreferredSize(new Dimension(1325, 200));
             panelSan.setLayout(new GridLayout(1, 6, 20, 20));
-            for (int j = 1; j <= listCa.size(); j++) {
-                panelCa = new JPanel();
-                for (QLSanCa qLSanCa : listSanCa) {
-                    panelCa.setLayout(new FlowLayout());
-                    panelCa.add(jPopupMenu);
-                    panelCa.setPreferredSize(new Dimension(174, 254));
-                    panelCa.setBackground(new Color(0, 153, 0));
-                    panelCa.setLayout(new BoxLayout(panelCa, BoxLayout.Y_AXIS));
-                    panelCa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-                    panelCa.addMouseListener(new java.awt.event.MouseAdapter() {
-                        public void mouseReleased(java.awt.event.MouseEvent evt) {
-                            panelCaInMouseReleased(evt);
-                        }
-                        private void panelCaInMouseReleased(MouseEvent evt) {
-                            if (evt.isPopupTrigger()) {
-                                jPopupMenu.show(null, evt.getXOnScreen(), evt.getYOnScreen());
+//            for (int j = 1; j <= listCa.size(); j++) {
+//                panelCa = new JPanel();
+            for (int j = 0; j < listSanCa.size(); j++) {
+                if (listSanBong.get(i).getTenSanBong().equals(listSanCa.get(j).getTenSanBong())) {
+                    if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.CHO_NHAN_SAN) {
+                        panelCa = new JPanel();
+                        panelCa.setBackground(new Color(255, 255, 0));
+                        panelCa.setLayout(new FlowLayout());
+                        panelCa.add(jPopupMenu);
+                        panelCa.setPreferredSize(new Dimension(174, 254));
+                        panelCa.setLayout(new BoxLayout(panelCa, BoxLayout.Y_AXIS));
+                        panelCa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+                        panelCa.addMouseListener(new java.awt.event.MouseAdapter() {
+                            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                                panelCaInMouseReleased(evt);
                             }
 
-                        }
-                    });
-                    panelCa.setLayout(new FlowLayout(10, 20, 30));
-                    labelCa = new JLabel("Ca" + " " + j);
-                    labelThoiGian = new JLabel("Thời gian");
-                    labelLoaiSan = new JLabel("Loại sân" + " " + qLSanCa.getSucChua());
-                    labelCa.setForeground(Color.white);
-                    labelCa.setFont(new Font("Tahoma", 1, 16));
-                    labelThoiGian.setForeground(Color.white);
-                    labelThoiGian.setFont(new Font("Tahoma", 1, 14));
-                    labelLoaiSan.setForeground(Color.white);
-                    labelLoaiSan.setFont(new Font("Tahoma", 1, 14));
-                    labelTrangThai = new JLabel(" Trạng thái: " + qLSanCa.getTrangThai());
-                    labelTrangThai.setForeground(Color.white);
-                    labelTrangThai.setPreferredSize(new Dimension(160, 17));
-                    panelCa.add(labelCa);
-                    panelCa.add(labelThoiGian);
-                    panelCa.add(labelLoaiSan);
-                    panelCa.add(labelTrangThai);
-                    listPaneCa.add(panelCa);
-                    panelSan.add(panelCa);
+                            private void panelCaInMouseReleased(MouseEvent evt) {
+                                if (evt.isPopupTrigger()) {
+                                    jPopupMenu.show(null, evt.getXOnScreen(), evt.getYOnScreen());
+                                }
+
+                            }
+                        });
+                        panelCa.setLayout(new FlowLayout(10, 20, 30));
+                        labelCa = new JLabel(listSanCa.get(j).getTenCa());
+                        labelThoiGian = new JLabel("Thời gian");
+                        labelLoaiSan = new JLabel("Loại sân" + " " + listSanCa.get(j).getSucChua());
+                        labelCa.setForeground(Color.white);
+                        labelCa.setFont(new Font("Tahoma", 1, 16));
+                        labelThoiGian.setForeground(Color.white);
+                        labelThoiGian.setFont(new Font("Tahoma", 1, 14));
+                        labelLoaiSan.setForeground(Color.white);
+                        labelLoaiSan.setFont(new Font("Tahoma", 1, 14));
+                        labelTrangThai = new JLabel(" Trạng thái: " + listSanCa.get(j).getTrangThai());
+                        labelTrangThai.setForeground(Color.white);
+                        labelTrangThai.setPreferredSize(new Dimension(160, 17));
+                        panelCa.add(labelCa);
+                        panelCa.add(labelThoiGian);
+                        panelCa.add(labelLoaiSan);
+                        panelCa.add(labelTrangThai);
+                        listPaneCa.add(panelCa);
+                        panelSan.add(panelCa);
+                    } else if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.KHONG_TRONG) {
+                        panelCa = new JPanel();
+                        panelCa.setBackground(new Color(255, 0, 51));
+                        panelCa.setLayout(new FlowLayout());
+                        panelCa.add(jPopupMenu);
+                        panelCa.setPreferredSize(new Dimension(174, 254));
+                        panelCa.setLayout(new BoxLayout(panelCa, BoxLayout.Y_AXIS));
+                        panelCa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+                        panelCa.addMouseListener(new java.awt.event.MouseAdapter() {
+                            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                                panelCaInMouseReleased(evt);
+                            }
+
+                            private void panelCaInMouseReleased(MouseEvent evt) {
+                                if (evt.isPopupTrigger()) {
+                                    jPopupMenu.show(null, evt.getXOnScreen(), evt.getYOnScreen());
+                                }
+
+                            }
+                        });
+                        panelCa.setLayout(new FlowLayout(10, 20, 30));
+                        labelCa = new JLabel(listSanCa.get(j).getTenCa());
+                        labelThoiGian = new JLabel("Thời gian");
+                        labelLoaiSan = new JLabel("Loại sân" + " " + listSanCa.get(j).getSucChua());
+                        labelCa.setForeground(Color.white);
+                        labelCa.setFont(new Font("Tahoma", 1, 16));
+                        labelThoiGian.setForeground(Color.white);
+                        labelThoiGian.setFont(new Font("Tahoma", 1, 14));
+                        labelLoaiSan.setForeground(Color.white);
+                        labelLoaiSan.setFont(new Font("Tahoma", 1, 14));
+                        labelTrangThai = new JLabel(" Trạng thái: " + listSanCa.get(j).getTrangThai());
+                        labelTrangThai.setForeground(Color.white);
+                        labelTrangThai.setPreferredSize(new Dimension(160, 17));
+                        panelCa.add(labelCa);
+                        panelCa.add(labelThoiGian);
+                        panelCa.add(labelLoaiSan);
+                        panelCa.add(labelTrangThai);
+                        listPaneCa.add(panelCa);
+                        panelSan.add(panelCa);
+                    } else {
+                        panelCa = new JPanel();
+                        panelCa.setLayout(new FlowLayout());
+                        panelCa.add(jPopupMenu);
+                        panelCa.setPreferredSize(new Dimension(174, 254));
+                        panelCa.setBackground(new Color(0, 153, 0));
+                        panelCa.setLayout(new BoxLayout(panelCa, BoxLayout.Y_AXIS));
+                        panelCa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+                        panelCa.addMouseListener(new java.awt.event.MouseAdapter() {
+                            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                                panelCaInMouseReleased(evt);
+                            }
+
+                            private void panelCaInMouseReleased(MouseEvent evt) {
+                                if (evt.isPopupTrigger()) {
+                                    jPopupMenu.show(null, evt.getXOnScreen(), evt.getYOnScreen());
+                                }
+
+                            }
+                        });
+                        panelCa.setLayout(new FlowLayout(10, 20, 30));
+                        labelCa = new JLabel(listSanCa.get(j).getTenCa());
+                        labelThoiGian = new JLabel("Thời gian");
+                        labelLoaiSan = new JLabel("Loại sân" + " " + listSanCa.get(j).getSucChua());
+                        labelCa.setForeground(Color.white);
+                        labelCa.setFont(new Font("Tahoma", 1, 16));
+                        labelThoiGian.setForeground(Color.white);
+                        labelThoiGian.setFont(new Font("Tahoma", 1, 14));
+                        labelLoaiSan.setForeground(Color.white);
+                        labelLoaiSan.setFont(new Font("Tahoma", 1, 14));
+                        labelTrangThai = new JLabel(" Trạng thái: " + listSanCa.get(j).getTrangThai());
+                        labelTrangThai.setForeground(Color.white);
+                        labelTrangThai.setPreferredSize(new Dimension(160, 17));
+                        panelCa.add(labelCa);
+                        panelCa.add(labelThoiGian);
+                        panelCa.add(labelLoaiSan);
+                        panelCa.add(labelTrangThai);
+                        listPaneCa.add(panelCa);
+                        panelSan.add(panelCa);
+                    }
                 }
             }
+//            }
             PaneTong.add(panelSan);
         }
 
