@@ -5,6 +5,7 @@
 package service.Impl;
 
 import domainmodel.HoaDon;
+import domainmodel.PhuPhi_HoaDon;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -25,8 +26,7 @@ public class HoaDonServiceImpl implements IHoaDonService {
     public List<QLHoaDon> getAll() {
         List<QLHoaDon> lHoaDons = new ArrayList<>();
         for (HoaDon hoaDon : hoaDonRepo.getAll()) {
-
-            QLHoaDon qLHoaDon = new QLHoaDon(hoaDon.getId(), hoaDon.getMaHoaDon(), hoaDon.getPhieuDatLich(), null, hoaDon.getNgayThanhToan(),
+            QLHoaDon qLHoaDon = new QLHoaDon(hoaDon.getId(), hoaDon.getMaHoaDon(), hoaDon.getPhieuDatLich(), null,hoaDon.getPhuPhi(), hoaDon.getNgayThanhToan(),
                     hoaDon.getDonGia(), hoaDon.getTongTien(), hoaDon.getGhiChu(), hoaDon.getTrangThai());
             lHoaDons.add(qLHoaDon);
         }
@@ -35,8 +35,7 @@ public class HoaDonServiceImpl implements IHoaDonService {
 
     @Override
     public String save(QLHoaDon qLHoaDon) {
-
-        HoaDon hoaDon = new HoaDon(qLHoaDon.getId(), qLHoaDon.getMaHoaDon(), qLHoaDon.getPhieuDatLich(), null, qLHoaDon.getNgayThanhToan(),
+        HoaDon hoaDon = new HoaDon(qLHoaDon.getId(), qLHoaDon.getMaHoaDon(), qLHoaDon.getPhieuDatLich(), null,null, qLHoaDon.getNgayThanhToan(),
                 qLHoaDon.getDonGia(), qLHoaDon.getTongTien(), qLHoaDon.getGhiChu(), qLHoaDon.getTrangThai());
         if (hoaDonRepo.save(hoaDon) == true) {
             return "Thêm Thành Công";
@@ -48,7 +47,7 @@ public class HoaDonServiceImpl implements IHoaDonService {
     @Override
     public String update(QLHoaDon qLHoaDon, String id) {
 
-        HoaDon hoaDon = new HoaDon(qLHoaDon.getId(), qLHoaDon.getMaHoaDon(), qLHoaDon.getPhieuDatLich(), null, qLHoaDon.getNgayThanhToan(),
+        HoaDon hoaDon = new HoaDon(qLHoaDon.getId(), qLHoaDon.getMaHoaDon(), qLHoaDon.getPhieuDatLich(), null,null, qLHoaDon.getNgayThanhToan(),
                 qLHoaDon.getDonGia(), qLHoaDon.getTongTien(), qLHoaDon.getGhiChu(), qLHoaDon.getTrangThai());
         if (hoaDonRepo.update(hoaDon) == true) {
             return "Sửa Thành Công";
@@ -69,7 +68,7 @@ public class HoaDonServiceImpl implements IHoaDonService {
     public List<QLHoaDon> getAllByTrangThai() {
         List<QLHoaDon> lHoaDons = new ArrayList<>();
         for (HoaDon hoaDon : hoaDonRepo.getAllByTrangThai()) {
-            QLHoaDon qLHoaDon = new QLHoaDon(hoaDon.getId(), hoaDon.getMaHoaDon(), hoaDon.getPhieuDatLich(), null, hoaDon.getNgayThanhToan(),
+            QLHoaDon qLHoaDon = new QLHoaDon(hoaDon.getId(), hoaDon.getMaHoaDon(), hoaDon.getPhieuDatLich(), null,hoaDon.getPhuPhi(), hoaDon.getNgayThanhToan(),
                     hoaDon.getDonGia(), hoaDon.getTongTien(), hoaDon.getGhiChu(), hoaDon.getTrangThai());
             lHoaDons.add(qLHoaDon);
         }
@@ -80,7 +79,7 @@ public class HoaDonServiceImpl implements IHoaDonService {
     public List<QLHoaDon> searchByName(String name) {
         List<QLHoaDon> lHoaDons = new ArrayList<>();
         for (HoaDon hoaDon : hoaDonRepo.searchByTen(name)) {
-            QLHoaDon qLHoaDon = new QLHoaDon(hoaDon.getId(), hoaDon.getMaHoaDon(), hoaDon.getPhieuDatLich(), null, hoaDon.getNgayThanhToan(),
+            QLHoaDon qLHoaDon = new QLHoaDon(hoaDon.getId(), hoaDon.getMaHoaDon(), hoaDon.getPhieuDatLich(), null, hoaDon.getPhuPhi(),hoaDon.getNgayThanhToan(),
                     hoaDon.getDonGia(), hoaDon.getTongTien(), hoaDon.getGhiChu(), hoaDon.getTrangThai());
             lHoaDons.add(qLHoaDon);
         }
@@ -90,6 +89,13 @@ public class HoaDonServiceImpl implements IHoaDonService {
     @Override
     public HoaDon findByHoaDonId(String uuid) {
         return hoaDonRepo.findByHoaDonId(uuid);
+    }
+
+    @Override
+    public String genMaHoaDon() {
+        String pp = hoaDonRepo.genMaHoaDon();
+        int newPP = (Integer.parseInt(pp.substring(2))) + 1;
+        return  pp.substring(0, 2) + "00"+ newPP ;
     }
 
 }

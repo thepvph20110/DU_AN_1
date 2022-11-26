@@ -8,10 +8,14 @@ import domainmodel.DichVu;
 import domainmodel.DoThue;
 import domainmodel.HoaDon;
 import domainmodel.HoaDonThanhToan;
+import domainmodel.PhuPhi;
+import domainmodel.PhuPhi_HoaDon;
+import domainmodel.SanCa;
 import domainmodel.ThanhToan;
 import enumclass.loaiHinhThanhToan;
 import enumclass.trangThaiDichVu;
 import enumclass.trangThaiHoaDon;
+import enumclass.trangThaiSanCa;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,7 +26,9 @@ import javax.swing.table.DefaultTableModel;
 import modelview.QLDichVu;
 import modelview.QLDoThue;
 import modelview.QLHoaDon;
+import modelview.QLHoaDon_PhuPhi;
 import modelview.QLNuocUong;
+import modelview.QLPhuPhi;
 import modelview.QLThanhToan;
 import repository.IDichVuRepository;
 import repository.impl.DichVuRepositoryImpl;
@@ -30,14 +36,18 @@ import repository.impl.DoThueRepositoryImpl;
 import repository.impl.HoaDonRepositoryImpl;
 import repository.impl.HoaDonThanhToanRepositoryImpl;
 import repository.impl.NuocUongRepositoryImpl;
+import repository.impl.SanCaRepository;
 import repository.impl.ThanhToanRepository;
 import service.IDoThueService;
 import service.IHoaDonService;
 import service.INuocUongService;
+import service.IPhuPhiService;
 import service.IThanhToanService;
 import service.Impl.DoThueServiceImpl;
+import service.Impl.HoaDonPhuPhiServiceImpl;
 import service.Impl.HoaDonServiceImpl;
 import service.Impl.NuocUongServiceImpl;
+import service.Impl.PhuPhiServiceImpl;
 import service.Impl.ThanhToanServiceImpl;
 
 /**
@@ -49,6 +59,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
     double giaCa;
     private QLHoaDon qLHoaDon;
     private DefaultComboBoxModel dcbmTT = new DefaultComboBoxModel();
+    private DefaultComboBoxModel dcbmPP = new DefaultComboBoxModel();
     private DefaultTableModel dtm = new DefaultTableModel();
     private DefaultTableModel dtmDV = new DefaultTableModel();
     private DefaultTableModel dtmCTDV = new DefaultTableModel();
@@ -66,6 +77,9 @@ public class FrmThanhToan extends javax.swing.JFrame {
 
     private List<QLDoThue> listDT = new ArrayList<>();
     private IDoThueService doThueService = new DoThueServiceImpl();
+
+    private IPhuPhiService phuPhiService = new PhuPhiServiceImpl();
+    private List<QLPhuPhi> qLPhuPhis = new ArrayList<>();
 
     /**
      * Creates new form FrmThanhToan
@@ -88,6 +102,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
         listDV = dichVuRepository.findByIdHoaDon(qLHoaDon.getId());
         jcbThanhToan.setModel(dcbmTT);
         qLThanhToans = iThanhToanService.getAllThanhToans();
+        jcbPhuPhi.setModel(dcbmPP);
         for (QLThanhToan lThanhToan : qLThanhToans) {
             dcbmTT.addElement(lThanhToan.getHinhThanhToan());
         }
@@ -100,9 +115,18 @@ public class FrmThanhToan extends javax.swing.JFrame {
         }
         txtTongTien.setText(String.valueOf(fillGia()));
         listNC = nuocUongService.getNuocUongNoPagination();
+        loadCBPhuPhi();
         addDataRowNuocUong(listNC);
         addDataRow(qLHoaDon);
         addDataRowDichVu(listDV);
+    }
+
+    public void loadCBPhuPhi() {
+        dcbmPP.removeAllElements();
+        qLPhuPhis = phuPhiService.getAllQLPhuPhis();
+        for (QLPhuPhi qLPhuPhi : qLPhuPhis) {
+            dcbmPP.addElement(qLPhuPhi.getTenPhuPhi());
+        }
     }
 
     public double fillGia() {
@@ -117,6 +141,13 @@ public class FrmThanhToan extends javax.swing.JFrame {
             if (dichVu.getDoThue() != null) {
                 giaCa += dichVu.getSoLuongDoThue() * dichVu.getDoThue().getDonGia();
             }
+        }
+
+        Set<PhuPhi_HoaDon> phuPhi_HoaDons = iHoaDonService.findByHoaDonId(qLHoaDon.getId()).getPhuPhi();
+        List<PhuPhi_HoaDon> listHDTT = new ArrayList<>();
+        listHDTT.addAll(phuPhi_HoaDons);
+        for (PhuPhi_HoaDon phi_HoaDon : listHDTT) {
+            giaCa += phi_HoaDon.getGiaPPHD();
         }
         return giaCa;
     }
@@ -208,7 +239,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
         jtbDichVu = new javax.swing.JTable();
         jPanel8 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jcbPhuPhi = new javax.swing.JComboBox<>();
         btnAddPhuPhi = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -533,9 +564,19 @@ public class FrmThanhToan extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel10.setText("Phụ Phí");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbPhuPhi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbPhuPhi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbPhuPhiActionPerformed(evt);
+            }
+        });
 
         btnAddPhuPhi.setText("+");
+        btnAddPhuPhi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddPhuPhiActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -545,7 +586,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcbPhuPhi, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnAddPhuPhi, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -561,7 +602,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jcbPhuPhi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(133, Short.MAX_VALUE))
         );
 
@@ -664,6 +705,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
 
     private void jcbDichVuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbDichVuActionPerformed
         // TODO add your handling code here:
+        JOptionPane.showMessageDialog(rootPane, "Hi");
         if (jcbDichVu.getSelectedIndex() == 0) {
             listNC.clear();
             listNC = nuocUongService.getNuocUongNoPagination();
@@ -738,7 +780,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
     private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
         // TODO add your handling code here:
         HoaDon hoaDon = iHoaDonService.findByHoaDonId(qLHoaDon.getId());
-        if (jcbThanhToan.getSelectedIndex() == 1) {
+        if (jcbThanhToan.getSelectedIndex() == 0) {
             if (txtNganHang.getText().matches("-?\\d+(\\.\\d+)?")) {
                 ThanhToan tt = new ThanhToanRepository().findOneByTrangThai(loaiHinhThanhToan.Chuyen_Khoan);
                 HoaDonThanhToan hdtt = new HoaDonThanhToan(null, "HDTT003", hoaDon, tt, Double.parseDouble(txtNganHang.getText()), null);
@@ -747,7 +789,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Không được nhập khí tự và để trống");
                 return;
             }
-        } else if (jcbThanhToan.getSelectedIndex() == 0) {
+        } else if (jcbThanhToan.getSelectedIndex() == 1) {
             if (txtTienKhach.getText().matches("-?\\d+(\\.\\d+)?")) {
                 ThanhToan tt = new ThanhToanRepository().findOneByTrangThai(loaiHinhThanhToan.Tien_Mat);
                 HoaDonThanhToan hdtt = new HoaDonThanhToan(null, "HDTT003", hoaDon, tt, Double.parseDouble(txtTienKhach.getText()), null);
@@ -757,6 +799,9 @@ public class FrmThanhToan extends javax.swing.JFrame {
                 return;
             }
         }
+        SanCa sanCa = hoaDon.getPhieuDatLich().getSanCa();
+        sanCa.setTrangThai(trangThaiSanCa.DANG_TRONG);
+        new SanCaRepository().saveOrUpdate(sanCa);
         hoaDon.setTongTien(giaCa);
         hoaDon.setTrangThai(trangThaiHoaDon.DA_THANH_TOAN);
         Date date = new Date();
@@ -854,7 +899,41 @@ public class FrmThanhToan extends javax.swing.JFrame {
                 addDataRowDichVu(dichVuRepository.findByIdHoaDon(qLHoaDon.getId()));
             }
         }
+        txtTongTien.setText(String.valueOf(fillGia()));
     }//GEN-LAST:event_jMenuSuaSoLuongActionPerformed
+
+    private void btnAddPhuPhiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPhuPhiActionPerformed
+        // TODO add your handling code here:
+        String tenPP = JOptionPane.showInputDialog(rootPane, "Nhập Tên Phụ Phí !!");
+        if (tenPP.isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Không Được Để Trống");
+        } else {
+            QLPhuPhi phuPhi = new QLPhuPhi(null, phuPhiService.genMaPhuPhi(), tenPP);
+            if (phuPhiService.save(phuPhi)) {
+                JOptionPane.showMessageDialog(rootPane, "Thêm Phụ Phí Thành Công");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Thất Bại");
+            }
+        }
+        loadCBPhuPhi();
+    }//GEN-LAST:event_btnAddPhuPhiActionPerformed
+
+    private void jcbPhuPhiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbPhuPhiActionPerformed
+        // TODO add your handling code here:
+        String gia = JOptionPane.showInputDialog(rootPane, "Xin Mời Nhập Gía");
+        if (gia.isEmpty() || !gia.matches("-?\\d+(\\.\\d+)?")) {
+            JOptionPane.showMessageDialog(rootPane, "Không Được Để Trống \n"
+                    + "Và Giá Phải Là Số");
+        } else {
+            QLHoaDon_PhuPhi hoaDon_PhuPhi = new QLHoaDon_PhuPhi(null, qLHoaDon, qLPhuPhis.get(jcbPhuPhi.getSelectedIndex()), Double.valueOf(gia), "ahs");
+            if (new HoaDonPhuPhiServiceImpl().save(hoaDon_PhuPhi)) {
+                JOptionPane.showMessageDialog(rootPane, "Thêm Thành Công");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Thêm That Bai");
+            }
+        }
+        txtTongTien.setText(String.valueOf(fillGia()));
+    }//GEN-LAST:event_jcbPhuPhiActionPerformed
 
     /**
      * @param args the command line arguments
@@ -863,7 +942,6 @@ public class FrmThanhToan extends javax.swing.JFrame {
     private javax.swing.JButton btnAddPhuPhi;
     private javax.swing.JButton btnThanhToan;
     private javax.swing.JButton btnThanhToan1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -897,6 +975,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel jTen;
     private javax.swing.JComboBox<String> jcbDichVu;
+    private javax.swing.JComboBox<String> jcbPhuPhi;
     private javax.swing.JComboBox<String> jcbThanhToan;
     private javax.swing.JPopupMenu jpopChiTietDV;
     private javax.swing.JTable jtbChiTietDichVu;

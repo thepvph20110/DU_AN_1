@@ -5,9 +5,7 @@
 package repository.impl;
 
 import domainmodel.Acount;
-import domainmodel.ChucVu;
 import java.util.List;
-import java.util.UUID;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import org.hibernate.Session;
@@ -94,5 +92,23 @@ public class AcountRepository implements IAcountRepository {
     public static void main(String[] args) {
         Acount ac = new AcountRepository().getOne();
         System.out.println("" + ac.getTenAcount());
+    }
+
+    @Override
+    public String genMaAccount() {
+       String top1 = null;
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            String hql = "FROM Account a order by a.maAcount DESC";
+            Query query = session.createQuery(hql);
+            session.getTransaction().begin();
+            query.setMaxResults(1);
+            Acount acount = (Acount) query.getSingleResult();
+            top1 = acount.getMaAcount();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e);
+            return top1;
+        }
+        return top1;
     }
 }
