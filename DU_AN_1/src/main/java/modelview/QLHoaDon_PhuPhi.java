@@ -19,6 +19,8 @@ public class QLHoaDon_PhuPhi {
 
     private QLPhuPhi phuPhi;
 
-    private trangThaiPhuPhiHoaDon trangThai = trangThaiPhuPhiHoaDon.Da_Tra;
+    private double giaPPHD;
+    
+    private String moTa;
 
 }

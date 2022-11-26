@@ -12,5 +12,5 @@ public interface IPhuPhiService {
 
     boolean update(QLPhuPhi qLphuPhi);
 
-    boolean delete(QLPhuPhi qLphuPhi);
+    boolean delete(String id);
 }
