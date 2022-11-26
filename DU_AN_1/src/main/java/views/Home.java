@@ -75,9 +75,7 @@ public class Home extends javax.swing.JFrame {
     public JLabel labelLoaiSan;
     public JLabel labelSan;
     public JLabel labelGiaSan;
-    public JPopupMenu jPopupMenu = new JPopupMenu();
-    public JMenuItem itemtt;
-    public JMenuItem itemxoa;
+    public JPopupMenu jPopupMenu;
     public JLabel labelTrangThai;
     private List<QLSanCa> listSanCa = new ArrayList<>();
     private List<QLSanBong> listSanBong = new ArrayList<>();
@@ -90,6 +88,8 @@ public class Home extends javax.swing.JFrame {
     public JPanel panel = new JPanel();
     public JMenuItem itemCheckIn;
     public JMenuItem itemDatLich;
+    public JMenuItem itemxoa;
+    public JMenuItem itemtt;
 
     public Home() {
         initComponents();
@@ -106,15 +106,6 @@ public class Home extends javax.swing.JFrame {
 
         PaneTong.setLayout(new GridLayout(10000, 1, 20, 20));
 
-        JMenuItem itemtt = new JMenuItem("Đổi trạng thái");
-        JMenuItem itemxoa = new JMenuItem("Xóa");
-        itemCheckIn = new JMenuItem("Check In");
-        itemDatLich = new JMenuItem("Đặt Lịch");
-
-        jPopupMenu.add(itemtt);
-        jPopupMenu.add(itemxoa);
-        jPopupMenu.add(itemCheckIn);
-        jPopupMenu.add(itemDatLich);
         for (int i = 0; i < listSanBong.size(); i++) {
             TitledBorder border = new TitledBorder(listSanBong.get(i).getTenSanBong());
             panelSan = new JPanel();
@@ -123,15 +114,18 @@ public class Home extends javax.swing.JFrame {
             panelSan.setLayout(new GridLayout(1, 6, 20, 20));
             for (int j = 0; j < listSanCa.size(); j++) {
                 if (listSanBong.get(i).getTenSanBong().equals(listSanCa.get(j).getTenSanBong())) {
-                    itemxoa.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-//                            JOptionPane.showMessageDialog(panelSan, "heloo");
-                            panelCa.setBackground(Color.ORANGE);
-                            jPopupMenu.setVisible(false);
-                        }
-                    });
+
                     if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.CHO_NHAN_SAN) {
+                        jPopupMenu = new JPopupMenu();
+                        jPopupMenu.removeAll();
+                        itemtt = new JMenuItem("Đổi trạng thái");
+                        itemxoa = new JMenuItem("Xóa");
+                        itemCheckIn = new JMenuItem("Check In");
+                        itemDatLich = new JMenuItem("Đặt Lịch");
+                        jPopupMenu.add(itemtt);
+                        jPopupMenu.add(itemxoa);
+                        jPopupMenu.add(itemCheckIn);
+                        jPopupMenu.add(itemDatLich);
                         panelCa = new JPanel();
                         panelCa.setBackground(new Color(255, 255, 0));
                         panelCa.setLayout(new FlowLayout());
@@ -149,6 +143,16 @@ public class Home extends javax.swing.JFrame {
                                     jPopupMenu.show(null, evt.getXOnScreen(), evt.getYOnScreen());
                                 }
 
+                            }
+                        });
+                        itemtt.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+//                            JOptionPane.showMessageDialog(panelSan, "heloo");
+
+                                panelCa.setBackground(Color.ORANGE);
+
+                                jPopupMenu.setVisible(false);
                             }
                         });
                         panelCa.setLayout(new FlowLayout(10, 20, 20));
@@ -176,6 +180,16 @@ public class Home extends javax.swing.JFrame {
                         listPaneCa.add(panelCa);
                         panelSan.add(panelCa);
                     } else if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.KHONG_TRONG) {
+                        jPopupMenu = new JPopupMenu();
+                        jPopupMenu.removeAll();
+                        itemtt = new JMenuItem("Đổi trạng thái");
+                        itemxoa = new JMenuItem("Xóa");
+                        itemCheckIn = new JMenuItem("Check In");
+                        itemDatLich = new JMenuItem("Đặt Lịch");
+                        jPopupMenu.add(itemtt);
+                        jPopupMenu.add(itemxoa);
+                        jPopupMenu.add(itemCheckIn);
+                        jPopupMenu.add(itemDatLich);
                         panelCa = new JPanel();
                         panelCa.setBackground(new Color(255, 0, 51));
                         panelCa.setLayout(new FlowLayout());
@@ -193,6 +207,16 @@ public class Home extends javax.swing.JFrame {
                                     jPopupMenu.show(null, evt.getXOnScreen(), evt.getYOnScreen());
                                 }
 
+                            }
+                        });
+                        itemtt.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+//                            JOptionPane.showMessageDialog(panelSan, "heloo");
+
+                                panelCa.setBackground(Color.ORANGE);
+
+                                jPopupMenu.setVisible(false);
                             }
                         });
                         panelCa.setLayout(new FlowLayout(10, 20, 20));
@@ -220,6 +244,16 @@ public class Home extends javax.swing.JFrame {
                         listPaneCa.add(panelCa);
                         panelSan.add(panelCa);
                     } else {
+                        jPopupMenu = new JPopupMenu();
+                        jPopupMenu.removeAll();
+                        itemtt = new JMenuItem("Đổi trạng thái");
+                        itemxoa = new JMenuItem("Xóa");
+                        itemCheckIn = new JMenuItem("Check In");
+                        itemDatLich = new JMenuItem("Đặt Lịch");
+                        jPopupMenu.add(itemtt);
+                        jPopupMenu.add(itemxoa);
+                        jPopupMenu.add(itemCheckIn);
+                        jPopupMenu.add(itemDatLich);
                         panelCa = new JPanel();
                         panelCa.setLayout(new FlowLayout());
                         panelCa.add(jPopupMenu);
@@ -237,6 +271,16 @@ public class Home extends javax.swing.JFrame {
                                     jPopupMenu.show(null, evt.getXOnScreen(), evt.getYOnScreen());
                                 }
 
+                            }
+                        });
+                        itemtt.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+//                            JOptionPane.showMessageDialog(panelSan, "heloo");
+
+                                panelCa.setBackground(Color.ORANGE);
+
+                                jPopupMenu.setVisible(false);
                             }
                         });
                         panelCa.setLayout(new FlowLayout(10, 20, 20));
