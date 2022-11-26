@@ -9,5 +9,5 @@ public interface IPhuPhiHoaDonRepository {
 
     boolean save(PhuPhi_HoaDon phuPhi_HoaDon);
 
-    boolean delete(PhuPhi_HoaDon phuPhi_HoaDon);
+    boolean delete(String id);
 }

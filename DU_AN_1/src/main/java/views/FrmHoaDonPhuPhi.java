@@ -36,7 +36,13 @@ public class FrmHoaDonPhuPhi extends javax.swing.JFrame {
     }
 
     private String getIDHoaDon() {
-        String id = (String) cbbHoaDon.getSelectedItem();
+        String maHoaDon = (String) cbbHoaDon.getSelectedItem();
+        String id = null;
+        for (int i = 0; i < lstQLHoaDons.size(); i++) {
+            if (lstQLHoaDons.get(i).getMaHoaDon().equals(maHoaDon)) {
+                id = lstQLHoaDons.get(i).getId();
+            }
+        }
         return id;
     }
 
@@ -72,27 +78,29 @@ public class FrmHoaDonPhuPhi extends javax.swing.JFrame {
     }
 
     private void loadDataCbbPhuPhi(List<QLPhuPhi> lstQLPhuPhis) {
-        lstQLPhuPhis.forEach((t) -> cbbPhuPhi.addItem(String.valueOf(t.getMaPhuPhi())));
+        lstQLPhuPhis.forEach((t) -> cbbPhuPhi.addItem(String.valueOf(t.getId())));
     }
 
     private QLHoaDon_PhuPhi getFormInput() {
         QLHoaDon_PhuPhi qLHoaDon_PhuPhi = new QLHoaDon_PhuPhi();
         qLHoaDon_PhuPhi.setId(null);
-        
-        String idHoaDon = getIDHoaDon();
+
+        String idHoaDon = (String) cbbHoaDon.getSelectedItem();
         QLHoaDon qLHoaDon = new QLHoaDon();
         qLHoaDon.setId(idHoaDon);
         qLHoaDon_PhuPhi.setHoaDon(qLHoaDon);
-        
-        String idPhuPhi = getIDPhuPhi();
-        QLPhuPhi qLPhuPhi = new QLPhuPhi(idPhuPhi);
+
+        String idPhuPhi = (String) cbbPhuPhi.getSelectedItem();
+        QLPhuPhi qLPhuPhi = new QLPhuPhi();
+        qLPhuPhi.setId(idPhuPhi);
         qLHoaDon_PhuPhi.setPhuPhi(qLPhuPhi);
-        
-        if (rdoDaTra.isSelected()) {
-            qLHoaDon_PhuPhi.setTrangThai(trangThaiPhuPhiHoaDon.Da_Tra);
-        } else {
-            qLHoaDon_PhuPhi.setTrangThai(trangThaiPhuPhiHoaDon.Chua_Tra);
-        }
+
+        double giaPPHD = Double.valueOf(txtGia.getText());
+        qLHoaDon_PhuPhi.setGiaPPHD(giaPPHD);
+
+        String moTa = txtMoTa.getText();
+        qLHoaDon_PhuPhi.setMoTa(moTa);
+
         return qLHoaDon_PhuPhi;
     }
 
@@ -100,18 +108,23 @@ public class FrmHoaDonPhuPhi extends javax.swing.JFrame {
         QLHoaDon_PhuPhi qLHoaDon_PhuPhi = new QLHoaDon_PhuPhi();
         String id = txtID.getText();
         qLHoaDon_PhuPhi.setId(id);
-        String idHoaDon = getIDHoaDon();
+
+        String idHoaDon = (String) cbbHoaDon.getSelectedItem();
         QLHoaDon qLHoaDon = new QLHoaDon();
         qLHoaDon.setId(idHoaDon);
         qLHoaDon_PhuPhi.setHoaDon(qLHoaDon);
-        String idPhuPhi = getIDPhuPhi();
-        QLPhuPhi qLPhuPhi = new QLPhuPhi(idPhuPhi);
+
+        String idPhuPhi = (String) cbbPhuPhi.getSelectedItem();
+        QLPhuPhi qLPhuPhi = new QLPhuPhi();
+        qLPhuPhi.setId(idPhuPhi);
         qLHoaDon_PhuPhi.setPhuPhi(qLPhuPhi);
-        if (rdoDaTra.isSelected()) {
-            qLHoaDon_PhuPhi.setTrangThai(trangThaiPhuPhiHoaDon.Da_Tra);
-        } else {
-            qLHoaDon_PhuPhi.setTrangThai(trangThaiPhuPhiHoaDon.Chua_Tra);
-        }
+
+        double giaPPHD = Double.valueOf(txtGia.getText());
+        qLHoaDon_PhuPhi.setGiaPPHD(giaPPHD);
+
+        String moTa = txtMoTa.getText();
+        qLHoaDon_PhuPhi.setMoTa(moTa);
+
         return qLHoaDon_PhuPhi;
     }
 
@@ -120,7 +133,7 @@ public class FrmHoaDonPhuPhi extends javax.swing.JFrame {
         iHoaDon_PhuPhiService = new HoaDonPhuPhiServiceImpl();
         lstHoaDon_PhuPhis = iHoaDon_PhuPhiService.getALlLHoaDon_PhuPhis();
         tbPhuPhiHoaDon.setModel(dtm = new DefaultTableModel());
-        String[] header = {"ID", "ID HÓA ĐƠN", "ID PHỤ PHÍ", "TRẠNG THÁI"};
+        String[] header = {"ID", "MÃ HÓA ĐƠN", "MÃ PHỤ PHÍ", "GIÁ PPHD", "MÔ TẢ"};
         dtm.setColumnIdentifiers(header);
         loadDataTable(lstHoaDon_PhuPhis);
 
@@ -129,7 +142,7 @@ public class FrmHoaDonPhuPhi extends javax.swing.JFrame {
     private void loadDataTable(List<QLHoaDon_PhuPhi> lstHoaDon_PhuPhis) {
         dtm.setRowCount(0);
         for (QLHoaDon_PhuPhi hoaDon_PhuPhi : lstHoaDon_PhuPhis) {
-            Object[] toData = {hoaDon_PhuPhi.getId(), hoaDon_PhuPhi.getHoaDon().getId(), hoaDon_PhuPhi.getPhuPhi().getId(), hoaDon_PhuPhi.getTrangThai()};
+            Object[] toData = {hoaDon_PhuPhi.getId(), hoaDon_PhuPhi.getHoaDon().getId(), hoaDon_PhuPhi.getPhuPhi().getId(), hoaDon_PhuPhi.getGiaPPHD(), hoaDon_PhuPhi.getMoTa()};
             dtm.addRow(toData);
         }
     }
@@ -144,7 +157,6 @@ public class FrmHoaDonPhuPhi extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
@@ -152,11 +164,13 @@ public class FrmHoaDonPhuPhi extends javax.swing.JFrame {
         txtID = new javax.swing.JTextField();
         cbbHoaDon = new javax.swing.JComboBox<>();
         cbbPhuPhi = new javax.swing.JComboBox<>();
-        rdoDaTra = new javax.swing.JRadioButton();
-        rdoCHuaTra = new javax.swing.JRadioButton();
         btnThem = new javax.swing.JButton();
         btnSua = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
+        txtGia = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txtMoTa = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -184,20 +198,12 @@ public class FrmHoaDonPhuPhi extends javax.swing.JFrame {
 
         jLabel3.setText("PHỤ PHÍ:");
 
-        jLabel4.setText("TRẠNG THÁI:");
-
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setText("QUẢN LÝ PHỤ PHÍ HÓA ĐƠN");
 
         cbbHoaDon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         cbbPhuPhi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        buttonGroup1.add(rdoDaTra);
-        rdoDaTra.setText("Đã Trả");
-
-        buttonGroup1.add(rdoCHuaTra);
-        rdoCHuaTra.setText("Chưa Trả");
 
         btnThem.setText("THÊM");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
@@ -219,6 +225,10 @@ public class FrmHoaDonPhuPhi extends javax.swing.JFrame {
                 btnXoaActionPerformed(evt);
             }
         });
+
+        jLabel4.setText("GIÁ PPHD:");
+
+        jLabel6.setText("MÔ TẢ:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -242,21 +252,24 @@ public class FrmHoaDonPhuPhi extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel2))
-                        .addGap(12, 12, 12)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(12, 12, 12)
+                                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(12, 12, 12)
+                                .addComponent(txtGia, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtMoTa, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(rdoDaTra, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(43, 43, 43)
-                                .addComponent(rdoCHuaTra, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel3)))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cbbHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -266,11 +279,11 @@ public class FrmHoaDonPhuPhi extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(95, 95, 95)
+                .addGap(84, 84, 84)
                 .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -285,20 +298,23 @@ public class FrmHoaDonPhuPhi extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbbHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
                     .addComponent(jLabel3)
                     .addComponent(cbbPhuPhi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rdoDaTra)
-                    .addComponent(rdoCHuaTra))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtMoTa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnThem)
-                    .addComponent(btnSua)
-                    .addComponent(btnXoa))
+                    .addComponent(btnXoa)
+                    .addComponent(btnSua))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -326,8 +342,8 @@ public class FrmHoaDonPhuPhi extends javax.swing.JFrame {
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // TODO add your handling code here:
-        QLHoaDon_PhuPhi qLHoaDon_PhuPhi = getFormInputUpdate();
-        iHoaDon_PhuPhiService.delete(qLHoaDon_PhuPhi);
+        String id = txtID.getText();
+        iHoaDon_PhuPhiService.delete(id);
         lstHoaDon_PhuPhis = iHoaDon_PhuPhiService.getALlLHoaDon_PhuPhis();
         loadDataTable(lstHoaDon_PhuPhis);
     }//GEN-LAST:event_btnXoaActionPerformed
@@ -339,13 +355,10 @@ public class FrmHoaDonPhuPhi extends javax.swing.JFrame {
         txtID.setText(String.valueOf(qLHoaDon_PhuPhi.getId()));
         String idHoaDon = String.valueOf(qLHoaDon_PhuPhi.getHoaDon().getId());
         cbbHoaDon.setSelectedItem(idHoaDon);
-        String maPhuPhi = String.valueOf(qLHoaDon_PhuPhi.getPhuPhi().getMaPhuPhi());
-        cbbPhuPhi.setSelectedItem(maPhuPhi);
-        if (qLHoaDon_PhuPhi.getTrangThai() == trangThaiPhuPhiHoaDon.Da_Tra) {
-            rdoDaTra.setSelected(true);
-        } else {
-            rdoCHuaTra.setSelected(true);
-        }
+        String idPhuPhi = String.valueOf(qLHoaDon_PhuPhi.getPhuPhi().getId());
+        cbbPhuPhi.setSelectedItem(idPhuPhi);
+        txtGia.setText(String.valueOf(qLHoaDon_PhuPhi.getGiaPPHD()));
+        txtMoTa.setText(qLHoaDon_PhuPhi.getMoTa());
     }//GEN-LAST:event_tbPhuPhiHoaDonMouseClicked
 
     /**
@@ -395,13 +408,14 @@ public class FrmHoaDonPhuPhi extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JRadioButton rdoCHuaTra;
-    private javax.swing.JRadioButton rdoDaTra;
     private javax.swing.JTable tbPhuPhiHoaDon;
+    private javax.swing.JTextField txtGia;
     private javax.swing.JTextField txtID;
+    private javax.swing.JTextField txtMoTa;
     // End of variables declaration//GEN-END:variables
 }

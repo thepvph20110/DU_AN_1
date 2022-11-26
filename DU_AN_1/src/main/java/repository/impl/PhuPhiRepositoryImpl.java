@@ -40,20 +40,19 @@ public class PhuPhiRepositoryImpl implements IPhuPhiRepository {
     }
 
     @Override
-    public boolean delete(PhuPhi phuPhi) {
-        boolean check;
-        Transaction transaction = null;
-        try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
-            transaction = session.beginTransaction();
-            session.delete(phuPhi);
-            check = true;
-            transaction.commit();
+    public boolean delete(String id) {
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            String hql = "DELETE FROM PhuPhi WHERE id = :id";
+            Query query = session.createQuery(hql);
+            query.setParameter("id", id);
+            session.getTransaction().begin();
+            query.executeUpdate();
+            session.getTransaction().commit();
         } catch (Exception e) {
-            e.printStackTrace();
-            check = false;
-            transaction.rollback();
+            System.out.println(e);
+            return false;
         }
-        return check;
+        return true;
     }
 
 }

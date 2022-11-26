@@ -60,20 +60,19 @@ public class ThanhToanRepository implements IThanhToanRepository {
     }
 
     @Override
-    public boolean delete(ThanhToan thanhToan) {
-        boolean check;
-        Transaction transaction = null;
-        try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
-            transaction = session.beginTransaction();
-            session.delete(thanhToan);
-            check = true;
-            transaction.commit();
+    public boolean delete(String id) {
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            String hql = "DELETE FROM ThanhToan WHERE id = :id";
+            Query query = session.createQuery(hql);
+            query.setParameter("id", id);
+            session.getTransaction().begin();
+            query.executeUpdate();
+            session.getTransaction().commit();
         } catch (Exception e) {
-            e.printStackTrace();
-            check = false;
-            transaction.commit();
+            System.out.println(e);
+            return false;
         }
-        return check;
+        return true;
     }
 
     public static void main(String[] args) {

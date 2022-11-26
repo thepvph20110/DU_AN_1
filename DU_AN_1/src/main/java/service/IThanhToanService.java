@@ -11,5 +11,5 @@ public interface IThanhToanService {
 
     boolean update(QLThanhToan qLThanhToan);
 
-    boolean delete(QLThanhToan qLThanhToan);
+    boolean delete(String id);
 }
