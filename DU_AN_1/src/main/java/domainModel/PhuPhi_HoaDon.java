@@ -4,6 +4,7 @@
  */
 package domainmodel;
 
+import enumclass.trangThaiPhuPhi;
 import enumclass.trangThaiPhuPhiHoaDon;
 import java.util.Date;
 import java.util.UUID;
@@ -41,6 +42,7 @@ public class PhuPhi_HoaDon {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idPhuPhi")
     private PhuPhi phuPhi;
-    @Column(nullable = false)
-    private trangThaiPhuPhiHoaDon trangThai = trangThaiPhuPhiHoaDon.Da_Tra;
+    private double giaPPHD;
+    @Column(columnDefinition = "nvarchar(Max)")
+    private String moTa;
 }
