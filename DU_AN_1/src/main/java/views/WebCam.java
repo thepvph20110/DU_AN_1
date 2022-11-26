@@ -166,6 +166,11 @@ public class WebCam extends javax.swing.JFrame implements Runnable, ThreadFactor
     public Thread newThread(Runnable r) {
         Thread t = new Thread(r, " ");
         t.setDaemon(true);
+        try {
+            t.sleep(300);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(WebCam.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return t;
     }
 
