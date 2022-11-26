@@ -18,16 +18,4 @@ public class QLPhuPhi {
     private String maPhuPhi;
 
     private String tenPhuPhi;
-
-    private double giaPhuPhi;
-
-    private String moTa;
-
-    private trangThaiPhuPhi trangThai = trangThaiPhuPhi.Co;
-
-    public QLPhuPhi(String id) {
-        this.id = id;
-    }
-    
-    
 }

@@ -27,15 +27,6 @@ public class FrmQLPhuPhi extends javax.swing.JFrame {
         ql.setMaPhuPhi(ma);
         String ten = txtTen.getText();
         ql.setTenPhuPhi(ten);
-        Double gia = Double.valueOf(txtGia.getText());
-        ql.setGiaPhuPhi(gia);
-        String moTa = txtMota.getText();
-        ql.setMoTa(moTa);
-        if (rdoCo.isSelected()) {
-            ql.setTrangThai(trangThaiPhuPhi.Co);
-        } else {
-            ql.setTrangThai(trangThaiPhuPhi.Khong);
-        }
         return ql;
     }
 
@@ -47,15 +38,6 @@ public class FrmQLPhuPhi extends javax.swing.JFrame {
         ql.setMaPhuPhi(ma);
         String ten = txtTen.getText();
         ql.setTenPhuPhi(ten);
-        Double gia = Double.valueOf(txtGia.getText());
-        ql.setGiaPhuPhi(gia);
-        String moTa = txtMota.getText();
-        ql.setMoTa(moTa);
-        if (rdoCo.isSelected()) {
-            ql.setTrangThai(trangThaiPhuPhi.Co);
-        } else {
-            ql.setTrangThai(trangThaiPhuPhi.Khong);
-        }
         return ql;
     }
 
@@ -64,7 +46,7 @@ public class FrmQLPhuPhi extends javax.swing.JFrame {
         lstQLPhuPhis = new ArrayList<>();
         iPhuPhiService = new PhuPhiServiceImpl();
         lstQLPhuPhis = iPhuPhiService.getAllQLPhuPhis();
-        String[] header = {"ID", "MÃ", "TÊN", "GIÁ", "MÔ TẢ", "TRẠNG THÁI"};
+        String[] header = {"ID", "MÃ", "TÊN"};
         dtm.setColumnIdentifiers(header);
         loadDataTable(lstQLPhuPhis);
     }
@@ -72,7 +54,7 @@ public class FrmQLPhuPhi extends javax.swing.JFrame {
     private void loadDataTable(List<QLPhuPhi> lstQLPhuPhis) {
         dtm.setRowCount(0);
         for (QLPhuPhi l : lstQLPhuPhis) {
-            Object[] toData = {l.getId(), l.getMaPhuPhi(), l.getTenPhuPhi(), l.getGiaPhuPhi(), l.getMoTa(), l.getTrangThai()};
+            Object[] toData = {l.getId(), l.getMaPhuPhi(), l.getTenPhuPhi()};
             dtm.addRow(toData);
         }
     }
@@ -84,12 +66,10 @@ public class FrmQLPhuPhi extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel3 = new javax.swing.JLabel();
         btnThem = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
         btnSua = new javax.swing.JButton();
         txtID = new javax.swing.JTextField();
         btnXoa = new javax.swing.JButton();
         txtMa = new javax.swing.JTextField();
-        txtMota = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
@@ -97,13 +77,8 @@ public class FrmQLPhuPhi extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbQLPhuPhi = new javax.swing.JTable();
         jSeparator3 = new javax.swing.JSeparator();
-        txtGia = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
         txtTen = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        rdoCo = new javax.swing.JRadioButton();
-        rdoKhong = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -115,8 +90,6 @@ public class FrmQLPhuPhi extends javax.swing.JFrame {
                 btnThemActionPerformed(evt);
             }
         });
-
-        jLabel5.setText("MÔ TẢ:");
 
         btnSua.setText("SỬA");
         btnSua.addActionListener(new java.awt.event.ActionListener() {
@@ -155,17 +128,7 @@ public class FrmQLPhuPhi extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbQLPhuPhi);
 
-        jLabel6.setText("GIÁ:");
-
         jLabel4.setText("TÊN:");
-
-        jLabel7.setText("TRẠNG THÁI:");
-
-        buttonGroup1.add(rdoCo);
-        rdoCo.setText("CÓ");
-
-        buttonGroup1.add(rdoKhong);
-        rdoKhong.setText("KHÔNG");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -203,30 +166,16 @@ public class FrmQLPhuPhi extends javax.swing.JFrame {
                         .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7))
+                        .addGap(69, 69, 69)
+                        .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtGia)
-                                .addComponent(txtID, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(rdoCo, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(rdoKhong, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(txtTen, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtMota, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -236,7 +185,7 @@ public class FrmQLPhuPhi extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -247,21 +196,10 @@ public class FrmQLPhuPhi extends javax.swing.JFrame {
                     .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtMa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel6)
-                        .addComponent(txtGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4)
-                        .addComponent(txtTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtMota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(rdoCo)
-                    .addComponent(rdoKhong))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel4)
+                    .addComponent(txtTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -294,8 +232,10 @@ public class FrmQLPhuPhi extends javax.swing.JFrame {
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // TODO add your handling code here:
-        QLPhuPhi ql = formInputqLPhuPhiUpdate();
-        iPhuPhiService.delete(ql);
+        int row = tbQLPhuPhi.getSelectedRow();
+        QLPhuPhi qLPhuPhi = lstQLPhuPhis.get(row);
+        String idQLPhuPhi = qLPhuPhi.getId();
+        iPhuPhiService.delete(idQLPhuPhi);
         lstQLPhuPhis = iPhuPhiService.getAllQLPhuPhis();
         loadDataTable(lstQLPhuPhis);
     }//GEN-LAST:event_btnXoaActionPerformed
@@ -305,15 +245,8 @@ public class FrmQLPhuPhi extends javax.swing.JFrame {
         int row = tbQLPhuPhi.getSelectedRow();
         QLPhuPhi ql = lstQLPhuPhis.get(row);
         txtID.setText(String.valueOf(ql.getId()));
-        txtTen.setText(ql.getTenPhuPhi());
         txtMa.setText(ql.getMaPhuPhi());
-        txtGia.setText(String.valueOf(ql.getGiaPhuPhi()));
-        txtMota.setText(ql.getMoTa());
-        if(ql.getTrangThai() == trangThaiPhuPhi.Co){
-            rdoCo.setSelected(true);
-        }else{
-            rdoKhong.setSelected(true);
-        }
+        txtTen.setText(ql.getTenPhuPhi());
     }//GEN-LAST:event_tbQLPhuPhiMouseClicked
 
     /**
@@ -369,20 +302,13 @@ public class FrmQLPhuPhi extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JRadioButton rdoCo;
-    private javax.swing.JRadioButton rdoKhong;
     private javax.swing.JTable tbQLPhuPhi;
-    private javax.swing.JTextField txtGia;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtMa;
-    private javax.swing.JTextField txtMota;
     private javax.swing.JTextField txtTen;
     // End of variables declaration//GEN-END:variables
 }

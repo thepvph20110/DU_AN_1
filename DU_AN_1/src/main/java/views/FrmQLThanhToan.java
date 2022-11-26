@@ -279,8 +279,8 @@ public class FrmQLThanhToan extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        QLThanhToan ql = formInputQLThanhToanUpdate();
-        iThanhToanService.delete(ql);
+        String idQLThanhToan = txtID.getText();
+        iThanhToanService.delete(idQLThanhToan);
         lstQLThanhToans = iThanhToanService.getAllThanhToans();
         loadData(lstQLThanhToans);
     }//GEN-LAST:event_btnXoaActionPerformed

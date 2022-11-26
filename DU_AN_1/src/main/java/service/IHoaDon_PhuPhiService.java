@@ -11,5 +11,5 @@ public interface IHoaDon_PhuPhiService {
 
     boolean update(QLHoaDon_PhuPhi qLHoaDon_PhuPhi);
 
-    boolean delete(QLHoaDon_PhuPhi qLHoaDon_PhuPhi);
+    boolean delete(String id);
 }
