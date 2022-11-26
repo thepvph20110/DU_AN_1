@@ -34,10 +34,5 @@ public class PhuPhi {
     private String maPhuPhi;
     @Column(columnDefinition = "nvarchar(Max)")
     private String tenPhuPhi;
-    private double giaPhuPhi;
-    @Column(columnDefinition = "nvarchar(Max)")
-    private String moTa;
-    @Column(nullable = false)
-    private trangThaiPhuPhi trangThai = trangThaiPhuPhi.Co;
 
 }
