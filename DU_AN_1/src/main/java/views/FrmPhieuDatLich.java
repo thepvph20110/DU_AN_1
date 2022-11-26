@@ -341,7 +341,7 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, new JavaMail().sendMail(mapCa.get(sanCa.getTenCa()), qLPhieuDatLich, byteArrayOutputStream));
                 sanCaService.update(sanCa);
                 PhieuDatLich phieuDatLich = new PhieuDatLich(maPhieuLichDat, null, null, null, null, null, null, null, null, 0, trangThaiPhieuDL.CHUA_NHAN_SAN);
-                QLHoaDon qLHoaDon = new QLHoaDon(null, null, phieuDatLich, null, ngayTao, 0, 0, null, trangThaiHoaDon.CHUA_THANH_TOAN);
+                QLHoaDon qLHoaDon = new QLHoaDon(null, null, phieuDatLich, null,null, ngayTao, 0, 0, null,trangThaiHoaDon.CHUA_THANH_TOAN);
                 hoaDonService.save(qLHoaDon);
                 this.dispose();
             } else {
