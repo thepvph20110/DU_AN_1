@@ -14,5 +14,5 @@ public interface IThanhToanRepository {
 
     boolean update(ThanhToan thanhToan);
 
-    boolean delete(ThanhToan thanhToan);
+    boolean delete(String id);
 }

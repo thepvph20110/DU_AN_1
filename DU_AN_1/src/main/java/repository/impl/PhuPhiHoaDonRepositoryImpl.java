@@ -44,20 +44,19 @@ public class PhuPhiHoaDonRepositoryImpl implements IPhuPhiHoaDonRepository {
     }
 
     @Override
-    public boolean delete(PhuPhi_HoaDon phuPhi_HoaDon) {
-        boolean check;
-        Transaction transaction = null;
-        try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
-            transaction = session.beginTransaction();
-            session.delete(phuPhi_HoaDon);
-            check = true;
-            transaction.commit();
+    public boolean delete(String id) {
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            String hql = "DELETE FROM PhuPhi_HoaDon WHERE id = :id";
+            Query query = session.createQuery(hql);
+            query.setParameter("id", id);
+            session.getTransaction().begin();
+            query.executeUpdate();
+            session.getTransaction().commit();
         } catch (Exception e) {
-            e.printStackTrace();
-            check = false;
-            transaction.rollback();
+            System.out.println(e);
+            return false;
         }
-        return check;
+        return true;
     }
     public static void main(String[] args) {
         PhuPhiHoaDonRepositoryImpl pp = new PhuPhiHoaDonRepositoryImpl();

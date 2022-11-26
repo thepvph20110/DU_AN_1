@@ -52,8 +52,8 @@ public class ThanhToanServiceImpl implements IThanhToanService {
     }
 
     @Override
-    public boolean delete(QLThanhToan qLThanhToan) {
-        boolean delete = repository.delete(new ThanhToan(qLThanhToan.getId(), qLThanhToan.getMaThanhToan(), qLThanhToan.getHinhThanhToan(), qLThanhToan.getMoTa()));
+    public boolean delete(String id) {
+        boolean delete =repository.delete(id);
         return delete;
     }
 
