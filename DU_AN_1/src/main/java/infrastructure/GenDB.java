@@ -536,27 +536,18 @@ public class GenDB {
 
             //Gen Phụ Phí
             PhuPhi pp1 = new PhuPhi();
-            pp1.setGiaPhuPhi(20);
             pp1.setMaPhuPhi("PP001");
-            pp1.setMoTa("Chơi Qúa Liều");
             pp1.setTenPhuPhi("Chơi Qúa Gio");
-            pp1.setTrangThai(trangThaiPhuPhi.Co);
             session.save(pp1);
 
             PhuPhi pp2 = new PhuPhi();
-            pp2.setGiaPhuPhi(30);
             pp2.setMaPhuPhi("PP002");
-            pp2.setMoTa("Chơi Ngu");
             pp2.setTenPhuPhi("Lam Hong Bong");
-            pp2.setTrangThai(trangThaiPhuPhi.Co);
             session.save(pp2);
 
             PhuPhi pp3 = new PhuPhi();
-            pp3.setGiaPhuPhi(20);
             pp3.setMaPhuPhi("PP003");
-            pp3.setMoTa("Ngu");
             pp3.setTenPhuPhi("Lam Hong San");
-            pp3.setTrangThai(trangThaiPhuPhi.Co);
             session.save(pp3);
             //Gen Phiếu Đặt Lịch
             PhieuDatLich pdl1 = new PhieuDatLich();
@@ -625,7 +616,7 @@ public class GenDB {
             Date ntt1 = new Date(2022, 13, 8, 19, 22);
             hd1.setNgayThanhToan(ntt1);
             hd1.setTongTien(2000);
-            hd1.setTrangThai(trangThaiHoaDon.DA_THANH_TOAN);
+            hd1.setTrangThai(trangThaiHoaDon.CHUA_THANH_TOAN);
             hd1.setPhieuDatLich(pdl3);
             session.save(hd1);
 
@@ -636,7 +627,7 @@ public class GenDB {
             Date ntt2 = new Date(2022, 13, 8, 20, 22);
             hd2.setNgayThanhToan(ntt2);
             hd2.setTongTien(1900);
-            hd2.setTrangThai(trangThaiHoaDon.DA_THANH_TOAN);
+            hd2.setTrangThai(trangThaiHoaDon.CHUA_THANH_TOAN);
             hd2.setPhieuDatLich(pdl2);
             session.save(hd2);
 
@@ -647,7 +638,7 @@ public class GenDB {
             Date ntt3 = new Date(2022, 13, 8, 17, 22);
             hd3.setNgayThanhToan(ntt3);
             hd3.setTongTien(2000);
-            hd3.setTrangThai(trangThaiHoaDon.DA_THANH_TOAN);
+            hd3.setTrangThai(trangThaiHoaDon.CHUA_THANH_TOAN);
             hd3.setPhieuDatLich(pdl2);
             session.save(hd3);
 
@@ -659,7 +650,7 @@ public class GenDB {
             dv1.setSoLuongDoThue(24);
             dv1.setSoLuongNuocUong(10);
             dv1.setNuocUong(nc4);
-            dv1.setHoaDon(hd1);
+            dv1.setHoaDon(null);
             dv1.setTrangThai(trangThaiDichVu.Dang_Su_Dung);
             dv1.setDoThue(dt4);
             session.save(dv1);
@@ -673,7 +664,7 @@ public class GenDB {
             dv2.setNuocUong(nc3);
             dv2.setHoaDon(hd1);
             dv2.setTrangThai(trangThaiDichVu.Dang_Su_Dung);
-            dv2.setDoThue(dt3);
+            dv2.setDoThue(null);
             session.save(dv2);
 
             DichVu dv3 = new DichVu();
@@ -682,7 +673,7 @@ public class GenDB {
             dv3.setMoTa("Ngon Bổ Rẻ");
             dv3.setSoLuongDoThue(24);
             dv3.setSoLuongNuocUong(10);
-            dv3.setHoaDon(hd2);
+            dv3.setHoaDon(null);
             dv3.setNuocUong(nc1);
             dv3.setTrangThai(trangThaiDichVu.Dang_Su_Dung);
             dv3.setDoThue(dt1);
@@ -723,25 +714,29 @@ public class GenDB {
 
             //Gen Phụ Phí Hóa Đơn
             PhuPhi_HoaDon pphd1 = new PhuPhi_HoaDon();
-            pphd1.setTrangThai(trangThaiPhuPhiHoaDon.Da_Tra);
+            pphd1.setMoTa("adds");
+            pphd1.setGiaPPHD(200);
             pphd1.setPhuPhi(pp1);
             pphd1.setHoaDon(hd1);
             session.save(pphd1);
 
             PhuPhi_HoaDon pphd4 = new PhuPhi_HoaDon();
-            pphd4.setTrangThai(trangThaiPhuPhiHoaDon.Da_Tra);
+            pphd4.setGiaPPHD(300);
+            pphd4.setMoTa("vvv");
             pphd4.setPhuPhi(pp2);
             pphd4.setHoaDon(hd2);
             session.save(pphd1);
 
             PhuPhi_HoaDon pphd2 = new PhuPhi_HoaDon();
-            pphd2.setTrangThai(trangThaiPhuPhiHoaDon.Da_Tra);
+            pphd2.setGiaPPHD(500);
+            pphd2.setMoTa("add");
             pphd2.setPhuPhi(pp2);
             pphd2.setHoaDon(hd1);
             session.save(pphd2);
 
             PhuPhi_HoaDon pphd3 = new PhuPhi_HoaDon();
-            pphd3.setTrangThai(trangThaiPhuPhiHoaDon.Da_Tra);
+            pphd3.setMoTa("ferer");
+            pphd3.setGiaPPHD(600);
             pphd3.setPhuPhi(pp1);
             pphd3.setHoaDon(hd3);
             session.save(pphd3);

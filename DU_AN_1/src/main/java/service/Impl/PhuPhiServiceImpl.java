@@ -1,7 +1,6 @@
 package service.Impl;
 
 import domainmodel.PhuPhi;
-import enumclass.trangThaiPhuPhi;
 import java.util.ArrayList;
 import java.util.List;
 import modelview.QLPhuPhi;
@@ -24,27 +23,33 @@ public class PhuPhiServiceImpl implements IPhuPhiService {
         lstQLPhuPhis.clear();
         var lstPhuPhi = repository.getAllPhuPhi();
         for (PhuPhi phuPhi : lstPhuPhi) {
-            lstQLPhuPhis.add(new QLPhuPhi(phuPhi.getId(), phuPhi.getMaPhuPhi(), phuPhi.getTenPhuPhi(), phuPhi.getGiaPhuPhi(), phuPhi.getMoTa(), phuPhi.getTrangThai()));
+            lstQLPhuPhis.add(new QLPhuPhi(phuPhi.getId(), phuPhi.getMaPhuPhi(), phuPhi.getTenPhuPhi()));
         }
         return lstQLPhuPhis;
     }
 
     @Override
     public boolean save(QLPhuPhi qLphuPhi) {
-        boolean save = repository.save(new PhuPhi(null, qLphuPhi.getMaPhuPhi(), qLphuPhi.getTenPhuPhi(), qLphuPhi.getGiaPhuPhi(), qLphuPhi.getMoTa(), qLphuPhi.getTrangThai()));
+        boolean save = repository.save(new PhuPhi(null, qLphuPhi.getMaPhuPhi(), qLphuPhi.getTenPhuPhi()));
         return save;
     }
 
     @Override
     public boolean update(QLPhuPhi qLphuPhi) {
-        boolean update = repository.save(new PhuPhi(qLphuPhi.getId(), qLphuPhi.getMaPhuPhi(), qLphuPhi.getTenPhuPhi(), qLphuPhi.getGiaPhuPhi(), qLphuPhi.getMoTa(), qLphuPhi.getTrangThai()));
+        boolean update = repository.save(new PhuPhi(qLphuPhi.getId(), qLphuPhi.getMaPhuPhi(), qLphuPhi.getTenPhuPhi()));
         return update;
     }
 
     @Override
-    public boolean delete(QLPhuPhi qLphuPhi) {
-        boolean delete = repository.delete(new PhuPhi(qLphuPhi.getId(), qLphuPhi.getMaPhuPhi(), qLphuPhi.getTenPhuPhi(), qLphuPhi.getGiaPhuPhi(), qLphuPhi.getMoTa(), qLphuPhi.getTrangThai()));
+    public boolean delete(String id) {
+        boolean delete = repository.delete(id);
         return delete;
     }
 
+    @Override
+    public String genMaPhuPhi() {
+        String pp = repository.genMaPhuPhi();
+        int newPP = (Integer.parseInt(pp.substring(2))) + 1;
+        return  pp.substring(0, 2) + "00"+ newPP ;
+    }
 }

@@ -24,4 +24,6 @@ public interface IAcountRepository {
     
     boolean delete(UUID id);
     
+    String genMaAccount();
+    
 }

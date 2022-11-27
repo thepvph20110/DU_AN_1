@@ -6,7 +6,6 @@ package repository;
 
 import domainmodel.ChucVu;
 import java.util.List;
-import java.util.UUID;
 
 /**
  *
@@ -20,5 +19,11 @@ public interface IChucVuRepository {
     
     boolean update(ChucVu chucVu);
     
+<<<<<<< HEAD
     boolean delete(UUID id);
+=======
+    boolean delete(String id);
+    
+    String genMaChucVu();
+>>>>>>> 0f4cad2f7c54da986d78447c8a91cf878af78d91
 }

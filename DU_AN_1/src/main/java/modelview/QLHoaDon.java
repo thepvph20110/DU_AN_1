@@ -6,6 +6,7 @@ package modelview;
 
 import domainmodel.DichVu;
 import domainmodel.PhieuDatLich;
+import domainmodel.PhuPhi_HoaDon;
 import enumclass.trangThaiHoaDon;
 import java.util.Date;
 import java.util.Set;
@@ -29,6 +30,7 @@ public class QLHoaDon {
     private String maHoaDon;
     private PhieuDatLich phieuDatLich;
     private Set<DichVu> dichVu;
+    private Set<PhuPhi_HoaDon> phuPhi;
     private Date ngayThanhToan;
     private double donGia;
     private double tongTien;

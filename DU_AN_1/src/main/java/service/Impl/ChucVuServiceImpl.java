@@ -8,7 +8,6 @@ import domainmodel.ChucVu;
 import enumclass.trangThaiChucVu;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 import modelView.QLChucVu;
 import repository.IChucVuRepository;
 import repository.impl.ChucVuRepository;
@@ -63,6 +62,13 @@ public class ChucVuServiceImpl implements IChucVuService {
             return "Xóa Thành Công";
         }
         return "Xóa Thất Bại";
+    }
+
+    @Override
+    public String genMaChucVu() {
+        String pp = chucVuRepo.genMaChucVu();
+        int newPP = (Integer.parseInt(pp.substring(2))) + 1;
+        return  pp.substring(0, 2) + "00"+ newPP ;
     }
 
 }

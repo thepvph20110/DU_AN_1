@@ -15,7 +15,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class QLHoaDonThanhToan {
+
     private UUID maHDTT;
+
+    private String id;
+    private String maHDTT;
     private String hoaDon;
     private String thanhToan;
     private double tongTien;

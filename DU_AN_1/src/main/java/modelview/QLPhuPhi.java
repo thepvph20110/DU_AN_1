@@ -18,6 +18,7 @@ public class QLPhuPhi {
     private String maPhuPhi;
 
     private String tenPhuPhi;
+<<<<<<< HEAD
 
     private double giaPhuPhi;
 
@@ -30,4 +31,6 @@ public class QLPhuPhi {
     }
     
     
+=======
+>>>>>>> 0f4cad2f7c54da986d78447c8a91cf878af78d91
 }

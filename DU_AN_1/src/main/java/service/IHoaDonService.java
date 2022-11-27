@@ -27,5 +27,11 @@ public interface IHoaDonService {
     
     List<QLHoaDon> searchByName(String name);
     
+<<<<<<< HEAD
     HoaDon findByHoaDonId(UUID uuid);
+=======
+    HoaDon findByHoaDonId(String uuid);
+    
+      String genMaHoaDon();
+>>>>>>> 0f4cad2f7c54da986d78447c8a91cf878af78d91
 }
