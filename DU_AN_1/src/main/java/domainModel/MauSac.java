@@ -4,7 +4,6 @@
  */
 package domainmodel;
 
-
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,7 +15,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
+import org.hibernate.annotations.GenericGenerator;
 
 @Table(name = "MauSac")
 @AllArgsConstructor
@@ -27,12 +26,16 @@ import lombok.Setter;
 public class MauSac {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(length = 36)
-    private UUID id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(name = "id", updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
+    private String id;
     @Column(name = "ma")
     private String maMauSac;
-    @Column(name = "ten")
+    @Column(name = "ten", columnDefinition = "nvarchar(Max)")
     private String tenMauSac;
 
+    public Object[] todata() {
+        return new Object[]{id, maMauSac, tenMauSac};
+    }
 }

@@ -6,6 +6,7 @@ package domainmodel;
 
 import enumclass.trangThaiDichVu;
 import java.util.UUID;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,6 +19,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 @Table(name = "DichVu")
 @AllArgsConstructor
@@ -28,19 +30,24 @@ import lombok.Setter;
 public class DichVu {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(length = 36)
-    private UUID id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(name = "id", updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
+    private String id;
     private String maDichVu;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idDoThue")
     private DoThue doThue;
     private int soLuongDoThue;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idHoaDon")
+    private HoaDon hoaDon;
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idNuocUong")
     private NuocUong nuocUong;
     private int soLuongNuocUong;
     private double donGia;
+   @Column(columnDefinition = "nvarchar(Max)")
     private String moTa;
     @Column(nullable = false)
     private trangThaiDichVu trangThai = trangThaiDichVu.Dang_Su_Dung;

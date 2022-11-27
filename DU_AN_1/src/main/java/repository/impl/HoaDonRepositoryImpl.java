@@ -4,12 +4,142 @@
  */
 package repository.impl;
 
+import domainmodel.HoaDon;
+import enumclass.trangThaiHoaDon;
+import java.util.List;
+import java.util.UUID;
+import javax.persistence.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import repository.IHoaDonRepository;
+import utill.HibernateConfig;
 
 /**
  *
  * @author ADMIN
  */
 public class HoaDonRepositoryImpl implements IHoaDonRepository{
+
+    @Override
+    public List<HoaDon> getAll() {
+        List<HoaDon> listHds;
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            Query q = session.createQuery("FROM HoaDon");
+            listHds = q.getResultList();
+        }catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }
+        return listHds;
+    }
+
+    @Override
+    public boolean save(HoaDon hoaDon) {
+        Transaction transaction = null;
+         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            transaction= session.beginTransaction();
+            session.save(hoaDon);
+           transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
+            System.out.println(e);
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean update(HoaDon hoaDon) {
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            session.getTransaction().begin();
+            session.saveOrUpdate(hoaDon);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean delete(String id) {
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            String hql = "DELETE FROM HoaDon WHERE id = :id";
+            Query query = session.createQuery(hql);
+            query.setParameter("id", id);
+            session.getTransaction().begin();
+            query.executeUpdate();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+        return true;
+    }
+    public static void main(String[] args) {
+        HoaDonRepositoryImpl hd = new HoaDonRepositoryImpl();
+        List<HoaDon> lst = hd.searchByTen("S");
+        System.out.println(lst.size());
+    }
+
+    @Override
+    public List<HoaDon> getAllByTrangThai() {
+        List<HoaDon> listHds;
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            Query q = session.createQuery("FROM HoaDon hd WHERE hd.trangThai =:status");
+            q.setParameter("status", trangThaiHoaDon.CHUA_THANH_TOAN);
+            listHds = q.getResultList();
+        }catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }
+        return listHds;
+    }
+
+    @Override
+    public List<HoaDon> searchByTen(String name) {
+        List<HoaDon> listHds;
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            Query q = session.createQuery("FROM HoaDon hd WHERE hd.phieuDatLich.khachHang.tenKhachHang like :ten");
+            q.setParameter("ten", "%"+name+"%");
+            listHds = q.getResultList();
+        }catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }
+        return listHds;
+    }
+
+    @Override
+    public HoaDon findByHoaDonId(String id) {
+        HoaDon hoaDon;
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            Query q = session.createQuery("FROM HoaDon hd WHERE hd.id =:id");
+            q.setParameter("id", id);
+            hoaDon = (HoaDon) q.getSingleResult();
+        }catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }
+        return hoaDon;
+    }
+
+    @Override
+    public String genMaHoaDon() {
+        String top1 = null;
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            String hql = "FROM HoaDon hd order by hd.maHoaDon DESC";
+            Query query = session.createQuery(hql);
+            session.getTransaction().begin();
+            query.setMaxResults(1);
+            HoaDon hoaDon = (HoaDon) query.getSingleResult();
+            top1 = hoaDon.getMaHoaDon();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e);
+            return top1;
+        }
+        return top1;
+    }
     
 }

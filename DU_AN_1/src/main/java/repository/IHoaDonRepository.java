@@ -4,10 +4,29 @@
  */
 package repository;
 
+import domainmodel.HoaDon;
+import java.util.List;
+import java.util.UUID;
+
 /**
  *
  * @author ADMIN
  */
 public interface IHoaDonRepository {
+
+    List<HoaDon> getAll();
+
+    boolean save(HoaDon hoaDon);
+
+    boolean update(HoaDon hoaDon);
+
+    boolean delete(String id);
     
+    List<HoaDon> getAllByTrangThai();
+    
+    List<HoaDon> searchByTen(String name);
+    
+    HoaDon findByHoaDonId(String uuid);
+    
+    String genMaHoaDon();
 }

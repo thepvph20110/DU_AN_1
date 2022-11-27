@@ -4,10 +4,30 @@
  */
 package service;
 
+import domainmodel.HoaDon;
+import java.util.List;
+import java.util.UUID;
+import modelview.QLHoaDon;
+
 /**
  *
  * @author ADMIN
  */
 public interface IHoaDonService {
+
+    List<QLHoaDon> getAll();
+
+    String save(QLHoaDon qLHoaDon);
+
+    String update(QLHoaDon qLHoaDon, String id);
+
+    String delete(String id);
     
+    List<QLHoaDon> getAllByTrangThai();
+    
+    List<QLHoaDon> searchByName(String name);
+    
+    HoaDon findByHoaDonId(String uuid);
+    
+      String genMaHoaDon();
 }

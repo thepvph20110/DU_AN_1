@@ -6,6 +6,7 @@ package domainmodel;
 
 import enumclass.trangThaiDoThue;
 import java.util.UUID;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,6 +19,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 @Table(name = "DoThue")
 @AllArgsConstructor
@@ -28,18 +30,20 @@ import lombok.Setter;
 public class DoThue {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(length = 36)
-    private UUID id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(name = "id", updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
+    private String id;
     private String maDoThue;
+    @Column(columnDefinition = "nvarchar(Max)")
     private String tenDoThue;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idKichThuoc")
     private KichThuoc kichThuoc;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idMauSac")
     private MauSac mauSac;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idNSX")
     private NhaSanXuat nhaSanXuat;
     private int soLuong;

@@ -10,5 +10,5 @@ package enumclass;
  */
 public enum trangThaiDichVu {
     Dang_Su_Dung,
-    Khong_Su_Dung
+    NGUNG_Su_Dung
 }

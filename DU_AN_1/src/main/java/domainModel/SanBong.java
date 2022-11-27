@@ -4,7 +4,9 @@
  */
 package domainmodel;
 
+import enumclass.trangThaiSanBong;
 import java.util.UUID;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,6 +19,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 @Table(name = "SanBong")
 @Getter
@@ -27,14 +30,17 @@ import lombok.Setter;
 public class SanBong {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(length = 36)
-    private UUID id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(name = "id", updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
+    private String id;
     private String maSanBong;
+    @Column(columnDefinition = "nvarchar(Max)")
     private String tenSanBong;
-    private long giaSan;
+    private double giaSan;
     private int sucChua;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idLoaiSan", nullable = false)
     private LoaiSan loaiSan;
+    private trangThaiSanBong trangThai = trangThaiSanBong.HOAT_DONG;
 }

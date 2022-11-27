@@ -6,7 +6,6 @@ package domainmodel;
 
 import enumclass.trangThaiCa;
 import java.sql.Time;
-import java.util.Date;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,6 +17,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 
 @Table(name = "Ca")
@@ -29,14 +29,18 @@ import lombok.Setter;
 public class Ca {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(length = 36)
-    private UUID id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(name = "id", updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
+    private String id;
     private String maCa;
+    @Column(columnDefinition = "nvarchar(Max)")
     private String tenCa;
+    @Column(columnDefinition = "time")
     private Time thoiGianBatDau;
+    @Column(columnDefinition = "time")
     private Time thoiGianKetThuc;
     private double giaCa;
     @Column(nullable = false)
-    private trangThaiCa trangThai= trangThaiCa.HOAT_DONG;
+    private trangThaiCa trangThai= trangThaiCa.GIO_BINH_THUONG;
 }

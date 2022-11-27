@@ -9,6 +9,6 @@ package enumclass;
  * @author ADMIN
  */
 public enum trangThaiChucVu {
-    Quan_Li_San,
-    Chu_San
+    HOAT_DONG,
+    KHONG_HOAT_DONG
 }

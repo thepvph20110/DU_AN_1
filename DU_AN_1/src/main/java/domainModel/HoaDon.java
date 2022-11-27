@@ -6,20 +6,25 @@ package domainmodel;
 
 import enumclass.trangThaiHoaDon;
 import java.util.Date;
+import java.util.Set;
 import java.util.UUID;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Cleanup;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 @Table(name = "HoaDon")
 @AllArgsConstructor
@@ -30,21 +35,25 @@ import lombok.Setter;
 public class HoaDon {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(length = 36)
-    private UUID id;
-    @ManyToOne
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(name = "id", updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
+    private String id;
+    
+    private String maHoaDon;
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idPhieuDatLich")
     private PhieuDatLich phieuDatLich;
-    @ManyToOne
-    @JoinColumn(name = "idDichVu")
-    private DichVu dichVu;
-    @ManyToOne
-    @JoinColumn(name = "idSanCa")
-    private SanCa sanCa;
+    
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "hoaDon")
+    private Set<DichVu> dichVu;
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "hoaDon")
+    private Set<PhuPhi_HoaDon> phuPhi;
+    @Column(columnDefinition = "date")
     private Date ngayThanhToan;
     private double donGia;
     private double tongTien;
+    @Column(columnDefinition = "nvarchar(Max)")
     private String ghiChu;
     @Column(nullable = false)
     private trangThaiHoaDon trangThai = trangThaiHoaDon.CHUA_THANH_TOAN;

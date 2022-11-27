@@ -5,18 +5,16 @@
 package domainmodel;
 
 import enumclass.trangThaiChucVu;
-import java.util.Date;
-import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 @Table(name = "ChucVu")
 @AllArgsConstructor
@@ -27,14 +25,15 @@ import lombok.Setter;
 public class ChucVu {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(length = 36)
-    private UUID id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(name = "id", updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
+    private String id;
     @Column(name = "maCV")
     private String maChucVu;
-    @Column(name = "tenCV")
+    @Column(name = "tenCV",columnDefinition = "nvarchar(Max)")
     private String tenChucVu;
     @Column(nullable = false)
-    private trangThaiChucVu trangThai = trangThaiChucVu.Chu_San;
+    private trangThaiChucVu trangThai = trangThaiChucVu.HOAT_DONG;
 
 }
