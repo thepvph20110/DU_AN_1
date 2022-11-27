@@ -28,4 +28,6 @@ public interface IHoaDonService {
     List<QLHoaDon> searchByName(String name);
     
     HoaDon findByHoaDonId(String uuid);
+    
+      String genMaHoaDon();
 }

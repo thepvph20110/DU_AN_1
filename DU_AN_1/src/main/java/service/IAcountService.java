@@ -23,4 +23,6 @@ public interface IAcountService {
     String update(QLAcount qLAcount, String id);
 
     String delete(String id);
+    
+    String genMaAccount();
 }

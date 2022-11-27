@@ -21,4 +21,6 @@ public interface IChucVuService {
     String update(QLChucVu qLChucVu, String id);
 
     String delete(String id);
+    
+    String genMaChucVu();
 }

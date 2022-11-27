@@ -8,7 +8,6 @@ import domainmodel.Acount;
 import enumclass.trangThaiAcount;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 import modelview.QLAcount;
 import repository.IAcountRepository;
 import repository.impl.AcountRepository;
@@ -66,6 +65,13 @@ public class AcountServiceImpl implements IAcountService {
         Acount acount = acountRepo.getOne();
         QLAcount qlAcount = new QLAcount(acount.getId(), acount.getMaAcount(), acount.getTenAcount(), acount.getChucVu(), acount.getMatKhau(), acount.getMoTa(), acount.getTrangThai());
         return qlAcount;
+    }
+
+    @Override
+    public String genMaAccount() {
+        String pp = acountRepo.genMaAccount();
+        int newPP = (Integer.parseInt(pp.substring(2))) + 1;
+        return  pp.substring(0, 2) + "00"+ newPP ;
     }
 
     

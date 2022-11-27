@@ -1,7 +1,6 @@
 package service.Impl;
 
 import domainmodel.PhuPhi;
-import enumclass.trangThaiPhuPhi;
 import java.util.ArrayList;
 import java.util.List;
 import modelview.QLPhuPhi;
@@ -47,4 +46,10 @@ public class PhuPhiServiceImpl implements IPhuPhiService {
         return delete;
     }
 
+    @Override
+    public String genMaPhuPhi() {
+        String pp = repository.genMaPhuPhi();
+        int newPP = (Integer.parseInt(pp.substring(2))) + 1;
+        return  pp.substring(0, 2) + "00"+ newPP ;
+    }
 }
