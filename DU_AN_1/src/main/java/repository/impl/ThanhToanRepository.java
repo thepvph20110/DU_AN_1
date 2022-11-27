@@ -78,7 +78,7 @@ public class ThanhToanRepository implements IThanhToanRepository {
     public static void main(String[] args) {
         ThanhToanRepository tt = new ThanhToanRepository();
         System.out.println(tt.findOneByTrangThai(loaiHinhThanhToan.Tien_Mat).toString());
-        
+
     }
 
     @Override
@@ -92,5 +92,38 @@ public class ThanhToanRepository implements IThanhToanRepository {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public String genMaThanhToan() {
+        String top1 = null;
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            String hql = "FROM ThanhToan tt order by tt.maThanhToan DESC";
+            Query query = session.createQuery(hql);
+            session.getTransaction().begin();
+            query.setMaxResults(1);
+            ThanhToan thanhToan = (ThanhToan) query.getSingleResult();
+            top1 = thanhToan.getMaThanhToan();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e);
+            return top1;
+        }
+        return top1;
+    }
+
+    @Override
+    public ThanhToan fillBymaThanhToan(String maThanhToan) {
+        ThanhToan thanhToan;
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            String hql = "FROM ThanhToan tt WHERE tt.maThanhToan = :maThanhToan";
+            Query query = session.createQuery(hql);
+            query.setParameter("maThanhToan", maThanhToan);
+            thanhToan = (ThanhToan) query.getSingleResult();
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+        return thanhToan;
     }
 }

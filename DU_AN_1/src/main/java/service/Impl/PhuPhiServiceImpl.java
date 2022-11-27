@@ -50,6 +50,13 @@ public class PhuPhiServiceImpl implements IPhuPhiService {
     public String genMaPhuPhi() {
         String pp = repository.genMaPhuPhi();
         int newPP = (Integer.parseInt(pp.substring(2))) + 1;
-        return  pp.substring(0, 2) + "00"+ newPP ;
+        return pp.substring(0, 2) + "00" + newPP;
+    }
+
+    @Override
+    public QLPhuPhi fillByMaPhuPhi(String maPhuPhi) {
+        var phuPhi = repository.fillByMa(maPhuPhi);
+        QLPhuPhi qLPhuPhi = new QLPhuPhi(phuPhi.getId(), phuPhi.getMaPhuPhi(), phuPhi.getTenPhuPhi());
+        return qLPhuPhi;
     }
 }
