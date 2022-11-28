@@ -153,7 +153,7 @@ public class NuocUongServiceImpl implements INuocUongService {
     }
 
     @Override
-    public List<QLNuocUong> getNuocUongByTranThai(String trangThai) {
+    public List<QLNuocUong> getNuocUongByTranThai(trangThaiNuocUong trangThai) {
         List<NuocUong> listNuocUong = nuocUongRepositoryImpl.findByTrangThai(trangThai);
         List<QLNuocUong> listQLNuocUong = new ArrayList<>();
         for (NuocUong nuocUong : listNuocUong) {

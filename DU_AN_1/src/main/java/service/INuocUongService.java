@@ -4,6 +4,7 @@
  */
 package service;
 
+import enumclass.trangThaiNuocUong;
 import java.util.List;
 import java.util.UUID;
 import modelview.QLNuocUong;
@@ -30,5 +31,5 @@ public interface INuocUongService {
     
     List<QLNuocUong> getNuocUongByTenNuocUong(String tenNuocUong);
     
-    List<QLNuocUong> getNuocUongByTranThai(String trangThai);
+    List<QLNuocUong> getNuocUongByTranThai(trangThaiNuocUong trangThai);
 }

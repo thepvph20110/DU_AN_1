@@ -37,6 +37,8 @@ public class FrmNuocUong extends javax.swing.JFrame {
         maxResults = 2;
 
         loadDataToTable();
+        txtGia.setText("0");
+        txtSoLuong.setText("0");
 
     }
 
@@ -86,6 +88,19 @@ public class FrmNuocUong extends javax.swing.JFrame {
         lblLoad.setText(firstResult + " / " + totalPages);
     }
 
+    private void clear() {
+        txtTimKiem.setText("");
+        txtTen.setText("");
+        txtGia.setText("0");
+        txtSoLuong.setText("0");
+        txtMa.setText("");
+        rdoConHang.setSelected(true);
+        rdoHetHang.setSelected(false);
+        rdoTimKiemConHang.setSelected(false);
+        rdoTimKiemHetHang.setSelected(false);
+        loadDataToTable();
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -105,6 +120,7 @@ public class FrmNuocUong extends javax.swing.JFrame {
         btnThem = new javax.swing.JButton();
         btnSua = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
+        btnMoi = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -121,8 +137,8 @@ public class FrmNuocUong extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtTimKiem = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        rdoTimKiemConHang = new javax.swing.JRadioButton();
+        rdoTimKiemHetHang = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -237,28 +253,38 @@ public class FrmNuocUong extends javax.swing.JFrame {
             }
         });
 
+        btnMoi.setText("Mới");
+        btnMoi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMoiActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+            .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSua, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
-                    .addComponent(btnXoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnThem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSua, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+                    .addComponent(btnXoa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnMoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addContainerGap()
                 .addComponent(btnThem)
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addComponent(btnSua)
-                .addGap(32, 32, 32)
+                .addGap(18, 18, 18)
                 .addComponent(btnXoa)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnMoi)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel3.setText("Mã Nước :");
@@ -343,7 +369,7 @@ public class FrmNuocUong extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(rdoConHang)
                     .addComponent(rdoHetHang))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -382,9 +408,21 @@ public class FrmNuocUong extends javax.swing.JFrame {
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Lọc"));
 
-        jRadioButton1.setText("Còn Hàng");
+        buttonGroup1.add(rdoTimKiemConHang);
+        rdoTimKiemConHang.setText("Còn Hàng");
+        rdoTimKiemConHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdoTimKiemConHangActionPerformed(evt);
+            }
+        });
 
-        jRadioButton2.setText("Hết Hàng");
+        buttonGroup1.add(rdoTimKiemHetHang);
+        rdoTimKiemHetHang.setText("Hết Hàng");
+        rdoTimKiemHetHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdoTimKiemHetHangActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Lọc");
 
@@ -395,18 +433,18 @@ public class FrmNuocUong extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rdoTimKiemHetHang, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rdoTimKiemConHang, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addComponent(jRadioButton1)
+                .addComponent(rdoTimKiemConHang)
                 .addGap(36, 36, 36)
-                .addComponent(jRadioButton2)
+                .addComponent(rdoTimKiemHetHang)
                 .addGap(59, 59, 59)
                 .addComponent(jButton1)
                 .addContainerGap(76, Short.MAX_VALUE))
@@ -566,6 +604,27 @@ public class FrmNuocUong extends javax.swing.JFrame {
         showData(listsQLNuocUong);
     }//GEN-LAST:event_txtTimKiemKeyReleased
 
+    private void rdoTimKiemConHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoTimKiemConHangActionPerformed
+        listsQLNuocUong.clear();
+        if (rdoTimKiemConHang.isSelected()) {
+            listsQLNuocUong = nuocUongService.getNuocUongByTranThai(trangThaiNuocUong.Con_Hang);
+            showData(listsQLNuocUong);
+        }
+
+    }//GEN-LAST:event_rdoTimKiemConHangActionPerformed
+
+    private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
+        clear();
+    }//GEN-LAST:event_btnMoiActionPerformed
+
+    private void rdoTimKiemHetHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoTimKiemHetHangActionPerformed
+        listsQLNuocUong.clear();
+        if (rdoTimKiemHetHang.isSelected()) {
+            listsQLNuocUong = nuocUongService.getNuocUongByTranThai(trangThaiNuocUong.Het_Hang);
+            showData(listsQLNuocUong);
+        }
+    }//GEN-LAST:event_rdoTimKiemHetHangActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -600,6 +659,7 @@ public class FrmNuocUong extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnMoi;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnTiep;
@@ -620,14 +680,14 @@ public class FrmNuocUong extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel jpnViewNuocUong;
     private javax.swing.JLabel lblLoad;
     private javax.swing.JLabel lblTong;
     private javax.swing.JRadioButton rdoConHang;
     private javax.swing.JRadioButton rdoHetHang;
+    private javax.swing.JRadioButton rdoTimKiemConHang;
+    private javax.swing.JRadioButton rdoTimKiemHetHang;
     private javax.swing.JTable tbNuocUong;
     private javax.swing.JTextField txtGia;
     private javax.swing.JTextField txtMa;

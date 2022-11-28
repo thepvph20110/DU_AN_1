@@ -5,6 +5,7 @@
 package repository;
 
 import domainmodel.NuocUong;
+import enumclass.trangThaiNuocUong;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,5 +31,5 @@ public interface INuocUongRepository {
     
     List<NuocUong> findByTenNuocUong(String ten);
     
-    List<NuocUong> findByTrangThai(String trangThai);
+    List<NuocUong> findByTrangThai(trangThaiNuocUong trangThai);
 }
