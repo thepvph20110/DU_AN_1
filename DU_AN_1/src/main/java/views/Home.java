@@ -16,6 +16,7 @@ import java.awt.GridLayout;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.swing.Action;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -67,7 +69,7 @@ import service.Impl.SanCaServiceImpl;
  * @author DANG VAN SY
  */
 public class Home extends javax.swing.JFrame {
-
+    
     public JPanel panelCa;
     public JPanel panelSan;
     public JLabel labelCa;
@@ -90,22 +92,24 @@ public class Home extends javax.swing.JFrame {
     public JMenuItem itemDatLich;
     public JMenuItem itemxoa;
     public JMenuItem itemtt;
-
+    private Dimension dimension;
+    
     public Home() {
         initComponents();
         time();
         showDongHo();
         AddSan();
         System.out.println(listPaneCa);
+        System.out.println("123:" + dimension);
     }
-
+    
     public void AddSan() {
         listSanCa = sanCaService.getAll();
         listSanBong = sanBongService.getAll();
         listCa = caService.getAll();
-
+        
         PaneTong.setLayout(new GridLayout(10000, 1, 20, 20));
-
+        
         for (int i = 0; i < listSanBong.size(); i++) {
             TitledBorder border = new TitledBorder(listSanBong.get(i).getTenSanBong());
             panelSan = new JPanel();
@@ -114,7 +118,7 @@ public class Home extends javax.swing.JFrame {
             panelSan.setLayout(new GridLayout(1, 6, 20, 20));
             for (int j = 0; j < listSanCa.size(); j++) {
                 if (listSanBong.get(i).getTenSanBong().equals(listSanCa.get(j).getTenSanBong())) {
-
+                    
                     if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.CHO_NHAN_SAN) {
                         jPopupMenu = new JPopupMenu();
                         jPopupMenu.removeAll();
@@ -129,7 +133,7 @@ public class Home extends javax.swing.JFrame {
                         panelCa = new JPanel();
                         panelCa.setBackground(new Color(255, 255, 0));
                         panelCa.setLayout(new FlowLayout());
-                        panelCa.add(jPopupMenu);
+                        panelCa.setComponentPopupMenu(jPopupMenu);
                         panelCa.setPreferredSize(new Dimension(174, 254));
                         panelCa.setLayout(new BoxLayout(panelCa, BoxLayout.Y_AXIS));
                         panelCa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -137,12 +141,12 @@ public class Home extends javax.swing.JFrame {
                             public void mouseReleased(java.awt.event.MouseEvent evt) {
                                 panelCaInMouseReleased(evt);
                             }
-
+                            
                             private void panelCaInMouseReleased(MouseEvent evt) {
                                 if (evt.isPopupTrigger()) {
-                                    jPopupMenu.show(null, evt.getXOnScreen(), evt.getYOnScreen());
+                                    jPopupMenu.show(null, evt.getPoint().x, evt.getPoint().y);
                                 }
-
+                                
                             }
                         });
                         itemtt.addActionListener(new ActionListener() {
@@ -151,7 +155,6 @@ public class Home extends javax.swing.JFrame {
 //                            JOptionPane.showMessageDialog(panelSan, "heloo");
 
                                 panelCa.setBackground(Color.ORANGE);
-
                                 jPopupMenu.setVisible(false);
                             }
                         });
@@ -201,12 +204,12 @@ public class Home extends javax.swing.JFrame {
                             public void mouseReleased(java.awt.event.MouseEvent evt) {
                                 panelCaInMouseReleased(evt);
                             }
-
+                            
                             private void panelCaInMouseReleased(MouseEvent evt) {
                                 if (evt.isPopupTrigger()) {
                                     jPopupMenu.show(null, evt.getXOnScreen(), evt.getYOnScreen());
                                 }
-
+                                
                             }
                         });
                         itemtt.addActionListener(new ActionListener() {
@@ -215,7 +218,7 @@ public class Home extends javax.swing.JFrame {
 //                            JOptionPane.showMessageDialog(panelSan, "heloo");
 
                                 panelCa.setBackground(Color.ORANGE);
-
+                                
                                 jPopupMenu.setVisible(false);
                             }
                         });
@@ -265,12 +268,12 @@ public class Home extends javax.swing.JFrame {
                             public void mouseReleased(java.awt.event.MouseEvent evt) {
                                 panelCaInMouseReleased(evt);
                             }
-
+                            
                             private void panelCaInMouseReleased(MouseEvent evt) {
                                 if (evt.isPopupTrigger()) {
                                     jPopupMenu.show(null, evt.getXOnScreen(), evt.getYOnScreen());
                                 }
-
+                                
                             }
                         });
                         itemtt.addActionListener(new ActionListener() {
@@ -279,7 +282,7 @@ public class Home extends javax.swing.JFrame {
 //                            JOptionPane.showMessageDialog(panelSan, "heloo");
 
                                 panelCa.setBackground(Color.ORANGE);
-
+                                
                                 jPopupMenu.setVisible(false);
                             }
                         });
@@ -313,16 +316,16 @@ public class Home extends javax.swing.JFrame {
 //            }
             PaneTong.add(panelSan);
         }
-
+        
     }
-
+    
     private void time() {
         Date date = new Date();
         lbTime.setText(date.toString());
         jDate.setBackground(new Color(22, 69, 62));
         jDate.setDate(date);
     }
-
+    
     public void showDongHo() {
         Thread t = new Thread() {
             public void run() {
@@ -357,7 +360,7 @@ public class Home extends javax.swing.JFrame {
         };
         t.start();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -472,6 +475,9 @@ public class Home extends javax.swing.JFrame {
         lbHoaD.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbHoaD.setOpaque(true);
         lbHoaD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbHoaDMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 lbHoaDMouseEntered(evt);
             }
@@ -542,6 +548,9 @@ public class Home extends javax.swing.JFrame {
         lbLichDat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbLichDat.setOpaque(true);
         lbLichDat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbLichDatMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 lbLichDatMouseEntered(evt);
             }
@@ -800,17 +809,17 @@ public class Home extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jDate, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel19)
+                                .addGap(8, 8, 8))
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(searchText1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lbReset, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(searchText1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel19)
-                                .addGap(8, 8, 8)))
+                                .addComponent(lbReset, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)))
                         .addGap(18, 18, 18)))
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -860,7 +869,11 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_lbDangXuatMouseEntered
 
     private void lbDangXuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDangXuatMouseClicked
-        JOptionPane.showMessageDialog(this, "Hello");
+        int chon = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn thoát", null, JOptionPane.YES_NO_OPTION);
+        if (chon == 0) {
+            this.dispose();
+            new Detaillogin(null, true).setVisible(true);
+        }
     }//GEN-LAST:event_lbDangXuatMouseClicked
 
     private void lbLichSuMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLichSuMouseExited
@@ -950,7 +963,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_lbQLSanMouseClicked
 
     private void lbQLCaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbQLCaMouseClicked
-
+        new FrmCa().setVisible(true);
     }//GEN-LAST:event_lbQLCaMouseClicked
 
     private void lbDichVu1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDichVu1MouseEntered
@@ -962,9 +975,17 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_lbDichVu1MouseExited
 
     private void lbResetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbResetMouseClicked
-        this.setVisible(false);
-        this.setVisible(true);
+        new Home().setVisible(false);
+        new Home().setVisible(true);
     }//GEN-LAST:event_lbResetMouseClicked
+
+    private void lbHoaDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbHoaDMouseClicked
+        new FrmHoaDon().setVisible(true);
+    }//GEN-LAST:event_lbHoaDMouseClicked
+
+    private void lbLichDatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLichDatMouseClicked
+        new FrmSanCa().setVisible(true);
+    }//GEN-LAST:event_lbLichDatMouseClicked
 
     /**
      * @param args the command line arguments

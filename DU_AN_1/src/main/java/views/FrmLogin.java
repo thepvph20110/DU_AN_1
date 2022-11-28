@@ -61,7 +61,11 @@ public class FrmLogin extends javax.swing.JFrame {
             }
         });
 
+        txtUseName.setBackground(new java.awt.Color(186, 228, 229));
+
         jLabel3.setText("PassWord");
+
+        txtPass.setBackground(new java.awt.Color(186, 228, 229));
 
         CheckBoxHienThi.setText("Hiện thị PassWord");
         CheckBoxHienThi.addActionListener(new java.awt.event.ActionListener() {
