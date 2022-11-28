@@ -705,7 +705,6 @@ public class FrmThanhToan extends javax.swing.JFrame {
 
     private void jcbDichVuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbDichVuActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(rootPane, "Hi");
         if (jcbDichVu.getSelectedIndex() == 0) {
             listNC.clear();
             listNC = nuocUongService.getNuocUongNoPagination();
@@ -780,7 +779,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
     private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
         // TODO add your handling code here:
         HoaDon hoaDon = iHoaDonService.findByHoaDonId(qLHoaDon.getId());
-        if (jcbThanhToan.getSelectedIndex() == 0) {
+        if (jcbThanhToan.getSelectedItem().equals("Chuyển Khoản")) {
             if (txtNganHang.getText().matches("-?\\d+(\\.\\d+)?")) {
                 ThanhToan tt = new ThanhToanRepository().findOneByTrangThai(loaiHinhThanhToan.Chuyen_Khoan);
                 HoaDonThanhToan hdtt = new HoaDonThanhToan(null, "HDTT003", hoaDon, tt, Double.parseDouble(txtNganHang.getText()), null);
@@ -789,7 +788,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Không được nhập khí tự và để trống");
                 return;
             }
-        } else if (jcbThanhToan.getSelectedIndex() == 1) {
+        } else if (jcbThanhToan.getSelectedItem().equals("Tiền Mặt")) {
             if (txtTienKhach.getText().matches("-?\\d+(\\.\\d+)?")) {
                 ThanhToan tt = new ThanhToanRepository().findOneByTrangThai(loaiHinhThanhToan.Tien_Mat);
                 HoaDonThanhToan hdtt = new HoaDonThanhToan(null, "HDTT003", hoaDon, tt, Double.parseDouble(txtTienKhach.getText()), null);
@@ -886,17 +885,21 @@ public class FrmThanhToan extends javax.swing.JFrame {
         // TODO add your handling code here:
         DichVu dichVu = dichVuRepository.findByIdHoaDon(qLHoaDon.getId()).get(jtbChiTietDichVu.getSelectedRow());
         String soLuong = JOptionPane.showInputDialog(rootPane, "Mời Nhập Số Lượng Dịch Vụ !!");
-        if (soLuong == null || !soLuong.matches("-?\\d+(\\.\\d+)?")) {
-            JOptionPane.showMessageDialog(rootPane, "Vui Long Nhập Số");
+        if (soLuong == null) {
+            return;
         } else {
-            if (dichVu.getNuocUong() != null) {
-                dichVu.setSoLuongNuocUong(Integer.parseInt(soLuong));
-                dichVuRepository.saveOrUpdate(dichVu);
-                addDataRowDichVu(dichVuRepository.findByIdHoaDon(qLHoaDon.getId()));
-            } else if (dichVu.getDoThue() != null) {
-                dichVu.setSoLuongDoThue(Integer.parseInt(soLuong));
-                dichVuRepository.saveOrUpdate(dichVu);
-                addDataRowDichVu(dichVuRepository.findByIdHoaDon(qLHoaDon.getId()));
+            if (soLuong.isEmpty() || !soLuong.matches("-?\\d+(\\.\\d+)?")) {
+                JOptionPane.showMessageDialog(rootPane, "Vui Long Nhập Số");
+            } else {
+                if (dichVu.getNuocUong() != null) {
+                    dichVu.setSoLuongNuocUong(Integer.parseInt(soLuong));
+                    dichVuRepository.saveOrUpdate(dichVu);
+                    addDataRowDichVu(dichVuRepository.findByIdHoaDon(qLHoaDon.getId()));
+                } else if (dichVu.getDoThue() != null) {
+                    dichVu.setSoLuongDoThue(Integer.parseInt(soLuong));
+                    dichVuRepository.saveOrUpdate(dichVu);
+                    addDataRowDichVu(dichVuRepository.findByIdHoaDon(qLHoaDon.getId()));
+                }
             }
         }
         txtTongTien.setText(String.valueOf(fillGia()));
@@ -905,14 +908,18 @@ public class FrmThanhToan extends javax.swing.JFrame {
     private void btnAddPhuPhiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPhuPhiActionPerformed
         // TODO add your handling code here:
         String tenPP = JOptionPane.showInputDialog(rootPane, "Nhập Tên Phụ Phí !!");
-        if (tenPP.isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Không Được Để Trống");
+        if (tenPP == null) {
+            return;
         } else {
-            QLPhuPhi phuPhi = new QLPhuPhi(null, phuPhiService.genMaPhuPhi(), tenPP);
-            if (phuPhiService.save(phuPhi)) {
-                JOptionPane.showMessageDialog(rootPane, "Thêm Phụ Phí Thành Công");
+            if (tenPP.isEmpty()) {
+                JOptionPane.showMessageDialog(rootPane, "Không Được Để Trống");
             } else {
-                JOptionPane.showMessageDialog(rootPane, "Thất Bại");
+                QLPhuPhi phuPhi = new QLPhuPhi(null, phuPhiService.genMaPhuPhi(), tenPP);
+                if (phuPhiService.save(phuPhi)) {
+                    JOptionPane.showMessageDialog(rootPane, "Thêm Phụ Phí Thành Công");
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Thất Bại");
+                }
             }
         }
         loadCBPhuPhi();
@@ -921,15 +928,19 @@ public class FrmThanhToan extends javax.swing.JFrame {
     private void jcbPhuPhiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbPhuPhiActionPerformed
         // TODO add your handling code here:
         String gia = JOptionPane.showInputDialog(rootPane, "Xin Mời Nhập Gía");
-        if (gia.isEmpty() || !gia.matches("-?\\d+(\\.\\d+)?")) {
-            JOptionPane.showMessageDialog(rootPane, "Không Được Để Trống \n"
-                    + "Và Giá Phải Là Số");
+        if (gia == null) {
+            return;
         } else {
-            QLHoaDon_PhuPhi hoaDon_PhuPhi = new QLHoaDon_PhuPhi(null, qLHoaDon, qLPhuPhis.get(jcbPhuPhi.getSelectedIndex()), Double.valueOf(gia), "ahs");
-            if (new HoaDonPhuPhiServiceImpl().save(hoaDon_PhuPhi)) {
-                JOptionPane.showMessageDialog(rootPane, "Thêm Thành Công");
+            if (gia.isEmpty() || !gia.matches("-?\\d+(\\.\\d+)?")) {
+                JOptionPane.showMessageDialog(rootPane, "Không Được Để Trống \n"
+                        + "Và Giá Phải Là Số");
             } else {
-                JOptionPane.showMessageDialog(rootPane, "Thêm That Bai");
+                QLHoaDon_PhuPhi hoaDon_PhuPhi = new QLHoaDon_PhuPhi(null, qLHoaDon, qLPhuPhis.get(jcbPhuPhi.getSelectedIndex()), Double.valueOf(gia), "ahs");
+                if (new HoaDonPhuPhiServiceImpl().save(hoaDon_PhuPhi)) {
+                    JOptionPane.showMessageDialog(rootPane, "Thêm Thành Công");
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Thêm That Bai");
+                }
             }
         }
         txtTongTien.setText(String.valueOf(fillGia()));
