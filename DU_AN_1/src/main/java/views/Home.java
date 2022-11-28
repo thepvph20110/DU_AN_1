@@ -985,7 +985,6 @@ public class Home extends javax.swing.JFrame {
         new Home().setVisible(true);
     }//GEN-LAST:event_lbResetMouseClicked
 
-<<<<<<< HEAD
     private void lbHoaDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbHoaDMouseClicked
         new FrmHoaDon().setVisible(true);
     }//GEN-LAST:event_lbHoaDMouseClicked
@@ -993,12 +992,12 @@ public class Home extends javax.swing.JFrame {
     private void lbLichDatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLichDatMouseClicked
         new FrmSanCa().setVisible(true);
     }//GEN-LAST:event_lbLichDatMouseClicked
-=======
+
     private void lbHoaDMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbHoaDMousePressed
         // TODO add your handling code here:
         new FrmHoaDon().setVisible(true);
     }//GEN-LAST:event_lbHoaDMousePressed
->>>>>>> 66fd1da8ec6d200f8ff898e1c31de0200f5af916
+
 
     /**
      * @param args the command line arguments
