@@ -562,7 +562,7 @@
                               <Component id="jcbDichVu" min="-2" pref="174" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="170" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane3" alignment="1" max="32767" attributes="0"/>
                   <Component id="jPanel8" alignment="0" max="32767" attributes="0"/>

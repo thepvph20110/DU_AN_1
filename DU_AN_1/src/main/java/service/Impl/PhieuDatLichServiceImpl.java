@@ -45,7 +45,7 @@ public class PhieuDatLichServiceImpl implements IPhieuDatLichService {
 
     @Override
     public String save(QLPhieuDatLich phieuDatLich) {
-        Acount acount = new Acount(phieuDatLich.getAcount().getId(), null, null, null, null, null, phieuDatLich.getAcount().getTrangThai());
+        Acount acount = new Acount(phieuDatLich.getAcount().getId(),null, null, null, null, null, phieuDatLich.getAcount().getTrangThai());
         KhachHang khachHang = new KhachHang(phieuDatLich.getKhachHang().getId(), null, null, null, null, null, phieuDatLich.getKhachHang().getTrangThai());
         SanCa sanCa = new SanCa(phieuDatLich.getSanCa().getId(), null, null, null, 0, null);
         PhieuDatLich pdl = new PhieuDatLich(null, acount, khachHang, sanCa, phieuDatLich.getNgayTaoPhieu(), phieuDatLich.getNgayDenSan(), phieuDatLich.getTgCheckIn(), phieuDatLich.getGhiChu(), phieuDatLich.getMaQR(), phieuDatLich.getTongTienSan(), phieuDatLich.getTrangThai());
@@ -92,5 +92,12 @@ public class PhieuDatLichServiceImpl implements IPhieuDatLichService {
         }
         return "Sửa Trạng Thái Thất Bại";
     }
-
+    
+    @Override
+    public String datLich(PhieuDatLich phieuDatLich) {
+        if (phieuRepo.save(phieuDatLich) == true) {
+            return "Lưu Thành Công";
+        }
+        return "Lưu Thất Bại";
+    }
 }

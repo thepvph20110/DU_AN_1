@@ -82,6 +82,22 @@ public class SanCaServiceImpl implements ISanCaService {
 
     @Override
     public String update(QLSanCa qLSanCa) {
+        List<Ca> listQLCa = ica.getAll();
+        List<SanBong> listSanBong = isb.getAll();
+        listQLSanCa.clear();
+        for (SanBong sanBong : listSanBong) {
+            map.put(sanBong.getTenSanBong(), sanBong);
+            map.put(sanBong.getMaSanBong(), sanBong);
+            map.put(String.valueOf(sanBong.getGiaSan()), sanBong);
+            map.put(String.valueOf(sanBong.getSucChua()), sanBong);
+        }
+        for (Ca ca : listQLCa) {
+            map.put(ca.getMaCa(), ca);
+            map.put(ca.getTenCa(), ca);
+            map.put(String.valueOf(ca.getGiaCa()), ca);
+            map.put(String.valueOf(ca.getThoiGianBatDau()), ca);
+            map.put(String.valueOf(ca.getThoiGianKetThuc()), ca);
+        }
         Ca ca = new Ca();
         if (map.containsKey(qLSanCa.getTenCa())) {
             ca = (Ca) map.get(qLSanCa.getTenCa());
@@ -117,10 +133,10 @@ public class SanCaServiceImpl implements ISanCaService {
     }
 
     @Override
-    public QLSanCa getOne() {
+    public SanCa getOne() {
         SanCa sanCa = re.getOne();
         QLSanCa qLSanCa = new QLSanCa(sanCa.getId(), sanCa.getCa().getTenCa(), sanCa.getSanbong().getTenSanBong(),sanCa.getSanbong().getSucChua(),sanCa.getCa().getThoiGianBatDau(),sanCa.getCa().getThoiGianKetThuc(), sanCa.getNgayTao(),sanCa.getSanbong().getGiaSan()+sanCa.getCa().getGiaCa() , sanCa.getTrangThai());
-        return qLSanCa;
+        return sanCa;
     }
 
 }

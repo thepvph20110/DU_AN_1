@@ -4,9 +4,13 @@
  */
 package views;
 
+import domainmodel.Acount;
 import domainmodel.Ca;
+import domainmodel.KhachHang;
 import domainmodel.PhieuDatLich;
+import domainmodel.SanCa;
 import enumclass.trangThaiHoaDon;
+import enumclass.trangThaiKhachHang;
 import enumclass.trangThaiPhieuDL;
 import enumclass.trangThaiSanCa;
 import java.io.ByteArrayOutputStream;
@@ -40,10 +44,10 @@ import utill.QRCode;
 public class FrmPhieuDatLich extends javax.swing.JFrame {
 
     private IPhieuDatLichService phieuDatLichService = new PhieuDatLichServiceImpl();
-    private QLKhachHang khachHang = new QLKhachHang();
-    private QLAcount acount = new QLAcount();
+    private QLKhachHang qlKhachHang = new QLKhachHang();
+    private Acount acount = new Acount();
     private String maQr = UUID.randomUUID().toString();
-    private QLSanCa sanCa = new QLSanCa();
+    private SanCa sanCa = new SanCa();
     private ISanCaService sanCaService = new SanCaServiceImpl();
     private ByteArrayOutputStream byteArrayOutputStream = new QRCode().getQRCodeImage(maQr, 200, 200);
     private Map<String, QLCa> mapCa = new HashMap<>();
@@ -53,21 +57,21 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
     /**
      * Creates new form FrmPhieuDatLich
      */
-    public FrmPhieuDatLich(QLKhachHang qLKhachHang, QLSanCa qLSanCa, QLAcount qLAcount) {
+    public FrmPhieuDatLich(QLKhachHang qLKhachHang, SanCa sanCaEntity, Acount acountentity) {
         initComponents();
 
-        acount = qLAcount;
-        khachHang = qLKhachHang;
-        sanCa = qLSanCa;
+        acount = acountentity;
+        qlKhachHang = qLKhachHang;
+        sanCa = sanCaEntity;
         setTitle("Phiếu Đặt Lịch");
 
-        txtTenSanca.setText(qLSanCa.getTenSanBong()+ " - " + qLSanCa.getTenCa());
+        txtTenSanca.setText(this.sanCa.getSanbong().getTenSanBong()+ " - " + this.sanCa.getCa().getTenCa());
         txtTenSanca.setEnabled(false);
 
-        txtTienSanBong.setText(sanCa.getGiaCaSan()+"");
+        txtTienSanBong.setText(sanCa.getGiaSanCa()+"");
         txtTienSanBong.setEnabled(false);
 
-        txtTenKhachHang.setText(khachHang.getTenKhachHang());
+        txtTenKhachHang.setText(qlKhachHang.getTenKhachHang());
         txtTenKhachHang.setEnabled(false);
         
         txtQuanLy.setText(acount.getTenAcount());
@@ -331,17 +335,23 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
         Date ngayDen = dateNgayDen.getDate();
         String ghiChu = txtGhiChu.getText();
         Date ngayTao = new Date();
-
-        QLPhieuDatLich qLPhieuDatLich = new QLPhieuDatLich(maPhieuLichDat, acount, khachHang, sanCa, ngayTao, ngayDen, null, ghiChu, maQr, sanCa.getGiaCaSan(), trangThaiPhieuDL.CHUA_NHAN_SAN);
+        KhachHang khachHang = new KhachHang(qlKhachHang.getId(), qlKhachHang.getMaKhachHang(), qlKhachHang.getTenKhachHang(), qlKhachHang.getMail(), qlKhachHang.getSoDienThoai(), qlKhachHang.getGhiChu(), qlKhachHang.getTrangThai());
+        PhieuDatLich phieuDatLich = new PhieuDatLich(maPhieuLichDat, acount, khachHang, sanCa, ngayTao, ngayDen, null, ghiChu, maQr, sanCa.getGiaSanCa(), trangThaiPhieuDL.CHUA_NHAN_SAN);
 
         try {
-            String check = phieuDatLichService.save(qLPhieuDatLich);
+            String check = phieuDatLichService.datLich(phieuDatLich);
             if (check.equalsIgnoreCase("Lưu Thành Công")) {
                 sanCa.setTrangThai(trangThaiSanCa.CHO_NHAN_SAN);
-                JOptionPane.showMessageDialog(rootPane, new JavaMail().sendMail(mapCa.get(sanCa.getTenCa()), qLPhieuDatLich, byteArrayOutputStream));
-                sanCaService.update(sanCa);
-                PhieuDatLich phieuDatLich = new PhieuDatLich(maPhieuLichDat, null, null, null, null, null, null, null, null, 0, trangThaiPhieuDL.CHUA_NHAN_SAN);
+                JOptionPane.showMessageDialog(rootPane, new JavaMail().sendMail(phieuDatLich, byteArrayOutputStream));
+                System.out.println("aaaaaaaa");
+                QLSanCa qLSanCa = new QLSanCa(sanCa.getId(), sanCa.getCa().getTenCa(), sanCa.getSanbong().getTenSanBong(), 
+                        sanCa.getSanbong().getSucChua(), sanCa.getCa().getThoiGianBatDau(), 
+                        sanCa.getCa().getThoiGianKetThuc(), sanCa.getNgayTao(), sanCa.getGiaSanCa(), trangThaiSanCa.CHO_NHAN_SAN);
+                System.out.println("bbbbbbbbbbbbbbbbbbbbb");
+                sanCaService.update(qLSanCa);
+                System.out.println("ccccccccccccccccc");
                 QLHoaDon qLHoaDon = new QLHoaDon(null, null, phieuDatLich, null,null, ngayTao, 0, 0, null,trangThaiHoaDon.CHUA_THANH_TOAN);
+                System.out.println("dddddddddddddddddddddd");
                 hoaDonService.save(qLHoaDon);
                 this.dispose();
             } else {

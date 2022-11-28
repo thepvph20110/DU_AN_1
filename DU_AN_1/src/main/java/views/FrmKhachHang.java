@@ -4,6 +4,8 @@
  */
 package views;
 
+import domainmodel.Acount;
+import domainmodel.SanCa;
 import enumclass.trangThaiKhachHang;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,16 +26,16 @@ public class FrmKhachHang extends javax.swing.JFrame {
     private List<QLKhachHang> listKhachHang = new ArrayList<>();
     private IKhachHangService iKhachHangService = new KhachHangServiceImpl();
     private DefaultTableModel dtm = new DefaultTableModel();
-    private QLSanCa sanCa = new QLSanCa();
-    private QLAcount acount = new QLAcount();
+    private SanCa sanCa = new SanCa();
+    private Acount acount = new Acount();
 
     /**
      * Creates new form FrmKhachHang
      */
-    public FrmKhachHang(QLSanCa qLSanCa, QLAcount qlAcount) {
+    public FrmKhachHang(SanCa sanCaEntity, Acount acountEntity) {
         initComponents();
-        acount = qlAcount;
-        sanCa = qLSanCa;
+        acount = acountEntity;
+        sanCa = sanCaEntity;
         jTable1.setModel(dtm);
         String[] header = {"ID", "Mã KH", "Tên KH", "Email", "SÐT", "Ghi Chú", "Trạng thái"};
         dtm.setColumnIdentifiers(header);

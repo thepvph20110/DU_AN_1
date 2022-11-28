@@ -4,7 +4,9 @@
  */
 package views;
 
+import domainmodel.Acount;
 import domainmodel.KhachHang;
+import domainmodel.SanCa;
 import enumclass.trangThaiSanBong;
 import enumclass.trangThaiSanCa;
 import java.awt.Color;
@@ -478,6 +480,9 @@ public class Home extends javax.swing.JFrame {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 lbHoaDMouseExited(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lbHoaDMousePressed(evt);
+            }
         });
 
         lbLichSu.setBackground(new java.awt.Color(166, 145, 92));
@@ -936,8 +941,9 @@ public class Home extends javax.swing.JFrame {
     private void btnDatLichActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatLichActionPerformed
         // TODO add your handling code here:
         QLKhachHang khachHang = new QLKhachHang();
-        QLSanCa qLSanCa = new QLSanCa();
-//        new FrmPhieuDatLich(khachHang, qLSanCa).setVisible(true);
+        SanCa sanCa = sanCaService.getOne();
+        Acount acount = acountService.getOne();
+        new FrmPhieuDatLich(khachHang, sanCa,acount).setVisible(true);
     }//GEN-LAST:event_btnDatLichActionPerformed
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
@@ -965,6 +971,11 @@ public class Home extends javax.swing.JFrame {
         this.setVisible(false);
         this.setVisible(true);
     }//GEN-LAST:event_lbResetMouseClicked
+
+    private void lbHoaDMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbHoaDMousePressed
+        // TODO add your handling code here:
+        new FrmHoaDon().setVisible(true);
+    }//GEN-LAST:event_lbHoaDMousePressed
 
     /**
      * @param args the command line arguments

@@ -61,10 +61,10 @@ public class AcountServiceImpl implements IAcountService {
     }
 
     @Override
-    public QLAcount getOne() {
+    public Acount getOne() {
         Acount acount = acountRepo.getOne();
         QLAcount qlAcount = new QLAcount(acount.getId(), acount.getMaAcount(), acount.getTenAcount(), acount.getChucVu(), acount.getMatKhau(), acount.getMoTa(), acount.getTrangThai());
-        return qlAcount;
+        return acount;
     }
 
     @Override
