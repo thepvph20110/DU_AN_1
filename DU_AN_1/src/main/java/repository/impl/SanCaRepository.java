@@ -80,5 +80,4 @@ public class SanCaRepository implements ISanCaRepository{
         }
         return sanCa;
     }
-    
 }

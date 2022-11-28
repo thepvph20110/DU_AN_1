@@ -4,7 +4,9 @@
  */
 package views;
 
+import domainmodel.Acount;
 import domainmodel.KhachHang;
+import domainmodel.SanCa;
 import enumclass.trangThaiSanBong;
 import enumclass.trangThaiSanCa;
 import java.awt.Color;
@@ -484,6 +486,9 @@ public class Home extends javax.swing.JFrame {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 lbHoaDMouseExited(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lbHoaDMousePressed(evt);
+            }
         });
 
         lbLichSu.setBackground(new java.awt.Color(166, 145, 92));
@@ -949,8 +954,9 @@ public class Home extends javax.swing.JFrame {
     private void btnDatLichActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatLichActionPerformed
         // TODO add your handling code here:
         QLKhachHang khachHang = new QLKhachHang();
-        QLSanCa qLSanCa = new QLSanCa();
-//        new FrmPhieuDatLich(khachHang, qLSanCa).setVisible(true);
+        SanCa sanCa = sanCaService.getOne();
+        Acount acount = acountService.getOne();
+        new FrmPhieuDatLich(khachHang, sanCa,acount).setVisible(true);
     }//GEN-LAST:event_btnDatLichActionPerformed
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
@@ -979,6 +985,7 @@ public class Home extends javax.swing.JFrame {
         new Home().setVisible(true);
     }//GEN-LAST:event_lbResetMouseClicked
 
+<<<<<<< HEAD
     private void lbHoaDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbHoaDMouseClicked
         new FrmHoaDon().setVisible(true);
     }//GEN-LAST:event_lbHoaDMouseClicked
@@ -986,6 +993,12 @@ public class Home extends javax.swing.JFrame {
     private void lbLichDatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLichDatMouseClicked
         new FrmSanCa().setVisible(true);
     }//GEN-LAST:event_lbLichDatMouseClicked
+=======
+    private void lbHoaDMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbHoaDMousePressed
+        // TODO add your handling code here:
+        new FrmHoaDon().setVisible(true);
+    }//GEN-LAST:event_lbHoaDMousePressed
+>>>>>>> 66fd1da8ec6d200f8ff898e1c31de0200f5af916
 
     /**
      * @param args the command line arguments
