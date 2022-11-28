@@ -102,11 +102,11 @@ public class NuocUongRepositoryImpl implements INuocUongRepository {
     }
 
     @Override
-    public UUID fillByName(String ten) {
-        UUID id = null;
+    public String fillByName(String ten) {
+        String id = null;
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             String hql = " Select u.id From NuocUong u Where u.tenNuocUong = :ten ";
-            TypedQuery<UUID> query = session.createQuery(hql, UUID.class);
+            TypedQuery<String> query = session.createQuery(hql, String.class);
             query.setParameter("ten", ten);
             id = query.getSingleResult();
         }catch(Exception e){
@@ -116,7 +116,7 @@ public class NuocUongRepositoryImpl implements INuocUongRepository {
     }
 
     public static void main(String[] args) {
-        UUID id = new NuocUongRepositoryImpl().fillByName("Bia heineken");
+        String id = new NuocUongRepositoryImpl().fillByName("Bia heineken");
         System.out.println("" + id);
     }
 
@@ -133,6 +133,34 @@ public class NuocUongRepositoryImpl implements INuocUongRepository {
             e.printStackTrace(System.out);
         }
         return nuocUong;
+    }
+
+    @Override
+    public List<NuocUong> findByTenNuocUong(String ten) {
+        List<NuocUong> listNuocUong = null;
+        try(Session session = HibernateConfig.getFACTORY().openSession()){
+            String hql = "From NuocUong Where tenNuocUong like :ten ";
+            TypedQuery<NuocUong> query = session.createQuery(hql, NuocUong.class);
+            query.setParameter("ten", "%"+ten+"%");
+            listNuocUong = query.getResultList();
+        }catch(Exception e){
+            e.printStackTrace(System.out);
+        }
+        return listNuocUong;
+    }
+
+    @Override
+    public List<NuocUong> findByTrangThai(String trangThai) {
+        List<NuocUong> listNuocUong = null;
+        try(Session session = HibernateConfig.getFACTORY().openSession()){
+            String hql = "From NuocUong Where trangThai = :trangThai";
+            TypedQuery<NuocUong> query = session.createQuery(hql, NuocUong.class);
+            query.setParameter("trangThai", trangThai);
+            listNuocUong = query.getResultList();
+        }catch(Exception e){
+            e.printStackTrace(System.out);
+        }
+        return listNuocUong;
     }
 
 }

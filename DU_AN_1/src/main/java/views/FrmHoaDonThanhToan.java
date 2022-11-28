@@ -41,6 +41,7 @@ public class FrmHoaDonThanhToan extends javax.swing.JFrame {
         loadCBBHoaDon();
         loadCBBThanhToan();
 
+        txtTongTien.setText("0");
         txtTongTien.setEditable(false);
         txtTongTien.setText(String.valueOf(getTongTienHoaDon()));
     }
@@ -109,6 +110,14 @@ public class FrmHoaDonThanhToan extends javax.swing.JFrame {
         return tongTien;
     }
 
+    private void clear(){
+        txtGhiChu.setText("");
+        txtMaHoaDonTT.setText("");
+        txtGhiChu.setText("");
+        txtTongTien.setText("0");
+        cbbHoaDon.setSelectedIndex(0);
+        cbbThanhToan.setSelectedIndex(0);
+    }
     private QLHoaDonThanhToan getHoaDonThanhToanFromInput() {
         QLHoaDonThanhToan qlHoaDonThanhToan = new QLHoaDonThanhToan();
         qlHoaDonThanhToan.setMaHDTT(txtMaHoaDonTT.getText());
@@ -142,6 +151,7 @@ public class FrmHoaDonThanhToan extends javax.swing.JFrame {
         btnThem = new javax.swing.JButton();
         btnCapNhap = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
+        btnMoi = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         btnVe = new javax.swing.JButton();
         lblLoad = new javax.swing.JLabel();
@@ -235,6 +245,13 @@ public class FrmHoaDonThanhToan extends javax.swing.JFrame {
             }
         });
 
+        btnMoi.setText("Mới");
+        btnMoi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMoiActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -244,7 +261,8 @@ public class FrmHoaDonThanhToan extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCapNhap, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
-                    .addComponent(btnXoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnXoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnMoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -256,7 +274,9 @@ public class FrmHoaDonThanhToan extends javax.swing.JFrame {
                 .addComponent(btnCapNhap)
                 .addGap(29, 29, 29)
                 .addComponent(btnXoa)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnMoi)
+                .addGap(22, 22, 22))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -485,6 +505,10 @@ public class FrmHoaDonThanhToan extends javax.swing.JFrame {
         mouseClick();
     }//GEN-LAST:event_tbHoaDonThanhToanMouseClicked
 
+    private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
+       clear();
+    }//GEN-LAST:event_btnMoiActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -522,6 +546,7 @@ public class FrmHoaDonThanhToan extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCapNhap;
+    private javax.swing.JButton btnMoi;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnTiep;
     private javax.swing.JButton btnVe;

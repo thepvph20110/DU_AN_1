@@ -18,7 +18,7 @@ public interface INuocUongService {
 
     List<QLNuocUong> getNuocUongNoPagination();
 
-    UUID getNuocUongByName(String ten);
+    String getNuocUongByName(String ten);
 
     String createNewNuocUong(QLNuocUong nuocUong);
 
@@ -27,4 +27,8 @@ public interface INuocUongService {
     String deleteNuocUongById(String id);
 
     long countAllNuocUong();
+    
+    List<QLNuocUong> getNuocUongByTenNuocUong(String tenNuocUong);
+    
+    List<QLNuocUong> getNuocUongByTranThai(String trangThai);
 }

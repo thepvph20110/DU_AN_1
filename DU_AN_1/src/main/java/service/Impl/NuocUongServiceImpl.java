@@ -5,6 +5,7 @@
 package service.Impl;
 
 import domainmodel.NuocUong;
+import enumclass.trangThaiNuocUong;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -130,8 +131,41 @@ public class NuocUongServiceImpl implements INuocUongService {
     }
 
     @Override
-    public UUID getNuocUongByName(String ten) {
+    public String getNuocUongByName(String ten) {
         return nuocUongRepositoryImpl.fillByName(ten);
     }
 
+    @Override
+    public List<QLNuocUong> getNuocUongByTenNuocUong(String tenNuocUong) {
+        List<NuocUong> listNuocUong = nuocUongRepositoryImpl.findByTenNuocUong(tenNuocUong);
+        List<QLNuocUong> listQLNuocUong = new ArrayList<>();
+        for (NuocUong nuocUong : listNuocUong) {
+            listQLNuocUong.add(
+                    new QLNuocUong(
+                            nuocUong.getId(),
+                            nuocUong.getMaNuocUong(),
+                            nuocUong.getTenNuocUong(),
+                            nuocUong.getSoLuong(),
+                            nuocUong.getGia(),
+                            nuocUong.getTrangThai()));
+        }
+        return listQLNuocUong;
+    }
+
+    @Override
+    public List<QLNuocUong> getNuocUongByTranThai(String trangThai) {
+        List<NuocUong> listNuocUong = nuocUongRepositoryImpl.findByTrangThai(trangThai);
+        List<QLNuocUong> listQLNuocUong = new ArrayList<>();
+        for (NuocUong nuocUong : listNuocUong) {
+            listQLNuocUong.add(
+                    new QLNuocUong(
+                            nuocUong.getId(),
+                            nuocUong.getMaNuocUong(),
+                            nuocUong.getTenNuocUong(),
+                            nuocUong.getSoLuong(),
+                            nuocUong.getGia(),
+                            nuocUong.getTrangThai()));
+        }
+        return listQLNuocUong;
+    }
 }
