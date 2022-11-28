@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import repository.IPhieuDatLichRepository;
 import utill.HibernateConfig;
@@ -43,12 +44,15 @@ public class PhieuDatLichRepositoryImpl implements IPhieuDatLichRepository{
 
     @Override
     public boolean save(PhieuDatLich phieuDatLich) {
+        Transaction transaction = null;
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
-            session.getTransaction().begin();
+            transaction = session.getTransaction();
+            transaction.begin();
             session.save(phieuDatLich);
-            session.getTransaction().commit();
+            transaction.commit();
         } catch (Exception e) {
-            System.out.println(e);
+            transaction.rollback();
+            e.printStackTrace();
             return false;
         }
         return true;

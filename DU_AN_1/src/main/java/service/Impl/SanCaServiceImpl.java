@@ -116,15 +116,11 @@ public class SanCaServiceImpl implements ISanCaService {
        }
     }
 
-    public static void main(String[] args) {
-        System.out.println(new SanCaServiceImpl().getAll().size());
-    }
-
     @Override
     public QLSanCa getOne() {
         SanCa sanCa = re.getOne();
         QLSanCa qLSanCa = new QLSanCa(sanCa.getId(), sanCa.getCa().getTenCa(), sanCa.getSanbong().getTenSanBong(),sanCa.getSanbong().getSucChua(),sanCa.getCa().getThoiGianBatDau(),sanCa.getCa().getThoiGianKetThuc(), sanCa.getNgayTao(),sanCa.getSanbong().getGiaSan()+sanCa.getCa().getGiaCa() , sanCa.getTrangThai());
-        return null;
+        return qLSanCa;
     }
 
 }
