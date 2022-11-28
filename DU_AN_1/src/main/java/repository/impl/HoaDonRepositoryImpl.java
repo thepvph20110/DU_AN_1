@@ -123,5 +123,23 @@ public class HoaDonRepositoryImpl implements IHoaDonRepository{
         }
         return hoaDon;
     }
+
+    @Override
+    public String genMaHoaDon() {
+        String top1 = null;
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            String hql = "FROM HoaDon hd order by hd.maHoaDon DESC";
+            Query query = session.createQuery(hql);
+            session.getTransaction().begin();
+            query.setMaxResults(1);
+            HoaDon hoaDon = (HoaDon) query.getSingleResult();
+            top1 = hoaDon.getMaHoaDon();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e);
+            return top1;
+        }
+        return top1;
+    }
     
 }

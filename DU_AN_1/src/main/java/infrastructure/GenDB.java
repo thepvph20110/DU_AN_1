@@ -616,7 +616,7 @@ public class GenDB {
             Date ntt1 = new Date(2022, 13, 8, 19, 22);
             hd1.setNgayThanhToan(ntt1);
             hd1.setTongTien(2000);
-            hd1.setTrangThai(trangThaiHoaDon.DA_THANH_TOAN);
+            hd1.setTrangThai(trangThaiHoaDon.CHUA_THANH_TOAN);
             hd1.setPhieuDatLich(pdl3);
             session.save(hd1);
 
@@ -627,7 +627,7 @@ public class GenDB {
             Date ntt2 = new Date(2022, 13, 8, 20, 22);
             hd2.setNgayThanhToan(ntt2);
             hd2.setTongTien(1900);
-            hd2.setTrangThai(trangThaiHoaDon.DA_THANH_TOAN);
+            hd2.setTrangThai(trangThaiHoaDon.CHUA_THANH_TOAN);
             hd2.setPhieuDatLich(pdl2);
             session.save(hd2);
 
@@ -638,7 +638,7 @@ public class GenDB {
             Date ntt3 = new Date(2022, 13, 8, 17, 22);
             hd3.setNgayThanhToan(ntt3);
             hd3.setTongTien(2000);
-            hd3.setTrangThai(trangThaiHoaDon.DA_THANH_TOAN);
+            hd3.setTrangThai(trangThaiHoaDon.CHUA_THANH_TOAN);
             hd3.setPhieuDatLich(pdl2);
             session.save(hd3);
 
@@ -650,7 +650,7 @@ public class GenDB {
             dv1.setSoLuongDoThue(24);
             dv1.setSoLuongNuocUong(10);
             dv1.setNuocUong(nc4);
-            dv1.setHoaDon(hd1);
+            dv1.setHoaDon(null);
             dv1.setTrangThai(trangThaiDichVu.Dang_Su_Dung);
             dv1.setDoThue(dt4);
             session.save(dv1);
@@ -664,7 +664,7 @@ public class GenDB {
             dv2.setNuocUong(nc3);
             dv2.setHoaDon(hd1);
             dv2.setTrangThai(trangThaiDichVu.Dang_Su_Dung);
-            dv2.setDoThue(dt3);
+            dv2.setDoThue(null);
             session.save(dv2);
 
             DichVu dv3 = new DichVu();
@@ -673,7 +673,7 @@ public class GenDB {
             dv3.setMoTa("Ngon Bổ Rẻ");
             dv3.setSoLuongDoThue(24);
             dv3.setSoLuongNuocUong(10);
-            dv3.setHoaDon(hd2);
+            dv3.setHoaDon(null);
             dv3.setNuocUong(nc1);
             dv3.setTrangThai(trangThaiDichVu.Dang_Su_Dung);
             dv3.setDoThue(dt1);

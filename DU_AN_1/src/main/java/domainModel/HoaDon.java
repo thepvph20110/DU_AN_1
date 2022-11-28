@@ -47,6 +47,8 @@ public class HoaDon {
     
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "hoaDon")
     private Set<DichVu> dichVu;
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "hoaDon")
+    private Set<PhuPhi_HoaDon> phuPhi;
     @Column(columnDefinition = "date")
     private Date ngayThanhToan;
     private double donGia;
