@@ -737,12 +737,12 @@ public class FrmThanhToan extends javax.swing.JFrame {
                 if (soLuong == null || !soLuong.matches("-?\\d+(\\.\\d+)?")) {
                     JOptionPane.showMessageDialog(rootPane, "Không được nhập khí tự và để trống ");
                 } else {
-                    DichVu dichVu = new DichVu(null, "DV008", null, 0, iHoaDonService.findByHoaDonId(qLHoaDon.getId()), new NuocUongRepositoryImpl().findByID(qLNuocUong.getId()),
-                            Integer.parseInt(soLuong), qLNuocUong.getGia(), null, trangThaiDichVu.Dang_Su_Dung);
-                    dichVuRepository.saveOrUpdate(dichVu);
-                    listDV = dichVuRepository.findByIdHoaDon(qLHoaDon.getId());
-                    addDataRowDichVu(listDV);
-                    txtTongTien.setText(String.valueOf(fillGia()));
+//                    DichVu dichVu = new DichVu(null, "DV008", null, 0, iHoaDonService.findByHoaDonId(qLHoaDon.getId()), new NuocUongRepositoryImpl().findByID(qLNuocUong.getId()),
+//                            Integer.parseInt(soLuong), qLNuocUong.getGia(), null, trangThaiDichVu.Dang_Su_Dung);
+//                    dichVuRepository.saveOrUpdate(dichVu);
+//                    listDV = dichVuRepository.findByIdHoaDon(qLHoaDon.getId());
+//                    addDataRowDichVu(listDV);
+//                    txtTongTien.setText(String.valueOf(fillGia()));
                 }
             }
         } else {
@@ -867,11 +867,11 @@ public class FrmThanhToan extends javax.swing.JFrame {
     private void jMenuXoaDichVuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuXoaDichVuActionPerformed
         // TODO add your handling code here:
         DichVu dichVu = dichVuRepository.findByIdHoaDon(qLHoaDon.getId()).get(jtbChiTietDichVu.getSelectedRow());
-        if (dichVuRepository.delete(dichVu.getId())) {
-            JOptionPane.showMessageDialog(rootPane, "Xóa Thành Công");
-            addDataRowDichVu(dichVuRepository.findByIdHoaDon(qLHoaDon.getId()));
-            txtTongTien.setText(String.valueOf(fillGia()));
-        }
+//        if (dichVuRepository.delete(dichVu.getId())) {
+//            JOptionPane.showMessageDialog(rootPane, "Xóa Thành Công");
+//            addDataRowDichVu(dichVuRepository.findByIdHoaDon(qLHoaDon.getId()));
+//            txtTongTien.setText(String.valueOf(fillGia()));
+//        }
     }//GEN-LAST:event_jMenuXoaDichVuActionPerformed
 
     private void btnThanhToan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToan1ActionPerformed
@@ -914,12 +914,12 @@ public class FrmThanhToan extends javax.swing.JFrame {
             if (tenPP.isEmpty()) {
                 JOptionPane.showMessageDialog(rootPane, "Không Được Để Trống");
             } else {
-                QLPhuPhi phuPhi = new QLPhuPhi(null, phuPhiService.genMaPhuPhi(), tenPP);
-                if (phuPhiService.save(phuPhi)) {
-                    JOptionPane.showMessageDialog(rootPane, "Thêm Phụ Phí Thành Công");
-                } else {
-                    JOptionPane.showMessageDialog(rootPane, "Thất Bại");
-                }
+//                QLPhuPhi phuPhi = new QLPhuPhi(null, phuPhiService.genMaPhuPhi(), tenPP);
+//                if (phuPhiService.save(phuPhi)) {
+//                    JOptionPane.showMessageDialog(rootPane, "Thêm Phụ Phí Thành Công");
+//                } else {
+//                    JOptionPane.showMessageDialog(rootPane, "Thất Bại");
+//                }
             }
         }
         loadCBPhuPhi();

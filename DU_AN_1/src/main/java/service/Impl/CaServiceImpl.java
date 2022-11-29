@@ -29,7 +29,7 @@ public class CaServiceImpl implements ICaService {
         for (Ca ca : re.getAll()) {
             map.put(ca.getMaCa(), ca);
             map.put(ca.getTenCa(),ca);
-            QLCa qLCa = new QLCa(ca.getId(), ca.getMaCa(), ca.getTenCa(), ca.getThoiGianBatDau(), ca.getThoiGianKetThuc(), ca.getGiaCa(), ca.getTrangThai());
+            QLCa qLCa = new QLCa(null, ca.getMaCa(), ca.getTenCa(), ca.getThoiGianBatDau(), ca.getThoiGianKetThuc(), ca.getGiaCa(), ca.getTrangThai());
             listQLCa.add(qLCa);
         }
         return listQLCa;
@@ -50,7 +50,7 @@ public class CaServiceImpl implements ICaService {
 
     @Override
     public String delete(QLCa qLCa) {
-        Ca ca = new Ca(qLCa.getId(), qLCa.getMaCa(), qLCa.getTenCa(), qLCa.getThoiGianBatDau(), qLCa.getThoiGianKetThuc(), qLCa.getGiaCa(), qLCa.getTrangThai());
+        Ca ca = new Ca(null, qLCa.getMaCa(), qLCa.getTenCa(), qLCa.getThoiGianBatDau(), qLCa.getThoiGianKetThuc(), qLCa.getGiaCa(), qLCa.getTrangThai());
         if (re.deleteCa(ca)) {
             return "Delete Complete";
         } else {
@@ -60,7 +60,7 @@ public class CaServiceImpl implements ICaService {
 
     @Override
     public String update(QLCa qLCa) {
-        Ca ca = new Ca(qLCa.getId(), qLCa.getMaCa(), qLCa.getTenCa(), qLCa.getThoiGianBatDau(), qLCa.getThoiGianKetThuc(), qLCa.getGiaCa(), qLCa.getTrangThai());
+        Ca ca = new Ca(null, qLCa.getMaCa(), qLCa.getTenCa(), qLCa.getThoiGianBatDau(), qLCa.getThoiGianKetThuc(), qLCa.getGiaCa(), qLCa.getTrangThai());
         if (re.saveOrUpdate(ca)) {
             return "Update Complete";
         } else {

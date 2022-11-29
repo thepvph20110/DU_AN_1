@@ -25,7 +25,7 @@ public class ChucVuServiceImpl implements IChucVuService {
     public List<QLChucVu> getAll() {
         List<QLChucVu> qLChucVus = new ArrayList<>();
         for (ChucVu chucVu : chucVuRepo.getAll()) {
-            QLChucVu qLChucVu = new QLChucVu(chucVu.getId(), chucVu.getMaChucVu(), chucVu.getTenChucVu(), trangThaiChucVu.HOAT_DONG);
+            QLChucVu qLChucVu = new QLChucVu(null, chucVu.getMaChucVu(), chucVu.getTenChucVu(), trangThaiChucVu.HOAT_DONG);
             qLChucVus.add(qLChucVu);
         }
         return qLChucVus;
@@ -45,7 +45,7 @@ public class ChucVuServiceImpl implements IChucVuService {
     }
 
     @Override
-    public String update(QLChucVu qLChucVu, UUID id) {
+    public String update(QLChucVu qLChucVu, String id) {
         if (qLChucVu.getMaChucVu().isEmpty() && qLChucVu.getTenChucVu().isEmpty()) {
             return "Không Được Để Trống !!";
         }
@@ -57,7 +57,7 @@ public class ChucVuServiceImpl implements IChucVuService {
     }
 
     @Override
-    public String delete(UUID id) {
+    public String delete(String id) {
         if (chucVuRepo.delete(id) == true) {
             return "Xóa Thành Công";
         }

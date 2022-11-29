@@ -16,7 +16,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class QLPhieuDatLich {
 
-    private UUID id;
+    private String id;
     private QLAcount acount;
     private QLKhachHang khachHang;
     private QLSanCa sanCa;

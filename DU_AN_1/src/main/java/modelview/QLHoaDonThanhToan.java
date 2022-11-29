@@ -16,7 +16,6 @@ import lombok.Setter;
 @Setter
 public class QLHoaDonThanhToan {
 
-    private UUID maHDTT;
 
     private String id;
     private String maHDTT;

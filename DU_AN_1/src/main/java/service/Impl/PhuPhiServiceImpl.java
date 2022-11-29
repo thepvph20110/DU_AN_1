@@ -20,11 +20,11 @@ public class PhuPhiServiceImpl implements IPhuPhiService {
 
     @Override
     public List<QLPhuPhi> getAllQLPhuPhis() {
-        lstQLPhuPhis.clear();
-        var lstPhuPhi = repository.getAllPhuPhi();
-        for (PhuPhi phuPhi : lstPhuPhi) {
-            lstQLPhuPhis.add(new QLPhuPhi(phuPhi.getId(), phuPhi.getMaPhuPhi(), phuPhi.getTenPhuPhi()));
-        }
+//        lstQLPhuPhis.clear();
+//        var lstPhuPhi = repository.getAllPhuPhi();
+//        for (PhuPhi phuPhi : lstPhuPhi) {
+//            lstQLPhuPhis.add(new QLPhuPhi(phuPhi.getId(), phuPhi.getMaPhuPhi(), phuPhi.getTenPhuPhi()));
+//        }
         return lstQLPhuPhis;
     }
 

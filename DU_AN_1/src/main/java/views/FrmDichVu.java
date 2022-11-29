@@ -629,7 +629,7 @@ public class FrmDichVu extends javax.swing.JFrame {
         String id = this.tbDichVu.getValueAt(index, 0).toString();
         int checkConFirm = JOptionPane.showConfirmDialog(this, "Bạn Có Muốn Delete dịch vụ", "Xác Nhận", JOptionPane.YES_NO_OPTION);
         if (checkConFirm == JOptionPane.YES_OPTION) {
-            JOptionPane.showMessageDialog(rootPane, dichVuService.deleteDichVuById(id));
+//            JOptionPane.showMessageDialog(rootPane, dichVuService.deleteDichVuById(id));
         } else {
             JOptionPane.showMessageDialog(this, "Bạn đã chọn hủy Delete dịch vụ");
         }

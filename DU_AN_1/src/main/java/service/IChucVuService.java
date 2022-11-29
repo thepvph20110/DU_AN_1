@@ -18,13 +18,10 @@ public interface IChucVuService {
 
     String save(QLChucVu qLChucVu);
 
-    String update(QLChucVu qLChucVu, UUID id);
+    String update(QLChucVu qLChucVu, String id);
 
-<<<<<<< HEAD
-    String delete(UUID id);
-=======
     String delete(String id);
     
     String genMaChucVu();
->>>>>>> 0f4cad2f7c54da986d78447c8a91cf878af78d91
+
 }

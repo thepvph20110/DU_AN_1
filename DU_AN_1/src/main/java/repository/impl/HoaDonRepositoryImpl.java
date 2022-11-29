@@ -62,7 +62,7 @@ public class HoaDonRepositoryImpl implements IHoaDonRepository{
     }
 
     @Override
-    public boolean delete(UUID id) {
+    public boolean delete(String id) {
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             String hql = "DELETE FROM HoaDon WHERE id = :id";
             Query query = session.createQuery(hql);
@@ -111,7 +111,7 @@ public class HoaDonRepositoryImpl implements IHoaDonRepository{
     }
 
     @Override
-    public HoaDon findByHoaDonId(UUID id) {
+    public HoaDon findByHoaDonId(String id) {
         HoaDon hoaDon;
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             Query q = session.createQuery("FROM HoaDon hd WHERE hd.id =:id");
@@ -141,5 +141,7 @@ public class HoaDonRepositoryImpl implements IHoaDonRepository{
         }
         return top1;
     }
+
+   
     
 }

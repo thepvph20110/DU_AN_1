@@ -35,23 +35,22 @@ public class HoaDonServiceImpl implements IHoaDonService {
 
     @Override
     public String save(QLHoaDon qLHoaDon) {
-<<<<<<< HEAD
 
-        HoaDon hoaDon = new HoaDon(qLHoaDon.getId(), qLHoaDon.getPhieuDatLich(), qLHoaDon.getNgayThanhToan(),
-                        qLHoaDon.getDonGia(), qLHoaDon.getTongTien(), qLHoaDon.getGhiChu(), qLHoaDon.getTrangThai());
-        if(hoaDonRepo.save(hoaDon) == true){
-            return "Thêm Thành Công";
-        }
-
-
-        HoaDon hoaDon = new HoaDon(qLHoaDon.getId(), qLHoaDon.getMaHoaDon(), qLHoaDon.getPhieuDatLich(), null, qLHoaDon.getNgayThanhToan(),
-=======
-        HoaDon hoaDon = new HoaDon(qLHoaDon.getId(), qLHoaDon.getMaHoaDon(), qLHoaDon.getPhieuDatLich(), null,null, qLHoaDon.getNgayThanhToan(),
->>>>>>> 0f4cad2f7c54da986d78447c8a91cf878af78d91
-                qLHoaDon.getDonGia(), qLHoaDon.getTongTien(), qLHoaDon.getGhiChu(), qLHoaDon.getTrangThai());
-        if (hoaDonRepo.save(hoaDon) == true) {
-            return "Thêm Thành Công";
-        }
+//        HoaDon hoaDon = new HoaDon(qLHoaDon.getId(), qLHoaDon.getPhieuDatLich(), qLHoaDon.getNgayThanhToan(),
+//                        qLHoaDon.getDonGia(), qLHoaDon.getTongTien(), qLHoaDon.getGhiChu(), qLHoaDon.getTrangThai());
+//        if(hoaDonRepo.save(hoaDon) == true){
+//            return "Thêm Thành Công";
+//        }
+//
+//
+//        HoaDon hoaDon = new HoaDon(qLHoaDon.getId(), qLHoaDon.getMaHoaDon(), qLHoaDon.getPhieuDatLich(), null, qLHoaDon.getNgayThanhToan(),
+//
+//        HoaDon hoaDon = new HoaDon(qLHoaDon.getId(), qLHoaDon.getMaHoaDon(), qLHoaDon.getPhieuDatLich(), null,null, qLHoaDon.getNgayThanhToan(),
+//
+//                qLHoaDon.getDonGia(), qLHoaDon.getTongTien(), qLHoaDon.getGhiChu(), qLHoaDon.getTrangThai());
+//        if (hoaDonRepo.save(hoaDon) == true) {
+//            return "Thêm Thành Công";
+//        }
 
 
         return "Thêm Thất Bại";
@@ -59,27 +58,27 @@ public class HoaDonServiceImpl implements IHoaDonService {
 
     @Override
     public String update(QLHoaDon qLHoaDon, UUID id) {
-        HoaDon hoaDon = new HoaDon(qLHoaDon.getId(), qLHoaDon.getPhieuDatLich(), qLHoaDon.getNgayThanhToan(),
-                        qLHoaDon.getDonGia(), qLHoaDon.getTongTien(), qLHoaDon.getGhiChu(), qLHoaDon.getTrangThai());
-        if(hoaDonRepo.update(hoaDon) == true){
-            return "Sửa Thành Công";
-        }
-
-
-
-
-        HoaDon hoaDon = new HoaDon(qLHoaDon.getId(), qLHoaDon.getMaHoaDon(), qLHoaDon.getPhieuDatLich(), null,null, qLHoaDon.getNgayThanhToan(),
-                qLHoaDon.getDonGia(), qLHoaDon.getTongTien(), qLHoaDon.getGhiChu(), qLHoaDon.getTrangThai());
-        if (hoaDonRepo.update(hoaDon) == true) {
-            return "Sửa Thành Công";
-        }
+//        HoaDon hoaDon = new HoaDon(qLHoaDon.getId(), qLHoaDon.getPhieuDatLich(), qLHoaDon.getNgayThanhToan(),
+//                        qLHoaDon.getDonGia(), qLHoaDon.getTongTien(), qLHoaDon.getGhiChu(), qLHoaDon.getTrangThai());
+//        if(hoaDonRepo.update(hoaDon) == true){
+//            return "Sửa Thành Công";
+//        }
+//
+//
+//
+//
+//        HoaDon hoaDon = new HoaDon(qLHoaDon.getId(), qLHoaDon.getMaHoaDon(), qLHoaDon.getPhieuDatLich(), null,null, qLHoaDon.getNgayThanhToan(),
+//                qLHoaDon.getDonGia(), qLHoaDon.getTongTien(), qLHoaDon.getGhiChu(), qLHoaDon.getTrangThai());
+//        if (hoaDonRepo.update(hoaDon) == true) {
+//            return "Sửa Thành Công";
+//        }
 
 
         return "Sửa Thất Bại";
     }
 
     @Override
-    public String delete(UUID id) {
+    public String delete(String id) {
         if (hoaDonRepo.delete(id) == true) {
             return "Xóa Thành Công";
         }
@@ -109,7 +108,7 @@ public class HoaDonServiceImpl implements IHoaDonService {
     }
 
     @Override
-    public HoaDon findByHoaDonId(UUID uuid) {
+    public HoaDon findByHoaDonId(String uuid) {
         return hoaDonRepo.findByHoaDonId(uuid);
     }
 

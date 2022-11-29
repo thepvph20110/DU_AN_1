@@ -18,12 +18,9 @@ public interface IChucVuRepository {
     boolean save(ChucVu chucVu);
     
     boolean update(ChucVu chucVu);
-    
-<<<<<<< HEAD
-    boolean delete(UUID id);
-=======
+
     boolean delete(String id);
     
     String genMaChucVu();
->>>>>>> 0f4cad2f7c54da986d78447c8a91cf878af78d91
+
 }

@@ -58,7 +58,7 @@ public class ChucVuRepository implements IChucVuRepository {
     }
 
     @Override
-    public boolean delete(UUID id) {
+    public boolean delete(String id) {
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             String hql = "DELETE FROM ChucVu WHERE id = :id";
             Query query = session.createQuery(hql);
@@ -90,5 +90,7 @@ public class ChucVuRepository implements IChucVuRepository {
         }
         return top1;
     }
+
+   
 }
 

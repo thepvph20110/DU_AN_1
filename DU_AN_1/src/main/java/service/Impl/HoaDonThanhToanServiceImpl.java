@@ -141,12 +141,13 @@ public class HoaDonThanhToanServiceImpl implements IHoaDonThanhToanService {
 
     @Override
     public String deleteHoaDonThanhToanById(String id) {
-        boolean delete = hoaDonThanhToanRepositoryImpl.delete(id);
-        if (delete) {
-            return "Xóa Hóa Đơn Thanh Toán Thành Công";
-        } else {
-            return "Xóa Hóa Đơn Thanh Toán Không Công";
-        }
+//        boolean delete = hoaDonThanhToanRepositoryImpl.delete(id);
+//        if (delete) {
+//            return "Xóa Hóa Đơn Thanh Toán Thành Công";
+//        } else {
+//            return "Xóa Hóa Đơn Thanh Toán Không Công";
+//        }
+    return null;
     }
 
     @Override
@@ -161,4 +162,6 @@ public class HoaDonThanhToanServiceImpl implements IHoaDonThanhToanService {
         List<QLHoaDonThanhToan> qlHDTT = new HoaDonThanhToanServiceImpl().getHoaDonThanhToanNoPagination();
         qlHDTT.forEach(c -> System.out.println("" + c.getHoaDon()));
     }
+
+    
 }

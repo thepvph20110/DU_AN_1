@@ -24,7 +24,7 @@ public interface INuocUongService {
 
     String updateNuocUongById(QLNuocUong nuocUong);
 
-    String deleteNuocUongById(UUID id);
+    String deleteNuocUongById(String id);
 
     long countAllNuocUong();
 }

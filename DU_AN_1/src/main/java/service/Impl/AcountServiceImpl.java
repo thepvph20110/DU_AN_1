@@ -25,7 +25,7 @@ public class AcountServiceImpl implements IAcountService {
     public List<QLAcount> getAll() {
         List<QLAcount> qLAcounts = new ArrayList<>();
         for (Acount acount : acountRepo.getAll()) {
-            QLAcount qLAcount = new QLAcount(acount.getId(), acount.getMaAcount(), acount.getTenAcount(),
+            QLAcount qLAcount = new QLAcount(null, acount.getMaAcount(), acount.getTenAcount(),
                     acount.getChucVu(), acount.getMatKhau(), acount.getMoTa(), trangThaiAcount.Da_Xac_Minh);
             qLAcounts.add(qLAcount);
         }
@@ -43,7 +43,7 @@ public class AcountServiceImpl implements IAcountService {
     }
 
     @Override
-    public String update(QLAcount qLAcount, UUID id) {
+    public String update(QLAcount qLAcount, String id) {
         Acount acount = new Acount(id, qLAcount.getMaAcount(), qLAcount.getTenAcount(), qLAcount.getChucVu(),
                 qLAcount.getMatKhau(), qLAcount.getMoTa(), trangThaiAcount.Da_Xac_Minh);
         if (acountRepo.update(acount) == true) {
@@ -53,7 +53,7 @@ public class AcountServiceImpl implements IAcountService {
     }
 
     @Override
-    public String delete(UUID id) {
+    public String delete(String id) {
         if (acountRepo.delete(id) == true) {
             return "Xóa Thành Công";
         }
@@ -63,13 +63,12 @@ public class AcountServiceImpl implements IAcountService {
     @Override
     public QLAcount getOne() {
         Acount acount = acountRepo.getOne();
-        QLAcount qlAcount = new QLAcount(acount.getId(), acount.getMaAcount(), acount.getTenAcount(), acount.getChucVu(), acount.getMatKhau(), acount.getMoTa(), acount.getTrangThai());
+        QLAcount qlAcount = new QLAcount(null, acount.getMaAcount(), acount.getTenAcount(), acount.getChucVu(), acount.getMatKhau(), acount.getMoTa(), acount.getTrangThai());
         return qlAcount;
     }
 
-<<<<<<< HEAD
    
-=======
+
     @Override
     public String genMaAccount() {
         String pp = acountRepo.genMaAccount();
@@ -77,6 +76,5 @@ public class AcountServiceImpl implements IAcountService {
         return  pp.substring(0, 2) + "00"+ newPP ;
     }
 
->>>>>>> 0f4cad2f7c54da986d78447c8a91cf878af78d91
     
 }

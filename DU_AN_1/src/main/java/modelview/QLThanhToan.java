@@ -18,7 +18,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class QLThanhToan {
 
-    private UUID id;
+    private String id;
     private String maThanhToan;
     private loaiHinhThanhToan hinhThanhToan;
     private String moTa;

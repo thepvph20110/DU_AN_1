@@ -22,7 +22,7 @@ import lombok.Setter;
 @Setter
 public class QLAcount {
 
-    private UUID id;
+    private String id;
     private String maAcount;
     private String tenAcount;
     private ChucVu chucVu;

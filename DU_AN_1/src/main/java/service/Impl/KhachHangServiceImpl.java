@@ -36,38 +36,38 @@ public class KhachHangServiceImpl implements IKhachHangService {
     @Override
     public String save(QLKhachHang qLKhachHang) {
 
-        KhachHang khachHang = new KhachHang(null, qLKhachHang.getMaKhachHang(), qLKhachHang.getTenKhachHang(), qLKhachHang.getSoDienThoai(), qLKhachHang.getGhiChu(), qLKhachHang.getTrangThai());
-        if (re.saveOrUpdate(khachHang)) {
-            return "Save complete";
-        } else {
-            return "Save Fail";
-        }
-     
+//        KhachHang khachHang = new KhachHang(null, qLKhachHang.getMaKhachHang(), qLKhachHang.getTenKhachHang(), qLKhachHang.getSoDienThoai(), qLKhachHang.getGhiChu(), qLKhachHang.getTrangThai());
+//        if (re.saveOrUpdate(khachHang)) {
+//            return "Save complete";
+//        } else {
+//            return "Save Fail";
+//        }
+     return null;
     }
 
     @Override
     public String update(QLKhachHang qLKhachHang) {
 
-        KhachHang khachHang = new KhachHang(qLKhachHang.getId(), qLKhachHang.getMaKhachHang(), qLKhachHang.getTenKhachHang(), qLKhachHang.getSoDienThoai(), qLKhachHang.getGhiChu(), qLKhachHang.getTrangThai());
-        if (re.saveOrUpdate(khachHang)) {
-            return "Update complete";
-        } else {
-            return "Update Fail";
-        }
-       
+//        KhachHang khachHang = new KhachHang(qLKhachHang.getId(), qLKhachHang.getMaKhachHang(), qLKhachHang.getTenKhachHang(), qLKhachHang.getSoDienThoai(), qLKhachHang.getGhiChu(), qLKhachHang.getTrangThai());
+//        if (re.saveOrUpdate(khachHang)) {
+//            return "Update complete";
+//        } else {
+//            return "Update Fail";
+//        }
+       return null;
 
     }
 
     @Override
     public String delete(QLKhachHang qLKhachHang) {
 
-        KhachHang khachHang = new KhachHang(qLKhachHang.getId(), qLKhachHang.getMaKhachHang(), qLKhachHang.getTenKhachHang(), qLKhachHang.getSoDienThoai(), qLKhachHang.getGhiChu(), qLKhachHang.getTrangThai());
-        if (re.delete(khachHang)) {
-            return "Delete complete";
-        } else {
-            return "Delete Fail";
-        }
-        
+//        KhachHang khachHang = new KhachHang(qLKhachHang.getId(), qLKhachHang.getMaKhachHang(), qLKhachHang.getTenKhachHang(), qLKhachHang.getSoDienThoai(), qLKhachHang.getGhiChu(), qLKhachHang.getTrangThai());
+//        if (re.delete(khachHang)) {
+//            return "Delete complete";
+//        } else {
+//            return "Delete Fail";
+//        }
+        return null;
     }
     
     public static void main(String[] args) {

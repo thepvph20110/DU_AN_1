@@ -17,7 +17,7 @@ import lombok.Setter;
 public class QLDichVu {
 
 
-    private UUID id;
+    private String id;
     private String maDichVu;
 
 
