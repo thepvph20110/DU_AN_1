@@ -34,4 +34,8 @@ public class QLKhachHang {
     public Object toDataRow(){
         return new Object[] {id, maKhachHang, tenKhachHang,mail, soDienThoai, ghiChu, trangThai};
     }
+
+    Object getTenKhachHang() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

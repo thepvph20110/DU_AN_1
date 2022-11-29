@@ -71,7 +71,7 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
         txtTienSanBong.setText(sanCa.getGiaSanCa()+"");
         txtTienSanBong.setEnabled(false);
 
-        txtTenKhachHang.setText(qlKhachHang.getTenKhachHang());
+//        txtTenKhachHang.setText(qlKhachHang.getTenKhachHang());
         txtTenKhachHang.setEnabled(false);
         
         txtQuanLy.setText(acount.getTenAcount());
@@ -335,28 +335,28 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
         Date ngayDen = dateNgayDen.getDate();
         String ghiChu = txtGhiChu.getText();
         Date ngayTao = new Date();
-        KhachHang khachHang = new KhachHang(qlKhachHang.getId(), qlKhachHang.getMaKhachHang(), qlKhachHang.getTenKhachHang(), qlKhachHang.getMail(), qlKhachHang.getSoDienThoai(), qlKhachHang.getGhiChu(), qlKhachHang.getTrangThai());
-        PhieuDatLich phieuDatLich = new PhieuDatLich(maPhieuLichDat, acount, khachHang, sanCa, ngayTao, ngayDen, null, ghiChu, maQr, sanCa.getGiaSanCa(), trangThaiPhieuDL.CHUA_NHAN_SAN);
+//        KhachHang khachHang = new KhachHang(qlKhachHang.getId(), qlKhachHang.getMaKhachHang(), qlKhachHang.getTenKhachHang(), qlKhachHang.getMail(), qlKhachHang.getSoDienThoai(), qlKhachHang.getGhiChu(), qlKhachHang.getTrangThai());
+//        PhieuDatLich phieuDatLich = new PhieuDatLich(maPhieuLichDat, acount, khachHang, sanCa, ngayTao, ngayDen, null, ghiChu, maQr, sanCa.getGiaSanCa(), trangThaiPhieuDL.CHUA_NHAN_SAN);
 
         try {
-            String check = phieuDatLichService.datLich(phieuDatLich);
-            if (check.equalsIgnoreCase("Lưu Thành Công")) {
-                sanCa.setTrangThai(trangThaiSanCa.CHO_NHAN_SAN);
-                JOptionPane.showMessageDialog(rootPane, new JavaMail().sendMail(phieuDatLich, byteArrayOutputStream));
-                System.out.println("aaaaaaaa");
-                QLSanCa qLSanCa = new QLSanCa(sanCa.getId(), sanCa.getCa().getTenCa(), sanCa.getSanbong().getTenSanBong(), 
-                        sanCa.getSanbong().getSucChua(), sanCa.getCa().getThoiGianBatDau(), 
-                        sanCa.getCa().getThoiGianKetThuc(), sanCa.getNgayTao(), sanCa.getGiaSanCa(), trangThaiSanCa.CHO_NHAN_SAN);
-                System.out.println("bbbbbbbbbbbbbbbbbbbbb");
-                sanCaService.update(qLSanCa);
-                System.out.println("ccccccccccccccccc");
-                QLHoaDon qLHoaDon = new QLHoaDon(null, null, phieuDatLich, null,null, ngayTao, 0, 0, null,trangThaiHoaDon.CHUA_THANH_TOAN);
-                System.out.println("dddddddddddddddddddddd");
-                hoaDonService.save(qLHoaDon);
-                this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(rootPane, check);
-            }
+//            String check = phieuDatLichService.datLich(phieuDatLich);
+//            if (check.equalsIgnoreCase("Lưu Thành Công")) {
+//                sanCa.setTrangThai(trangThaiSanCa.CHO_NHAN_SAN);
+//                JOptionPane.showMessageDialog(rootPane, new JavaMail().sendMail(phieuDatLich, byteArrayOutputStream));
+//                System.out.println("aaaaaaaa");
+//                QLSanCa qLSanCa = new QLSanCa(sanCa.getId(), sanCa.getCa().getTenCa(), sanCa.getSanbong().getTenSanBong(), 
+//                        sanCa.getSanbong().getSucChua(), sanCa.getCa().getThoiGianBatDau(), 
+//                        sanCa.getCa().getThoiGianKetThuc(), sanCa.getNgayTao(), sanCa.getGiaSanCa(), trangThaiSanCa.CHO_NHAN_SAN);
+//                System.out.println("bbbbbbbbbbbbbbbbbbbbb");
+//                sanCaService.update(qLSanCa);
+//                System.out.println("ccccccccccccccccc");
+//                QLHoaDon qLHoaDon = new QLHoaDon(null, null, phieuDatLich, null,null, ngayTao, 0, 0, null,trangThaiHoaDon.CHUA_THANH_TOAN);
+//                System.out.println("dddddddddddddddddddddd");
+//                hoaDonService.save(qLHoaDon);
+//                this.dispose();
+//            } else {
+//                JOptionPane.showMessageDialog(rootPane, check);
+//            }
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -222,13 +222,13 @@ public class FrmKhachHang extends javax.swing.JFrame {
         String sdt = txtSoDT.getText().trim();
         String email = txtEmail.getText().trim();
         QLKhachHang qLKhachHang = new QLKhachHang();
-        if (radioBinhThuong.isSelected()) {
-            qLKhachHang.setTrangThai(trangThaiKhachHang.BINH_THUONG);
-        } else {
-            qLKhachHang.setTrangThai(trangThaiKhachHang.CANH_CAO);
-        }
-        QLKhachHang khachHang = new QLKhachHang(null, ma, ten, email, sdt, ghiChu,qLKhachHang.getTrangThai());
-        JOptionPane.showMessageDialog(this, iKhachHangService.save(khachHang));
+//        if (radioBinhThuong.isSelected()) {
+//            qLKhachHang.setTrangThai(trangThaiKhachHang.BINH_THUONG);
+//        } else {
+//            qLKhachHang.setTrangThai(trangThaiKhachHang.CANH_CAO);
+//        }
+//        QLKhachHang khachHang = new QLKhachHang(null, ma, ten, email, sdt, ghiChu,qLKhachHang.getTrangThai());
+//        JOptionPane.showMessageDialog(this, iKhachHangService.save(khachHang));
         listKhachHang = iKhachHangService.getAll();
         showData(listKhachHang);
     }//GEN-LAST:event_btnSaveActionPerformed
@@ -242,9 +242,9 @@ public class FrmKhachHang extends javax.swing.JFrame {
         String email = txtEmail.getText().trim();
         QLKhachHang qLKhachHang = new QLKhachHang();
         if (radioBinhThuong.isSelected()) {
-            qLKhachHang.setTrangThai(trangThaiKhachHang.BINH_THUONG);
+//            qLKhachHang.setTrangThai(trangThaiKhachHang.BINH_THUONG);
         } else {
-            qLKhachHang.setTrangThai(trangThaiKhachHang.CANH_CAO);
+//            qLKhachHang.setTrangThai(trangThaiKhachHang.CANH_CAO);
         }
         if (row < 0) {
             JOptionPane.showMessageDialog(this, "Selected row ??");
@@ -252,8 +252,8 @@ public class FrmKhachHang extends javax.swing.JFrame {
             if (ten.length() == 0 || ma.length() == 0 || ghiChu.length() == 0 || sdt.length() == 0 || email.length() == 0) {
                 JOptionPane.showMessageDialog(this, "Null");
             } else {
-                QLKhachHang khachHang = new QLKhachHang(mountClick().getId(), ma, ten, email, sdt, ghiChu, qLKhachHang.getTrangThai());
-                JOptionPane.showMessageDialog(this, iKhachHangService.update(khachHang));
+//                QLKhachHang khachHang = new QLKhachHang(mountClick().getId(), ma, ten, email, sdt, ghiChu, qLKhachHang.getTrangThai());
+//                JOptionPane.showMessageDialog(this, iKhachHangService.update(khachHang));
                 listKhachHang = iKhachHangService.getAll();
                 showData(listKhachHang);
             }
@@ -269,15 +269,15 @@ public class FrmKhachHang extends javax.swing.JFrame {
         String email = txtEmail.getText().trim();
         QLKhachHang qLKhachHang = new QLKhachHang();
         if (radioBinhThuong.isSelected()) {
-            qLKhachHang.setTrangThai(trangThaiKhachHang.BINH_THUONG);
+//            qLKhachHang.setTrangThai(trangThaiKhachHang.BINH_THUONG);
         } else {
-            qLKhachHang.setTrangThai(trangThaiKhachHang.CANH_CAO);
+//            qLKhachHang.setTrangThai(trangThaiKhachHang.CANH_CAO);
         }
         if (row < 0) {
             JOptionPane.showMessageDialog(this, "Selected row ??");
         } else {
-            QLKhachHang khachHang = new QLKhachHang(mountClick().getId(), ma, ten, email, sdt, ghiChu, qLKhachHang.getTrangThai());
-            JOptionPane.showMessageDialog(this, iKhachHangService.delete(khachHang));
+//            QLKhachHang khachHang = new QLKhachHang(mountClick().getId(), ma, ten, email, sdt, ghiChu, qLKhachHang.getTrangThai());
+//            JOptionPane.showMessageDialog(this, iKhachHangService.delete(khachHang));
             listKhachHang = iKhachHangService.getAll();
             showData(listKhachHang);
 
@@ -301,17 +301,17 @@ public class FrmKhachHang extends javax.swing.JFrame {
     }
 
     private void fillData(int index) {
-        QLKhachHang qLKhachHang = listKhachHang.get(index);
-        txtGhiChu.setText(qLKhachHang.getGhiChu());
-        txtMaKH.setText(qLKhachHang.getMaKhachHang());
-        txtSoDT.setText(qLKhachHang.getSoDienThoai());
-        txtTenKh.setText(qLKhachHang.getTenKhachHang());
-        if (qLKhachHang.getTrangThai() == trangThaiKhachHang.BINH_THUONG) {
-            radioBinhThuong.setSelected(true);
-        } else {
-            radioCanhBao.setSelected(true);
-
-        }
+//        QLKhachHang qLKhachHang = listKhachHang.get(index);
+//        txtGhiChu.setText(qLKhachHang.getGhiChu());
+//        txtMaKH.setText(qLKhachHang.getMaKhachHang());
+//        txtSoDT.setText(qLKhachHang.getSoDienThoai());
+//        txtTenKh.setText(qLKhachHang.getTenKhachHang());
+//        if (qLKhachHang.getTrangThai() == trangThaiKhachHang.BINH_THUONG) {
+//            radioBinhThuong.setSelected(true);
+//        } else {
+//            radioCanhBao.setSelected(true);
+//
+//        }
     }
 
     private void showData(List<QLKhachHang> listQLKhachHang) {

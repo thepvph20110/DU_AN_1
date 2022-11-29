@@ -348,11 +348,11 @@ public class AddPhieuDatLich extends javax.swing.JFrame {
         } else if (!time.matches("^\\d{2}:\\d{2}:\\d{2}$")) {
             JOptionPane.showMessageDialog(this, "Format time");
         } else {
-            QLKhachHang khachHang = new QLKhachHang(setKhachHang(), null, null, null,  null, null,null);
-            QLSanCa sanCa = new QLSanCa(setSanCa(), null, null,0,null,null, null, 0, null);
-            QLAcount acount = new QLAcount(setAcount(), null, null, null, null, null, null);
-            QLPhieuDatLich lich = new QLPhieuDatLich(null, acount, khachHang, sanCa, d, ngayDenSan, Time.valueOf(time), ghiChu,qLPhieuDatLich.getMaQR(), Double.valueOf(tongTien), qLPhieuDatLich.getTrangThai());
-            JOptionPane.showMessageDialog(this, iPhieuDatLichService.save(lich));
+//            QLKhachHang khachHang = new QLKhachHang(setKhachHang(), null, null, null,  null, null,null);
+//            QLSanCa sanCa = new QLSanCa(setSanCa(), null, null,0,null,null, null, 0, null);
+//            QLAcount acount = new QLAcount(setAcount(), null, null, null, null, null, null);
+//            QLPhieuDatLich lich = new QLPhieuDatLich(null, acount, khachHang, sanCa, d, ngayDenSan, Time.valueOf(time), ghiChu,qLPhieuDatLich.getMaQR(), Double.valueOf(tongTien), qLPhieuDatLich.getTrangThai());
+//            JOptionPane.showMessageDialog(this, iPhieuDatLichService.save(lich));
             listPhieuDatLich = iPhieuDatLichService.getAll();
             showData(listPhieuDatLich);
         }
@@ -383,11 +383,11 @@ public class AddPhieuDatLich extends javax.swing.JFrame {
             } else if (!time.matches("^\\d{2}:\\d{2}:\\d{2}$")) {
                 JOptionPane.showMessageDialog(this, "Format time");
             } else {
-                QLKhachHang khachHang = new QLKhachHang(setKhachHang(), null, null, null, null, null,null);
-                QLSanCa sanCa = new QLSanCa(setSanCa(), null, null,0,null,null, null, 0, null);
-                QLAcount acount = new QLAcount(setAcount(), null, null, null, null, null, null);
-                QLPhieuDatLich lich = new QLPhieuDatLich(mountClick().getId(), acount, khachHang, sanCa, d, ngayDenSan, Time.valueOf(time), ghiChu,qLPhieuDatLich.getMaQR(), Double.valueOf(tongTien), qLPhieuDatLich.getTrangThai());
-                JOptionPane.showMessageDialog(this, iPhieuDatLichService.update(lich));
+//                QLKhachHang khachHang = new QLKhachHang(setKhachHang(), null, null, null, null, null,null);
+//                QLSanCa sanCa = new QLSanCa(setSanCa(), null, null,0,null,null, null, 0, null);
+//                QLAcount acount = new QLAcount(setAcount(), null, null, null, null, null, null);
+//                QLPhieuDatLich lich = new QLPhieuDatLich(mountClick().getId(), acount, khachHang, sanCa, d, ngayDenSan, Time.valueOf(time), ghiChu,qLPhieuDatLich.getMaQR(), Double.valueOf(tongTien), qLPhieuDatLich.getTrangThai());
+//                JOptionPane.showMessageDialog(this, iPhieuDatLichService.update(lich));
                 listPhieuDatLich = iPhieuDatLichService.getAll();
                 showData(listPhieuDatLich);
             }
@@ -423,7 +423,7 @@ public class AddPhieuDatLich extends javax.swing.JFrame {
 
     private void loadCbbKhachHang() {
         for (QLKhachHang qLKhachHang : listKhachHang) {
-            cbbKhachHang.addItem(qLKhachHang.getTenKhachHang());
+//            cbbKhachHang.addItem(qLKhachHang.getTenKhachHang());
         }
     }
 
@@ -445,7 +445,7 @@ public class AddPhieuDatLich extends javax.swing.JFrame {
         TimeCheckIn.setText(String.valueOf(qLPhieuDatLich.getTgCheckIn()));
         TongTienSan.setText(String.valueOf(qLPhieuDatLich.getTongTienSan()));
         cbbAcount.setSelectedItem(qLPhieuDatLich.getAcount().getTenAcount());
-        cbbKhachHang.setSelectedItem(qLPhieuDatLich.getKhachHang().getTenKhachHang());
+//        cbbKhachHang.setSelectedItem(qLPhieuDatLich.getKhachHang().getTenKhachHang());
         cbbSanCa.setSelectedItem(qLPhieuDatLich.getSanCa().getTenCa());
         NgayDenSan.setDate(qLPhieuDatLich.getNgayDenSan());
         NgayTaoPhieu.setDate(qLPhieuDatLich.getNgayTaoPhieu());
@@ -473,9 +473,9 @@ public class AddPhieuDatLich extends javax.swing.JFrame {
         String ten = (String) cbbKhachHang.getSelectedItem();
         String id = null;
         for (QLKhachHang qLKhachHang : listKhachHang) {
-            if (qLKhachHang.getTenKhachHang().equals(ten)) {
-                id = qLKhachHang.getId();
-            }
+//            if (qLKhachHang.getTenKhachHang().equals(ten)) {
+//                id = qLKhachHang.getId();
+//            }
         }
         return id;
     }
