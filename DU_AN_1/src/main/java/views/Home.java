@@ -108,35 +108,12 @@ public class Home extends javax.swing.JFrame {
             panelSan.setLayout(new GridLayout(1, 100, 20, 20));
             for (int j = 0; j < listSanCa.size(); j++) {
                 if (listSanBong.get(i).getTenSanBong().equals(listSanCa.get(j).getTenSanBong())) {
-
                     if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.CHO_NHAN_SAN) {
-                        JPopupMenu jPopupMenu = new JPopupMenu();
-                        JMenuItem itemDatLich = new JMenuItem("Đặt Lịch");
-                        JMenuItem itemCheckOut = new JMenuItem("Check Out");
-                        itemDatLich.enable(false);
-                        itemCheckOut.enable(false);
-                        jPopupMenu.add(itemDatLich);
-                        jPopupMenu.add(itemCheckOut);
                         JPanel panelCa = new JPanel();
                         panelCa.setBackground(new Color(255, 255, 0));
                         panelCa.setLayout(new FlowLayout());
-                        panelCa.setComponentPopupMenu(jPopupMenu);
                         panelCa.setPreferredSize(new Dimension(174, 254));
                         panelCa.setLayout(new BoxLayout(panelCa, BoxLayout.Y_AXIS));
-                        panelCa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-                        panelCa.addMouseListener(new java.awt.event.MouseAdapter() {
-                            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                                panelCaInMouseReleased(evt);
-                            }
-
-                            private void panelCaInMouseReleased(MouseEvent evt) {
-                                if (evt.isPopupTrigger()) {
-                                    jPopupMenu.show(null, evt.getPoint().x, evt.getPoint().y);
-                                }
-
-                            }
-                        });
-
                         panelCa.setLayout(new FlowLayout(10, 20, 20));
                         JLabel labelCa = new JLabel(listSanCa.get(j).getTenCa());
                         JLabel labelThoiGian = new JLabel(String.valueOf(listSanCa.get(j).getThoiGianBatDau()) + " : " + String.valueOf(listSanCa.get(j).getThoiGianKetThuc()));
@@ -183,19 +160,23 @@ public class Home extends javax.swing.JFrame {
 
                             private void panelCaInMouseReleased(MouseEvent evt) {
                                 if (evt.isPopupTrigger()) {
-                                    jPopupMenu.show(null, evt.getXOnScreen(), evt.getYOnScreen());
+                                    jPopupMenu.show(panelCa, evt.getPoint().x, evt.getPoint().y);
                                 }
 
                             }
                         });
-                        itemDatLich.enable(false);
-                        itemCheckOut.enable(true);
                         itemCheckOut.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
-//                            JOptionPane.showMessageDialog(panelSan, "heloo");
 
                                 panelCa.setBackground(Color.ORANGE);
+                                jPopupMenu.setVisible(false);
+                            }
+                        });
+                        itemDatLich.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                JOptionPane.showMessageDialog(panelSan, "Sân đã có người đá không thể đặt lịch!");
                                 jPopupMenu.setVisible(false);
                             }
                         });
@@ -224,13 +205,45 @@ public class Home extends javax.swing.JFrame {
                         panelCa.add(labelGiaSan);
                         listPaneCa.add(panelCa);
                         panelSan.add(panelCa);
-                    } else {                     
+                    } else {
+                        JPopupMenu jPopupMenu = new JPopupMenu();
+                        JMenuItem itemDatLich = new JMenuItem("Đặt Lịch");
+                        JMenuItem itemCheckOut = new JMenuItem("Check Out");
+                        jPopupMenu.add(itemDatLich);
+                        jPopupMenu.add(itemCheckOut);
                         JPanel panelCa = new JPanel();
                         panelCa.setLayout(new FlowLayout());
                         panelCa.setPreferredSize(new Dimension(174, 254));
+                        panelCa.setComponentPopupMenu(jPopupMenu);
                         panelCa.setBackground(new Color(0, 153, 0));
-                        panelCa.setLayout(new BoxLayout(panelCa, BoxLayout.Y_AXIS));                     
+                        panelCa.setLayout(new BoxLayout(panelCa, BoxLayout.Y_AXIS));
                         panelCa.setLayout(new FlowLayout(10, 20, 20));
+                        panelCa.addMouseListener(new java.awt.event.MouseAdapter() {
+                            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                                panelCaInMouseReleased(evt);
+                            }
+
+                            private void panelCaInMouseReleased(MouseEvent evt) {
+                                if (evt.isPopupTrigger()) {
+                                    jPopupMenu.show(panelCa, evt.getPoint().x, evt.getPoint().y);
+                                }
+
+                            }
+                        });
+                        itemCheckOut.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                JOptionPane.showMessageDialog(panelSan, "Sân này chưa có người đá! Không thể Check Out!");
+                                jPopupMenu.setVisible(false);
+                            }
+                        });
+                        itemDatLich.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                panelCa.setBackground(Color.ORANGE);
+                                jPopupMenu.setVisible(false);
+                            }
+                        });
                         JLabel labelCa = new JLabel(listSanCa.get(j).getTenCa());
                         JLabel labelThoiGian = new JLabel(listSanCa.get(j).getThoiGianBatDau() + " : " + String.valueOf(listSanCa.get(j).getThoiGianKetThuc()));
                         JLabel labelLoaiSan = new JLabel("Loại sân" + " " + listSanCa.get(j).getSucChua());
@@ -248,6 +261,7 @@ public class Home extends javax.swing.JFrame {
                         JLabel labelGiaSan = new JLabel("Giá: " + String.valueOf(listSanCa.get(j).getGiaCaSan()));
                         labelGiaSan.setFont(new Font("Tahoma", 1, 12));
                         labelGiaSan.setForeground(Color.BLACK);
+                        panelCa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
                         panelCa.add(labelCa);
                         panelCa.add(labelThoiGian);
                         panelCa.add(labelLoaiSan);
@@ -258,7 +272,6 @@ public class Home extends javax.swing.JFrame {
                     }
                 }
             }
-//            }
             PaneTong.add(panelSan);
         }
 
