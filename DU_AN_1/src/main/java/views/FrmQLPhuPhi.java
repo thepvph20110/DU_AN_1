@@ -23,7 +23,7 @@ public class FrmQLPhuPhi extends javax.swing.JFrame {
     private QLPhuPhi formInputqLPhuPhiSave() {
         QLPhuPhi ql = new QLPhuPhi();
         ql.setId(null);
-        String ma = txtMa.getText();
+        String ma = iPhuPhiService.genMaPhuPhi(lstQLPhuPhis);
         ql.setMaPhuPhi(ma);
         String ten = txtTen.getText();
         ql.setTenPhuPhi(ten);

@@ -14,7 +14,7 @@ public interface IThanhToanService {
 
     boolean delete(String id);
 
-    String genMaThanhToan();
+    String genMaThanhToan(List<QLThanhToan> lstQLThanhToans);
 
     QLThanhToan fillByMaThanhToan(String maThanhToan);
 }

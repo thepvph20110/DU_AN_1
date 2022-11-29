@@ -14,7 +14,7 @@ public interface IPhuPhiService {
 
     boolean delete(String id);
 
-    String genMaPhuPhi();
+    String genMaPhuPhi(List<QLPhuPhi> lstQLPhuPhis);
 
     QLPhuPhi fillByMaPhuPhi(String maPhuPhi);
 }

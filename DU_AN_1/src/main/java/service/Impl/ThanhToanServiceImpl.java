@@ -58,10 +58,20 @@ public class ThanhToanServiceImpl implements IThanhToanService {
     }
 
     @Override
-    public String genMaThanhToan() {
-        String tt = repository.genMaThanhToan();
-        int newTT = (Integer.valueOf(tt.substring(2))) + 1;
-        return tt.substring(0, 2) + "00" + newTT;
+    public String genMaThanhToan(List<QLThanhToan> lstQLThanhToans) {
+        int start;
+        List<Integer> lstIntegers = new ArrayList<>();
+        for (int i = 0; i < lstQLThanhToans.size(); i++) {
+            start = Integer.parseInt(lstQLThanhToans.get(i).getMaThanhToan().substring(4));
+            lstIntegers.add(start);
+        }
+        int max = lstIntegers.get(0);
+        for (int i = 0; i < lstIntegers.size(); i++) {
+            if (lstIntegers.get(i).compareTo(max) > 0) {
+                max = lstIntegers.get(i);
+            }
+        }
+        return "TT00" + (++max);
     }
 
     @Override
