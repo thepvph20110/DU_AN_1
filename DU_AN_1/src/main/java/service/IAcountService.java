@@ -4,6 +4,7 @@
  */
 package service;
 
+import domainmodel.Acount;
 import java.util.List;
 import java.util.UUID;
 import modelview.QLAcount;
@@ -14,7 +15,7 @@ import modelview.QLAcount;
  */
 public interface IAcountService {
 
-    QLAcount getOne();
+    Acount getOne();
             
     List<QLAcount> getAll();
 

@@ -30,6 +30,7 @@ public class PhieuDatLichServiceImpl implements IPhieuDatLichService {
     public List<QLPhieuDatLich> getAll() {
 
         List<QLPhieuDatLich> lPhieuDatLichs = new ArrayList<>();
+<<<<<<< HEAD
 //        for (PhieuDatLich phieuDatLich : phieuRepo.getAll()) {
 //            QLAcount qLAcount = new QLAcount(phieuDatLich.getAcount().getId(), null, phieuDatLich.getAcount().getTenAcount(), null, null, null, null);
 //
@@ -39,6 +40,17 @@ public class PhieuDatLichServiceImpl implements IPhieuDatLichService {
 //            QLPhieuDatLich qLPhieuDatLich = new QLPhieuDatLich(phieuDatLich.getId(), qLAcount, qLKhachHang, qLSanCa, phieuDatLich.getNgayTaoPhieu(), phieuDatLich.getNgayDenSan(), phieuDatLich.getTgCheckIn(), phieuDatLich.getGhiChu(), phieuDatLich.getMaQR(), phieuDatLich.getTongTienSan(), phieuDatLich.getTrangThai());
 //            lPhieuDatLichs.add(qLPhieuDatLich);
 //        }
+=======
+        for (PhieuDatLich phieuDatLich : phieuRepo.getAll()) {  
+            QLAcount qLAcount = new QLAcount(phieuDatLich.getAcount().getId(), null, phieuDatLich.getAcount().getTenAcount(), null, null, null, null);
+
+            QLKhachHang qLKhachHang = new QLKhachHang(phieuDatLich.getKhachHang().getId(), null, phieuDatLich.getKhachHang().getTenKhachHang(), null, null, null, null);
+
+            QLSanCa qLSanCa = new QLSanCa(phieuDatLich.getSanCa().getId(), phieuDatLich.getSanCa().getCa().getTenCa(), null,0,null,null, null, 0, null);
+            QLPhieuDatLich qLPhieuDatLich = new QLPhieuDatLich(phieuDatLich.getId(), qLAcount, qLKhachHang, qLSanCa, phieuDatLich.getNgayTaoPhieu(), phieuDatLich.getNgayDenSan(), phieuDatLich.getTgCheckIn(), phieuDatLich.getGhiChu(), phieuDatLich.getMaQR(), phieuDatLich.getTongTienSan(), phieuDatLich.getTrangThai());
+            lPhieuDatLichs.add(qLPhieuDatLich);
+        }
+>>>>>>> 66fd1da8ec6d200f8ff898e1c31de0200f5af916
 
         return lPhieuDatLichs;
     
@@ -46,6 +58,7 @@ public class PhieuDatLichServiceImpl implements IPhieuDatLichService {
 
     @Override
     public String save(QLPhieuDatLich phieuDatLich) {
+<<<<<<< HEAD
 
 //        PhieuDatLich phieuDatLichDomain = new PhieuDatLich(phieuDatLich.getId(),phieuDatLich.getAcount(),phieuDatLich.getKhachHang(),phieuDatLich.getSanCa(),
 //                                                 phieuDatLich.getNgayTaoPhieu(),phieuDatLich.getNgayDenSan(),phieuDatLich.getTgCheckIn(),phieuDatLich.getGhiChu(),phieuDatLich.getTongTienSan()
@@ -62,6 +75,15 @@ public class PhieuDatLichServiceImpl implements IPhieuDatLichService {
 //            return "Lưu Thành Công";
 //        }
 
+=======
+        Acount acount = new Acount(phieuDatLich.getAcount().getId(),null, null, null, null, null, phieuDatLich.getAcount().getTrangThai());
+        KhachHang khachHang = new KhachHang(phieuDatLich.getKhachHang().getId(), null, null, null, null, null, phieuDatLich.getKhachHang().getTrangThai());
+        SanCa sanCa = new SanCa(phieuDatLich.getSanCa().getId(), null, null, null, 0, null);
+        PhieuDatLich pdl = new PhieuDatLich(null, acount, khachHang, sanCa, phieuDatLich.getNgayTaoPhieu(), phieuDatLich.getNgayDenSan(), phieuDatLich.getTgCheckIn(), phieuDatLich.getGhiChu(), phieuDatLich.getMaQR(), phieuDatLich.getTongTienSan(), phieuDatLich.getTrangThai());
+        if (phieuRepo.save(pdl) == true) {
+            return "Lưu Thành Công";
+        }
+>>>>>>> 66fd1da8ec6d200f8ff898e1c31de0200f5af916
         return "Lưu Thất Bại";
 
     }
@@ -117,6 +139,17 @@ public class PhieuDatLichServiceImpl implements IPhieuDatLichService {
         return "Sửa Trạng Thái Thất Bại";
         
     }
+<<<<<<< HEAD
 
     
+=======
+    
+    @Override
+    public String datLich(PhieuDatLich phieuDatLich) {
+        if (phieuRepo.save(phieuDatLich) == true) {
+            return "Lưu Thành Công";
+        }
+        return "Lưu Thất Bại";
+    }
+>>>>>>> 66fd1da8ec6d200f8ff898e1c31de0200f5af916
 }

@@ -124,6 +124,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
     public void loadCBPhuPhi() {
         dcbmPP.removeAllElements();
         qLPhuPhis = phuPhiService.getAllQLPhuPhis();
+        dcbmPP.addElement("Không có phụ phí");
         for (QLPhuPhi qLPhuPhi : qLPhuPhis) {
             dcbmPP.addElement(qLPhuPhi.getTenPhuPhi());
         }
@@ -906,7 +907,10 @@ public class FrmThanhToan extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuSuaSoLuongActionPerformed
 
     private void btnAddPhuPhiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPhuPhiActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here
+        if(jcbPhuPhi.getSelectedItem().equals("không có phụ phí")){
+            return;
+        }
         String tenPP = JOptionPane.showInputDialog(rootPane, "Nhập Tên Phụ Phí !!");
         if (tenPP == null) {
             return;
@@ -927,23 +931,23 @@ public class FrmThanhToan extends javax.swing.JFrame {
 
     private void jcbPhuPhiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbPhuPhiActionPerformed
         // TODO add your handling code here:
-        String gia = JOptionPane.showInputDialog(rootPane, "Xin Mời Nhập Gía");
-        if (gia == null) {
-            return;
-        } else {
-            if (gia.isEmpty() || !gia.matches("-?\\d+(\\.\\d+)?")) {
-                JOptionPane.showMessageDialog(rootPane, "Không Được Để Trống \n"
-                        + "Và Giá Phải Là Số");
-            } else {
-                QLHoaDon_PhuPhi hoaDon_PhuPhi = new QLHoaDon_PhuPhi(null, qLHoaDon, qLPhuPhis.get(jcbPhuPhi.getSelectedIndex()), Double.valueOf(gia), "ahs");
-                if (new HoaDonPhuPhiServiceImpl().save(hoaDon_PhuPhi)) {
-                    JOptionPane.showMessageDialog(rootPane, "Thêm Thành Công");
-                } else {
-                    JOptionPane.showMessageDialog(rootPane, "Thêm That Bai");
-                }
-            }
-        }
-        txtTongTien.setText(String.valueOf(fillGia()));
+//        String gia = JOptionPane.showInputDialog(rootPane, "Xin Mời Nhập Gía");
+//        if (gia == null) {
+//            return;
+//        } else {
+//            if (gia.isEmpty() || !gia.matches("-?\\d+(\\.\\d+)?")) {
+//                JOptionPane.showMessageDialog(rootPane, "Không Được Để Trống \n"
+//                        + "Và Giá Phải Là Số");
+//            } else {
+//                QLHoaDon_PhuPhi hoaDon_PhuPhi = new QLHoaDon_PhuPhi(null, qLHoaDon, qLPhuPhis.get(jcbPhuPhi.getSelectedIndex()), Double.valueOf(gia), "ahs");
+//                if (new HoaDonPhuPhiServiceImpl().save(hoaDon_PhuPhi)) {
+//                    JOptionPane.showMessageDialog(rootPane, "Thêm Thành Công");
+//                } else {
+//                    JOptionPane.showMessageDialog(rootPane, "Thêm That Bai");
+//                }
+//            }
+//        }
+//        txtTongTien.setText(String.valueOf(fillGia()));
     }//GEN-LAST:event_jcbPhuPhiActionPerformed
 
     /**

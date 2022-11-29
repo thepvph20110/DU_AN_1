@@ -4,6 +4,8 @@
  */
 package views;
 
+import domainmodel.Acount;
+import domainmodel.SanCa;
 import enumclass.trangThaiKhachHang;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,16 +26,16 @@ public class FrmKhachHang extends javax.swing.JFrame {
     private List<QLKhachHang> listKhachHang = new ArrayList<>();
     private IKhachHangService iKhachHangService = new KhachHangServiceImpl();
     private DefaultTableModel dtm = new DefaultTableModel();
-    private QLSanCa sanCa = new QLSanCa();
-    private QLAcount acount = new QLAcount();
+    private SanCa sanCa = new SanCa();
+    private Acount acount = new Acount();
 
     /**
      * Creates new form FrmKhachHang
      */
-    public FrmKhachHang(QLSanCa qLSanCa, QLAcount qlAcount) {
+    public FrmKhachHang(SanCa sanCaEntity, Acount acountEntity) {
         initComponents();
-        acount = qlAcount;
-        sanCa = qLSanCa;
+        acount = acountEntity;
+        sanCa = sanCaEntity;
         jTable1.setModel(dtm);
         String[] header = {"ID", "Mã KH", "Tên KH", "Email", "SÐT", "Ghi Chú", "Trạng thái"};
         dtm.setColumnIdentifiers(header);
@@ -225,7 +227,7 @@ public class FrmKhachHang extends javax.swing.JFrame {
         } else {
             qLKhachHang.setTrangThai(trangThaiKhachHang.CANH_CAO);
         }
-        QLKhachHang khachHang = new QLKhachHang(null, ma, ten, email, sdt, ghiChu, null, qLKhachHang.getTrangThai());
+        QLKhachHang khachHang = new QLKhachHang(null, ma, ten, email, sdt, ghiChu,qLKhachHang.getTrangThai());
         JOptionPane.showMessageDialog(this, iKhachHangService.save(khachHang));
         listKhachHang = iKhachHangService.getAll();
         showData(listKhachHang);
@@ -250,7 +252,7 @@ public class FrmKhachHang extends javax.swing.JFrame {
             if (ten.length() == 0 || ma.length() == 0 || ghiChu.length() == 0 || sdt.length() == 0 || email.length() == 0) {
                 JOptionPane.showMessageDialog(this, "Null");
             } else {
-                QLKhachHang khachHang = new QLKhachHang(mountClick().getId(), ma, ten, email, sdt, ghiChu, null, qLKhachHang.getTrangThai());
+                QLKhachHang khachHang = new QLKhachHang(mountClick().getId(), ma, ten, email, sdt, ghiChu, qLKhachHang.getTrangThai());
                 JOptionPane.showMessageDialog(this, iKhachHangService.update(khachHang));
                 listKhachHang = iKhachHangService.getAll();
                 showData(listKhachHang);
@@ -274,7 +276,7 @@ public class FrmKhachHang extends javax.swing.JFrame {
         if (row < 0) {
             JOptionPane.showMessageDialog(this, "Selected row ??");
         } else {
-            QLKhachHang khachHang = new QLKhachHang(mountClick().getId(), ma, ten, email, sdt, ghiChu, null, qLKhachHang.getTrangThai());
+            QLKhachHang khachHang = new QLKhachHang(mountClick().getId(), ma, ten, email, sdt, ghiChu, qLKhachHang.getTrangThai());
             JOptionPane.showMessageDialog(this, iKhachHangService.delete(khachHang));
             listKhachHang = iKhachHangService.getAll();
             showData(listKhachHang);
