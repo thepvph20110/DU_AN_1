@@ -52,5 +52,4 @@ public class KichThuocServiceImpl implements IKichThuocService {
     public KichThuoc getOne(String ma) {
         return kichThuocRepositoryImpl.getOne(ma);
     }
-
 }

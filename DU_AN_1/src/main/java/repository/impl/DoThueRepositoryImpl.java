@@ -6,6 +6,7 @@ package repository.impl;
 
 import domainmodel.DoThue;
 import java.util.List;
+import javax.persistence.TypedQuery;
 import modelview.QLDoThue;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -59,4 +60,17 @@ public class DoThueRepositoryImpl implements IDoThueRepository {
         }
     }
 
+    @Override
+    public List<DoThue> searchByName(String ten) {
+        List<DoThue> list = null;
+        try {
+            String hql = "From DoThue Where tenDoThue like :ten ";
+            TypedQuery<DoThue> query = session.createQuery(hql, DoThue.class);
+            query.setParameter("ten", ten);
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 }

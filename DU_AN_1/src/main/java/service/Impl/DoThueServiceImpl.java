@@ -71,4 +71,15 @@ public class DoThueServiceImpl implements IDoThueService {
         DoThue dt = new DoThue(qLDoThue.getId(), qLDoThue.getMaDoThue(), qLDoThue.getTenDoThue(), kt, ms, nsx, qLDoThue.getSoLuong(), qLDoThue.getDonGia(), qLDoThue.getTrangThai());
         return doThueRepositoryImpl.Delete(dt);
     }
+
+    @Override
+    public List<QLDoThue> searchByName(String ten) {
+        List<QLDoThue> qLDoThues = new ArrayList<>();
+        for (DoThue doThue : doThueRepositoryImpl.searchByName(ten)) {
+            mapma.put(doThue.getMaDoThue(), doThue);
+            QLDoThue qldt = new QLDoThue(doThue.getId(), doThue.getMaDoThue(), doThue.getTenDoThue(), doThue.getKichThuoc().getMaSize(), String.valueOf(doThue.getKichThuoc().getSize()), doThue.getMauSac().getMaMauSac(), doThue.getMauSac().getTenMauSac(), doThue.getNhaSanXuat().getMaNSX(), doThue.getNhaSanXuat().getTenNSX(), doThue.getSoLuong(), doThue.getDonGia(), doThue.getTrangThai());
+            listqldt.add(qldt);
+        }
+        return qLDoThues;
+    }
 }

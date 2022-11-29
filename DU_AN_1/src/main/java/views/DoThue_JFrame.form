@@ -76,6 +76,8 @@
                                           <Component id="txtTenDoThue" pref="278" max="32767" attributes="0"/>
                                           <Component id="txtID" max="32767" attributes="0"/>
                                       </Group>
+                                      <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
+                                      <Component id="btnSearchByName" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
@@ -149,6 +151,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtTenDoThue" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnSearchByName" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -191,7 +194,7 @@
                   <Component id="btnDelete" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="323" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" pref="321" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -438,6 +441,14 @@
         </Property>
         <Property name="text" type="java.lang.String" value="QU&#x1ea2;N L&#xdd; &#x110;&#x1ed2; THU&#xca;"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnSearchByName">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="SearchByName"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSearchByNameActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -18,4 +18,6 @@ public interface IDoThueService {
     String AddorUpdate(QLDoThue qLDoThue);
 
     String Delete(QLDoThue qLDoThue);
+    
+    List<QLDoThue> searchByName(String ten);
 }

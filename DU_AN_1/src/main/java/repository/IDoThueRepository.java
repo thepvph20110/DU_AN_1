@@ -20,4 +20,5 @@ public interface IDoThueRepository {
     
     String Delete(DoThue doThue);
     
+    List<DoThue> searchByName(String ten);
 }

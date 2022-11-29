@@ -4,6 +4,7 @@
  */
 package views;
 
+import domainmodel.DoThue;
 import domainmodel.KichThuoc;
 import domainmodel.MauSac;
 import domainmodel.NhaSanXuat;
@@ -135,6 +136,7 @@ public class DoThue_JFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         Table = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
+        btnSearchByName = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -235,6 +237,13 @@ public class DoThue_JFrame extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(0, 153, 51));
         jLabel7.setText("QUẢN LÝ ĐỒ THUÊ");
 
+        btnSearchByName.setText("SearchByName");
+        btnSearchByName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchByNameActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -279,7 +288,9 @@ public class DoThue_JFrame extends javax.swing.JFrame {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(txtMaDoThue)
                                             .addComponent(txtTenDoThue, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
-                                            .addComponent(txtID))))
+                                            .addComponent(txtID))
+                                        .addGap(76, 76, 76)
+                                        .addComponent(btnSearchByName)))
                                 .addGap(37, 37, 37))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -333,7 +344,8 @@ public class DoThue_JFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtTenDoThue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTenDoThue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearchByName))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -369,7 +381,7 @@ public class DoThue_JFrame extends javax.swing.JFrame {
                     .addComponent(btnUpdate)
                     .addComponent(btnDelete))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -437,6 +449,12 @@ public class DoThue_JFrame extends javax.swing.JFrame {
         fillData();
     }//GEN-LAST:event_TableMouseClicked
 
+    private void btnSearchByNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchByNameActionPerformed
+        listqLDoThues.clear();
+        listqLDoThues = doThueServiceImpl.searchByName(txtTenDoThue.getText());
+        LoadData();
+    }//GEN-LAST:event_btnSearchByNameActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -476,6 +494,7 @@ public class DoThue_JFrame extends javax.swing.JFrame {
     private javax.swing.JTable Table;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnSearchByName;
     private javax.swing.JButton btnUpdate;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbbMaKichThuoc;
