@@ -111,14 +111,12 @@ public class Home extends javax.swing.JFrame {
 
                     if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.CHO_NHAN_SAN) {
                         JPopupMenu jPopupMenu = new JPopupMenu();
-                        JMenuItem itemtt = new JMenuItem("Đổi trạng thái");
-                        JMenuItem itemxoa = new JMenuItem("Xóa");
                         JMenuItem itemCheckIn = new JMenuItem("Check In");
                         JMenuItem itemDatLich = new JMenuItem("Đặt Lịch");
-                        jPopupMenu.add(itemtt);
-                        jPopupMenu.add(itemxoa);
+                        JMenuItem itemCheckOut = new JMenuItem("Check Out");
                         jPopupMenu.add(itemCheckIn);
                         jPopupMenu.add(itemDatLich);
+                        jPopupMenu.add(itemCheckOut);
                         JPanel panelCa = new JPanel();
                         panelCa.setBackground(new Color(255, 255, 0));
                         panelCa.setLayout(new FlowLayout());
@@ -143,6 +141,7 @@ public class Home extends javax.swing.JFrame {
                         JLabel labelCa = new JLabel(listSanCa.get(j).getTenCa());
                         JLabel labelThoiGian = new JLabel(String.valueOf(listSanCa.get(j).getThoiGianBatDau()) + " : " + String.valueOf(listSanCa.get(j).getThoiGianKetThuc()));
                         JLabel labelLoaiSan = new JLabel("Loại sân" + " " + listSanCa.get(j).getSucChua());
+                        JLabel labelIdSanCa = new JLabel(listSanCa.get(j).getId());
                         labelCa.setForeground(Color.BLACK);
                         labelCa.setFont(new Font("Tahoma", 1, 16));
                         labelThoiGian.setForeground(Color.BLACK);
@@ -156,17 +155,20 @@ public class Home extends javax.swing.JFrame {
                         JLabel labelGiaSan = new JLabel("Giá: " + String.valueOf(listSanCa.get(j).getGiaCaSan()));
                         labelGiaSan.setFont(new Font("Tahoma", 1, 12));
                         labelGiaSan.setForeground(Color.BLACK);
-                        
-                        itemtt.addActionListener(new ActionListener() {
+                        itemDatLich.enable(false);
+                        itemCheckIn.enable(true);
+                        itemCheckOut.enable(false);
+                        itemCheckIn.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
 //                            JOptionPane.showMessageDialog(panelSan, "heloo");
-                           labelTrangThai.setText("Oke");
+                                new WebCam().setVisible(true);
+                                System.out.println(labelTrangThai.getText() + " ; " + labelCa.getText() + ";" + labelIdSanCa.getText());
                                 panelCa.setBackground(Color.ORANGE);
                                 jPopupMenu.setVisible(false);
                             }
                         });
-                        
+
                         panelCa.add(labelCa);
                         panelCa.add(labelThoiGian);
                         panelCa.add(labelLoaiSan);
@@ -177,14 +179,12 @@ public class Home extends javax.swing.JFrame {
                     } else if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.KHONG_TRONG) {
                         JPopupMenu jPopupMenu = new JPopupMenu();
                         jPopupMenu.removeAll();
-                        JMenuItem itemtt = new JMenuItem("Đổi trạng thái");
-                        JMenuItem itemxoa = new JMenuItem("Xóa");
                         JMenuItem itemCheckIn = new JMenuItem("Check In");
                         JMenuItem itemDatLich = new JMenuItem("Đặt Lịch");
-                        jPopupMenu.add(itemtt);
-                        jPopupMenu.add(itemxoa);
+                        JMenuItem itemCheckOut = new JMenuItem("Check Out");
                         jPopupMenu.add(itemCheckIn);
                         jPopupMenu.add(itemDatLich);
+                        jPopupMenu.add(itemCheckOut);
                         JPanel panelCa = new JPanel();
                         panelCa.setBackground(new Color(255, 0, 51));
                         panelCa.setLayout(new FlowLayout());
@@ -204,13 +204,15 @@ public class Home extends javax.swing.JFrame {
 
                             }
                         });
-                        itemtt.addActionListener(new ActionListener() {
+                        itemDatLich.enable(false);
+                        itemCheckIn.enable(false);
+                        itemCheckOut.enable(true);
+                        itemCheckOut.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
 //                            JOptionPane.showMessageDialog(panelSan, "heloo");
 
                                 panelCa.setBackground(Color.ORANGE);
-
                                 jPopupMenu.setVisible(false);
                             }
                         });
@@ -218,6 +220,7 @@ public class Home extends javax.swing.JFrame {
                         JLabel labelCa = new JLabel(listSanCa.get(j).getTenCa());
                         JLabel labelThoiGian = new JLabel(listSanCa.get(j).getThoiGianBatDau() + " : " + String.valueOf(listSanCa.get(j).getThoiGianKetThuc()));
                         JLabel labelLoaiSan = new JLabel("Loại sân" + " " + listSanCa.get(j).getSucChua());
+                        JLabel labelIdSanCa = new JLabel(listSanCa.get(j).getId());
                         labelCa.setForeground(Color.BLACK);
                         labelCa.setFont(new Font("Tahoma", 1, 16));
                         labelThoiGian.setForeground(Color.BLACK);
@@ -241,14 +244,12 @@ public class Home extends javax.swing.JFrame {
                     } else {
                         JPopupMenu jPopupMenu = new JPopupMenu();
                         jPopupMenu.removeAll();
-                        JMenuItem itemtt = new JMenuItem("Đổi trạng thái");
-                        JMenuItem itemxoa = new JMenuItem("Xóa");
                         JMenuItem itemCheckIn = new JMenuItem("Check In");
                         JMenuItem itemDatLich = new JMenuItem("Đặt Lịch");
-                        jPopupMenu.add(itemtt);
-                        jPopupMenu.add(itemxoa);
+                        JMenuItem itemCheckOut = new JMenuItem("Check Out");
                         jPopupMenu.add(itemCheckIn);
                         jPopupMenu.add(itemDatLich);
+                        jPopupMenu.add(itemCheckOut);
                         JPanel panelCa = new JPanel();
                         panelCa.setLayout(new FlowLayout());
                         panelCa.add(jPopupMenu);
@@ -268,7 +269,10 @@ public class Home extends javax.swing.JFrame {
 
                             }
                         });
-                        itemtt.addActionListener(new ActionListener() {
+                         itemDatLich.enable(true);
+                        itemCheckIn.enable(false);
+                        itemCheckOut.enable(false);
+                        itemDatLich.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
 //                            JOptionPane.showMessageDialog(panelSan, "heloo");
@@ -282,6 +286,7 @@ public class Home extends javax.swing.JFrame {
                         JLabel labelCa = new JLabel(listSanCa.get(j).getTenCa());
                         JLabel labelThoiGian = new JLabel(listSanCa.get(j).getThoiGianBatDau() + " : " + String.valueOf(listSanCa.get(j).getThoiGianKetThuc()));
                         JLabel labelLoaiSan = new JLabel("Loại sân" + " " + listSanCa.get(j).getSucChua());
+                        JLabel labelIdSanCa = new JLabel(listSanCa.get(j).getId());
                         labelCa.setForeground(Color.BLACK);
                         labelCa.setFont(new Font("Tahoma", 1, 16));
                         labelThoiGian.setForeground(Color.BLACK);
@@ -942,7 +947,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_lbLichSuMouseClicked
 
     private void btnDatLichActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatLichActionPerformed
-        // TODO add your handling code here:
+//         TODO add your handling code here:
 //        QLKhachHang khachHang = new QLKhachHang();
 //        SanCa sanCa = sanCaService.getOne();
 //        Acount acount = acountService.getOne();
