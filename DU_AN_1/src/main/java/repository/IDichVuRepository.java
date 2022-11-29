@@ -15,8 +15,6 @@ import java.util.UUID;
  */
 public interface IDichVuRepository {
 
-    List<DichVu> fillAll(int position, int pageSize);
-
     List<DichVu> fillAllDichVu();
 
     List<DichVu> findByIdHoaDon(String uuid);

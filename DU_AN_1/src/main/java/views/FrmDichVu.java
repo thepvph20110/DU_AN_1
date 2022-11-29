@@ -212,9 +212,6 @@ public class FrmDichVu extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         jpnViewNuocUong = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        btnVe = new javax.swing.JButton();
-        lblLoad = new javax.swing.JLabel();
-        btnTiep = new javax.swing.JButton();
         lblTong = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -257,22 +254,7 @@ public class FrmDichVu extends javax.swing.JFrame {
 
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        btnVe.setText("<<");
-        btnVe.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVeActionPerformed(evt);
-            }
-        });
-
-        lblLoad.setText("1/1");
-
-        btnTiep.setText(">>");
-        btnTiep.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTiepActionPerformed(evt);
-            }
-        });
-
+        lblTong.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblTong.setText("Tổng: 0");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -280,25 +262,15 @@ public class FrmDichVu extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnVe, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblLoad)
-                .addGap(18, 18, 18)
-                .addComponent(btnTiep, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblTong, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnVe)
-                    .addComponent(lblLoad)
-                    .addComponent(btnTiep)
-                    .addComponent(lblTong))
+                .addContainerGap(13, Short.MAX_VALUE)
+                .addComponent(lblTong)
                 .addContainerGap())
         );
 
@@ -632,14 +604,6 @@ public class FrmDichVu extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnVeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVeActionPerformed
-
-    }//GEN-LAST:event_btnVeActionPerformed
-
-    private void btnTiepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTiepActionPerformed
-
-    }//GEN-LAST:event_btnTiepActionPerformed
-
     private void tbDichVuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDichVuMouseClicked
         int index = this.tbDichVu.getSelectedRow();
         if (index == -1) {
@@ -773,8 +737,6 @@ public class FrmDichVu extends javax.swing.JFrame {
     private javax.swing.JButton btnCapNhap;
     private javax.swing.JButton btnMoi;
     private javax.swing.JButton btnThem;
-    private javax.swing.JButton btnTiep;
-    private javax.swing.JButton btnVe;
     private javax.swing.JButton btnXoa;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbbDoThue;
@@ -802,7 +764,6 @@ public class FrmDichVu extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPanel jpnViewNuocUong;
     private javax.swing.JTextArea jtaMoTa;
-    private javax.swing.JLabel lblLoad;
     private javax.swing.JLabel lblTong;
     private javax.swing.JRadioButton rdoDangSD;
     private javax.swing.JRadioButton rdoNgungSD;

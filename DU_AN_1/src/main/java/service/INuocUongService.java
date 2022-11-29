@@ -15,8 +15,6 @@ import modelview.QLNuocUong;
  */
 public interface INuocUongService {
 
-    List<QLNuocUong> getNuocUong(int firstResult, int maxResults);
-
     List<QLNuocUong> getNuocUongNoPagination();
 
     String getNuocUongByName(String ten);
@@ -28,8 +26,8 @@ public interface INuocUongService {
     String deleteNuocUongById(String id);
 
     long countAllNuocUong();
-    
+
     List<QLNuocUong> getNuocUongByTenNuocUong(String tenNuocUong);
-    
+
     List<QLNuocUong> getNuocUongByTranThai(trangThaiNuocUong trangThai);
 }

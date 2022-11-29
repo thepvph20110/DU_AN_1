@@ -33,28 +33,6 @@ public class DichVuServiceImpl implements IDichVuService {
     private IDoThueRepository doThueRepositoryImpl = new DoThueRepositoryImpl();
     private IHoaDonRepository hoaDonRepositoryImpl = new HoaDonRepositoryImpl();
     
-    @Override
-    public List<QLDichVu> getDichVu(int position, int pageSize) {
-        List<DichVu> listDichVu = dichVuRepositoryImpl.fillAll(position, pageSize);
-        
-        List<QLDichVu> listQLDichVu = new ArrayList<>();
-        
-        for (DichVu dichVu : listDichVu) {
-            listQLDichVu.add(new QLDichVu(
-                    dichVu.getId(),
-                    dichVu.getMaDichVu(),
-                    dichVu.getDoThue().getTenDoThue(),
-                    dichVu.getSoLuongDoThue(),
-                    String.valueOf(dichVu.getHoaDon().getMaHoaDon()),
-                    dichVu.getNuocUong().getTenNuocUong(),
-                    dichVu.getSoLuongNuocUong(),
-                    dichVu.getDonGia(),
-                    dichVu.getMoTa(),
-                    trangThaiDichVu.Dang_Su_Dung)
-            );
-        }
-        return listQLDichVu;
-    }
     
     @Override
     public List<QLDichVu> getDichVuNoPagination() {

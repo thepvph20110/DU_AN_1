@@ -15,8 +15,6 @@ import modelview.QLDichVu;
  */
 public interface IDichVuService {
 
-    List<QLDichVu> getDichVu(int position, int pageSize);
-
     List<QLDichVu> getDichVuNoPagination();
 
     String createNewDichVu(QLDichVu dichVu);

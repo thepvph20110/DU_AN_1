@@ -23,22 +23,6 @@ import utill.HibernateConfig;
 public class DichVuRepositoryImpl implements IDichVuRepository {
 
     @Override
-    public List<DichVu> fillAll(int position, int pageSize) {
-        String hql = "Select d From DichVu d";
-        List<DichVu> lists = new ArrayList<>();
-        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
-            TypedQuery<DichVu> query = session.createQuery(hql, DichVu.class);
-            query.setFirstResult(position);
-            query.setMaxResults(pageSize);
-            lists = query.getResultList();
-            return lists;
-        } catch (Exception e) {
-            e.printStackTrace(System.out);
-        }
-        return null;
-    }
-
-    @Override
     public boolean saveOrUpdate(DichVu dichVu) {
         boolean check = false;
         Transaction tran = null;

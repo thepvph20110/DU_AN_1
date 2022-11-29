@@ -24,22 +24,6 @@ import utill.HibernateConfig;
 public class NuocUongRepositoryImpl implements INuocUongRepository {
 
     @Override
-    public List<NuocUong> fillAll(int firstResult, int maxResults) {
-        String hql = " From NuocUong ";
-        List<NuocUong> lists = new ArrayList<>();
-        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
-            TypedQuery<NuocUong> query = session.createQuery(hql, NuocUong.class);
-            query.setFirstResult(firstResult);
-            query.setMaxResults(maxResults);
-            lists = query.getResultList();
-            return lists;
-        } catch (Exception e) {
-            e.printStackTrace(System.out);
-        }
-        return null;
-    }
-
-    @Override
     public boolean saveOrUpdate(NuocUong nuocUong) {
         boolean check = false;
         Transaction tran = null;

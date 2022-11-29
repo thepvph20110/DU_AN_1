@@ -21,28 +21,6 @@ public class NuocUongServiceImpl implements INuocUongService {
     private INuocUongRepository nuocUongRepositoryImpl = new NuocUongRepositoryImpl();
     private Map<String, Object> map = new HashMap<>();
 
-    @Override
-    public List<QLNuocUong> getNuocUong(int firstResult, int maxResults) {
-        List<NuocUong> listNuocUong = nuocUongRepositoryImpl.fillAll(firstResult, maxResults);
-
-        List<QLNuocUong> listQLNuocUong = new ArrayList<>();
-
-        for (NuocUong x : listNuocUong) {
-            //id, maNuocUong, tenNuocUong, soLuong, gia, trangThai
-            listQLNuocUong.add(
-                    new QLNuocUong(
-                            x.getId(),
-                            x.getMaNuocUong(),
-                            x.getTenNuocUong(),
-                            x.getSoLuong(),
-                            x.getGia(),
-                            x.getTrangThai()
-                    )
-            );
-        }
-
-        return listQLNuocUong;
-    }
 
     @Override
     public String createNewNuocUong(QLNuocUong nuocUong) {

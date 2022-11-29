@@ -15,7 +15,6 @@ import java.util.UUID;
  */
 public interface INuocUongRepository {
 
-    List<NuocUong> fillAll(int firstResult, int maxResults);
     
     List<NuocUong> fillAllNuocUong();
     
