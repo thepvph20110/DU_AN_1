@@ -224,44 +224,12 @@ public class Home extends javax.swing.JFrame {
                         panelCa.add(labelGiaSan);
                         listPaneCa.add(panelCa);
                         panelSan.add(panelCa);
-                    } else {
-                        JPopupMenu jPopupMenu = new JPopupMenu();
-                        jPopupMenu.removeAll();
-                        JMenuItem itemDatLich = new JMenuItem("Đặt Lịch");
-                        JMenuItem itemCheckOut = new JMenuItem("Check Out");
-                        jPopupMenu.add(itemDatLich);
-                        jPopupMenu.add(itemCheckOut);
+                    } else {                     
                         JPanel panelCa = new JPanel();
                         panelCa.setLayout(new FlowLayout());
-                        panelCa.add(jPopupMenu);
                         panelCa.setPreferredSize(new Dimension(174, 254));
                         panelCa.setBackground(new Color(0, 153, 0));
-                        panelCa.setLayout(new BoxLayout(panelCa, BoxLayout.Y_AXIS));
-                        panelCa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-                        panelCa.addMouseListener(new java.awt.event.MouseAdapter() {
-                            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                                panelCaInMouseReleased(evt);
-                            }
-
-                            private void panelCaInMouseReleased(MouseEvent evt) {
-                                if (evt.isPopupTrigger()) {
-                                    jPopupMenu.show(null, evt.getXOnScreen(), evt.getYOnScreen());
-                                }
-
-                            }
-                        });
-                        itemDatLich.enable(true);
-                        itemCheckOut.enable(false);
-                        itemDatLich.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-//                            JOptionPane.showMessageDialog(panelSan, "heloo");
-
-                                panelCa.setBackground(Color.ORANGE);
-
-                                jPopupMenu.setVisible(false);
-                            }
-                        });
+                        panelCa.setLayout(new BoxLayout(panelCa, BoxLayout.Y_AXIS));                     
                         panelCa.setLayout(new FlowLayout(10, 20, 20));
                         JLabel labelCa = new JLabel(listSanCa.get(j).getTenCa());
                         JLabel labelThoiGian = new JLabel(listSanCa.get(j).getThoiGianBatDau() + " : " + String.valueOf(listSanCa.get(j).getThoiGianKetThuc()));
