@@ -26,51 +26,51 @@ import service.Impl.NuocUongServiceImpl;
  * @author ASUS
  */
 public class FrmDichVu extends javax.swing.JFrame {
-    
+
     private List<QLDichVu> listQLDichVu = new ArrayList<>();
     private List<String> listCBBNuocUong = new ArrayList<>();
     private DefaultComboBoxModel dcbmNuocUong = new DefaultComboBoxModel();
-    
+
     private List<String> listCBBDoThue = new ArrayList<>();
     private DefaultComboBoxModel dcbmDoThue = new DefaultComboBoxModel();
-    
+
     private List<String> listCBBHoaDon = new ArrayList<>();
     private DefaultComboBoxModel dcbmHoaDon = new DefaultComboBoxModel();
-    
+
     private List<trangThaiDichVu> listCBBTrangThai = new ArrayList<>();
     private DefaultComboBoxModel dcbmTrangThai = new DefaultComboBoxModel();
-    
+
     private IDichVuService dichVuService = new DichVuServiceImpl();
     private DefaultTableModel dtm = new DefaultTableModel();
-    
+
     private int index = -1;
     private int curentPage;
     private int totalPage;
     private int pageSize;
     private long totalDichVu;
-    
+
     public FrmDichVu() {
         initComponents();
-        
+
         loadDataToTable();
         cbbNuocUong.setModel(dcbmNuocUong);
         loadCBBNuocUong();
-        
+
         cbbDoThue.setModel(dcbmDoThue);
         loadCBBDoThue();
-        
+
         txtDonGiaDV.setEditable(false);
-        
+
         fixCungSoLuong();
-        
+
         loadCBBHoaDon();
-        
+
         loadCBBTimKiemTrangThai();
-        
+
         jtaMoTa.setText("N/A");
-        
+
     }
-    
+
     private void clear() {
         txtMaDV.setText("");
         txtTimKiem.setText("");
@@ -86,92 +86,92 @@ public class FrmDichVu extends javax.swing.JFrame {
         rdoNgungSD.setSelected(false);
         loadDataToTable();
     }
-    
+
     private void loadDataToTable() {
         listQLDichVu = dichVuService.getDichVuNoPagination();
         String[] header = {"ID", "Mã DV", "Đồ Thuê", "SL Đồ", "Hóa Đơn", "Nước Uống", "SL Nước", "Đơn Giá", "Mô Tả", "Trạng Thái"};
-        
+
         tbDichVu.setModel(dtm);
         dtm.setColumnIdentifiers(header);
         showData(listQLDichVu);
-        
+
         totalDichVu = dichVuService.countAllDichVu();
         lblTong.setText("Tổng : " + totalDichVu);
-        
+
     }
-    
+
     private void showData(List<QLDichVu> listQLDichVu) {
         dtm.setRowCount(0);
         listQLDichVu.forEach(c -> dtm.addRow(c.toRowData()));
     }
-    
+
     private void loadCBBNuocUong() {
         List<QLNuocUong> listQLNuocUong = new NuocUongServiceImpl().getNuocUongNoPagination();
         for (QLNuocUong qlNuocUong : listQLNuocUong) {
             listCBBNuocUong.add(qlNuocUong.getTenNuocUong());
         }
-        
+
         for (String nuocUong : listCBBNuocUong) {
             dcbmNuocUong.addElement(nuocUong);
         }
     }
-    
+
     private void loadCBBHoaDon() {
         List<QLHoaDon> listQLHoaDon = new HoaDonServiceImpl().getAll();
         for (QLHoaDon qLHoaDon : listQLHoaDon) {
             listCBBHoaDon.add(String.valueOf(qLHoaDon.getMaHoaDon()));
         }
-        
+
         for (String hoaDon : listCBBHoaDon) {
             dcbmHoaDon.addElement(hoaDon);
         }
         cbbHoaDon.setModel(dcbmHoaDon);
     }
-    
+
     private void loadCBBDoThue() {
         List<QLDoThue> listQLDoThue = new DoThueServiceImpl().getAll();
         for (QLDoThue qlDoThue : listQLDoThue) {
             listCBBDoThue.add(qlDoThue.getTenDoThue());
         }
-        
+
         for (String doThue : listCBBDoThue) {
             dcbmDoThue.addElement(doThue);
         }
     }
-    
+
     private void loadCBBTimKiemTrangThai() {
-        
+
         listCBBTrangThai.add(trangThaiDichVu.Dang_Su_Dung);
         listCBBTrangThai.add(trangThaiDichVu.NGUNG_Su_Dung);
         for (trangThaiDichVu trangThai : listCBBTrangThai) {
             dcbmTrangThai.addElement(trangThai);
         }
-        
+
         cbbTranThaiTim.setModel(dcbmTrangThai);
     }
-    
+
     private void fixCungSoLuong() {
         txtSoLuongDoThue.setText("0");
         txtSoLuongNuocUong.setText("0");
         txtDonGiaDV.setText(String.valueOf(getDonGia()));
     }
-    
+
     private double getDonGia() {
         double giaNuoc = 0;
         int soLuongNuoc = 0;
         double giaDoThue = 0;
         int soLuongDoThue = 0;
         double donGia = 0;
-        
+
         soLuongNuoc = Integer.parseInt(txtSoLuongNuocUong.getText());
         List<QLNuocUong> qlNuocUong = new NuocUongServiceImpl().getNuocUongNoPagination();
         for (QLNuocUong list : qlNuocUong) {
             if (cbbNuocUong.getSelectedItem().equals(list.getTenNuocUong())) {
                 giaNuoc = list.getGia();
-                
+
             }
         }
-        
+
         soLuongDoThue = Integer.parseInt(txtSoLuongDoThue.getText());
         List<QLDoThue> qlDoThue = new DoThueServiceImpl().getAll();
         for (QLDoThue list : qlDoThue) {
@@ -179,15 +179,15 @@ public class FrmDichVu extends javax.swing.JFrame {
                 giaNuoc = list.getDonGia();
             }
         }
-        
+
         return donGia = (giaNuoc * soLuongNuoc) + (giaDoThue * soLuongDoThue);
     }
-    
+
     private QLDichVu getDichVuFromInput() {
         //"ID", "Mã DV", "Đồ Thuê", "SL Đồ", "Nước Uống", "SL Nước", "Đơn Giá", "Mô Tả", "Trạng Thái"
         QLDichVu qlDichVu = new QLDichVu();
         qlDichVu.setMaDichVu(txtMaDV.getText());
-        
+
         qlDichVu.setTenNuocUong(cbbNuocUong.getSelectedItem().toString());
         qlDichVu.setSoLuongNuocUong(Integer.parseInt(txtSoLuongNuocUong.getText()));
         qlDichVu.setHoaDon(cbbHoaDon.getSelectedItem().toString());
@@ -201,10 +201,10 @@ public class FrmDichVu extends javax.swing.JFrame {
         txtDonGiaDV.setText(String.valueOf(getDonGia()));
         qlDichVu.setDonGia(Double.parseDouble(txtDonGiaDV.getText()));
         qlDichVu.setMoTa(jtaMoTa.getText());
-        
+
         return qlDichVu;
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -609,6 +609,7 @@ public class FrmDichVu extends javax.swing.JFrame {
         if (index == -1) {
             return;
         }
+        txtMaDV.setEditable(false);
 //"ID", "Mã DV", "Đồ Thuê", "SL Đồ", "Nước Uống", "SL Nước", "Đơn Giá", "Mô Tả", "Trạng Thái"     
         this.txtMaDV.setText(tbDichVu.getValueAt(index, 1).toString());
         this.cbbDoThue.setSelectedItem(tbDichVu.getValueAt(index, 2).toString());
@@ -617,9 +618,9 @@ public class FrmDichVu extends javax.swing.JFrame {
         this.cbbNuocUong.setSelectedItem(tbDichVu.getValueAt(index, 5).toString());
         this.txtSoLuongNuocUong.setText(tbDichVu.getValueAt(index, 6).toString());
         this.txtDonGiaDV.setText(tbDichVu.getValueAt(index, 7).toString());
-        
+
         this.jtaMoTa.setText(tbDichVu.getValueAt(index, 8).toString());
-        
+
         if (tbDichVu.getValueAt(index, 9).equals(trangThaiDichVu.Dang_Su_Dung)) {
             this.rdoDangSD.setSelected(true);
         } else {
@@ -628,7 +629,7 @@ public class FrmDichVu extends javax.swing.JFrame {
     }//GEN-LAST:event_tbDichVuMouseClicked
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        
+
         QLDichVu qlDichVu = getDichVuFromInput();
         int checkConFirm = JOptionPane.showConfirmDialog(this, "Bạn Có Muốn thêm Dịch Vụ", "Xác Nhận", JOptionPane.YES_NO_OPTION);
         if (checkConFirm == JOptionPane.YES_OPTION) {
@@ -637,7 +638,7 @@ public class FrmDichVu extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Bạn đã chọn hủy thêm Dịch Vụ");
         }
-        
+
         System.out.println("" + txtDonGiaDV.getText());
     }//GEN-LAST:event_btnThemActionPerformed
 
@@ -649,7 +650,7 @@ public class FrmDichVu extends javax.swing.JFrame {
         }
         QLDichVu qlDichVu = getDichVuFromInput();
         qlDichVu.setId(listQLDichVu.get(index).getId());
-        
+
         int checkConFirm = JOptionPane.showConfirmDialog(this, "Bạn Có Muốn Update Dịch Vụ", "Xác Nhận", JOptionPane.YES_NO_OPTION);
         if (checkConFirm == JOptionPane.YES_OPTION) {
             JOptionPane.showMessageDialog(rootPane, dichVuService.updateDichVuById(qlDichVu));
@@ -692,7 +693,7 @@ public class FrmDichVu extends javax.swing.JFrame {
 
     private void cbbTranThaiTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbTranThaiTimActionPerformed
         listQLDichVu.clear();
-        
+
         listQLDichVu = dichVuService.getDichVuByTrangThai(trangThaiDichVu.valueOf(cbbTranThaiTim.getSelectedItem().toString()));
         showData(listQLDichVu);
     }//GEN-LAST:event_cbbTranThaiTimActionPerformed

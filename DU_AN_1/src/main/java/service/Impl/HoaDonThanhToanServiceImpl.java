@@ -55,7 +55,7 @@ public class HoaDonThanhToanServiceImpl implements IHoaDonThanhToanService {
                     new QLHoaDonThanhToan(
                             hoaDonTT.getId(),
                             hoaDonTT.getMaHDTT(),
-                            String.valueOf(hoaDonTT.getHoaDon().getId()),
+                            String.valueOf(hoaDonTT.getHoaDon().getMaHoaDon()),
                             hoaDonTT.getThanhToan().getMaThanhToan(),
                             hoaDonTT.getTongTien(),
                             hoaDonTT.getGhiChu()));
