@@ -20,7 +20,7 @@ import service.Impl.HoaDonThanhToanServiceImpl;
 import service.Impl.ThanhToanServiceImpl;
 
 public class FrmHoaDonThanhToan extends javax.swing.JFrame {
-    
+
     private DefaultTableModel dtm = new DefaultTableModel();
     private List<QLHoaDonThanhToan> listQLHoaDonThanhToan = new ArrayList<>();
     private IHoaDonThanhToanService hoaDonThanhToanService = new HoaDonThanhToanServiceImpl();
@@ -28,77 +28,78 @@ public class FrmHoaDonThanhToan extends javax.swing.JFrame {
     private List<QLHoaDon> listCBBHoaDon = new ArrayList<>();
     private List<String> listCBBThanhToan = new ArrayList<>();
     private DefaultComboBoxModel dcbmThanhToan = new DefaultComboBoxModel();
-    
+
     private int index = -1;
     private int curentPage;
     private int totalPage;
     private int pageSize;
     private long totalHoDonThanhToan;
-    
+
     public FrmHoaDonThanhToan() {
         initComponents();
         loadDataToTable();
         loadCBBHoaDon();
         loadCBBThanhToan();
-        
+
         txtGhiChu.setText("N/A");
         txtTongTien.setEditable(false);
         txtTongTien.setText(String.valueOf(getTongTienHoaDon()));
     }
-    
+
     private void loadCBBHoaDon() {
         List<QLHoaDon> listQLHoaDon = new HoaDonServiceImpl().getAll();
         for (QLHoaDon hoaDon : listQLHoaDon) {
             listCBBHoaDon.add(hoaDon);
         }
-        
+
         for (QLHoaDon qlHoaDon : listCBBHoaDon) {
-            dcbmHoaDon.addElement(qlHoaDon.getId());
+            dcbmHoaDon.addElement(qlHoaDon.getMaHoaDon());
         }
-        
+
         cbbHoaDon.setModel(dcbmHoaDon);
     }
-    
+
     private void loadCBBThanhToan() {
         List<QLThanhToan> listQLThanhToan = new ThanhToanServiceImpl().getAllThanhToans();
         for (QLThanhToan thanhToan : listQLThanhToan) {
             listCBBThanhToan.add(thanhToan.getMaThanhToan());
         }
-        
+
         for (String qlThanhToan : listCBBThanhToan) {
             dcbmThanhToan.addElement(qlThanhToan);
         }
-        
+
         cbbThanhToan.setModel(dcbmThanhToan);
     }
-    
+
     private void loadDataToTable() {
         listQLHoaDonThanhToan = hoaDonThanhToanService.getHoaDonThanhToanNoPagination();
-        String[] header = {"ID", "Mã HDTT", "iD Hóa Đơn", "Mã Thanh Toan", "Tổng Tiền", "Ghi Chú"};
+        String[] header = {"Mã HDTT", "Mã Hóa Đơn", "Mã Thanh Toan", "Tổng Tiền", "Ghi Chú"};
         tbHoaDonThanhToan.setModel(dtm);
         dtm.setColumnIdentifiers(header);
         showData(listQLHoaDonThanhToan);
         totalHoDonThanhToan = hoaDonThanhToanService.countAllHoaDonThanhToan();
         lblTong.setText("Tổng : " + totalHoDonThanhToan);
-        
+
     }
-    
+
     private void mouseClick() {
         index = tbHoaDonThanhToan.getSelectedRow();
-        txtMaHoaDonTT.setText(tbHoaDonThanhToan.getValueAt(index, 1).toString());
-        cbbHoaDon.setSelectedItem(tbHoaDonThanhToan.getValueAt(index, 2));
-        cbbThanhToan.setSelectedItem(tbHoaDonThanhToan.getValueAt(index, 3));
-        txtGhiChu.setText(tbHoaDonThanhToan.getValueAt(index, 5).toString());
-        txtTongTien.setText(tbHoaDonThanhToan.getValueAt(index, 4).toString());
+        txtMaHoaDonTT.setEditable(false);
+        txtMaHoaDonTT.setText(tbHoaDonThanhToan.getValueAt(index, 0).toString());
+        cbbHoaDon.setSelectedItem(tbHoaDonThanhToan.getValueAt(index, 1));
+        cbbThanhToan.setSelectedItem(tbHoaDonThanhToan.getValueAt(index, 2));
+        txtGhiChu.setText(tbHoaDonThanhToan.getValueAt(index, 4).toString());
+        txtTongTien.setText(tbHoaDonThanhToan.getValueAt(index, 3).toString());
     }
-    
+
     private void showData(List<QLHoaDonThanhToan> listQLHoaDonThanhToan) {
         dtm.setRowCount(0);
         for (QLHoaDonThanhToan listHoaDonTT : listQLHoaDonThanhToan) {
             dtm.addRow(listHoaDonTT.toRowData());
         }
     }
-    
+
     private double getTongTienHoaDon() {
         double tongTien = 0;
         List<QLHoaDon> listQLHoaDon = new HoaDonServiceImpl().getAll();
@@ -109,7 +110,7 @@ public class FrmHoaDonThanhToan extends javax.swing.JFrame {
         }
         return tongTien;
     }
-    
+
     private void clear() {
         txtGhiChu.setText("N/A");
         txtMaHoaDonTT.setText("");
@@ -117,7 +118,7 @@ public class FrmHoaDonThanhToan extends javax.swing.JFrame {
         cbbHoaDon.setSelectedIndex(0);
         cbbThanhToan.setSelectedIndex(0);
     }
-    
+
     private QLHoaDonThanhToan getHoaDonThanhToanFromInput() {
         QLHoaDonThanhToan qlHoaDonThanhToan = new QLHoaDonThanhToan();
         qlHoaDonThanhToan.setMaHDTT(txtMaHoaDonTT.getText());
@@ -127,7 +128,7 @@ public class FrmHoaDonThanhToan extends javax.swing.JFrame {
         qlHoaDonThanhToan.setTongTien(Double.valueOf(txtTongTien.getText()));
         return qlHoaDonThanhToan;
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -417,7 +418,7 @@ public class FrmHoaDonThanhToan extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Bạn Đã Hủy Tạo Hóa Đơn Thanh Toán");
         }
-        
+
         loadDataToTable();
     }//GEN-LAST:event_btnThemActionPerformed
 
@@ -425,7 +426,7 @@ public class FrmHoaDonThanhToan extends javax.swing.JFrame {
         double tongTien = 0;
         List<QLHoaDon> listQLHoaDon = new HoaDonServiceImpl().getAll();
         for (QLHoaDon hoaDon : listQLHoaDon) {
-            if (hoaDon.getId().equals(cbbHoaDon.getSelectedItem())) {
+            if (hoaDon.getMaHoaDon().equals(cbbHoaDon.getSelectedItem().toString())) {
                 tongTien = hoaDon.getTongTien();
                 System.out.println("" + hoaDon.getId());
             }
@@ -471,6 +472,7 @@ public class FrmHoaDonThanhToan extends javax.swing.JFrame {
     }//GEN-LAST:event_tbHoaDonThanhToanMouseClicked
 
     private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
+        txtMaHoaDonTT.setEditable(true);
         clear();
     }//GEN-LAST:event_btnMoiActionPerformed
 

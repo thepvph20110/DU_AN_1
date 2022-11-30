@@ -71,7 +71,6 @@ public class FrmNuocUong extends javax.swing.JFrame {
         totalPages = (int) (totalNuocUong / maxResults) + 1;
 
 //        setStatePagination();
-
     }
 
     private void showData(List<QLNuocUong> listsQLNuocUong) {
@@ -87,7 +86,6 @@ public class FrmNuocUong extends javax.swing.JFrame {
 //
 //        lblLoad.setText(firstResult + " / " + totalPages);
 //    }
-
     private void clear() {
         txtTimKiem.setText("");
         txtTen.setText("");
@@ -136,7 +134,7 @@ public class FrmNuocUong extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         rdoTimKiemConHang = new javax.swing.JRadioButton();
         rdoTimKiemHetHang = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Nước Uống");
@@ -396,30 +394,31 @@ public class FrmNuocUong extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Lọc");
+        jLabel8.setText("Lọc theo trạng thái");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rdoTimKiemHetHang, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rdoTimKiemConHang, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel8)
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(rdoTimKiemConHang, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(rdoTimKiemHetHang, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addContainerGap(68, Short.MAX_VALUE)
+                .addComponent(jLabel8)
+                .addGap(28, 28, 28)
                 .addComponent(rdoTimKiemConHang)
-                .addGap(36, 36, 36)
+                .addGap(41, 41, 41)
                 .addComponent(rdoTimKiemHetHang)
-                .addGap(59, 59, 59)
-                .addComponent(jButton1)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addGap(77, 77, 77))
         );
 
         javax.swing.GroupLayout jpnViewNuocUongLayout = new javax.swing.GroupLayout(jpnViewNuocUong);
@@ -509,6 +508,7 @@ public class FrmNuocUong extends javax.swing.JFrame {
         if (index == -1) {
             return;
         }
+        txtMa.setEditable(false);
         this.txtMa.setText(tbNuocUong.getValueAt(index, 1).toString());
         this.txtTen.setText(tbNuocUong.getValueAt(index, 2).toString());
         this.txtSoLuong.setText(tbNuocUong.getValueAt(index, 3).toString());
@@ -622,7 +622,6 @@ public class FrmNuocUong extends javax.swing.JFrame {
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXoa;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -630,6 +629,7 @@ public class FrmNuocUong extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
