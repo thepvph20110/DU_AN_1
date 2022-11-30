@@ -47,9 +47,26 @@ public class PhuPhiServiceImpl implements IPhuPhiService {
     }
 
     @Override
-    public String genMaPhuPhi() {
-        String pp = repository.genMaPhuPhi();
-        int newPP = (Integer.parseInt(pp.substring(2))) + 1;
-        return  pp.substring(0, 2) + "00"+ newPP ;
+    public String genMaPhuPhi(List<QLPhuPhi> lstQLPhuPhis) {
+        int start;
+        List<Integer> lstIntegers = new ArrayList<>();
+        for (int i = 0; i < lstQLPhuPhis.size(); i++) {
+            start = Integer.parseInt(lstQLPhuPhis.get(i).getMaPhuPhi().substring(4));
+            lstIntegers.add(start);
+        }
+        int max = lstIntegers.get(0);
+        for (int i = 0; i < lstIntegers.size(); i++) {
+            if (lstIntegers.get(i).compareTo(max) > 0) {
+                max = lstIntegers.get(i);
+            }
+        }
+        return "PP00" + (++max);
+    }
+
+    @Override
+    public QLPhuPhi fillByMaPhuPhi(String maPhuPhi) {
+        var phuPhi = repository.fillByMa(maPhuPhi);
+        QLPhuPhi qLPhuPhi = new QLPhuPhi(phuPhi.getId(), phuPhi.getMaPhuPhi(), phuPhi.getTenPhuPhi());
+        return qLPhuPhi;
     }
 }
