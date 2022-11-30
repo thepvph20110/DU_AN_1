@@ -85,23 +85,23 @@ public class DichVuServiceImpl implements IDichVuService {
         for (DichVu dichVu : listDichVu) {
             map.put(dichVu.getMaDichVu(), dichVu);
             
-            listQLDichVu.add(
-                    new QLDichVu(
-                            dichVu.getId(),
-                            dichVu.getMaDichVu(),
-                            dichVu.getDoThue().getTenDoThue(),
-                            dichVu.getSoLuongDoThue(),
-
-                            String.valueOf(dichVu.getHoaDon()),
-
-                            String.valueOf(dichVu.getHoaDon().getMaHoaDon()),
-
-                            dichVu.getNuocUong().getTenNuocUong(),
-                            dichVu.getSoLuongNuocUong(),
-                            dichVu.getDonGia(),
-                            dichVu.getMoTa(),
-                            dichVu.getTrangThai())
-            );
+//            listQLDichVu.add(
+//                    new QLDichVu(
+//                            dichVu.getId(),
+//                            dichVu.getMaDichVu(),
+//                            dichVu.getDoThue().getTenDoThue(),
+//                            dichVu.getSoLuongDoThue(),
+//
+//                            String.valueOf(dichVu.getHoaDon()),
+//
+//                            String.valueOf(dichVu.getHoaDon().getMaHoaDon()),
+//
+//                            dichVu.getNuocUong().getTenNuocUong(),
+//                            dichVu.getSoLuongNuocUong(),
+//                            dichVu.getDonGia(),
+//                            dichVu.getMoTa(),
+//                            dichVu.getTrangThai())
+//            );
         }
         return listQLDichVu;
     }
