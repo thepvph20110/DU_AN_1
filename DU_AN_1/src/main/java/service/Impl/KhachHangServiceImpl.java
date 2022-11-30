@@ -65,4 +65,14 @@ public class KhachHangServiceImpl implements IKhachHangService {
         System.out.println(new KhachHangServiceImpl().getAll().size());
     }
 
+    @Override
+    public List<QLKhachHang> searchByName(String ten) {
+        List<QLKhachHang> qLKhachHang = new ArrayList<>();
+        for (KhachHang KhachHang : re.searchByName(ten)) {
+            QLKhachHang khachHang = new QLKhachHang(KhachHang.getId(), KhachHang.getMaKhachHang(), KhachHang.getTenKhachHang(),KhachHang.getMail(), KhachHang.getSoDienThoai(), KhachHang.getGhiChu(), null,KhachHang.getTrangThai());
+            qLKhachHang.add(khachHang);
+        }
+        return qLKhachHang;
+    }
+
 }

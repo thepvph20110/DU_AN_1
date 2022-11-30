@@ -18,4 +18,6 @@ public interface IKhachHangRepository {
     boolean saveOrUpdate(KhachHang khachHang);
     
     boolean delete(KhachHang khachHang);
+    
+    List<KhachHang> searchByName(String ten);
 }

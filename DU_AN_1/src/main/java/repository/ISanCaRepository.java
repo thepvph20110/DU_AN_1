@@ -22,5 +22,4 @@ public interface ISanCaRepository {
     boolean deleteSanCa(SanCa sanCa);
 
     
-    
 }

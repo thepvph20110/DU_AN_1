@@ -7,6 +7,7 @@ package repository.impl;
 import domainmodel.SanBong;
 import java.util.List;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import repository.ISanBongRepository;
@@ -62,6 +63,20 @@ public class SanBongRepository implements ISanBongRepository {
             transaction.rollback();
         }
         return check;
+    }
+
+    @Override
+    public List<SanBong> searchByName(String ten) {
+        List<SanBong> list = null;
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            String hql = "From SanBong Where tenSanBong like :ten ";
+            TypedQuery<SanBong> query = session.createQuery(hql, SanBong.class);
+            query.setParameter("ten", "%" + ten + "%");
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return list;
     }
 
 }

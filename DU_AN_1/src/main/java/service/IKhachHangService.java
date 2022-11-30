@@ -20,4 +20,6 @@ public interface IKhachHangService {
     String update(QLKhachHang qLKhachHang);
     
     String delete(QLKhachHang qLKhachHang);
+    
+    List<QLKhachHang> searchByName(String ten);
 }
