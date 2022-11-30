@@ -4,7 +4,7 @@
  */
 package service;
 
-import java.util.Date;
+import domainmodel.SanCa;
 import java.util.List;
 import modelview.QLSanCa;
 
@@ -14,7 +14,7 @@ import modelview.QLSanCa;
  */
 public interface ISanCaService {
 
-    QLSanCa getOne();
+    SanCa getOne();
 
     List<QLSanCa> getAll();
 
