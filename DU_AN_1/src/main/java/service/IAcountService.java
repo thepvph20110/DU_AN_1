@@ -16,7 +16,7 @@ import modelview.QLAcount;
 public interface IAcountService {
 
     Acount getOne();
-            
+
     List<QLAcount> getAll();
 
     String save(QLAcount qLAcount);
@@ -24,6 +24,8 @@ public interface IAcountService {
     String update(QLAcount qLAcount, String id);
 
     String delete(String id);
-    
+
     String genMaAccount();
+
+    QLAcount getByUseNameAndPass(String UseName, String pass);
 }

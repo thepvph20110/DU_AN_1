@@ -96,7 +96,7 @@ public class AcountRepository implements IAcountRepository {
 
     @Override
     public String genMaAccount() {
-       String top1 = null;
+        String top1 = null;
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             String hql = "FROM Account a order by a.maAcount DESC";
             Query query = session.createQuery(hql);
@@ -110,5 +110,16 @@ public class AcountRepository implements IAcountRepository {
             return top1;
         }
         return top1;
+    }
+
+    @Override
+    public Acount getByUseNameAndPass(String tenAccount, String matKhau) {
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            String hql = "From Acount ac Where  ac.tenAcount = :use and ac.matKhau = :pass";
+            return session.createQuery(hql, Acount.class).setParameter("use", tenAccount).setParameter("pass", matKhau).uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+            return null;
+        }
     }
 }

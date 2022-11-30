@@ -13,17 +13,18 @@ import java.util.UUID;
  * @author Admin
  */
 public interface IAcountRepository {
-    
+
     List<Acount> getAll();
-    
+
     Acount getOne();
-    
+
     boolean save(Acount acount);
-    
+
     boolean update(Acount acount);
-    
+
     boolean delete(String id);
-    
+
     String genMaAccount();
-    
+
+    Acount getByUseNameAndPass(String tenAccount, String matKhau);
 }
