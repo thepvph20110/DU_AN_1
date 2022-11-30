@@ -55,7 +55,7 @@ public class PhuPhiRepositoryImpl implements IPhuPhiRepository {
         return true;
     }
 
-    public String genMaPhuPhi(){
+    public String genMaPhuPhi() {
         String top1 = null;
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             String hql = "FROM PhuPhi pp order by pp.maPhuPhi DESC";
@@ -71,5 +71,20 @@ public class PhuPhiRepositoryImpl implements IPhuPhiRepository {
         }
         return top1;
     }
-    
+
+    @Override
+    public PhuPhi fillByMa(String maPhuPhi) {
+        PhuPhi phuPhi;
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            String hql = "FROM PhuPhi pp WHERE pp.maPhuPhi = :maPhuPhi";
+            Query query = session.createQuery(hql);
+            query.setParameter("maPhuPhi", maPhuPhi);
+            phuPhi = (PhuPhi) query.getSingleResult();
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+        return phuPhi;
+    }
+
 }
