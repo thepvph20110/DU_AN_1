@@ -26,36 +26,40 @@ import repository.impl.NuocUongRepositoryImpl;
 import service.IDichVuService;
 
 public class DichVuServiceImpl implements IDichVuService {
-
+    
     private IDichVuRepository dichVuRepositoryImpl = new DichVuRepositoryImpl();
     private Map<String, Object> map = new HashMap<>();
     private INuocUongRepository nuocUongRepositoryImpl = new NuocUongRepositoryImpl();
     private IDoThueRepository doThueRepositoryImpl = new DoThueRepositoryImpl();
     private IHoaDonRepository hoaDonRepositoryImpl = new HoaDonRepositoryImpl();
 
-    @Override
-    public List<QLDichVu> getDichVu(int position, int pageSize) {
-        List<DichVu> listDichVu = dichVuRepositoryImpl.fillAll(position, pageSize);
 
-        List<QLDichVu> listQLDichVu = new ArrayList<>();
+//    @Override
+//    public List<QLDichVu> getDichVu(int position, int pageSize) {
+//        List<DichVu> listDichVu = dichVuRepositoryImpl.fillAll(position, pageSize);
+//
+//        List<QLDichVu> listQLDichVu = new ArrayList<>();
+//
+//        for (DichVu dichVu : listDichVu) {
+//            listQLDichVu.add(new QLDichVu(
+//                    dichVu.getId(),
+//                    dichVu.getMaDichVu(),
+//                    dichVu.getDoThue().getTenDoThue(),
+//                    dichVu.getSoLuongDoThue(),
+//                    String.valueOf(dichVu.getHoaDon()),
+//                    dichVu.getNuocUong().getTenNuocUong(),
+//                    dichVu.getSoLuongNuocUong(),
+//                    dichVu.getDonGia(),
+//                    dichVu.getMoTa(),
+//                    trangThaiDichVu.Dang_Su_Dung)
+//            );
+//        }
+//        return listQLDichVu;
+//    }
 
-        for (DichVu dichVu : listDichVu) {
-            listQLDichVu.add(new QLDichVu(
-                    dichVu.getId(),
-                    dichVu.getMaDichVu(),
-                    dichVu.getDoThue().getTenDoThue(),
-                    dichVu.getSoLuongDoThue(),
-                    String.valueOf(dichVu.getHoaDon()),
-                    dichVu.getNuocUong().getTenNuocUong(),
-                    dichVu.getSoLuongNuocUong(),
-                    dichVu.getDonGia(),
-                    dichVu.getMoTa(),
-                    trangThaiDichVu.Dang_Su_Dung)
-            );
-        }
-        return listQLDichVu;
-    }
 
+    
+ 
     @Override
     public List<QLDichVu> getDichVuNoPagination() {
 
@@ -72,7 +76,7 @@ public class DichVuServiceImpl implements IDichVuService {
 // map hóa đơn
         List<HoaDon> listHoaDon = hoaDonRepositoryImpl.getAll();
         listHoaDon.forEach(hoaDon -> {
-            map.put(String.valueOf(hoaDon.getId()), hoaDon);
+            map.put(String.valueOf(hoaDon.getMaHoaDon()), hoaDon);
         });
 
 // chạy for add
@@ -80,60 +84,63 @@ public class DichVuServiceImpl implements IDichVuService {
         List<QLDichVu> listQLDichVu = new ArrayList<>();
         for (DichVu dichVu : listDichVu) {
             map.put(dichVu.getMaDichVu(), dichVu);
-
-
+            
             listQLDichVu.add(
                     new QLDichVu(
                             dichVu.getId(),
                             dichVu.getMaDichVu(),
                             dichVu.getDoThue().getTenDoThue(),
                             dichVu.getSoLuongDoThue(),
+
                             String.valueOf(dichVu.getHoaDon()),
+
+                            String.valueOf(dichVu.getHoaDon().getMaHoaDon()),
+
                             dichVu.getNuocUong().getTenNuocUong(),
                             dichVu.getSoLuongNuocUong(),
                             dichVu.getDonGia(),
                             dichVu.getMoTa(),
-                            trangThaiDichVu.Dang_Su_Dung)
+                            dichVu.getTrangThai())
             );
         }
         return listQLDichVu;
     }
-
+    
     @Override
     public String createNewDichVu(QLDichVu dichVu) {
-        dichVu.setId(null);
-        NuocUong nuocUong = new NuocUong();
-        if (map.containsKey(dichVu.getTenNuocUong())) {
-            nuocUong = (NuocUong) map.get(dichVu.getTenNuocUong());
-        }
+//        dichVu.setId(null);
+//        NuocUong nuocUong = new NuocUong();
+//        if (map.containsKey(dichVu.getTenNuocUong())) {
+//            nuocUong = (NuocUong) map.get(dichVu.getTenNuocUong());
+//        }
+//        
+//        DoThue doThue = new DoThue();
+//        if (map.containsKey(dichVu.getTenDoThue())) {
+//            doThue = (DoThue) map.get(dichVu.getTenDoThue());
+//        }
+//        if (map.containsKey(dichVu.getMaDichVu())) {
+//            return "Mã trùng";
+//        }
+//        
+//        HoaDon hoaDon = new HoaDon();
+//        if (map.containsKey(dichVu.getHoaDon())) {
+//            hoaDon = (HoaDon) map.get(dichVu.getHoaDon());
+//        }
+//        
+//        boolean save = dichVuRepositoryImpl.saveOrUpdate(
+//                new DichVu(
+//                        dichVu.getId(),
+//                        dichVu.getMaDichVu(),
+//                        doThue,
+//                        dichVu.getSoLuongDoThue(),
+//                        hoaDon,
+//                        nuocUong,
+//                        dichVu.getSoLuongNuocUong(),
+//                        dichVu.getDonGia(),
+//                        dichVu.getMoTa(),
+//                        dichVu.getTrangThai())
+//        );
 
-        DoThue doThue = new DoThue();
-        if (map.containsKey(dichVu.getTenDoThue())) {
-            doThue = (DoThue) map.get(dichVu.getTenDoThue());
-        }
-        if (map.containsKey(dichVu.getMaDichVu())) {
-            return "Mã trùng";
-        }
-      
-        HoaDon hoaDon = new HoaDon();
-        if (map.containsKey(hoaDon.getId())) {
-            hoaDon = (HoaDon) map.get(dichVu.getHoaDon());
-        }
-
-
-        boolean save = dichVuRepositoryImpl.saveOrUpdate(
-                new DichVu(
-                        dichVu.getId(),
-                        dichVu.getMaDichVu(),
-                        doThue,
-                        dichVu.getSoLuongDoThue(),
-                        hoaDon,
-                        nuocUong,
-                        dichVu.getSoLuongNuocUong(),
-                        dichVu.getDonGia(),
-                        dichVu.getMoTa(),
-                        dichVu.getTrangThai())
-        );
 //        boolean save = dichVuRepositoryImpl.saveOrUpdate(new DichVu(dichVu.getId(), dichVu.getMaDichVu(), doThue, dichVu.getSoLuongDoThue(), nuocUong, dichVu.getSoLuongNuocUong(), dichVu.getDonGia(), dichVu.getMoTa(), dichVu.getTrangThai()));
 //        if (save) {
 //            return "Tạo mới Dịch Vụ Thành Công";
@@ -142,18 +149,19 @@ public class DichVuServiceImpl implements IDichVuService {
 //        }
     return null;
     }
-
+    
     @Override
     public String updateDichVuById(QLDichVu dichVu) {
-        NuocUong nuocUong = new NuocUong();
-        if (map.containsKey(dichVu.getTenNuocUong())) {
-            nuocUong = (NuocUong) map.get(dichVu.getTenNuocUong());
-        }
+//        NuocUong nuocUong = new NuocUong();
+//        if (map.containsKey(dichVu.getTenNuocUong())) {
+//            nuocUong = (NuocUong) map.get(dichVu.getTenNuocUong());
+//        }
+//        
+//        DoThue doThue = new DoThue();
+//        if (map.containsKey(dichVu.getTenDoThue())) {
+//            doThue = (DoThue) map.get(dichVu.getTenDoThue());
+//        }
 
-        DoThue doThue = new DoThue();
-        if (map.containsKey(dichVu.getTenDoThue())) {
-            doThue = (DoThue) map.get(dichVu.getTenDoThue());
-        }
 
 //        boolean save = dichVuRepositoryImpl.saveOrUpdate(new DichVu(dichVu.getId(), dichVu.getMaDichVu(),doThue, dichVu.getSoLuongDoThue(),nuocUong, dichVu.getSoLuongNuocUong(), dichVu.getDonGia(), dichVu.getMoTa(), dichVu.getTrangThai()));
 //
@@ -187,20 +195,20 @@ public class DichVuServiceImpl implements IDichVuService {
 //        } else {
 //            return "Cập Nhập Dịch Vụ Không Công";
 //        }
-    return null;
-
+    return null;    
     }
-
+    
     @Override
-    public String deleteDichVuById(UUID id) {
-        boolean delete = dichVuRepositoryImpl.delete(id);
-        if (delete) {
-            return "Xóa Dịch Vụ Thành Công";
-        } else {
-            return "Xóa Dịch Vụ Không Công";
-        }
+    public String deleteDichVuById(String id) {
+//        boolean delete = dichVuRepositoryImpl.delete(id);
+//        if (delete) {
+//            return "Xóa Dịch Vụ Thành Công";
+//        } else {
+//            return "Xóa Dịch Vụ Không Công";
+//        }
+        return null;
     }
-
+    
     @Override
     public long countAllDichVu() {
         long count = dichVuRepositoryImpl.totalCount();
@@ -208,4 +216,47 @@ public class DichVuServiceImpl implements IDichVuService {
     }
 
     
+    @Override
+    public List<QLDichVu> getDichVuByMaDichVu(String maDichVu) {
+        List<DichVu> listDichVu = dichVuRepositoryImpl.findByMaDichVu(maDichVu);
+        List<QLDichVu> listQLDichVu = new ArrayList<>();
+//        for (DichVu dichVu : listDichVu) {
+//            listQLDichVu.add(
+//                    new QLDichVu(
+//                            dichVu.getId(),
+//                            dichVu.getMaDichVu(),
+//                            dichVu.getDoThue().getTenDoThue(),
+//                            dichVu.getSoLuongDoThue(),
+//                            dichVu.getHoaDon().getMaHoaDon(),
+//                            dichVu.getNuocUong().getTenNuocUong(),
+//                            dichVu.getSoLuongNuocUong(),
+//                            dichVu.getDonGia(),
+//                            dichVu.getMoTa(),
+//                            dichVu.getTrangThai())
+//            );
+//        }
+        return listQLDichVu;
+    }
+    
+    @Override
+    public List<QLDichVu> getDichVuByTrangThai(trangThaiDichVu trangThai) {
+        List<DichVu> listDichVu = dichVuRepositoryImpl.findByTrangThai(trangThai);
+        List<QLDichVu> listQLDichVu = new ArrayList<>();
+//        for (DichVu dichVu : listDichVu) {
+//            listQLDichVu.add(
+//                    new QLDichVu(
+//                            dichVu.getId(),
+//                            dichVu.getMaDichVu(),
+//                            dichVu.getDoThue().getTenDoThue(),
+//                            dichVu.getSoLuongDoThue(),
+//                            dichVu.getHoaDon().getMaHoaDon(),
+//                            dichVu.getNuocUong().getTenNuocUong(),
+//                            dichVu.getSoLuongNuocUong(),
+//                            dichVu.getDonGia(),
+//                            dichVu.getMoTa(),
+//                            dichVu.getTrangThai())
+//            );
+//        }
+        return listQLDichVu;
+    }
 }

@@ -30,4 +30,8 @@ public class QLPhuPhi {
         this.id = id;
     }
 
+    public QLPhuPhi(String id, String maPhuPhi, String tenPhuPhi) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }

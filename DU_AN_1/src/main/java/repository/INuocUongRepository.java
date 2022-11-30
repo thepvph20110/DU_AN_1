@@ -5,6 +5,7 @@
 package repository;
 
 import domainmodel.NuocUong;
+import enumclass.trangThaiNuocUong;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,17 +15,21 @@ import java.util.UUID;
  */
 public interface INuocUongRepository {
 
-    List<NuocUong> fillAll(int firstResult, int maxResults);
     
     List<NuocUong> fillAllNuocUong();
     
-    UUID fillByName(String ten);
+    String fillByName(String ten);
 
     boolean saveOrUpdate(NuocUong nuocUong);
 
     boolean delete(UUID id);
     
     long totalCount();
+
+    NuocUong findByID(String id);
     
-    NuocUong findByID(UUID id);
+    List<NuocUong> findByTenNuocUong(String ten);
+    
+    List<NuocUong> findByTrangThai(trangThaiNuocUong trangThai);
+
 }

@@ -53,14 +53,32 @@ public class ThanhToanServiceImpl implements IThanhToanService {
 
     @Override
     public boolean delete(String id) {
-        boolean delete =repository.delete(id);
+        boolean delete = repository.delete(id);
         return delete;
     }
 
-    public static void main(String[] args) {
-        ThanhToanServiceImpl tt = new ThanhToanServiceImpl();
-        List<QLThanhToan> lst = tt.getAllThanhToans();
-        System.out.println(lst);
+    @Override
+    public String genMaThanhToan(List<QLThanhToan> lstQLThanhToans) {
+        int start;
+        List<Integer> lstIntegers = new ArrayList<>();
+        for (int i = 0; i < lstQLThanhToans.size(); i++) {
+            start = Integer.parseInt(lstQLThanhToans.get(i).getMaThanhToan().substring(4));
+            lstIntegers.add(start);
+        }
+        int max = lstIntegers.get(0);
+        for (int i = 0; i < lstIntegers.size(); i++) {
+            if (lstIntegers.get(i).compareTo(max) > 0) {
+                max = lstIntegers.get(i);
+            }
+        }
+        return "TT00" + (++max);
+    }
+
+    @Override
+    public QLThanhToan fillByMaThanhToan(String maThanhToan) {
+        var thanhToan = repository.fillBymaThanhToan(maThanhToan);
+        QLThanhToan qLThanhToan = new QLThanhToan(thanhToan.getId(), thanhToan.getMaThanhToan(), thanhToan.getHinhThanhToan(), thanhToan.getMoTa());
+        return qLThanhToan;
     }
 
 }

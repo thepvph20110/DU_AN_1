@@ -5,13 +5,19 @@
 package service.Impl;
 
 import domainmodel.Acount;
+import domainmodel.ChucVu;
 import enumclass.trangThaiAcount;
+import enumclass.trangThaiChucVu;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import modelview.QLAcount;
 import repository.IAcountRepository;
 import repository.impl.AcountRepository;
 import service.IAcountService;
+import views.Detaillogin;
+import views.Home;
 
 /**
  *
@@ -78,8 +84,23 @@ public class AcountServiceImpl implements IAcountService {
     public String genMaAccount() {
         String pp = acountRepo.genMaAccount();
         int newPP = (Integer.parseInt(pp.substring(2))) + 1;
-        return  pp.substring(0, 2) + "00"+ newPP ;
+        return pp.substring(0, 2) + "00" + newPP;
     }
 
-    
+    @Override
+    public QLAcount getByUseNameAndPass(String UseName, String pass) {
+        Acount acount = acountRepo.getByUseNameAndPass(UseName, pass);
+        if (UseName.isBlank() || pass.isBlank()) {
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập Use và PassWord");
+            return null;
+        } else if (acount == null) {
+            JOptionPane.showMessageDialog(null, "Sai UseName hoặc PassWord");
+            return null;
+        } else {
+            ChucVu chucVu = acount.getChucVu();
+            JOptionPane.showMessageDialog(null, "Login thành công");
+            return new QLAcount(acount.getId(), acount.getMaAcount(), acount.getTenAcount(), chucVu, acount.getMatKhau(), acount.getMoTa(), acount.getTrangThai());
+        }
+    }
+
 }

@@ -5,6 +5,7 @@
 package repository.impl;
 
 import domainmodel.DichVu;
+import enumclass.trangThaiDichVu;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -20,22 +21,6 @@ import utill.HibernateConfig;
  * @author ASUS
  */
 public class DichVuRepositoryImpl implements IDichVuRepository {
-
-    @Override
-    public List<DichVu> fillAll(int position, int pageSize) {
-        String hql = "Select d From DichVu d";
-        List<DichVu> lists = new ArrayList<>();
-        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
-            TypedQuery<DichVu> query = session.createQuery(hql, DichVu.class);
-            query.setFirstResult(position);
-            query.setMaxResults(pageSize);
-            lists = query.getResultList();
-            return lists;
-        } catch (Exception e) {
-            e.printStackTrace(System.out);
-        }
-        return null;
-    }
 
     @Override
     public boolean saveOrUpdate(DichVu dichVu) {
@@ -113,7 +98,7 @@ public class DichVuRepositoryImpl implements IDichVuRepository {
             Query q = session.createQuery("FROM DichVu dv WHERE dv.hoaDon.id =:id");
             q.setParameter("id", uuid);
             listDV = q.getResultList();
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
@@ -128,7 +113,7 @@ public class DichVuRepositoryImpl implements IDichVuRepository {
             q.setParameter("hoaDonId", idHoaDon);
             q.setParameter("idNuocUong", idNuocUong);
             listDV = q.getResultList();
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
@@ -143,10 +128,39 @@ public class DichVuRepositoryImpl implements IDichVuRepository {
             q.setParameter("hoaDonId", idHoaDon);
             q.setParameter("idDoThue", idDoThue);
             listDV = q.getResultList();
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
         return listDV;
+    }
+
+    @Override
+    public List<DichVu> findByMaDichVu(String maDichVu) {
+        List<DichVu> listDichVu = null;
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            String hql = "From DichVu Where maDichVu like :maDichVu";
+            TypedQuery<DichVu> query = session.createQuery(hql, DichVu.class);
+            query.setParameter("maDichVu", "%" + maDichVu + "%");
+            return listDichVu = query.getResultList();
+
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return listDichVu;
+    }
+
+    @Override
+    public List<DichVu> findByTrangThai(trangThaiDichVu trangThai) {
+        List<DichVu> listDichVu = null;
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            String hql = "From DichVu Where trangThai = :trangThai";
+            TypedQuery<DichVu> query = session.createQuery(hql, DichVu.class);
+            query.setParameter("trangThai", trangThai);
+            return listDichVu = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return listDichVu;
     }
 }

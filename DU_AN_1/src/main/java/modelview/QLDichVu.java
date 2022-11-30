@@ -33,6 +33,10 @@ public class QLDichVu {
 
     private String moTa;
     private trangThaiDichVu trangThai = trangThaiDichVu.Dang_Su_Dung;
+
+    public QLDichVu(String id, String maDichVu, String tenDoThue, int soLuongDoThue, String valueOf, String valueOf0, String tenNuocUong, int soLuongNuocUong, double donGia, String moTa, trangThaiDichVu trangThai) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     public Object[] toRowData(){
         return new Object[]{id, maDichVu, tenDoThue, soLuongDoThue, hoaDon, tenNuocUong, soLuongNuocUong, donGia, moTa,trangThai};
