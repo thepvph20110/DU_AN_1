@@ -4,6 +4,7 @@
  */
 package service;
 
+import domainmodel.KhachHang;
 import java.util.List;
 import modelview.QLKhachHang;
 
@@ -15,7 +16,7 @@ public interface IKhachHangService {
     
     List<QLKhachHang> getAll();
     
-    String save(QLKhachHang qLKhachHang);
+    String save(KhachHang KhachHang);
     
     String update(QLKhachHang qLKhachHang);
     

@@ -5,10 +5,12 @@
 package views;
 
 import domainmodel.Acount;
+import domainmodel.KhachHang;
 import domainmodel.SanCa;
 import enumclass.trangThaiKhachHang;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelview.QLAcount;
@@ -26,16 +28,16 @@ public class FrmKhachHang extends javax.swing.JFrame {
     private List<QLKhachHang> listKhachHang = new ArrayList<>();
     private IKhachHangService iKhachHangService = new KhachHangServiceImpl();
     private DefaultTableModel dtm = new DefaultTableModel();
-    private SanCa sanCa = new SanCa();
+    private QLSanCa sanCa = new QLSanCa();
     private Acount acount = new Acount();
 
     /**
      * Creates new form FrmKhachHang
      */
-    public FrmKhachHang(SanCa sanCaEntity, Acount acountEntity) {
+    public FrmKhachHang(QLSanCa sanCa, Acount acountEntity) {
         initComponents();
         acount = acountEntity;
-        sanCa = sanCaEntity;
+        this.sanCa = sanCa;
         jTable1.setModel(dtm);
         String[] header = {"ID", "Mã KH", "Tên KH", "Email", "SÐT", "Ghi Chú", "Trạng thái"};
         dtm.setColumnIdentifiers(header);
@@ -213,9 +215,11 @@ public class FrmKhachHang extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        String id = UUID.randomUUID().toString();
         String ten = txtTenKh.getText().trim();
         String ma = txtMaKH.getText().trim();
         String ghiChu = txtGhiChu.getText().trim();
@@ -227,10 +231,24 @@ public class FrmKhachHang extends javax.swing.JFrame {
         } else {
             qLKhachHang.setTrangThai(trangThaiKhachHang.CANH_CAO);
         }
-        QLKhachHang khachHang = new QLKhachHang(null, ma, ten, email, sdt, ghiChu,qLKhachHang.getTrangThai());
-        JOptionPane.showMessageDialog(this, iKhachHangService.save(khachHang));
+        KhachHang khachHang = new KhachHang(id , ma, ten, email, sdt, ghiChu, qLKhachHang.getTrangThai());
+        String checkSave = iKhachHangService.save(khachHang);
+        
         listKhachHang = iKhachHangService.getAll();
         showData(listKhachHang);
+        if (checkSave.equals("Save complete")) {
+            int check = JOptionPane.showConfirmDialog(rootPane, "Xác nhận thêm khách hàng", "Thông Báo", JOptionPane.YES_NO_OPTION);
+            if (check == JOptionPane.YES_OPTION) {
+                QLKhachHang qLKhachHang1 = new QLKhachHang(khachHang.getId(), khachHang.getMaKhachHang(), khachHang.getTenKhachHang(),
+                        khachHang.getMail(), khachHang.getSoDienThoai(), khachHang.getGhiChu(), khachHang.getTrangThai());
+                new FrmPhieuDatLich(qLKhachHang1, sanCa, acount).setVisible(true);
+                this.dispose();
+            }
+        }else{
+           JOptionPane.showMessageDialog(this,"Lưu thất bại"); 
+        }
+        
+
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed

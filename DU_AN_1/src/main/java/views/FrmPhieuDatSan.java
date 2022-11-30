@@ -5,21 +5,33 @@
 package views;
 
 import domainmodel.PhieuDatLich;
+import domainmodel.SanCa;
+import enumclass.trangThaiHoaDon;
 import enumclass.trangThaiPhieuDL;
+import enumclass.trangThaiSanCa;
 import java.util.UUID;
 import javax.swing.JOptionPane;
+import modelview.QLHoaDon;
+import modelview.QLSanCa;
+import repository.impl.SanCaRepository;
+import service.IHoaDonService;
 import service.IPhieuDatLichService;
+import service.ISanCaService;
+import service.Impl.HoaDonServiceImpl;
 import service.Impl.PhieuDatLichServiceImpl;
+import service.Impl.SanCaServiceImpl;
 
 public class FrmPhieuDatSan extends javax.swing.JFrame {
-
+    
     private PhieuDatLich phieuDL = new PhieuDatLich();
     private IPhieuDatLichService phieuDatLichService = new PhieuDatLichServiceImpl();
-
+    private ISanCaService sanCaService = new SanCaServiceImpl();
+    private IHoaDonService hoaDonService = new HoaDonServiceImpl();
+    
     public FrmPhieuDatSan(PhieuDatLich phieuDatLich) {
         initComponents();
         phieuDL = phieuDatLich;
-
+        
         lblTenKhachHang.setText(phieuDL.getKhachHang().getTenKhachHang());
         lblThoiGianCa.setText(String.valueOf(phieuDL.getSanCa().getCa().getThoiGianBatDau()) + " - " + String.valueOf(phieuDL.getSanCa().getCa().getThoiGianKetThuc()));
         lblTenSanBong.setText(phieuDL.getSanCa().getSanbong().getTenSanBong());
@@ -242,22 +254,38 @@ public class FrmPhieuDatSan extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNhanSanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhanSanActionPerformed
-
+        
         int click = JOptionPane.showConfirmDialog(rootPane, "Bạn Có Muốn Nhận Sân?", "Xác Nhận", JOptionPane.YES_NO_OPTION);
         if (click == JOptionPane.YES_OPTION) {
             phieuDL.setTrangThai(trangThaiPhieuDL.DA_NHAN_SAN);
-            JOptionPane.showMessageDialog(rootPane, phieuDatLichService.updateTrangThai(phieuDL));
-        }else{
+            String check = phieuDatLichService.updateTrangThai(phieuDL);
+            if (check.equals("Sửa Trạng Thái Thành Công")) {
+                JOptionPane.showMessageDialog(rootPane, "Nhận sân thành công");
+            }
+            SanCa sanCa = phieuDL.getSanCa();
+//            QLSanCa qLSanCa = new QLSanCa(sanCa.getId(), sanCa.getCa().getTenCa(), sanCa.getSanbong().getTenSanBong(), sanCa.getSanbong().getSucChua(), sanCa.getCa().getThoiGianBatDau(), sanCa.getCa().getThoiGianKetThuc(),
+//                    sanCa.getNgayTao(), sanCa.getGiaSanCa(),sanCa.getTrangThai());
+//            qLSanCa.setTrangThai(trangThaiSanCa.KHONG_TRONG);
+            sanCa.setTrangThai(trangThaiSanCa.KHONG_TRONG);
+            new SanCaRepository().update(sanCa);
+            QLHoaDon qLHoaDon = new QLHoaDon(null, "HD005", phieuDL, null, null, null, phieuDL.getTongTienSan(), phieuDL.getTongTienSan(), null, trangThaiHoaDon.CHUA_THANH_TOAN);
+            hoaDonService.save(qLHoaDon);
+            this.dispose();
+        } else {
             JOptionPane.showMessageDialog(this, "Nhận Sân Không Thành Công");
         }
     }//GEN-LAST:event_btnNhanSanActionPerformed
 
     private void btnHuyLichActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyLichActionPerformed
-       int click = JOptionPane.showConfirmDialog(rootPane, "Bạn Có Muốn Hủy Sân", "Xác Nhận", JOptionPane.YES_NO_OPTION);
+        int click = JOptionPane.showConfirmDialog(rootPane, "Bạn Có Muốn Hủy Sân", "Xác Nhận", JOptionPane.YES_NO_OPTION);
         if (click == JOptionPane.YES_OPTION) {
             phieuDL.setTrangThai(trangThaiPhieuDL.DA_HUY);
-            JOptionPane.showMessageDialog(rootPane, phieuDatLichService.updateTrangThai(phieuDL));
-        }else{
+            String check = phieuDatLichService.updateTrangThai(phieuDL);
+            if (check.equals("Sửa Trạng Thái Thành Công")) {
+                JOptionPane.showMessageDialog(rootPane, "Đã hủy lịch đặt");
+                this.dispose();
+            }
+        } else {
             JOptionPane.showMessageDialog(this, "Hủy Sân Không Thành Công");
         }
     }//GEN-LAST:event_btnHuyLichActionPerformed
@@ -269,7 +297,6 @@ public class FrmPhieuDatSan extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHuyLich;
