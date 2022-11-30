@@ -22,22 +22,6 @@ import utill.HibernateConfig;
 public class HoaDonThanhToanRepositoryImpl implements IHoaDonThanhToanRepository {
 
     @Override
-    public List<HoaDonThanhToan> fillAll(int position, int pageSize) {
-        String hql = "Select h  From HoDonThanhToan h";
-        List<HoaDonThanhToan> lists = new ArrayList<>();
-        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
-            TypedQuery<HoaDonThanhToan> query = session.createQuery(hql, HoaDonThanhToan.class);
-            query.setFirstResult(position);
-            query.setMaxResults(pageSize);
-            lists = query.getResultList();
-            return lists;
-        } catch (Exception e) {
-            e.printStackTrace(System.out);
-        }
-        return null;
-    }
-
-    @Override
     public boolean saveOrUpdate(HoaDonThanhToan hoaDonThanhToan) {
         boolean check = false;
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
@@ -50,10 +34,10 @@ public class HoaDonThanhToanRepositoryImpl implements IHoaDonThanhToanRepository
             } catch (Exception e) {
                 e.printStackTrace(System.out);
             }
-        }finally{
+        } finally {
             return check;
         }
-        
+
     }
 
     @Override
