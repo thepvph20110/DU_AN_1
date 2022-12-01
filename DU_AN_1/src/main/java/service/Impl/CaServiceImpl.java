@@ -68,4 +68,13 @@ public class CaServiceImpl implements ICaService {
         }
     }
 
+    @Override
+    public List<QLCa> searchByName(String ten) {
+        List<QLCa> qLCas = new ArrayList<>();
+        for (Ca ca : re.searchByName(ten)) {
+            QLCa qLCa = new QLCa(ca.getId(), ca.getMaCa(), ca.getTenCa(), ca.getThoiGianBatDau(), ca.getThoiGianKetThuc(), ca.getGiaCa(), ca.getTrangThai());
+            qLCas.add(qLCa);
+        }
+        return qLCas;
+    }
 }

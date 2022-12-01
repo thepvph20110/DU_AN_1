@@ -10,6 +10,7 @@ import utill.HibernateConfig;
 
 import java.util.List;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -69,4 +70,17 @@ public class CaRepository implements ICaRepository {
         System.out.println(new CaRepository().getAll());
     }
 
+    @Override
+    public List<Ca> searchByName(String ten) {
+        List<Ca> listNuocUong = null;
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            String hql = "From Ca Where tenCa like :ten ";
+            TypedQuery<Ca> query = session.createQuery(hql, Ca.class);
+            query.setParameter("ten", "%" + ten + "%");
+            listNuocUong = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return listNuocUong;
+    }
 }
