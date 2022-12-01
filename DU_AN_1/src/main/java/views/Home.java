@@ -4,6 +4,8 @@
  */
 package views;
 
+import controller.DanhMuc;
+import controller.HomeController;
 import domainmodel.Acount;
 import domainmodel.SanCa;
 import enumclass.trangThaiAcount;
@@ -60,7 +62,7 @@ public class Home extends javax.swing.JFrame {
     public JPanel panel = new JPanel();
     private QLAcount qLAcount;
     private Dimension dimension;
-    private Map<String,QLSanCa> mapSanCa = new HashMap<>();
+    private Map<String, QLSanCa> mapSanCa = new HashMap<>();
 
     public Home(QLAcount qLAcount) {
         initComponents();
@@ -74,6 +76,21 @@ public class Home extends javax.swing.JFrame {
         for (QLSanCa qLSanCa : listSanCa) {
             mapSanCa.put(qLSanCa.getId(), qLSanCa);
         }
+        HomeController conTrolerHome = new HomeController(this.PaneTong);
+        conTrolerHome.setView(this.lbHome);
+
+        List<DanhMuc> listItem = new ArrayList<>();
+        listItem.add(new DanhMuc("TrangChu", lbHome));
+        listItem.add(new DanhMuc("LichDat", lbLichDat));
+        listItem.add(new DanhMuc("CheckIn", lbCheckIn));
+        listItem.add(new DanhMuc("QLSan", lbQLSan));
+        listItem.add(new DanhMuc("QLCa", lbQLCa));
+        listItem.add(new DanhMuc("DichVu", lbDichVu1));
+        listItem.add(new DanhMuc("HoaDon", lbHoaD));
+        listItem.add(new DanhMuc("LichSu", lbLichSu));
+        listItem.add(new DanhMuc("ThongKe", lbThongKe));
+
+        conTrolerHome.setEvent(listItem);
     }
 
     public void AddSan() {
@@ -255,9 +272,10 @@ public class Home extends javax.swing.JFrame {
         }
 
     }
-    private void showDetail(String idSanCa){
-        Acount acount = new Acount(qLAcount.getId(), qLAcount.getMaAcount(), qLAcount.getTenAcount(), qLAcount.getChucVu(), 
-                qLAcount.getMatKhau(), qLAcount.getMoTa(),qLAcount.getTrangThai());
+
+    private void showDetail(String idSanCa) {
+        Acount acount = new Acount(qLAcount.getId(), qLAcount.getMaAcount(), qLAcount.getTenAcount(), qLAcount.getChucVu(),
+                qLAcount.getMatKhau(), qLAcount.getMoTa(), qLAcount.getTrangThai());
         QLSanCa qLSanCa = mapSanCa.get(idSanCa);
         QLKhachHang khachHang = new QLKhachHang();
         new FrmPhieuDatLich(khachHang, qLSanCa, acount).setVisible(true);
@@ -899,8 +917,8 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_lbDichVu1MouseExited
 
     private void lbResetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbResetMouseClicked
-       
-        new Home(qLAcount).setVisible(true); 
+
+        new Home(qLAcount).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_lbResetMouseClicked
 
