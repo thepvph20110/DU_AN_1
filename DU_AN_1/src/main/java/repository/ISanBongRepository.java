@@ -19,4 +19,6 @@ public interface ISanBongRepository {
     
     boolean deleteSanBong(SanBong sanBong);
     
+    List<SanBong> searchByName(String ten);
+    
 }

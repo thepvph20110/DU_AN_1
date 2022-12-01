@@ -6,6 +6,7 @@ package repository.impl;
 
 import domainmodel.KhachHang;
 import java.util.List;
+import javax.persistence.TypedQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -79,6 +80,20 @@ public class KhachHangRepository implements IKhachHangRepository {
             transaction.rollback();
         }
         return check;
+    }
+    
+    @Override
+    public List<KhachHang> searchByName(String ten) {
+        List<KhachHang> listKh = null;
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            String hql = "From KhachHang Where tenKhachHang like :ten ";
+            TypedQuery<KhachHang> query = session.createQuery(hql, KhachHang.class);
+            query.setParameter("ten", "%" + ten + "%");
+            listKh = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return listKh;
     }
 
 }

@@ -18,4 +18,6 @@ public interface ILoaiSanRepository {
     boolean saveOrUpdate(LoaiSan loaiSan);
     
     boolean deleteLoaiSan(LoaiSan loaiSan);
+    
+    List<LoaiSan> searchByName(String ten);
 }

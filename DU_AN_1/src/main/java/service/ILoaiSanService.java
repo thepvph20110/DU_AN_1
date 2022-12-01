@@ -20,5 +20,7 @@ public interface ILoaiSanService {
     String update(QLLoaiSan qLLoaiSan);
 
     String delete(QLLoaiSan qLLoaiSan);
+    
+    List<QLLoaiSan> searchByName(String ten);
 
 }
