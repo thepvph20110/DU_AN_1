@@ -20,4 +20,7 @@ public interface ISanBongService {
     String update(QLSanBong qLSanBong);
 
     String delete(QLSanBong qLSanBong);
+    
+    List<QLSanBong> searchByName(String ten);
+
 }

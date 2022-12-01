@@ -47,7 +47,7 @@ public class FrmSanCa extends javax.swing.JFrame {
     public FrmSanCa() {
         initComponents();
         jTable1.setModel(dtm);
-        String[] header = {"ID", "Ngày tạo", "Ca", "Sân bóng","Sức chứa","TG Bắt Đầu","TG Kết Thúc", "Giá Ca", "Trạng thái"};
+        String[] header = {"ID", "Ngày tạo", "Ca", "Sân bóng", "Sức chứa", "TG Bắt Đầu", "TG Kết Thúc", "Giá Ca", "Trạng thái"};
         dtm.setColumnIdentifiers(header);
         listQLCa = iCaService.getAll();
         listQLSanBong = iSanBongService.getAll();
@@ -57,7 +57,7 @@ public class FrmSanCa extends javax.swing.JFrame {
         loadCbbSanBong();
         Date date = new Date();
         jDateNgayTao.setDate(date);
-        showData(listQLSanBong);
+        showData(listQLSanCa);
     }
 
     /**
@@ -158,51 +158,44 @@ public class FrmSanCa extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(230, 230, 230))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(0, 226, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSave)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(btnSave))
+                        .addGap(138, 138, 138)
+                        .addComponent(btnUpdate)
+                        .addGap(89, 89, 89)
+                        .addComponent(btnDelete))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(174, 174, 174)
-                                .addComponent(btnUpdate)
-                                .addGap(89, 89, 89)
-                                .addComponent(btnDelete))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5))
-                                .addGap(56, 56, 56)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cbbCa, 0, 154, Short.MAX_VALUE)
-                                    .addComponent(cbbSanBong, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(52, 52, 52)
-                                .addComponent(radioTrong, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(radioChoNhanSan, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(radioKhongTrong, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4))
-                                .addGap(57, 57, 57)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtGiaCa, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
-                                    .addComponent(jDateNgayTao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addGap(56, 56, 56)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cbbCa, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbbSanBong, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(52, 52, 52)
+                        .addComponent(radioTrong, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(radioChoNhanSan, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(radioKhongTrong, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addGap(57, 57, 57)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtGiaCa)
+                            .addComponent(jDateNgayTao, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(222, 222, 222))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(362, 362, 362)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -210,7 +203,7 @@ public class FrmSanCa extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
@@ -231,16 +224,16 @@ public class FrmSanCa extends javax.swing.JFrame {
                             .addComponent(jLabel8)
                             .addComponent(radioTrong)
                             .addComponent(radioChoNhanSan)
-                            .addComponent(radioKhongTrong))
-                        .addGap(43, 43, 43)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnSave)
-                            .addComponent(btnDelete)
-                            .addComponent(btnUpdate))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(radioKhongTrong)))
                     .addComponent(jDateNgayTao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSave)
+                    .addComponent(btnDelete)
+                    .addComponent(btnUpdate))
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -248,16 +241,16 @@ public class FrmSanCa extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(14, 14, 14)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(14, 14, 14)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -273,24 +266,23 @@ public class FrmSanCa extends javax.swing.JFrame {
         QLSanCa qLSanCa = new QLSanCa();
         QLCa qLCa = new QLCa();
         QLSanBong qLSanBong = new QLSanBong();
-        String tenSanBong = cbbSanBong.getSelectedItem()+"";
-        String tenca = cbbCa.getSelectedItem()+"";
-        QLSanCa qlsc = new QLSanCa(null, tenca, tenSanBong,0,null,null, new Date(), 0, qLSanCa.getTrangThai());
+        String tenSanBong = cbbSanBong.getSelectedItem() + "";
+        String tenca = cbbCa.getSelectedItem() + "";
+        QLSanCa qlsc = new QLSanCa(null, tenca, tenSanBong, 0, null, null, new Date(), 0, qLSanCa.getTrangThai());
         JOptionPane.showMessageDialog(this, iSanCaService.save(qlsc));
         listQLSanCa = iSanCaService.getAll();
-        showData(listQLSanBong);
+        showData(listQLSanCa);
         //}
 
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
 
-
         QLSanCa qLSanCa = new QLSanCa();
         QLCa qLCa = new QLCa();
         QLSanBong qLSanBong = new QLSanBong();
-        String tenSanBong = cbbSanBong.getSelectedItem()+"";
-        String tenca = cbbCa.getSelectedItem()+"";
+        String tenSanBong = cbbSanBong.getSelectedItem() + "";
+        String tenca = cbbCa.getSelectedItem() + "";
         if (radioChoNhanSan.isSelected()) {
             qLSanCa.setTrangThai(trangThaiSanCa.CHO_NHAN_SAN);
         } else if (radioKhongTrong.isSelected()) {
@@ -298,10 +290,10 @@ public class FrmSanCa extends javax.swing.JFrame {
         } else {
             qLSanCa.setTrangThai(trangThaiSanCa.DANG_TRONG);
         }
-        QLSanCa qlsc = new QLSanCa(mountClick().getId(), tenca, tenSanBong,0,null,null, new Date(), 0, qLSanCa.getTrangThai());
+        QLSanCa qlsc = new QLSanCa(mountClick().getId(), tenca, tenSanBong, 0, null, null, new Date(), 0, qLSanCa.getTrangThai());
         JOptionPane.showMessageDialog(this, iSanCaService.update(qlsc));
         listQLSanCa = iSanCaService.getAll();
-        showData(listQLSanBong);
+        showData(listQLSanCa);
 
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -309,8 +301,8 @@ public class FrmSanCa extends javax.swing.JFrame {
         QLSanCa qLSanCa = new QLSanCa();
         QLCa qLCa = new QLCa();
         QLSanBong qLSanBong = new QLSanBong();
-        String tenSanBong = cbbSanBong.getSelectedItem()+"";
-        String tenca = cbbCa.getSelectedItem()+"";
+        String tenSanBong = cbbSanBong.getSelectedItem() + "";
+        String tenca = cbbCa.getSelectedItem() + "";
         if (radioChoNhanSan.isSelected()) {
             qLSanCa.setTrangThai(trangThaiSanCa.CHO_NHAN_SAN);
         } else if (radioKhongTrong.isSelected()) {
@@ -318,10 +310,10 @@ public class FrmSanCa extends javax.swing.JFrame {
         } else {
             qLSanCa.setTrangThai(trangThaiSanCa.DANG_TRONG);
         }
-        QLSanCa qlsc = new QLSanCa(mountClick().getId(), tenca, tenSanBong,0,null,null, new Date(), 0, qLSanCa.getTrangThai());
+        QLSanCa qlsc = new QLSanCa(mountClick().getId(), tenca, tenSanBong, 0, null, null, new Date(), 0, qLSanCa.getTrangThai());
         JOptionPane.showMessageDialog(this, iSanCaService.delete(qlsc));
         listQLSanCa = iSanCaService.getAll();
-        showData(listQLSanBong);
+        showData(listQLSanCa);
 
 
     }//GEN-LAST:event_btnDeleteActionPerformed
@@ -382,7 +374,7 @@ public class FrmSanCa extends javax.swing.JFrame {
         }
     }
 
-    private void showData(List<QLSanBong> listQLSanBong) {
+    private void showData(List<QLSanCa> listQLSanCa) {
         dtm.setRowCount(0);
         for (QLSanCa qLSanCa : listQLSanCa) {
             dtm.addRow(qLSanCa.toDataRow());

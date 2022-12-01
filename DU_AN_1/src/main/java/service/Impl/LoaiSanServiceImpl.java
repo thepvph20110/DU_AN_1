@@ -22,7 +22,6 @@ public class LoaiSanServiceImpl implements ILoaiSanService {
     private final List<QLLoaiSan> listQLLoaiSan = new ArrayList<>();
     private final LoaiSanRepository re = new LoaiSanRepository();
     private Map<String, Object> map = new HashMap<>();
-    
 
     @Override
     public List<QLLoaiSan> getAll() {
@@ -38,7 +37,7 @@ public class LoaiSanServiceImpl implements ILoaiSanService {
 
     @Override
     public String save(QLLoaiSan qLLoaiSan) {
-        if(map.containsKey(qLLoaiSan.getMaLoaiSan()) || map.containsKey(qLLoaiSan.getTenLoaiSan())){
+        if (map.containsKey(qLLoaiSan.getMaLoaiSan()) || map.containsKey(qLLoaiSan.getTenLoaiSan())) {
             return "Ma trung";
         }
         LoaiSan loaiSan = new LoaiSan(null, qLLoaiSan.getMaLoaiSan(), qLLoaiSan.getTenLoaiSan(), qLLoaiSan.getMoTa());
@@ -69,4 +68,13 @@ public class LoaiSanServiceImpl implements ILoaiSanService {
         }
     }
 
+    @Override
+    public List<QLLoaiSan> searchByName(String ten) {
+        List<QLLoaiSan> qLLoaiSans = new ArrayList<>();
+        for (LoaiSan loaiSan : re.searchByName(ten)) {
+            QLLoaiSan qLLoaiSan = new QLLoaiSan(loaiSan.getId(), loaiSan.getMaLoaiSan(), loaiSan.getTenLoaiSan(), loaiSan.getMoTa());
+            qLLoaiSans.add(qLLoaiSan);
+        }
+        return qLLoaiSans;
+    }
 }
