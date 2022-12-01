@@ -16,12 +16,12 @@ import utill.HibernateConfig;
  *
  * @author hp
  */
-public class KhachHangRepository implements IKhachHangRepository{
+public class KhachHangRepository implements IKhachHangRepository {
 
     @Override
     public List<KhachHang> getAll() {
         String hql = "From KhachHang";
-        try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
+        try (Session session = new HibernateConfig().getFACTORY().openSession()) {
             Query q = session.createQuery(hql);
             return q.getResultList();
         } catch (Exception e) {
@@ -34,7 +34,7 @@ public class KhachHangRepository implements IKhachHangRepository{
     public boolean saveOrUpdate(KhachHang khachHang) {
         boolean check;
         Transaction transaction = null;
-        try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
+        try (Session session = new HibernateConfig().getFACTORY().openSession()) {
             transaction = session.beginTransaction();
             session.saveOrUpdate(khachHang);
             check = true;
@@ -48,10 +48,27 @@ public class KhachHangRepository implements IKhachHangRepository{
     }
     
     @Override
+    public boolean save(KhachHang khachHang) {
+        boolean check;
+        Transaction transaction = null;
+        try (Session session = new HibernateConfig().getFACTORY().openSession()) {
+            transaction = session.beginTransaction();
+            session.save(khachHang);
+            check = true;
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+            check = false;
+            transaction.rollback();
+        }
+        return check;
+    }
+
+    @Override
     public boolean delete(KhachHang khachHang) {
         boolean check;
         Transaction transaction = null;
-        try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
+        try (Session session = new HibernateConfig().getFACTORY().openSession()) {
             transaction = session.beginTransaction();
             session.delete(khachHang);
             check = true;
@@ -63,5 +80,5 @@ public class KhachHangRepository implements IKhachHangRepository{
         }
         return check;
     }
-    
+
 }

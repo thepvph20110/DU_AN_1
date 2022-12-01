@@ -32,9 +32,8 @@ public class KhachHangServiceImpl implements IKhachHangService {
     }
 
     @Override
-    public String save(QLKhachHang qLKhachHang) {
-        KhachHang khachHang = new KhachHang(null, qLKhachHang.getMaKhachHang(), qLKhachHang.getTenKhachHang(),qLKhachHang.getMail(), qLKhachHang.getSoDienThoai(), qLKhachHang.getGhiChu(), qLKhachHang.getTrangThai());
-        if (re.saveOrUpdate(khachHang)) {
+    public String save(KhachHang KhachHang) {
+        if (re.save(KhachHang)) {
             return "Save complete";
         } else {
             return "Save Fail";

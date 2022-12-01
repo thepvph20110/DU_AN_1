@@ -760,7 +760,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
         }
         SanCa sanCa = hoaDon.getPhieuDatLich().getSanCa();
         sanCa.setTrangThai(trangThaiSanCa.DANG_TRONG);
-        new SanCaRepository().saveOrUpdate(sanCa);
+        new SanCaRepository().update(sanCa);
         hoaDon.setTongTien(giaCa);
         hoaDon.setTrangThai(trangThaiHoaDon.DA_THANH_TOAN);
         Date date = new Date();
