@@ -26,22 +26,23 @@ import utill.HibernateConfig;
  *
  * @author ADMIN
  */
-public class PhieuDatLichRepositoryImpl implements IPhieuDatLichRepository{
-    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+public class PhieuDatLichRepositoryImpl implements IPhieuDatLichRepository {
 
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    
     @Override
     public List<PhieuDatLich> getAll() {
         List<PhieuDatLich> listPhieus;
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             Query q = session.createQuery("FROM PhieuDatLich");
             listPhieus = q.getResultList();
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
         return listPhieus;
     }
-
+    
     @Override
     public boolean save(PhieuDatLich phieuDatLich) {
         Transaction transaction = null;
@@ -57,7 +58,7 @@ public class PhieuDatLichRepositoryImpl implements IPhieuDatLichRepository{
         }
         return true;
     }
-
+    
     @Override
     public boolean update(PhieuDatLich phieuDatLich) {
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
@@ -70,7 +71,7 @@ public class PhieuDatLichRepositoryImpl implements IPhieuDatLichRepository{
         }
         return true;
     }
-
+    
     @Override
     public boolean delete(String id) {
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
@@ -86,18 +87,29 @@ public class PhieuDatLichRepositoryImpl implements IPhieuDatLichRepository{
         }
         return true;
     }
-
+    
     @Override
     public List<PhieuDatLich> getPhieuDatLichByTT() {
         List<PhieuDatLich> listPhieus;
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             Query q = session.createQuery("FROM PhieuDatLich where trangThai ='0'");
             listPhieus = q.getResultList();
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
         return listPhieus;
     }
     
+    @Override
+    public PhieuDatLich getByIdSanCa(String id) {
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            return (PhieuDatLich) session.createQuery("From PhieuDatLich p WHERE p.sanCa.id = :IdSanCa").setParameter("IdSanCa", id).uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
 }
