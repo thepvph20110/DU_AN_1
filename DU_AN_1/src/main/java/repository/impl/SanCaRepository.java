@@ -18,12 +18,12 @@ import utill.HibernateConfig;
  *
  * @author hp
  */
-public class SanCaRepository implements ISanCaRepository{
+public class SanCaRepository implements ISanCaRepository {
 
     @Override
     public List<SanCa> getAll() {
         String hql = "From SanCa sc order by sc.ca.tenCa";
-        try(Session session = new HibernateConfig().getFACTORY().openSession()) {
+        try (Session session = new HibernateConfig().getFACTORY().openSession()) {
             Query q = session.createQuery(hql);
             return q.getResultList();
         } catch (Exception e) {
@@ -33,12 +33,12 @@ public class SanCaRepository implements ISanCaRepository{
     }
 
     @Override
-    public boolean saveOrUpdate(SanCa sanCa) {
+    public boolean update(SanCa sanCa) {
         boolean check;
         Transaction transaction = null;
-        try(Session session = new HibernateConfig().getFACTORY().openSession()) {
-            transaction =session.beginTransaction();
-            session.saveOrUpdate(sanCa);
+        try (Session session = new HibernateConfig().getFACTORY().openSession()) {
+            transaction = session.beginTransaction();
+            session.update(sanCa);
             check = true;
             transaction.commit();
         } catch (Exception e) {
@@ -53,8 +53,8 @@ public class SanCaRepository implements ISanCaRepository{
     public boolean deleteSanCa(SanCa sanCa) {
         boolean check;
         Transaction transaction = null;
-        try(Session session = new HibernateConfig().getFACTORY().openSession()) {
-            transaction =session.beginTransaction();
+        try (Session session = new HibernateConfig().getFACTORY().openSession()) {
+            transaction = session.beginTransaction();
             session.delete(sanCa);
             check = true;
             transaction.commit();
@@ -68,8 +68,8 @@ public class SanCaRepository implements ISanCaRepository{
 
     @Override
     public SanCa getOne() {
-         SanCa sanCa;
-        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+        SanCa sanCa;
+        try (Session session = HibernateConfig.getFACTORY().openSession()) {
             String hql = "From SanCa";
             TypedQuery<SanCa> query = session.createQuery(hql, SanCa.class);
             query.setFirstResult(0);
@@ -80,5 +80,22 @@ public class SanCaRepository implements ISanCaRepository{
             sanCa = null;
         }
         return sanCa;
+    }
+
+    @Override
+    public boolean save(SanCa sanCa) {
+        boolean check;
+        Transaction transaction = null;
+        try (Session session = new HibernateConfig().getFACTORY().openSession()) {
+            transaction = session.beginTransaction();
+            session.save(sanCa);
+            check = true;
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+            check = false;
+            transaction.rollback();
+        }
+        return check;
     }
 }

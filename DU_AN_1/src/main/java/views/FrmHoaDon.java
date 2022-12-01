@@ -27,6 +27,7 @@ public class FrmHoaDon extends javax.swing.JFrame {
      */
     public FrmHoaDon() {
         initComponents();
+        this.setLocationRelativeTo(null);
         jTable1.setModel(dtm);
         String headers[] = {"Mã Hóa Đơn","Tên Tài Khoản","Tên Khách Hàng","SDT","Tiền Sân","Ngày Tạo Phiếu","Trạng Thái"};
         dtm.setColumnIdentifiers(headers);

@@ -26,6 +26,8 @@ public class Detaillogin extends javax.swing.JDialog {
 
     private void setBackRough() {
         PaneTongLogIn.setBackground(new Color(186, 228, 229));
+        txtUseName.setText("Cao Dinh");
+        txtPass.setText("1234");
     }
 
     /**
@@ -175,7 +177,7 @@ public class Detaillogin extends javax.swing.JDialog {
         QLAcount qLAcount = acountService.getByUseNameAndPass(use, pass);
         if (qLAcount != null) {
             this.dispose();
-            new Home().setVisible(true);
+            new Home(qLAcount).setVisible(true);
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
