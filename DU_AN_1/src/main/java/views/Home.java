@@ -5,51 +5,29 @@
 package views;
 
 import domainmodel.Acount;
-import domainmodel.KhachHang;
 import domainmodel.SanCa;
-import enumclass.trangThaiSanBong;
+import enumclass.trangThaiAcount;
 import enumclass.trangThaiSanCa;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Graphics2D;
 import java.awt.GridLayout;
-import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.swing.Action;
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneLayout;
-import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
-import modelview.QLAcount;
-import modelview.QLKhachHang;
-import modelview.QLSanBong;
-import modelview.QLSanCa;
-import service.ISanBongService;
-import service.ISanCaService;
-import service.Impl.SanBongServiceImpl;
-import service.IAcountService;
-import service.ISanCaService;
-import service.Impl.AcountServiceImpl;
 import javax.swing.border.TitledBorder;
 import modelview.QLAcount;
 import modelview.QLCa;
@@ -57,7 +35,6 @@ import modelview.QLKhachHang;
 import modelview.QLSanBong;
 import modelview.QLSanCa;
 import service.ISanBongService;
-import service.ISanCaService;
 import service.Impl.SanBongServiceImpl;
 import service.IAcountService;
 import service.ICaService;
@@ -81,23 +58,25 @@ public class Home extends javax.swing.JFrame {
     public List<JPanel> listPaneCa = new ArrayList<>();
     private IAcountService acountService = new AcountServiceImpl();
     public JPanel panel = new JPanel();
-
+    private QLAcount qLAcount;
     private Dimension dimension;
+    private Map<String,QLSanCa> mapSanCa = new HashMap<>();
 
-    public Home() {
+    public Home(QLAcount qLAcount) {
         initComponents();
         time();
+        this.qLAcount = qLAcount;
         showDongHo();
-        AddSan();
-        System.out.println(listPaneCa);
-        System.out.println("123:" + dimension);
-    }
-
-    public void AddSan() {
         listSanCa = sanCaService.getAll();
         listSanBong = sanBongService.getAll();
         listCa = caService.getAll();
+        AddSan();
+        for (QLSanCa qLSanCa : listSanCa) {
+            mapSanCa.put(qLSanCa.getId(), qLSanCa);
+        }
+    }
 
+    public void AddSan() {
         PaneTong.setLayout(new GridLayout(10000, 1, 20, 20));
 
         for (int i = 0; i < listSanBong.size(); i++) {
@@ -218,6 +197,7 @@ public class Home extends javax.swing.JFrame {
                         panelCa.setBackground(new Color(0, 153, 0));
                         panelCa.setLayout(new BoxLayout(panelCa, BoxLayout.Y_AXIS));
                         panelCa.setLayout(new FlowLayout(10, 20, 20));
+                        JLabel labelIdSanCa = new JLabel(listSanCa.get(j).getId());
                         panelCa.addMouseListener(new java.awt.event.MouseAdapter() {
                             public void mouseReleased(java.awt.event.MouseEvent evt) {
                                 panelCaInMouseReleased(evt);
@@ -240,14 +220,13 @@ public class Home extends javax.swing.JFrame {
                         itemDatLich.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
-                                panelCa.setBackground(Color.ORANGE);
+                                showDetail(labelIdSanCa.getText());
                                 jPopupMenu.setVisible(false);
                             }
                         });
                         JLabel labelCa = new JLabel(listSanCa.get(j).getTenCa());
                         JLabel labelThoiGian = new JLabel(listSanCa.get(j).getThoiGianBatDau() + " : " + String.valueOf(listSanCa.get(j).getThoiGianKetThuc()));
                         JLabel labelLoaiSan = new JLabel("Loại sân" + " " + listSanCa.get(j).getSucChua());
-                        JLabel labelIdSanCa = new JLabel(listSanCa.get(j).getId());
                         labelCa.setForeground(Color.BLACK);
                         labelCa.setFont(new Font("Tahoma", 1, 16));
                         labelThoiGian.setForeground(Color.BLACK);
@@ -275,6 +254,13 @@ public class Home extends javax.swing.JFrame {
             PaneTong.add(panelSan);
         }
 
+    }
+    private void showDetail(String idSanCa){
+        Acount acount = new Acount(qLAcount.getId(), qLAcount.getMaAcount(), qLAcount.getTenAcount(), qLAcount.getChucVu(), 
+                qLAcount.getMatKhau(), qLAcount.getMoTa(),qLAcount.getTrangThai());
+        QLSanCa qLSanCa = mapSanCa.get(idSanCa);
+        QLKhachHang khachHang = new QLKhachHang();
+        new FrmPhieuDatLich(khachHang, qLSanCa, acount).setVisible(true);
     }
 
     private void time() {
@@ -352,7 +338,6 @@ public class Home extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        btnDatLich = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         searchText1 = new utill.SearchText();
         lbReset = new javax.swing.JLabel();
@@ -441,9 +426,6 @@ public class Home extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 lbHoaDMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                lbHoaDMousePressed(evt);
             }
         });
 
@@ -688,14 +670,6 @@ public class Home extends javax.swing.JFrame {
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel19.setText("Không trống");
 
-        btnDatLich.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnDatLich.setText("Đặt lịch");
-        btnDatLich.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDatLichActionPerformed(evt);
-            }
-        });
-
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -745,9 +719,7 @@ public class Home extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbTime, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnDatLich))
+                        .addComponent(lbTime, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(paneTong, javax.swing.GroupLayout.DEFAULT_SIZE, 1382, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -762,10 +734,8 @@ public class Home extends javax.swing.JFrame {
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(22, 22, 22))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(btnDatLich)
-                                .addComponent(lbTime, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(19, 19, 19)))
+                            .addComponent(lbTime, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(20, 20, 20)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -907,19 +877,9 @@ public class Home extends javax.swing.JFrame {
         new FrmLichSuDatSan().setVisible(true);
     }//GEN-LAST:event_lbLichSuMouseClicked
 
-    private void btnDatLichActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatLichActionPerformed
-//         TODO add your handling code here:
-        QLKhachHang khachHang = new QLKhachHang();
-        SanCa sanCa = sanCaService.getOne();
-        Acount acount = acountService.getOne();
-//        new FrmPhieuDatLich(khachHang, sanCa,acount).setVisible(true);
-
-        new FrmPhieuDatLich(khachHang, sanCa, acount).setVisible(true);
-    }//GEN-LAST:event_btnDatLichActionPerformed
-
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         this.dispose();
-        new Home().setVisible(true);
+        new Home(qLAcount).setVisible(true);
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void lbQLSanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbQLSanMouseClicked
@@ -939,8 +899,9 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_lbDichVu1MouseExited
 
     private void lbResetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbResetMouseClicked
-        new Home().setVisible(false);
-        new Home().setVisible(true);
+       
+        new Home(qLAcount).setVisible(true); 
+        this.setVisible(false);
     }//GEN-LAST:event_lbResetMouseClicked
 
     private void lbHoaDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbHoaDMouseClicked
@@ -951,45 +912,40 @@ public class Home extends javax.swing.JFrame {
         new FrmSanCa().setVisible(true);
     }//GEN-LAST:event_lbLichDatMouseClicked
 
-    private void lbHoaDMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbHoaDMousePressed
-        // TODO add your handling code here:
-        new FrmHoaDon().setVisible(true);
-    }//GEN-LAST:event_lbHoaDMousePressed
-
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Home().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Home().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPopupMenu CheckInCLick;
@@ -997,7 +953,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JMenuItem CheckQR;
     private javax.swing.JPanel PaneTong;
     private javax.swing.JPopupMenu San1Ca1;
-    private javax.swing.JButton btnDatLich;
     private com.toedter.calendar.JDateChooser jDate;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;

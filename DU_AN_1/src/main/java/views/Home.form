@@ -126,8 +126,6 @@
                           <Component id="jLabel4" min="-2" pref="31" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="lbTime" min="-2" pref="182" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnDatLich" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="paneTong" alignment="0" pref="1382" max="32767" attributes="0"/>
                       <Component id="jPanel4" max="32767" attributes="0"/>
@@ -147,11 +145,8 @@
                               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="btnDatLich" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lbTime" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                              <Component id="lbTime" min="-2" pref="31" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" attributes="0">
@@ -333,7 +328,6 @@
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbHoaDMouseClicked"/>
                 <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbHoaDMouseEntered"/>
                 <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbHoaDMouseExited"/>
-                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbHoaDMousePressed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lbLichSu">
@@ -660,17 +654,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Kh&#xf4;ng tr&#x1ed1;ng"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnDatLich">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="12" style="1"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="&#x110;&#x1eb7;t l&#x1ecb;ch"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDatLichActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>

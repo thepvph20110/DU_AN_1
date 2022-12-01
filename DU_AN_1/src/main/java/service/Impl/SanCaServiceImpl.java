@@ -32,7 +32,7 @@ import service.ISanCaService;
 public class SanCaServiceImpl implements ISanCaService {
 
     private final List<QLSanCa> listQLSanCa = new ArrayList<>();
-    private final SanCaRepository re = new SanCaRepository();
+    private SanCaRepository re = new SanCaRepository();
     private Map<String, Object> map = new HashMap<>();
     private ISanBongRepository isb = new SanBongRepository();
     private ICaRepository ica = new CaRepository();
@@ -73,7 +73,7 @@ public class SanCaServiceImpl implements ISanCaService {
             sanBong = (SanBong) map.get(qLSanCa.getTenSanBong());
         }
         SanCa sanCa = new SanCa(null, ca, sanBong, new Date(),ca.getGiaCa()+sanBong.getGiaSan(), qLSanCa.getTrangThai());
-        if (re.saveOrUpdate(sanCa)) {
+        if (re.save(sanCa)) {
             return "Save Complete";
         } else {
             return "Save Fail";
@@ -107,7 +107,7 @@ public class SanCaServiceImpl implements ISanCaService {
             sanBong = (SanBong) map.get(qLSanCa.getTenSanBong());
         }
         SanCa sanCa = new SanCa(qLSanCa.getId(), ca, sanBong, new Date(),ca.getGiaCa()+sanBong.getGiaSan(), qLSanCa.getTrangThai());
-        if (re.saveOrUpdate(sanCa)) {
+        if (re.update(sanCa)) {
             return "Update Complete";
         } else {
             return "Update Fail";

@@ -93,4 +93,14 @@ public class SanBongServiceImpl implements ISanBongService {
         System.out.println(new SanBongServiceImpl().getAll());
     }
 
+    @Override
+    public List<QLSanBong> searchByName(String ten) {
+        List<QLSanBong> qLSanBongs = new ArrayList<>();
+        for (SanBong sanBong : re.searchByName(ten)) {
+            QLSanBong qLsanBong = new QLSanBong(sanBong.getId(), sanBong.getMaSanBong(), sanBong.getTenSanBong(),sanBong.getGiaSan(), sanBong.getSucChua(), sanBong.getLoaiSan().getTenLoaiSan(), sanBong.getTrangThai());
+            qLSanBongs.add(qLsanBong);
+        }
+        return qLSanBongs;
+    }
+
 }

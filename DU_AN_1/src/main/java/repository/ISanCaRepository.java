@@ -17,10 +17,10 @@ public interface ISanCaRepository {
     
     List<SanCa> getAll();
     
-    boolean saveOrUpdate(SanCa sanCa);
+    boolean update(SanCa sanCa);
 
     boolean deleteSanCa(SanCa sanCa);
 
-    
+    boolean save(SanCa sanCa);
     
 }
