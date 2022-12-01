@@ -871,7 +871,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
             if (tenPP.isEmpty()) {
                 JOptionPane.showMessageDialog(rootPane, "Không Được Để Trống");
             } else {
-                QLPhuPhi phuPhi = new QLPhuPhi(null, phuPhiService.genMaPhuPhi(), tenPP);
+                QLPhuPhi phuPhi = new QLPhuPhi(null, "PP001", tenPP);
                 if (phuPhiService.save(phuPhi)) {
                     JOptionPane.showMessageDialog(rootPane, "Thêm Phụ Phí Thành Công");
                 } else {
