@@ -113,14 +113,11 @@ public class Home extends javax.swing.JFrame {
                         panelCa.setLayout(new FlowLayout());
                         panelCa.setPreferredSize(new Dimension(174, 254));
                         panelCa.setLayout(new BoxLayout(panelCa, BoxLayout.Y_AXIS));
-                        panelCa.setLayout(new FlowLayout(10, 20, 10));
+                        panelCa.setLayout(new FlowLayout(10, 20, 20));
                         JLabel labelCa = new JLabel(listSanCa.get(j).getTenCa());
                         JLabel labelIdSanCa = new JLabel(listSanCa.get(j).getId());
                         JLabel labelThoiGian = new JLabel(String.valueOf(listSanCa.get(j).getThoiGianBatDau()) + " : " + String.valueOf(listSanCa.get(j).getThoiGianKetThuc()));
-                         datLich = phieuDatLichService.getPhieuDatLich(labelIdSanCa.getText());
-                        JLabel lableTenKH = new JLabel("Tên Khách hàng: " + datLich.getKhachHang().getTenKhachHang());
-                        lableTenKH.setFont(new Font("Tahoma", 1, 12));
-                        lableTenKH.setForeground(Color.BLACK);
+                        datLich = phieuDatLichService.getPhieuDatLich(labelIdSanCa.getText());
                         JLabel labelLoaiSan = new JLabel("Loại sân" + " " + listSanCa.get(j).getSucChua());
                         labelCa.setForeground(Color.BLACK);
                         labelCa.setFont(new Font("Tahoma", 1, 16));
@@ -138,7 +135,6 @@ public class Home extends javax.swing.JFrame {
 
                         panelCa.add(labelCa);
                         panelCa.add(labelThoiGian);
-                        panelCa.add(lableTenKH);
                         panelCa.add(labelLoaiSan);
 
                         panelCa.add(labelTrangThai);
@@ -172,7 +168,7 @@ public class Home extends javax.swing.JFrame {
 
                             }
                         });
-                        panelCa.setLayout(new FlowLayout(10, 20, 10));
+                        panelCa.setLayout(new FlowLayout(10, 20, 20));
                         JLabel labelCa = new JLabel(listSanCa.get(j).getTenCa());
                         JLabel labelThoiGian = new JLabel(listSanCa.get(j).getThoiGianBatDau() + " : " + String.valueOf(listSanCa.get(j).getThoiGianKetThuc()));
                         JLabel labelLoaiSan = new JLabel("Loại sân" + " " + listSanCa.get(j).getSucChua());
@@ -182,9 +178,6 @@ public class Home extends javax.swing.JFrame {
                         labelThoiGian.setForeground(Color.BLACK);
                         labelThoiGian.setFont(new Font("Tahoma", 1, 11));
                         datLich = phieuDatLichService.getPhieuDatLich(labelIdSanCa.getText());
-                        JLabel lableTenKH = new JLabel("Tên Khách hàng: " + datLich.getKhachHang().getTenKhachHang());
-                        lableTenKH.setFont(new Font("Tahoma", 1, 12));
-                        lableTenKH.setForeground(Color.BLACK);
                         labelLoaiSan.setForeground(Color.BLACK);
                         labelLoaiSan.setFont(new Font("Tahoma", 1, 14));
                         JLabel labelTrangThai = new JLabel(" Trạng thái: " + "Đang sử dụng");
@@ -196,7 +189,6 @@ public class Home extends javax.swing.JFrame {
                         labelGiaSan.setForeground(Color.BLACK);
                         panelCa.add(labelCa);
                         panelCa.add(labelThoiGian);
-                        panelCa.add(lableTenKH);
                         panelCa.add(labelLoaiSan);
                         panelCa.add(labelTrangThai);
                         panelCa.add(labelGiaSan);
