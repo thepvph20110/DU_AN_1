@@ -117,7 +117,7 @@ public class Home extends javax.swing.JFrame {
                         JLabel labelCa = new JLabel(listSanCa.get(j).getTenCa());
                         JLabel labelIdSanCa = new JLabel(listSanCa.get(j).getId());
                         JLabel labelThoiGian = new JLabel(String.valueOf(listSanCa.get(j).getThoiGianBatDau()) + " : " + String.valueOf(listSanCa.get(j).getThoiGianKetThuc()));
-                        PhieuDatLich datLich = phieuDatLichService.getPhieuDatLich(labelIdSanCa.getText());
+                         datLich = phieuDatLichService.getPhieuDatLich(labelIdSanCa.getText());
                         JLabel lableTenKH = new JLabel("Tên Khách hàng: " + datLich.getKhachHang().getTenKhachHang());
                         lableTenKH.setFont(new Font("Tahoma", 1, 12));
                         lableTenKH.setForeground(Color.BLACK);
@@ -269,7 +269,7 @@ public class Home extends javax.swing.JFrame {
                         itemCheckOut.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
-                                JOptionPane.showMessageDialog(panelSan, "Sân này chưa có người đá! Không thể Check Out!");
+                                JOptionPane.showMessageDialog(panelSan, "Sân này chưa có người đá!");
                                 jPopupMenu.setVisible(false);
                             }
                         });
