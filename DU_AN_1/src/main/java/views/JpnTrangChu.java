@@ -127,6 +127,13 @@ public class JpnTrangChu extends javax.swing.JPanel {
                             jPopupMenu.setVisible(false);
                         }
                     });
+                     itemDoiLichDat.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            JOptionPane.showMessageDialog(panelTong, "đổi lịch");
+                            jPopupMenu.setVisible(false);
+                        }
+                    });
 
                     JLabel labelCa = new JLabel(listSanCa.get(j).getTenCa());
                     JLabel labelThoiGian = new JLabel(listSanCa.get(j).getThoiGianBatDau() + " : " + String.valueOf(listSanCa.get(j).getThoiGianKetThuc()));
@@ -146,7 +153,7 @@ public class JpnTrangChu extends javax.swing.JPanel {
                     labelGiaSan.setForeground(Color.BLACK);
                     panelCa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-                    customTrangThai(listSanCa.get(j).getTrangThai(), itemDatLich, panelCa, labelTrangThai,itemDoiLichDat);
+                    customTrangThai(listSanCa.get(j).getTrangThai(), itemDatLich, panelCa, labelTrangThai,itemDoiLichDat,itemCheckOut);
 
                     panelCa.add(labelCa);
                     panelCa.add(labelThoiGian);
@@ -163,8 +170,9 @@ public class JpnTrangChu extends javax.swing.JPanel {
 
     }
 
-    private void customTrangThai(trangThaiSanCa ttSanCa, JMenuItem itemDatLich, JPanel panelSanCa, JLabel labelTrangThai,JMenuItem iTemDoiLich) {
+    private void customTrangThai(trangThaiSanCa ttSanCa, JMenuItem itemDatLich, JPanel panelSanCa, JLabel labelTrangThai,JMenuItem iTemDoiLich,JMenuItem itemCheckOut) {
         if (ttSanCa == trangThaiSanCa.CHO_NHAN_SAN) {
+            itemCheckOut.setEnabled(false);
             itemDatLich.setEnabled(false);
             labelTrangThai.setText(" Trạng thái: " + "Chờ nhận sân");
             panelSanCa.setBackground(new Color(255, 255, 0));
@@ -174,6 +182,7 @@ public class JpnTrangChu extends javax.swing.JPanel {
             labelTrangThai.setText(" Trạng thái: " + "Không trống");
             panelSanCa.setBackground(new Color(255, 0, 51));
         } else {
+            itemCheckOut.setEnabled(false);
             iTemDoiLich.setEnabled(false);
             labelTrangThai.setText(" Trạng thái: " + "Đang trống");
             panelSanCa.setBackground(new Color(0, 153, 0));
