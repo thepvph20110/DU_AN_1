@@ -4,6 +4,7 @@
  */
 package views;
 
+import controller.HomeController;
 import domainmodel.Acount;
 import domainmodel.Ca;
 import domainmodel.KhachHang;
@@ -11,6 +12,7 @@ import domainmodel.LoaiSan;
 import domainmodel.PhieuDatLich;
 import domainmodel.SanBong;
 import domainmodel.SanCa;
+import enumclass.trangThaiAcount;
 import enumclass.trangThaiPhieuDL;
 import enumclass.trangThaiSanCa;
 import java.awt.event.WindowEvent;
@@ -22,7 +24,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import modelview.QLAcount;
 import modelview.QLCa;
 import modelview.QLKhachHang;
 import modelview.QLLoaiSan;
@@ -64,13 +69,16 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
     private List<QLLoaiSan> listLoaiSan = new ArrayList<>();
     private ISanBongService sanBongService = new SanBongServiceImpl();
     private ILoaiSanService loaiSanService = new LoaiSanServiceImpl();
+    private JLabel labelHome;
+    private JPanel pnTong;
 
     /**
      * Creates new form FrmPhieuDatLich
      */
-    public FrmPhieuDatLich(QLKhachHang qLKhachHang, QLSanCa sanCa, Acount acountentity) {
+    public FrmPhieuDatLich(QLKhachHang qLKhachHang, QLSanCa sanCa, Acount acountentity, JLabel lbHome,JPanel pnTong) {
         initComponents();
-
+        this.labelHome=lbHome;
+        this.pnTong = pnTong;
         acount = acountentity;
         qlKhachHang = qLKhachHang;
         this.sanCa = sanCa;
@@ -375,6 +383,9 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(rootPane, new JavaMail().sendMail(phieuDatLich, byteArrayOutputStream));
                     sanCa.setTrangThai(trangThaiSanCa.CHO_NHAN_SAN);
                     sanCaService.update(sanCa);
+                    QLAcount qLAcount= new QLAcount(acount.getId(), acount.getMaAcount(), acount.getTenAcount(), acount.getChucVu(), acount.getMatKhau(),acount.getMoTa(), acount.getTrangThai());
+                    HomeController controller = new HomeController(pnTong,qLAcount);
+                    controller.setView(labelHome);
                     this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(rootPane, check);
@@ -390,7 +401,7 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        FrmKhachHang frmKhachHang = new FrmKhachHang(sanCa, acount);
+        FrmKhachHang frmKhachHang = new FrmKhachHang(sanCa, acount,labelHome,pnTong);
         frmKhachHang.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
