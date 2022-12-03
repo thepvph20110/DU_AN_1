@@ -84,6 +84,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
      */
     public FrmThanhToan(QLHoaDon qLHoaDon) {
         initComponents();
+        this.setExtendedState(this.MAXIMIZED_BOTH);
         this.qLHoaDon = qLHoaDon;
         jTable1.setModel(dtm);
         jtbDichVu.setModel(dtmDV);
@@ -728,47 +729,50 @@ public class FrmThanhToan extends javax.swing.JFrame {
 
     private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
         // TODO add your handling code here:
-        HoaDon hoaDon = iHoaDonService.findByHoaDonId(qLHoaDon.getId());
-        if (jcbThanhToan.getSelectedItem() == loaiHinhThanhToan.Chuyen_Khoan) {
-            if (!txtNganHang.getText().isEmpty()) {
-                if (txtNganHang.getText().matches("-?\\d+(\\.\\d+)?")) {
-                    ThanhToan tt = new ThanhToanRepository().findOneByTrangThai(loaiHinhThanhToan.Chuyen_Khoan);
-                    HoaDonThanhToan hdtt = new HoaDonThanhToan(null, "HDTT003", hoaDon, tt, Double.parseDouble(txtNganHang.getText()), null);
-                    new HoaDonThanhToanRepositoryImpl().saveOrUpdate(hdtt);
+        int confirm = JOptionPane.showConfirmDialog(rootPane, "Ban Có Muốn Thanh Toán Không ???", "Thông Báo", JOptionPane.YES_NO_OPTION);
+        if (confirm == 0) {
+            HoaDon hoaDon = iHoaDonService.findByHoaDonId(qLHoaDon.getId());
+            if (jcbThanhToan.getSelectedItem() == loaiHinhThanhToan.Chuyen_Khoan) {
+                if (!txtNganHang.getText().isEmpty()) {
+                    if (txtNganHang.getText().matches("-?\\d+(\\.\\d+)?")) {
+                        ThanhToan tt = new ThanhToanRepository().findOneByTrangThai(loaiHinhThanhToan.Chuyen_Khoan);
+                        HoaDonThanhToan hdtt = new HoaDonThanhToan(null, "HDTT003", hoaDon, tt, Double.parseDouble(txtNganHang.getText()), null);
+                        new HoaDonThanhToanRepositoryImpl().saveOrUpdate(hdtt);
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Không được nhập khí tự");
+                        return;
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(rootPane, "Không được nhập khí tự");
+                    JOptionPane.showMessageDialog(rootPane, "Không được để trống tiền ngân hàng");
                     return;
                 }
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Không được để trống tiền ngân hàng");
-                return;
-            }
-        } else if (jcbThanhToan.getSelectedItem() == loaiHinhThanhToan.Tien_Mat) {
-            if (!txtNganHang.getText().isEmpty()) {
-                if (txtNganHang.getText().isEmpty() || txtTienKhach.getText().matches("-?\\d+(\\.\\d+)?")) {
-                    ThanhToan tt = new ThanhToanRepository().findOneByTrangThai(loaiHinhThanhToan.Tien_Mat);
-                    HoaDonThanhToan hdtt = new HoaDonThanhToan(null, "HDTT003", hoaDon, tt, Double.parseDouble(txtTienKhach.getText()), null);
-                    new HoaDonThanhToanRepositoryImpl().saveOrUpdate(hdtt);
+            } else if (jcbThanhToan.getSelectedItem() == loaiHinhThanhToan.Tien_Mat) {
+                if (!txtTienKhach.getText().isEmpty()) {
+                    if (txtTienKhach.getText().isEmpty() || txtTienKhach.getText().matches("-?\\d+(\\.\\d+)?")) {
+                        ThanhToan tt = new ThanhToanRepository().findOneByTrangThai(loaiHinhThanhToan.Tien_Mat);
+                        HoaDonThanhToan hdtt = new HoaDonThanhToan(null, "HDTT003", hoaDon, tt, Double.parseDouble(txtTienKhach.getText()), null);
+                        new HoaDonThanhToanRepositoryImpl().saveOrUpdate(hdtt);
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Không được nhập khí tự ");
+                        return;
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(rootPane, "Không được nhập khí tự ");
+                    JOptionPane.showMessageDialog(rootPane, "Không được để trống Tiền Khách");
                     return;
                 }
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Không được để trống Tiền Khách");
-                return;
             }
+            SanCa sanCa = hoaDon.getPhieuDatLich().getSanCa();
+            sanCa.setTrangThai(trangThaiSanCa.DANG_TRONG);
+            new SanCaRepository().update(sanCa);
+            hoaDon.setTongTien(giaCa);
+            hoaDon.setTrangThai(trangThaiHoaDon.DA_THANH_TOAN);
+            Date date = new Date();
+            hoaDon.setNgayThanhToan(date);
+            new HoaDonRepositoryImpl().update(hoaDon);
+            FrmHoaDon frmHoaDon = new FrmHoaDon();
+            frmHoaDon.setVisible(true);
+            this.dispose();
         }
-        SanCa sanCa = hoaDon.getPhieuDatLich().getSanCa();
-        sanCa.setTrangThai(trangThaiSanCa.DANG_TRONG);
-        new SanCaRepository().update(sanCa);
-        hoaDon.setTongTien(giaCa);
-        hoaDon.setTrangThai(trangThaiHoaDon.DA_THANH_TOAN);
-        Date date = new Date();
-        hoaDon.setNgayThanhToan(date);
-        new HoaDonRepositoryImpl().update(hoaDon);
-        FrmHoaDon frmHoaDon = new FrmHoaDon();
-        frmHoaDon.setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_btnThanhToanActionPerformed
 
     private void txtTienKhachKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTienKhachKeyReleased
@@ -797,7 +801,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
             txtNganHang.setText("");
             txtTienKhach.setText("");
             txtPayBack.setText("");
-        }else if(jcbThanhToan.getSelectedItem() == loaiHinhThanhToan.CHUYEN_KHOAN_VA_TIEN_MAT){
+        } else if (jcbThanhToan.getSelectedItem() == loaiHinhThanhToan.CHUYEN_KHOAN_VA_TIEN_MAT) {
             txtTienKhach.setEnabled(true);
             txtNganHang.setEnabled(true);
             txtNganHang.setText("");
