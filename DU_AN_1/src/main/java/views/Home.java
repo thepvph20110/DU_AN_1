@@ -578,7 +578,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_lbDangXuatMouseEntered
 
     private void lbDangXuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDangXuatMouseClicked
-        int chon = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn thoát", null, JOptionPane.YES_NO_OPTION);
+        int chon = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn thoát", "Đăng Xuất", JOptionPane.YES_NO_OPTION);
         if (chon == 0) {
             this.dispose();
             new Detaillogin(null, true).setVisible(true);
@@ -662,7 +662,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_xoaActionPerformed
 
     private void lbLichSuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLichSuMouseClicked
-        new FrmLichSuDatSan().setVisible(true);
+//        new FrmLichSuDatSan().setVisible(true);
     }//GEN-LAST:event_lbLichSuMouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
@@ -671,11 +671,11 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void lbQLSanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbQLSanMouseClicked
-        new FrmSanBong().setVisible(true);
+//        new FrmSanBong().setVisible(true);
     }//GEN-LAST:event_lbQLSanMouseClicked
 
     private void lbQLCaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbQLCaMouseClicked
-        new FrmCa().setVisible(true);
+//        new FrmCa().setVisible(true);
     }//GEN-LAST:event_lbQLCaMouseClicked
 
     private void lbDichVu1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDichVu1MouseEntered
@@ -687,11 +687,11 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_lbDichVu1MouseExited
 
     private void lbHoaDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbHoaDMouseClicked
-        new FrmHoaDon().setVisible(true);
+//        new FrmHoaDon().setVisible(true);
     }//GEN-LAST:event_lbHoaDMouseClicked
 
     private void lbLichDatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLichDatMouseClicked
-        new FrmSanCa().setVisible(true);
+//        new FrmSanCa().setVisible(true);
     }//GEN-LAST:event_lbLichDatMouseClicked
 
     /**

@@ -93,6 +93,7 @@ public class JpnTrangChu extends javax.swing.JPanel {
                     JMenuItem itemDoiLichDat = new JMenuItem("Đổi lịch đặt");
                     jPopupMenu.add(itemDatLich);
                     jPopupMenu.add(itemCheckOut);
+                    jPopupMenu.add(itemDoiLichDat);
                     JPanel panelCa = new JPanel();
                     panelCa.setLayout(new FlowLayout());
                     panelCa.setPreferredSize(new Dimension(174, 254));
@@ -145,21 +146,7 @@ public class JpnTrangChu extends javax.swing.JPanel {
                     labelGiaSan.setForeground(Color.BLACK);
                     panelCa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-                    //Trạng thái sân
-//                    
-//                    if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.CHO_NHAN_SAN) {
-//                        itemDatLich.show(false);
-//                        labelTrangThai.setText(" Trạng thái: " + "Chờ nhận sân");
-//                        panelCa.setBackground(new Color(255, 255, 0));
-//                    } else if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.KHONG_TRONG) {
-//                        itemDatLich.show(false);
-//                        labelTrangThai.setText(" Trạng thái: " + "Không trống");
-//                        panelCa.setBackground(new Color(255, 0, 51));
-//                    } else {
-//                        labelTrangThai.setText(" Trạng thái: " + "Đang trống");
-//                        panelCa.setBackground(new Color(0, 153, 0));
-//                    }
-                    customTrangThai(listSanCa.get(j).getTrangThai(), itemDatLich, panelCa, labelTrangThai);
+                    customTrangThai(listSanCa.get(j).getTrangThai(), itemDatLich, panelCa, labelTrangThai,itemDoiLichDat);
 
                     panelCa.add(labelCa);
                     panelCa.add(labelThoiGian);
@@ -176,18 +163,20 @@ public class JpnTrangChu extends javax.swing.JPanel {
 
     }
 
-    private void customTrangThai(trangThaiSanCa ttSanCa, JMenuItem item, JPanel panel, JLabel label) {
+    private void customTrangThai(trangThaiSanCa ttSanCa, JMenuItem itemDatLich, JPanel panelSanCa, JLabel labelTrangThai,JMenuItem iTemDoiLich) {
         if (ttSanCa == trangThaiSanCa.CHO_NHAN_SAN) {
-            item.setEnabled(false);
-            label.setText(" Trạng thái: " + "Chờ nhận sân");
-            panel.setBackground(new Color(255, 255, 0));
+            itemDatLich.setEnabled(false);
+            labelTrangThai.setText(" Trạng thái: " + "Chờ nhận sân");
+            panelSanCa.setBackground(new Color(255, 255, 0));
         } else if (ttSanCa == trangThaiSanCa.KHONG_TRONG) {
-            item.setEnabled(false);
-            label.setText(" Trạng thái: " + "Không trống");
-            panel.setBackground(new Color(255, 0, 51));
+            iTemDoiLich.setEnabled(false);
+            itemDatLich.setEnabled(false);
+            labelTrangThai.setText(" Trạng thái: " + "Không trống");
+            panelSanCa.setBackground(new Color(255, 0, 51));
         } else {
-            label.setText(" Trạng thái: " + "Đang trống");
-            panel.setBackground(new Color(0, 153, 0));
+            iTemDoiLich.setEnabled(false);
+            labelTrangThai.setText(" Trạng thái: " + "Đang trống");
+            panelSanCa.setBackground(new Color(0, 153, 0));
         }
     }
 
