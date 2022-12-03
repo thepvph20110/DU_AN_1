@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import modelview.QLAcount;
 import modelview.QLCa;
 import modelview.QLHoaDon;
