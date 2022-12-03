@@ -90,15 +90,15 @@ public class AcountRepository implements IAcountRepository {
     }
 
     public static void main(String[] args) {
-        Acount ac = new AcountRepository().getOne();
-        System.out.println("" + ac.getTenAcount());
+        new AcountRepository().getOne();
+        System.out.println( new AcountRepository().genMaAccount());
     }
 
     @Override
     public String genMaAccount() {
         String top1 = null;
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
-            String hql = "FROM Account a order by a.maAcount DESC";
+            String hql = "FROM Acount a order by a.maAcount Desc";
             Query query = session.createQuery(hql);
             session.getTransaction().begin();
             query.setMaxResults(1);
