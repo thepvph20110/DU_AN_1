@@ -182,7 +182,7 @@ public class JpnTrangChu extends javax.swing.JPanel {
                 qLAcount.getMatKhau(), qLAcount.getMoTa(), qLAcount.getTrangThai());
         QLSanCa qLSanCa = mapSanCa.get(idSanCa);
         QLKhachHang khachHang = new QLKhachHang();
-        new FrmPhieuDatLich(khachHang, qLSanCa, acount,labelHome,panelTong).setVisible(true);
+        new FrmPhieuDatLich(khachHang, qLSanCa, acount,labelHome,pnTong).setVisible(true);
     }
 
     /**

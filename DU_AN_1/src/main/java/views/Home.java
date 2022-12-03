@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import modelview.QLAcount;
 import service.IPhieuDatLichService;
 import service.Impl.PhieuDatLichServiceImpl;
@@ -58,6 +59,7 @@ public class Home extends javax.swing.JFrame {
             displayHome();
     }
     public void displayHome(){
+        JPanel jpnTrangChu = new JpnTrangChu(qLAcount, lbHome);
         HomeController conTrolerHome = new HomeController(this.PaneTong,this.qLAcount);
         conTrolerHome.setView(this.lbHome);
 

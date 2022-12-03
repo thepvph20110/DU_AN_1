@@ -32,19 +32,19 @@ public class HomeController {
     private JPanel root;
     private String kindSelected = "";
     private List<DanhMuc> listDanhMuc;
-    private QLAcount qLAcount ;
+    private QLAcount qLAcount;
     private JLabel labelHome;
 
-    public HomeController(JPanel JPnRoot,QLAcount qLAcount) {
+    public HomeController(JPanel JPnRoot, QLAcount qLAcount) {
         this.root = JPnRoot;
-        this.qLAcount= qLAcount;
+        this.qLAcount = qLAcount;
     }
 
     public HomeController() {
     }
 
     public void setView(JLabel jblItem) {
-        labelHome=jblItem;
+        labelHome = jblItem;
         // mặc định cái được chọn là trang chu jpanel 
         kindSelected = "TrangChu";
         JpnTrangChu nood = new JpnTrangChu(qLAcount,jblItem);
@@ -52,7 +52,7 @@ public class HomeController {
         root.setLayout(new BorderLayout());
         root.add(nood);
         root.validate();
-        root.repaint();
+        root.repaint(); 
     }
 
     public void setEvent(List<DanhMuc> listItem) {
@@ -77,7 +77,7 @@ public class HomeController {
         public void mouseClicked(MouseEvent e) {
             switch (kind) {
                 case "TrangChu":
-                    node = new JpnTrangChu(qLAcount,labelHome);
+                    node = new JpnTrangChu(qLAcount, labelHome);
                     break;
                 case "LichDat":
                     node = new JpnLichDat();
