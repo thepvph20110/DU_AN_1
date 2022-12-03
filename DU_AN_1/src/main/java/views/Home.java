@@ -178,11 +178,8 @@ public class Home extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         searchText1 = new utill.SearchText();
-<<<<<<< HEAD
         jButton2 = new javax.swing.JButton();
-=======
         panelTong = new javax.swing.JPanel();
->>>>>>> 653dc56be8de3bae9f629c5e001c0ab83d4ad22e
 
         CheckQR.setText("Check QR Code");
         CheckQR.addActionListener(new java.awt.event.ActionListener() {
@@ -509,12 +506,10 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-<<<<<<< HEAD
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jButton2.setText("+");
         jButton2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-=======
         panelTong.setBackground(new java.awt.Color(255, 204, 204));
 
         javax.swing.GroupLayout panelTongLayout = new javax.swing.GroupLayout(panelTong);
@@ -527,8 +522,6 @@ public class Home extends javax.swing.JFrame {
             panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
->>>>>>> 653dc56be8de3bae9f629c5e001c0ab83d4ad22e
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
