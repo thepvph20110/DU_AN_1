@@ -16,11 +16,22 @@ import java.util.List;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import modelview.QLAcount;
+import modelview.QLCa;
 import modelview.QLHoaDon;
+import modelview.QLKhachHang;
+import modelview.QLSanBong;
 import modelview.QLSanCa;
+import service.ISanBongService;
+import service.Impl.SanBongServiceImpl;
+import service.IAcountService;
+import service.ICaService;
 import service.IHoaDonService;
 import service.IPhieuDatLichService;
+import service.ISanCaService;
+import service.Impl.AcountServiceImpl;
+import service.Impl.CaServiceImpl;
 import service.Impl.HoaDonServiceImpl;
+import service.IPhieuDatLichService;
 import service.Impl.PhieuDatLichServiceImpl;
 
 /**
@@ -35,22 +46,23 @@ public class Home extends javax.swing.JFrame {
     private IPhieuDatLichService phieuDatLichService = new PhieuDatLichServiceImpl();
     private IHoaDonService hoaDonService = new HoaDonServiceImpl();
     private PhieuDatLich datLich;
-
     private Map<String, PhieuDatLich> map = new HashMap<>();
-
+    
+    
     public Home(QLAcount qLAcount) {
         initComponents();
         this.setExtendedState(this.MAXIMIZED_BOTH);
         time();
         this.qLAcount = qLAcount;
         showDongHo();
-
+        
         for (PhieuDatLich phieuDatLich : phieuDatLichService.getPhieuDatLichByTT()) {
-            map.put(phieuDatLich.getKhachHang().getSoDienThoai(), phieuDatLich);
+           map.put(phieuDatLich.getKhachHang().getSoDienThoai(), phieuDatLich);
         }
         for (QLHoaDon qLHoaDon : hoaDonService.getAll()) {
             mapQLHoaDon.put(qLHoaDon.getPhieuDatLich().getId(), qLHoaDon);
         }
+        displayHome();
     }
 
     private void showThanhToan(String id) {
@@ -60,6 +72,25 @@ public class Home extends javax.swing.JFrame {
         for (PhieuDatLich phieuDatLich : phieuDatLichService.getPhieuDatLichByTT()) {
             map.put(phieuDatLich.getKhachHang().getSoDienThoai(), phieuDatLich);
         }
+//        HomeController conTrolerHome = new HomeController(this.PaneTong,this.qLAcount);
+//        conTrolerHome.setView(this.lbHome);
+//
+//        List<DanhMuc> listItem = new ArrayList<>();
+//        listItem.add(new DanhMuc("TrangChu", lbHome));
+//        listItem.add(new DanhMuc("LichDat", lbLichDat));
+//        listItem.add(new DanhMuc("CheckIn", lbCheckIn));
+//        listItem.add(new DanhMuc("QLSan", lbQLSan));
+//        listItem.add(new DanhMuc("QLCa", lbQLCa));
+//        listItem.add(new DanhMuc("DichVu", lbDichVu1));
+//        listItem.add(new DanhMuc("HoaDon", lbHoaD));
+//        listItem.add(new DanhMuc("LichSu", lbLichSu));
+//        listItem.add(new DanhMuc("ThongKe", lbThongKe));
+//
+//        conTrolerHome.setEvent(listItem);
+
+//            displayHome();
+    }
+    public void displayHome(){
         HomeController conTrolerHome = new HomeController(this.PaneTong,this.qLAcount);
         conTrolerHome.setView(this.lbHome);
 
@@ -75,27 +106,202 @@ public class Home extends javax.swing.JFrame {
         listItem.add(new DanhMuc("ThongKe", lbThongKe));
 
         conTrolerHome.setEvent(listItem);
-
-//        displayHome();
     }
 
-    public void displayHome() {
-        HomeController conTrolerHome = new HomeController(this.PaneTong, this.qLAcount);
-        conTrolerHome.setView(this.lbHome);
 
-        List<DanhMuc> listItem = new ArrayList<>();
-        listItem.add(new DanhMuc("TrangChu", lbHome));
-        listItem.add(new DanhMuc("LichDat", lbLichDat));
-        listItem.add(new DanhMuc("CheckIn", lbCheckIn));
-        listItem.add(new DanhMuc("QLSan", lbQLSan));
-        listItem.add(new DanhMuc("QLCa", lbQLCa));
-        listItem.add(new DanhMuc("DichVu", lbGiaoCa));
-        listItem.add(new DanhMuc("HoaDon", lbHoaD));
-        listItem.add(new DanhMuc("LichSu", lbLichSu));
-        listItem.add(new DanhMuc("ThongKe", lbThongKe));
+//    public void AddSan() {
+//        PaneTong.setLayout(new GridLayout(10000, 1, 20, 20));
+//
+//        for (int i = 0; i < listSanBong.size(); i++) {
+//            TitledBorder border = new TitledBorder(listSanBong.get(i).getTenSanBong());
+//            JPanel panelSan = new JPanel();
+//            panelSan.setBorder(border);
+//            panelSan.setPreferredSize(new Dimension(1325, 200));
+//            panelSan.setLayout(new GridLayout(1, 100, 20, 20));
+//            for (int j = 0; j < listSanCa.size(); j++) {
+//                if (listSanBong.get(i).getTenSanBong().equals(listSanCa.get(j).getTenSanBong())) {
+//                    if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.CHO_NHAN_SAN) {
+//                        JPanel panelCa = new JPanel();
+//                        panelCa.setBackground(new Color(255, 255, 0));
+//                        panelCa.setLayout(new FlowLayout());
+//                        panelCa.setPreferredSize(new Dimension(174, 254));
+//                        panelCa.setLayout(new BoxLayout(panelCa, BoxLayout.Y_AXIS));
+//                        panelCa.setLayout(new FlowLayout(10, 20, 20));
+//                        JLabel labelCa = new JLabel(listSanCa.get(j).getTenCa());
+//                        JLabel labelIdSanCa = new JLabel(listSanCa.get(j).getId());
+//                        JLabel labelThoiGian = new JLabel(String.valueOf(listSanCa.get(j).getThoiGianBatDau()) + " : " + String.valueOf(listSanCa.get(j).getThoiGianKetThuc()));
+//                        datLich = phieuDatLichService.getPhieuDatLich(labelIdSanCa.getText());
+//                        JLabel labelLoaiSan = new JLabel("Loại sân" + " " + listSanCa.get(j).getSucChua());
+//                        labelCa.setForeground(Color.BLACK);
+//                        labelCa.setFont(new Font("Tahoma", 1, 16));
+//                        labelThoiGian.setForeground(Color.BLACK);
+//                        labelThoiGian.setFont(new Font("Tahoma", 1, 11));
+//                        labelLoaiSan.setForeground(Color.BLACK);
+//                        labelLoaiSan.setFont(new Font("Tahoma", 1, 14));
+//                        JLabel labelTrangThai = new JLabel(" Trạng thái: " + "Chờ Nhận Sân");
+//                        labelTrangThai.setForeground(Color.BLACK);
+//                        labelTrangThai.setPreferredSize(new Dimension(160, 17));
+//                        labelTrangThai.setFont(new Font("Tahoma", 1, 12));
+//                        JLabel labelGiaSan = new JLabel("Giá: " + String.valueOf(listSanCa.get(j).getGiaCaSan()));
+//                        labelGiaSan.setFont(new Font("Tahoma", 1, 12));
+//                        labelGiaSan.setForeground(Color.BLACK);
+//
+//                        panelCa.add(labelCa);
+//                        panelCa.add(labelThoiGian);
+//                        panelCa.add(labelLoaiSan);
+//
+//                        panelCa.add(labelTrangThai);
+//                        panelCa.add(labelGiaSan);
+//
+//                        listPaneCa.add(panelCa);
+//                        panelSan.add(panelCa);
+//                    } else if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.KHONG_TRONG) {
+//                        JPopupMenu jPopupMenu = new JPopupMenu();
+//                        jPopupMenu.removeAll();
+//                        JMenuItem itemDatLich = new JMenuItem("Đặt Lịch");
+//                        JMenuItem itemCheckOut = new JMenuItem("Chi tiết đặt sân");
+//                        jPopupMenu.add(itemDatLich);
+//                        jPopupMenu.add(itemCheckOut);
+//                        JPanel panelCa = new JPanel();
+//                        panelCa.setBackground(new Color(255, 0, 51));
+//                        panelCa.setLayout(new FlowLayout());
+//                        panelCa.add(jPopupMenu);
+//                        panelCa.setPreferredSize(new Dimension(174, 254));
+//                        panelCa.setLayout(new BoxLayout(panelCa, BoxLayout.Y_AXIS));
+//                        panelCa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+//                        panelCa.addMouseListener(new java.awt.event.MouseAdapter() {
+//                            public void mouseReleased(java.awt.event.MouseEvent evt) {
+//                                panelCaInMouseReleased(evt);
+//                            }
+//
+//                            private void panelCaInMouseReleased(MouseEvent evt) {
+//                                if (evt.isPopupTrigger()) {
+//                                    jPopupMenu.show(panelCa, evt.getPoint().x, evt.getPoint().y);
+//                                }
+//
+//                            }
+//                        });
+//                        panelCa.setLayout(new FlowLayout(10, 20, 20));
+//                        JLabel labelCa = new JLabel(listSanCa.get(j).getTenCa());
+//                        JLabel labelThoiGian = new JLabel(listSanCa.get(j).getThoiGianBatDau() + " : " + String.valueOf(listSanCa.get(j).getThoiGianKetThuc()));
+//                        JLabel labelLoaiSan = new JLabel("Loại sân" + " " + listSanCa.get(j).getSucChua());
+//                        JLabel labelIdSanCa = new JLabel(listSanCa.get(j).getId());
+//                        labelCa.setForeground(Color.BLACK);
+//                        labelCa.setFont(new Font("Tahoma", 1, 16));
+//                        labelThoiGian.setForeground(Color.BLACK);
+//                        labelThoiGian.setFont(new Font("Tahoma", 1, 11));
+//                        datLich = phieuDatLichService.getPhieuDatLich(labelIdSanCa.getText());
+//                        labelLoaiSan.setForeground(Color.BLACK);
+//                        labelLoaiSan.setFont(new Font("Tahoma", 1, 14));
+//                        JLabel labelTrangThai = new JLabel(" Trạng thái: " + "Đang sử dụng");
+//                        labelTrangThai.setForeground(Color.BLACK);
+//                        labelTrangThai.setPreferredSize(new Dimension(160, 17));
+//                        labelTrangThai.setFont(new Font("Tahoma", 1, 12));
+//                        JLabel labelGiaSan = new JLabel("Giá: " + String.valueOf(listSanCa.get(j).getGiaCaSan()));
+//                        labelGiaSan.setFont(new Font("Tahoma", 1, 12));
+//                        labelGiaSan.setForeground(Color.BLACK);
+//                        panelCa.add(labelCa);
+//                        panelCa.add(labelThoiGian);
+//                        panelCa.add(labelLoaiSan);
+//                        panelCa.add(labelTrangThai);
+//                        panelCa.add(labelGiaSan);
+//                        listPaneCa.add(panelCa);
+//                        panelSan.add(panelCa);
+//                        itemCheckOut.addActionListener(new ActionListener() {
+//                            @Override
+//                            public void actionPerformed(ActionEvent e) {
+//                                showThanhToan(datLich.getId());
+//                                jPopupMenu.setVisible(false);
+//                            }
+//                        });
+//                        itemDatLich.addActionListener(new ActionListener() {
+//                            @Override
+//                            public void actionPerformed(ActionEvent e) {
+//                                JOptionPane.showMessageDialog(panelSan, "Sân đã có người đặt không thể đặt lịch!");
+//                                jPopupMenu.setVisible(false);
+//                            }
+//                        });
+//                    } else {
+//                        JPopupMenu jPopupMenu = new JPopupMenu();
+//                        JMenuItem itemDatLich = new JMenuItem("Đặt Lịch");
+//                        itemDatLich.disable();
+//                        JMenuItem itemCheckOut = new JMenuItem("Check Out");
+//                        jPopupMenu.add(itemDatLich);
+//                        jPopupMenu.add(itemCheckOut);
+//                        JPanel panelCa = new JPanel();
+//                        panelCa.setLayout(new FlowLayout());
+//                        panelCa.setPreferredSize(new Dimension(174, 254));
+//                        panelCa.setComponentPopupMenu(jPopupMenu);
+//                        panelCa.setBackground(new Color(0, 153, 0));
+//                        panelCa.setLayout(new BoxLayout(panelCa, BoxLayout.Y_AXIS));
+//                        panelCa.setLayout(new FlowLayout(10, 20, 20));
+//                        JLabel labelIdSanCa = new JLabel(listSanCa.get(j).getId());
+//                        panelCa.addMouseListener(new java.awt.event.MouseAdapter() {
+//                            public void mouseReleased(java.awt.event.MouseEvent evt) {
+//                                panelCaInMouseReleased(evt);
+//                            }
+//
+//                            private void panelCaInMouseReleased(MouseEvent evt) {
+//                                if (evt.isPopupTrigger()) {
+//                                    jPopupMenu.show(panelCa, evt.getPoint().x, evt.getPoint().y);
+//                                }
+//
+//                            }
+//                        });
+//                        JLabel labelCa = new JLabel(listSanCa.get(j).getTenCa());
+//                        JLabel labelThoiGian = new JLabel(listSanCa.get(j).getThoiGianBatDau() + " : " + String.valueOf(listSanCa.get(j).getThoiGianKetThuc()));
+//                        JLabel labelLoaiSan = new JLabel("Loại sân" + " " + listSanCa.get(j).getSucChua());
+//                        labelCa.setForeground(Color.BLACK);
+//                        labelCa.setFont(new Font("Tahoma", 1, 16));
+//                        labelThoiGian.setForeground(Color.BLACK);
+//                        labelThoiGian.setFont(new Font("Tahoma", 1, 11));
+//                        labelLoaiSan.setForeground(Color.BLACK);
+//                        labelLoaiSan.setFont(new Font("Tahoma", 1, 14));
+//                        JLabel labelTrangThai = new JLabel(" Trạng thái: " + "Đang Trống");
+//                        labelTrangThai.setForeground(Color.BLACK);
+//                        labelTrangThai.setPreferredSize(new Dimension(160, 17));
+//                        labelTrangThai.setFont(new Font("Tahoma", 1, 12));
+//                        JLabel labelGiaSan = new JLabel("Giá: " + String.valueOf(listSanCa.get(j).getGiaCaSan()));
+//                        labelGiaSan.setFont(new Font("Tahoma", 1, 12));
+//                        labelGiaSan.setForeground(Color.BLACK);
+//                        panelCa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+//                        panelCa.add(labelCa);
+//                        panelCa.add(labelThoiGian);
+//                        panelCa.add(labelLoaiSan);
+//                        panelCa.add(labelTrangThai);
+//                        panelCa.add(labelGiaSan);
+//                        listPaneCa.add(panelCa);
+//                        panelSan.add(panelCa);
+//                        itemCheckOut.addActionListener(new ActionListener() {
+//                            @Override
+//                            public void actionPerformed(ActionEvent e) {
+//                                JOptionPane.showMessageDialog(panelSan, "Sân này chưa có người đá!");
+//                                jPopupMenu.setVisible(false);
+//                            }
+//                        });
+//                        itemDatLich.addActionListener(new ActionListener() {
+//                            @Override
+//                            public void actionPerformed(ActionEvent e) {
+//                                showDetail(labelIdSanCa.getText());
+//                                jPopupMenu.setVisible(false);
+//                            }
+//                        });
+//                    }
+//                }
+//            }
+//            PaneTong.add(panelSan);
+//        }
+//
+//    }
+//
+//    private void showDetail(String idSanCa) {
+//        Acount acount = new Acount(qLAcount.getId(), qLAcount.getMaAcount(), qLAcount.getTenAcount(), qLAcount.getChucVu(),
+//                qLAcount.getMatKhau(), qLAcount.getMoTa(), qLAcount.getTrangThai());
+//        QLSanCa qLSanCa = mapSanCa.get(idSanCa);
+//        QLKhachHang khachHang = new QLKhachHang();
+//        new FrmPhieuDatLich(khachHang, qLSanCa, acount).setVisible(true);
+//    }
 
-        conTrolerHome.setEvent(listItem);
-    }
 
     private void time() {
         Date date = new Date();
