@@ -184,7 +184,7 @@ public class Detaillogin extends javax.swing.JDialog {
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         int chon = JOptionPane.showConfirmDialog(this, "Bạn có muốn thoát", null, JOptionPane.YES_NO_OPTION);
         if (chon == JOptionPane.YES_OPTION) {
-            this.dispose();
+            System.exit(0);
         }
     }//GEN-LAST:event_btnCancelActionPerformed
 
@@ -219,12 +219,12 @@ public class Detaillogin extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Detaillogin dialog = new Detaillogin(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
+//                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+//                    @Override
+//                    public void windowClosing(java.awt.event.WindowEvent e) {
+//                        System.exit(0);
+//                    }
+//                });
                 dialog.setVisible(true);
             }
         });
