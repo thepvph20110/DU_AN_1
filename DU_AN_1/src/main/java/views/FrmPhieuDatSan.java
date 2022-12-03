@@ -271,13 +271,11 @@ public class FrmPhieuDatSan extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Nhận sân thành công");
             }
             SanCa sanCa = phieuDL.getSanCa();
-//            QLSanCa qLSanCa = new QLSanCa(sanCa.getId(), sanCa.getCa().getTenCa(), sanCa.getSanbong().getTenSanBong(), sanCa.getSanbong().getSucChua(), sanCa.getCa().getThoiGianBatDau(), sanCa.getCa().getThoiGianKetThuc(),
-//                    sanCa.getNgayTao(), sanCa.getGiaSanCa(),sanCa.getTrangThai());
-//            qLSanCa.setTrangThai(trangThaiSanCa.KHONG_TRONG);
             sanCa.setTrangThai(trangThaiSanCa.KHONG_TRONG);
             new SanCaRepository().update(sanCa);
             QLHoaDon qLHoaDon = new QLHoaDon(null, "HD005", phieuDL, null, null, null, phieuDL.getTongTienSan(), phieuDL.getTongTienSan(), null, trangThaiHoaDon.CHUA_THANH_TOAN);
             hoaDonService.save(qLHoaDon);
+            new Home(null).displayHome();
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Nhận Sân Không Thành Công");
