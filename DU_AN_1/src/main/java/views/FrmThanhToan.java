@@ -264,7 +264,9 @@ public class FrmThanhToan extends javax.swing.JFrame {
             customerInforTable.addCell(new Cell().add("" + jtenSan.getText()).setBorder(Border.NO_BORDER));
 
             customerInforTable.addCell(new Cell().add("Ngày thanh toán:").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
-            customerInforTable.addCell(new Cell().add("" + date).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
+            SimpleDateFormat sdf1 = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+            String ngayThanhToan = sdf1.format(new Date());
+            customerInforTable.addCell(new Cell().add("" + ngayThanhToan).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
 
             customerInforTable.addCell(new Cell().add("Ca số: ").setBorder(Border.NO_BORDER));
             customerInforTable.addCell(new Cell().add("" + txtCa.getText()).setBorder(Border.NO_BORDER));

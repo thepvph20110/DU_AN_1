@@ -49,7 +49,7 @@ import service.Impl.SanCaServiceImpl;
  * @author DANG VAN SY
  */
 public class Home extends javax.swing.JFrame {
-
+    
     private QLAcount qLAcount;
     private Map<String, QLSanCa> mapSanCa = new HashMap<>();
     private Map<String, QLHoaDon> mapQLHoaDon = new HashMap<>();
@@ -62,13 +62,22 @@ public class Home extends javax.swing.JFrame {
     private ISanCaService sanCaService = new SanCaServiceImpl();
     private List<QLSanBong> listSanBong = new ArrayList<>();
     private List<QLCa> listCa = new ArrayList<>();
-
+    
     public Home(QLAcount qLAcount) {
         initComponents();
         this.setExtendedState(this.MAXIMIZED_BOTH);
         time();
         this.qLAcount = qLAcount;
         showDongHo();
+        try {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            String ngayThanhToan = format.format(new Date());
+            Date ngayTHanhTOan1 = format.parse(ngayThanhToan);
+            createSanCaFollowDate(ngayTHanhTOan1);
+        } catch (Exception e) {
+        }
+        
+        
         for (PhieuDatLich phieuDatLich : phieuDatLichService.getPhieuDatLichByTT()) {
             map.put(phieuDatLich.getKhachHang().getSoDienThoai(), phieuDatLich);
         }
@@ -77,20 +86,20 @@ public class Home extends javax.swing.JFrame {
         }
         displayHome();
     }
-
+    
     private void showThanhToan(String id) {
         QLHoaDon hoaDon = mapQLHoaDon.get(id);
         new FrmThanhToan(hoaDon).setVisible(true);
-
+        
         for (PhieuDatLich phieuDatLich : phieuDatLichService.getPhieuDatLichByTT()) {
             map.put(phieuDatLich.getKhachHang().getSoDienThoai(), phieuDatLich);
         }
     }
-
+    
     public void displayHome() {
         HomeController conTrolerHome = new HomeController(panelTong, this.qLAcount);
         conTrolerHome.setView(this.lbHome);
-
+        
         List<DanhMuc> listItem = new ArrayList<>();
         listItem.add(new DanhMuc("TrangChu", lbHome));
         listItem.add(new DanhMuc("LichDat", lbLichDat));
@@ -101,16 +110,17 @@ public class Home extends javax.swing.JFrame {
         listItem.add(new DanhMuc("HoaDon", lbHoaD));
         listItem.add(new DanhMuc("LichSu", lbLichSu));
         listItem.add(new DanhMuc("ThongKe", lbThongKe));
-
+        
         conTrolerHome.setEvent(listItem);
-    } 
+    }
+    
     private void time() {
         Date date = new Date();
         lbTime.setText(date.toString());
         jDate.setBackground(new Color(22, 69, 62));
         jDate.setDate(date);
     }
-
+    
     public void showDongHo() {
         Thread t = new Thread() {
             public void run() {
@@ -145,7 +155,7 @@ public class Home extends javax.swing.JFrame {
         };
         t.start();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -511,6 +521,12 @@ public class Home extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jButton2.setText("+");
         jButton2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         panelTong.setBackground(new java.awt.Color(255, 204, 204));
 
         javax.swing.GroupLayout panelTongLayout = new javax.swing.GroupLayout(panelTong);
@@ -523,6 +539,7 @@ public class Home extends javax.swing.JFrame {
             panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -693,7 +710,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_lbCheckInMouseReleased
 
     private void CheckQRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckQRActionPerformed
-        new WebCam(qLAcount,panelTong,this.lbHome).setVisible(true);
+        new WebCam(qLAcount, panelTong, this.lbHome).setVisible(true);
     }//GEN-LAST:event_CheckQRActionPerformed
 
     private void CheckPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckPhoneActionPerformed
@@ -705,7 +722,7 @@ public class Home extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "không tìm thấy Phiếu đặt lịch");
             } else {
                 PhieuDatLich phieuDatLich = map.get(sdt);
-                new FrmPhieuDatSan(phieuDatLich,qLAcount,panelTong,lbHome).setVisible(true);
+                new FrmPhieuDatSan(phieuDatLich, qLAcount, panelTong, lbHome).setVisible(true);
             }
         }
     }//GEN-LAST:event_CheckPhoneActionPerformed
@@ -754,8 +771,14 @@ public class Home extends javax.swing.JFrame {
     private void jDatePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDatePropertyChange
 
     }//GEN-LAST:event_jDatePropertyChange
-    private void createSanCaFollowDate() {
-        if (sanCaService.getByNgayTao(jDate.getDate()).size() <= 0) {
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        createSanCaFollowDate(jDate.getDate());
+        HomeController controller = new HomeController(panelTong, qLAcount);
+        controller.setView(lbHome);
+    }//GEN-LAST:event_jButton2ActionPerformed
+    private void createSanCaFollowDate(Date ngayTao) {
+        if (sanCaService.getByNgayTao(ngayTao).size() <= 0) {
             listSanBong = sanBongService.getAll();
             listCa = caService.getAll();
             List<QLSanCa> listSanCa = new ArrayList<>();
@@ -763,15 +786,13 @@ public class Home extends javax.swing.JFrame {
                 QLSanBong qLSanBong = listSanBong.get(i);
                 for (int j = 0; j < listCa.size(); j++) {
                     QLCa qLCa = listCa.get(j);
-                    QLSanCa qLSanCa = new QLSanCa(null, qLCa.getTenCa(), qLSanBong.getTenSanBong(), qLSanBong.getSucChua(), qLCa.getThoiGianBatDau(), qLCa.getThoiGianKetThuc(), jDate.getDate(), qLSanBong.getGiaSan() + qLCa.getGiaCa(), trangThaiSanCa.DANG_TRONG);
+                    QLSanCa qLSanCa = new QLSanCa(null, qLCa.getTenCa(), qLSanBong.getTenSanBong(), qLSanBong.getSucChua(), qLCa.getThoiGianBatDau(), qLCa.getThoiGianKetThuc(), ngayTao, qLSanBong.getGiaSan() + qLCa.getGiaCa(), trangThaiSanCa.DANG_TRONG);
                     listSanCa.add(qLSanCa);
                 }
             }
             if (listSanCa.size() > 0) {
                 sanCaService.addListSanCa(listSanCa);
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "San ca ngày này đã có");
         }
     }
     /**
