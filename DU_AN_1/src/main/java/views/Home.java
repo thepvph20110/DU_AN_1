@@ -42,18 +42,12 @@ import service.ISanBongService;
 import service.Impl.SanBongServiceImpl;
 import service.IAcountService;
 import service.ICaService;
-<<<<<<< HEAD
 import service.IHoaDonService;
-=======
->>>>>>> 344c33a12c3e0b2ae7eb51777e02547ecb86caec
 import service.IPhieuDatLichService;
 import service.ISanCaService;
 import service.Impl.AcountServiceImpl;
 import service.Impl.CaServiceImpl;
-<<<<<<< HEAD
 import service.Impl.HoaDonServiceImpl;
-=======
->>>>>>> 344c33a12c3e0b2ae7eb51777e02547ecb86caec
 import service.Impl.PhieuDatLichServiceImpl;
 import service.Impl.SanCaServiceImpl;
 
@@ -75,19 +69,15 @@ public class Home extends javax.swing.JFrame {
     private QLAcount qLAcount;
     private Dimension dimension;
     private Map<String, QLSanCa> mapSanCa = new HashMap<>();
-<<<<<<< HEAD
     private Map<String, QLHoaDon> mapQLHoaDon = new HashMap<>();
     private IPhieuDatLichService phieuDatLichService = new PhieuDatLichServiceImpl();
     private IHoaDonService hoaDonService = new HoaDonServiceImpl();
     private PhieuDatLich datLich;
-
-=======
     private Map<String, PhieuDatLich> map = new HashMap<>();
     private Map<String,PhieuDatLich> mapPhieuDatLich= new HashMap<>();
     private IPhieuDatLichService phieuDatLichService = new PhieuDatLichServiceImpl();
     
     
->>>>>>> 344c33a12c3e0b2ae7eb51777e02547ecb86caec
     public Home(QLAcount qLAcount) {
         initComponents();
         this.setExtendedState(this.MAXIMIZED_BOTH);
@@ -101,7 +91,6 @@ public class Home extends javax.swing.JFrame {
         for (QLSanCa qLSanCa : listSanCa) {
             mapSanCa.put(qLSanCa.getId(), qLSanCa);
         }
-<<<<<<< HEAD
         for (QLHoaDon qLHoaDon : hoaDonService.getAll()) {
             mapQLHoaDon.put(qLHoaDon.getPhieuDatLich().getId(), qLHoaDon);
         }
@@ -111,7 +100,6 @@ public class Home extends javax.swing.JFrame {
         QLHoaDon hoaDon = mapQLHoaDon.get(id);
         new FrmThanhToan(hoaDon).setVisible(true);
 
-=======
         for (PhieuDatLich phieuDatLich : phieuDatLichService.getPhieuDatLichByTT()) {
             map.put(phieuDatLich.getKhachHang().getSoDienThoai(), phieuDatLich);
             mapPhieuDatLich.put(phieuDatLich.getSanCa().getId(), phieuDatLich);
@@ -131,7 +119,6 @@ public class Home extends javax.swing.JFrame {
         listItem.add(new DanhMuc("ThongKe", lbThongKe));
 
         conTrolerHome.setEvent(listItem);
->>>>>>> 344c33a12c3e0b2ae7eb51777e02547ecb86caec
     }
 
     public void AddSan() {
