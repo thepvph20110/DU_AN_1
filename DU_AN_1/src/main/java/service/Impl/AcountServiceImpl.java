@@ -91,7 +91,6 @@ public class AcountServiceImpl implements IAcountService {
             return null;
         } else {
             ChucVu chucVu = acount.getChucVu();
-            JOptionPane.showMessageDialog(null, "Login thành công");
             return new QLAcount(acount.getId(), acount.getMaAcount(), acount.getTenAcount(), chucVu, acount.getMatKhau(), acount.getMoTa(), acount.getTrangThai());
         }
     }
