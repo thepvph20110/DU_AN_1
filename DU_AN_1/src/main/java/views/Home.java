@@ -53,7 +53,6 @@ public class Home extends javax.swing.JFrame {
     private Map<String, QLSanCa> mapSanCa = new HashMap<>();
     private Map<String, QLHoaDon> mapQLHoaDon = new HashMap<>();
     private IPhieuDatLichService phieuDatLichService = new PhieuDatLichServiceImpl();
-<<<<<<< HEAD
     private IHoaDonService hoaDonService = new HoaDonServiceImpl();
     private PhieuDatLich datLich;
     private Map<String, PhieuDatLich> map = new HashMap<>();
@@ -62,8 +61,6 @@ public class Home extends javax.swing.JFrame {
     private ISanCaService sanCaService = new SanCaServiceImpl();
     private List<QLSanBong> listSanBong = new ArrayList<>();
     private List<QLCa> listCa = new ArrayList<>();
-=======
->>>>>>> 653dc56be8de3bae9f629c5e001c0ab83d4ad22e
 
     public Home(QLAcount qLAcount) {
         initComponents();
@@ -74,7 +71,6 @@ public class Home extends javax.swing.JFrame {
         for (PhieuDatLich phieuDatLich : phieuDatLichService.getPhieuDatLichByTT()) {
             map.put(phieuDatLich.getKhachHang().getSoDienThoai(), phieuDatLich);
         }
-<<<<<<< HEAD
         for (QLHoaDon qLHoaDon : hoaDonService.getAll()) {
             mapQLHoaDon.put(qLHoaDon.getPhieuDatLich().getId(), qLHoaDon);
         }
@@ -88,34 +84,10 @@ public class Home extends javax.swing.JFrame {
         for (PhieuDatLich phieuDatLich : phieuDatLichService.getPhieuDatLichByTT()) {
             map.put(phieuDatLich.getKhachHang().getSoDienThoai(), phieuDatLich);
         }
-//        HomeController conTrolerHome = new HomeController(this.PaneTong,this.qLAcount);
-//        conTrolerHome.setView(this.lbHome);
-//
-//        List<DanhMuc> listItem = new ArrayList<>();
-//        listItem.add(new DanhMuc("TrangChu", lbHome));
-//        listItem.add(new DanhMuc("LichDat", lbLichDat));
-//        listItem.add(new DanhMuc("CheckIn", lbCheckIn));
-//        listItem.add(new DanhMuc("QLSan", lbQLSan));
-//        listItem.add(new DanhMuc("QLCa", lbQLCa));
-//        listItem.add(new DanhMuc("DichVu", lbDichVu1));
-//        listItem.add(new DanhMuc("HoaDon", lbHoaD));
-//        listItem.add(new DanhMuc("LichSu", lbLichSu));
-//        listItem.add(new DanhMuc("ThongKe", lbThongKe));
-//
-//        conTrolerHome.setEvent(listItem);
-
-//            displayHome();
     }
 
-    public void displayHome() {
-        HomeController conTrolerHome = new HomeController(this.PaneTong, this.qLAcount);
-=======
-
-        displayHome();
-    }
     public void displayHome() {
         HomeController conTrolerHome = new HomeController(panelTong, this.qLAcount);
->>>>>>> 653dc56be8de3bae9f629c5e001c0ab83d4ad22e
         conTrolerHome.setView(this.lbHome);
 
         List<DanhMuc> listItem = new ArrayList<>();
