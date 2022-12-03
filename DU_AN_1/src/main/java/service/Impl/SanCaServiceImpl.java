@@ -36,6 +36,7 @@ public class SanCaServiceImpl implements ISanCaService {
     private Map<String, Object> map = new HashMap<>();
     private ISanBongRepository isb = new SanBongRepository();
     private ICaRepository ica = new CaRepository();
+    private List<SanCa> lisSanCaDomain = new ArrayList<>();
 
     @Override
     public List<QLSanCa> getAll() {
@@ -56,7 +57,7 @@ public class SanCaServiceImpl implements ISanCaService {
             map.put(String.valueOf(ca.getThoiGianKetThuc()), ca);
         }
         for (SanCa sanCa : re.getAll()) {
-            QLSanCa qLSanCa = new QLSanCa(sanCa.getId(), sanCa.getCa().getTenCa(), sanCa.getSanbong().getTenSanBong(),sanCa.getSanbong().getSucChua(),sanCa.getCa().getThoiGianBatDau(),sanCa.getCa().getThoiGianKetThuc(), sanCa.getNgayTao(),sanCa.getSanbong().getGiaSan()+sanCa.getCa().getGiaCa() , sanCa.getTrangThai());
+            QLSanCa qLSanCa = new QLSanCa(sanCa.getId(), sanCa.getCa().getTenCa(), sanCa.getSanbong().getTenSanBong(), sanCa.getSanbong().getSucChua(), sanCa.getCa().getThoiGianBatDau(), sanCa.getCa().getThoiGianKetThuc(), sanCa.getNgayTao(), sanCa.getSanbong().getGiaSan() + sanCa.getCa().getGiaCa(), sanCa.getTrangThai());
             listQLSanCa.add(qLSanCa);
         }
         return listQLSanCa;
@@ -72,12 +73,12 @@ public class SanCaServiceImpl implements ISanCaService {
         if (map.containsKey(qLSanCa.getTenSanBong())) {
             sanBong = (SanBong) map.get(qLSanCa.getTenSanBong());
         }
-        SanCa sanCa = new SanCa(null, ca, sanBong, new Date(),ca.getGiaCa()+sanBong.getGiaSan(), qLSanCa.getTrangThai());
+        SanCa sanCa = new SanCa(null, ca, sanBong, new Date(), ca.getGiaCa() + sanBong.getGiaSan(), qLSanCa.getTrangThai());
         if (re.save(sanCa)) {
             return "Save Complete";
         } else {
             return "Save Fail";
-       }
+        }
     }
 
     @Override
@@ -106,12 +107,12 @@ public class SanCaServiceImpl implements ISanCaService {
         if (map.containsKey(qLSanCa.getTenSanBong())) {
             sanBong = (SanBong) map.get(qLSanCa.getTenSanBong());
         }
-        SanCa sanCa = new SanCa(qLSanCa.getId(), ca, sanBong, new Date(),ca.getGiaCa()+sanBong.getGiaSan(), qLSanCa.getTrangThai());
+        SanCa sanCa = new SanCa(qLSanCa.getId(), ca, sanBong, new Date(), ca.getGiaCa() + sanBong.getGiaSan(), qLSanCa.getTrangThai());
         if (re.update(sanCa)) {
             return "Update Complete";
         } else {
             return "Update Fail";
-       }
+        }
     }
 
     @Override
@@ -124,19 +125,59 @@ public class SanCaServiceImpl implements ISanCaService {
         if (map.containsKey(qLSanCa.getTenSanBong())) {
             sanBong = (SanBong) map.get(qLSanCa.getTenSanBong());
         }
-        SanCa sanCa = new SanCa(qLSanCa.getId(), ca, sanBong, new Date(),ca.getGiaCa()+sanBong.getGiaSan(), qLSanCa.getTrangThai());
+        SanCa sanCa = new SanCa(qLSanCa.getId(), ca, sanBong, new Date(), ca.getGiaCa() + sanBong.getGiaSan(), qLSanCa.getTrangThai());
         if (re.deleteSanCa(sanCa)) {
             return "Delete Complete";
         } else {
             return "Delete Fail";
-       }
+        }
     }
 
     @Override
     public SanCa getOne() {
         SanCa sanCa = re.getOne();
-        QLSanCa qLSanCa = new QLSanCa(sanCa.getId(), sanCa.getCa().getTenCa(), sanCa.getSanbong().getTenSanBong(),sanCa.getSanbong().getSucChua(),sanCa.getCa().getThoiGianBatDau(),sanCa.getCa().getThoiGianKetThuc(), sanCa.getNgayTao(),sanCa.getSanbong().getGiaSan()+sanCa.getCa().getGiaCa() , sanCa.getTrangThai());
+        QLSanCa qLSanCa = new QLSanCa(sanCa.getId(), sanCa.getCa().getTenCa(), sanCa.getSanbong().getTenSanBong(), sanCa.getSanbong().getSucChua(), sanCa.getCa().getThoiGianBatDau(), sanCa.getCa().getThoiGianKetThuc(), sanCa.getNgayTao(), sanCa.getSanbong().getGiaSan() + sanCa.getCa().getGiaCa(), sanCa.getTrangThai());
         return sanCa;
+    }
+
+    @Override
+    public String addListSanCa(List<QLSanCa> list) {
+        List<Ca> listQLCa = ica.getAll();
+        List<SanBong> listSanBong = isb.getAll();
+        listQLSanCa.clear();
+        for (SanBong sanBong : listSanBong) {
+            map.put(sanBong.getTenSanBong(), sanBong);
+        }
+        for (Ca ca : listQLCa) {
+            map.put(ca.getTenCa(), ca);
+        }
+        for (QLSanCa qLSanCa : list) {
+            Ca ca = new Ca();
+            if (map.containsKey(qLSanCa.getTenCa())) {
+                ca = (Ca) map.get(qLSanCa.getTenCa());
+            }
+            SanBong sanBong = new SanBong();
+            if (map.containsKey(qLSanCa.getTenSanBong())) {
+                sanBong = (SanBong) map.get(qLSanCa.getTenSanBong());
+            }
+            SanCa sanCa = new SanCa(null, ca, sanBong, qLSanCa.getNgayTao(), ca.getGiaCa() + sanBong.getGiaSan(), qLSanCa.getTrangThai());
+            lisSanCaDomain.add(sanCa);
+        }
+        if (re.saveOutSanCa(lisSanCaDomain)) {
+            return "Save Complete";
+        } else {
+            return "Save Fail";
+        }
+    }
+
+    @Override
+    public List<QLSanCa> getByNgayTao(Date ngayTao) {
+        List<QLSanCa> listQlSC= new ArrayList<>();
+        for (SanCa sanCa : re.getByNgayTao(ngayTao)) {
+            QLSanCa qLSanCa = new QLSanCa(sanCa.getId(), sanCa.getCa().getTenCa(), sanCa.getSanbong().getTenSanBong(), sanCa.getSanbong().getSucChua(), sanCa.getCa().getThoiGianBatDau(), sanCa.getCa().getThoiGianKetThuc(), sanCa.getNgayTao(), sanCa.getGiaSanCa(), sanCa.getTrangThai());
+            listQlSC.add(qLSanCa);
+        }
+        return listQlSC;
     }
 
 }

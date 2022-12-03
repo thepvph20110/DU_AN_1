@@ -5,8 +5,13 @@
 package repository.impl;
 
 import domainmodel.SanCa;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import org.hibernate.Session;
@@ -23,7 +28,7 @@ public class SanCaRepository implements ISanCaRepository {
     @Override
     public List<SanCa> getAll() {
         String hql = "From SanCa sc order by sc.ca.tenCa";
-        try (Session session = new HibernateConfig().getFACTORY().openSession()) {
+        try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
             Query q = session.createQuery(hql);
             return q.getResultList();
         } catch (Exception e) {
@@ -36,7 +41,7 @@ public class SanCaRepository implements ISanCaRepository {
     public boolean update(SanCa sanCa) {
         boolean check;
         Transaction transaction = null;
-        try (Session session = new HibernateConfig().getFACTORY().openSession()) {
+        try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
             transaction = session.beginTransaction();
             session.update(sanCa);
             check = true;
@@ -53,7 +58,7 @@ public class SanCaRepository implements ISanCaRepository {
     public boolean deleteSanCa(SanCa sanCa) {
         boolean check;
         Transaction transaction = null;
-        try (Session session = new HibernateConfig().getFACTORY().openSession()) {
+        try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
             transaction = session.beginTransaction();
             session.delete(sanCa);
             check = true;
@@ -69,7 +74,7 @@ public class SanCaRepository implements ISanCaRepository {
     @Override
     public SanCa getOne() {
         SanCa sanCa;
-        try (Session session = HibernateConfig.getFACTORY().openSession()) {
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             String hql = "From SanCa";
             TypedQuery<SanCa> query = session.createQuery(hql, SanCa.class);
             query.setFirstResult(0);
@@ -86,7 +91,7 @@ public class SanCaRepository implements ISanCaRepository {
     public boolean save(SanCa sanCa) {
         boolean check;
         Transaction transaction = null;
-        try (Session session = new HibernateConfig().getFACTORY().openSession()) {
+        try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
             transaction = session.beginTransaction();
             session.save(sanCa);
             check = true;
@@ -97,5 +102,50 @@ public class SanCaRepository implements ISanCaRepository {
             transaction.rollback();
         }
         return check;
+    }
+
+    public boolean saveOutSanCa(List<SanCa> listSanCa) {
+        boolean check;
+        Transaction transaction = null;
+        try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
+            transaction = session.beginTransaction();
+            for (SanCa sanCa : listSanCa) {
+                session.save(sanCa);
+            }
+
+            check = true;
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+            check = false;
+            transaction.rollback();
+        }
+        return check;
+    }
+
+    public List<SanCa> getByNgayTao(Date ngayTao) {
+        String hql = "From SanCa sc Where sc.ngayTao = :ngayTaoSan";
+        try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
+            Query q = session.createQuery(hql).setParameter("ngayTaoSan", ngayTao);
+            return q.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return null;
+    }
+
+    public static void main(String[] args) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date ngayTao = dateFormat.parse("2022-12-04");
+//            String d = dateFormat.format(ngayTao);
+//            System.out.println(dateFormat.format(ngayTao));
+//            String a = String.valueOf(dateFormat.format(ngayTao));
+//            System.out.println(a);
+            System.out.println(new SanCaRepository().getByNgayTao(ngayTao));
+        } catch (ParseException ex) {
+            Logger.getLogger(SanCaRepository.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 }
