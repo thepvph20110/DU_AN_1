@@ -4,6 +4,8 @@
  */
 package views;
 
+import controller.DanhMuc;
+import controller.HomeController;
 import domainmodel.Acount;
 import domainmodel.PhieuDatLich;
 import domainmodel.SanCa;
@@ -67,7 +69,8 @@ public class Home extends javax.swing.JFrame {
     private Map<String, PhieuDatLich> map = new HashMap<>();
     private Map<String,PhieuDatLich> mapPhieuDatLich= new HashMap<>();
     private IPhieuDatLichService phieuDatLichService = new PhieuDatLichServiceImpl();
-
+    
+    
     public Home(QLAcount qLAcount) {
         initComponents();
         this.setExtendedState(this.MAXIMIZED_BOTH);
@@ -85,6 +88,21 @@ public class Home extends javax.swing.JFrame {
             map.put(phieuDatLich.getKhachHang().getSoDienThoai(), phieuDatLich);
             mapPhieuDatLich.put(phieuDatLich.getSanCa().getId(), phieuDatLich);
         }
+        HomeController conTrolerHome = new HomeController(this.PaneTong);
+        conTrolerHome.setView(this.lbHome);
+
+        List<DanhMuc> listItem = new ArrayList<>();
+        listItem.add(new DanhMuc("TrangChu", lbHome));
+        listItem.add(new DanhMuc("LichDat", lbLichDat));
+        listItem.add(new DanhMuc("CheckIn", lbCheckIn));
+        listItem.add(new DanhMuc("QLSan", lbQLSan));
+        listItem.add(new DanhMuc("QLCa", lbQLCa));
+        listItem.add(new DanhMuc("DichVu", lbDichVu1));
+        listItem.add(new DanhMuc("HoaDon", lbHoaD));
+        listItem.add(new DanhMuc("LichSu", lbLichSu));
+        listItem.add(new DanhMuc("ThongKe", lbThongKe));
+
+        conTrolerHome.setEvent(listItem);
     }
 
     public void AddSan() {
