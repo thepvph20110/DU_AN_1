@@ -53,6 +53,7 @@ public class Home extends javax.swing.JFrame {
     private Map<String, QLSanCa> mapSanCa = new HashMap<>();
     private Map<String, QLHoaDon> mapQLHoaDon = new HashMap<>();
     private IPhieuDatLichService phieuDatLichService = new PhieuDatLichServiceImpl();
+<<<<<<< HEAD
     private IHoaDonService hoaDonService = new HoaDonServiceImpl();
     private PhieuDatLich datLich;
     private Map<String, PhieuDatLich> map = new HashMap<>();
@@ -61,6 +62,8 @@ public class Home extends javax.swing.JFrame {
     private ISanCaService sanCaService = new SanCaServiceImpl();
     private List<QLSanBong> listSanBong = new ArrayList<>();
     private List<QLCa> listCa = new ArrayList<>();
+=======
+>>>>>>> 653dc56be8de3bae9f629c5e001c0ab83d4ad22e
 
     public Home(QLAcount qLAcount) {
         initComponents();
@@ -71,6 +74,7 @@ public class Home extends javax.swing.JFrame {
         for (PhieuDatLich phieuDatLich : phieuDatLichService.getPhieuDatLichByTT()) {
             map.put(phieuDatLich.getKhachHang().getSoDienThoai(), phieuDatLich);
         }
+<<<<<<< HEAD
         for (QLHoaDon qLHoaDon : hoaDonService.getAll()) {
             mapQLHoaDon.put(qLHoaDon.getPhieuDatLich().getId(), qLHoaDon);
         }
@@ -105,6 +109,13 @@ public class Home extends javax.swing.JFrame {
 
     public void displayHome() {
         HomeController conTrolerHome = new HomeController(this.PaneTong, this.qLAcount);
+=======
+
+        displayHome();
+    }
+    public void displayHome() {
+        HomeController conTrolerHome = new HomeController(panelTong, this.qLAcount);
+>>>>>>> 653dc56be8de3bae9f629c5e001c0ab83d4ad22e
         conTrolerHome.setView(this.lbHome);
 
         List<DanhMuc> listItem = new ArrayList<>();
@@ -187,8 +198,6 @@ public class Home extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jDate = new com.toedter.calendar.JDateChooser();
         lbTime = new javax.swing.JLabel();
-        paneTong = new javax.swing.JScrollPane();
-        PaneTong = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -197,7 +206,11 @@ public class Home extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         searchText1 = new utill.SearchText();
+<<<<<<< HEAD
         jButton2 = new javax.swing.JButton();
+=======
+        panelTong = new javax.swing.JPanel();
+>>>>>>> 653dc56be8de3bae9f629c5e001c0ab83d4ad22e
 
         CheckQR.setText("Check QR Code");
         CheckQR.addActionListener(new java.awt.event.ActionListener() {
@@ -470,7 +483,7 @@ public class Home extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 1382, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -489,24 +502,6 @@ public class Home extends javax.swing.JFrame {
         lbTime.setForeground(new java.awt.Color(65, 147, 169));
         lbTime.setText("Time");
         lbTime.setPreferredSize(new java.awt.Dimension(35, 20));
-
-        paneTong.setBackground(new java.awt.Color(255, 204, 204));
-        paneTong.setForeground(new java.awt.Color(255, 204, 204));
-
-        PaneTong.setBackground(new java.awt.Color(255, 204, 204));
-
-        javax.swing.GroupLayout PaneTongLayout = new javax.swing.GroupLayout(PaneTong);
-        PaneTong.setLayout(PaneTongLayout);
-        PaneTongLayout.setHorizontalGroup(
-            PaneTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1502, Short.MAX_VALUE)
-        );
-        PaneTongLayout.setVerticalGroup(
-            PaneTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 745, Short.MAX_VALUE)
-        );
-
-        paneTong.setViewportView(PaneTong);
 
         jLabel2.setBackground(new java.awt.Color(0, 153, 0));
         jLabel2.setForeground(new java.awt.Color(0, 153, 0));
@@ -542,10 +537,25 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+<<<<<<< HEAD
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jButton2.setText("+");
         jButton2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+=======
+        panelTong.setBackground(new java.awt.Color(255, 204, 204));
+
+        javax.swing.GroupLayout panelTongLayout = new javax.swing.GroupLayout(panelTong);
+        panelTong.setLayout(panelTongLayout);
+        panelTongLayout.setHorizontalGroup(
+            panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        panelTongLayout.setVerticalGroup(
+            panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+>>>>>>> 653dc56be8de3bae9f629c5e001c0ab83d4ad22e
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -578,8 +588,8 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(39, 39, 39)
                         .addComponent(lbTime, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(paneTong, javax.swing.GroupLayout.DEFAULT_SIZE, 1382, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelTong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -611,8 +621,9 @@ public class Home extends javax.swing.JFrame {
                             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(paneTong, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(panelTong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 779, Short.MAX_VALUE)
         );
 
@@ -716,7 +727,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_lbCheckInMouseReleased
 
     private void CheckQRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckQRActionPerformed
-        new WebCam().setVisible(true);
+        new WebCam(qLAcount,panelTong,this.lbHome).setVisible(true);
     }//GEN-LAST:event_CheckQRActionPerformed
 
     private void CheckPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckPhoneActionPerformed
@@ -728,7 +739,7 @@ public class Home extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "không tìm thấy Phiếu đặt lịch");
             } else {
                 PhieuDatLich phieuDatLich = map.get(sdt);
-                new FrmPhieuDatSan(phieuDatLich).setVisible(true);
+                new FrmPhieuDatSan(phieuDatLich,qLAcount,panelTong,lbHome).setVisible(true);
             }
         }
     }//GEN-LAST:event_CheckPhoneActionPerformed
@@ -806,7 +817,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPopupMenu CheckInCLick;
     private javax.swing.JMenuItem CheckPhone;
     private javax.swing.JMenuItem CheckQR;
-    private javax.swing.JPanel PaneTong;
     private javax.swing.JPopupMenu San1Ca1;
     private javax.swing.JButton jButton2;
     private com.toedter.calendar.JDateChooser jDate;
@@ -831,7 +841,7 @@ public class Home extends javax.swing.JFrame {
     private static javax.swing.JLabel lbQLSan;
     private javax.swing.JLabel lbThongKe;
     private javax.swing.JLabel lbTime;
-    private javax.swing.JScrollPane paneTong;
+    private javax.swing.JPanel panelTong;
     private utill.SearchText searchText1;
     private javax.swing.JMenuItem trangThai;
     private javax.swing.JMenuItem xoa;

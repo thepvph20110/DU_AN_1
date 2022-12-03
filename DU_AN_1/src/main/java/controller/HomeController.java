@@ -47,7 +47,7 @@ public class HomeController {
         labelHome=jblItem;
         // mặc định cái được chọn là trang chu jpanel 
         kindSelected = "TrangChu";
-        JpnTrangChu nood = new JpnTrangChu(qLAcount,jblItem);
+        JpnTrangChu nood = new JpnTrangChu(qLAcount,jblItem,root);
         root.removeAll();
         root.setLayout(new BorderLayout());
         root.add(nood);
@@ -77,7 +77,7 @@ public class HomeController {
         public void mouseClicked(MouseEvent e) {
             switch (kind) {
                 case "TrangChu":
-                    node = new JpnTrangChu(qLAcount,labelHome);
+                    node = new JpnTrangChu(qLAcount,labelHome,root);
                     break;
                 case "LichDat":
                     node = new JpnLichDat();

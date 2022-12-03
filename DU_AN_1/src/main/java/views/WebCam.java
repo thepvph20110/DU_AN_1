@@ -21,7 +21,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 import modelview.QLAcount;
 import modelview.QLPhieuDatLich;
@@ -44,10 +46,16 @@ public class WebCam extends javax.swing.JFrame implements Runnable, ThreadFactor
     private Executor executor = Executors.newSingleThreadExecutor(this);
     private Map<String,PhieuDatLich> map = new HashMap<>();
     private IPhieuDatLichService phieuDatLichService = new PhieuDatLichServiceImpl();
+    private QLAcount qLAcount;
+    private JPanel pnTong;
+    private JLabel lbHome;
 
-    public WebCam() {
+    public WebCam(QLAcount qLAcount ,JPanel pnTong, JLabel labelHome) {
         initComponents();
         HienThi();
+        this.qLAcount =qLAcount;
+        this.pnTong= pnTong;
+        this.lbHome= labelHome;
         for (PhieuDatLich phieuDatLich : phieuDatLichService.getPhieuDatLichByTT()) {
             map.put(phieuDatLich.getMaQR(), phieuDatLich);
         }
@@ -163,7 +171,7 @@ public class WebCam extends javax.swing.JFrame implements Runnable, ThreadFactor
                 PhieuDatLich phieuDatLich = map.get(result.getText()); 
                 webCam.close();
                 this.dispose();
-                new FrmPhieuDatSan(phieuDatLich).setVisible(true);
+                new FrmPhieuDatSan(phieuDatLich,qLAcount, pnTong, lbHome).setVisible(true);
                 return;
             }
             
