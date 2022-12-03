@@ -50,7 +50,7 @@ import service.Impl.SanCaServiceImpl;
  * @author ASUS
  */
 public class JpnTrangChu extends javax.swing.JPanel {
-    
+
     private List<QLSanCa> listSanCa = new ArrayList<>();
     private List<QLSanBong> listSanBong = new ArrayList<>();
     private ISanCaService sanCaService = new SanCaServiceImpl();
@@ -88,18 +88,18 @@ public class JpnTrangChu extends javax.swing.JPanel {
             mapQLHoaDon.put(qLHoaDon.getPhieuDatLich().getId(), qLHoaDon);
         }
     }
-    
+
     private void showThanhToan(String id) {
         QLHoaDon hoaDon = mapQLHoaDon.get(id);
-        
+
         System.out.println("aaa12333434:" + id);
         new FrmThanhToan(hoaDon).setVisible(true);
-        
+
     }
-    
+
     public void AddSan() {
         panelTong.setLayout(new GridLayout(10000, 1, 20, 20));
-        
+
         for (int i = 0; i < listSanBong.size(); i++) {
             TitledBorder border = new TitledBorder(listSanBong.get(i).getTenSanBong());
             JPanel panelSan = new JPanel();
@@ -147,12 +147,12 @@ public class JpnTrangChu extends javax.swing.JPanel {
                         public void mouseReleased(java.awt.event.MouseEvent evt) {
                             panelCaInMouseReleased(evt);
                         }
-                        
+
                         private void panelCaInMouseReleased(MouseEvent evt) {
                             if (evt.isPopupTrigger()) {
                                 jPopupMenu.show(panelCa, evt.getPoint().x, evt.getPoint().y);
                             }
-                            
+
                         }
                     });
                     itemCheckOut.addActionListener(new ActionListener() {
@@ -171,28 +171,8 @@ public class JpnTrangChu extends javax.swing.JPanel {
                         }
                     });
 
-                    //Trạng thái sân
-//                    if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.CHO_NHAN_SAN) {
-//                        itemDatLich.setEnabled(false);
-//                        itemCheckOut.setEnabled(false);
-//                        itemDoiLichDat.setEnabled(true);
-//                        labelTrangThai.setText(" Trạng thái: " + "Chờ nhận sân");
-//                        panelCa.setBackground(new Color(255, 255, 0));
-//                    } else if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.KHONG_TRONG) {
-//                        itemDatLich.setEnabled(false);
-//                        itemCheckOut.setEnabled(true);
-//                        itemDoiLichDat.setEnabled(false);
-//                        labelTrangThai.setText(" Trạng thái: " + "Đang sử dụng");
-//                        panelCa.setBackground(new Color(255, 0, 51));
-//                    } else {
-//                        itemDoiLichDat.setEnabled(false);
-//                        itemCheckOut.setEnabled(false);
-//                        itemDatLich.setEnabled(true);
-//                        labelTrangThai.setText(" Trạng thái: " + "Đang trống");
-//                        panelCa.setBackground(new Color(0, 153, 0));
-//                    }
                     customTrangThai(listSanCa.get(j).getTrangThai(), itemDatLich, panelCa, labelTrangThai);
-                    
+
                     panelCa.add(labelCa);
                     panelCa.add(labelThoiGian);
                     panelCa.add(labelLoaiSan);
@@ -200,14 +180,14 @@ public class JpnTrangChu extends javax.swing.JPanel {
                     panelCa.add(labelGiaSan);
                     listPaneCa.add(panelCa);
                     panelSan.add(panelCa);
-                    
+
                 }
             }
             panelTong.add(panelSan);
         }
-        
+
     }
-    
+
     private void customTrangThai(trangThaiSanCa ttSanCa, JMenuItem item, JPanel panel, JLabel label) {
         if (ttSanCa == trangThaiSanCa.CHO_NHAN_SAN) {
             item.setEnabled(false);
@@ -215,15 +195,15 @@ public class JpnTrangChu extends javax.swing.JPanel {
             panel.setBackground(new Color(255, 255, 0));
         } else if (ttSanCa == trangThaiSanCa.KHONG_TRONG) {
             item.setEnabled(false);
-            
-            label.setText(" Trạng thái: " + "Không trống");
+
+            label.setText(" Trạng thái: " + "Đang sử dụng");
             panel.setBackground(new Color(255, 0, 51));
         } else {
             label.setText(" Trạng thái: " + "Đang trống");
             panel.setBackground(new Color(0, 153, 0));
         }
     }
-    
+
     private void showDetail(String idSanCa) {
         Acount acount = new Acount(qLAcount.getId(), qLAcount.getMaAcount(), qLAcount.getTenAcount(), qLAcount.getChucVu(),
                 qLAcount.getMatKhau(), qLAcount.getMoTa(), qLAcount.getTrangThai());
