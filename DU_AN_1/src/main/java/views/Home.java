@@ -4,6 +4,8 @@
  */
 package views;
 
+import controller.DanhMuc;
+import controller.HomeController;
 import domainmodel.Acount;
 import domainmodel.PhieuDatLich;
 import domainmodel.SanCa;
@@ -40,12 +42,18 @@ import service.ISanBongService;
 import service.Impl.SanBongServiceImpl;
 import service.IAcountService;
 import service.ICaService;
+<<<<<<< HEAD
 import service.IHoaDonService;
+=======
+>>>>>>> 344c33a12c3e0b2ae7eb51777e02547ecb86caec
 import service.IPhieuDatLichService;
 import service.ISanCaService;
 import service.Impl.AcountServiceImpl;
 import service.Impl.CaServiceImpl;
+<<<<<<< HEAD
 import service.Impl.HoaDonServiceImpl;
+=======
+>>>>>>> 344c33a12c3e0b2ae7eb51777e02547ecb86caec
 import service.Impl.PhieuDatLichServiceImpl;
 import service.Impl.SanCaServiceImpl;
 
@@ -67,11 +75,19 @@ public class Home extends javax.swing.JFrame {
     private QLAcount qLAcount;
     private Dimension dimension;
     private Map<String, QLSanCa> mapSanCa = new HashMap<>();
+<<<<<<< HEAD
     private Map<String, QLHoaDon> mapQLHoaDon = new HashMap<>();
     private IPhieuDatLichService phieuDatLichService = new PhieuDatLichServiceImpl();
     private IHoaDonService hoaDonService = new HoaDonServiceImpl();
     private PhieuDatLich datLich;
 
+=======
+    private Map<String, PhieuDatLich> map = new HashMap<>();
+    private Map<String,PhieuDatLich> mapPhieuDatLich= new HashMap<>();
+    private IPhieuDatLichService phieuDatLichService = new PhieuDatLichServiceImpl();
+    
+    
+>>>>>>> 344c33a12c3e0b2ae7eb51777e02547ecb86caec
     public Home(QLAcount qLAcount) {
         initComponents();
         this.setExtendedState(this.MAXIMIZED_BOTH);
@@ -85,6 +101,7 @@ public class Home extends javax.swing.JFrame {
         for (QLSanCa qLSanCa : listSanCa) {
             mapSanCa.put(qLSanCa.getId(), qLSanCa);
         }
+<<<<<<< HEAD
         for (QLHoaDon qLHoaDon : hoaDonService.getAll()) {
             mapQLHoaDon.put(qLHoaDon.getPhieuDatLich().getId(), qLHoaDon);
         }
@@ -94,6 +111,27 @@ public class Home extends javax.swing.JFrame {
         QLHoaDon hoaDon = mapQLHoaDon.get(id);
         new FrmThanhToan(hoaDon).setVisible(true);
 
+=======
+        for (PhieuDatLich phieuDatLich : phieuDatLichService.getPhieuDatLichByTT()) {
+            map.put(phieuDatLich.getKhachHang().getSoDienThoai(), phieuDatLich);
+            mapPhieuDatLich.put(phieuDatLich.getSanCa().getId(), phieuDatLich);
+        }
+        HomeController conTrolerHome = new HomeController(this.PaneTong);
+        conTrolerHome.setView(this.lbHome);
+
+        List<DanhMuc> listItem = new ArrayList<>();
+        listItem.add(new DanhMuc("TrangChu", lbHome));
+        listItem.add(new DanhMuc("LichDat", lbLichDat));
+        listItem.add(new DanhMuc("CheckIn", lbCheckIn));
+        listItem.add(new DanhMuc("QLSan", lbQLSan));
+        listItem.add(new DanhMuc("QLCa", lbQLCa));
+        listItem.add(new DanhMuc("DichVu", lbDichVu1));
+        listItem.add(new DanhMuc("HoaDon", lbHoaD));
+        listItem.add(new DanhMuc("LichSu", lbLichSu));
+        listItem.add(new DanhMuc("ThongKe", lbThongKe));
+
+        conTrolerHome.setEvent(listItem);
+>>>>>>> 344c33a12c3e0b2ae7eb51777e02547ecb86caec
     }
 
     public void AddSan() {
@@ -211,6 +249,7 @@ public class Home extends javax.swing.JFrame {
                     } else {
                         JPopupMenu jPopupMenu = new JPopupMenu();
                         JMenuItem itemDatLich = new JMenuItem("Đặt Lịch");
+                        itemDatLich.disable();
                         JMenuItem itemCheckOut = new JMenuItem("Check Out");
                         jPopupMenu.add(itemDatLich);
                         jPopupMenu.add(itemCheckOut);
@@ -707,6 +746,7 @@ public class Home extends javax.swing.JFrame {
 
         lbReset.setBackground(new java.awt.Color(255, 153, 0));
         lbReset.setForeground(new java.awt.Color(255, 153, 0));
+        lbReset.setIcon(new javax.swing.ImageIcon("D:\\DU_AN_1\\DU_AN_1\\src\\main\\java\\views\\icon\\refech.png")); // NOI18N
         lbReset.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbReset.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -775,7 +815,7 @@ public class Home extends javax.swing.JFrame {
                                 .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lbReset, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)))
+                                .addComponent(lbReset, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(18, 18, 18)))
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -887,7 +927,17 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_CheckQRActionPerformed
 
     private void CheckPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckPhoneActionPerformed
-        JOptionPane.showMessageDialog(this, "Check SDT");
+        String sdt = JOptionPane.showInputDialog(this, "Nhập Số Điện Thoại", JOptionPane.YES_NO_OPTION);
+        if (!sdt.matches("(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}")) {
+            JOptionPane.showMessageDialog(this, "Số điện thoại không đúng định dạng");
+        } else {
+            if (!map.containsKey(sdt)) {
+                JOptionPane.showMessageDialog(this, "không tìm thấy Phiếu đặt lịch");
+            } else {
+                PhieuDatLich phieuDatLich = map.get(sdt);
+                new FrmPhieuDatSan(phieuDatLich).setVisible(true);
+            }
+        }
     }//GEN-LAST:event_CheckPhoneActionPerformed
 
     private void trangThaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trangThaiActionPerformed
