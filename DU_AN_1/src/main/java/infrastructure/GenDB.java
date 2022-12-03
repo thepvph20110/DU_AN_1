@@ -353,7 +353,7 @@ public class GenDB {
             san3Ca5.setCa(ca5);
             san3Ca5.setSanbong(sb3);
             san3Ca5.setGiaSanCa(ca5.getGiaCa() + sb3.getGiaSan());
-            san3Ca5.setTrangThai(trangThaiSanCa.KHONG_TRONG);
+            san3Ca5.setTrangThai(trangThaiSanCa.DANG_TRONG);
             session.save(san3Ca5);
 
             SanCa san3Ca6 = new SanCa();
@@ -361,7 +361,7 @@ public class GenDB {
             san3Ca6.setCa(ca6);
             san3Ca6.setSanbong(sb3);
             san3Ca6.setGiaSanCa(ca5.getGiaCa() + sb3.getGiaSan());
-            san3Ca6.setTrangThai(trangThaiSanCa.CHO_NHAN_SAN);
+            san3Ca6.setTrangThai(trangThaiSanCa.DANG_TRONG);
             session.save(san3Ca6);
             // end sân 3
             //start sân 2
@@ -402,7 +402,7 @@ public class GenDB {
             san2Ca5.setCa(ca5);
             san2Ca5.setSanbong(sb2);
             san2Ca5.setGiaSanCa(ca5.getGiaCa() + sb2.getGiaSan());
-            san2Ca5.setTrangThai(trangThaiSanCa.KHONG_TRONG);
+            san2Ca5.setTrangThai(trangThaiSanCa.DANG_TRONG);
             session.save(san2Ca5);
 
             SanCa san2Ca6 = new SanCa();
@@ -410,7 +410,7 @@ public class GenDB {
             san2Ca6.setCa(ca6);
             san2Ca6.setSanbong(sb2);
             san2Ca6.setGiaSanCa(ca5.getGiaCa() + sb2.getGiaSan());
-            san2Ca6.setTrangThai(trangThaiSanCa.CHO_NHAN_SAN);
+            san2Ca6.setTrangThai(trangThaiSanCa.DANG_TRONG);
             session.save(san2Ca6);
             // end sân 2
 
@@ -452,7 +452,7 @@ public class GenDB {
             san1Ca5.setCa(ca5);
             san1Ca5.setSanbong(sb1);
             san1Ca5.setGiaSanCa(ca5.getGiaCa() + sb1.getGiaSan());
-            san1Ca5.setTrangThai(trangThaiSanCa.KHONG_TRONG);
+            san1Ca5.setTrangThai(trangThaiSanCa.DANG_TRONG);
             session.save(san1Ca5);
 
             SanCa san1Ca6 = new SanCa();
@@ -460,7 +460,7 @@ public class GenDB {
             san1Ca6.setCa(ca6);
             san1Ca6.setSanbong(sb1);
             san1Ca6.setGiaSanCa(ca5.getGiaCa() + sb1.getGiaSan());
-            san1Ca6.setTrangThai(trangThaiSanCa.CHO_NHAN_SAN);
+            san1Ca6.setTrangThai(trangThaiSanCa.DANG_TRONG);
             session.save(san1Ca6);
             // end sân 1
 

@@ -104,11 +104,11 @@ public class PhieuDatLichRepositoryImpl implements IPhieuDatLichRepository {
     @Override
     public PhieuDatLich getByIdSanCa(String id) {
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
-            return (PhieuDatLich) session.createQuery("From PhieuDatLich p WHERE p.sanCa.id = :IdSanCa").setParameter("IdSanCa", id).uniqueResult();
+            return (PhieuDatLich) session.createQuery("From PhieuDatLich p WHERE p.sanCa.id = :IdSanCa and p.trangThai = '1'").setParameter("IdSanCa", id).uniqueResult();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
-        }
+        }   
     }
 
 
