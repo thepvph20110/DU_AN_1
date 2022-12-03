@@ -17,6 +17,7 @@ import enumclass.trangThaiPhieuDL;
 import enumclass.trangThaiSanCa;
 import java.awt.event.WindowEvent;
 import java.io.ByteArrayOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -95,6 +96,9 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
 
         txtQuanLy.setText(acount.getTenAcount());
         txtQuanLy.setEnabled(false);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        txtNgayDenSan.setText(sdf.format(sanCa.getNgayTao())+"");
+        txtNgayDenSan.setEnabled(false);
 
         txtMaQR.setIcon(new ImageIcon(byteArrayOutputStream.toByteArray()));
 
@@ -130,11 +134,11 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtQuanLy = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        dateNgayDen = new com.toedter.calendar.JDateChooser();
         jLabel9 = new javax.swing.JLabel();
         txtMaQR = new javax.swing.JLabel();
         txtTenSanca = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        txtNgayDenSan = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         btnDatLich = new javax.swing.JButton();
         btnThoat = new javax.swing.JButton();
@@ -231,12 +235,11 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
                                         .addComponent(txtTenSanca, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGroup(jPanel2Layout.createSequentialGroup()
                             .addGap(25, 25, 25)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(44, 44, 44)
-                                    .addComponent(txtQuanLy, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(dateNgayDen, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(44, 44, 44)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtQuanLy, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtNgayDenSan, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -263,11 +266,11 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtTienSanBong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
-                        .addGap(54, 54, 54)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(dateNgayDen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))
-                        .addGap(54, 54, 54)
+                        .addGap(57, 57, 57)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(txtNgayDenSan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(51, 51, 51)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(txtQuanLy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -363,7 +366,7 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
         int Request = JOptionPane.showConfirmDialog(rootPane, "Xác nhận Đặt lịch", "Thông Báo", JOptionPane.YES_NO_OPTION);
         if (Request == JOptionPane.YES_OPTION) {
             String maPhieuLichDat = UUID.randomUUID().toString();
-            Date ngayDen = dateNgayDen.getDate();
+            Date ngayDen = sanCa.getNgayTao();
             String ghiChu = txtGhiChu.getText();
             Date ngayTao = new Date();
             QLCa qLCa = (QLCa) map.get(sanCa.getTenCa());
@@ -386,6 +389,7 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
                     QLAcount qLAcount= new QLAcount(acount.getId(), acount.getMaAcount(), acount.getTenAcount(), acount.getChucVu(), acount.getMatKhau(),acount.getMoTa(), acount.getTrangThai());
                     HomeController controller = new HomeController(pnTong,qLAcount);
                     controller.setView(labelHome);
+
                     this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(rootPane, check);
@@ -410,7 +414,6 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDatLich;
     private javax.swing.JButton btnThoat;
-    private com.toedter.calendar.JDateChooser dateNgayDen;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -426,6 +429,7 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JTextArea txtGhiChu;
     private javax.swing.JLabel txtMaQR;
+    private javax.swing.JTextField txtNgayDenSan;
     private javax.swing.JTextField txtQuanLy;
     private javax.swing.JTextField txtTenKhachHang;
     private javax.swing.JTextField txtTenSanca;

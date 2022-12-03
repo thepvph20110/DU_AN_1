@@ -15,9 +15,9 @@ import service.Impl.AcountServiceImpl;
  * @author DANG VAN SY
  */
 public class Detaillogin extends javax.swing.JDialog {
-    
+
     private IAcountService acountService = new AcountServiceImpl();
-    
+
     public Detaillogin(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
