@@ -645,7 +645,6 @@
         </Component>
         <Component class="utill.SearchText" name="searchText1">
         </Component>
-<<<<<<< HEAD
         <Component class="javax.swing.JButton" name="jButton2">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -662,7 +661,6 @@
             </Property>
           </Properties>
         </Component>
-=======
         <Container class="javax.swing.JPanel" name="panelTong">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -683,7 +681,6 @@
             </DimensionLayout>
           </Layout>
         </Container>
->>>>>>> 653dc56be8de3bae9f629c5e001c0ab83d4ad22e
       </SubComponents>
     </Container>
   </SubComponents>
