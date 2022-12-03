@@ -11,7 +11,9 @@ import enumclass.trangThaiKhachHang;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import modelview.QLAcount;
 import modelview.QLKhachHang;
@@ -30,12 +32,16 @@ public class FrmKhachHang extends javax.swing.JFrame {
     private DefaultTableModel dtm = new DefaultTableModel();
     private QLSanCa sanCa = new QLSanCa();
     private Acount acount = new Acount();
+    private JLabel labelHome;
+    private JPanel pnTong;
 
     /**
      * Creates new form FrmKhachHang
      */
-    public FrmKhachHang(QLSanCa sanCa, Acount acountEntity) {
+    public FrmKhachHang(QLSanCa sanCa, Acount acountEntity,JLabel labHome,JPanel pnTong) {
         initComponents();
+        this.labelHome =labHome;
+        this.pnTong= pnTong;
         acount = acountEntity;
         this.sanCa = sanCa;
         jTable1.setModel(dtm);
@@ -258,7 +264,7 @@ public class FrmKhachHang extends javax.swing.JFrame {
             if (check == JOptionPane.YES_OPTION) {
                 QLKhachHang qLKhachHang1 = new QLKhachHang(khachHang.getId(), khachHang.getMaKhachHang(), khachHang.getTenKhachHang(),
                         khachHang.getMail(), khachHang.getSoDienThoai(), khachHang.getGhiChu(), khachHang.getTrangThai());
-                new FrmPhieuDatLich(qLKhachHang1, sanCa, acount).setVisible(true);
+                new FrmPhieuDatLich(qLKhachHang1, sanCa, acount,labelHome,pnTong).setVisible(true);
                 this.dispose();
             }
         }else{
@@ -325,7 +331,7 @@ public class FrmKhachHang extends javax.swing.JFrame {
         fillData(index);
         QLKhachHang qLKhachHang = listKhachHang.get(index);
         if (check == JOptionPane.YES_OPTION) {
-            new FrmPhieuDatLich(qLKhachHang, sanCa, acount).setVisible(true);
+            new FrmPhieuDatLich(qLKhachHang, sanCa, acount,labelHome,pnTong).setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_jTable1MouseClicked

@@ -6,47 +6,18 @@ package views;
 
 import controller.DanhMuc;
 import controller.HomeController;
-import domainmodel.Acount;
 import domainmodel.PhieuDatLich;
-import domainmodel.SanCa;
-import enumclass.trangThaiAcount;
-import enumclass.trangThaiSanCa;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.swing.BoxLayout;
-import javax.swing.JLabel;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
-import javax.swing.border.TitledBorder;
 import modelview.QLAcount;
-import modelview.QLCa;
-import modelview.QLKhachHang;
-import modelview.QLSanBong;
-import modelview.QLSanCa;
-import service.ISanBongService;
-import service.Impl.SanBongServiceImpl;
-import service.IAcountService;
-import service.ICaService;
 import service.IPhieuDatLichService;
-import service.ISanCaService;
-import service.Impl.AcountServiceImpl;
-import service.Impl.CaServiceImpl;
 import service.Impl.PhieuDatLichServiceImpl;
-import service.Impl.SanCaServiceImpl;
 
 /**
  *
@@ -54,20 +25,8 @@ import service.Impl.SanCaServiceImpl;
  */
 public class Home extends javax.swing.JFrame {
 
-    private List<QLSanCa> listSanCa = new ArrayList<>();
-    private List<QLSanBong> listSanBong = new ArrayList<>();
-    private List<QLCa> listCa = new ArrayList<>();
-    private ISanCaService sanCaService = new SanCaServiceImpl();
-    private ISanBongService sanBongService = new SanBongServiceImpl();
-    private ICaService caService = new CaServiceImpl();
-    public List<JPanel> listPaneCa = new ArrayList<>();
-    private IAcountService acountService = new AcountServiceImpl();
-    public JPanel panel = new JPanel();
     private QLAcount qLAcount;
-    private Dimension dimension;
-    private Map<String, QLSanCa> mapSanCa = new HashMap<>();
     private Map<String, PhieuDatLich> map = new HashMap<>();
-    private Map<String,PhieuDatLich> mapPhieuDatLich= new HashMap<>();
     private IPhieuDatLichService phieuDatLichService = new PhieuDatLichServiceImpl();
     
     
@@ -77,18 +36,29 @@ public class Home extends javax.swing.JFrame {
         time();
         this.qLAcount = qLAcount;
         showDongHo();
-        listSanCa = sanCaService.getAll();
-        listSanBong = sanBongService.getAll();
-        listCa = caService.getAll();
-        AddSan();
-        for (QLSanCa qLSanCa : listSanCa) {
-            mapSanCa.put(qLSanCa.getId(), qLSanCa);
-        }
         for (PhieuDatLich phieuDatLich : phieuDatLichService.getPhieuDatLichByTT()) {
             map.put(phieuDatLich.getKhachHang().getSoDienThoai(), phieuDatLich);
-            mapPhieuDatLich.put(phieuDatLich.getSanCa().getId(), phieuDatLich);
         }
-        HomeController conTrolerHome = new HomeController(this.PaneTong);
+//        HomeController conTrolerHome = new HomeController(this.PaneTong,this.qLAcount);
+//        conTrolerHome.setView(this.lbHome);
+//
+//        List<DanhMuc> listItem = new ArrayList<>();
+//        listItem.add(new DanhMuc("TrangChu", lbHome));
+//        listItem.add(new DanhMuc("LichDat", lbLichDat));
+//        listItem.add(new DanhMuc("CheckIn", lbCheckIn));
+//        listItem.add(new DanhMuc("QLSan", lbQLSan));
+//        listItem.add(new DanhMuc("QLCa", lbQLCa));
+//        listItem.add(new DanhMuc("DichVu", lbDichVu1));
+//        listItem.add(new DanhMuc("HoaDon", lbHoaD));
+//        listItem.add(new DanhMuc("LichSu", lbLichSu));
+//        listItem.add(new DanhMuc("ThongKe", lbThongKe));
+//
+//        conTrolerHome.setEvent(listItem);
+
+            displayHome();
+    }
+    public void displayHome(){
+        HomeController conTrolerHome = new HomeController(this.PaneTong,this.qLAcount);
         conTrolerHome.setView(this.lbHome);
 
         List<DanhMuc> listItem = new ArrayList<>();
@@ -103,195 +73,6 @@ public class Home extends javax.swing.JFrame {
         listItem.add(new DanhMuc("ThongKe", lbThongKe));
 
         conTrolerHome.setEvent(listItem);
-    }
-
-    public void AddSan() {
-        PaneTong.setLayout(new GridLayout(10000, 1, 20, 20));
-
-        for (int i = 0; i < listSanBong.size(); i++) {
-            TitledBorder border = new TitledBorder(listSanBong.get(i).getTenSanBong());
-            JPanel panelSan = new JPanel();
-            panelSan.setBorder(border);
-            panelSan.setPreferredSize(new Dimension(1325, 200));
-            panelSan.setLayout(new GridLayout(1, 100, 20, 20));
-            for (int j = 0; j < listSanCa.size(); j++) {
-                if (listSanBong.get(i).getTenSanBong().equals(listSanCa.get(j).getTenSanBong())) {
-                    if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.CHO_NHAN_SAN) {
-                        JPanel panelCa = new JPanel();
-                        panelCa.setBackground(new Color(255, 255, 0));
-                        panelCa.setLayout(new FlowLayout());
-                        panelCa.setPreferredSize(new Dimension(174, 254));
-                        panelCa.setLayout(new BoxLayout(panelCa, BoxLayout.Y_AXIS));
-                        panelCa.setLayout(new FlowLayout(10, 20, 20));
-                        JLabel labelCa = new JLabel(listSanCa.get(j).getTenCa());
-                        JLabel labelThoiGian = new JLabel(String.valueOf(listSanCa.get(j).getThoiGianBatDau()) + " : " + String.valueOf(listSanCa.get(j).getThoiGianKetThuc()));
-                        JLabel labelLoaiSan = new JLabel("Loại sân" + " " + listSanCa.get(j).getSucChua());
-                        JLabel labelIdSanCa = new JLabel(listSanCa.get(j).getId());
-                        labelCa.setForeground(Color.BLACK);
-                        labelCa.setFont(new Font("Tahoma", 1, 16));
-                        labelThoiGian.setForeground(Color.BLACK);
-                        labelThoiGian.setFont(new Font("Tahoma", 1, 12));
-                        labelLoaiSan.setForeground(Color.BLACK);
-                        labelLoaiSan.setFont(new Font("Tahoma", 1, 14));
-                        JLabel labelTrangThai = new JLabel(" Trạng thái: " + "Chờ Nhận Sân");
-                        labelTrangThai.setForeground(Color.BLACK);
-                        labelTrangThai.setPreferredSize(new Dimension(160, 17));
-                        labelTrangThai.setFont(new Font("Tahoma", 1, 12));
-                        JLabel labelGiaSan = new JLabel("Giá: " + String.valueOf(listSanCa.get(j).getGiaCaSan()));
-                        labelGiaSan.setFont(new Font("Tahoma", 1, 12));
-                        labelGiaSan.setForeground(Color.BLACK);
-                        panelCa.add(labelCa);
-                        panelCa.add(labelThoiGian);
-                        panelCa.add(labelLoaiSan);
-                        panelCa.add(labelTrangThai);
-                        panelCa.add(labelGiaSan);
-                        listPaneCa.add(panelCa);
-                        panelSan.add(panelCa);
-                    } else if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.KHONG_TRONG) {
-                        JPopupMenu jPopupMenu = new JPopupMenu();
-                        jPopupMenu.removeAll();
-                        JMenuItem itemDatLich = new JMenuItem("Đặt Lịch");
-                        JMenuItem itemCheckOut = new JMenuItem("Check Out");
-                        jPopupMenu.add(itemDatLich);
-                        jPopupMenu.add(itemCheckOut);
-                        JPanel panelCa = new JPanel();
-                        panelCa.setBackground(new Color(255, 0, 51));
-                        panelCa.setLayout(new FlowLayout());
-                        panelCa.add(jPopupMenu);
-                        panelCa.setPreferredSize(new Dimension(174, 254));
-                        panelCa.setLayout(new BoxLayout(panelCa, BoxLayout.Y_AXIS));
-                        panelCa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-                        panelCa.addMouseListener(new java.awt.event.MouseAdapter() {
-                            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                                panelCaInMouseReleased(evt);
-                            }
-
-                            private void panelCaInMouseReleased(MouseEvent evt) {
-                                if (evt.isPopupTrigger()) {
-                                    jPopupMenu.show(panelCa, evt.getPoint().x, evt.getPoint().y);
-                                }
-
-                            }
-                        });
-                        itemCheckOut.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-
-                                panelCa.setBackground(Color.ORANGE);
-                                jPopupMenu.setVisible(false);
-                            }
-                        });
-                        itemDatLich.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-                                JOptionPane.showMessageDialog(panelSan, "Sân đã có người đá không thể đặt lịch!");
-                                jPopupMenu.setVisible(false);
-                            }
-                        });
-                        panelCa.setLayout(new FlowLayout(10, 20, 20));
-                        JLabel labelCa = new JLabel(listSanCa.get(j).getTenCa());
-                        JLabel labelThoiGian = new JLabel(listSanCa.get(j).getThoiGianBatDau() + " : " + String.valueOf(listSanCa.get(j).getThoiGianKetThuc()));
-                        JLabel labelLoaiSan = new JLabel("Loại sân" + " " + listSanCa.get(j).getSucChua());
-                        JLabel labelIdSanCa = new JLabel(listSanCa.get(j).getId());
-                        labelCa.setForeground(Color.BLACK);
-                        labelCa.setFont(new Font("Tahoma", 1, 16));
-                        labelThoiGian.setForeground(Color.BLACK);
-                        labelThoiGian.setFont(new Font("Tahoma", 1, 12));
-                        labelLoaiSan.setForeground(Color.BLACK);
-                        labelLoaiSan.setFont(new Font("Tahoma", 1, 14));
-                        JLabel labelTrangThai = new JLabel(" Trạng thái: " + "Không Trống");
-                        labelTrangThai.setForeground(Color.BLACK);
-                        labelTrangThai.setPreferredSize(new Dimension(160, 17));
-                        labelTrangThai.setFont(new Font("Tahoma", 1, 12));
-                        JLabel labelGiaSan = new JLabel("Giá: " + String.valueOf(listSanCa.get(j).getGiaCaSan()));
-                        labelGiaSan.setFont(new Font("Tahoma", 1, 12));
-                        labelGiaSan.setForeground(Color.BLACK);
-                        panelCa.add(labelCa);
-                        panelCa.add(labelThoiGian);
-                        panelCa.add(labelLoaiSan);
-                        panelCa.add(labelTrangThai);
-                        panelCa.add(labelGiaSan);
-                        listPaneCa.add(panelCa);
-                        panelSan.add(panelCa);
-                    } else {
-                        JPopupMenu jPopupMenu = new JPopupMenu();
-                        JMenuItem itemDatLich = new JMenuItem("Đặt Lịch");
-                        itemDatLich.disable();
-                        JMenuItem itemCheckOut = new JMenuItem("Check Out");
-                        jPopupMenu.add(itemDatLich);
-                        jPopupMenu.add(itemCheckOut);
-                        JPanel panelCa = new JPanel();
-                        panelCa.setLayout(new FlowLayout());
-                        panelCa.setPreferredSize(new Dimension(174, 254));
-                        panelCa.setComponentPopupMenu(jPopupMenu);
-                        panelCa.setBackground(new Color(0, 153, 0));
-                        panelCa.setLayout(new BoxLayout(panelCa, BoxLayout.Y_AXIS));
-                        panelCa.setLayout(new FlowLayout(10, 20, 20));
-                        JLabel labelIdSanCa = new JLabel(listSanCa.get(j).getId());
-                        panelCa.addMouseListener(new java.awt.event.MouseAdapter() {
-                            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                                panelCaInMouseReleased(evt);
-                            }
-
-                            private void panelCaInMouseReleased(MouseEvent evt) {
-                                if (evt.isPopupTrigger()) {
-                                    jPopupMenu.show(panelCa, evt.getPoint().x, evt.getPoint().y);
-                                }
-
-                            }
-                        });
-                        itemCheckOut.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-                                JOptionPane.showMessageDialog(panelSan, "Sân này chưa có người đá! Không thể Check Out!");
-                                jPopupMenu.setVisible(false);
-                            }
-                        });
-                        itemDatLich.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-                                showDetail(labelIdSanCa.getText());
-                                jPopupMenu.setVisible(false);
-                            }
-                        });
-                        JLabel labelCa = new JLabel(listSanCa.get(j).getTenCa());
-                        JLabel labelThoiGian = new JLabel(listSanCa.get(j).getThoiGianBatDau() + " : " + String.valueOf(listSanCa.get(j).getThoiGianKetThuc()));
-                        JLabel labelLoaiSan = new JLabel("Loại sân" + " " + listSanCa.get(j).getSucChua());
-                        labelCa.setForeground(Color.BLACK);
-                        labelCa.setFont(new Font("Tahoma", 1, 16));
-                        labelThoiGian.setForeground(Color.BLACK);
-                        labelThoiGian.setFont(new Font("Tahoma", 1, 12));
-                        labelLoaiSan.setForeground(Color.BLACK);
-                        labelLoaiSan.setFont(new Font("Tahoma", 1, 14));
-                        JLabel labelTrangThai = new JLabel(" Trạng thái: " + "Đang Trống");
-                        labelTrangThai.setForeground(Color.BLACK);
-                        labelTrangThai.setPreferredSize(new Dimension(160, 17));
-                        labelTrangThai.setFont(new Font("Tahoma", 1, 12));
-                        JLabel labelGiaSan = new JLabel("Giá: " + String.valueOf(listSanCa.get(j).getGiaCaSan()));
-                        labelGiaSan.setFont(new Font("Tahoma", 1, 12));
-                        labelGiaSan.setForeground(Color.BLACK);
-                        panelCa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-                        panelCa.add(labelCa);
-                        panelCa.add(labelThoiGian);
-                        panelCa.add(labelLoaiSan);
-                        panelCa.add(labelTrangThai);
-                        panelCa.add(labelGiaSan);
-                        listPaneCa.add(panelCa);
-                        panelSan.add(panelCa);
-                    }
-                }
-            }
-            PaneTong.add(panelSan);
-        }
-
-    }
-
-    private void showDetail(String idSanCa) {
-        Acount acount = new Acount(qLAcount.getId(), qLAcount.getMaAcount(), qLAcount.getTenAcount(), qLAcount.getChucVu(),
-                qLAcount.getMatKhau(), qLAcount.getMoTa(), qLAcount.getTrangThai());
-        QLSanCa qLSanCa = mapSanCa.get(idSanCa);
-        QLKhachHang khachHang = new QLKhachHang();
-        new FrmPhieuDatLich(khachHang, qLSanCa, acount).setVisible(true);
     }
 
     private void time() {
@@ -371,7 +152,6 @@ public class Home extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         searchText1 = new utill.SearchText();
-        lbReset = new javax.swing.JLabel();
 
         CheckQR.setText("Check QR Code");
         CheckQR.addActionListener(new java.awt.event.ActionListener() {
@@ -711,16 +491,6 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        lbReset.setBackground(new java.awt.Color(255, 153, 0));
-        lbReset.setForeground(new java.awt.Color(255, 153, 0));
-        lbReset.setIcon(new javax.swing.ImageIcon("D:\\DU_AN_1\\DU_AN_1\\src\\main\\java\\views\\icon\\refech.png")); // NOI18N
-        lbReset.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lbReset.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lbResetMouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -744,9 +514,7 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel19)
-                        .addGap(22, 22, 22)
-                        .addComponent(lbReset, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
+                        .addGap(92, 92, 92)
                         .addComponent(jDate, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -776,13 +544,12 @@ public class Home extends javax.swing.JFrame {
                                 .addComponent(jLabel19)
                                 .addGap(8, 8, 8))
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(searchText1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(searchText1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lbReset, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(18, 18, 18)))
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -940,12 +707,6 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_lbDichVu1MouseExited
 
-    private void lbResetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbResetMouseClicked
-
-        new Home(qLAcount).setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_lbResetMouseClicked
-
     private void lbHoaDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbHoaDMouseClicked
         new FrmHoaDon().setVisible(true);
     }//GEN-LAST:event_lbHoaDMouseClicked
@@ -1015,7 +776,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel lbLichSu;
     private static javax.swing.JLabel lbQLCa;
     private static javax.swing.JLabel lbQLSan;
-    private javax.swing.JLabel lbReset;
     private javax.swing.JLabel lbThongKe;
     private javax.swing.JLabel lbTime;
     private javax.swing.JScrollPane paneTong;
