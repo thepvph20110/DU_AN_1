@@ -171,8 +171,15 @@ public class JpnTrangChu extends javax.swing.JPanel {
                             jPopupMenu.setVisible(false);
                         }
                     });
+                     itemDoiLichDat.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            JOptionPane.showMessageDialog(panelTong, "đổi lịch");
+                            jPopupMenu.setVisible(false);
+                        }
+                    });
 
-                    customTrangThai(listSanCa.get(j).getTrangThai(), itemDatLich, panelCa, labelTrangThai);
+                    customTrangThai(listSanCa.get(j).getTrangThai(), itemDatLich, panelCa, labelTrangThai,itemDoiLichDat,itemCheckOut);
                     Time gioKT = new Time(listSanCa.get(j).getThoiGianKetThuc().getHours(), listSanCa.get(j).getThoiGianKetThuc().getMinutes(), listSanCa.get(j).getThoiGianKetThuc().getSeconds());
                     Time quaGio = new Time(now.getHours(), now.getMinutes(), now.getSeconds());
                     if (gioKT.getTime() < quaGio.getTime()) {
@@ -193,19 +200,26 @@ public class JpnTrangChu extends javax.swing.JPanel {
 
     }
 
-    private void customTrangThai(trangThaiSanCa ttSanCa, JMenuItem item, JPanel panel, JLabel label) {
+    private void customTrangThai(trangThaiSanCa ttSanCa, JMenuItem itemDatLich, JPanel panelSanCa, JLabel labelTrangThai,JMenuItem iTemDoiLich,JMenuItem itemCheckOut) {
         if (ttSanCa == trangThaiSanCa.CHO_NHAN_SAN) {
-            item.setEnabled(false);
-            label.setText(" Trạng thái: " + "Chờ nhận sân");
-            panel.setBackground(new Color(255, 255, 0));
+            itemCheckOut.setEnabled(false);
+            itemDatLich.setEnabled(false);
+            labelTrangThai.setText(" Trạng thái: " + "Chờ nhận sân");
+            panelSanCa.setBackground(new Color(255, 255, 0));
         } else if (ttSanCa == trangThaiSanCa.KHONG_TRONG) {
-            item.setEnabled(false);
+            itemDatLich.setEnabled(false);
 
-            label.setText(" Trạng thái: " + "Đang sử dụng");
+            labelTrangThai.setText(" Trạng thái: " + "Đang sử dụng");
             panel.setBackground(new Color(255, 0, 51));
+            iTemDoiLich.setEnabled(false);
+            itemDatLich.setEnabled(false);
+            labelTrangThai.setText(" Trạng thái: " + "Không trống");
+            panelSanCa.setBackground(new Color(255, 0, 51));
         } else {
-            label.setText(" Trạng thái: " + "Đang trống");
-            panel.setBackground(new Color(0, 153, 0));
+            itemCheckOut.setEnabled(false);
+            iTemDoiLich.setEnabled(false);
+            labelTrangThai.setText(" Trạng thái: " + "Đang trống");
+            panelSanCa.setBackground(new Color(0, 153, 0));
         }
     }
 

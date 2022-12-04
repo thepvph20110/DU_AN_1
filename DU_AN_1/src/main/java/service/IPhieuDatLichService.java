@@ -24,6 +24,8 @@ public interface IPhieuDatLichService {
     String delete(String id);
 
     List<PhieuDatLich> getPhieuDatLichByTT();
+    
+    List<PhieuDatLich> getPhieuDatLichBySDT(String sdt);
 
     String updateTrangThai(PhieuDatLich phieuDatLich);
 

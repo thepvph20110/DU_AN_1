@@ -200,9 +200,13 @@ public class Home extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+<<<<<<< HEAD
         searchText1 = new utill.SearchText();
         jButton2 = new javax.swing.JButton();
+=======
+>>>>>>> 06cf168b50427835d3e48ea6b286f03d615dfb3e
         panelTong = new javax.swing.JPanel();
+        lbMaQR = new javax.swing.JLabel();
 
         CheckQR.setText("Check QR Code");
         CheckQR.addActionListener(new java.awt.event.ActionListener() {
@@ -552,6 +556,16 @@ public class Home extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        lbMaQR.setBackground(new java.awt.Color(255, 255, 255));
+        lbMaQR.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbMaQR.setIcon(new javax.swing.ImageIcon("D:\\DU_AN_1\\DU_AN_1\\src\\main\\java\\views\\icon\\QR.png")); // NOI18N
+        lbMaQR.setOpaque(true);
+        lbMaQR.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbMaQRMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -561,9 +575,9 @@ public class Home extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(searchText1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(159, 159, 159)
+                        .addGap(139, 139, 139)
+                        .addComponent(lbMaQR, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(202, 202, 202)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
@@ -592,15 +606,26 @@ public class Home extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+<<<<<<< HEAD
                         .addGap(22, 22, 22)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(searchText1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+=======
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jDate, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel19)
+                                .addGap(8, 8, 8))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+>>>>>>> 06cf168b50427835d3e48ea6b286f03d615dfb3e
                                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
                                 .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+<<<<<<< HEAD
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel19)
                                 .addGap(8, 8, 8))))
@@ -615,6 +640,10 @@ public class Home extends javax.swing.JFrame {
                             .addComponent(jDate, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
                             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(18, 18, 18)
+=======
+                            .addComponent(lbMaQR, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)))
+>>>>>>> 06cf168b50427835d3e48ea6b286f03d615dfb3e
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelTong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -664,7 +693,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_lbDangXuatMouseEntered
 
     private void lbDangXuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDangXuatMouseClicked
-        int chon = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn thoát", null, JOptionPane.YES_NO_OPTION);
+        int chon = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn thoát", "Đăng Xuất", JOptionPane.YES_NO_OPTION);
         if (chon == 0) {
             this.dispose();
             new Detaillogin(null, true).setVisible(true);
@@ -748,7 +777,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_xoaActionPerformed
 
     private void lbLichSuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLichSuMouseClicked
-        new FrmLichSuDatSan().setVisible(true);
+//        new FrmLichSuDatSan().setVisible(true);
     }//GEN-LAST:event_lbLichSuMouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
@@ -757,11 +786,11 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void lbQLSanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbQLSanMouseClicked
-        new FrmSanBong().setVisible(true);
+//        new FrmSanBong().setVisible(true);
     }//GEN-LAST:event_lbQLSanMouseClicked
 
     private void lbQLCaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbQLCaMouseClicked
-        new FrmCa().setVisible(true);
+//        new FrmCa().setVisible(true);
     }//GEN-LAST:event_lbQLCaMouseClicked
 
     private void lbGiaoCaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbGiaoCaMouseEntered
@@ -777,7 +806,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_lbHoaDMouseClicked
 
     private void lbLichDatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLichDatMouseClicked
-        new FrmSanCa().setVisible(true);
+//        new FrmSanCa().setVisible(true);
     }//GEN-LAST:event_lbLichDatMouseClicked
 
     private void jDatePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDatePropertyChange
@@ -807,6 +836,11 @@ public class Home extends javax.swing.JFrame {
             }
         }
     }
+    private void lbMaQRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbMaQRMouseClicked
+        // TODO add your handling code here:
+        new WebCam(qLAcount,panelTong,this.lbHome).setVisible(true);
+    }//GEN-LAST:event_lbMaQRMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -836,12 +870,12 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel lbHome;
     private static javax.swing.JLabel lbLichDat;
     private javax.swing.JLabel lbLichSu;
+    private javax.swing.JLabel lbMaQR;
     private static javax.swing.JLabel lbQLCa;
     private static javax.swing.JLabel lbQLSan;
     private javax.swing.JLabel lbThongKe;
     private javax.swing.JLabel lbTime;
     private javax.swing.JPanel panelTong;
-    private utill.SearchText searchText1;
     private javax.swing.JMenuItem trangThai;
     private javax.swing.JMenuItem xoa;
     // End of variables declaration//GEN-END:variables

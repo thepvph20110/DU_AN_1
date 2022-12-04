@@ -1132,7 +1132,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
             if (new HoaDonPhuPhiServiceImpl().save(hoaDon_PhuPhi)) {
                 JOptionPane.showMessageDialog(rootPane, "Thêm Thành Công");
             } else {
-                JOptionPane.showMessageDialog(rootPane, "Thêm That Bai");
+                JOptionPane.showMessageDialog(rootPane, "Thêm Thất Bại");
             }
         }
         txtTongTien.setText(String.valueOf(fillGia()));

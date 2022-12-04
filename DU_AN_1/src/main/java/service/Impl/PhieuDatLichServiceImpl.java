@@ -102,7 +102,17 @@ public class PhieuDatLichServiceImpl implements IPhieuDatLichService {
     }
 
     @Override
+
     public PhieuDatLich getPhieuDatLich(String id) {
         return phieuRepo.getByIdSanCa(id);
+    }
+
+    @Override
+    public List<PhieuDatLich> getPhieuDatLichBySDT(String sdt) {
+        List<PhieuDatLich> list = phieuRepo.getPhieuDatLichBySDT(sdt);
+        if (list != null) {
+            return list;
+        }
+        return null;
     }
 }

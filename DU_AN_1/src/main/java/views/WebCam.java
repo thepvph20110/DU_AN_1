@@ -166,6 +166,8 @@ public class WebCam extends javax.swing.JFrame implements Runnable, ThreadFactor
             if (result != null) {
                 if(!map.containsKey(result.getText())){
                     JOptionPane.showMessageDialog(webcamPanel, "Không tìm thấy lịch đặt");
+                    webCam.close();
+                    this.dispose();
                     return;
                 }
                 PhieuDatLich phieuDatLich = map.get(result.getText()); 
