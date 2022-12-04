@@ -15,7 +15,9 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -75,7 +77,7 @@ public class JpnTrangChu extends javax.swing.JPanel {
      */
     public JpnTrangChu(QLAcount qLAcount, JLabel lbHome, JPanel pnTong) {
         initComponents();
-        listSanCa = sanCaService.getAll();
+        listSanCa = sanCaService.getAll(new Date());
         listSanBong = sanBongService.getAll();
         this.qLAcount = qLAcount;
         labelHome = lbHome;
@@ -91,15 +93,13 @@ public class JpnTrangChu extends javax.swing.JPanel {
 
     private void showThanhToan(String id) {
         QLHoaDon hoaDon = mapQLHoaDon.get(id);
-
-        System.out.println("aaa12333434:" + id);
         new FrmThanhToan(hoaDon).setVisible(true);
 
     }
 
     public void AddSan() {
         panelTong.setLayout(new GridLayout(10000, 1, 20, 20));
-
+        Date now = new Date();
         for (int i = 0; i < listSanBong.size(); i++) {
             TitledBorder border = new TitledBorder(listSanBong.get(i).getTenSanBong());
             JPanel panelSan = new JPanel();
@@ -116,6 +116,7 @@ public class JpnTrangChu extends javax.swing.JPanel {
                     jPopupMenu.add(itemCheckOut);
                     jPopupMenu.add(itemDoiLichDat);
                     JPanel panelCa = new JPanel();
+
                     panelCa.setLayout(new FlowLayout());
                     panelCa.setPreferredSize(new Dimension(174, 254));
                     panelCa.setComponentPopupMenu(jPopupMenu);
@@ -172,7 +173,11 @@ public class JpnTrangChu extends javax.swing.JPanel {
                     });
 
                     customTrangThai(listSanCa.get(j).getTrangThai(), itemDatLich, panelCa, labelTrangThai);
-
+                    Time gioKT = new Time(listSanCa.get(j).getThoiGianKetThuc().getHours(), listSanCa.get(j).getThoiGianKetThuc().getMinutes(), listSanCa.get(j).getThoiGianKetThuc().getSeconds());
+                    Time quaGio = new Time(now.getHours(), now.getMinutes(), now.getSeconds());
+                    if (gioKT.getTime() < quaGio.getTime()) {
+                        panelCa.setBackground(Color.white);
+                    }
                     panelCa.add(labelCa);
                     panelCa.add(labelThoiGian);
                     panelCa.add(labelLoaiSan);

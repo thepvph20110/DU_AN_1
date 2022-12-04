@@ -39,7 +39,7 @@ public class SanCaServiceImpl implements ISanCaService {
     private List<SanCa> lisSanCaDomain = new ArrayList<>();
 
     @Override
-    public List<QLSanCa> getAll() {
+    public List<QLSanCa> getAll(Date ngayTao) {
         List<Ca> listQLCa = ica.getAll();
         List<SanBong> listSanBong = isb.getAll();
         listQLSanCa.clear();
@@ -56,7 +56,7 @@ public class SanCaServiceImpl implements ISanCaService {
             map.put(String.valueOf(ca.getThoiGianBatDau()), ca);
             map.put(String.valueOf(ca.getThoiGianKetThuc()), ca);
         }
-        for (SanCa sanCa : re.getAll()) {
+        for (SanCa sanCa : re.getAll(new Date())) {
             QLSanCa qLSanCa = new QLSanCa(sanCa.getId(), sanCa.getCa().getTenCa(), sanCa.getSanbong().getTenSanBong(), sanCa.getSanbong().getSucChua(), sanCa.getCa().getThoiGianBatDau(), sanCa.getCa().getThoiGianKetThuc(), sanCa.getNgayTao(), sanCa.getSanbong().getGiaSan() + sanCa.getCa().getGiaCa(), sanCa.getTrangThai());
             listQLSanCa.add(qLSanCa);
         }
@@ -172,7 +172,7 @@ public class SanCaServiceImpl implements ISanCaService {
 
     @Override
     public List<QLSanCa> getByNgayTao(Date ngayTao) {
-        List<QLSanCa> listQlSC= new ArrayList<>();
+        List<QLSanCa> listQlSC = new ArrayList<>();
         for (SanCa sanCa : re.getByNgayTao(ngayTao)) {
             QLSanCa qLSanCa = new QLSanCa(sanCa.getId(), sanCa.getCa().getTenCa(), sanCa.getSanbong().getTenSanBong(), sanCa.getSanbong().getSucChua(), sanCa.getCa().getThoiGianBatDau(), sanCa.getCa().getThoiGianKetThuc(), sanCa.getNgayTao(), sanCa.getGiaSanCa(), sanCa.getTrangThai());
             listQlSC.add(qLSanCa);

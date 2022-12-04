@@ -17,7 +17,7 @@ public interface ISanCaService {
 
     SanCa getOne();
 
-    List<QLSanCa> getAll();
+    List<QLSanCa> getAll(Date ngayTao);
 
     String save(QLSanCa qLSanCa);
 

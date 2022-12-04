@@ -16,7 +16,7 @@ public interface ISanCaRepository {
 
     SanCa getOne();
 
-    List<SanCa> getAll();
+    List<SanCa> getAll(Date ngayTao);
 
     boolean update(SanCa sanCa);
 

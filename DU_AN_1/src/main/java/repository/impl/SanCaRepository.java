@@ -26,17 +26,20 @@ import utill.HibernateConfig;
 public class SanCaRepository implements ISanCaRepository {
 
     @Override
-    public List<SanCa> getAll() {
-        String hql = "From SanCa sc order by sc.ca.tenCa";
+    public List<SanCa> getAll(Date ngayTao) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        String ngayDen = format.format(new Date());
+
         try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
-            Query q = session.createQuery(hql);
+            Date da = format.parse(ngayDen);
+            String hql = "From SanCa sc WHERE sc.ngayTao = :ngayDen order by sc.ca.tenCa";
+            Query q = session.createQuery(hql).setParameter("ngayDen", da);
             return q.getResultList();
-        } catch (Exception e) {
-            e.printStackTrace(System.out);
+        } catch (ParseException ex) {
+            Logger.getLogger(SanCaRepository.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
-
     @Override
     public boolean update(SanCa sanCa) {
         boolean check;
@@ -132,20 +135,5 @@ public class SanCaRepository implements ISanCaRepository {
             e.printStackTrace(System.out);
         }
         return null;
-    }
-
-    public static void main(String[] args) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            Date ngayTao = dateFormat.parse("2022-12-04");
-//            String d = dateFormat.format(ngayTao);
-//            System.out.println(dateFormat.format(ngayTao));
-//            String a = String.valueOf(dateFormat.format(ngayTao));
-//            System.out.println(a);
-            System.out.println(new SanCaRepository().getByNgayTao(ngayTao));
-        } catch (ParseException ex) {
-            Logger.getLogger(SanCaRepository.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
     }
 }

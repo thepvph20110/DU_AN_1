@@ -49,7 +49,7 @@ import service.Impl.SanCaServiceImpl;
  * @author DANG VAN SY
  */
 public class Home extends javax.swing.JFrame {
-    
+
     private QLAcount qLAcount;
     private Map<String, QLSanCa> mapSanCa = new HashMap<>();
     private Map<String, QLHoaDon> mapQLHoaDon = new HashMap<>();
@@ -62,7 +62,7 @@ public class Home extends javax.swing.JFrame {
     private ISanCaService sanCaService = new SanCaServiceImpl();
     private List<QLSanBong> listSanBong = new ArrayList<>();
     private List<QLCa> listCa = new ArrayList<>();
-    
+
     public Home(QLAcount qLAcount) {
         initComponents();
         this.setExtendedState(this.MAXIMIZED_BOTH);
@@ -76,8 +76,7 @@ public class Home extends javax.swing.JFrame {
             createSanCaFollowDate(ngayTHanhTOan1);
         } catch (Exception e) {
         }
-        
-        
+
         for (PhieuDatLich phieuDatLich : phieuDatLichService.getPhieuDatLichByTT()) {
             map.put(phieuDatLich.getKhachHang().getSoDienThoai(), phieuDatLich);
         }
@@ -85,21 +84,34 @@ public class Home extends javax.swing.JFrame {
             mapQLHoaDon.put(qLHoaDon.getPhieuDatLich().getId(), qLHoaDon);
         }
         displayHome();
+        phanQuyen();
     }
-    
+
+    private void phanQuyen() {
+        if (qLAcount.getChucVu().getTenChucVu().equals("Quản Lý Sân")) {
+            lbThongKe.show(false);
+            lbQLCa.show(false);
+            lbQLSan.show(false);
+        } else {
+            lbThongKe.show(true);
+            lbQLCa.show(true);
+            lbQLSan.show(true);
+        }
+    }
+
     private void showThanhToan(String id) {
         QLHoaDon hoaDon = mapQLHoaDon.get(id);
         new FrmThanhToan(hoaDon).setVisible(true);
-        
+
         for (PhieuDatLich phieuDatLich : phieuDatLichService.getPhieuDatLichByTT()) {
             map.put(phieuDatLich.getKhachHang().getSoDienThoai(), phieuDatLich);
         }
     }
-    
+
     public void displayHome() {
         HomeController conTrolerHome = new HomeController(panelTong, this.qLAcount);
         conTrolerHome.setView(this.lbHome);
-        
+
         List<DanhMuc> listItem = new ArrayList<>();
         listItem.add(new DanhMuc("TrangChu", lbHome));
         listItem.add(new DanhMuc("LichDat", lbLichDat));
@@ -110,17 +122,17 @@ public class Home extends javax.swing.JFrame {
         listItem.add(new DanhMuc("HoaDon", lbHoaD));
         listItem.add(new DanhMuc("LichSu", lbLichSu));
         listItem.add(new DanhMuc("ThongKe", lbThongKe));
-        
+
         conTrolerHome.setEvent(listItem);
     }
-    
+
     private void time() {
         Date date = new Date();
         lbTime.setText(date.toString());
         jDate.setBackground(new Color(22, 69, 62));
         jDate.setDate(date);
     }
-    
+
     public void showDongHo() {
         Thread t = new Thread() {
             public void run() {
@@ -155,7 +167,7 @@ public class Home extends javax.swing.JFrame {
         };
         t.start();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

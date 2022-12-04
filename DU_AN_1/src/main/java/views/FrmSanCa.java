@@ -51,7 +51,7 @@ public class FrmSanCa extends javax.swing.JFrame {
         dtm.setColumnIdentifiers(header);
         listQLCa = iCaService.getAll();
         listQLSanBong = iSanBongService.getAll();
-        listQLSanCa = iSanCaService.getAll();
+        listQLSanCa = iSanCaService.getAll(new Date());
         //listQLPhieuDatLich = 
         loadCbbCa();
         loadCbbSanBong();
@@ -270,7 +270,7 @@ public class FrmSanCa extends javax.swing.JFrame {
         String tenca = cbbCa.getSelectedItem() + "";
         QLSanCa qlsc = new QLSanCa(null, tenca, tenSanBong, 0, null, null, new Date(), 0, qLSanCa.getTrangThai());
         JOptionPane.showMessageDialog(this, iSanCaService.save(qlsc));
-        listQLSanCa = iSanCaService.getAll();
+        listQLSanCa = iSanCaService.getAll(new Date());
         showData(listQLSanCa);
         //}
 
@@ -292,7 +292,7 @@ public class FrmSanCa extends javax.swing.JFrame {
         }
         QLSanCa qlsc = new QLSanCa(mountClick().getId(), tenca, tenSanBong, 0, null, null, new Date(), 0, qLSanCa.getTrangThai());
         JOptionPane.showMessageDialog(this, iSanCaService.update(qlsc));
-        listQLSanCa = iSanCaService.getAll();
+        listQLSanCa = iSanCaService.getAll(new Date());
         showData(listQLSanCa);
 
     }//GEN-LAST:event_btnUpdateActionPerformed
@@ -312,7 +312,7 @@ public class FrmSanCa extends javax.swing.JFrame {
         }
         QLSanCa qlsc = new QLSanCa(mountClick().getId(), tenca, tenSanBong, 0, null, null, new Date(), 0, qLSanCa.getTrangThai());
         JOptionPane.showMessageDialog(this, iSanCaService.delete(qlsc));
-        listQLSanCa = iSanCaService.getAll();
+        listQLSanCa = iSanCaService.getAll(new Date());
         showData(listQLSanCa);
 
 

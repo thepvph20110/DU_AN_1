@@ -55,7 +55,7 @@ public class AddPhieuDatLich extends javax.swing.JFrame {
         dtm.setColumnIdentifiers(header);
         listAcount = iAcountService.getAll();
         listKhachHang = iKhachHangService.getAll();
-        listQLSanCa = iSanCaService.getAll();
+        listQLSanCa = iSanCaService.getAll(new Date());
         listPhieuDatLich = iPhieuDatLichService.getAll();
         loadCbbAcount();
         loadCbbKhachHang();
