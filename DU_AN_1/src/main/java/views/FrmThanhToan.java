@@ -309,11 +309,10 @@ public class FrmThanhToan extends javax.swing.JFrame {
             itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
             itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
             itemTable.addCell(new Cell().add("Chi Phí Phát Sinh ").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER).setFontColor(Color.WHITE));
-            if (txtGiaPhuPhi.getText() != null) {
+            if (txtGiaPhuPhi.getText() == null) {
                 itemTable.addCell(new Cell().add("" + txtGiaPhuPhi.getText()).setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER).setFontColor(Color.WHITE));
             } else {
-                int GiaPhuPhi = 0;
-                itemTable.addCell(new Cell().add("" + GiaPhuPhi).setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER).setFontColor(Color.WHITE));
+                itemTable.addCell(new Cell().add("0"  ).setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER).setFontColor(Color.WHITE));
             }
             itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
             itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
