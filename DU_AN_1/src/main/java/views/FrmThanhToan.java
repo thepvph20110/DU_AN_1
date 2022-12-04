@@ -204,7 +204,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
         }
     }
 
-    public String createFilePDF() {
+    public boolean createFilePDF() {
         String headerPDF[] = {"Mã", "Tên", "Số Lượng", "Giá", "Thành Tiền"};
 //        String headerTBDichVu[] = {"Mã", "Tên", "Số Lượng", "Giá", "Thành Tiền"};
         String diaChi = "";
@@ -213,6 +213,9 @@ public class FrmThanhToan extends javax.swing.JFrame {
         int x = j.showSaveDialog(this);
         if (x == JFileChooser.APPROVE_OPTION) {
             diaChi = j.getSelectedFile().getPath();
+        }
+        if (x == JFileChooser.CANCEL_OPTION) {
+            return false;
         }
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
@@ -326,10 +329,10 @@ public class FrmThanhToan extends javax.swing.JFrame {
             document.add(new Paragraph("\n"));
             document.add(new Paragraph("Cảm Ơn Quý Khách !!!!").setFont(font));
             document.close();
-            return "Xuất File Thành Công";
+            return true;
         } catch (Exception e) {
             e.printStackTrace(System.out);
-            return "Xuất File Không Thành Công";
+            return false;
         }
     }
 
@@ -875,7 +878,15 @@ public class FrmThanhToan extends javax.swing.JFrame {
 
     private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
         // TODO add your handling code here:
-        int confirm = JOptionPane.showConfirmDialog(rootPane, "Ban Có Muốn Thanh Toán Và In Hóa Đơn ???", "Thông Báo", JOptionPane.YES_NO_OPTION);
+
+        Object[] options = {"In Hóa Đơn", "Không In Hóa Đơn", "Cancel"};
+        int confirm = JOptionPane.showOptionDialog(this,
+                "Bạn Có Muốn In Hóa Đơn Không?", "Xác Nhận", JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null, //do not use a custom Icon
+                options, //the titles of buttons
+                options[0]);
+//        int confirm = JOptionPane.showConfirmDialog(rootPane, "Ban Có Muốn Thanh Toán Và In Hóa Đơn ???", "Thông Báo", JOptionPane.YES_NO_OPTION);
         if (confirm == 0) {
             HoaDon hoaDon = iHoaDonService.findByHoaDonId(qLHoaDon.getId());
             if (jcbThanhToan.getSelectedItem() == loaiHinhThanhToan.Chuyen_Khoan) {
@@ -884,7 +895,11 @@ public class FrmThanhToan extends javax.swing.JFrame {
                         ThanhToan tt = new ThanhToanRepository().findOneByTrangThai(loaiHinhThanhToan.Chuyen_Khoan);
                         HoaDonThanhToan hdtt = new HoaDonThanhToan(null, "HDTT003", hoaDon, tt, giaCa, null);
                         new HoaDonThanhToanRepositoryImpl().saveOrUpdate(hdtt);
-                        JOptionPane.showMessageDialog(this, createFilePDF());
+                        if (createFilePDF() == true) {
+                            JOptionPane.showMessageDialog(rootPane, "Lưu Hóa Đơn Thành Công");
+                        } else {
+                            return;
+                        }
                     } else {
                         JOptionPane.showMessageDialog(rootPane, "Không được nhập khí tự");
                         return;
@@ -899,7 +914,11 @@ public class FrmThanhToan extends javax.swing.JFrame {
                         ThanhToan tt = new ThanhToanRepository().findOneByTrangThai(loaiHinhThanhToan.Tien_Mat);
                         HoaDonThanhToan hdtt = new HoaDonThanhToan(null, "HDTT003", hoaDon, tt, giaCa, null);
                         new HoaDonThanhToanRepositoryImpl().saveOrUpdate(hdtt);
-                        JOptionPane.showMessageDialog(this, createFilePDF());
+                        if (createFilePDF() == true) {
+                            JOptionPane.showMessageDialog(rootPane, "Lưu Hóa Đơn Thành Công");
+                        } else {
+                            return;
+                        }
                     } else {
                         JOptionPane.showMessageDialog(rootPane, "Không được nhập khí tự ");
                         return;
@@ -920,6 +939,12 @@ public class FrmThanhToan extends javax.swing.JFrame {
             FrmHoaDon frmHoaDon = new FrmHoaDon();
             frmHoaDon.setVisible(true);
             this.dispose();
+        } else if (confirm == 1) {
+            JOptionPane.showMessageDialog(rootPane, "Bạn Đã Chọn không In hóa đơn");
+            return;
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Bạn Đã Chọn Hủy Bỏ Không In Hóa Đơn");
+            return;
         }
     }//GEN-LAST:event_btnThanhToanActionPerformed
 
