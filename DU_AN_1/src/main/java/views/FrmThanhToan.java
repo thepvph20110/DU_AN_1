@@ -288,7 +288,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
                     itemTable.addCell("" + jtbChiTietDichVu.getValueAt(v, y).toString());
                 }
             }
-//            itemTable.addCell("");
+            itemTable.addCell("");
 
             List<QLHoaDon> qlHoaDons = iHoaDonService.getAll();
             String maSan = null;
@@ -973,11 +973,11 @@ public class FrmThanhToan extends javax.swing.JFrame {
     private void jMenuXoaDichVuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuXoaDichVuActionPerformed
         // TODO add your handling code here:
         DichVu dichVu = dichVuRepository.findByIdHoaDon(qLHoaDon.getId()).get(jtbChiTietDichVu.getSelectedRow());
-//        if (dichVuRepository.delete(dichVu.getId())) {
-//            JOptionPane.showMessageDialog(rootPane, "Xóa Thành Công");
-//            addDataRowDichVu(dichVuRepository.findByIdHoaDon(qLHoaDon.getId()));
-//            txtTongTien.setText(String.valueOf(fillGia()));
-//        }
+        if (dichVuRepository.delete(dichVu.getId())) {
+            JOptionPane.showMessageDialog(rootPane, "Xóa Thành Công");
+            addDataRowDichVu(dichVuRepository.findByIdHoaDon(qLHoaDon.getId()));
+            txtTongTien.setText(String.valueOf(fillGia()));
+        }
     }//GEN-LAST:event_jMenuXoaDichVuActionPerformed
 
     private void btnThanhToan1ActionPerformed(java.awt.event.ActionEvent evt) {                                              
@@ -1120,7 +1120,6 @@ public class FrmThanhToan extends javax.swing.JFrame {
 
     private void btnAddPPActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
-
         DichVu dichVu = dichVuRepository.findByIdHoaDon(qLHoaDon.getId()).get(jtbChiTietDichVu.getSelectedRow());
         if (dichVuRepository.delete(dichVu.getId())) {
             JOptionPane.showMessageDialog(rootPane, "Xóa Thành Công");
@@ -1158,6 +1157,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
         }
         txtTongTien.setText(String.valueOf(fillGia()));
     }//GEN-LAST:event_jMenuSuaSoLuongActionPerformed
+}
 
     private void btnAddPhuPhiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPhuPhiActionPerformed
         // TODO add your handling code here
