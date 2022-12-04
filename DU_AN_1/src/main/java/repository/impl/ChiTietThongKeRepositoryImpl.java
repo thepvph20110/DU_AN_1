@@ -106,19 +106,6 @@ public class ChiTietThongKeRepositoryImpl implements IChiTietThongKeRepository {
         return listDVs;
     }
 
-//    public ChiTietTongTienTheoNgayResponse searchByDate() {
-//        ChiTietTongTienTheoNgayResponse chiTietTongTienTheoNgayResponse = null;
-//        String sql = "Select Sum(hd.tongTien) as tongtien,Day(hd.ngayThanhToan) as ngay,Month(hd.ngayThanhToan) as thang , year(hd.ngayThanhToan) as nam from HoaDon hd where Day(hd.ngayThanhToan) = DAY(GETDATE()) And Month(hd.ngayThanhToan) = MONTH(GETDATE()) and"
-//                + " year(hd.ngayThanhToan) = YEAR(GETDATE()) And hd.trangThai = 1 Group by day(hd.ngayThanhToan),month(hd.ngayThanhToan),year(hd.ngayThanhToan)";
-//        try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
-//            chiTietTongTienTheoNgayResponse = (ChiTietTongTienTheoNgayResponse) session.createNativeQuery(sql).setResultTransformer(
-//                    Transformers.aliasToBean(ChiTietTongTienTheoNgayResponse.class)).getSingleResult();
-//            return chiTietTongTienTheoNgayResponse;
-//        } catch (Exception e) {
-//            System.out.println("No Entity Found!!!");
-//        }
-//        return chiTietTongTienTheoNgayResponse;
-//    }
     //get by date
     @Override
     public ChiTietTongTienTheoNgayResponse chiTietTongTienByDate(Date date) {
@@ -132,7 +119,7 @@ public class ChiTietThongKeRepositoryImpl implements IChiTietThongKeRepository {
                     Transformers.aliasToBean(ChiTietTongTienTheoNgayResponse.class)).getSingleResult();
             return chiTietTongTienTheoNgayResponse;
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("No Entity Found !!");
         }
         return null;
     }
@@ -204,7 +191,7 @@ public class ChiTietThongKeRepositoryImpl implements IChiTietThongKeRepository {
             LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             listDVs = session.createSQLQuery(sql).
                     setParameter("day", String.valueOf(localDate.getDayOfMonth())).setParameter("month", String.valueOf(localDate.getMonthValue())).setParameter("year", String.valueOf(localDate.getYear())).setResultTransformer(
-                    Transformers.aliasToBean(ChiTietDichVuRespone.class)).list();
+                    Transformers.aliasToBean(ChiTietDoThueResponse.class)).list();
             return listDVs;
         } catch (Exception e) {
             e.printStackTrace(System.out);

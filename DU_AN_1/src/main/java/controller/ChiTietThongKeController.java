@@ -29,7 +29,7 @@ public class ChiTietThongKeController {
 
     public void thongKeNuocUong(JPanel jpnItem) {
         List<ChiTietDichVuRespone> listItem = chiTietThongKeService.thongKeNuocUong();
-        if (listItem.size() > 0) {
+        if (listItem.size() > 0 || listItem != null) {
             double tongTien = 0;
             DefaultCategoryDataset dataset = new DefaultCategoryDataset();
             for (ChiTietDichVuRespone chiTietDichVuRespone : listItem) {
@@ -69,7 +69,7 @@ public class ChiTietThongKeController {
 
     public void thongKeDoThue(JPanel jpnItem) {
         List<ChiTietDoThueResponse> listItem = chiTietThongKeService.thongKeDoThue();
-        if (listItem.size() > 0) {
+        if (listItem.size() > 0 || listItem != null) {
             double tongTien = 0;
             DefaultCategoryDataset dataset = new DefaultCategoryDataset();
             for (ChiTietDoThueResponse chiTietDichVuRespone : listItem) {
@@ -110,7 +110,7 @@ public class ChiTietThongKeController {
     //By date
     public void thongKeNuocUongByDate(JPanel jpnItem,Date date) {
         List<ChiTietDichVuRespone> listItem = chiTietThongKeService.thongKeNuocUongByDate(date);
-        if (listItem.size() > 0) {
+        if (listItem.size() > 0 || listItem != null) {
             double tongTien = 0;
             DefaultCategoryDataset dataset = new DefaultCategoryDataset();
             for (ChiTietDichVuRespone chiTietDichVuRespone : listItem) {
@@ -150,7 +150,7 @@ public class ChiTietThongKeController {
 
     public void thongKeDoThueByDate(JPanel jpnItem,Date date) {
         List<ChiTietDoThueResponse> listItem = chiTietThongKeService.thongKeDoThueByDate(date);
-        if (listItem.size() > 0) {
+        if (listItem.size() > 0 || listItem != null) {
             double tongTien = 0;
             DefaultCategoryDataset dataset = new DefaultCategoryDataset();
             for (ChiTietDoThueResponse chiTietDichVuRespone : listItem) {

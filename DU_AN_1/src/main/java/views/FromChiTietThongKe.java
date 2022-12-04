@@ -89,9 +89,8 @@ public class FromChiTietThongKe extends javax.swing.JFrame {
         clearText();
         if (chiTietTongTienTheoNgayResponse == null) {
             txtBagCash.setText(txtBagCash.getText() + " " + "0.0");
-            Date date1 = Calendar.getInstance().getTime();
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-            String strDate = dateFormat.format(date1);
+            String strDate = dateFormat.format(date);
             txtTongTienCuaNgay.setText(txtTongTienCuaNgay.getText() + " " + strDate);
         } else {
             txtBagCash.setText(txtBagCash.getText() + " " + String.valueOf(chiTietTongTienTheoNgayResponse.getTongtien()));
@@ -102,9 +101,8 @@ public class FromChiTietThongKe extends javax.swing.JFrame {
         ChiTietTongTienTheoNgayResponse tongTienMat = chiTietThongKeService.getTongTienMatByDate(date);
         if (tongTienMat == null) {
             txtCash.setText(txtCash.getText() + " " + "0.0");
-            Date date1 = Calendar.getInstance().getTime();
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-            String strDate = dateFormat.format(date1);
+            String strDate = dateFormat.format(date);
             txtTienMat.setText(txtTienMat.getText() + " " + strDate);
         } else {
             txtCash.setText(txtCash.getText() + " " + String.valueOf(tongTienMat.getTongtien()));
@@ -115,9 +113,8 @@ public class FromChiTietThongKe extends javax.swing.JFrame {
         ChiTietTongTienTheoNgayResponse tongNganHang = chiTietThongKeService.getTongTienNganHangByDate(date);
         if (tongNganHang == null) {
             txtCreditCash.setText(txtCreditCash.getText() + " " + "0.0");
-            Date date1 = Calendar.getInstance().getTime();
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-            String strDate = dateFormat.format(date1);
+            String strDate = dateFormat.format(date);
             txtNganHang.setText(txtNganHang.getText() + " " + strDate);
         } else {
             txtCreditCash.setText(txtCreditCash.getText() + " " + String.valueOf(tongNganHang.getTongtien()));
@@ -326,7 +323,7 @@ public class FromChiTietThongKe extends javax.swing.JFrame {
         );
         jpn2Layout.setVerticalGroup(
             jpn2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 393, Short.MAX_VALUE)
+            .addGap(0, 440, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -358,7 +355,7 @@ public class FromChiTietThongKe extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65))
+                .addGap(56, 56, 56))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -367,10 +364,9 @@ public class FromChiTietThongKe extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(24, 24, 24)
+                .addComponent(jButton2))
         );
 
         pack();
