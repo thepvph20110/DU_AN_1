@@ -11,6 +11,7 @@ import java.awt.event.MouseListener;
 import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import modelview.QLAcount;
 import views.Home;
 import views.JpnCheckIn;
 import views.JpnDichVu;
@@ -31,18 +32,22 @@ public class HomeController {
     private JPanel root;
     private String kindSelected = "";
     private List<DanhMuc> listDanhMuc;
+    private QLAcount qLAcount;
+    private JLabel labelHome;
 
-    public HomeController(JPanel JPnRoot) {
+    public HomeController(JPanel JPnRoot, QLAcount qLAcount) {
         this.root = JPnRoot;
+        this.qLAcount = qLAcount;
     }
 
     public HomeController() {
     }
 
     public void setView(JLabel jblItem) {
+        labelHome = jblItem;
         // mặc định cái được chọn là trang chu jpanel 
         kindSelected = "TrangChu";
-        JpnTrangChu nood = new JpnTrangChu();
+        JpnTrangChu nood = new JpnTrangChu(qLAcount, jblItem, root);
         root.removeAll();
         root.setLayout(new BorderLayout());
         root.add(nood);
@@ -72,7 +77,7 @@ public class HomeController {
         public void mouseClicked(MouseEvent e) {
             switch (kind) {
                 case "TrangChu":
-                    node = new JpnTrangChu();
+                    node = new JpnTrangChu(qLAcount, labelHome, root);
                     break;
                 case "LichDat":
                     node = new JpnLichDat();

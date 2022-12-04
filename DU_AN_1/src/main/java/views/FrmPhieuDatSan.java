@@ -4,13 +4,17 @@
  */
 package views;
 
+import controller.HomeController;
 import domainmodel.PhieuDatLich;
 import domainmodel.SanCa;
 import enumclass.trangThaiHoaDon;
 import enumclass.trangThaiPhieuDL;
 import enumclass.trangThaiSanCa;
 import java.util.UUID;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import modelview.QLAcount;
 import modelview.QLHoaDon;
 import modelview.QLSanCa;
 import repository.impl.SanCaRepository;
@@ -27,11 +31,16 @@ public class FrmPhieuDatSan extends javax.swing.JFrame {
     private IPhieuDatLichService phieuDatLichService = new PhieuDatLichServiceImpl();
     private ISanCaService sanCaService = new SanCaServiceImpl();
     private IHoaDonService hoaDonService = new HoaDonServiceImpl();
+    private QLAcount qLAcount;
+    private JPanel pnTong;
+    private JLabel lbHome;
     
-    public FrmPhieuDatSan(PhieuDatLich phieuDatLich) {
+    public FrmPhieuDatSan(PhieuDatLich phieuDatLich,QLAcount qLAcount,JPanel pnTong, JLabel lbHome) {
         initComponents();
         phieuDL = phieuDatLich;
-        
+        this.qLAcount =qLAcount;
+        this.pnTong= pnTong;
+        this.lbHome= lbHome;
         lblTenKhachHang.setText(phieuDL.getKhachHang().getTenKhachHang());
         lblThoiGianCa.setText(String.valueOf(phieuDL.getSanCa().getCa().getThoiGianBatDau()) + " - " + String.valueOf(phieuDL.getSanCa().getCa().getThoiGianKetThuc()));
         lblTenSanBong.setText(phieuDL.getSanCa().getSanbong().getTenSanBong());
@@ -271,13 +280,12 @@ public class FrmPhieuDatSan extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Nhận sân thành công");
             }
             SanCa sanCa = phieuDL.getSanCa();
-//            QLSanCa qLSanCa = new QLSanCa(sanCa.getId(), sanCa.getCa().getTenCa(), sanCa.getSanbong().getTenSanBong(), sanCa.getSanbong().getSucChua(), sanCa.getCa().getThoiGianBatDau(), sanCa.getCa().getThoiGianKetThuc(),
-//                    sanCa.getNgayTao(), sanCa.getGiaSanCa(),sanCa.getTrangThai());
-//            qLSanCa.setTrangThai(trangThaiSanCa.KHONG_TRONG);
             sanCa.setTrangThai(trangThaiSanCa.KHONG_TRONG);
             new SanCaRepository().update(sanCa);
             QLHoaDon qLHoaDon = new QLHoaDon(null, "HD005", phieuDL, null, null, null, phieuDL.getTongTienSan(), phieuDL.getTongTienSan(), null, trangThaiHoaDon.CHUA_THANH_TOAN);
             hoaDonService.save(qLHoaDon);
+            HomeController homeController = new HomeController(pnTong, qLAcount);
+            homeController.setView(lbHome);
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Nhận Sân Không Thành Công");

@@ -11,7 +11,9 @@ import enumclass.trangThaiKhachHang;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import modelview.QLAcount;
 import modelview.QLKhachHang;
@@ -30,12 +32,16 @@ public class FrmKhachHang extends javax.swing.JFrame {
     private DefaultTableModel dtm = new DefaultTableModel();
     private QLSanCa sanCa = new QLSanCa();
     private Acount acount = new Acount();
+    private JLabel labelHome;
+    private JPanel pnTong;
 
     /**
      * Creates new form FrmKhachHang
      */
-    public FrmKhachHang(QLSanCa sanCa, Acount acountEntity) {
+    public FrmKhachHang(QLSanCa sanCa, Acount acountEntity,JLabel labHome,JPanel pnTong) {
         initComponents();
+        this.labelHome =labHome;
+        this.pnTong= pnTong;
         acount = acountEntity;
         this.sanCa = sanCa;
         jTable1.setModel(dtm);
@@ -76,8 +82,10 @@ public class FrmKhachHang extends javax.swing.JFrame {
         txtEmail = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtSearch = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jLabel1.setText("Mã khách hàng");
 
@@ -143,9 +151,21 @@ public class FrmKhachHang extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setText("Search");
 
+        txtSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearchActionPerformed(evt);
+            }
+        });
         txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtSearchKeyReleased(evt);
+            }
+        });
+
+        jButton1.setText("Thoát");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -156,16 +176,24 @@ public class FrmKhachHang extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addComponent(btnSave)
+                .addGap(75, 75, 75)
+                .addComponent(btnUpdate)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnDelete)
+                .addGap(80, 80, 80)
+                .addComponent(jButton1)
+                .addGap(24, 24, 24))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnSave)
-                        .addGap(94, 94, 94)
-                        .addComponent(btnUpdate)
-                        .addGap(107, 107, 107)
-                        .addComponent(btnDelete))
+                        .addComponent(jLabel7)
+                        .addGap(54, 54, 54)
+                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -173,11 +201,9 @@ public class FrmKhachHang extends javax.swing.JFrame {
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7))
+                            .addComponent(jLabel6))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtMaKH, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -187,16 +213,16 @@ public class FrmKhachHang extends javax.swing.JFrame {
                                 .addComponent(radioCanhBao, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(radioBinhThuong)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(188, 188, 188))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtMaKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -221,11 +247,14 @@ public class FrmKhachHang extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSave)
-                    .addComponent(btnUpdate)
-                    .addComponent(btnDelete))
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnSave)
+                        .addComponent(btnUpdate))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnDelete)
+                        .addComponent(jButton1)))
                 .addGap(32, 32, 32)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
@@ -258,7 +287,7 @@ public class FrmKhachHang extends javax.swing.JFrame {
             if (check == JOptionPane.YES_OPTION) {
                 QLKhachHang qLKhachHang1 = new QLKhachHang(khachHang.getId(), khachHang.getMaKhachHang(), khachHang.getTenKhachHang(),
                         khachHang.getMail(), khachHang.getSoDienThoai(), khachHang.getGhiChu(), khachHang.getTrangThai());
-                new FrmPhieuDatLich(qLKhachHang1, sanCa, acount).setVisible(true);
+                new FrmPhieuDatLich(qLKhachHang1, sanCa, acount,labelHome,pnTong).setVisible(true);
                 this.dispose();
             }
         }else{
@@ -325,7 +354,7 @@ public class FrmKhachHang extends javax.swing.JFrame {
         fillData(index);
         QLKhachHang qLKhachHang = listKhachHang.get(index);
         if (check == JOptionPane.YES_OPTION) {
-            new FrmPhieuDatLich(qLKhachHang, sanCa, acount).setVisible(true);
+            new FrmPhieuDatLich(qLKhachHang, sanCa, acount,labelHome,pnTong).setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_jTable1MouseClicked
@@ -335,6 +364,15 @@ public class FrmKhachHang extends javax.swing.JFrame {
         listKhachHang = iKhachHangService.searchByName(txtSearch.getText());
         showData(listKhachHang);
     }//GEN-LAST:event_txtSearchKeyReleased
+
+    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearchActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private QLKhachHang mountClick() {
         int row = jTable1.getSelectedRow();
@@ -347,6 +385,7 @@ public class FrmKhachHang extends javax.swing.JFrame {
         txtMaKH.setText(qLKhachHang.getMaKhachHang());
         txtSoDT.setText(qLKhachHang.getSoDienThoai());
         txtTenKh.setText(qLKhachHang.getTenKhachHang());
+        txtEmail.setText(qLKhachHang.getMail());
         if (qLKhachHang.getTrangThai() == trangThaiKhachHang.BINH_THUONG) {
             radioBinhThuong.setSelected(true);
         } else {
@@ -371,6 +410,7 @@ public class FrmKhachHang extends javax.swing.JFrame {
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnUpdate;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

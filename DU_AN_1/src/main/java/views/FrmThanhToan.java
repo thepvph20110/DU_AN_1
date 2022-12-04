@@ -4,6 +4,20 @@
  */
 package views;
 
+import com.itextpdf.kernel.color.Color;
+import com.itextpdf.kernel.color.DeviceRgb;
+import com.itextpdf.kernel.font.PdfFont;
+import com.itextpdf.kernel.font.PdfFontFactory;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.border.Border;
+import com.itextpdf.layout.element.Cell;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.property.TextAlignment;
+import com.itextpdf.layout.property.VerticalAlignment;
+import com.itextpdf.text.pdf.BaseFont;
 import domainmodel.DichVu;
 import domainmodel.DoThue;
 import domainmodel.HoaDon;
@@ -15,11 +29,13 @@ import enumclass.loaiHinhThanhToan;
 import enumclass.trangThaiDichVu;
 import enumclass.trangThaiHoaDon;
 import enumclass.trangThaiSanCa;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelview.QLDoThue;
@@ -78,6 +94,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
 
     private IPhuPhiService phuPhiService = new PhuPhiServiceImpl();
     private List<QLPhuPhi> qLPhuPhis = new ArrayList<>();
+    public static final String pathUnicode = "font\\unicode.ttf";
 
     /**
      * Creates new form FrmThanhToan
@@ -184,6 +201,135 @@ public class FrmThanhToan extends javax.swing.JFrame {
         dtmDV.setRowCount(0);
         for (QLDoThue qLDoThue : listDT) {
             dtmDV.addRow(qLDoThue.toRowDataDoThue());
+        }
+    }
+
+    public String createFilePDF() {
+        String headerPDF[] = {"Mã", "Tên", "Số Lượng", "Giá", "Thành Tiền"};
+//        String headerTBDichVu[] = {"Mã", "Tên", "Số Lượng", "Giá", "Thành Tiền"};
+        String diaChi = "";
+        JFileChooser j = new JFileChooser();
+        j.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int x = j.showSaveDialog(this);
+        if (x == JFileChooser.APPROVE_OPTION) {
+            diaChi = j.getSelectedFile().getPath();
+        }
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            String date = sdf.format(new Date());
+            String path = diaChi + "\\HoaDon_Ngay" + date + ".pdf";
+            PdfWriter pdfWriter = new PdfWriter(path);
+            PdfDocument pdfDocument = new PdfDocument(pdfWriter);
+            Document document = new Document(pdfDocument);
+            float col = 280f;
+            float columWidth[] = {col, col};
+
+            PdfFont font = PdfFontFactory.createFont(pathUnicode, BaseFont.IDENTITY_H);
+
+            Table table = new Table(columWidth);
+            table.setBackgroundColor(new DeviceRgb(63, 169, 219)).setFontColor(Color.WHITE);
+            table.setFont(font);
+
+            table.addCell(new Cell().add("DongDe Stadium").setTextAlignment(TextAlignment.CENTER)
+                    .setVerticalAlignment(VerticalAlignment.MIDDLE)
+                    .setMarginTop(30f)
+                    .setMarginBottom(30f)
+                    .setFontSize(30f)
+                    .setBorder(Border.NO_BORDER));
+            table.addCell(new Cell().add("Mã hóa đơn: " + jTable1.getValueAt(0, 0).toString() + "\nD/C: FPT, Nam Từ Liêm, Hà Nôi\n LH: Sỹ Gà - 0915288985 ").setTextAlignment(TextAlignment.RIGHT)
+                    .setMarginTop(30f)
+                    .setMarginBottom(30f)
+                    .setBorder(Border.NO_BORDER)
+                    .setMarginRight(10f));
+
+            float colWidth[] = {220, 110, 200, 200};
+            Table customerInforTable = new Table(colWidth);
+            customerInforTable.setFont(font);
+            customerInforTable.addCell(new Cell(0, 4)
+                    .add("Thông tin khách hàng").setBold().setBorder(Border.NO_BORDER));
+
+            customerInforTable.addCell(new Cell().add("Họ tên KH:").setBorder(Border.NO_BORDER));
+            customerInforTable.addCell(new Cell().add("" + jTen.getText()).setBorder(Border.NO_BORDER));
+
+            customerInforTable.addCell(new Cell().add("Họ Tên NV:").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
+            customerInforTable.addCell(new Cell().add("" + jTable1.getValueAt(0, 1).toString()).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
+
+            customerInforTable.addCell(new Cell().add("Số điện thoại:").setBorder(Border.NO_BORDER));
+            customerInforTable.addCell(new Cell().add("" + jTable1.getValueAt(0, 3).toString()).setBorder(Border.NO_BORDER));
+
+            customerInforTable.addCell(new Cell().add("").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
+            customerInforTable.addCell(new Cell().add("").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
+
+            customerInforTable.addCell(new Cell().add("Tên Sân: ").setBorder(Border.NO_BORDER));
+            customerInforTable.addCell(new Cell().add("" + jtenSan.getText()).setBorder(Border.NO_BORDER));
+
+            customerInforTable.addCell(new Cell().add("Ngày thanh toán:").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
+            customerInforTable.addCell(new Cell().add("" + date).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
+
+            customerInforTable.addCell(new Cell().add("Ca số: ").setBorder(Border.NO_BORDER));
+            customerInforTable.addCell(new Cell().add("" + txtCa.getText()).setBorder(Border.NO_BORDER));
+
+            customerInforTable.addCell(new Cell().add("").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
+            customerInforTable.addCell(new Cell().add("").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
+
+            customerInforTable.addCell(new Cell().add("Tiền Sân: ").setBorder(Border.NO_BORDER));
+            customerInforTable.addCell(new Cell().add("" + jTable1.getValueAt(0, 4).toString()).setBorder(Border.NO_BORDER));
+
+            float itemColWidth[] = {132, 132, 132, 132, 132};
+            Table itemTable = new Table(itemColWidth);
+            itemTable.setFont(font);
+
+            for (int i = 0; i < headerPDF.length; i++) {
+                itemTable.addCell(new Cell().add("" + headerPDF[i]).setBackgroundColor(new DeviceRgb(63, 169, 219)).setFontColor(Color.WHITE));
+            }
+
+            for (int v = 0; v < jtbChiTietDichVu.getRowCount(); v++) {
+                for (int y = 0; y < headerPDF.length; y++) {
+                    itemTable.addCell("" + jtbChiTietDichVu.getValueAt(v, y).toString());
+                }
+            }
+//            itemTable.addCell("");
+
+            List<QLHoaDon> qlHoaDons = iHoaDonService.getAll();
+            String maSan = null;
+            for (QLHoaDon hd : qlHoaDons) {
+                if (jtenSan.getText().equals(hd.getPhieuDatLich().getSanCa().getSanbong().getTenSanBong())) {
+                    maSan = hd.getPhieuDatLich().getSanCa().getSanbong().getMaSanBong();
+                }
+            }
+            itemTable.addCell("" + maSan);
+            itemTable.addCell("" + jtenSan.getText());
+            itemTable.addCell("1");
+            itemTable.addCell("" + jTable1.getValueAt(0, 4).toString());
+            itemTable.addCell("" + jTable1.getValueAt(0, 4).toString());
+            itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
+            itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
+            itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
+            itemTable.addCell(new Cell().add("Chi Phí Phát Sinh ").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER).setFontColor(Color.WHITE));
+            if (txtGiaPhuPhi.getText() != null) {
+                itemTable.addCell(new Cell().add("" + txtGiaPhuPhi.getText()).setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER).setFontColor(Color.WHITE));
+            } else {
+                int GiaPhuPhi = 0;
+                itemTable.addCell(new Cell().add("" + GiaPhuPhi).setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER).setFontColor(Color.WHITE));
+            }
+            itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
+            itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
+            itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
+            itemTable.addCell(new Cell().add("Tổng tiền").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER).setFontColor(Color.WHITE));
+            itemTable.addCell(new Cell().add("" + txtTongTien.getText() + " Vnd").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER).setFontColor(Color.WHITE));
+            document.add(table);
+            document.add(new Paragraph("\n"));
+            document.add(new Paragraph("\n"));
+            document.add(customerInforTable);
+            document.add(new Paragraph("\n"));
+            document.add(itemTable);
+            document.add(new Paragraph("\n"));
+            document.add(new Paragraph("Cảm Ơn Quý Khách !!!!").setFont(font));
+            document.close();
+            return "Xuất File Thành Công";
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+            return "Xuất File Không Thành Công";
         }
     }
 
@@ -729,15 +875,16 @@ public class FrmThanhToan extends javax.swing.JFrame {
 
     private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
         // TODO add your handling code here:
-        int confirm = JOptionPane.showConfirmDialog(rootPane, "Ban Có Muốn Thanh Toán Không ???", "Thông Báo", JOptionPane.YES_NO_OPTION);
+        int confirm = JOptionPane.showConfirmDialog(rootPane, "Ban Có Muốn Thanh Toán Và In Hóa Đơn ???", "Thông Báo", JOptionPane.YES_NO_OPTION);
         if (confirm == 0) {
             HoaDon hoaDon = iHoaDonService.findByHoaDonId(qLHoaDon.getId());
             if (jcbThanhToan.getSelectedItem() == loaiHinhThanhToan.Chuyen_Khoan) {
                 if (!txtNganHang.getText().isEmpty()) {
                     if (txtNganHang.getText().matches("-?\\d+(\\.\\d+)?")) {
                         ThanhToan tt = new ThanhToanRepository().findOneByTrangThai(loaiHinhThanhToan.Chuyen_Khoan);
-                        HoaDonThanhToan hdtt = new HoaDonThanhToan(null, "HDTT003", hoaDon, tt, Double.parseDouble(txtNganHang.getText()), null);
+                        HoaDonThanhToan hdtt = new HoaDonThanhToan(null, "HDTT003", hoaDon, tt, giaCa, null);
                         new HoaDonThanhToanRepositoryImpl().saveOrUpdate(hdtt);
+                        JOptionPane.showMessageDialog(this, createFilePDF());
                     } else {
                         JOptionPane.showMessageDialog(rootPane, "Không được nhập khí tự");
                         return;
@@ -750,8 +897,9 @@ public class FrmThanhToan extends javax.swing.JFrame {
                 if (!txtTienKhach.getText().isEmpty()) {
                     if (txtTienKhach.getText().isEmpty() || txtTienKhach.getText().matches("-?\\d+(\\.\\d+)?")) {
                         ThanhToan tt = new ThanhToanRepository().findOneByTrangThai(loaiHinhThanhToan.Tien_Mat);
-                        HoaDonThanhToan hdtt = new HoaDonThanhToan(null, "HDTT003", hoaDon, tt, Double.parseDouble(txtTienKhach.getText()), null);
+                        HoaDonThanhToan hdtt = new HoaDonThanhToan(null, "HDTT003", hoaDon, tt, giaCa, null);
                         new HoaDonThanhToanRepositoryImpl().saveOrUpdate(hdtt);
+                        JOptionPane.showMessageDialog(this, createFilePDF());
                     } else {
                         JOptionPane.showMessageDialog(rootPane, "Không được nhập khí tự ");
                         return;
