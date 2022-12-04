@@ -2,24 +2,27 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package response;
+package response.ThanhToan;
 
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 /**
  *
  * @author Admin
  */
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
-public class TongSoLuongNuocUong {
+@NoArgsConstructor
+@AllArgsConstructor
+public class TongTienHoaDonResponse {
     
-    private int soluongnuocuong;
-    private String ten;
-    
+    private double tongTien;
+    private int thang;
+    private int nam;
+
 }
