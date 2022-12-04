@@ -14,9 +14,9 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
-import response.TongSoLuongDoThue;
-import response.TongSoLuongNuocUong;
-import response.TongTienHoaDonResponse;
+import response.ThanhToan.TongSoLuongDoThue;
+import response.ThanhToan.TongSoLuongNuocUong;
+import response.ThanhToan.TongTienHoaDonResponse;
 import service.IThongKeService;
 import service.Impl.ThongKeServiceImpl;
 
@@ -172,7 +172,7 @@ public class ThongKeController {
             jpnItem.add(chartPanel);
             jpnItem.validate();
             jpnItem.repaint();
-        }else{
+        } else {
             DefaultPieDataset dataset = new DefaultPieDataset();
             JFreeChart pieChart = ChartFactory.createPieChart(
                     "Không Có Dữ Liệu", dataset, true, true, true);
@@ -185,6 +185,6 @@ public class ThongKeController {
             jpnItem.validate();
             jpnItem.repaint();
         }
-}
+    }
 
 }

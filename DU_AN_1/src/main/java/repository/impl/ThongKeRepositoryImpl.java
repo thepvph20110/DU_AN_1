@@ -7,11 +7,11 @@ package repository.impl;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.transform.Transformers;
-import response.TongTienHoaDonResponse;
+import response.ThanhToan.TongTienHoaDonResponse;
 import utill.HibernateConfig;
 import repository.IThongKeRepository;
-import response.TongSoLuongDoThue;
-import response.TongSoLuongNuocUong;
+import response.ThanhToan.TongSoLuongDoThue;
+import response.ThanhToan.TongSoLuongNuocUong;
 
 /**
  *
