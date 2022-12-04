@@ -215,7 +215,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
             diaChi = j.getSelectedFile().getPath();
         }
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
             String date = sdf.format(new Date());
             String path = diaChi + "\\HoaDon_Ngay" + date + ".pdf";
             PdfWriter pdfWriter = new PdfWriter(path);

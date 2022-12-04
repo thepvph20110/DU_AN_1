@@ -100,4 +100,13 @@ public class PhieuDatLichServiceImpl implements IPhieuDatLichService {
         }
         return "Lưu Thất Bại";
     }
+
+    @Override
+    public List<PhieuDatLich> getPhieuDatLichBySDT(String sdt) {
+        List<PhieuDatLich> list = phieuRepo.getPhieuDatLichBySDT(sdt);
+        if(list!= null){
+            return list;
+        }
+        return null;
+    }
 }

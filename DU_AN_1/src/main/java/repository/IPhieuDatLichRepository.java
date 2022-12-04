@@ -17,6 +17,8 @@ public interface IPhieuDatLichRepository {
     List<PhieuDatLich> getAll();
     
     List<PhieuDatLich> getPhieuDatLichByTT();
+    
+    List<PhieuDatLich> getPhieuDatLichBySDT(String sdt);
  
     boolean save(PhieuDatLich phieuDatLich);
 

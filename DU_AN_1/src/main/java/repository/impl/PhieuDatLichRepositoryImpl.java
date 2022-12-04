@@ -99,5 +99,19 @@ public class PhieuDatLichRepositoryImpl implements IPhieuDatLichRepository{
         }
         return listPhieus;
     }
+
+    @Override
+    public List<PhieuDatLich> getPhieuDatLichBySDT(String sdt) {
+         List<PhieuDatLich> listPhieus;
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            Query q = session.createQuery("FROM PhieuDatLich p where p.khachHang.soDienThoai = :SoDienThoai and trangThai ='0'");
+            q.setParameter("SoDienThoai", sdt);
+            listPhieus = q.getResultList();
+        }catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }
+        return listPhieus;
+    }
     
 }
