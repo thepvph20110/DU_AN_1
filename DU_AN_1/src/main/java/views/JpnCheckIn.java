@@ -6,6 +6,8 @@ package views;
 
 import domainmodel.PhieuDatLich;
 import enumclass.trangThaiPhieuDL;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -33,6 +35,7 @@ public class JpnCheckIn extends javax.swing.JPanel {
     private JLabel lbHome;
     private DefaultTableModel tableModel;
     private List<PhieuDatLich> listPhieuDatLich = new ArrayList<>();
+    private PhieuDatLich phieuDL = new PhieuDatLich();
 
     /**
      * Creates new form JpnCheckIn
@@ -48,6 +51,36 @@ public class JpnCheckIn extends javax.swing.JPanel {
             map.put(phieuDatLich.getKhachHang().getSoDienThoai(), phieuDatLich);
         }
         showData(listPhieuDatLich);
+        iTemChiTiet.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                 new FrmPhieuDatSan(phieuDL, qLAcount, pnTong, lbHome).setVisible(true);
+                PopupMenu.setVisible(false);
+            }
+        });
+        iTemDoiLich.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(pnTong, "đổi lịch");
+                PopupMenu.setVisible(false);
+            }
+        });
+        iTemHuy.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int checkOption = JOptionPane.showConfirmDialog(pnTong, "Xác nhận hủy lịch đặt", "Thông Báo", JOptionPane.YES_NO_OPTION);
+            if (checkOption == JOptionPane.YES_OPTION) {
+                phieuDL.setTrangThai(trangThaiPhieuDL.DA_HUY);
+                String check = phieuDatLichService.updateTrangThai(phieuDL);
+                if (check.equals("Sửa Trạng Thái Thành Công")) {
+                    JOptionPane.showMessageDialog(pnTong, "Đã hủy lịch đặt");
+                    listPhieuDatLich = phieuDatLichService.getPhieuDatLichByTT();
+                    showData(listPhieuDatLich);
+                }
+            }
+                PopupMenu.setVisible(false);
+            }
+        });
     }
 
     private Object[] billData(PhieuDatLich phieuDatLich) {
@@ -74,6 +107,11 @@ public class JpnCheckIn extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        PopupMenu = new javax.swing.JPopupMenu();
+        iTemChiTiet = new javax.swing.JMenuItem();
+        iTemDoiLich = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        iTemHuy = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         txtSearch = new utill.SearchText();
@@ -83,7 +121,17 @@ public class JpnCheckIn extends javax.swing.JPanel {
         jPanel4 = new javax.swing.JPanel();
         btnXemchitiet = new javax.swing.JButton();
         btnDoiLich = new javax.swing.JButton();
-        btnDoiLich1 = new javax.swing.JButton();
+        btnHuyLD = new javax.swing.JButton();
+
+        iTemChiTiet.setText("Xem chi tiết");
+        PopupMenu.add(iTemChiTiet);
+
+        iTemDoiLich.setText("Đổi lịch đặt");
+        PopupMenu.add(iTemDoiLich);
+        PopupMenu.add(jSeparator1);
+
+        iTemHuy.setText("Hủy lịch đặt");
+        PopupMenu.add(iTemHuy);
 
         setBackground(new java.awt.Color(204, 255, 255));
 
@@ -130,6 +178,9 @@ public class JpnCheckIn extends javax.swing.JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
             }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jTable1MouseReleased(evt);
+            }
         });
         jScrollPane1.setViewportView(jTable1);
 
@@ -139,7 +190,7 @@ public class JpnCheckIn extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 867, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -167,13 +218,13 @@ public class JpnCheckIn extends javax.swing.JPanel {
         btnDoiLich.setForeground(new java.awt.Color(255, 255, 255));
         btnDoiLich.setText("Đổi lịch đặt");
 
-        btnDoiLich1.setBackground(new java.awt.Color(255, 51, 51));
-        btnDoiLich1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnDoiLich1.setForeground(new java.awt.Color(255, 255, 255));
-        btnDoiLich1.setText("Hủy lịch đặt");
-        btnDoiLich1.addActionListener(new java.awt.event.ActionListener() {
+        btnHuyLD.setBackground(new java.awt.Color(255, 51, 51));
+        btnHuyLD.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnHuyLD.setForeground(new java.awt.Color(255, 255, 255));
+        btnHuyLD.setText("Hủy lịch đặt");
+        btnHuyLD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDoiLich1ActionPerformed(evt);
+                btnHuyLDActionPerformed(evt);
             }
         });
 
@@ -186,7 +237,7 @@ public class JpnCheckIn extends javax.swing.JPanel {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnDoiLich, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnXemchitiet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnDoiLich1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnHuyLD, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(24, 24, 24))
         );
         jPanel4Layout.setVerticalGroup(
@@ -197,7 +248,7 @@ public class JpnCheckIn extends javax.swing.JPanel {
                 .addGap(89, 89, 89)
                 .addComponent(btnDoiLich, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(89, 89, 89)
-                .addComponent(btnDoiLich1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnHuyLD, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -206,13 +257,12 @@ public class JpnCheckIn extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(39, 39, 39)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 391, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -244,7 +294,21 @@ public class JpnCheckIn extends javax.swing.JPanel {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-
+//        int index = jTable1.getSelectedRow();
+//        if (index == -1) {
+//            JOptionPane.showMessageDialog(this, "Xin mời chọn dòng");
+//            return;
+//        }
+//        if (evt.isPopupTrigger()) {
+//            PopupMenu.show(jTable1, evt.getPoint().x, evt.getPoint().y);
+//        }
+//        iTemChiTiet.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                JOptionPane.showMessageDialog(this, "Sân này chưa có người đá! Không thể Check Out!");
+//                popupMenu.St(false);
+//            }
+//        });
 
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -271,7 +335,7 @@ public class JpnCheckIn extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtSearchKeyPressed
 
-    private void btnDoiLich1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoiLich1ActionPerformed
+    private void btnHuyLDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyLDActionPerformed
         // TODO add your handling code here:
         try {
             int row = jTable1.getSelectedRow();
@@ -283,24 +347,43 @@ public class JpnCheckIn extends javax.swing.JPanel {
                 if (check.equals("Sửa Trạng Thái Thành Công")) {
                     JOptionPane.showMessageDialog(this, "Đã hủy lịch đặt");
                     listPhieuDatLich = phieuDatLichService.getPhieuDatLichByTT();
-                    showData(listPhieuDatLich);     
+                    showData(listPhieuDatLich);
                 }
-            } 
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "chọn lên table");
         }
-    }//GEN-LAST:event_btnDoiLich1ActionPerformed
+    }//GEN-LAST:event_btnHuyLDActionPerformed
+
+    private void jTable1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseReleased
+        // TODO add your handling code here:
+         int index = jTable1.getSelectedRow();
+        if (index == -1) {
+            JOptionPane.showMessageDialog(this, "Xin mời chọn dòng");
+            return;
+        }
+        if (evt.isPopupTrigger()) {
+            phieuDL = listPhieuDatLich.get(index);
+            PopupMenu.show(jTable1, evt.getPoint().x, evt.getPoint().y);
+        }
+        
+    }//GEN-LAST:event_jTable1MouseReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPopupMenu PopupMenu;
     private javax.swing.JButton btnDoiLich;
-    private javax.swing.JButton btnDoiLich1;
+    private javax.swing.JButton btnHuyLD;
     private javax.swing.JButton btnXemchitiet;
+    private javax.swing.JMenuItem iTemChiTiet;
+    private javax.swing.JMenuItem iTemDoiLich;
+    private javax.swing.JMenuItem iTemHuy;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JTable jTable1;
     private utill.SearchText txtSearch;
     // End of variables declaration//GEN-END:variables
