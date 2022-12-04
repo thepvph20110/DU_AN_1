@@ -200,7 +200,6 @@ public class Home extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        searchText1 = new utill.SearchText();
         jButton2 = new javax.swing.JButton();
         panelTong = new javax.swing.JPanel();
         lbMaQR = new javax.swing.JLabel();
