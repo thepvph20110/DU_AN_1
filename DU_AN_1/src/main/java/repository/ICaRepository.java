@@ -21,4 +21,6 @@ public interface ICaRepository {
     
     boolean deleteCa(Ca ca);
     
+    List<Ca> searchByName(String ten);
+    
 }

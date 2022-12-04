@@ -20,4 +20,6 @@ public interface ICaService {
     String update(QLCa qLCa);
 
     String delete(QLCa qLCa);
+    
+    List<QLCa> searchByName(String ten);
 }

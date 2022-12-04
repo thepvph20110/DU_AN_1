@@ -15,9 +15,9 @@ import service.Impl.AcountServiceImpl;
  * @author DANG VAN SY
  */
 public class Detaillogin extends javax.swing.JDialog {
-    
+
     private IAcountService acountService = new AcountServiceImpl();
-    
+
     public Detaillogin(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -26,6 +26,8 @@ public class Detaillogin extends javax.swing.JDialog {
 
     private void setBackRough() {
         PaneTongLogIn.setBackground(new Color(186, 228, 229));
+        txtUseName.setText("Cao Dinh");
+        txtPass.setText("1234");
     }
 
     /**
@@ -175,14 +177,14 @@ public class Detaillogin extends javax.swing.JDialog {
         QLAcount qLAcount = acountService.getByUseNameAndPass(use, pass);
         if (qLAcount != null) {
             this.dispose();
-            new Home().setVisible(true);
+            new Home(qLAcount).setVisible(true);
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         int chon = JOptionPane.showConfirmDialog(this, "Bạn có muốn thoát", null, JOptionPane.YES_NO_OPTION);
         if (chon == JOptionPane.YES_OPTION) {
-            this.dispose();
+            System.exit(0);
         }
     }//GEN-LAST:event_btnCancelActionPerformed
 
@@ -217,12 +219,12 @@ public class Detaillogin extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Detaillogin dialog = new Detaillogin(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
+//                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+//                    @Override
+//                    public void windowClosing(java.awt.event.WindowEvent e) {
+//                        System.exit(0);
+//                    }
+//                });
                 dialog.setVisible(true);
             }
         });

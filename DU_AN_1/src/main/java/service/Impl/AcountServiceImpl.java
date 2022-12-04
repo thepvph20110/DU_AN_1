@@ -40,7 +40,7 @@ public class AcountServiceImpl implements IAcountService {
 
     @Override
     public String save(QLAcount qLAcount) {
-        Acount acount = new Acount(null, qLAcount.getMaAcount(), qLAcount.getTenAcount(), qLAcount.getChucVu(),
+        Acount acount = new Acount(null, genMaAccount(), qLAcount.getTenAcount(), qLAcount.getChucVu(),
                 qLAcount.getMatKhau(), qLAcount.getMoTa(), trangThaiAcount.Da_Xac_Minh);
         if (acountRepo.save(acount) == true) {
             return "Lưu Thành Công";
@@ -98,7 +98,6 @@ public class AcountServiceImpl implements IAcountService {
             return null;
         } else {
             ChucVu chucVu = acount.getChucVu();
-            JOptionPane.showMessageDialog(null, "Login thành công");
             return new QLAcount(acount.getId(), acount.getMaAcount(), acount.getTenAcount(), chucVu, acount.getMatKhau(), acount.getMoTa(), acount.getTrangThai());
         }
     }
