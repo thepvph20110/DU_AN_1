@@ -83,7 +83,7 @@ public class HomeController {
                     node = new JpnLichDat();
                     break;
                 case "CheckIn":
-                    node = new JpnCheckIn();
+                    node = new JpnCheckIn(qLAcount,root,labelHome);
                     break;
                 case "QLSan":
                     node = new JpnQuanLySan();
@@ -92,7 +92,7 @@ public class HomeController {
                     node = new JpnQuanLyCa();
                     break;
                 case "DichVu":
-                    node = new JpnDichVu();
+                    node = new JpnDichVu(qLAcount);
                     break;
                 case "HoaDon":
                     node = new JpnHoaDon();

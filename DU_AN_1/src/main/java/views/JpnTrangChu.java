@@ -15,7 +15,9 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,15 +30,20 @@ import javax.swing.JPopupMenu;
 import javax.swing.border.TitledBorder;
 import modelview.QLAcount;
 import modelview.QLCa;
+import modelview.QLHoaDon;
 import modelview.QLKhachHang;
 import modelview.QLSanBong;
 import modelview.QLSanCa;
 import service.IAcountService;
 import service.ICaService;
+import service.IHoaDonService;
 import service.IPhieuDatLichService;
 import service.ISanBongService;
 import service.ISanCaService;
 import service.Impl.AcountServiceImpl;
+import service.Impl.CaServiceImpl;
+import service.Impl.HoaDonServiceImpl;
+import service.Impl.PhieuDatLichServiceImpl;
 import service.Impl.SanBongServiceImpl;
 import service.Impl.SanCaServiceImpl;
 
@@ -59,13 +66,18 @@ public class JpnTrangChu extends javax.swing.JPanel {
     private Map<String, PhieuDatLich> map = new HashMap<>();
     private JLabel labelHome;
     private JPanel pnTong;
+    private PhieuDatLich datLich;
+    private IPhieuDatLichService phieuDatLichService = new PhieuDatLichServiceImpl();
+    private IHoaDonService hoaDonService = new HoaDonServiceImpl();
+    private Map<String, QLHoaDon> mapQLHoaDon = new HashMap<>();
+    private Map<String, PhieuDatLich> mapPhieuDatLich = new HashMap<>();
 
     /**
      * Creates new form TrangChuJPanel
      */
     public JpnTrangChu(QLAcount qLAcount, JLabel lbHome, JPanel pnTong) {
         initComponents();
-        listSanCa = sanCaService.getAll();
+        listSanCa = sanCaService.getAll(new Date());
         listSanBong = sanBongService.getAll();
         this.qLAcount = qLAcount;
         labelHome = lbHome;
@@ -74,11 +86,20 @@ public class JpnTrangChu extends javax.swing.JPanel {
         for (QLSanCa qLSanCa : listSanCa) {
             mapSanCa.put(qLSanCa.getId(), qLSanCa);
         }
+        for (QLHoaDon qLHoaDon : hoaDonService.getAllByTrangThai()) {
+            mapQLHoaDon.put(qLHoaDon.getPhieuDatLich().getId(), qLHoaDon);
+        }
+    }
+
+    private void showThanhToan(String id) {
+        QLHoaDon hoaDon = mapQLHoaDon.get(id);
+        new FrmThanhToan(hoaDon).setVisible(true);
+
     }
 
     public void AddSan() {
         panelTong.setLayout(new GridLayout(10000, 1, 20, 20));
-
+        Date now = new Date();
         for (int i = 0; i < listSanBong.size(); i++) {
             TitledBorder border = new TitledBorder(listSanBong.get(i).getTenSanBong());
             JPanel panelSan = new JPanel();
@@ -89,17 +110,40 @@ public class JpnTrangChu extends javax.swing.JPanel {
                 if (listSanBong.get(i).getTenSanBong().equals(listSanCa.get(j).getTenSanBong())) {
                     JPopupMenu jPopupMenu = new JPopupMenu();
                     JMenuItem itemDatLich = new JMenuItem("Đặt Lịch");
-                    JMenuItem itemCheckOut = new JMenuItem("Check Out");
+                    JMenuItem itemCheckOut = new JMenuItem("Chi tiết sân đặt");
                     JMenuItem itemDoiLichDat = new JMenuItem("Đổi lịch đặt");
                     jPopupMenu.add(itemDatLich);
                     jPopupMenu.add(itemCheckOut);
+                    jPopupMenu.add(itemDoiLichDat);
                     JPanel panelCa = new JPanel();
+
                     panelCa.setLayout(new FlowLayout());
                     panelCa.setPreferredSize(new Dimension(174, 254));
                     panelCa.setComponentPopupMenu(jPopupMenu);
                     panelCa.setLayout(new BoxLayout(panelCa, BoxLayout.Y_AXIS));
                     panelCa.setLayout(new FlowLayout(10, 20, 20));
                     JLabel labelIdSanCa = new JLabel(listSanCa.get(j).getId());
+                    JLabel labelCa = new JLabel(listSanCa.get(j).getTenCa());
+                    JLabel labelThoiGian = new JLabel(listSanCa.get(j).getThoiGianBatDau() + " : " + String.valueOf(listSanCa.get(j).getThoiGianKetThuc()));
+                    JLabel labelLoaiSan = new JLabel("Loại sân" + " " + listSanCa.get(j).getSucChua());
+                    labelCa.setForeground(Color.BLACK);
+                    labelCa.setFont(new Font("Tahoma", 1, 16));
+                    labelThoiGian.setForeground(Color.BLACK);
+                    labelThoiGian.setFont(new Font("Tahoma", 1, 12));
+                    if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.KHONG_TRONG) {
+                        datLich = phieuDatLichService.getPhieuDatLich(labelIdSanCa.getText());
+                        System.out.println(datLich.getId());
+                    }
+                    labelLoaiSan.setForeground(Color.BLACK);
+                    labelLoaiSan.setFont(new Font("Tahoma", 1, 14));
+                    JLabel labelTrangThai = new JLabel();
+                    labelTrangThai.setForeground(Color.BLACK);
+                    labelTrangThai.setPreferredSize(new Dimension(160, 17));
+                    labelTrangThai.setFont(new Font("Tahoma", 1, 12));
+                    JLabel labelGiaSan = new JLabel("Giá: " + String.valueOf(listSanCa.get(j).getGiaCaSan()));
+                    labelGiaSan.setFont(new Font("Tahoma", 1, 12));
+                    labelGiaSan.setForeground(Color.BLACK);
+                    panelCa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
                     panelCa.addMouseListener(new java.awt.event.MouseAdapter() {
                         public void mouseReleased(java.awt.event.MouseEvent evt) {
                             panelCaInMouseReleased(evt);
@@ -115,7 +159,8 @@ public class JpnTrangChu extends javax.swing.JPanel {
                     itemCheckOut.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            JOptionPane.showMessageDialog(panelSan, "Sân này chưa có người đá! Không thể Check Out!");
+                            showThanhToan(datLich.getId());
+                            panelCa.setEnabled(false);
                             jPopupMenu.setVisible(false);
                         }
                     });
@@ -126,41 +171,20 @@ public class JpnTrangChu extends javax.swing.JPanel {
                             jPopupMenu.setVisible(false);
                         }
                     });
+                     itemDoiLichDat.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            JOptionPane.showMessageDialog(panelTong, "đổi lịch");
+                            jPopupMenu.setVisible(false);
+                        }
+                    });
 
-                    JLabel labelCa = new JLabel(listSanCa.get(j).getTenCa());
-                    JLabel labelThoiGian = new JLabel(listSanCa.get(j).getThoiGianBatDau() + " : " + String.valueOf(listSanCa.get(j).getThoiGianKetThuc()));
-                    JLabel labelLoaiSan = new JLabel("Loại sân" + " " + listSanCa.get(j).getSucChua());
-                    labelCa.setForeground(Color.BLACK);
-                    labelCa.setFont(new Font("Tahoma", 1, 16));
-                    labelThoiGian.setForeground(Color.BLACK);
-                    labelThoiGian.setFont(new Font("Tahoma", 1, 12));
-                    labelLoaiSan.setForeground(Color.BLACK);
-                    labelLoaiSan.setFont(new Font("Tahoma", 1, 14));
-                    JLabel labelTrangThai = new JLabel();
-                    labelTrangThai.setForeground(Color.BLACK);
-                    labelTrangThai.setPreferredSize(new Dimension(160, 17));
-                    labelTrangThai.setFont(new Font("Tahoma", 1, 12));
-                    JLabel labelGiaSan = new JLabel("Giá: " + String.valueOf(listSanCa.get(j).getGiaCaSan()));
-                    labelGiaSan.setFont(new Font("Tahoma", 1, 12));
-                    labelGiaSan.setForeground(Color.BLACK);
-                    panelCa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-                    //Trạng thái sân
-//                    
-//                    if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.CHO_NHAN_SAN) {
-//                        itemDatLich.show(false);
-//                        labelTrangThai.setText(" Trạng thái: " + "Chờ nhận sân");
-//                        panelCa.setBackground(new Color(255, 255, 0));
-//                    } else if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.KHONG_TRONG) {
-//                        itemDatLich.show(false);
-//                        labelTrangThai.setText(" Trạng thái: " + "Không trống");
-//                        panelCa.setBackground(new Color(255, 0, 51));
-//                    } else {
-//                        labelTrangThai.setText(" Trạng thái: " + "Đang trống");
-//                        panelCa.setBackground(new Color(0, 153, 0));
-//                    }
-                    customTrangThai(listSanCa.get(j).getTrangThai(), itemDatLich, panelCa, labelTrangThai);
-
+                    customTrangThai(listSanCa.get(j).getTrangThai(), itemDatLich, panelCa, labelTrangThai,itemDoiLichDat,itemCheckOut);
+                    Time gioKT = new Time(listSanCa.get(j).getThoiGianKetThuc().getHours(), listSanCa.get(j).getThoiGianKetThuc().getMinutes(), listSanCa.get(j).getThoiGianKetThuc().getSeconds());
+                    Time quaGio = new Time(now.getHours(), now.getMinutes(), now.getSeconds());
+                    if (gioKT.getTime() < quaGio.getTime()) {
+                        panelCa.setBackground(Color.white);
+                    }
                     panelCa.add(labelCa);
                     panelCa.add(labelThoiGian);
                     panelCa.add(labelLoaiSan);
@@ -176,18 +200,26 @@ public class JpnTrangChu extends javax.swing.JPanel {
 
     }
 
-    private void customTrangThai(trangThaiSanCa ttSanCa, JMenuItem item, JPanel panel, JLabel label) {
+    private void customTrangThai(trangThaiSanCa ttSanCa, JMenuItem itemDatLich, JPanel panelSanCa, JLabel labelTrangThai,JMenuItem iTemDoiLich,JMenuItem itemCheckOut) {
         if (ttSanCa == trangThaiSanCa.CHO_NHAN_SAN) {
-            item.setEnabled(false);
-            label.setText(" Trạng thái: " + "Chờ nhận sân");
-            panel.setBackground(new Color(255, 255, 0));
+            itemCheckOut.setEnabled(false);
+            itemDatLich.setEnabled(false);
+            labelTrangThai.setText(" Trạng thái: " + "Chờ nhận sân");
+            panelSanCa.setBackground(new Color(255, 255, 0));
         } else if (ttSanCa == trangThaiSanCa.KHONG_TRONG) {
-            item.setEnabled(false);
-            label.setText(" Trạng thái: " + "Không trống");
+            itemDatLich.setEnabled(false);
+
+            labelTrangThai.setText(" Trạng thái: " + "Đang sử dụng");
             panel.setBackground(new Color(255, 0, 51));
+            iTemDoiLich.setEnabled(false);
+            itemDatLich.setEnabled(false);
+            labelTrangThai.setText(" Trạng thái: " + "Không trống");
+            panelSanCa.setBackground(new Color(255, 0, 51));
         } else {
-            label.setText(" Trạng thái: " + "Đang trống");
-            panel.setBackground(new Color(0, 153, 0));
+            itemCheckOut.setEnabled(false);
+            iTemDoiLich.setEnabled(false);
+            labelTrangThai.setText(" Trạng thái: " + "Đang trống");
+            panelSanCa.setBackground(new Color(0, 153, 0));
         }
     }
 

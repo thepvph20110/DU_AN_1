@@ -1,8 +1,8 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package repository;
+package service;
 
 import java.util.Date;
 import java.util.List;
@@ -14,28 +14,26 @@ import response.ChiTietThanhToan.ChiTietTongTienTheoNgayResponse;
  *
  * @author Admin
  */
-public interface IChiTietThongKeRepository {
+public interface IChiTietThongKeService {
 
-    //get Default date
     ChiTietTongTienTheoNgayResponse chiTietTongTien();
 
     ChiTietTongTienTheoNgayResponse getTongTienMat();
 
     ChiTietTongTienTheoNgayResponse getTongTienNganHang();
-    
+
     List<ChiTietDichVuRespone> thongKeNuocUong();
-    
+
     List<ChiTietDoThueResponse> thongKeDoThue();
-    
+
     //get Default by date
-    
     ChiTietTongTienTheoNgayResponse chiTietTongTienByDate(Date date);
 
     ChiTietTongTienTheoNgayResponse getTongTienMatByDate(Date date);
 
     ChiTietTongTienTheoNgayResponse getTongTienNganHangByDate(Date date);
-    
+
     List<ChiTietDichVuRespone> thongKeNuocUongByDate(Date date);
-    
+
     List<ChiTietDoThueResponse> thongKeDoThueByDate(Date date);
 }

@@ -218,7 +218,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
             return false;
         }
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
             String date = sdf.format(new Date());
             String path = diaChi + "\\HoaDon_Ngay" + date + ".pdf";
             PdfWriter pdfWriter = new PdfWriter(path);
@@ -267,7 +267,9 @@ public class FrmThanhToan extends javax.swing.JFrame {
             customerInforTable.addCell(new Cell().add("" + jtenSan.getText()).setBorder(Border.NO_BORDER));
 
             customerInforTable.addCell(new Cell().add("Ngày thanh toán:").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
-            customerInforTable.addCell(new Cell().add("" + date).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
+            SimpleDateFormat sdf1 = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+            String ngayThanhToan = sdf1.format(new Date());
+            customerInforTable.addCell(new Cell().add("" + ngayThanhToan).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
 
             customerInforTable.addCell(new Cell().add("Ca số: ").setBorder(Border.NO_BORDER));
             customerInforTable.addCell(new Cell().add("" + txtCa.getText()).setBorder(Border.NO_BORDER));
@@ -1076,7 +1078,10 @@ public class FrmThanhToan extends javax.swing.JFrame {
             if (dichVuRepository.findByIdHoaDonAndNuocUong(qLHoaDon.getId(), qLNuocUong.getId()).size() > 0) {
                 DichVu dichVu = dichVuRepository.findByIdHoaDonAndNuocUong(qLHoaDon.getId(), qLNuocUong.getId()).get(0);
                 String soLuong = JOptionPane.showInputDialog(rootPane, "Mời Nhập Số Lượng");
-                if (soLuong == null || !soLuong.matches("-?\\d+(\\.\\d+)?")) {
+                if (soLuong == null) {
+                    return;
+                }
+                if (soLuong.isEmpty() || !soLuong.matches("-?\\d+(\\.\\d+)?")) {
                     JOptionPane.showMessageDialog(rootPane, "Không được nhập khí tự và để trống ");
                 } else {
                     dichVu.setSoLuongNuocUong(dichVu.getSoLuongNuocUong() + Integer.parseInt(soLuong));
@@ -1087,7 +1092,10 @@ public class FrmThanhToan extends javax.swing.JFrame {
                 }
             } else {
                 String soLuong = JOptionPane.showInputDialog(rootPane, "Mời Nhập Số Lượng");
-                if (soLuong == null || !soLuong.matches("-?\\d+(\\.\\d+)?")) {
+                if (soLuong == null) {
+                    return;
+                }
+                if (soLuong.isEmpty() || !soLuong.matches("-?\\d+(\\.\\d+)?")) {
                     JOptionPane.showMessageDialog(rootPane, "Không được nhập khí tự và để trống ");
                 } else {
                     DichVu dichVu = new DichVu(null, "DV008", null, 0, iHoaDonService.findByHoaDonId(qLHoaDon.getId()), new NuocUongRepositoryImpl().findByID(qLNuocUong.getId()),
@@ -1103,7 +1111,10 @@ public class FrmThanhToan extends javax.swing.JFrame {
             if (dichVuRepository.findByIdHoaDonAndDoThue(qLHoaDon.getId(), qLDoThue.getId()).size() > 0) {
                 DichVu dichVu = dichVuRepository.findByIdHoaDonAndDoThue(qLHoaDon.getId(), qLDoThue.getId()).get(0);
                 String soLuong = JOptionPane.showInputDialog(rootPane, "Mời Nhập Số Lượng");
-                if (soLuong == null || !soLuong.matches("-?\\d+(\\.\\d+)?")) {
+                if(soLuong == null){
+                    return;
+                }
+                if (soLuong.isEmpty() || !soLuong.matches("-?\\d+(\\.\\d+)?")) {
                     JOptionPane.showMessageDialog(rootPane, "Không được nhập khí tự và để trống ");
                 } else {
                     dichVu.setSoLuongDoThue(dichVu.getSoLuongDoThue() + Integer.parseInt(soLuong));
@@ -1114,7 +1125,10 @@ public class FrmThanhToan extends javax.swing.JFrame {
                 }
             } else {
                 String soLuong = JOptionPane.showInputDialog(rootPane, "Mời Nhập Số Lượng!!");
-                if (soLuong == null || !soLuong.matches("-?\\d+(\\.\\d+)?")) {
+                if(soLuong == null){
+                    return;
+                }
+                if (soLuong.isEmpty() || !soLuong.matches("-?\\d+(\\.\\d+)?")) {
                     JOptionPane.showMessageDialog(rootPane, "Không được nhập khí tự và để trống ");
                 } else {
                     DoThue doThue = new DoThueRepositoryImpl().getAll().get(jtbDichVu.getSelectedRow());
@@ -1154,7 +1168,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
             if (new HoaDonPhuPhiServiceImpl().save(hoaDon_PhuPhi)) {
                 JOptionPane.showMessageDialog(rootPane, "Thêm Thành Công");
             } else {
-                JOptionPane.showMessageDialog(rootPane, "Thêm That Bai");
+                JOptionPane.showMessageDialog(rootPane, "Thêm Thất Bại");
             }
         }
         txtTongTien.setText(String.valueOf(fillGia()));

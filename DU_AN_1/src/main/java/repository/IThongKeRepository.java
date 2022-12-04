@@ -5,9 +5,9 @@
 package repository;
 
 import java.util.List;
-import response.TongSoLuongDoThue;
-import response.TongSoLuongNuocUong;
-import response.TongTienHoaDonResponse;
+import response.ThanhToan.TongSoLuongDoThue;
+import response.ThanhToan.TongSoLuongNuocUong;
+import response.ThanhToan.TongTienHoaDonResponse;
 
 /**
  *
