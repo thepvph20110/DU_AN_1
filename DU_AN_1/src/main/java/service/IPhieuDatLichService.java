@@ -30,4 +30,6 @@ public interface IPhieuDatLichService {
     String updateTrangThai(PhieuDatLich phieuDatLich);
 
     String datLich(PhieuDatLich phieuDatLich);
+
+    PhieuDatLich getPhieuDatLich(String id);
 }

@@ -92,7 +92,7 @@ public class HomeController {
                     node = new JpnQuanLyCa();
                     break;
                 case "DichVu":
-                    node = new JpnDichVu();
+                    node = new JpnDichVu(qLAcount);
                     break;
                 case "HoaDon":
                     node = new JpnHoaDon();

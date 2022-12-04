@@ -15,7 +15,7 @@ import java.util.UUID;
 public interface IPhieuDatLichRepository {
 
     List<PhieuDatLich> getAll();
-    
+
     List<PhieuDatLich> getPhieuDatLichByTT();
     
     List<PhieuDatLich> getPhieuDatLichBySDT(String sdt);
@@ -26,4 +26,5 @@ public interface IPhieuDatLichRepository {
 
     boolean delete(String id);
 
+    PhieuDatLich getByIdSanCa(String id);
 }
