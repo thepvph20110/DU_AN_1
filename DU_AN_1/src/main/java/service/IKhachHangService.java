@@ -16,7 +16,7 @@ public interface IKhachHangService {
     
     List<QLKhachHang> getAll();
     
-    String save(KhachHang KhachHang);
+    String save(QLKhachHang qLKhachHang);
     
     String update(QLKhachHang qLKhachHang);
     

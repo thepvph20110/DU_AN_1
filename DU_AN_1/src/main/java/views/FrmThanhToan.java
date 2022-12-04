@@ -973,21 +973,21 @@ public class FrmThanhToan extends javax.swing.JFrame {
     private void jMenuXoaDichVuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuXoaDichVuActionPerformed
         // TODO add your handling code here:
         DichVu dichVu = dichVuRepository.findByIdHoaDon(qLHoaDon.getId()).get(jtbChiTietDichVu.getSelectedRow());
-        if (dichVuRepository.delete(dichVu.getId())) {
-            JOptionPane.showMessageDialog(rootPane, "Xóa Thành Công");
-            addDataRowDichVu(dichVuRepository.findByIdHoaDon(qLHoaDon.getId()));
-            txtTongTien.setText(String.valueOf(fillGia()));
-        }
+//        if (dichVuRepository.delete(dichVu.getId())) {
+//            JOptionPane.showMessageDialog(rootPane, "Xóa Thành Công");
+//            addDataRowDichVu(dichVuRepository.findByIdHoaDon(qLHoaDon.getId()));
+//            txtTongTien.setText(String.valueOf(fillGia()));
+//        }
     }//GEN-LAST:event_jMenuXoaDichVuActionPerformed
 
-    private void btnThanhToan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToan1ActionPerformed
+    private void btnThanhToan1ActionPerformed(java.awt.event.ActionEvent evt) {                                              
         // TODO add your handling code here:
         FrmHoaDon frmHoaDon = new FrmHoaDon();
         frmHoaDon.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btnThanhToan1ActionPerformed
+    }                                             
 
-    private void jMenuSuaSoLuongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSuaSoLuongActionPerformed
+    private void jMenuSuaSoLuongActionPerformed(java.awt.event.ActionEvent evt) {                                                
         // TODO add your handling code here:
         DichVu dichVu = dichVuRepository.findByIdHoaDon(qLHoaDon.getId()).get(jtbChiTietDichVu.getSelectedRow());
         String soLuong = JOptionPane.showInputDialog(rootPane, "Mời Nhập Số Lượng Dịch Vụ !!");
@@ -1009,9 +1009,9 @@ public class FrmThanhToan extends javax.swing.JFrame {
             }
         }
         txtTongTien.setText(String.valueOf(fillGia()));
-    }//GEN-LAST:event_jMenuSuaSoLuongActionPerformed
+    }                                               
 
-    private void btnAddPhuPhiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPhuPhiActionPerformed
+    private void btnAddPhuPhiActionPerformed(java.awt.event.ActionEvent evt) {                                             
         // TODO add your handling code here
         if (jcbPhuPhi.getSelectedItem().equals("không có phụ phí")) {
             return;
@@ -1032,7 +1032,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
             }
         }
         loadCBPhuPhi();
-    }//GEN-LAST:event_btnAddPhuPhiActionPerformed
+    }                                            
 
     private void jtbChiTietDichVuMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbChiTietDichVuMouseReleased
         // TODO add your handling code here:
@@ -1066,12 +1066,12 @@ public class FrmThanhToan extends javax.swing.JFrame {
                 if (soLuong == null || !soLuong.matches("-?\\d+(\\.\\d+)?")) {
                     JOptionPane.showMessageDialog(rootPane, "Không được nhập khí tự và để trống ");
                 } else {
-//                    DichVu dichVu = new DichVu(null, "DV008", null, 0, iHoaDonService.findByHoaDonId(qLHoaDon.getId()), new NuocUongRepositoryImpl().findByID(qLNuocUong.getId()),
-//                            Integer.parseInt(soLuong), qLNuocUong.getGia(), null, trangThaiDichVu.Dang_Su_Dung);
-//                    dichVuRepository.saveOrUpdate(dichVu);
-//                    listDV = dichVuRepository.findByIdHoaDon(qLHoaDon.getId());
-//                    addDataRowDichVu(listDV);
-//                    txtTongTien.setText(String.valueOf(fillGia()));
+                    DichVu dichVu = new DichVu(null, "DV008", null, 0, iHoaDonService.findByHoaDonId(qLHoaDon.getId()), new NuocUongRepositoryImpl().findByID(qLNuocUong.getId()),
+                            Integer.parseInt(soLuong), qLNuocUong.getGia(), null, trangThaiDichVu.Dang_Su_Dung);
+                    dichVuRepository.saveOrUpdate(dichVu);
+                    listDV = dichVuRepository.findByIdHoaDon(qLHoaDon.getId());
+                    addDataRowDichVu(listDV);
+                    txtTongTien.setText(String.valueOf(fillGia()));
                 }
             }
         } else {
@@ -1118,16 +1118,16 @@ public class FrmThanhToan extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jcbDichVuActionPerformed
 
-    private void btnAddPPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPPActionPerformed
+    private void btnAddPPActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
-<<<<<<< HEAD
+
         DichVu dichVu = dichVuRepository.findByIdHoaDon(qLHoaDon.getId()).get(jtbChiTietDichVu.getSelectedRow());
-//        if (dichVuRepository.delete(dichVu.getId())) {
-//            JOptionPane.showMessageDialog(rootPane, "Xóa Thành Công");
-//            addDataRowDichVu(dichVuRepository.findByIdHoaDon(qLHoaDon.getId()));
-//            txtTongTien.setText(String.valueOf(fillGia()));
-//        }
-    }//GEN-LAST:event_jMenuXoaDichVuActionPerformed
+        if (dichVuRepository.delete(dichVu.getId())) {
+            JOptionPane.showMessageDialog(rootPane, "Xóa Thành Công");
+            addDataRowDichVu(dichVuRepository.findByIdHoaDon(qLHoaDon.getId()));
+            txtTongTien.setText(String.valueOf(fillGia()));
+        }
+    }                                              
 
     private void btnThanhToan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToan1ActionPerformed
         // TODO add your handling code here:
@@ -1141,11 +1141,11 @@ public class FrmThanhToan extends javax.swing.JFrame {
         DichVu dichVu = dichVuRepository.findByIdHoaDon(qLHoaDon.getId()).get(jtbChiTietDichVu.getSelectedRow());
         String soLuong = JOptionPane.showInputDialog(rootPane, "Mời Nhập Số Lượng Dịch Vụ !!");
         if (soLuong == null) {
-=======
+
         if (txtGiaPhuPhi.getText().isEmpty() || txtGiaPhuPhi.getText().isBlank() || !txtGiaPhuPhi.getText().matches("-?\\d+(\\.\\d+)?")) {
             JOptionPane.showMessageDialog(rootPane, "Không Được Để Trống \n"
                     + "Và Nhập Kí Tự !!");
->>>>>>> c50e2f0716ed742766fdf7f1391636ca7038db2d
+
             return;
         } else {
             QLHoaDon_PhuPhi hoaDon_PhuPhi = new QLHoaDon_PhuPhi(null, qLHoaDon, qLPhuPhis.get(jcbPhuPhi.getSelectedIndex()),
@@ -1157,7 +1157,6 @@ public class FrmThanhToan extends javax.swing.JFrame {
             }
         }
         txtTongTien.setText(String.valueOf(fillGia()));
-<<<<<<< HEAD
     }//GEN-LAST:event_jMenuSuaSoLuongActionPerformed
 
     private void btnAddPhuPhiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPhuPhiActionPerformed
@@ -1172,12 +1171,12 @@ public class FrmThanhToan extends javax.swing.JFrame {
             if (tenPP.isEmpty()) {
                 JOptionPane.showMessageDialog(rootPane, "Không Được Để Trống");
             } else {
-//                QLPhuPhi phuPhi = new QLPhuPhi(null, phuPhiService.genMaPhuPhi(), tenPP);
-//                if (phuPhiService.save(phuPhi)) {
-//                    JOptionPane.showMessageDialog(rootPane, "Thêm Phụ Phí Thành Công");
-//                } else {
-//                    JOptionPane.showMessageDialog(rootPane, "Thất Bại");
-//                }
+                QLPhuPhi phuPhi = new QLPhuPhi(null, phuPhiService.genMaPhuPhi(), tenPP);
+                if (phuPhiService.save(phuPhi)) {
+                    JOptionPane.showMessageDialog(rootPane, "Thêm Phụ Phí Thành Công");
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Thất Bại");
+                }
             }
         }
         loadCBPhuPhi();
@@ -1185,28 +1184,26 @@ public class FrmThanhToan extends javax.swing.JFrame {
 
     private void jcbPhuPhiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbPhuPhiActionPerformed
         // TODO add your handling code here:
-//        String gia = JOptionPane.showInputDialog(rootPane, "Xin Mời Nhập Gía");
-//        if (gia == null) {
-//            return;
-//        } else {
-//            if (gia.isEmpty() || !gia.matches("-?\\d+(\\.\\d+)?")) {
-//                JOptionPane.showMessageDialog(rootPane, "Không Được Để Trống \n"
-//                        + "Và Giá Phải Là Số");
-//            } else {
-//                QLHoaDon_PhuPhi hoaDon_PhuPhi = new QLHoaDon_PhuPhi(null, qLHoaDon, qLPhuPhis.get(jcbPhuPhi.getSelectedIndex()), Double.valueOf(gia), "ahs");
-//                if (new HoaDonPhuPhiServiceImpl().save(hoaDon_PhuPhi)) {
-//                    JOptionPane.showMessageDialog(rootPane, "Thêm Thành Công");
-//                } else {
-//                    JOptionPane.showMessageDialog(rootPane, "Thêm That Bai");
-//                }
-//            }
-//        }
-//        txtTongTien.setText(String.valueOf(fillGia()));
+        String gia = JOptionPane.showInputDialog(rootPane, "Xin Mời Nhập Gía");
+        if (gia == null) {
+            return;
+        } else {
+            if (gia.isEmpty() || !gia.matches("-?\\d+(\\.\\d+)?")) {
+                JOptionPane.showMessageDialog(rootPane, "Không Được Để Trống \n"
+                        + "Và Giá Phải Là Số");
+            } else {
+                QLHoaDon_PhuPhi hoaDon_PhuPhi = new QLHoaDon_PhuPhi(null, qLHoaDon, qLPhuPhis.get(jcbPhuPhi.getSelectedIndex()), Double.valueOf(gia), "ahs");
+                if (new HoaDonPhuPhiServiceImpl().save(hoaDon_PhuPhi)) {
+                    JOptionPane.showMessageDialog(rootPane, "Thêm Thành Công");
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Thêm That Bai");
+                }
+            }
+        }
+        txtTongTien.setText(String.valueOf(fillGia()));
     }//GEN-LAST:event_jcbPhuPhiActionPerformed
-=======
-    }//GEN-LAST:event_btnAddPPActionPerformed
->>>>>>> c50e2f0716ed742766fdf7f1391636ca7038db2d
-
+                                       
+        
     /**
      * @param args the command line arguments
      */
