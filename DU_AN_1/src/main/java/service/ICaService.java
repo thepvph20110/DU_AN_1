@@ -25,4 +25,6 @@ public interface ICaService {
     List<QLCa> searchByName(String ten);
 
     String saveNewCa(Ca ca);
+
+    String xoaCa(String id);
 }
