@@ -12,12 +12,14 @@ import java.util.List;
  * @author hp
  */
 public interface ILoaiSanRepository {
-    
+
     List<LoaiSan> getAll();
-    
+
     boolean saveOrUpdate(LoaiSan loaiSan);
-    
+
     boolean deleteLoaiSan(LoaiSan loaiSan);
-    
+
     List<LoaiSan> searchByName(String ten);
+
+    LoaiSan getOne(String tenLoai);
 }

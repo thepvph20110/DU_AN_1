@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.swing.JOptionPane;
 import modelview.QLLoaiSan;
 import modelview.QLSanBong;
 import repository.ILoaiSanRepository;
@@ -30,7 +31,6 @@ public class SanBongServiceImpl implements ISanBongService {
     private ILoaiSanRepository ire = new LoaiSanRepository();
 
     @Override
-     
 
     public List<QLSanBong> getAll() {
         List<LoaiSan> listLoaiSan = ire.getAll();
@@ -40,21 +40,21 @@ public class SanBongServiceImpl implements ISanBongService {
         }
         listQLSanBong.clear();
         for (SanBong sanBong : re.getAll()) {
-            listQLSanBong.add(new QLSanBong(sanBong.getId(), sanBong.getMaSanBong(), sanBong.getTenSanBong(),sanBong.getGiaSan(), sanBong.getSucChua(), sanBong.getLoaiSan().getTenLoaiSan(), sanBong.getTrangThai()));
+            listQLSanBong.add(new QLSanBong(sanBong.getId(), sanBong.getMaSanBong(), sanBong.getTenSanBong(), sanBong.getGiaSan(), sanBong.getSucChua(), sanBong.getLoaiSan().getTenLoaiSan(), sanBong.getTrangThai()));
         }
         return listQLSanBong;
     }
 
     @Override
     public String save(QLSanBong qLSanBong) {
-        if(map.containsKey(qLSanBong.getMaSanBong()) || map.containsKey(qLSanBong.getTenSanBong())){
+        if (map.containsKey(qLSanBong.getMaSanBong()) || map.containsKey(qLSanBong.getTenSanBong())) {
             return "Ma or Ten Trung";
         }
         LoaiSan loaiSan = new LoaiSan();
-        if(map.containsKey(qLSanBong.getTenLoaiSan())){
-            loaiSan =(LoaiSan) map.get(qLSanBong.getTenLoaiSan());
+        if (map.containsKey(qLSanBong.getTenLoaiSan())) {
+            loaiSan = (LoaiSan) map.get(qLSanBong.getTenLoaiSan());
         }
-        SanBong sanBong = new SanBong(null, qLSanBong.getMaSanBong(), qLSanBong.getTenSanBong(), qLSanBong.getGiaSan(), qLSanBong.getSucChua(), loaiSan, qLSanBong.getTrangThai());
+        SanBong sanBong = new SanBong(qLSanBong.getId(), qLSanBong.getMaSanBong(), qLSanBong.getTenSanBong(), qLSanBong.getGiaSan(), qLSanBong.getSucChua(), loaiSan, qLSanBong.getTrangThai());
         if (re.saveOrUpdate(sanBong)) {
             return "Save Complete";
         } else {
@@ -65,8 +65,8 @@ public class SanBongServiceImpl implements ISanBongService {
     @Override
     public String update(QLSanBong qLSanBong) {
         LoaiSan loaiSan = new LoaiSan();
-        if(map.containsKey(qLSanBong.getTenLoaiSan())){
-            loaiSan =(LoaiSan) map.get(qLSanBong.getTenLoaiSan());
+        if (map.containsKey(qLSanBong.getTenLoaiSan())) {
+            loaiSan = (LoaiSan) map.get(qLSanBong.getTenLoaiSan());
         }
         SanBong sanBong = new SanBong(qLSanBong.getId(), qLSanBong.getMaSanBong(), qLSanBong.getTenSanBong(), qLSanBong.getGiaSan(), qLSanBong.getSucChua(), loaiSan, qLSanBong.getTrangThai());
         if (re.saveOrUpdate(sanBong)) {
@@ -79,16 +79,17 @@ public class SanBongServiceImpl implements ISanBongService {
     @Override
     public String delete(QLSanBong qLSanBong) {
         LoaiSan loaiSan = new LoaiSan();
-        if(map.containsKey(qLSanBong.getTenLoaiSan())){
-            loaiSan =(LoaiSan) map.get(qLSanBong.getTenLoaiSan());
-        }SanBong sanBong = new SanBong(qLSanBong.getId(), qLSanBong.getMaSanBong(), qLSanBong.getTenSanBong(), qLSanBong.getGiaSan(), qLSanBong.getSucChua(), loaiSan, qLSanBong.getTrangThai());
+        if (map.containsKey(qLSanBong.getTenLoaiSan())) {
+            loaiSan = (LoaiSan) map.get(qLSanBong.getTenLoaiSan());
+        }
+        SanBong sanBong = new SanBong(qLSanBong.getId(), qLSanBong.getMaSanBong(), qLSanBong.getTenSanBong(), qLSanBong.getGiaSan(), qLSanBong.getSucChua(), loaiSan, qLSanBong.getTrangThai());
         if (re.deleteSanBong(sanBong)) {
             return "Delete Complete";
         } else {
             return "Delete Fail";
         }
     }
-    
+
     public static void main(String[] args) {
         System.out.println(new SanBongServiceImpl().getAll());
     }
@@ -97,10 +98,23 @@ public class SanBongServiceImpl implements ISanBongService {
     public List<QLSanBong> searchByName(String ten) {
         List<QLSanBong> qLSanBongs = new ArrayList<>();
         for (SanBong sanBong : re.searchByName(ten)) {
-            QLSanBong qLsanBong = new QLSanBong(sanBong.getId(), sanBong.getMaSanBong(), sanBong.getTenSanBong(),sanBong.getGiaSan(), sanBong.getSucChua(), sanBong.getLoaiSan().getTenLoaiSan(), sanBong.getTrangThai());
+            QLSanBong qLsanBong = new QLSanBong(sanBong.getId(), sanBong.getMaSanBong(), sanBong.getTenSanBong(), sanBong.getGiaSan(), sanBong.getSucChua(), sanBong.getLoaiSan().getTenLoaiSan(), sanBong.getTrangThai());
             qLSanBongs.add(qLsanBong);
         }
         return qLSanBongs;
     }
 
+    @Override
+    public String saveSanBong(SanBong sanBong) {
+        return re.saveSanBong(sanBong);
+    }
+
+    @Override
+    public String deleteSanBongNew(SanBong sanBong) {
+        if (re.deleteSanBong(sanBong) == true) {
+            return "Delete Complete";
+        } else {
+            return "Delete Fail";
+        }
+    }
 }

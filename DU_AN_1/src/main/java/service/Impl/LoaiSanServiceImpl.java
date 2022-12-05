@@ -77,4 +77,9 @@ public class LoaiSanServiceImpl implements ILoaiSanService {
         }
         return qLLoaiSans;
     }
+
+    @Override
+    public LoaiSan getOne(String tenSan) {
+        return re.getOne(tenSan);
+    }
 }

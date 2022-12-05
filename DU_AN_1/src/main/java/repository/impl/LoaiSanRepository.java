@@ -79,4 +79,14 @@ public class LoaiSanRepository implements ILoaiSanRepository {
         return listNuocUong;
     }
 
+    @Override
+    public LoaiSan getOne(String tenLoai) {
+        String hql = "From LoaiSan ls WHERE ls.tenLoaiSan = :ten";
+        try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
+            return (LoaiSan) session.createQuery(hql).setParameter("ten", tenLoai).uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return null;
+    }
 }
