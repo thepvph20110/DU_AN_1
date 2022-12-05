@@ -155,6 +155,8 @@ public class JpnQuanLySan extends javax.swing.JPanel {
 
     private void xoaSan() {
         JOptionPane.showMessageDialog(null, iSanBongService.xoaSan(mountClick().getId()));
+        listQLSanBong = iSanBongService.getAll();
+        showData(listQLSanBong);
     }
 
     private void fillData(int index) {
