@@ -28,12 +28,12 @@ public class SanCaRepository implements ISanCaRepository {
     @Override
     public List<SanCa> getAll(Date ngayTao) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        String ngayDen = format.format(new Date());
+        String ngayHientai = format.format(ngayTao);
 
         try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
-            Date da = format.parse(ngayDen);
+            Date dateNow = format.parse(ngayHientai);
             String hql = "From SanCa sc WHERE sc.ngayTao = :ngayDen order by sc.ca.tenCa";
-            Query q = session.createQuery(hql).setParameter("ngayDen", da);
+            Query q = session.createQuery(hql).setParameter("ngayDen", dateNow);
             return q.getResultList();
         } catch (ParseException ex) {
             Logger.getLogger(SanCaRepository.class.getName()).log(Level.SEVERE, null, ex);

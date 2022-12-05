@@ -69,13 +69,13 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
     private JPanel pnTong;
     private JLabel lbHome;
 
-    public FrmDoiLichDat(PhieuDatLich phieuDatLich,QLAcount qLAcount,JPanel pnTong, JLabel lbHome) {
+    public FrmDoiLichDat(PhieuDatLich phieuDatLich, QLAcount qLAcount, JPanel pnTong, JLabel lbHome) {
         initComponents();
         this.setExtendedState(this.MAXIMIZED_BOTH);
         this.phieuDatLich = phieuDatLich;
-        this.qLAcount =qLAcount;
-        this.pnTong= pnTong;
-        this.lbHome= lbHome;
+        this.qLAcount = qLAcount;
+        this.pnTong = pnTong;
+        this.lbHome = lbHome;
         listSanCa = sanCaService.getAll(new Date());
         listSanBong = sanBongService.getAll();
         AddSan();
@@ -84,8 +84,8 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
         txttenKH.setEnabled(false);
         txtTenSan.setEnabled(false);
         txtTGCa.setEnabled(false);
-         txtTenSan.setText(phieuDatLich.getSanCa().getSanbong().getTenSanBong());
-        txtNgayDenSan.setText(sdf.format(phieuDatLich.getSanCa().getNgayTao()));
+        txtTenSan.setText(phieuDatLich.getSanCa().getSanbong().getTenSanBong());
+        txtNgayDenSan.setText(sdf.format(phieuDatLich.getNgayDenSan()));
         txtTGCa.setText(phieuDatLich.getSanCa().getCa().getThoiGianBatDau() + "-" + phieuDatLich.getSanCa().getCa().getThoiGianKetThuc());
         String stringDate = sdf.format(new Date());
         try {
@@ -495,13 +495,13 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
                 phieuDatLich.setSanCa(sanCa);
                 if (phieuDatLichService.updateTrangThai(phieuDatLich).equalsIgnoreCase("Sửa Trạng Thái Thành Công")) {
                     ByteArrayOutputStream byteArrayOutputStream = new QRCode().getQRCodeImage(phieuDatLich.getMaQR(), 200, 200);
-                   String mess = new JavaMail().sendMail(phieuDatLich, byteArrayOutputStream);
-                   JOptionPane.showMessageDialog(panelTong, mess);
+                    String mess = new JavaMail().sendMail(phieuDatLich, byteArrayOutputStream);
+                    JOptionPane.showMessageDialog(panelTong, mess);
                     qLSanCa.setTrangThai(trangThaiSanCa.CHO_NHAN_SAN);
                     sanCaService.update(qLSanCa);
                     sanCaService.update(sanCaCu);
                     this.dispose();
-                    HomeController homeController = new HomeController(pnTong, qLAcount);
+                    HomeController homeController = new HomeController(pnTong, qLAcount, new Date());
                     homeController.setView(lbHome);
                 }
             } else {

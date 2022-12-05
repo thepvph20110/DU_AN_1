@@ -9,6 +9,7 @@ import controller.HomeController;
 import domainmodel.PhieuDatLich;
 import enumclass.trangThaiSanCa;
 import java.awt.Color;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -44,6 +45,7 @@ public class Home extends javax.swing.JFrame {
     private ICaService caService = new CaServiceImpl();
     private List<QLSanBong> listSanBong = new ArrayList<>();
     private List<QLCa> listCa = new ArrayList<>();
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     public Home(QLAcount qLAcount) {
         initComponents();
@@ -54,13 +56,18 @@ public class Home extends javax.swing.JFrame {
         for (PhieuDatLich phieuDatLich : phieuDatLichService.getPhieuDatLichByTT()) {
             map.put(phieuDatLich.getKhachHang().getSoDienThoai(), phieuDatLich);
         }
+        String stringDate = sdf.format(new Date());
+        try {
+            createSanCaFollowDate(sdf.parse(stringDate));
+        } catch (Exception e) {
+        }
 
         displayHome();
         phanQuyen();
     }
 
     public void displayHome() {
-        HomeController conTrolerHome = new HomeController(panelTong, this.qLAcount);
+        HomeController conTrolerHome = new HomeController(panelTong, this.qLAcount, new Date());
         conTrolerHome.setView(this.lbHome);
 
         List<DanhMuc> listItem = new ArrayList<>();
@@ -726,8 +733,12 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_lbLichSuMouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        createSanCaFollowDate(jDate.getDate());
-        HomeController controller = new HomeController(panelTong, qLAcount);
+        String stringDate = sdf.format(jDate.getDate());
+        try {
+            createSanCaFollowDate(sdf.parse(stringDate));
+        } catch (Exception e) {
+        }
+        HomeController controller = new HomeController(panelTong, qLAcount, jDate.getDate());
         controller.setView(lbHome);
     }//GEN-LAST:event_jLabel4MouseClicked
     private void createSanCaFollowDate(Date ngayTao) {
@@ -747,7 +758,7 @@ public class Home extends javax.swing.JFrame {
             if (listSanCa.size() > 0) {
                 sanCaService.addListSanCa(listSanCa);
             }
-        }
+        } 
     }
     private void lbQLSanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbQLSanMouseClicked
 //        new FrmSanBong().setVisible(true);

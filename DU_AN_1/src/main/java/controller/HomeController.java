@@ -8,6 +8,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -34,10 +35,12 @@ public class HomeController {
     private List<DanhMuc> listDanhMuc;
     private QLAcount qLAcount;
     private JLabel labelHome;
+    private Date ngatTao;
 
-    public HomeController(JPanel JPnRoot, QLAcount qLAcount) {
+    public HomeController(JPanel JPnRoot, QLAcount qLAcount,Date ngayTao) {
         this.root = JPnRoot;
         this.qLAcount = qLAcount;
+        this.ngatTao =ngayTao;
     }
 
     public HomeController() {
@@ -47,7 +50,7 @@ public class HomeController {
         labelHome = jblItem;
         // mặc định cái được chọn là trang chu jpanel 
         kindSelected = "TrangChu";
-        JpnTrangChu nood = new JpnTrangChu(qLAcount, jblItem, root);
+        JpnTrangChu nood = new JpnTrangChu(qLAcount, jblItem, root,ngatTao);
         root.removeAll();
         root.setLayout(new BorderLayout());
         root.add(nood);
@@ -77,7 +80,7 @@ public class HomeController {
         public void mouseClicked(MouseEvent e) {
             switch (kind) {
                 case "TrangChu":
-                    node = new JpnTrangChu(qLAcount, labelHome, root);
+                    node = new JpnTrangChu(qLAcount, labelHome, root,ngatTao);
                     break;
                 case "LichDat":
                     node = new JpnLichDat();

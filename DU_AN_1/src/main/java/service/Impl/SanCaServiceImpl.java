@@ -56,7 +56,7 @@ public class SanCaServiceImpl implements ISanCaService {
             map.put(String.valueOf(ca.getThoiGianBatDau()), ca);
             map.put(String.valueOf(ca.getThoiGianKetThuc()), ca);
         }
-        for (SanCa sanCa : re.getAll(new Date())) {
+        for (SanCa sanCa : re.getAll(ngayTao)) {
             QLSanCa qLSanCa = new QLSanCa(sanCa.getId(), sanCa.getCa().getTenCa(), sanCa.getSanbong().getTenSanBong(), sanCa.getSanbong().getSucChua(), sanCa.getCa().getThoiGianBatDau(), sanCa.getCa().getThoiGianKetThuc(), sanCa.getNgayTao(), sanCa.getSanbong().getGiaSan() + sanCa.getCa().getGiaCa(), sanCa.getTrangThai());
             listQLSanCa.add(qLSanCa);
         }
@@ -107,7 +107,7 @@ public class SanCaServiceImpl implements ISanCaService {
         if (map.containsKey(qLSanCa.getTenSanBong())) {
             sanBong = (SanBong) map.get(qLSanCa.getTenSanBong());
         }
-        SanCa sanCa = new SanCa(qLSanCa.getId(), ca, sanBong, new Date(), ca.getGiaCa() + sanBong.getGiaSan(), qLSanCa.getTrangThai());
+        SanCa sanCa = new SanCa(qLSanCa.getId(), ca, sanBong,qLSanCa.getNgayTao(), ca.getGiaCa() + sanBong.getGiaSan(), qLSanCa.getTrangThai());
         if (re.update(sanCa)) {
             return "Update Complete";
         } else {
