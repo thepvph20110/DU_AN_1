@@ -4,6 +4,7 @@
  */
 package service;
 
+import domainmodel.SanBong;
 import java.util.List;
 import modelview.QLSanBong;
 
@@ -20,7 +21,10 @@ public interface ISanBongService {
     String update(QLSanBong qLSanBong);
 
     String delete(QLSanBong qLSanBong);
-    
+
     List<QLSanBong> searchByName(String ten);
 
+    String saveSanBong(SanBong sanBong);
+
+    String deleteSanBongNew(SanBong sanBong);
 }

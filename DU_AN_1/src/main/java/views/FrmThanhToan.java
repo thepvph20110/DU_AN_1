@@ -919,8 +919,6 @@ public class FrmThanhToan extends javax.swing.JFrame {
             Date date = new Date();
             hoaDon.setNgayThanhToan(date);
             new HoaDonRepositoryImpl().update(hoaDon);
-            FrmHoaDon frmHoaDon = new FrmHoaDon();
-            frmHoaDon.setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_btnThanhToanActionPerformed
@@ -1087,7 +1085,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
             if (dichVuRepository.findByIdHoaDonAndDoThue(qLHoaDon.getId(), qLDoThue.getId()).size() > 0) {
                 DichVu dichVu = dichVuRepository.findByIdHoaDonAndDoThue(qLHoaDon.getId(), qLDoThue.getId()).get(0);
                 String soLuong = JOptionPane.showInputDialog(rootPane, "Mời Nhập Số Lượng");
-                if(soLuong == null){
+                if (soLuong == null) {
                     return;
                 }
                 if (soLuong.isEmpty() || !soLuong.matches("-?\\d+(\\.\\d+)?")) {
@@ -1101,7 +1099,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
                 }
             } else {
                 String soLuong = JOptionPane.showInputDialog(rootPane, "Mời Nhập Số Lượng!!");
-                if(soLuong == null){
+                if (soLuong == null) {
                     return;
                 }
                 if (soLuong.isEmpty() || !soLuong.matches("-?\\d+(\\.\\d+)?")) {

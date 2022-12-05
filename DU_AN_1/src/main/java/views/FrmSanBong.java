@@ -352,7 +352,7 @@ public class FrmSanBong extends javax.swing.JFrame {
         }
         if (maSanBong.length() == 0 || tenSanBong.length() == 0 || giaSan.length() == 0 || sucChua.length() == 0) {
             JOptionPane.showMessageDialog(this, "IsEmpty");
-        }  else {
+        } else {
 
             QLSanBong qLSanBong = new QLSanBong(null, maSanBong, tenSanBong, Double.valueOf(giaSan), Integer.valueOf(sucChua), cbbLoaiSan.getSelectedItem().toString(), qlsb.getTrangThai());
             JOptionPane.showMessageDialog(this, iSanBongService.save(qLSanBong));
@@ -376,35 +376,20 @@ public class FrmSanBong extends javax.swing.JFrame {
         if (jTable1.getSelectedRow() < 0) {
             JOptionPane.showMessageDialog(this, "Selected Row ???");
         } else {
-            
-                QLSanBong qLSanBong = new QLSanBong(mountClick().getId(), maSanBong, tenSanBong, Double.valueOf(giaSan), Integer.valueOf(sucChua), cbbLoaiSan.getSelectedItem().toString(), qlsb.getTrangThai());
-                JOptionPane.showMessageDialog(this, iSanBongService.update(qLSanBong));
-                listQLSanBong = iSanBongService.getAll();
-                showData(listQLSanBong);
 
-            }
-        
+            QLSanBong qLSanBong = new QLSanBong(mountClick().getId(), maSanBong, tenSanBong, Double.valueOf(giaSan), Integer.valueOf(sucChua), cbbLoaiSan.getSelectedItem().toString(), qlsb.getTrangThai());
+            JOptionPane.showMessageDialog(this, iSanBongService.update(qLSanBong));
+            listQLSanBong = iSanBongService.getAll();
+            showData(listQLSanBong);
+
+        }
+
     }
 
     private void delete() {
-        String maSanBong = txtMaSanBong.getText().trim();
-        String tenSanBong = txtTenSanBong.getText().trim();
-        String giaSan = txtGiaSan.getText().trim();
-        String sucChua = txtSucChua.getText().trim();
-        QLSanBong qlsb = new QLSanBong();
-        if (radioHoatDong.isSelected()) {
-            qlsb.setTrangThai(trangThaiSanBong.HOAT_DONG);
-        } else {
-            qlsb.setTrangThai(trangThaiSanBong.SUA_CHUA);
-        }
-        if (jTable1.getSelectedRow() < 0) {
-            JOptionPane.showMessageDialog(this, "Selected Row ???");
-        } else {
-            QLSanBong qLSanBong = new QLSanBong(mountClick().getId(), maSanBong, tenSanBong, Double.valueOf(giaSan), Integer.valueOf(sucChua), cbbLoaiSan.getSelectedItem().toString(), qlsb.getTrangThai());
-            JOptionPane.showMessageDialog(this, iSanBongService.delete(qLSanBong));
-            listQLSanBong = iSanBongService.getAll();
-            showData(listQLSanBong);
-        }
+        JOptionPane.showMessageDialog(this, iSanBongService.delete(mountClick()));
+        listQLSanBong = iSanBongService.getAll();
+        showData(listQLSanBong);
 
     }
 
