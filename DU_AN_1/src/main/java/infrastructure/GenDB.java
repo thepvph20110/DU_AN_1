@@ -534,19 +534,19 @@ public class GenDB {
             session.save(kh3);
 
             //Gen Phụ Phí
-//            PhuPhi pp1 = new PhuPhi();
-//            pp1.setMaPhuPhi("PP001");
-//            pp1.setTenPhuPhi("Chơi Qúa Gio");
-//            session.save(pp1);
-//
-//            PhuPhi pp2 = new PhuPhi();
-//            pp2.setMaPhuPhi("PP002");
-//            pp2.setTenPhuPhi("Lam Hong Bong");
-//            session.save(pp2);
-//
-//            PhuPhi pp3 = new PhuPhi();
-//            pp3.setMaPhuPhi("PP003");
-//            pp3.setTenPhuPhi("Lam Hong San");
+            PhuPhi pp1 = new PhuPhi();
+            pp1.setMaPhuPhi("PP001");
+            pp1.setTenPhuPhi("Chơi Qúa Gio");
+            session.save(pp1);
+
+            PhuPhi pp2 = new PhuPhi();
+            pp2.setMaPhuPhi("PP002");
+            pp2.setTenPhuPhi("Lam Hong Bong");
+            session.save(pp2);
+
+            PhuPhi pp3 = new PhuPhi();
+            pp3.setMaPhuPhi("PP003");
+            pp3.setTenPhuPhi("Lam Hong San");
 //            session.save(pp3);
 //            //Gen Phiếu Đặt Lịch
 //            PhieuDatLich pdl1 = new PhieuDatLich();
@@ -594,18 +594,18 @@ public class GenDB {
 //            pdl3.setSanCa(san1Ca5);
 //            session.save(pdl3);
 //
-//            //Gen Thanh Toan
-//            ThanhToan tt1 = new ThanhToan();
-//            tt1.setMaThanhToan("TT001");
-//            tt1.setMoTa("Aggd");
-//            tt1.setHinhThanhToan(loaiHinhThanhToan.Chuyen_Khoan);
-//            session.save(tt1);
-//
-//            ThanhToan tt2 = new ThanhToan();
-//            tt2.setMaThanhToan("TT002");
-//            tt2.setMoTa("Aggd");
-//            tt2.setHinhThanhToan(loaiHinhThanhToan.Tien_Mat);
-//            session.save(tt2);
+            //Gen Thanh Toan
+            ThanhToan tt1 = new ThanhToan();
+            tt1.setMaThanhToan("TT001");
+            tt1.setMoTa("Aggd");
+            tt1.setHinhThanhToan(loaiHinhThanhToan.Chuyen_Khoan);
+            session.save(tt1);
+
+            ThanhToan tt2 = new ThanhToan();
+            tt2.setMaThanhToan("TT002");
+            tt2.setMoTa("Aggd");
+            tt2.setHinhThanhToan(loaiHinhThanhToan.Tien_Mat);
+            session.save(tt2);
 //
 //            //Gen HoaDon
 //            HoaDon hd1 = new HoaDon();
@@ -740,45 +740,45 @@ public class GenDB {
 //            pphd3.setHoaDon(hd3);
 //            session.save(pphd3);
 //
-//            //Giao ca 1
-//            GiaoCa giaoCa1 = new GiaoCa();
-//            giaoCa1.setMa("GC001");
-//            giaoCa1.setIdAcount(acc1);
-//            giaoCa1.setIdNhanVienCaTiepTheo(acc2.getId());
-//            giaoCa1.setIdNhanVienTrongCa(acc1.getId());
-//            giaoCa1.setGhiChuPhatSinh("oke");
-//            Date date1 = new Date(2022, 11, 12);
-//            giaoCa1.setThoiGianGiaoCa(date1);
-//            giaoCa1.setThoiGianNhanCa(new Date());
-//            giaoCa1.setThoiGianReset(new Date());
-//            giaoCa1.setTienBanDau(100);
-//            giaoCa1.setTongTienKhac(200);
-//            giaoCa1.setTongTienMat(150);
-//            giaoCa1.setTongTienMatCaTruoc(50);
-//            giaoCa1.setTongTienMatRut(50);
-//            giaoCa1.setTongTienTrongCa(100);
-//            giaoCa1.setTrangThai(trangThaiGiaoCa.NHAN_CA);
-//            session.save(giaoCa1);
-//
-//            //Giao ca 2
-//            GiaoCa giaoCa2 = new GiaoCa();
-//            giaoCa2.setMa("GC001");
-//            giaoCa2.setIdAcount(acc1);
-//            giaoCa2.setIdNhanVienCaTiepTheo(acc3.getId());
-//            giaoCa2.setIdNhanVienTrongCa(acc2.getId());
-//            giaoCa2.setGhiChuPhatSinh("oke");
-//            Date date2 = new Date(2022, 11, 15);
-//            giaoCa2.setThoiGianGiaoCa(date2);
-//            giaoCa2.setThoiGianNhanCa(new Date());
-//            giaoCa2.setThoiGianReset(new Date());
-//            giaoCa2.setTienBanDau(300);
-//            giaoCa2.setTongTienKhac(50);
-//            giaoCa2.setTongTienMat(400);
-//            giaoCa2.setTongTienMatCaTruoc(300);
-//            giaoCa2.setTongTienMatRut(100);
-//            giaoCa2.setTongTienTrongCa(100);
-//            giaoCa2.setTrangThai(trangThaiGiaoCa.NHAN_CA);
-//            session.save(giaoCa2);
+            //Giao ca 1
+            GiaoCa giaoCa1 = new GiaoCa();
+            giaoCa1.setMa("GC001");
+            giaoCa1.setIdAcount(acc1);
+            giaoCa1.setIdNhanVienCaTiepTheo(acc2.getId());
+            giaoCa1.setIdNhanVienTrongCa(acc1.getId());
+            giaoCa1.setGhiChuPhatSinh("oke");
+            Date date1 = new Date(2022, 11, 12);
+            giaoCa1.setThoiGianGiaoCa(date1);
+            giaoCa1.setThoiGianNhanCa(new Date());
+            giaoCa1.setThoiGianReset(new Date());
+            giaoCa1.setTienBanDau(100);
+            giaoCa1.setTongTienKhac(200);
+            giaoCa1.setTongTienMat(150);
+            giaoCa1.setTongTienMatCaTruoc(50);
+            giaoCa1.setTongTienMatRut(50);
+            giaoCa1.setTongTienTrongCa(100);
+            giaoCa1.setTrangThai(trangThaiGiaoCa.NHAN_CA);
+            session.save(giaoCa1);
+
+            //Giao ca 2
+            GiaoCa giaoCa2 = new GiaoCa();
+            giaoCa2.setMa("GC001");
+            giaoCa2.setIdAcount(acc1);
+            giaoCa2.setIdNhanVienCaTiepTheo(acc3.getId());
+            giaoCa2.setIdNhanVienTrongCa(acc2.getId());
+            giaoCa2.setGhiChuPhatSinh("oke");
+            Date date2 = new Date(2022, 11, 15);
+            giaoCa2.setThoiGianGiaoCa(date2);
+            giaoCa2.setThoiGianNhanCa(new Date());
+            giaoCa2.setThoiGianReset(new Date());
+            giaoCa2.setTienBanDau(300);
+            giaoCa2.setTongTienKhac(50);
+            giaoCa2.setTongTienMat(400);
+            giaoCa2.setTongTienMatCaTruoc(300);
+            giaoCa2.setTongTienMatRut(100);
+            giaoCa2.setTongTienTrongCa(100);
+            giaoCa2.setTrangThai(trangThaiGiaoCa.NHAN_CA);
+            session.save(giaoCa2);
             // db generator : gen bảng tự động
             trans.commit();
         } catch (Exception e) {
