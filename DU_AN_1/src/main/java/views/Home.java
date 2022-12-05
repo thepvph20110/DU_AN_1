@@ -470,7 +470,7 @@ public class Home extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        lbMaQR.setBackground(new java.awt.Color(255, 255, 255));
+        lbMaQR.setBackground(new java.awt.Color(255, 51, 51));
         lbMaQR.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbMaQR.setOpaque(true);
         lbMaQR.addMouseListener(new java.awt.event.MouseAdapter() {

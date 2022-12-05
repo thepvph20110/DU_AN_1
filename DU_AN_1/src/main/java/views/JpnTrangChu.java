@@ -174,7 +174,6 @@ public class JpnTrangChu extends javax.swing.JPanel {
                      itemDoiLichDat.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            JOptionPane.showMessageDialog(panelTong, "đổi lịch");
                             jPopupMenu.setVisible(false);
                         }
                     });

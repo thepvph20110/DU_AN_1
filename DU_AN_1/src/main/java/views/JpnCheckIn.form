@@ -300,6 +300,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="&#x110;&#x1ed5;i l&#x1ecb;ch &#x111;&#x1eb7;t"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDoiLichActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnHuyLD">
               <Properties>
