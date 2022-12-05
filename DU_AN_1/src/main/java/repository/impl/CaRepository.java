@@ -83,4 +83,19 @@ public class CaRepository implements ICaRepository {
         }
         return listNuocUong;
     }
+
+    @Override
+    public String saveCaNew(Ca ca) {
+        Transaction transaction = null;
+        try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
+            transaction = session.beginTransaction();
+            session.save(ca);
+            transaction.commit();
+            return "Thêm thành công";
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+            transaction.rollback();
+            return "Thêm thất bại";
+        }
+    }
 }

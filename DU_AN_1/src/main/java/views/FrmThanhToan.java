@@ -382,6 +382,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         txtGiaPhuPhi = new javax.swing.JTextField();
         btnAddPP = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -614,6 +615,15 @@ public class FrmThanhToan extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(153, 153, 0));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton1.setText("Chi Tiết Phụ Phí");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -623,8 +633,8 @@ public class FrmThanhToan extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel10)
                                 .addGap(18, 18, 18)
                                 .addComponent(jcbPhuPhi, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -634,9 +644,11 @@ public class FrmThanhToan extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(txtGiaPhuPhi, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnAddPP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(42, 42, 42)
-                        .addComponent(btnAddPhuPhi, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnAddPP, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(33, 33, 33)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnAddPhuPhi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -694,7 +706,8 @@ public class FrmThanhToan extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtGiaPhuPhi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAddPP, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel17))
+                    .addComponent(jLabel17)
+                    .addComponent(jButton1))
                 .addGap(35, 35, 35)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -769,7 +782,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 919, Short.MAX_VALUE)
+            .addGap(0, 910, Short.MAX_VALUE)
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -868,7 +881,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 429, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 9, Short.MAX_VALUE))
@@ -937,8 +950,6 @@ public class FrmThanhToan extends javax.swing.JFrame {
             Date date = new Date();
             hoaDon.setNgayThanhToan(date);
             new HoaDonRepositoryImpl().update(hoaDon);
-            FrmHoaDon frmHoaDon = new FrmHoaDon();
-            frmHoaDon.setVisible(true);
             this.dispose();
         } else if (confirm == 1) {
             JOptionPane.showMessageDialog(rootPane, "Bạn Đã Chọn không In hóa đơn");
@@ -998,11 +1009,14 @@ public class FrmThanhToan extends javax.swing.JFrame {
 
     private void jMenuXoaDichVuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuXoaDichVuActionPerformed
         // TODO add your handling code here:
-        DichVu dichVu = dichVuRepository.findByIdHoaDon(qLHoaDon.getId()).get(jtbChiTietDichVu.getSelectedRow());
-        if (dichVuRepository.delete(dichVu.getId())) {
-            JOptionPane.showMessageDialog(rootPane, "Xóa Thành Công");
-            addDataRowDichVu(dichVuRepository.findByIdHoaDon(qLHoaDon.getId()));
-            txtTongTien.setText(String.valueOf(fillGia()));
+        int i = JOptionPane.showConfirmDialog(rootPane, "Xác Nhận Xóa !!");
+        if (i == 0) {
+            DichVu dichVu = dichVuRepository.findByIdHoaDon(qLHoaDon.getId()).get(jtbChiTietDichVu.getSelectedRow());
+            if (dichVuRepository.delete(dichVu.getId())) {
+                JOptionPane.showMessageDialog(rootPane, "Xóa Thành Công");
+                addDataRowDichVu(dichVuRepository.findByIdHoaDon(qLHoaDon.getId()));
+                txtTongTien.setText(String.valueOf(fillGia()));
+            }
         }
     }//GEN-LAST:event_jMenuXoaDichVuActionPerformed
 
@@ -1035,6 +1049,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
             }
         }
         txtTongTien.setText(String.valueOf(fillGia()));
+
     }//GEN-LAST:event_jMenuSuaSoLuongActionPerformed
 
     private void btnAddPhuPhiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPhuPhiActionPerformed
@@ -1111,7 +1126,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
             if (dichVuRepository.findByIdHoaDonAndDoThue(qLHoaDon.getId(), qLDoThue.getId()).size() > 0) {
                 DichVu dichVu = dichVuRepository.findByIdHoaDonAndDoThue(qLHoaDon.getId(), qLDoThue.getId()).get(0);
                 String soLuong = JOptionPane.showInputDialog(rootPane, "Mời Nhập Số Lượng");
-                if(soLuong == null){
+                if (soLuong == null) {
                     return;
                 }
                 if (soLuong.isEmpty() || !soLuong.matches("-?\\d+(\\.\\d+)?")) {
@@ -1125,7 +1140,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
                 }
             } else {
                 String soLuong = JOptionPane.showInputDialog(rootPane, "Mời Nhập Số Lượng!!");
-                if(soLuong == null){
+                if (soLuong == null) {
                     return;
                 }
                 if (soLuong.isEmpty() || !soLuong.matches("-?\\d+(\\.\\d+)?")) {
@@ -1163,17 +1178,36 @@ public class FrmThanhToan extends javax.swing.JFrame {
                     + "Và Nhập Kí Tự !!");
             return;
         } else {
-            QLHoaDon_PhuPhi hoaDon_PhuPhi = new QLHoaDon_PhuPhi(null, qLHoaDon, qLPhuPhis.get(jcbPhuPhi.getSelectedIndex()),
-                    Double.parseDouble(txtGiaPhuPhi.getText()), "Ahiih");
-            if (new HoaDonPhuPhiServiceImpl().save(hoaDon_PhuPhi)) {
-                JOptionPane.showMessageDialog(rootPane, "Thêm Thành Công");
+            QLHoaDon_PhuPhi qLHoaDon_PhuPhi = new HoaDonPhuPhiServiceImpl().getOne(qLPhuPhis.get(jcbPhuPhi.getSelectedIndex()).getId(), qLHoaDon.getId());
+            if (qLHoaDon_PhuPhi == null) {
+                QLHoaDon_PhuPhi hoaDon_PhuPhi = new QLHoaDon_PhuPhi(null, qLHoaDon, qLPhuPhis.get(jcbPhuPhi.getSelectedIndex()),
+                        Double.parseDouble(txtGiaPhuPhi.getText()), "Ahiih");
+                if (new HoaDonPhuPhiServiceImpl().save(hoaDon_PhuPhi)) {
+                    JOptionPane.showMessageDialog(rootPane, "Thêm Thành Công");
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Thêm Thất Bại");
+                }
             } else {
-                JOptionPane.showMessageDialog(rootPane, "Thêm Thất Bại");
+                double gia = Double.parseDouble(txtGiaPhuPhi.getText());
+                qLHoaDon_PhuPhi.setGiaPPHD(qLHoaDon_PhuPhi.getGiaPPHD() + gia);
+                if (new HoaDonPhuPhiServiceImpl().update(qLHoaDon_PhuPhi)) {
+                    JOptionPane.showMessageDialog(rootPane, "Thêm Thành Công");
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Thêm Thất Bại");
+                }
             }
         }
         txtTongTien.setText(String.valueOf(fillGia()));
     }//GEN-LAST:event_btnAddPPActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        new FrmChiTietPhuPhi(qLHoaDon.getId(), this).setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    public void setTxtGia() {
+        txtTongTien.setText(String.valueOf(fillGia()));
+    }
     /**
      * @param args the command line arguments
      */
@@ -1182,6 +1216,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
     private javax.swing.JButton btnAddPhuPhi;
     private javax.swing.JButton btnThanhToan;
     private javax.swing.JButton btnThanhToan1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

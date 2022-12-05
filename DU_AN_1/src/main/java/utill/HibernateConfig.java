@@ -1,5 +1,6 @@
 package utill;
 
+import domainModel.GiaoCa;
 import domainmodel.Acount;
 import domainmodel.Ca;
 import domainmodel.ChucVu;
@@ -38,10 +39,10 @@ public class HibernateConfig {
         properties.put(Environment.DRIVER, "com.microsoft.sqlserver.jdbc.SQLServerDriver");
         properties.put(Environment.URL, "jdbc:sqlserver://localhost:1433;databaseName=QLSanBongDongDe");
         properties.put(Environment.USER, "sa");
-        properties.put(Environment.PASS, "");
+        properties.put(Environment.PASS, "songlong");
         properties.put(Environment.SHOW_SQL, "true");
         properties.put(Environment.FORMAT_SQL, "true");
-        properties.put(Environment.HBM2DDL_AUTO, "");
+        properties.put(Environment.HBM2DDL_AUTO, "none");
 
         conf.setProperties(properties);
         conf.addAnnotatedClass(SanBong.class);
@@ -63,6 +64,7 @@ public class HibernateConfig {
         conf.addAnnotatedClass(ThanhToan.class);
         conf.addAnnotatedClass(PhuPhi_HoaDon.class);
         conf.addAnnotatedClass(HoaDonThanhToan.class);
+        conf.addAnnotatedClass(GiaoCa.class);
 
         ServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .applySettings(conf.getProperties()).build();

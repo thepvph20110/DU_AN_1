@@ -54,14 +54,14 @@ public class JpnCheckIn extends javax.swing.JPanel {
         iTemChiTiet.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                 new FrmPhieuDatSan(phieuDL, qLAcount, pnTong, lbHome).setVisible(true);
+                new FrmPhieuDatSan(phieuDL, qLAcount, pnTong, lbHome).setVisible(true);
                 PopupMenu.setVisible(false);
             }
         });
         iTemDoiLich.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(pnTong, "đổi lịch");
+                new FrmDoiLichDat(phieuDL,qLAcount,pnTong,lbHome).setVisible(true);
                 PopupMenu.setVisible(false);
             }
         });
@@ -69,15 +69,15 @@ public class JpnCheckIn extends javax.swing.JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int checkOption = JOptionPane.showConfirmDialog(pnTong, "Xác nhận hủy lịch đặt", "Thông Báo", JOptionPane.YES_NO_OPTION);
-            if (checkOption == JOptionPane.YES_OPTION) {
-                phieuDL.setTrangThai(trangThaiPhieuDL.DA_HUY);
-                String check = phieuDatLichService.updateTrangThai(phieuDL);
-                if (check.equals("Sửa Trạng Thái Thành Công")) {
-                    JOptionPane.showMessageDialog(pnTong, "Đã hủy lịch đặt");
-                    listPhieuDatLich = phieuDatLichService.getPhieuDatLichByTT();
-                    showData(listPhieuDatLich);
+                if (checkOption == JOptionPane.YES_OPTION) {
+                    phieuDL.setTrangThai(trangThaiPhieuDL.DA_HUY);
+                    String check = phieuDatLichService.updateTrangThai(phieuDL);
+                    if (check.equals("Sửa Trạng Thái Thành Công")) {
+                        JOptionPane.showMessageDialog(pnTong, "Đã hủy lịch đặt");
+                        listPhieuDatLich = phieuDatLichService.getPhieuDatLichByTT();
+                        showData(listPhieuDatLich);
+                    }
                 }
-            }
                 PopupMenu.setVisible(false);
             }
         });
@@ -217,6 +217,11 @@ public class JpnCheckIn extends javax.swing.JPanel {
         btnDoiLich.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnDoiLich.setForeground(new java.awt.Color(255, 255, 255));
         btnDoiLich.setText("Đổi lịch đặt");
+        btnDoiLich.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDoiLichActionPerformed(evt);
+            }
+        });
 
         btnHuyLD.setBackground(new java.awt.Color(255, 51, 51));
         btnHuyLD.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -293,22 +298,7 @@ public class JpnCheckIn extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        // TODO add your handling code here:
-//        int index = jTable1.getSelectedRow();
-//        if (index == -1) {
-//            JOptionPane.showMessageDialog(this, "Xin mời chọn dòng");
-//            return;
-//        }
-//        if (evt.isPopupTrigger()) {
-//            PopupMenu.show(jTable1, evt.getPoint().x, evt.getPoint().y);
-//        }
-//        iTemChiTiet.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                JOptionPane.showMessageDialog(this, "Sân này chưa có người đá! Không thể Check Out!");
-//                popupMenu.St(false);
-//            }
-//        });
+
 
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -357,7 +347,7 @@ public class JpnCheckIn extends javax.swing.JPanel {
 
     private void jTable1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseReleased
         // TODO add your handling code here:
-         int index = jTable1.getSelectedRow();
+        int index = jTable1.getSelectedRow();
         if (index == -1) {
             JOptionPane.showMessageDialog(this, "Xin mời chọn dòng");
             return;
@@ -366,8 +356,19 @@ public class JpnCheckIn extends javax.swing.JPanel {
             phieuDL = listPhieuDatLich.get(index);
             PopupMenu.show(jTable1, evt.getPoint().x, evt.getPoint().y);
         }
-        
+
     }//GEN-LAST:event_jTable1MouseReleased
+
+    private void btnDoiLichActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoiLichActionPerformed
+        // TODO add your handling code here:
+        try {
+            int row = jTable1.getSelectedRow();
+            PhieuDatLich phieuDatLich = listPhieuDatLich.get(row);
+            new FrmDoiLichDat(phieuDL,qLAcount,pnTong,lbHome).setVisible(true);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "chọn lên table");
+        }
+    }//GEN-LAST:event_btnDoiLichActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

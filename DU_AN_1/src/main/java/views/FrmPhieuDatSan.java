@@ -10,6 +10,7 @@ import domainmodel.SanCa;
 import enumclass.trangThaiHoaDon;
 import enumclass.trangThaiPhieuDL;
 import enumclass.trangThaiSanCa;
+import java.util.Date;
 import java.util.UUID;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -284,7 +285,7 @@ public class FrmPhieuDatSan extends javax.swing.JFrame {
             new SanCaRepository().update(sanCa);
             QLHoaDon qLHoaDon = new QLHoaDon(null, "HD005", phieuDL, null, null, null, phieuDL.getTongTienSan(), phieuDL.getTongTienSan(), null, trangThaiHoaDon.CHUA_THANH_TOAN);
             hoaDonService.save(qLHoaDon);
-            HomeController homeController = new HomeController(pnTong, qLAcount);
+            HomeController homeController = new HomeController(pnTong, qLAcount,new Date());
             homeController.setView(lbHome);
             this.dispose();
         } else {

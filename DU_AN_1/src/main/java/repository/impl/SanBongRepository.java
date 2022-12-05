@@ -8,6 +8,7 @@ import domainmodel.SanBong;
 import java.util.List;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.swing.JOptionPane;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import repository.ISanBongRepository;
@@ -47,7 +48,7 @@ public class SanBongRepository implements ISanBongRepository {
         }
         return check;
     }
-    
+
     @Override
     public boolean deleteSanBong(SanBong sanBong) {
         boolean check;
@@ -79,4 +80,36 @@ public class SanBongRepository implements ISanBongRepository {
         return list;
     }
 
+    @Override
+    public String saveSanBong(SanBong sanBong) {
+        Transaction transaction = null;
+        try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
+            transaction = session.beginTransaction();
+            session.save(sanBong);
+            transaction.commit();
+            return "Thêm thành công";
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+            transaction.rollback();
+            return "Thêm thất bại";
+        }
+    }
+
+    @Override
+    public SanBong getOne(String id) {
+        String hql = "From SanBong sb WHERE sb.id = :IDSan";
+        try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
+            return (SanBong) session.createQuery(hql).setParameter("IDSan", id).uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return null;
+    }
+
+    public static void main(String[] args) {
+        if (new SanBongRepository().deleteSanBong(new SanBongRepository().getOne("284cba49-82c5-465b-beda-2e059694b62d")) == true) {
+            JOptionPane.showMessageDialog(null, "oke");
+        }
+        System.out.println(new SanBongRepository().getOne("284cba49-82c5-465b-beda-2e059694b62d"));
+    }
 }

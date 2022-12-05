@@ -12,4 +12,8 @@ public interface IHoaDon_PhuPhiService {
     boolean update(QLHoaDon_PhuPhi qLHoaDon_PhuPhi);
 
     boolean delete(String id);
+
+    QLHoaDon_PhuPhi getOne(String idPhuPhi,String idHoaDon);
+
+    List<QLHoaDon_PhuPhi> getAllPhuPhi_HoaDonsByIdHoaDon(String idHoaDon);
 }

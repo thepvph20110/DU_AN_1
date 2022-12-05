@@ -376,7 +376,7 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
             LoaiSan loaiSanEnity = new LoaiSan(qLLoaiSan.getId(), qLLoaiSan.getMaLoaiSan(), qLLoaiSan.getTenLoaiSan(), qLLoaiSan.getMoTa());
             SanBong sanBongEntity = new SanBong(qLSanBong.getId(), qLSanBong.getMaSanBong(), qLSanBong.getTenSanBong(), qLSanBong.getGiaSan(), qLSanBong.getSucChua(),
                     loaiSanEnity, qLSanBong.getTrangThai());
-            SanCa sanCaEntity = new SanCa(sanCa.getId(), caEntity, sanBongEntity, ngayTao, sanCa.getGiaCaSan(), sanCa.getTrangThai());
+            SanCa sanCaEntity = new SanCa(sanCa.getId(), caEntity, sanBongEntity,sanCa.getNgayTao(), sanCa.getGiaCaSan(), sanCa.getTrangThai());
             KhachHang khachHang = new KhachHang(qlKhachHang.getId(), qlKhachHang.getMaKhachHang(), qlKhachHang.getTenKhachHang(), qlKhachHang.getMail(), qlKhachHang.getSoDienThoai(), qlKhachHang.getGhiChu(), qlKhachHang.getTrangThai());
             PhieuDatLich phieuDatLich = new PhieuDatLich(maPhieuLichDat, acount, khachHang, sanCaEntity, ngayTao, ngayDen, null, ghiChu, maQr, sanCa.getGiaCaSan(), trangThaiPhieuDL.CHUA_NHAN_SAN);
 
@@ -387,7 +387,7 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
                     sanCa.setTrangThai(trangThaiSanCa.CHO_NHAN_SAN);
                     sanCaService.update(sanCa);
                     QLAcount qLAcount= new QLAcount(acount.getId(), acount.getMaAcount(), acount.getTenAcount(), acount.getChucVu(), acount.getMatKhau(),acount.getMoTa(), acount.getTrangThai());
-                    HomeController controller = new HomeController(pnTong,qLAcount);
+                    HomeController controller = new HomeController(pnTong,qLAcount,new Date());
                     controller.setView(labelHome);
 
                     this.dispose();
