@@ -611,17 +611,33 @@ public class JpnHoaDon extends javax.swing.JPanel {
         }
         txtMaDV.setEditable(false);
         //"ID", "Mã DV", "Đồ Thuê", "SL Đồ", "Nước Uống", "SL Nước", "Đơn Giá", "Mô Tả", "Trạng Thái"
-        this.txtMaDV.setText(tbDichVu.getValueAt(index, 1).toString());
-        this.cbbDoThue.setSelectedItem(tbDichVu.getValueAt(index, 2).toString());
-        this.txtSoLuongDoThue.setText(tbDichVu.getValueAt(index, 3).toString());
-        this.cbbHoaDon.setSelectedItem(tbDichVu.getValueAt(index, 4));
-        this.cbbNuocUong.setSelectedItem(tbDichVu.getValueAt(index, 5).toString());
-        this.txtSoLuongNuocUong.setText(tbDichVu.getValueAt(index, 6).toString());
-        this.txtDonGiaDV.setText(tbDichVu.getValueAt(index, 7).toString());
+//        this.txtMaDV.setText(tbDichVu.getValueAt(index, 1).toString());
+//        this.cbbDoThue.setSelectedItem(tbDichVu.getValueAt(index, 2).toString());
+//        this.txtSoLuongDoThue.setText(tbDichVu.getValueAt(index, 3).toString());
+//        this.cbbHoaDon.setSelectedItem(tbDichVu.getValueAt(index, 4));
+//        this.cbbNuocUong.setSelectedItem(tbDichVu.getValueAt(index, 5).toString());
+//        this.txtSoLuongNuocUong.setText(tbDichVu.getValueAt(index, 6).toString());
+//        this.txtDonGiaDV.setText(tbDichVu.getValueAt(index, 7).toString());
+//
+//        this.jtaMoTa.setText(tbDichVu.getValueAt(index, 8).toString());
+//
+//        if (tbDichVu.getValueAt(index, 9).equals(trangThaiDichVu.Dang_Su_Dung)) {
+//            this.rdoDangSD.setSelected(true);
+//        } else {
+//            this.rdoNgungSD.setSelected(true);
+//        }
+        
+        this.txtMaDV.setText(listQLDichVu.get(index).getMaDichVu());
+        this.cbbDoThue.setSelectedItem(listQLDichVu.get(index).getTenDoThue());
+        this.txtSoLuongDoThue.setText(String.valueOf(listQLDichVu.get(index).getSoLuongDoThue()));
+        this.cbbHoaDon.setSelectedItem(listQLDichVu.get(index).getHoaDon());
+        this.cbbNuocUong.setSelectedItem(listQLDichVu.get(index).getTenNuocUong());
+        this.txtSoLuongNuocUong.setText(String.valueOf(listQLDichVu.get(index).getSoLuongNuocUong()));
+        this.txtDonGiaDV.setText(String.valueOf(listQLDichVu.get(index).getDonGia()));
 
-        this.jtaMoTa.setText(tbDichVu.getValueAt(index, 8).toString());
+        this.jtaMoTa.setText(listQLDichVu.get(index).getMoTa());
 
-        if (tbDichVu.getValueAt(index, 9).equals(trangThaiDichVu.Dang_Su_Dung)) {
+        if (listQLDichVu.get(index).getTrangThai().equals(trangThaiDichVu.Dang_Su_Dung)) {
             this.rdoDangSD.setSelected(true);
         } else {
             this.rdoNgungSD.setSelected(true);
