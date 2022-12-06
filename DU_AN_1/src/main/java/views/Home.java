@@ -752,23 +752,34 @@ public class Home extends javax.swing.JFrame {
         controller.setView(lbHome);
     }//GEN-LAST:event_jLabel4MouseClicked
     private void createSanCaFollowDate(Date ngayTao) {
-        if (sanCaService.getByNgayTao(ngayTao).size() <= 0) {
+        try {
+            String nTao = sdf.format(ngayTao);
+            Date ngayTaoNew = sdf.parse(nTao);
+            Date now = new Date();
+            String bayGio = sdf.format(now);
+            Date HienTai = sdf.parse(bayGio);
+//            if (sanCaService.getSanCaByIdSanBong("aa", ngayTao)) {
+//                
+//            }
+            if (sanCaService.getByNgayTao(ngayTao).size() <= 0 && HienTai.before(ngayTao)) {
 
-            listSanBong = sanBongService.getAll();
-            listCa = caService.getAll();
-            List<QLSanCa> listSanCa = new ArrayList<>();
-            for (int i = 0; i < listSanBong.size(); i++) {
-                QLSanBong qLSanBong = listSanBong.get(i);
-                for (int j = 0; j < listCa.size(); j++) {
-                    QLCa qLCa = listCa.get(j);
-                    QLSanCa qLSanCa = new QLSanCa(null, qLCa.getTenCa(), qLSanBong.getTenSanBong(), qLSanBong.getSucChua(), qLCa.getThoiGianBatDau(), qLCa.getThoiGianKetThuc(), ngayTao, qLSanBong.getGiaSan() + qLCa.getGiaCa(), trangThaiSanCa.DANG_TRONG);
-                    listSanCa.add(qLSanCa);
+                listSanBong = sanBongService.getAll();
+                listCa = caService.getAll();
+                List<QLSanCa> listSanCa = new ArrayList<>();
+                for (int i = 0; i < listSanBong.size(); i++) {
+                    QLSanBong qLSanBong = listSanBong.get(i);
+                    for (int j = 0; j < listCa.size(); j++) {
+                        QLCa qLCa = listCa.get(j);
+                        QLSanCa qLSanCa = new QLSanCa(null, qLCa.getTenCa(), qLSanBong.getTenSanBong(), qLSanBong.getSucChua(), qLCa.getThoiGianBatDau(), qLCa.getThoiGianKetThuc(), ngayTao, qLSanBong.getGiaSan() + qLCa.getGiaCa(), trangThaiSanCa.DANG_TRONG);
+                        listSanCa.add(qLSanCa);
+                    }
+                }
+                if (listSanCa.size() > 0) {
+                    sanCaService.addListSanCa(listSanCa);
                 }
             }
-            if (listSanCa.size() > 0) {
-                sanCaService.addListSanCa(listSanCa);
-            }
-        } 
+        } catch (Exception e) {
+        }
     }
     private void lbQLSanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbQLSanMouseClicked
 //        new FrmSanBong().setVisible(true);

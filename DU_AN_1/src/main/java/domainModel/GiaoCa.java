@@ -35,9 +35,9 @@ public class GiaoCa implements Serializable {
     @Column(name = "id", updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
     private String id;
     private String ma;
-    @Column(columnDefinition = "date")
+    @Column(columnDefinition = "time")
     private Date thoiGianNhanCa;
-    @Column(columnDefinition = "date")
+    @Column(columnDefinition = "time")
     private Date thoiGianGiaoCa;
     private String idNhanVienTrongCa;
     private String idNhanVienCaTiepTheo;

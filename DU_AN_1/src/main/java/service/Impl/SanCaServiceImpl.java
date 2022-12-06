@@ -107,7 +107,7 @@ public class SanCaServiceImpl implements ISanCaService {
         if (map.containsKey(qLSanCa.getTenSanBong())) {
             sanBong = (SanBong) map.get(qLSanCa.getTenSanBong());
         }
-        SanCa sanCa = new SanCa(qLSanCa.getId(), ca, sanBong,qLSanCa.getNgayTao(), ca.getGiaCa() + sanBong.getGiaSan(), qLSanCa.getTrangThai());
+        SanCa sanCa = new SanCa(qLSanCa.getId(), ca, sanBong, qLSanCa.getNgayTao(), ca.getGiaCa() + sanBong.getGiaSan(), qLSanCa.getTrangThai());
         if (re.update(sanCa)) {
             return "Update Complete";
         } else {
@@ -178,6 +178,11 @@ public class SanCaServiceImpl implements ISanCaService {
             listQlSC.add(qLSanCa);
         }
         return listQlSC;
+    }
+
+    @Override
+    public List<SanCa> getSanCaByIdSanBong(String id, Date ngayTaoSanCa) {
+        return re.getSanCaByIdSanBong(id, ngayTaoSanCa);
     }
 
 }

@@ -1204,7 +1204,6 @@ public class FrmThanhToan extends javax.swing.JFrame {
     private void btnThanhToan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToan1ActionPerformed
         // TODO add your handling code here:
         FrmHoaDon frmHoaDon = new FrmHoaDon();
-        frmHoaDon.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnThanhToan1ActionPerformed
 

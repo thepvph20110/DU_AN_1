@@ -40,6 +40,7 @@ public class SanCaRepository implements ISanCaRepository {
         }
         return null;
     }
+
     @Override
     public boolean update(SanCa sanCa) {
         boolean check;
@@ -133,6 +134,18 @@ public class SanCaRepository implements ISanCaRepository {
             return q.getResultList();
         } catch (Exception e) {
             e.printStackTrace(System.out);
+        }
+        return null;
+    }
+
+    @Override
+    public List<SanCa> getSanCaByIdSanBong(String id,Date ngayTaoSanCa) {
+        String hql = "From SanCa sc WHERE sc.sanbong.id = :idSanBong and sc.ngayTao = :ngayTao";
+        try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
+            Query q = session.createQuery(hql).setParameter("idSanBong", id).setParameter("ngayTao", ngayTaoSanCa);
+            return q.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return null;
     }
