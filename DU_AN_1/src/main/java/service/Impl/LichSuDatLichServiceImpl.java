@@ -97,16 +97,21 @@ public class LichSuDatLichServiceImpl implements ILichSuDatLichService {
     public String genMaLichSu(List<QLLichSuDatLich> lstQLLichSuDatLichs) {
         int start;
         List<Integer> lstIntegers = new ArrayList<>();
-        for (int i = 0; i < lstQLLichSuDatLichs.size(); i++) {
-            start = Integer.parseInt(lstQLLichSuDatLichs.get(i).getMaLichSu().substring(4));
-            lstIntegers.add(start);
-        }
-        int max = lstIntegers.get(0);
-        for (int i = 0; i < lstIntegers.size(); i++) {
-            if (lstIntegers.get(i).compareTo(max) > 0) {
-                max = lstIntegers.get(i);
+        if (lstQLLichSuDatLichs == null) {
+            for (int i = 0; i < lstQLLichSuDatLichs.size(); i++) {
+                start = Integer.parseInt(lstQLLichSuDatLichs.get(i).getMaLichSu().substring(4));
+                lstIntegers.add(start);
             }
+            int max = lstIntegers.get(0);
+            for (int i = 0; i < lstIntegers.size(); i++) {
+                if (lstIntegers.get(i).compareTo(max) > 0) {
+                    max = lstIntegers.get(i);
+                }
+            }
+            return "LS00" + (++max);
+        } else {
+            return "LS001";
         }
-        return "LS00" + (++max);
+
     }
 }
