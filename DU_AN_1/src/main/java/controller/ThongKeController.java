@@ -46,7 +46,7 @@ public class ThongKeController {
                     dataset, PlotOrientation.VERTICAL, false, true, false);
 
             ChartPanel chartPanel = new ChartPanel(barChart);
-            chartPanel.setPreferredSize(new Dimension(jpnItem.getWidth(), 321));
+            chartPanel.setPreferredSize(new Dimension(jpnItem.getWidth(), 600));
 
             jpnItem.removeAll();
             jpnItem.setLayout(new CardLayout());
@@ -61,7 +61,7 @@ public class ThongKeController {
                     dataset, PlotOrientation.VERTICAL, false, true, false);
 
             ChartPanel chartPanel = new ChartPanel(barChart);
-            chartPanel.setPreferredSize(new Dimension(jpnItem.getWidth(), 321));
+            chartPanel.setPreferredSize(new Dimension(jpnItem.getWidth(), 600));
 
             jpnItem.removeAll();
             jpnItem.setLayout(new CardLayout());
@@ -89,7 +89,7 @@ public class ThongKeController {
                     dataset, PlotOrientation.VERTICAL, false, true, false);
 
             ChartPanel chartPanel = new ChartPanel(barChart);
-            chartPanel.setPreferredSize(new Dimension(jpnItem.getWidth(), 321));
+            chartPanel.setPreferredSize(new Dimension(jpnItem.getWidth(), 600));
 
             jpnItem.removeAll();
             jpnItem.setLayout(new CardLayout());
@@ -104,7 +104,7 @@ public class ThongKeController {
                     dataset, PlotOrientation.VERTICAL, false, true, false);
 
             ChartPanel chartPanel = new ChartPanel(barChart);
-            chartPanel.setPreferredSize(new Dimension(jpnItem.getWidth(), 321));
+            chartPanel.setPreferredSize(new Dimension(jpnItem.getWidth(), 600));
 
             jpnItem.removeAll();
             jpnItem.setLayout(new CardLayout());
@@ -114,77 +114,77 @@ public class ThongKeController {
         }
     }
 
-    public void setDataSoLuongNuocUong(JPanel jpnItem) {
-        List<TongSoLuongNuocUong> listItem = thongKeService.getTongNuocUong();
-        if (listItem.size() > 0) {
-            DefaultPieDataset dataset = new DefaultPieDataset();
-            if (listItem != null) {
-                for (TongSoLuongNuocUong item : listItem) {
-                    dataset.setValue(item.getTen(), item.getSoluongnuocuong());
-                }
-            }
-
-            JFreeChart pieChart = ChartFactory.createPieChart(
-                    "Tổng Nước Uống Được Mua Nhiều Nhất", dataset, true, true, true);
-
-            ChartPanel chartPanel = new ChartPanel(pieChart);
-            chartPanel.setPreferredSize(new Dimension(jpnItem.getWidth(), jpnItem.getHeight()));
-
-            jpnItem.removeAll();
-            jpnItem.setLayout(new CardLayout());
-            jpnItem.add(chartPanel);
-            jpnItem.validate();
-            jpnItem.repaint();
-        } else {
-            DefaultPieDataset dataset = new DefaultPieDataset();
-            JFreeChart pieChart = ChartFactory.createPieChart(
-                    "Không Có Dữ Liệu", dataset, true, true, true);
-
-            ChartPanel chartPanel = new ChartPanel(pieChart);
-            chartPanel.setPreferredSize(new Dimension(jpnItem.getWidth(), jpnItem.getHeight()));
-
-            jpnItem.removeAll();
-            jpnItem.setLayout(new CardLayout());
-            jpnItem.add(chartPanel);
-            jpnItem.validate();
-            jpnItem.repaint();
-        }
-    }
-
-    public void setDataSoLuongDoThue(JPanel jpnItem) {
-        List<TongSoLuongDoThue> listItem = thongKeService.getTongDoThue();
-        if (listItem.size() > 0) {
-            DefaultPieDataset dataset = new DefaultPieDataset();
-            if (listItem != null) {
-                for (TongSoLuongDoThue item : listItem) {
-                    dataset.setValue(item.getTenDoThue(), item.getSoluongdothue());
-                }
-            }
-
-            JFreeChart pieChart = ChartFactory.createPieChart(
-                    "Tổng Đồ Thuê Được Thuê Nhiều Nhất", dataset, true, true, true);
-
-            ChartPanel chartPanel = new ChartPanel(pieChart);
-            chartPanel.setPreferredSize(new Dimension(jpnItem.getWidth(), jpnItem.getHeight()));
-
-            jpnItem.removeAll();
-            jpnItem.setLayout(new CardLayout());
-            jpnItem.add(chartPanel);
-            jpnItem.validate();
-            jpnItem.repaint();
-        } else {
-            DefaultPieDataset dataset = new DefaultPieDataset();
-            JFreeChart pieChart = ChartFactory.createPieChart(
-                    "Không Có Dữ Liệu", dataset, true, true, true);
-            ChartPanel chartPanel = new ChartPanel(pieChart);
-            chartPanel.setPreferredSize(new Dimension(jpnItem.getWidth(), jpnItem.getHeight()));
-
-            jpnItem.removeAll();
-            jpnItem.setLayout(new CardLayout());
-            jpnItem.add(chartPanel);
-            jpnItem.validate();
-            jpnItem.repaint();
-        }
-    }
+//    public void setDataSoLuongNuocUong(JPanel jpnItem) {
+//        List<TongSoLuongNuocUong> listItem = thongKeService.getTongNuocUong();
+//        if (listItem.size() > 0) {
+//            DefaultPieDataset dataset = new DefaultPieDataset();
+//            if (listItem != null) {
+//                for (TongSoLuongNuocUong item : listItem) {
+//                    dataset.setValue(item.getTen(), item.getSoluongnuocuong());
+//                }
+//            }
+//
+//            JFreeChart pieChart = ChartFactory.createPieChart(
+//                    "Tổng Nước Uống Được Mua Nhiều Nhất", dataset, true, true, true);
+//
+//            ChartPanel chartPanel = new ChartPanel(pieChart);
+//            chartPanel.setPreferredSize(new Dimension(50, 50));
+//
+//            jpnItem.removeAll();
+//            jpnItem.setLayout(new CardLayout());
+//            jpnItem.add(chartPanel);
+//            jpnItem.validate();
+//            jpnItem.repaint();
+//        } else {
+//            DefaultPieDataset dataset = new DefaultPieDataset();
+//            JFreeChart pieChart = ChartFactory.createPieChart(
+//                    "Không Có Dữ Liệu", dataset, true, true, true);
+//
+//            ChartPanel chartPanel = new ChartPanel(pieChart);
+//            chartPanel.setPreferredSize(new Dimension(50, 50));
+//
+//            jpnItem.removeAll();
+//            jpnItem.setLayout(new CardLayout());
+//            jpnItem.add(chartPanel);
+//            jpnItem.validate();
+//            jpnItem.repaint();
+//        }
+//    }
+//
+//    public void setDataSoLuongDoThue(JPanel jpnItem) {
+//        List<TongSoLuongDoThue> listItem = thongKeService.getTongDoThue();
+//        if (listItem.size() > 0) {
+//            DefaultPieDataset dataset = new DefaultPieDataset();
+//            if (listItem != null) {
+//                for (TongSoLuongDoThue item : listItem) {
+//                    dataset.setValue(item.getTenDoThue(), item.getSoluongdothue());
+//                }
+//            }
+//
+//            JFreeChart pieChart = ChartFactory.createPieChart(
+//                    "Tổng Đồ Thuê Được Thuê Nhiều Nhất", dataset, true, true, true);
+//
+//            ChartPanel chartPanel = new ChartPanel(pieChart);
+//            chartPanel.setPreferredSize(new Dimension(50, 50));
+//
+//            jpnItem.removeAll();
+//            jpnItem.setLayout(new CardLayout());
+//            jpnItem.add(chartPanel);
+//            jpnItem.validate();
+//            jpnItem.repaint();
+//        } else {
+//            DefaultPieDataset dataset = new DefaultPieDataset();
+//            JFreeChart pieChart = ChartFactory.createPieChart(
+//                    "Không Có Dữ Liệu", dataset, true, true, true);
+//            ChartPanel chartPanel = new ChartPanel(pieChart);
+//            chartPanel.setPreferredSize(new Dimension(50, 50));
+//
+//            jpnItem.removeAll();
+//            jpnItem.setLayout(new CardLayout());
+//            jpnItem.add(chartPanel);
+//            jpnItem.validate();
+//            jpnItem.repaint();
+//        }
+//    }
 
 }

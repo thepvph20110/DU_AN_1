@@ -21,8 +21,8 @@ public class JpnThongKe extends javax.swing.JPanel {
     public JpnThongKe() {
         initComponents();
         thongKeController.setDataToChart1(jpnTongTien);
-        thongKeController.setDataSoLuongNuocUong(jpnNuocUong);
-        thongKeController.setDataSoLuongDoThue(jpnDoThue);
+//        thongKeController.setDataSoLuongNuocUong(jpnNuocUong);
+//        thongKeController.setDataSoLuongDoThue(jpnDoThue);
     }
 
     /**
@@ -36,8 +36,6 @@ public class JpnThongKe extends javax.swing.JPanel {
 
         jButton2 = new javax.swing.JButton();
         jpnTongTien = new javax.swing.JPanel();
-        jpnNuocUong = new javax.swing.JPanel();
-        jpnDoThue = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txtSearch = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
@@ -58,33 +56,7 @@ public class JpnThongKe extends javax.swing.JPanel {
         );
         jpnTongTienLayout.setVerticalGroup(
             jpnTongTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 235, Short.MAX_VALUE)
-        );
-
-        jpnNuocUong.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        javax.swing.GroupLayout jpnNuocUongLayout = new javax.swing.GroupLayout(jpnNuocUong);
-        jpnNuocUong.setLayout(jpnNuocUongLayout);
-        jpnNuocUongLayout.setHorizontalGroup(
-            jpnNuocUongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jpnNuocUongLayout.setVerticalGroup(
-            jpnNuocUongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 234, Short.MAX_VALUE)
-        );
-
-        jpnDoThue.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        javax.swing.GroupLayout jpnDoThueLayout = new javax.swing.GroupLayout(jpnDoThue);
-        jpnDoThue.setLayout(jpnDoThueLayout);
-        jpnDoThueLayout.setHorizontalGroup(
-            jpnDoThueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 511, Short.MAX_VALUE)
-        );
-        jpnDoThueLayout.setVerticalGroup(
-            jpnDoThueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 234, Short.MAX_VALUE)
+            .addGap(0, 723, Short.MAX_VALUE)
         );
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -102,12 +74,6 @@ public class JpnThongKe extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jpnNuocUong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpnDoThue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel2)
@@ -135,11 +101,7 @@ public class JpnThongKe extends javax.swing.JPanel {
                         .addComponent(jLabel2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jpnTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpnNuocUong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpnDoThue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -157,8 +119,6 @@ public class JpnThongKe extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jpnDoThue;
-    private javax.swing.JPanel jpnNuocUong;
     private javax.swing.JPanel jpnTongTien;
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
