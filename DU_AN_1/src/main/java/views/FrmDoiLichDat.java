@@ -31,15 +31,18 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.border.TitledBorder;
 import modelview.QLAcount;
+import modelview.QLCa;
 import modelview.QLSanBong;
 import modelview.QLSanCa;
 import repository.ICaRepository;
 import repository.ISanBongRepository;
 import repository.impl.CaRepository;
 import repository.impl.SanBongRepository;
+import service.ICaService;
 import service.IPhieuDatLichService;
 import service.ISanBongService;
 import service.ISanCaService;
+import service.Impl.CaServiceImpl;
 import service.Impl.PhieuDatLichServiceImpl;
 import service.Impl.SanBongServiceImpl;
 import service.Impl.SanCaServiceImpl;
@@ -68,6 +71,7 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
     private QLAcount qLAcount;
     private JPanel pnTong;
     private JLabel lbHome;
+    private ICaService caService = new CaServiceImpl();
 
     public FrmDoiLichDat(PhieuDatLich phieuDatLich, QLAcount qLAcount, JPanel pnTong, JLabel lbHome) {
         initComponents();
@@ -102,16 +106,9 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
         List<SanBong> listSanBong = sanBongRepository.getAll();
         for (SanBong sanBong : listSanBong) {
             map.put(sanBong.getTenSanBong(), sanBong);
-            map.put(sanBong.getMaSanBong(), sanBong);
-            map.put(String.valueOf(sanBong.getGiaSan()), sanBong);
-            map.put(String.valueOf(sanBong.getSucChua()), sanBong);
         }
         for (Ca ca : listQLCa) {
-            map.put(ca.getMaCa(), ca);
             map.put(ca.getTenCa(), ca);
-            map.put(String.valueOf(ca.getGiaCa()), ca);
-            map.put(String.valueOf(ca.getThoiGianBatDau()), ca);
-            map.put(String.valueOf(ca.getThoiGianKetThuc()), ca);
         }
 
     }
@@ -145,10 +142,13 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
                         panelCa.setBackground(new Color(0, 204, 51));
                         JLabel labelIdSanCa = new JLabel(listSanCa.get(j).getId());
                         JLabel labelCa = new JLabel(listSanCa.get(j).getTenCa());
+                        JLabel labelNgay = new JLabel(sdf.format(listSanCa.get(j).getNgayTao()));
                         JLabel labelThoiGian = new JLabel(listSanCa.get(j).getThoiGianBatDau() + " - " + String.valueOf(listSanCa.get(j).getThoiGianKetThuc()));
                         JLabel labelLoaiSan = new JLabel("Loại sân" + " " + listSanCa.get(j).getSucChua());
                         labelCa.setForeground(Color.white);
                         labelCa.setFont(new Font("Tahoma", 1, 10));
+                        labelNgay.setForeground(Color.white);
+                        labelNgay.setFont(new Font("Tahoma", 1, 10));
                         labelThoiGian.setForeground(Color.white);
                         labelThoiGian.setFont(new Font("Tahoma", 1, 8));
                         labelLoaiSan.setForeground(Color.white);
@@ -160,6 +160,7 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
                         Time quaGio = new Time(now.getHours(), now.getMinutes(), now.getSeconds());
                         panelCa.add(labelCa);
                         panelCa.add(labelThoiGian);
+                        panelCa.add(labelNgay);
                         panelCa.add(labelLoaiSan);
                         panelCa.add(labelGiaSan);
                         panelCa.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -219,7 +220,7 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         txtDate = new com.toedter.calendar.JDateChooser();
-        jButton3 = new javax.swing.JButton();
+        btbSearch = new javax.swing.JButton();
         btnDoiLich = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -338,10 +339,15 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Chọn ngày đặt sân"));
 
-        jButton3.setBackground(new java.awt.Color(0, 102, 255));
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Tìm sân theo ngày");
+        btbSearch.setBackground(new java.awt.Color(0, 102, 255));
+        btbSearch.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btbSearch.setForeground(new java.awt.Color(255, 255, 255));
+        btbSearch.setText("Tìm sân theo ngày");
+        btbSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btbSearchActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -351,7 +357,7 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
                 .addGap(100, 100, 100)
                 .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(86, 86, 86)
-                .addComponent(jButton3)
+                .addComponent(btbSearch)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -360,7 +366,7 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
+                    .addComponent(btbSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
@@ -429,17 +435,17 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(102, 102, 102)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(224, 224, 224)
+                        .addGap(163, 163, 163)
                         .addComponent(btnDoiLich)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(217, 217, 217)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(112, 112, 112)))
+                        .addGap(112, 112, 112))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43)))
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(38, 38, 38))
         );
@@ -450,12 +456,13 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnDoiLich, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(24, 24, 24))))
+                        .addContainerGap())))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -496,7 +503,7 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
                 if (phieuDatLichService.updateTrangThai(phieuDatLich).equalsIgnoreCase("Sửa Trạng Thái Thành Công")) {
                     ByteArrayOutputStream byteArrayOutputStream = new QRCode().getQRCodeImage(phieuDatLich.getMaQR(), 200, 200);
                     String mess = new JavaMail().sendMail(phieuDatLich, byteArrayOutputStream);
-                    JOptionPane.showMessageDialog(panelTong, mess);
+                    JOptionPane.showMessageDialog(this, mess);
                     qLSanCa.setTrangThai(trangThaiSanCa.CHO_NHAN_SAN);
                     sanCaService.update(qLSanCa);
                     sanCaService.update(sanCaCu);
@@ -505,7 +512,7 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
                     homeController.setView(lbHome);
                 }
             } else {
-                JOptionPane.showMessageDialog(panelTong, "Chọn sân muốn đổi");
+                JOptionPane.showMessageDialog(this, "Chọn sân muốn đổi");
             }
         }
     }//GEN-LAST:event_btnDoiLichActionPerformed
@@ -515,6 +522,50 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void btbSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbSearchActionPerformed
+        // TODO add your handling code here:
+        String stringDate = sdf.format(txtDate.getDate());
+        try {
+            createSanCaFollowDate(sdf.parse(stringDate));
+            mapSanCa.clear();
+            panelTong.removeAll();
+            AddSan();
+            listSanCa = sanCaService.getAll(txtDate.getDate());
+            for (QLSanCa qLSanCa : listSanCa) {
+                mapSanCa.put(qLSanCa.getId(), qLSanCa);
+            }
+            List<Ca> listQLCa = caRepository.getAll();
+            List<SanBong> listSanBong = sanBongRepository.getAll();
+            for (SanBong sanBong : listSanBong) {
+                map.put(sanBong.getTenSanBong(), sanBong);
+            }
+            for (Ca ca : listQLCa) {
+                map.put(ca.getTenCa(), ca);
+            }
+        } catch (Exception e) {
+        }
+
+    }//GEN-LAST:event_btbSearchActionPerformed
+
+    private void createSanCaFollowDate(Date ngayTao) {
+        if (sanCaService.getByNgayTao(ngayTao).size() <= 0) {
+
+            List<QLSanBong> listQlSanBong = sanBongService.getAll();
+            List<QLCa> listCa = caService.getAll();
+            List<QLSanCa> listSanCa = new ArrayList<>();
+            for (int i = 0; i < listSanBong.size(); i++) {
+                QLSanBong qLSanBong = listSanBong.get(i);
+                for (int j = 0; j < listCa.size(); j++) {
+                    QLCa qLCa = listCa.get(j);
+                    QLSanCa qLSanCa = new QLSanCa(null, qLCa.getTenCa(), qLSanBong.getTenSanBong(), qLSanBong.getSucChua(), qLCa.getThoiGianBatDau(), qLCa.getThoiGianKetThuc(), ngayTao, qLSanBong.getGiaSan() + qLCa.getGiaCa(), trangThaiSanCa.DANG_TRONG);
+                    listSanCa.add(qLSanCa);
+                }
+            }
+            if (listSanCa.size() > 0) {
+                sanCaService.addListSanCa(listSanCa);
+            }
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -551,9 +602,9 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btbSearch;
     private javax.swing.JButton btnDoiLich;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

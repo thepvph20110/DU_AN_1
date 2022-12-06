@@ -252,9 +252,8 @@ public class FrmKhachHang extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnSave)
                         .addComponent(btnUpdate))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnDelete)
-                        .addComponent(jButton1)))
+                    .addComponent(btnDelete)
+                    .addComponent(jButton1))
                 .addGap(32, 32, 32)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
@@ -371,6 +370,8 @@ public class FrmKhachHang extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        QLKhachHang qLKhachHang = new QLKhachHang();
+        new FrmPhieuDatLich(qLKhachHang, sanCa, acount,labelHome,pnTong).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

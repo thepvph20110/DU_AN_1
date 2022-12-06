@@ -77,9 +77,9 @@ public class JpnTrangChu extends javax.swing.JPanel {
     /**
      * Creates new form TrangChuJPanel
      */
-    public JpnTrangChu(QLAcount qLAcount, JLabel lbHome, JPanel pnTong) {
+    public JpnTrangChu(QLAcount qLAcount, JLabel lbHome, JPanel pnTong,Date ngatTao) {
         initComponents();
-        listSanCa = sanCaService.getAll(new Date());
+        listSanCa = sanCaService.getAll(ngatTao);
         listSanBong = sanBongService.getAll();
         this.qLAcount = qLAcount;
         labelHome = lbHome;
@@ -135,7 +135,7 @@ public class JpnTrangChu extends javax.swing.JPanel {
                     labelLoaiSan.setForeground(Color.BLACK);
                     labelLoaiSan.setFont(new Font("Tahoma", 1, 14));
                     JLabel lableTenKH = new JLabel();
-                    if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.KHONG_TRONG) {
+                    if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.KHONG_TRONG || listSanCa.get(j).getTrangThai() == trangThaiSanCa.CHO_NHAN_SAN ) {
                         datLich = phieuDatLichService.getPhieuDatLich(labelIdSanCa.getText());
                         lableTenKH.setText("Tên KH:" + datLich.getKhachHang().getTenKhachHang());
                         lableTenKH.setFont(new Font("Tahoma", 1, 10));
@@ -181,6 +181,7 @@ public class JpnTrangChu extends javax.swing.JPanel {
                     itemDoiLichDat.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
+                            new FrmDoiLichDat(datLich,qLAcount,pnTong,labelHome).setVisible(true);
                             jPopupMenu.setVisible(false);
                         }
                     });
@@ -220,7 +221,6 @@ public class JpnTrangChu extends javax.swing.JPanel {
         if (ttSanCa == trangThaiSanCa.CHO_NHAN_SAN) {
             itemCheckOut.setEnabled(false);
             itemDatLich.setEnabled(false);
-            iTemDoiLich.setEnabled(false);
             labelTrangThai.setText(" Trạng thái: " + "Chờ nhận sân");
             panelSanCa.setBackground(new Color(255, 255, 0));
         } else if (ttSanCa == trangThaiSanCa.KHONG_TRONG) {

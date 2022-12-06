@@ -42,18 +42,18 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
-                          <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="224" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="163" max="-2" attributes="0"/>
                           <Component id="btnDoiLich" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="217" max="-2" attributes="0"/>
                           <Component id="jButton2" min="-2" pref="86" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="jPanel3" max="32767" attributes="0"/>
@@ -68,13 +68,14 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jPanel3" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                           <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="btnDoiLich" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                               <Component id="jButton2" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -371,7 +372,7 @@
                           <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
                           <Component id="txtDate" min="-2" pref="268" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
-                          <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btbSearch" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -382,7 +383,7 @@
                           <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="txtDate" max="32767" attributes="0"/>
-                              <Component id="jButton3" pref="29" max="32767" attributes="0"/>
+                              <Component id="btbSearch" pref="29" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace pref="38" max="32767" attributes="0"/>
                       </Group>
@@ -392,7 +393,7 @@
               <SubComponents>
                 <Component class="com.toedter.calendar.JDateChooser" name="txtDate">
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton3">
+                <Component class="javax.swing.JButton" name="btbSearch">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="66" red="0" type="rgb"/>
@@ -405,6 +406,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="T&#xec;m s&#xe2;n theo ng&#xe0;y"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btbSearchActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

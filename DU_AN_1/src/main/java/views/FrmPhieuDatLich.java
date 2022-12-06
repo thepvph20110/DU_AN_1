@@ -364,7 +364,7 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
     private void btnDatLichActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatLichActionPerformed
         // TODO add your handling code here:
         int Request = JOptionPane.showConfirmDialog(rootPane, "Xác nhận Đặt lịch", "Thông Báo", JOptionPane.YES_NO_OPTION);
-        if (Request == JOptionPane.YES_OPTION) {
+        if (Request == JOptionPane.YES_OPTION && !(txtTenKhachHang.getText().isBlank())) {
             String maPhieuLichDat = UUID.randomUUID().toString();
             Date ngayDen = sanCa.getNgayTao();
             String ghiChu = txtGhiChu.getText();
@@ -399,6 +399,8 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
                 e.printStackTrace();
                 JOptionPane.showMessageDialog(rootPane, "lỗi hệ thống");
             }
+        }else if(txtTenKhachHang.getText().isBlank()){
+            JOptionPane.showMessageDialog(pnTong, "Chọn Khách Hàng !");
         }
 
     }//GEN-LAST:event_btnDatLichActionPerformed
