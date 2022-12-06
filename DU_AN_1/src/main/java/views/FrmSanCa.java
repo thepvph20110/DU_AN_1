@@ -47,7 +47,7 @@ public class FrmSanCa extends javax.swing.JFrame {
     public FrmSanCa() {
         initComponents();
         jTable1.setModel(dtm);
-        String[] header = {"ID", "Ngày tạo", "Ca", "Sân bóng", "Sức chứa", "TG Bắt Đầu", "TG Kết Thúc", "Giá Ca", "Trạng thái"};
+        String[] header = {"Ngày tạo", "Ca", "Sân bóng", "Sức chứa", "TG Bắt Đầu", "TG Kết Thúc", "Giá Ca", "Trạng thái"};
         dtm.setColumnIdentifiers(header);
         listQLCa = iCaService.getAll();
         listQLSanBong = iSanBongService.getAll();
