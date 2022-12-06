@@ -787,7 +787,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_lbDichVu1MouseExited
 
     private void lbHoaDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbHoaDMouseClicked
-        new FrmHoaDon().setVisible(true);
+//        new FrmHoaDon().setVisible(true);
     }//GEN-LAST:event_lbHoaDMouseClicked
 
     private void lbLichDatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLichDatMouseClicked

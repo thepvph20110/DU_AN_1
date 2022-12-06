@@ -54,6 +54,7 @@ import repository.impl.SanCaRepository;
 import repository.impl.ThanhToanRepository;
 import service.IDoThueService;
 import service.IHoaDonService;
+import service.IHoaDon_PhuPhiService;
 import service.INuocUongService;
 import service.IPhuPhiService;
 import service.IThanhToanService;
@@ -72,6 +73,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
 
     double giaCa;
     private QLHoaDon qLHoaDon;
+    private String idQLHoaDon;
     private DefaultComboBoxModel dcbmTT = new DefaultComboBoxModel();
     private DefaultComboBoxModel dcbmPP = new DefaultComboBoxModel();
     private DefaultTableModel dtm = new DefaultTableModel();
@@ -96,6 +98,9 @@ public class FrmThanhToan extends javax.swing.JFrame {
     private List<QLPhuPhi> qLPhuPhis = new ArrayList<>();
     public static final String pathUnicode = "font\\unicode.ttf";
 
+    private List<QLHoaDon_PhuPhi> listHoaDonPhuPhi = new ArrayList<>();
+    private IHoaDon_PhuPhiService qlHoaDonPhuPhi = new HoaDonPhuPhiServiceImpl();
+
     /**
      * Creates new form FrmThanhToan
      */
@@ -103,6 +108,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
         initComponents();
         this.setExtendedState(this.MAXIMIZED_BOTH);
         this.qLHoaDon = qLHoaDon;
+        this.idQLHoaDon = qLHoaDon.getId();
         jTable1.setModel(dtm);
         jtbDichVu.setModel(dtmDV);
         jtbChiTietDichVu.setModel(dtmCTDV);
@@ -204,7 +210,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
         }
     }
 
-    public String createFilePDF() {
+    public boolean createFilePDF() {
         String headerPDF[] = {"Mã", "Tên", "Số Lượng", "Giá", "Thành Tiền"};
 //        String headerTBDichVu[] = {"Mã", "Tên", "Số Lượng", "Giá", "Thành Tiền"};
         String diaChi = "";
@@ -213,6 +219,9 @@ public class FrmThanhToan extends javax.swing.JFrame {
         int x = j.showSaveDialog(this);
         if (x == JFileChooser.APPROVE_OPTION) {
             diaChi = j.getSelectedFile().getPath();
+        }
+        if (x == JFileChooser.CANCEL_OPTION) {
+            return false;
         }
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
@@ -280,7 +289,8 @@ public class FrmThanhToan extends javax.swing.JFrame {
             float itemColWidth[] = {132, 132, 132, 132, 132};
             Table itemTable = new Table(itemColWidth);
             itemTable.setFont(font);
-
+            itemTable.addCell(new Cell(0, 5)
+                    .add("Thông Tin Dịch Vụ Sử Dụng ").setBold().setBorder(Border.NO_BORDER));
             for (int i = 0; i < headerPDF.length; i++) {
                 itemTable.addCell(new Cell().add("" + headerPDF[i]).setBackgroundColor(new DeviceRgb(63, 169, 219)).setFontColor(Color.WHITE));
             }
@@ -304,15 +314,13 @@ public class FrmThanhToan extends javax.swing.JFrame {
             itemTable.addCell("1");
             itemTable.addCell("" + jTable1.getValueAt(0, 4).toString());
             itemTable.addCell("" + jTable1.getValueAt(0, 4).toString());
-            itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
-            itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
-            itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
-            itemTable.addCell(new Cell().add("Chi Phí Phát Sinh ").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER).setFontColor(Color.WHITE));
-            if (txtGiaPhuPhi.getText() != null) {
-                itemTable.addCell(new Cell().add("" + txtGiaPhuPhi.getText()).setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER).setFontColor(Color.WHITE));
-            } else {
-                int GiaPhuPhi = 0;
-                itemTable.addCell(new Cell().add("" + GiaPhuPhi).setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER).setFontColor(Color.WHITE));
+            listHoaDonPhuPhi = qlHoaDonPhuPhi.getAllPhuPhi_HoaDonsByIdHoaDon(idQLHoaDon);
+            for (int l = 0; l < listHoaDonPhuPhi.size(); l++) {
+                itemTable.addCell(new Cell().add("" + listHoaDonPhuPhi.get(l).getPhuPhi().getMaPhuPhi()));
+                itemTable.addCell(new Cell().add("Phụ Phí_" + listHoaDonPhuPhi.get(l).getPhuPhi().getTenPhuPhi()));
+                itemTable.addCell(new Cell().add(""));
+                itemTable.addCell(new Cell().add("" + listHoaDonPhuPhi.get(l).getGiaPPHD()));
+                itemTable.addCell(new Cell().add("" + listHoaDonPhuPhi.get(l).getGiaPPHD()));
             }
             itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
             itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
@@ -328,10 +336,10 @@ public class FrmThanhToan extends javax.swing.JFrame {
             document.add(new Paragraph("\n"));
             document.add(new Paragraph("Cảm Ơn Quý Khách !!!!").setFont(font));
             document.close();
-            return "Xuất File Thành Công";
+            return true;
         } catch (Exception e) {
             e.printStackTrace(System.out);
-            return "Xuất File Không Thành Công";
+            return false;
         }
     }
 
@@ -890,7 +898,15 @@ public class FrmThanhToan extends javax.swing.JFrame {
 
     private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
         // TODO add your handling code here:
-        int confirm = JOptionPane.showConfirmDialog(rootPane, "Ban Có Muốn Thanh Toán Và In Hóa Đơn ???", "Thông Báo", JOptionPane.YES_NO_OPTION);
+
+        Object[] options = {"In Hóa Đơn", "Không In Hóa Đơn", "Cancel"};
+        int confirm = JOptionPane.showOptionDialog(this,
+                "Bạn Có Muốn In Hóa Đơn Không?", "Xác Nhận", JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null, //do not use a custom Icon
+                options, //the titles of buttons
+                options[0]);
+//        int confirm = JOptionPane.showConfirmDialog(rootPane, "Ban Có Muốn Thanh Toán Và In Hóa Đơn ???", "Thông Báo", JOptionPane.YES_NO_OPTION);
         if (confirm == 0) {
             HoaDon hoaDon = iHoaDonService.findByHoaDonId(qLHoaDon.getId());
             if (jcbThanhToan.getSelectedItem() == loaiHinhThanhToan.Chuyen_Khoan) {
@@ -899,7 +915,11 @@ public class FrmThanhToan extends javax.swing.JFrame {
                         ThanhToan tt = new ThanhToanRepository().findOneByTrangThai(loaiHinhThanhToan.Chuyen_Khoan);
                         HoaDonThanhToan hdtt = new HoaDonThanhToan(null, "HDTT003", hoaDon, tt, giaCa, null);
                         new HoaDonThanhToanRepositoryImpl().saveOrUpdate(hdtt);
-                        JOptionPane.showMessageDialog(this, createFilePDF());
+                        if (createFilePDF() == true) {
+                            JOptionPane.showMessageDialog(rootPane, "Lưu Hóa Đơn Thành Công");
+                        } else {
+                            return;
+                        }
                     } else {
                         JOptionPane.showMessageDialog(rootPane, "Không được nhập khí tự");
                         return;
@@ -914,7 +934,11 @@ public class FrmThanhToan extends javax.swing.JFrame {
                         ThanhToan tt = new ThanhToanRepository().findOneByTrangThai(loaiHinhThanhToan.Tien_Mat);
                         HoaDonThanhToan hdtt = new HoaDonThanhToan(null, "HDTT003", hoaDon, tt, giaCa, null);
                         new HoaDonThanhToanRepositoryImpl().saveOrUpdate(hdtt);
-                        JOptionPane.showMessageDialog(this, createFilePDF());
+                        if (createFilePDF() == true) {
+                            JOptionPane.showMessageDialog(rootPane, "Lưu Hóa Đơn Thành Công");
+                        } else {
+                            return;
+                        }
                     } else {
                         JOptionPane.showMessageDialog(rootPane, "Không được nhập khí tự ");
                         return;
@@ -933,6 +957,12 @@ public class FrmThanhToan extends javax.swing.JFrame {
             hoaDon.setNgayThanhToan(date);
             new HoaDonRepositoryImpl().update(hoaDon);
             this.dispose();
+        } else if (confirm == 1) {
+            JOptionPane.showMessageDialog(rootPane, "Bạn Đã Chọn không In hóa đơn");
+            return;
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Bạn Đã Chọn Hủy Bỏ Không In Hóa Đơn");
+            return;
         }
     }//GEN-LAST:event_btnThanhToanActionPerformed
 
