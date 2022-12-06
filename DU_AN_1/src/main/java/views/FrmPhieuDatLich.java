@@ -13,6 +13,7 @@ import domainmodel.PhieuDatLich;
 import domainmodel.SanBong;
 import domainmodel.SanCa;
 import enumclass.trangThaiAcount;
+import enumclass.trangThaiLichSuDatLich;
 import enumclass.trangThaiPhieuDL;
 import enumclass.trangThaiSanCa;
 import java.awt.event.WindowEvent;
@@ -31,17 +32,21 @@ import javax.swing.JPanel;
 import modelview.QLAcount;
 import modelview.QLCa;
 import modelview.QLKhachHang;
+import modelview.QLLichSuDatLich;
 import modelview.QLLoaiSan;
+import modelview.QLPhieuDatLich;
 import modelview.QLSanBong;
 import modelview.QLSanCa;
 import service.ICaService;
 import service.IHoaDonService;
+import service.ILichSuDatLichService;
 import service.ILoaiSanService;
 import service.IPhieuDatLichService;
 import service.ISanBongService;
 import service.ISanCaService;
 import service.Impl.CaServiceImpl;
 import service.Impl.HoaDonServiceImpl;
+import service.Impl.LichSuDatLichServiceImpl;
 import service.Impl.LoaiSanServiceImpl;
 import service.Impl.PhieuDatLichServiceImpl;
 import service.Impl.SanBongServiceImpl;
@@ -56,6 +61,7 @@ import utill.QRCode;
 public class FrmPhieuDatLich extends javax.swing.JFrame {
 
     private IPhieuDatLichService phieuDatLichService = new PhieuDatLichServiceImpl();
+    private ILichSuDatLichService iLichSuDatLichService = new LichSuDatLichServiceImpl();
     private QLKhachHang qlKhachHang = new QLKhachHang();
     private Acount acount = new Acount();
     private String maQr = UUID.randomUUID().toString();
@@ -67,6 +73,7 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
     private IHoaDonService hoaDonService = new HoaDonServiceImpl();
     private List<QLSanBong> listSanBong = new ArrayList<>();
     private List<QLCa> listca = new ArrayList<>();
+    private List<QLLichSuDatLich> lstQLLichSuDatLichs = new ArrayList<>();
     private List<QLLoaiSan> listLoaiSan = new ArrayList<>();
     private ISanBongService sanBongService = new SanBongServiceImpl();
     private ILoaiSanService loaiSanService = new LoaiSanServiceImpl();
@@ -114,6 +121,7 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
         for (QLLoaiSan qLLoaiSan : listLoaiSan) {
             map.put(qLLoaiSan.getTenLoaiSan(), qLLoaiSan);
         }
+        lstQLLichSuDatLichs = iLichSuDatLichService.getAllLichSuDatLichs();
     }
 
     @SuppressWarnings("unchecked")
@@ -387,9 +395,17 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
                     sanCa.setTrangThai(trangThaiSanCa.CHO_NHAN_SAN);
                     sanCaService.update(sanCa);
                     QLAcount qLAcount= new QLAcount(acount.getId(), acount.getMaAcount(), acount.getTenAcount(), acount.getChucVu(), acount.getMatKhau(),acount.getMoTa(), acount.getTrangThai());
+                                        QLPhieuDatLich qLPhieuDatLich = new QLPhieuDatLich();
+                    String id = phieuDatLich.getId();
+                    qLPhieuDatLich.setId(id);
+                    // new hoàn thành
+                    String maLichSu = iLichSuDatLichService.genMaLichSu(lstQLLichSuDatLichs);
+                    
+                    QLLichSuDatLich qLLichSuDatLich = new QLLichSuDatLich(null, qLPhieuDatLich, maLichSu, ngayTao, ngayDen, trangThaiLichSuDatLich.DA_DAT_LICH);
+                    iLichSuDatLichService.save(qLLichSuDatLich);
+                    
                     HomeController controller = new HomeController(pnTong,qLAcount,new Date());
                     controller.setView(labelHome);
-
                     this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(rootPane, check);
