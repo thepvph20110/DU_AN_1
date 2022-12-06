@@ -41,7 +41,7 @@ import service.Impl.SanCaServiceImpl;
  * @author ASUS
  */
 public class JpnQuanLySan extends javax.swing.JPanel {
-    
+
     private List<QLLoaiSan> listQLLoaiSan = new ArrayList<>();
     private List<QLSanBong> listQLSanBong = new ArrayList<>();
     private ILoaiSanService iLoaiSanService = new LoaiSanServiceImpl();
@@ -51,7 +51,7 @@ public class JpnQuanLySan extends javax.swing.JPanel {
     private ISanCaRepository sanCaRepository = new SanCaRepository();
     private Map<String, Object> mapLoaiSan = new HashMap<>();
     private ILoaiSanRepository loaiSanRepository = new LoaiSanRepository();
-    
+
     public JpnQuanLySan() {
         initComponents();
         jTable1.setModel(dtm);
@@ -67,25 +67,25 @@ public class JpnQuanLySan extends javax.swing.JPanel {
             mapLoaiSan.put(loaiSan.getMaLoaiSan(), loaiSan);
         }
     }
-    
+
     private QLSanBong mountClick() {
         int row = jTable1.getSelectedRow();
         return listQLSanBong.get(row);
     }
-    
+
     private void showData(List<QLSanBong> listQLSanBong) {
         dtm.setRowCount(0);
         for (QLSanBong qLSanBong : listQLSanBong) {
             dtm.addRow(qLSanBong.toDataRow());
         }
     }
-    
+
     private void loadCbbLoaiSan() {
         for (QLLoaiSan qLLoaiSan : listQLLoaiSan) {
             cbbLoaiSan.addItem(qLLoaiSan.getTenLoaiSan());
         }
     }
-    
+
     private void save() {
         String id = UUID.randomUUID().toString();
         String maSanBong = txtMaSanBong.getText().trim();
@@ -110,10 +110,10 @@ public class JpnQuanLySan extends javax.swing.JPanel {
                 SanCa sanCa = new SanCa(null, ca, sanBong, new Date(), ca.getGiaCa() + sanBong.getGiaSan(), trangThaiSanCa.DANG_TRONG);
                 sanCaRepository.save(sanCa);
             }
-            
+
         }
     }
-    
+
     private void update() {
         String maSanBong = txtMaSanBong.getText().trim();
         String tenSanBong = txtTenSanBong.getText().trim();
@@ -128,16 +128,16 @@ public class JpnQuanLySan extends javax.swing.JPanel {
         if (jTable1.getSelectedRow() < 0) {
             JOptionPane.showMessageDialog(this, "Selected Row ???");
         } else {
-            
+
             QLSanBong qLSanBong = new QLSanBong(mountClick().getId(), maSanBong, tenSanBong, Double.valueOf(giaSan), Integer.valueOf(sucChua), cbbLoaiSan.getSelectedItem().toString(), qlsb.getTrangThai());
             JOptionPane.showMessageDialog(this, iSanBongService.update(qLSanBong));
             listQLSanBong = iSanBongService.getAll();
             showData(listQLSanBong);
-            
+
         }
-        
+
     }
-    
+
     private void delete() {
         LoaiSan loaiSan = new LoaiSan();
         if (mapLoaiSan.containsKey(mountClick().getTenLoaiSan())) {
@@ -151,9 +151,14 @@ public class JpnQuanLySan extends javax.swing.JPanel {
             listQLSanBong = iSanBongService.getAll();
             showData(listQLSanBong);
         }
-        
     }
-    
+
+    private void xoaSan() {
+        JOptionPane.showMessageDialog(null, iSanBongService.xoaSan(mountClick().getId()));
+        listQLSanBong = iSanBongService.getAll();
+        showData(listQLSanBong);
+    }
+
     private void fillData(int index) {
         QLSanBong qlsb = listQLSanBong.get(index);
         txtGiaSan.setText(String.valueOf(qlsb.getGiaSan()));
@@ -408,7 +413,7 @@ public class JpnQuanLySan extends javax.swing.JPanel {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         int chon = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn muốn xóa sân?", null, JOptionPane.YES_NO_OPTION);
         if (chon == 0) {
-            delete();
+            xoaSan();
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 

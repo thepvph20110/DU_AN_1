@@ -222,6 +222,7 @@ public class Home extends javax.swing.JFrame {
         lbHome.setBackground(new java.awt.Color(166, 145, 92));
         lbHome.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         lbHome.setForeground(new java.awt.Color(255, 255, 255));
+        lbHome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbHome.setText("Home");
         lbHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbHome.setOpaque(true);
@@ -229,6 +230,7 @@ public class Home extends javax.swing.JFrame {
         lbQLCa.setBackground(new java.awt.Color(166, 145, 92));
         lbQLCa.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbQLCa.setForeground(new java.awt.Color(255, 255, 255));
+        lbQLCa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbQLCa.setText("Quản Lí Ca");
         lbQLCa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbQLCa.setOpaque(true);
@@ -247,6 +249,7 @@ public class Home extends javax.swing.JFrame {
         lbHoaD.setBackground(new java.awt.Color(166, 145, 92));
         lbHoaD.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbHoaD.setForeground(new java.awt.Color(255, 255, 255));
+        lbHoaD.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbHoaD.setText("Hóa Đơn");
         lbHoaD.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbHoaD.setOpaque(true);
@@ -265,6 +268,7 @@ public class Home extends javax.swing.JFrame {
         lbLichSu.setBackground(new java.awt.Color(166, 145, 92));
         lbLichSu.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbLichSu.setForeground(new java.awt.Color(255, 255, 255));
+        lbLichSu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbLichSu.setText("Lịch Sử");
         lbLichSu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbLichSu.setOpaque(true);
@@ -283,6 +287,7 @@ public class Home extends javax.swing.JFrame {
         lbDangXuat.setBackground(new java.awt.Color(166, 145, 92));
         lbDangXuat.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbDangXuat.setForeground(new java.awt.Color(255, 255, 255));
+        lbDangXuat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbDangXuat.setText("Đăng Xuất");
         lbDangXuat.setToolTipText("");
         lbDangXuat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -302,6 +307,7 @@ public class Home extends javax.swing.JFrame {
         lbQLSan.setBackground(new java.awt.Color(166, 145, 92));
         lbQLSan.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbQLSan.setForeground(new java.awt.Color(255, 255, 255));
+        lbQLSan.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbQLSan.setText("Quản Lí Sân");
         lbQLSan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbQLSan.setOpaque(true);
@@ -320,6 +326,7 @@ public class Home extends javax.swing.JFrame {
         lbLichDat.setBackground(new java.awt.Color(166, 145, 92));
         lbLichDat.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbLichDat.setForeground(new java.awt.Color(255, 255, 255));
+        lbLichDat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbLichDat.setText("Lịch Đặt");
         lbLichDat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbLichDat.setOpaque(true);
@@ -338,6 +345,7 @@ public class Home extends javax.swing.JFrame {
         lbThongKe.setBackground(new java.awt.Color(166, 145, 92));
         lbThongKe.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbThongKe.setForeground(new java.awt.Color(255, 255, 255));
+        lbThongKe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbThongKe.setText("Thống Kê");
         lbThongKe.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbThongKe.setOpaque(true);
@@ -353,6 +361,7 @@ public class Home extends javax.swing.JFrame {
         lbCheckIn.setBackground(new java.awt.Color(166, 145, 92));
         lbCheckIn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbCheckIn.setForeground(new java.awt.Color(255, 255, 255));
+        lbCheckIn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbCheckIn.setText("Check In");
         lbCheckIn.setToolTipText("");
         lbCheckIn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -372,6 +381,7 @@ public class Home extends javax.swing.JFrame {
         lbDichVu1.setBackground(new java.awt.Color(166, 145, 92));
         lbDichVu1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbDichVu1.setForeground(new java.awt.Color(255, 255, 255));
+        lbDichVu1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbDichVu1.setText("Dịch Vụ");
         lbDichVu1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbDichVu1.setOpaque(true);

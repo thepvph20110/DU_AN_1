@@ -98,4 +98,21 @@ public class CaRepository implements ICaRepository {
             return "Thêm thất bại";
         }
     }
+
+    @Override
+    public String xoaCa(String id) {
+        String hql = "DELETE FROM Ca c WHERE c.id = :ID";
+        Transaction transaction = null;
+        try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
+            transaction = session.beginTransaction();
+            Query q = session.createQuery(hql).setParameter("ID", id);
+            q.executeUpdate();
+            transaction.commit();
+            return "Thêm thành công";
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+            transaction.rollback();
+            return "Thêm thất bại";
+        }
+    }
 }
