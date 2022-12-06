@@ -188,6 +188,8 @@ public class FrmChiTietPhuPhi extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(rootPane, "Xin Mời Chọn!!!");
         }
+        addToRow(listHDPP);
+        frmThanhToan.setTxtGia();
     }//GEN-LAST:event_jTable1MouseReleased
 
     /**
