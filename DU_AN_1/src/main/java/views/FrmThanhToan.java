@@ -899,7 +899,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
     private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
         // TODO add your handling code here:
 
-        Object[] options = {"In Hóa Đơn", "Không In Hóa Đơn", "Cancel"};
+        Object[] options = {"Thanh Toán & In Hóa Đơn", "Thanh Toán & Không In Hóa Đơn", "Cancel"};
         int confirm = JOptionPane.showOptionDialog(this,
                 "Bạn Có Muốn In Hóa Đơn Không?", "Xác Nhận", JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE,
@@ -959,7 +959,45 @@ public class FrmThanhToan extends javax.swing.JFrame {
             this.dispose();
         } else if (confirm == 1) {
             JOptionPane.showMessageDialog(rootPane, "Bạn Đã Chọn không In hóa đơn");
-            return;
+            HoaDon hoaDon = iHoaDonService.findByHoaDonId(qLHoaDon.getId());
+            if (jcbThanhToan.getSelectedItem() == loaiHinhThanhToan.Chuyen_Khoan) {
+                if (!txtNganHang.getText().isEmpty()) {
+                    if (txtNganHang.getText().matches("-?\\d+(\\.\\d+)?")) {
+                        ThanhToan tt = new ThanhToanRepository().findOneByTrangThai(loaiHinhThanhToan.Chuyen_Khoan);
+                        HoaDonThanhToan hdtt = new HoaDonThanhToan(null, "HDTT003", hoaDon, tt, giaCa, null);
+                        new HoaDonThanhToanRepositoryImpl().saveOrUpdate(hdtt);
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Không được nhập khí tự");
+                        return;
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Không được để trống tiền ngân hàng");
+                    return;
+                }
+            } else if (jcbThanhToan.getSelectedItem() == loaiHinhThanhToan.Tien_Mat) {
+                if (!txtTienKhach.getText().isEmpty()) {
+                    if (txtTienKhach.getText().isEmpty() || txtTienKhach.getText().matches("-?\\d+(\\.\\d+)?")) {
+                        ThanhToan tt = new ThanhToanRepository().findOneByTrangThai(loaiHinhThanhToan.Tien_Mat);
+                        HoaDonThanhToan hdtt = new HoaDonThanhToan(null, "HDTT003", hoaDon, tt, giaCa, null);
+                        new HoaDonThanhToanRepositoryImpl().saveOrUpdate(hdtt);
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Không được nhập khí tự ");
+                        return;
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Không được để trống Tiền Khách");
+                    return;
+                }
+            }
+            SanCa sanCa = hoaDon.getPhieuDatLich().getSanCa();
+            sanCa.setTrangThai(trangThaiSanCa.DANG_TRONG);
+            new SanCaRepository().update(sanCa);
+            hoaDon.setTongTien(giaCa);
+            hoaDon.setTrangThai(trangThaiHoaDon.DA_THANH_TOAN);
+            Date date = new Date();
+            hoaDon.setNgayThanhToan(date);
+            new HoaDonRepositoryImpl().update(hoaDon);
+            this.dispose();
         } else {
             JOptionPane.showMessageDialog(rootPane, "Bạn Đã Chọn Hủy Bỏ Không In Hóa Đơn");
             return;
