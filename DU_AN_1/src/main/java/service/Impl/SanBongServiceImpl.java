@@ -11,13 +11,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.persistence.Query;
 import javax.swing.JOptionPane;
 import modelview.QLLoaiSan;
 import modelview.QLSanBong;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import repository.ILoaiSanRepository;
 import repository.impl.LoaiSanRepository;
 import repository.impl.SanBongRepository;
 import service.ISanBongService;
+import utill.HibernateConfig;
 
 /**
  *
@@ -91,7 +95,7 @@ public class SanBongServiceImpl implements ISanBongService {
     }
 
     public static void main(String[] args) {
-        System.out.println(new SanBongServiceImpl().getAll());
+        System.out.println(new SanBongServiceImpl().xoaSan("503f13ec-06b8-485f-a25d-27f5638b8e79"));
     }
 
     @Override
@@ -117,4 +121,10 @@ public class SanBongServiceImpl implements ISanBongService {
             return "Delete Fail";
         }
     }
+
+    @Override
+    public String xoaSan(String id) {
+        return re.xoaSaṇ̣̣̣̣(id);
+    }
+
 }

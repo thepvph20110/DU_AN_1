@@ -22,4 +22,6 @@ public interface ICaRepository {
     List<Ca> searchByName(String ten);
 
     String saveCaNew(Ca ca);
+
+    String xoaCa(String id);
 }

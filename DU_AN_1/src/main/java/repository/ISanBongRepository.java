@@ -24,4 +24,6 @@ public interface ISanBongRepository {
     String saveSanBong(SanBong sanBong);
 
     SanBong getOne(String id);
+
+    String xoaSaṇ̣̣̣̣(String id);
 }

@@ -27,4 +27,5 @@ public interface ISanBongService {
     String saveSanBong(SanBong sanBong);
 
     String deleteSanBongNew(SanBong sanBong);
+    String xoaSan(String id);
 }

@@ -112,4 +112,21 @@ public class SanBongRepository implements ISanBongRepository {
         }
         System.out.println(new SanBongRepository().getOne("284cba49-82c5-465b-beda-2e059694b62d"));
     }
+
+    @Override
+    public String xoaSaṇ̣̣̣̣(String id) {
+        String hql = "DELETE FROM SanBong sb Where sb.id = :ID";
+        Transaction transaction = null;
+        try ( Session sesion = new HibernateConfig().getFACTORY().openSession()) {
+            transaction = sesion.beginTransaction();
+            Query q = sesion.createQuery(hql).setParameter("ID", id);
+            q.executeUpdate();
+            transaction.commit();
+            return "Xóa thành công";
+        } catch (Exception e) {
+            e.printStackTrace();
+            transaction.rollback();
+            return "Xóa thất bại";
+        }
+    }
 }

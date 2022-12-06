@@ -82,4 +82,9 @@ public class CaServiceImpl implements ICaService {
     public String saveNewCa(Ca ca) {
         return re.saveCaNew(ca);
     }
+
+    @Override
+    public String xoaCa(String id) {
+        return re.xoaCa(id);
+    }
 }
