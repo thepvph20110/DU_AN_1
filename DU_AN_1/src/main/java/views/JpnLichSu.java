@@ -6,6 +6,7 @@ package views;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import modelview.QLLichSuDatLich;
 import service.ILichSuDatLichService;
@@ -21,12 +22,23 @@ public class JpnLichSu extends javax.swing.JPanel {
      * Creates new form JpnLichSu
      */
     private DefaultTableModel dtm;
+    private DefaultComboBoxModel dcbm;
     private List<QLLichSuDatLich> lstQLLichSuDatLichs;
+    private List<String> lstCombobox;
     private ILichSuDatLichService iLichSuDatLichService;
 
     public JpnLichSu() {
         initComponents();
         LoadDataTable();
+        loadDataComBo();
+    }
+
+    private void loadDataComBo() {
+        lstCombobox = new ArrayList<>();
+        lstCombobox.add("SỐ ĐIỆN THOẠI");
+        lstCombobox.add("TÊN KHÁCH HÀNG");
+        cbbTimKiem.setModel(dcbm = new DefaultComboBoxModel());
+        lstCombobox.forEach((t) -> cbbTimKiem.addItem(t));
     }
 
     private void LoadDataTable() {
@@ -57,8 +69,8 @@ public class JpnLichSu extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
+        cbbTimKiem = new javax.swing.JComboBox<>();
+        txtNhapVao = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbLichSu = new javax.swing.JTable();
@@ -74,11 +86,11 @@ public class JpnLichSu extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setText("XIN MỜI BẠN NHẬP:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbbTimKiem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtNhapVao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtNhapVaoActionPerformed(evt);
             }
         });
 
@@ -114,11 +126,11 @@ public class JpnLichSu extends javax.swing.JPanel {
                                 .addGap(41, 41, 41)
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cbbTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtNhapVao, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 302, Short.MAX_VALUE))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
@@ -133,11 +145,11 @@ public class JpnLichSu extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbbTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNhapVao, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -146,20 +158,20 @@ public class JpnLichSu extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtNhapVaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNhapVaoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtNhapVaoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cbbTimKiem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tbLichSu;
+    private javax.swing.JTextField txtNhapVao;
     // End of variables declaration//GEN-END:variables
 }
