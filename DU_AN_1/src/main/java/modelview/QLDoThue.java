@@ -43,7 +43,7 @@ public class QLDoThue {
     }
 
     public Object[] toData() {
-        return new Object[]{id, maDoThue, tenDoThue, maMauSac, maKichThuoc, maNhaSanXuat, soLuong, donGia, trangThai};
+        return new Object[]{maDoThue, tenDoThue, maMauSac, maKichThuoc, maNhaSanXuat, soLuong, donGia, trangThai};
     }
 
     public String dinhDangTienTe(double tienTe) {

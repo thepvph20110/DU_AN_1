@@ -26,8 +26,9 @@ public class QLNuocUong {
     private long gia;
     private trangThaiNuocUong trangThai;
 
-    public Object[] toRowData() {
-        return new Object[]{id, maNuocUong, tenNuocUong, soLuong, gia, trangThai};
+    
+    public Object[] toRowData(){
+        return new Object[]{maNuocUong, tenNuocUong, soLuong, gia, trangThai};
     }
 
     public String dinhDangTienTe(double tienTe) {
