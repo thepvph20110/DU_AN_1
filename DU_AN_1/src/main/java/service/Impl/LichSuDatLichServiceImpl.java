@@ -85,21 +85,36 @@ public class LichSuDatLichServiceImpl implements ILichSuDatLichService {
     }
 
     public static void main(String[] args) {
-        QLPhieuDatLich ql = new QLPhieuDatLich();
-        ql.setId("143f8bae-ce49-42d1-b033-cb43fb2eef7a");
-        Date datend = new Date(2022, 11, 22);
-        QLLichSuDatLich qLLichSuDatLich = new QLLichSuDatLich(null, ql, "LS00000", datend, datend, trangThaiLichSuDatLich.DA_DOI_LICH);
-        LichSuDatLichServiceImpl sc = new LichSuDatLichServiceImpl();
-        sc.save(qLLichSuDatLich);
+//        QLPhieuDatLich ql = new QLPhieuDatLich();
+//        ql.setId("143f8bae-ce49-42d1-b033-cb43fb2eef7a");
+//        Date datend = new Date(2022, 11, 22);
+//        QLLichSuDatLich qLLichSuDatLich = new QLLichSuDatLich(null, ql, "LS00000", datend, datend, trangThaiLichSuDatLich.DA_DOI_LICH);
+//        LichSuDatLichServiceImpl sc = new LichSuDatLichServiceImpl();
+//        sc.save(qLLichSuDatLich);
+//        List<QLLichSuDatLich> lstQLLichSuDatLichs = new ArrayList<>();
+//        lstQLLichSuDatLichs = sc.getAllLichSuDatLichs();
+//        List<Object> lst = new ArrayList<>();
+//        for (QLLichSuDatLich lsts : lstQLLichSuDatLichs) {
+//            lst.add(lsts);
+//        }
+//        String ma = sc.genMaObjectIndexs(lst, 0);
+//        System.out.println(ma);
     }
 
     @Override
     public String genMaLichSu(List<QLLichSuDatLich> lstQLLichSuDatLichs) {
         int start;
         List<Integer> lstIntegers = new ArrayList<>();
-        for (int i = 0; i < lstQLLichSuDatLichs.size(); i++) {
-            start = Integer.parseInt(lstQLLichSuDatLichs.get(i).getMaLichSu().substring(4));
-            lstIntegers.add(start);
+        int kichThuoc = lstQLLichSuDatLichs.size();
+        if (kichThuoc == 0) {
+            start = 0;
+            lstIntegers.add(1);
+        } else {
+            
+            for (int i = 0; i < lstQLLichSuDatLichs.size(); i++) {
+                start = Integer.parseInt(lstQLLichSuDatLichs.get(i).getMaLichSu().substring(4));
+                lstIntegers.add(start);
+            }
         }
         int max = lstIntegers.get(0);
         for (int i = 0; i < lstIntegers.size(); i++) {
@@ -108,5 +123,51 @@ public class LichSuDatLichServiceImpl implements ILichSuDatLichService {
             }
         }
         return "LS00" + (++max);
+    }
+
+    @Override
+    public List<QLLichSuDatLich> getAllLichSuDatLichsBySoDienThoai(String soDienThoai) {
+        lstQLLichSuDatLich.clear();
+        List<QLLichSuDatLich> lstKhachHang = new ArrayList<>();
+        var lichSuDatLich = repository.getAllLichSuDatLichs();
+        for (LichSuDatLich lstLichSu : lichSuDatLich) {
+            if (lstLichSu.getPhieuDatLich().getKhachHang().getSoDienThoai().equals(soDienThoai)) {
+                QLAcount qLAcount = new QLAcount(lstLichSu.getPhieuDatLich().getAcount().getId(), null, lstLichSu.getPhieuDatLich().getAcount().getTenAcount(), null, null, null, null);
+
+                QLKhachHang qLKhachHang = new QLKhachHang(lstLichSu.getPhieuDatLich().getKhachHang().getId(), lstLichSu.getPhieuDatLich().getKhachHang().getMaKhachHang(), lstLichSu.getPhieuDatLich().getKhachHang().getTenKhachHang(), null, lstLichSu.getPhieuDatLich().getKhachHang().getSoDienThoai(), null, null);
+
+                QLSanCa qLSanCa = new QLSanCa(lstLichSu.getPhieuDatLich().getSanCa().getId(), lstLichSu.getPhieuDatLich().getSanCa().getCa().getTenCa(), lstLichSu.getPhieuDatLich().getSanCa().getSanbong().getTenSanBong(), 0, null, null, null, 0, null);
+
+                QLPhieuDatLich qLPhieuDatLich = new QLPhieuDatLich(lstLichSu.getPhieuDatLich().getId(), qLAcount, qLKhachHang, qLSanCa, lstLichSu.getPhieuDatLich().getNgayTaoPhieu(), lstLichSu.getPhieuDatLich().getNgayDenSan(), lstLichSu.getPhieuDatLich().getTgCheckIn(), lstLichSu.getPhieuDatLich().getGhiChu(), lstLichSu.getPhieuDatLich().getMaQR(), lstLichSu.getPhieuDatLich().getTongTienSan(), lstLichSu.getPhieuDatLich().getTrangThai());
+
+                QLLichSuDatLich qLLichSuDatLich = new QLLichSuDatLich(lstLichSu.getId(), qLPhieuDatLich, lstLichSu.getMaLichSu(), lstLichSu.getNgayDatLich(), lstLichSu.getNgayDenSan(), lstLichSu.getTrangThai());
+
+                lstKhachHang.add(qLLichSuDatLich);
+            }
+        }
+        return lstKhachHang;
+    }
+
+    @Override
+    public List<QLLichSuDatLich> getAllLichSuDatLichsByTenKhachHang(String tenKhachHang) {
+        lstQLLichSuDatLich.clear();
+        List<QLLichSuDatLich> lstKhachHang = new ArrayList<>();
+        var lichSuDatLich = repository.getAllLichSuDatLichs();
+        for (LichSuDatLich lstLichSu : lichSuDatLich) {
+            if (lstLichSu.getPhieuDatLich().getKhachHang().getTenKhachHang().equals(tenKhachHang)) {
+                QLAcount qLAcount = new QLAcount(lstLichSu.getPhieuDatLich().getAcount().getId(), null, lstLichSu.getPhieuDatLich().getAcount().getTenAcount(), null, null, null, null);
+
+                QLKhachHang qLKhachHang = new QLKhachHang(lstLichSu.getPhieuDatLich().getKhachHang().getId(), lstLichSu.getPhieuDatLich().getKhachHang().getMaKhachHang(), lstLichSu.getPhieuDatLich().getKhachHang().getTenKhachHang(), null, lstLichSu.getPhieuDatLich().getKhachHang().getSoDienThoai(), null, null);
+
+                QLSanCa qLSanCa = new QLSanCa(lstLichSu.getPhieuDatLich().getSanCa().getId(), lstLichSu.getPhieuDatLich().getSanCa().getCa().getTenCa(), lstLichSu.getPhieuDatLich().getSanCa().getSanbong().getTenSanBong(), 0, null, null, null, 0, null);
+
+                QLPhieuDatLich qLPhieuDatLich = new QLPhieuDatLich(lstLichSu.getPhieuDatLich().getId(), qLAcount, qLKhachHang, qLSanCa, lstLichSu.getPhieuDatLich().getNgayTaoPhieu(), lstLichSu.getPhieuDatLich().getNgayDenSan(), lstLichSu.getPhieuDatLich().getTgCheckIn(), lstLichSu.getPhieuDatLich().getGhiChu(), lstLichSu.getPhieuDatLich().getMaQR(), lstLichSu.getPhieuDatLich().getTongTienSan(), lstLichSu.getPhieuDatLich().getTrangThai());
+
+                QLLichSuDatLich qLLichSuDatLich = new QLLichSuDatLich(lstLichSu.getId(), qLPhieuDatLich, lstLichSu.getMaLichSu(), lstLichSu.getNgayDatLich(), lstLichSu.getNgayDenSan(), lstLichSu.getTrangThai());
+
+                lstKhachHang.add(qLLichSuDatLich);
+            }
+        }
+        return lstKhachHang;
     }
 }
