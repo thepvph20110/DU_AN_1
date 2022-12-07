@@ -29,7 +29,13 @@ public class JpnLichSu extends javax.swing.JPanel {
 
     public JpnLichSu() {
         initComponents();
-        LoadDataTable();
+        tbLichSu.setModel(dtm = new DefaultTableModel());
+        String[] header = {"MÃ KHÁCH HÀNG", "TÊN KHÁCH HÀNG", "SỐ ĐIỆN THOẠI", "NGÀY ĐẶT LỊCH", "NGÀY ĐẾN SÂN", "TÊN SÂN BÓNG", "TÊN CA", "TRẠNG THÁI"};
+        dtm.setColumnIdentifiers(header);
+        lstQLLichSuDatLichs = new ArrayList<>();
+        iLichSuDatLichService = new LichSuDatLichServiceImpl();
+        lstQLLichSuDatLichs = iLichSuDatLichService.getAllLichSuDatLichs();
+        showDataTable(lstQLLichSuDatLichs);
         loadDataComBo();
     }
 
@@ -39,16 +45,7 @@ public class JpnLichSu extends javax.swing.JPanel {
         lstCombobox.add("TÊN KHÁCH HÀNG");
         cbbTimKiem.setModel(dcbm = new DefaultComboBoxModel());
         lstCombobox.forEach((t) -> cbbTimKiem.addItem(t));
-    }
 
-    private void LoadDataTable() {
-        lstQLLichSuDatLichs = new ArrayList<>();
-        iLichSuDatLichService = new LichSuDatLichServiceImpl();
-        lstQLLichSuDatLichs = iLichSuDatLichService.getAllLichSuDatLichs();
-        tbLichSu.setModel(dtm = new DefaultTableModel());
-        String[] header = {"MÃ KHÁCH HÀNG", "TÊN KHÁCH HÀNG", "SỐ ĐIỆN THOẠI", "NGÀY ĐẶT LỊCH", "NGÀY ĐẾN SÂN", "TÊN SÂN BÓNG", "TÊN CA", "TRẠNG THÁI"};
-        dtm.setColumnIdentifiers(header);
-        showDataTable(lstQLLichSuDatLichs);
     }
 
     private void showDataTable(List<QLLichSuDatLich> lstQLLichSuDatLichs) {
@@ -74,6 +71,7 @@ public class JpnLichSu extends javax.swing.JPanel {
         jSeparator2 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbLichSu = new javax.swing.JTable();
+        btnTimKiem = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 204, 204));
 
@@ -107,6 +105,13 @@ public class JpnLichSu extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tbLichSu);
 
+        btnTimKiem.setText("TÌM KIẾM NGAY");
+        btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimKiemActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -120,6 +125,7 @@ public class JpnLichSu extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1)
                     .addComponent(jSeparator2)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -130,9 +136,10 @@ public class JpnLichSu extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtNhapVao, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 302, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1))
+                                .addComponent(txtNhapVao, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(70, 70, 70)
+                                .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 76, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -149,7 +156,8 @@ public class JpnLichSu extends javax.swing.JPanel {
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtNhapVao, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNhapVao, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -162,8 +170,25 @@ public class JpnLichSu extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNhapVaoActionPerformed
 
+    private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
+        // TODO add your handling code here:
+        String search = (String) cbbTimKiem.getSelectedItem();
+        if (search.equals("SỐ ĐIỆN THOẠI")) {
+            String soDienThoai = txtNhapVao.getText();
+            lstQLLichSuDatLichs.clear();
+            lstQLLichSuDatLichs = iLichSuDatLichService.getAllLichSuDatLichsBySoDienThoai(soDienThoai);
+        }
+        if (search.equals("TÊN KHÁCH HÀNG")) {
+            String tenKhachHang = "NGUYỄN QUỐC TUẤN";
+            lstQLLichSuDatLichs.clear();
+            lstQLLichSuDatLichs = iLichSuDatLichService.getAllLichSuDatLichsByTenKhachHang(tenKhachHang);
+        }
+        showDataTable(lstQLLichSuDatLichs);
+    }//GEN-LAST:event_btnTimKiemActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnTimKiem;
     private javax.swing.JComboBox<String> cbbTimKiem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
