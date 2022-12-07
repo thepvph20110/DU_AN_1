@@ -35,7 +35,7 @@ public class FrmSanBong extends javax.swing.JFrame {
     public FrmSanBong() {
         initComponents();
         jTable1.setModel(dtm);
-        String[] header = {"ID", "Giá sân", "Mã sân", "Sức chứa", "Tên sân", "Trạng thái", "Loại Sân"};
+        String[] header = {"Giá sân", "Mã sân", "Sức chứa", "Tên sân", "Trạng thái", "Loại Sân"};
         dtm.setColumnIdentifiers(header);
         listQLLoaiSan = iLoaiSanService.getAll();
         listQLSanBong = iSanBongService.getAll();

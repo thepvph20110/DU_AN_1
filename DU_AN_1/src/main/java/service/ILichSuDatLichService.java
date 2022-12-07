@@ -18,4 +18,8 @@ public interface ILichSuDatLichService {
     List<QLLichSuDatLich> getLichSuDatByMaLichSu(String soDienThoai);
 
     String genMaLichSu(List<QLLichSuDatLich> lstQLLichSuDatLichs);
+
+    List<QLLichSuDatLich> getAllLichSuDatLichsBySoDienThoai(String soDienThoai);
+
+    List<QLLichSuDatLich> getAllLichSuDatLichsByTenKhachHang(String tenKhachHang);
 }
