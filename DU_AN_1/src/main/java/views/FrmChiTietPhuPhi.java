@@ -4,8 +4,10 @@
  */
 package views;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelview.QLHoaDon_PhuPhi;
@@ -39,10 +41,16 @@ public class FrmChiTietPhuPhi extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
+    public String dinhDangTienTe(double tienTe) {
+        Locale locale = new Locale("vi", "VN");
+        NumberFormat format = NumberFormat.getInstance(locale);
+        return format.format(tienTe) + " " + "VNĐ";
+    }
+
     public void addToRow(List<QLHoaDon_PhuPhi> listHDPP) {
         dtm.setRowCount(0);
         for (QLHoaDon_PhuPhi qLHoaDon_PhuPhi : listHDPP) {
-            Object[] obj = new Object[]{qLHoaDon_PhuPhi.getPhuPhi().getMaPhuPhi(), qLHoaDon_PhuPhi.getPhuPhi().getTenPhuPhi(), qLHoaDon_PhuPhi.getGiaPPHD()};
+            Object[] obj = new Object[]{qLHoaDon_PhuPhi.getPhuPhi().getMaPhuPhi(), qLHoaDon_PhuPhi.getPhuPhi().getTenPhuPhi(), dinhDangTienTe(qLHoaDon_PhuPhi.getGiaPPHD())};
             dtm.addRow(obj);
         }
     }

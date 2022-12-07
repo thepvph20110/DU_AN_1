@@ -6,6 +6,8 @@ package modelview;
 
 import domainmodel.KichThuoc;
 import enumclass.trangThaiDoThue;
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -43,9 +45,15 @@ public class QLDoThue {
     public Object[] toData() {
         return new Object[]{id, maDoThue, tenDoThue, maMauSac, maKichThuoc, maNhaSanXuat, soLuong, donGia, trangThai};
     }
-    
-    public Object[] toRowDataDoThue(){
-        return new Object[]{ maDoThue, tenDoThue, donGia};
+
+    public String dinhDangTienTe(double tienTe) {
+        Locale locale = new Locale("vi", "VN");
+        NumberFormat format = NumberFormat.getInstance(locale);
+        return format.format(tienTe) + " " + "VNĐ";
     }
-    
+
+    public Object[] toRowDataDoThue() {
+        return new Object[]{maDoThue, tenDoThue, dinhDangTienTe(donGia)};
+    }
+
 }
