@@ -30,7 +30,6 @@ import enumclass.trangThaiDichVu;
 import enumclass.trangThaiHoaDon;
 import enumclass.trangThaiSanCa;
 import java.text.NumberFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -39,8 +38,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -132,7 +129,8 @@ public class FrmThanhToan extends javax.swing.JFrame {
         txtEnd.setText(qLHoaDon.getPhieuDatLich().getSanCa().getCa().getThoiGianKetThuc().toString());
         LocalDate localDate = qLHoaDon.getPhieuDatLich().getNgayDenSan().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         ngayDenSan.setText(localDate.getDayOfMonth()+"-"+localDate.getMonthValue()+"-"+localDate.getYear());
-        txtGiaSan.setText(String.valueOf(qLHoaDon.getPhieuDatLich().getSanCa().getSanbong().getGiaSan()));
+        String tien = dinhDangTienTe(qLHoaDon.getPhieuDatLich().getSanCa().getSanbong().getGiaSan());
+        txtGiaSan.setText(tien);
         listDV = dichVuRepository.findByIdHoaDon(qLHoaDon.getId());
         jcbThanhToan.setModel(dcbmTT);
         qLThanhToans = iThanhToanService.getAllThanhToans();
@@ -147,7 +145,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
             txtTienKhach.setEnabled(true);
             txtNganHang.setEnabled(false);
         }
-        txtTongTien.setText(dinhDangTienTe());
+        txtTongTien.setText(dinhDangTienTe(fillGia()));
         listNC = nuocUongService.getNuocUongNoPagination();
         loadCBPhuPhi();
         addDataRowNuocUong(listNC);
@@ -155,11 +153,10 @@ public class FrmThanhToan extends javax.swing.JFrame {
         addDataRowDichVu(listDV);
     }
 
-    public String dinhDangTienTe() {
-        double d = fillGia();
+    public String dinhDangTienTe(double tienTe) {
         Locale locale = new Locale("vi", "VN");
         NumberFormat format = NumberFormat.getInstance(locale);
-        return format.format(d) + " " + "VNĐ";
+        return format.format(tienTe) + " " + "VNĐ";
     }
 
     public void loadCBPhuPhi() {
@@ -203,13 +200,13 @@ public class FrmThanhToan extends javax.swing.JFrame {
         for (DichVu dichVu : listDV) {
             if (dichVu.getNuocUong() != null) {
                 Object[] data = {dichVu.getMaDichVu(), dichVu.getNuocUong().getTenNuocUong(), dichVu.getSoLuongNuocUong(),
-                    dichVu.getNuocUong().getGia(), dichVu.getNuocUong().getGia() * dichVu.getSoLuongNuocUong()};
+                    dinhDangTienTe(dichVu.getNuocUong().getGia()),dinhDangTienTe(dichVu.getNuocUong().getGia() * dichVu.getSoLuongNuocUong())};
                 dtmCTDV.addRow(data);
             }
 
             if (dichVu.getDoThue() != null) {
                 Object[] data = {dichVu.getMaDichVu(), dichVu.getDoThue().getTenDoThue(), dichVu.getSoLuongDoThue(),
-                    dichVu.getDoThue().getDonGia(), dichVu.getDoThue().getDonGia() * dichVu.getSoLuongDoThue()};
+                    dinhDangTienTe(dichVu.getDoThue().getDonGia()), dinhDangTienTe(dichVu.getDoThue().getDonGia() * dichVu.getSoLuongDoThue())};
                 dtmCTDV.addRow(data);
             }
         }
@@ -1196,7 +1193,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
             if (dichVuRepository.delete(dichVu.getId())) {
                 JOptionPane.showMessageDialog(rootPane, "Xóa Thành Công");
                 addDataRowDichVu(dichVuRepository.findByIdHoaDon(qLHoaDon.getId()));
-                txtTongTien.setText(dinhDangTienTe());
+                txtTongTien.setText(dinhDangTienTe(fillGia()));
             }
         }
     }//GEN-LAST:event_jMenuXoaDichVuActionPerformed
@@ -1233,7 +1230,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
                 }
             }
         }
-        txtTongTien.setText(dinhDangTienTe());
+        txtTongTien.setText(dinhDangTienTe(fillGia()));
 
     }//GEN-LAST:event_jMenuSuaSoLuongActionPerformed
 
@@ -1292,7 +1289,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
                     dichVuRepository.saveOrUpdate(dichVu);
                     listDV = dichVuRepository.findByIdHoaDon(qLHoaDon.getId());
                     addDataRowDichVu(listDV);
-                    txtTongTien.setText(dinhDangTienTe());
+                    txtTongTien.setText(dinhDangTienTe(fillGia()));
                 }
             } else {
                 String soLuong = JOptionPane.showInputDialog(rootPane, "Mời Nhập Số Lượng");
@@ -1311,7 +1308,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
                     dichVuRepository.saveOrUpdate(dichVu);
                     listDV = dichVuRepository.findByIdHoaDon(qLHoaDon.getId());
                     addDataRowDichVu(listDV);
-                    txtTongTien.setText(dinhDangTienTe());
+                    txtTongTien.setText(dinhDangTienTe(fillGia()));
                 }
             }
         } else {
@@ -1333,7 +1330,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
                     dichVuRepository.saveOrUpdate(dichVu);
                     listDV = dichVuRepository.findByIdHoaDon(qLHoaDon.getId());
                     addDataRowDichVu(listDV);
-                    txtTongTien.setText(dinhDangTienTe());
+                    txtTongTien.setText(dinhDangTienTe(fillGia()));
                 }
             } else {
                 String soLuong = JOptionPane.showInputDialog(rootPane, "Mời Nhập Số Lượng!!");
@@ -1353,7 +1350,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
                     dichVuRepository.saveOrUpdate(dichVu);
                     listDV = dichVuRepository.findByIdHoaDon(qLHoaDon.getId());
                     addDataRowDichVu(listDV);
-                    txtTongTien.setText(dinhDangTienTe());
+                    txtTongTien.setText(dinhDangTienTe(fillGia()));
                 }
             }
         }
@@ -1405,7 +1402,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
                 }
             }
         }
-        txtTongTien.setText(dinhDangTienTe());
+        txtTongTien.setText(dinhDangTienTe(fillGia()));
     }//GEN-LAST:event_btnAddPPActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -1414,7 +1411,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public void setTxtGia() {
-        txtTongTien.setText(dinhDangTienTe());
+        txtTongTien.setText(dinhDangTienTe(fillGia()));
     }
     /**
      * @param args the command line arguments
