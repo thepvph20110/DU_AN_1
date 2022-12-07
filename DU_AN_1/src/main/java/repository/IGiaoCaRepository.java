@@ -21,6 +21,8 @@ public interface IGiaoCaRepository {
 
     String saveOrUpdate(GiaoCa giaoCa);
 
-    List<TongTienMatGiaoCa> getTongTienMatHienTai(String idNhanVienTrongCa, Date thoiGianNhanCa);
+    List<TongTienMatGiaoCa> getTongTienMatHienTai(Date thoiGianNhanCa,Date thoiGianCuoiCa);
+
+    List<TongTienMatGiaoCa> getTongTienKhacHienTai(Date thoiGianNhanCa,Date thoiGianCuoiCa);
 
 }

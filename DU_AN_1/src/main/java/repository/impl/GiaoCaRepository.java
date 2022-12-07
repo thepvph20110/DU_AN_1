@@ -47,7 +47,6 @@ public class GiaoCaRepository implements IGiaoCaRepository {
         try {
             String a = "2022-12-06";
             Date date = format.parse(a);
-            System.out.println(new GiaoCaRepository().getTongTienMatHienTai("4ef68dd6-0268-47e9-8a3a-018037e946e4", date));
         } catch (ParseException ex) {
             Logger.getLogger(GiaoCaRepository.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -70,13 +69,30 @@ public class GiaoCaRepository implements IGiaoCaRepository {
     }
 
     @Override
-    public List<TongTienMatGiaoCa> getTongTienMatHienTai(String idNhanVienTrongCa, Date thoiGianNhanCa) {
+    public List<TongTienMatGiaoCa> getTongTienMatHienTai( Date thoiGianNhanCa,Date thoiGianCuoiCa) {
 
         String sql = "SELECT SUM(dbo.HoaDon.tongTien) AS TongTien FROM dbo.GiaoCa JOIN dbo.Acount ON dbo.GiaoCa.idAcount =  dbo.Acount.id"
                 + "		JOIN dbo.PhieuDatLich ON dbo.PhieuDatLich.idAcount = dbo.Acount.id "
                 + "		JOIN dbo.HoaDon ON dbo.HoaDon.idPhieuDatLich = dbo.PhieuDatLich.id "
                 + "		JOIN dbo.HoaDonThanhToan ON dbo.HoaDonThanhToan.idHoaDon = dbo.HoaDon.id "
-                + "		JOIN dbo.ThanhToan ON dbo.HoaDonThanhToan.idThanhToan = dbo.ThanhToan.id WHERE dbo.ThanhToan.loaiHinhTT = 0 and dbo.GiaoCa.thoiGianNhanCa = :TimeNhanCa";
+                + "		JOIN dbo.ThanhToan ON dbo.HoaDonThanhToan.idThanhToan = dbo.ThanhToan.id WHERE dbo.ThanhToan.loaiHinhTT = 0 and dbo.GiaoCa.thoiGianNhanCa = :TimeNhanCa and dbo.GiaoCa.thoiGianGiaoCa = :TimeKT";
+        try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
+            TongTIen = session.createSQLQuery(sql).setParameter("TimeNhanCa", thoiGianNhanCa).setParameter("TimeKT", thoiGianCuoiCa).setResultTransformer(
+                    Transformers.aliasToBean(TongTienMatGiaoCa.class)).list();
+            return TongTIen;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public List<TongTienMatGiaoCa> getTongTienKhacHienTai(Date thoiGianNhanCa,Date thoiGianCuoiCa) {
+        String sql = "SELECT SUM(dbo.HoaDon.tongTien) AS TongTien FROM dbo.GiaoCa JOIN dbo.Acount ON dbo.GiaoCa.idAcount =  dbo.Acount.id"
+                + "		JOIN dbo.PhieuDatLich ON dbo.PhieuDatLich.idAcount = dbo.Acount.id "
+                + "		JOIN dbo.HoaDon ON dbo.HoaDon.idPhieuDatLich = dbo.PhieuDatLich.id "
+                + "		JOIN dbo.HoaDonThanhToan ON dbo.HoaDonThanhToan.idHoaDon = dbo.HoaDon.id "
+                + "		JOIN dbo.ThanhToan ON dbo.HoaDonThanhToan.idThanhToan = dbo.ThanhToan.id WHERE dbo.ThanhToan.loaiHinhTT = 0 and dbo.GiaoCa.thoiGianNhanCa = :TimeNhanCa and dbo.ThanhToan.loaiHinhTT = 1";
         try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
             TongTIen = session.createSQLQuery(sql).setParameter("TimeNhanCa", thoiGianNhanCa).setResultTransformer(
                     Transformers.aliasToBean(TongTienMatGiaoCa.class)).list();

@@ -4,7 +4,10 @@
  */
 package service;
 
+import java.util.Date;
+import java.util.List;
 import modelview.QLGiaoCa;
+import response.ThanhToan.TongTienMatGiaoCa;
 
 /**
  *
@@ -15,4 +18,8 @@ public interface IGiaoCaService {
     QLGiaoCa getOne(String ma);
 
     String saveOrUpdate(QLGiaoCa qLGiaoCa);
+
+    List<TongTienMatGiaoCa> getTongTienMatHienTai(Date thoiGianNhanCa,Date thoiGianCuoiCa);
+
+    List<TongTienMatGiaoCa> getTongTienKhacHienTai(Date thoiGianNhanCa,Date thoiGianCuoiCa);
 }

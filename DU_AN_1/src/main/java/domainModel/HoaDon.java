@@ -20,6 +20,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -49,7 +51,7 @@ public class HoaDon {
     private Set<DichVu> dichVu;
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "hoaDon")
     private Set<PhuPhi_HoaDon> phuPhi;
-    @Column(columnDefinition = "date")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date ngayThanhToan;
     private double donGia;
     private double tongTien;

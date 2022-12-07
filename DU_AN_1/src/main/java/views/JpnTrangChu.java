@@ -16,6 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.sql.Time;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -73,11 +74,12 @@ public class JpnTrangChu extends javax.swing.JPanel {
     private IHoaDonService hoaDonService = new HoaDonServiceImpl();
     private Map<String, QLHoaDon> mapQLHoaDon = new HashMap<>();
     private Map<String, PhieuDatLich> mapPhieuDatLich = new HashMap<>();
+    private DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
 
     /**
      * Creates new form TrangChuJPanel
      */
-    public JpnTrangChu(QLAcount qLAcount, JLabel lbHome, JPanel pnTong,Date ngatTao) {
+    public JpnTrangChu(QLAcount qLAcount, JLabel lbHome, JPanel pnTong, Date ngatTao) {
         initComponents();
         listSanCa = sanCaService.getAll(ngatTao);
         listSanBong = sanBongService.getAll();
@@ -135,7 +137,7 @@ public class JpnTrangChu extends javax.swing.JPanel {
                     labelLoaiSan.setForeground(Color.BLACK);
                     labelLoaiSan.setFont(new Font("Tahoma", 1, 14));
                     JLabel lableTenKH = new JLabel();
-                    if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.KHONG_TRONG || listSanCa.get(j).getTrangThai() == trangThaiSanCa.CHO_NHAN_SAN ) {
+                    if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.KHONG_TRONG || listSanCa.get(j).getTrangThai() == trangThaiSanCa.CHO_NHAN_SAN) {
                         datLich = phieuDatLichService.getPhieuDatLich(labelIdSanCa.getText());
                         lableTenKH.setText("Tên KH:" + datLich.getKhachHang().getTenKhachHang());
                         lableTenKH.setFont(new Font("Tahoma", 1, 10));
@@ -147,7 +149,7 @@ public class JpnTrangChu extends javax.swing.JPanel {
                     labelTrangThai.setForeground(Color.BLACK);
                     labelTrangThai.setPreferredSize(new Dimension(160, 15));
                     labelTrangThai.setFont(new Font("Tahoma", 1, 12));
-                    JLabel labelGiaSan = new JLabel("Giá: " + String.valueOf(listSanCa.get(j).getGiaCaSan()));
+                    JLabel labelGiaSan = new JLabel("Giá: " + decimalFormat.format(listSanCa.get(j).getGiaCaSan())+" "+ "Vnd");
                     labelGiaSan.setFont(new Font("Tahoma", 1, 12));
                     labelGiaSan.setForeground(Color.BLACK);
                     panelCa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -181,7 +183,7 @@ public class JpnTrangChu extends javax.swing.JPanel {
                     itemDoiLichDat.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            new FrmDoiLichDat(datLich,qLAcount,pnTong,labelHome).setVisible(true);
+                            new FrmDoiLichDat(datLich, qLAcount, pnTong, labelHome).setVisible(true);
                             jPopupMenu.setVisible(false);
                         }
                     });

@@ -64,7 +64,7 @@ public class JpnQuanLyCa extends javax.swing.JPanel {
         txtMaCa.setText(qLCa.getTenCa());
         txtTenCa.setText(qLCa.getTenCa());
         txtTGKetThuc.setText(String.valueOf(qLCa.getThoiGianKetThuc()));
-        txtThoiGianBD.setText(String.valueOf(qLCa.getThoiGianKetThuc()));
+        txtThoiGianBD.setText(String.valueOf(qLCa.getThoiGianBatDau()));
         if (qLCa.getTrangThai() == trangThaiCa.GIO_CAO_DIEM) {
             radioGioCaoDiem.setSelected(true);
         } else {
