@@ -83,9 +83,9 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
     /**
      * Creates new form FrmPhieuDatLich
      */
-    public FrmPhieuDatLich(QLKhachHang qLKhachHang, QLSanCa sanCa, Acount acountentity, JLabel lbHome,JPanel pnTong) {
+    public FrmPhieuDatLich(QLKhachHang qLKhachHang, QLSanCa sanCa, Acount acountentity, JLabel lbHome, JPanel pnTong) {
         initComponents();
-        this.labelHome=lbHome;
+        this.labelHome = lbHome;
         this.pnTong = pnTong;
         acount = acountentity;
         qlKhachHang = qLKhachHang;
@@ -104,7 +104,7 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
         txtQuanLy.setText(acount.getTenAcount());
         txtQuanLy.setEnabled(false);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        txtNgayDenSan.setText(sdf.format(sanCa.getNgayTao())+"");
+        txtNgayDenSan.setText(sdf.format(sanCa.getNgayTao()) + "");
         txtNgayDenSan.setEnabled(false);
 
         txtMaQR.setIcon(new ImageIcon(byteArrayOutputStream.toByteArray()));
@@ -384,7 +384,7 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
             LoaiSan loaiSanEnity = new LoaiSan(qLLoaiSan.getId(), qLLoaiSan.getMaLoaiSan(), qLLoaiSan.getTenLoaiSan(), qLLoaiSan.getMoTa());
             SanBong sanBongEntity = new SanBong(qLSanBong.getId(), qLSanBong.getMaSanBong(), qLSanBong.getTenSanBong(), qLSanBong.getGiaSan(), qLSanBong.getSucChua(),
                     loaiSanEnity, qLSanBong.getTrangThai());
-            SanCa sanCaEntity = new SanCa(sanCa.getId(), caEntity, sanBongEntity,sanCa.getNgayTao(), sanCa.getGiaCaSan(), sanCa.getTrangThai());
+            SanCa sanCaEntity = new SanCa(sanCa.getId(), caEntity, sanBongEntity, sanCa.getNgayTao(), sanCa.getGiaCaSan(), sanCa.getTrangThai());
             KhachHang khachHang = new KhachHang(qlKhachHang.getId(), qlKhachHang.getMaKhachHang(), qlKhachHang.getTenKhachHang(), qlKhachHang.getMail(), qlKhachHang.getSoDienThoai(), qlKhachHang.getGhiChu(), qlKhachHang.getTrangThai());
             PhieuDatLich phieuDatLich = new PhieuDatLich(maPhieuLichDat, acount, khachHang, sanCaEntity, ngayTao, ngayDen, null, ghiChu, maQr, sanCa.getGiaCaSan(), trangThaiPhieuDL.CHUA_NHAN_SAN);
 
@@ -394,17 +394,17 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(rootPane, new JavaMail().sendMail(phieuDatLich, byteArrayOutputStream));
                     sanCa.setTrangThai(trangThaiSanCa.CHO_NHAN_SAN);
                     sanCaService.update(sanCa);
-                    QLAcount qLAcount= new QLAcount(acount.getId(), acount.getMaAcount(), acount.getTenAcount(), acount.getChucVu(), acount.getMatKhau(),acount.getMoTa(), acount.getTrangThai());
-                                        QLPhieuDatLich qLPhieuDatLich = new QLPhieuDatLich();
+                    QLAcount qLAcount = new QLAcount(acount.getId(), acount.getMaAcount(), acount.getTenAcount(), acount.getChucVu(), acount.getMatKhau(), acount.getMoTa(), acount.getTrangThai());
+                    QLPhieuDatLich qLPhieuDatLich = new QLPhieuDatLich();
                     String id = phieuDatLich.getId();
                     qLPhieuDatLich.setId(id);
                     // new hoàn thành
                     String maLichSu = iLichSuDatLichService.genMaLichSu(lstQLLichSuDatLichs);
-                    
+
                     QLLichSuDatLich qLLichSuDatLich = new QLLichSuDatLich(null, qLPhieuDatLich, maLichSu, ngayTao, ngayDen, trangThaiLichSuDatLich.DA_DAT_LICH);
                     iLichSuDatLichService.save(qLLichSuDatLich);
-                    
-                    HomeController controller = new HomeController(pnTong,qLAcount,new Date());
+
+                    HomeController controller = new HomeController(pnTong, qLAcount, new Date());
                     controller.setView(labelHome);
                     this.dispose();
                 } else {
@@ -415,7 +415,7 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
                 e.printStackTrace();
                 JOptionPane.showMessageDialog(rootPane, "lỗi hệ thống");
             }
-        }else if(txtTenKhachHang.getText().isBlank()){
+        } else if (txtTenKhachHang.getText().isBlank()) {
             JOptionPane.showMessageDialog(pnTong, "Chọn Khách Hàng !");
         }
 
@@ -423,7 +423,7 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        FrmKhachHang frmKhachHang = new FrmKhachHang(sanCa, acount,labelHome,pnTong);
+        FrmKhachHang frmKhachHang = new FrmKhachHang(sanCa, acount, labelHome, pnTong);
         frmKhachHang.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
