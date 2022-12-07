@@ -176,6 +176,7 @@ public class JpnLichSu extends javax.swing.JPanel {
         if (search.equals("SỐ ĐIỆN THOẠI")) {
             String soDienThoai = txtNhapVao.getText();
             lstQLLichSuDatLichs.clear();
+            
             lstQLLichSuDatLichs = iLichSuDatLichService.getAllLichSuDatLichsBySoDienThoai(soDienThoai);
         }
         if (search.equals("TÊN KHÁCH HÀNG")) {

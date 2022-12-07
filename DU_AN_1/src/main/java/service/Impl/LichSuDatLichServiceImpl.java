@@ -110,6 +110,7 @@ public class LichSuDatLichServiceImpl implements ILichSuDatLichService {
             start = 0;
             lstIntegers.add(1);
         } else {
+            
             for (int i = 0; i < lstQLLichSuDatLichs.size(); i++) {
                 start = Integer.parseInt(lstQLLichSuDatLichs.get(i).getMaLichSu().substring(4));
                 lstIntegers.add(start);
