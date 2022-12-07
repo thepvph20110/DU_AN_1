@@ -40,7 +40,7 @@ public class JpnQuanLyCa extends javax.swing.JPanel {
         initComponents();
         listQLCa = new ArrayList<>();
         jTable1.setModel(dtm = new DefaultTableModel());
-        String[] header = {"ID", "Mã Ca", "Tên Ca", "TG Bắt Đầu", "TG Kết Thúc", "Giá Ca", "Trạng Thái"};
+        String[] header = {"Mã Ca", "Tên Ca", "TG Bắt Đầu", "TG Kết Thúc", "Giá Ca", "Trạng Thái"};
         dtm.setColumnIdentifiers(header);
         listQLCa = ics.getAll();
         showData(listQLCa);

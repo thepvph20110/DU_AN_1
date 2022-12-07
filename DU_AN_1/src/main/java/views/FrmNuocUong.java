@@ -44,11 +44,10 @@ public class FrmNuocUong extends javax.swing.JFrame {
 
     private QLNuocUong getNuocUongFromInput() {
         QLNuocUong qLNuocUong = new QLNuocUong();
-
-        qLNuocUong.setMaNuocUong(txtMa.getText());
-        qLNuocUong.setTenNuocUong(txtTen.getText());
-        qLNuocUong.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
-        qLNuocUong.setGia(Long.valueOf(txtGia.getText()));
+        qLNuocUong.setMaNuocUong(txtMa.getText().trim());
+        qLNuocUong.setTenNuocUong(txtTen.getText().trim());
+        qLNuocUong.setSoLuong(Integer.parseInt(txtSoLuong.getText().trim()));
+        qLNuocUong.setGia(Long.valueOf(txtGia.getText().trim()));
         if (rdoConHang.isSelected()) {
             qLNuocUong.setTrangThai(trangThaiNuocUong.Con_Hang);
         } else {
@@ -60,7 +59,7 @@ public class FrmNuocUong extends javax.swing.JFrame {
     private void loadDataToTable() {
 //        listsQLNuocUong = nuocUongService.getNuocUong(firstResult - 1, maxResults);
         listsQLNuocUong = nuocUongService.getNuocUongNoPagination();
-        String[] header = {"ID", "Mã", "Tên Nước", "Số Lượng", "Giá", "Trạng Thái"};
+        String[] header = {"Mã", "Tên Nước", "Số Lượng", "Giá", "Trạng Thái"};
         tbNuocUong.setModel(dtm);
         dtm.setColumnIdentifiers(header);
         showData(listsQLNuocUong);
@@ -509,11 +508,11 @@ public class FrmNuocUong extends javax.swing.JFrame {
             return;
         }
         txtMa.setEditable(false);
-        this.txtMa.setText(tbNuocUong.getValueAt(index, 1).toString());
-        this.txtTen.setText(tbNuocUong.getValueAt(index, 2).toString());
-        this.txtSoLuong.setText(tbNuocUong.getValueAt(index, 3).toString());
-        this.txtGia.setText(tbNuocUong.getValueAt(index, 4).toString());
-        if (tbNuocUong.getValueAt(index, 5).equals(trangThaiNuocUong.Con_Hang)) {
+        this.txtMa.setText(tbNuocUong.getValueAt(index, 0).toString());
+        this.txtTen.setText(tbNuocUong.getValueAt(index, 1).toString());
+        this.txtSoLuong.setText(tbNuocUong.getValueAt(index, 2).toString());
+        this.txtGia.setText(tbNuocUong.getValueAt(index, 3).toString());
+        if (tbNuocUong.getValueAt(index, 4).equals(trangThaiNuocUong.Con_Hang)) {
             this.rdoConHang.setSelected(true);
         } else {
             this.rdoHetHang.setSelected(true);
