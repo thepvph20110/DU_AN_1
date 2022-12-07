@@ -22,8 +22,8 @@ public class FormThongKe extends javax.swing.JFrame {
         initComponents();
         this.setExtendedState(this.MAXIMIZED_BOTH);
         thongKeController.setDataToChart1(jpnTongTien);
-        thongKeController.setDataSoLuongNuocUong(jpnNuocUong);
-        thongKeController.setDataSoLuongDoThue(jpnDoThue);
+//        thongKeController.setDataSoLuongNuocUong(jpnNuocUong);
+//        thongKeController.setDataSoLuongDoThue(jpnDoThue);
     }
 
     /**
