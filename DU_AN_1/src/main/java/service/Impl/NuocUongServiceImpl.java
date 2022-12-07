@@ -21,9 +21,11 @@ public class NuocUongServiceImpl implements INuocUongService {
     private INuocUongRepository nuocUongRepositoryImpl = new NuocUongRepositoryImpl();
     private Map<String, Object> map = new HashMap<>();
 
-
     @Override
     public String createNewNuocUong(QLNuocUong nuocUong) {
+        if (nuocUong.getTenNuocUong() == null || String.valueOf(nuocUong.getGia()) == null || String.valueOf(nuocUong.getSoLuong()) == null) {
+            return "không được để trống";
+        }
         if (map.containsKey(nuocUong.getMaNuocUong())) {
             return "Mã trùng";
         }
@@ -31,6 +33,14 @@ public class NuocUongServiceImpl implements INuocUongService {
         if (map.containsKey(nuocUong.getTenNuocUong())) {
             return "Tên Nước trùng";
         }
+
+        if (nuocUong.getSoLuong() <= 0) {
+            return "Nhập số lượng lớn hơn 0";
+        }
+        if (nuocUong.getGia() <= 0) {
+            return "Nhập giá lớn hơn 0";
+        }
+
         nuocUong.setId(null);
         boolean save = nuocUongRepositoryImpl.saveOrUpdate(
                 new NuocUong(
@@ -45,12 +55,25 @@ public class NuocUongServiceImpl implements INuocUongService {
         if (save) {
             return "Tạo mới Nước Uống Thành Công";
         } else {
-            return "Tạo mới Nước Uống Không Công";
+            return "Tạo mới Nước Uống Không Thành Công";
         }
     }
 
     @Override
     public String updateNuocUongById(QLNuocUong nuocUong) {
+        if (nuocUong.getTenNuocUong() == null || String.valueOf(nuocUong.getGia()) == null || String.valueOf(nuocUong.getSoLuong()) == null) {
+            return "Không được để trống";
+        }
+        if (map.containsKey(nuocUong.getTenNuocUong())) {
+            return "Tên Nước trùng";
+        }
+
+        if (nuocUong.getSoLuong() <= 0) {
+            return "Nhập số lượng lớn hơn 0";
+        }
+        if (nuocUong.getGia() <= 0) {
+            return "Nhập giá lớn hơn 0";
+        }
         boolean save = nuocUongRepositoryImpl.saveOrUpdate(
                 new NuocUong(nuocUong.getId(),
                         nuocUong.getMaNuocUong(),
@@ -63,7 +86,7 @@ public class NuocUongServiceImpl implements INuocUongService {
         if (save) {
             return "Cập Nhập Nước Uống Thành Công";
         } else {
-            return "Cập Nhập Nước Uống Không Công";
+            return "Cập Nhập Nước Uống Không Thành Công";
         }
     }
 
@@ -73,7 +96,7 @@ public class NuocUongServiceImpl implements INuocUongService {
         if (delete) {
             return "Xóa Nước Uống Thành Công";
         } else {
-            return "Xóa Nước Uống Không Công";
+            return "Xóa Nước Uống Không Thành Công";
         }
     }
 
