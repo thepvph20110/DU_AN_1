@@ -49,6 +49,9 @@ import service.Impl.HoaDonServiceImpl;
 import service.Impl.PhieuDatLichServiceImpl;
 import service.Impl.SanBongServiceImpl;
 import service.Impl.SanCaServiceImpl;
+import java.io.File;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 /**
  *
@@ -75,6 +78,7 @@ public class JpnTrangChu extends javax.swing.JPanel {
     private Map<String, QLHoaDon> mapQLHoaDon = new HashMap<>();
     private Map<String, PhieuDatLich> mapPhieuDatLich = new HashMap<>();
     private DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+    private Clip clip;
 
     /**
      * Creates new form TrangChuJPanel
@@ -101,6 +105,16 @@ public class JpnTrangChu extends javax.swing.JPanel {
 
     }
 
+    private void PlaySound() {
+        try {
+            clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(new File("D:\\thongbao.wav")));
+            clip.start();
+            Thread.sleep(1000);
+        } catch (Exception e) {
+        }
+    }
+
     public void AddSan() {
         panelTong.setLayout(new GridLayout(10000, 1, 20, 20));
         Date now = new Date();
@@ -116,9 +130,13 @@ public class JpnTrangChu extends javax.swing.JPanel {
                     JMenuItem itemDatLich = new JMenuItem("Đặt Lịch");
                     JMenuItem itemCheckOut = new JMenuItem("Chi tiết sân đặt");
                     JMenuItem itemDoiLichDat = new JMenuItem("Đổi lịch đặt");
+                    JMenuItem itemThongbao = new JMenuItem("Thông báo");
+                    JMenuItem itemTatThongbao = new JMenuItem("Tắt thông báo");
                     jPopupMenu.add(itemDatLich);
                     jPopupMenu.add(itemCheckOut);
                     jPopupMenu.add(itemDoiLichDat);
+                    jPopupMenu.add(itemThongbao);
+                    jPopupMenu.add(itemTatThongbao);
                     JPanel panelCa = new JPanel();
 
                     panelCa.setLayout(new FlowLayout());
@@ -149,7 +167,7 @@ public class JpnTrangChu extends javax.swing.JPanel {
                     labelTrangThai.setForeground(Color.BLACK);
                     labelTrangThai.setPreferredSize(new Dimension(160, 15));
                     labelTrangThai.setFont(new Font("Tahoma", 1, 12));
-                    JLabel labelGiaSan = new JLabel("Giá: " + decimalFormat.format(listSanCa.get(j).getGiaCaSan())+" "+ "Vnd");
+                    JLabel labelGiaSan = new JLabel("Giá: " + decimalFormat.format(listSanCa.get(j).getGiaCaSan()) + " " + "Vnd");
                     labelGiaSan.setFont(new Font("Tahoma", 1, 12));
                     labelGiaSan.setForeground(Color.BLACK);
                     panelCa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -187,8 +205,22 @@ public class JpnTrangChu extends javax.swing.JPanel {
                             jPopupMenu.setVisible(false);
                         }
                     });
+                    itemThongbao.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            PlaySound();
+                            jPopupMenu.setVisible(false);
+                        }
+                    });
+                    itemTatThongbao.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            clip.stop();
+                            jPopupMenu.setVisible(false);
+                        }
+                    });
 
-                    customTrangThai(listSanCa.get(j).getTrangThai(), itemDatLich, panelCa, labelTrangThai, itemDoiLichDat, itemCheckOut);
+                    customTrangThai(listSanCa.get(j).getTrangThai(), itemDatLich, panelCa, labelTrangThai, itemDoiLichDat, itemCheckOut, itemThongbao, itemTatThongbao);
                     Time gioKT = new Time(listSanCa.get(j).getThoiGianKetThuc().getHours(), listSanCa.get(j).getThoiGianKetThuc().getMinutes(), listSanCa.get(j).getThoiGianKetThuc().getSeconds());
                     Time quaGio = new Time(now.getHours(), now.getMinutes(), now.getSeconds());
                     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -201,6 +233,8 @@ public class JpnTrangChu extends javax.swing.JPanel {
                         itemCheckOut.setEnabled(true);
                         itemDatLich.setEnabled(false);
                         itemDoiLichDat.setEnabled(false);
+                        itemThongbao.setEnabled(true);
+                        itemTatThongbao.setEnabled(true);
                         labelTrangThai.setText("Trạng thái:" + " " + "Quá giờ");
                     }
                     panelCa.add(labelCa);
@@ -219,10 +253,13 @@ public class JpnTrangChu extends javax.swing.JPanel {
 
     }
 
-    private void customTrangThai(trangThaiSanCa ttSanCa, JMenuItem itemDatLich, JPanel panelSanCa, JLabel labelTrangThai, JMenuItem iTemDoiLich, JMenuItem itemCheckOut) {
+    private void customTrangThai(trangThaiSanCa ttSanCa, JMenuItem itemDatLich, JPanel panelSanCa, JLabel labelTrangThai, JMenuItem iTemDoiLich, JMenuItem itemCheckOut, JMenuItem itemThongbao, JMenuItem itemTatThongbao) {
         if (ttSanCa == trangThaiSanCa.CHO_NHAN_SAN) {
             itemCheckOut.setEnabled(false);
             itemDatLich.setEnabled(false);
+            itemThongbao.setEnabled(false);
+            itemTatThongbao.setEnabled(false);
+            iTemDoiLich.setEnabled(true);
             labelTrangThai.setText(" Trạng thái: " + "Chờ nhận sân");
             panelSanCa.setBackground(new Color(255, 255, 0));
         } else if (ttSanCa == trangThaiSanCa.KHONG_TRONG) {
@@ -231,11 +268,15 @@ public class JpnTrangChu extends javax.swing.JPanel {
             iTemDoiLich.setEnabled(false);
             itemDatLich.setEnabled(false);
             itemCheckOut.setEnabled(true);
+            itemThongbao.setEnabled(true);
+            itemTatThongbao.setEnabled(true);
             panelSanCa.setBackground(new Color(255, 0, 51));
         } else {
-            itemCheckOut.setEnabled(true);
+            itemDatLich.setEnabled(true);
             itemCheckOut.setEnabled(false);
             iTemDoiLich.setEnabled(false);
+            itemThongbao.setEnabled(false);
+            itemTatThongbao.setEnabled(false);
             labelTrangThai.setText(" Trạng thái: " + "Đang trống");
             panelSanCa.setBackground(new Color(0, 153, 0));
         }
