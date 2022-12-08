@@ -27,4 +27,6 @@ public interface ISanCaRepository {
     boolean saveOutSanCa(SanCa sanCa);
 
     List<SanCa> getByNgayTao(Date ngayTao);
+
+    List<SanCa> getSanCaByIdSanBong(String id, Date ngayTaoSanCa);
 }

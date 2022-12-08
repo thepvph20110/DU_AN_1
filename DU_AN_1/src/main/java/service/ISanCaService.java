@@ -28,4 +28,6 @@ public interface ISanCaService {
     String addListSanCa(List<QLSanCa> list);
 
     List<QLSanCa> getByNgayTao(Date ngayTao);
+
+    List<SanCa> getSanCaByIdSanBong(String id, Date ngayTaoSanCa);
 }
