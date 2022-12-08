@@ -5,8 +5,11 @@
 package views;
 
 import java.awt.Color;
+import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
@@ -264,6 +267,11 @@ public class JpnKhaiBaoTienDauCa extends javax.swing.JPanel {
         jLabel4.setText("Nhận ca");
         jLabel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -456,18 +464,15 @@ public class JpnKhaiBaoTienDauCa extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-    public void tinhTien(int menhGia, String soLuong, JLabel ThanhTien) {
+    public int tinhTien(int menhGia, String soLuong, JLabel ThanhTien) {
         if (!soLuong.matches("\\d+")) {
             JOptionPane.showMessageDialog(null, "Số lượng phải là số nguyên!");
         } else if (Integer.valueOf(soLuong) < 0) {
             JOptionPane.showMessageDialog(null, "Số lượng phải lớn hơn 0");
-        } else if (soLuong.equals(" ")) {
-            JOptionPane.showMessageDialog(null, "Vui lòng nhập số lượng");
         } else {
-            DecimalFormat df = new DecimalFormat("###,###,###");
-            String a = df.format(Integer.valueOf(soLuong) * menhGia);
-            ThanhTien.setText(a);
+            return Integer.valueOf(soLuong) * menhGia;
         }
+        return -1;
     }
     private void txt500ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt500ActionPerformed
         tinhTien(500000, txt500.getText(), lbTT500);
@@ -505,7 +510,18 @@ public class JpnKhaiBaoTienDauCa extends javax.swing.JPanel {
         tinhTien(1000, txt1.getText(), lbTT1);
     }//GEN-LAST:event_txt1ActionPerformed
 
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        gioNhanCa();
+        tienBanDau();
+    }//GEN-LAST:event_jLabel4MouseClicked
+    public Date gioNhanCa() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy - hh:mm:ss a");
+        return new Timestamp(new Date().getTime());
+    }
 
+    public double tienBanDau() {
+        return Double.valueOf(txtTongTien.getText());
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
