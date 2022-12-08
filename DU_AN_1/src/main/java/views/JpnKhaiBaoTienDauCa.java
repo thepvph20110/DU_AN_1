@@ -261,7 +261,7 @@ public class JpnKhaiBaoTienDauCa extends javax.swing.JPanel {
         jLabel4.setBackground(new java.awt.Color(0, 153, 51));
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Lưu");
+        jLabel4.setText("Nhận ca");
         jLabel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
