@@ -177,7 +177,7 @@ public class GenDB {
             session.save(nc1);
 
             NuocUong nc2 = new NuocUong();
-            nc2.setGia(15000);
+            nc2.setGia(25000);
             nc2.setMaNuocUong("NU002");
             nc2.setSoLuong(33);
             nc2.setTenNuocUong("Trà Xanh 0 Độ");
@@ -185,7 +185,7 @@ public class GenDB {
             session.save(nc2);
 
             NuocUong nc3 = new NuocUong();
-            nc3.setGia(10000);
+            nc3.setGia(25000);
             nc3.setMaNuocUong("NU003");
             nc3.setSoLuong(22);
             nc3.setTenNuocUong("MU");
@@ -193,7 +193,7 @@ public class GenDB {
             session.save(nc3);
 
             NuocUong nc4 = new NuocUong();
-            nc4.setGia(10000);
+            nc4.setGia(50000);
             nc4.setMaNuocUong("NU004");
             nc4.setSoLuong(52);
             nc4.setTenNuocUong("Nước Tranh Muối");
@@ -249,7 +249,7 @@ public class GenDB {
 
             //Gen Ca
             Ca ca1 = new Ca();
-            ca1.setGiaCa(50000);
+            ca1.setGiaCa(200000);
             ca1.setMaCa("CA001");
             ca1.setTenCa("Ca 1");
             Time tCa1bd = new Time(7, 0, 0);
@@ -260,7 +260,7 @@ public class GenDB {
             session.save(ca1);
 
             Ca ca2 = new Ca();
-            ca2.setGiaCa(50000);
+            ca2.setGiaCa(200000);
             ca2.setMaCa("CA002");
             ca2.setTenCa("Ca 2");
             Time tCa2bd = new Time(9, 30, 0);
@@ -271,7 +271,7 @@ public class GenDB {
             session.save(ca2);
 
             Ca ca3 = new Ca();
-            ca3.setGiaCa(50000);
+            ca3.setGiaCa(200000);
             ca3.setMaCa("CA003");
             ca3.setTenCa("Ca 3");
             Time tCa3bd = new Time(14, 0, 0);
@@ -282,7 +282,7 @@ public class GenDB {
             session.save(ca3);
 
             Ca ca4 = new Ca();
-            ca4.setGiaCa(150000);
+            ca4.setGiaCa(200000);
             ca4.setMaCa("CA004");
             ca4.setTenCa("Ca 4");
             Time tCa4bd = new Time(16, 30, 0);
@@ -293,7 +293,7 @@ public class GenDB {
             session.save(ca4);
 
             Ca ca5 = new Ca();
-            ca5.setGiaCa(150000);
+            ca5.setGiaCa(300000);
             ca5.setMaCa("CA005");
             ca5.setTenCa("Ca 5");
             Time tCa5bd = new Time(19, 00, 0);
@@ -304,7 +304,7 @@ public class GenDB {
             session.save(ca5);
 
             Ca ca6 = new Ca();
-            ca6.setGiaCa(150000);
+            ca6.setGiaCa(300000);
             ca6.setMaCa("CA006");
             ca6.setTenCa("Ca 6");
             Time tCa6bd = new Time(21, 30, 0);

@@ -17,6 +17,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.io.ByteArrayOutputStream;
 import java.sql.Time;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -74,11 +75,12 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
     private ICaService caService = new CaServiceImpl();
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm:ss");
     private Date ngayTao;
+    private DecimalFormat df = new DecimalFormat("###,###,###");
 
-    public FrmDoiLichDat(PhieuDatLich phieuDatLich, QLAcount qLAcount, JPanel pnTong, JLabel lbHome,Date ngayTao) {
+    public FrmDoiLichDat(PhieuDatLich phieuDatLich, QLAcount qLAcount, JPanel pnTong, JLabel lbHome, Date ngayTao) {
         initComponents();
         this.setExtendedState(this.MAXIMIZED_BOTH);
-        this.ngayTao= ngayTao;
+        this.ngayTao = ngayTao;
         this.phieuDatLich = phieuDatLich;
         this.qLAcount = qLAcount;
         this.pnTong = pnTong;
@@ -91,6 +93,8 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
         txttenKH.setEnabled(false);
         txtTenSan.setEnabled(false);
         txtTGCa.setEnabled(false);
+        txtGiaSan.setEnabled(false);
+        txtGiaSan.setText(df.format(phieuDatLich.getSanCa().getGiaSanCa()) + " VND");
         txtTenSan.setText(phieuDatLich.getSanCa().getSanbong().getTenSanBong());
         txtNgayDenSan.setText(sdf.format(phieuDatLich.getNgayDenSan()));
         txtTGCa.setText(phieuDatLich.getSanCa().getCa().getThoiGianBatDau() + "-" + phieuDatLich.getSanCa().getCa().getThoiGianKetThuc());
@@ -116,7 +120,7 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
 
         txtDate.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
-               String stringDate = sdf.format(txtDate.getDate());
+                String stringDate = sdf.format(txtDate.getDate());
                 try {
                     createSanCaFollowDate(sdf.parse(stringDate));
                     mapSanCa.clear();
@@ -153,20 +157,22 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
             panelSan.setPreferredSize(new Dimension(1000, 150));
             panelSan.setLayout(new GridLayout(1, 100, 20, 20));
             for (int j = 0; j < listSanCa.size(); j++) {
-                if (listSanBong.get(i).getTenSanBong().equals(listSanCa.get(j).getTenSanBong())) {
+                Time gioKT = new Time(listSanCa.get(j).getThoiGianKetThuc().getHours(), listSanCa.get(j).getThoiGianKetThuc().getMinutes(), listSanCa.get(j).getThoiGianKetThuc().getSeconds());
+                Time quaGio = new Time(now.getHours(), now.getMinutes(), now.getSeconds());
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                Date homNay = new Date();
+                Date ngayTao = listSanCa.get(j).getNgayTao();
+                String ngayTaoSan = dateFormat.format(ngayTao);
+                String hienTai = dateFormat.format(homNay);
+                if (listSanBong.get(i).getTenSanBong().equals(listSanCa.get(j).getTenSanBong())&&
+                        !(gioKT.getTime() < quaGio.getTime() && ngayTaoSan.equals(hienTai))) {
+
                     if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.DANG_TRONG) {
-                        JPopupMenu jPopupMenu = new JPopupMenu();
-                        JMenuItem itemDatLich = new JMenuItem("Đặt Lịch");
-                        JMenuItem itemCheckOut = new JMenuItem("Chi tiết sân đặt");
-                        JMenuItem itemDoiLichDat = new JMenuItem("Đổi lịch đặt");
-                        jPopupMenu.add(itemDatLich);
-                        jPopupMenu.add(itemCheckOut);
-                        jPopupMenu.add(itemDoiLichDat);
+
                         JPanel panelCa = new JPanel();
 
                         panelCa.setLayout(new FlowLayout());
                         panelCa.setPreferredSize(new Dimension(90, 90));
-                        panelCa.setComponentPopupMenu(jPopupMenu);
                         panelCa.setLayout(new BoxLayout(panelCa, BoxLayout.Y_AXIS));
                         panelCa.setLayout(new FlowLayout(10, 20, 20));
                         panelCa.setBackground(new Color(0, 204, 51));
@@ -176,18 +182,17 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
                         JLabel labelThoiGian = new JLabel(listSanCa.get(j).getThoiGianBatDau() + " - " + String.valueOf(listSanCa.get(j).getThoiGianKetThuc()));
                         JLabel labelLoaiSan = new JLabel("Loại sân" + " " + listSanCa.get(j).getSucChua());
                         labelCa.setForeground(Color.white);
-                        labelCa.setFont(new Font("Tahoma", 1, 10));
+                        labelCa.setFont(new Font("Tahoma", 1, 9));
                         labelNgay.setForeground(Color.white);
-                        labelNgay.setFont(new Font("Tahoma", 1, 10));
+                        labelNgay.setFont(new Font("Tahoma", 1, 9));
                         labelThoiGian.setForeground(Color.white);
                         labelThoiGian.setFont(new Font("Tahoma", 1, 8));
                         labelLoaiSan.setForeground(Color.white);
                         labelLoaiSan.setFont(new Font("Tahoma", 1, 8));
-                        JLabel labelGiaSan = new JLabel("Giá: " + String.valueOf(listSanCa.get(j).getGiaCaSan()));
-                        labelGiaSan.setFont(new Font("Tahoma", 1, 9));
+                        JLabel labelGiaSan = new JLabel("Giá: " + df.format(listSanCa.get(j).getGiaCaSan()) + " VND");
+                        labelGiaSan.setFont(new Font("Tahoma", 1, 8));
                         labelGiaSan.setForeground(Color.white);
-                        Time gioKT = new Time(listSanCa.get(j).getThoiGianKetThuc().getHours(), listSanCa.get(j).getThoiGianKetThuc().getMinutes(), listSanCa.get(j).getThoiGianKetThuc().getSeconds());
-                        Time quaGio = new Time(now.getHours(), now.getMinutes(), now.getSeconds());
+
                         panelCa.add(labelCa);
                         panelCa.add(labelThoiGian);
                         panelCa.add(labelNgay);
@@ -215,6 +220,7 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
         this.qLSanCa = mapSanCa.get(idSanCa);
         txtTenSan.setText(qLSanCa.getTenSanBong());
         txtNgayDenSan.setText(sdf.format(qLSanCa.getNgayTao()));
+        txtGiaSan.setText(df.format(qLSanCa.getGiaCaSan()) + " VND");
         txtTGCa.setText(qLSanCa.getThoiGianBatDau() + "-" + qLSanCa.getThoiGianKetThuc());
     }
 
@@ -241,6 +247,8 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtGhiChu = new javax.swing.JTextArea();
+        txtGiaSan = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         panelTong = new javax.swing.JPanel();
@@ -267,8 +275,20 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("Ngày Đến Sân");
 
+        txtNgayDenSan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNgayDenSanActionPerformed(evt);
+            }
+        });
+
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("Tên Sân Bóng");
+
+        txtTenSan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTenSanActionPerformed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 102, 255));
@@ -280,6 +300,15 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
         txtGhiChu.setColumns(20);
         txtGhiChu.setRows(5);
         jScrollPane2.setViewportView(txtGhiChu);
+
+        txtGiaSan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtGiaSanActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel11.setText("Giá Sân ");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -299,16 +328,20 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNgayDenSan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtTenSan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtTGCa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtTGCa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtGiaSan, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(146, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -319,22 +352,25 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
                 .addGap(55, 55, 55)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel5)
-                                    .addComponent(txttenKH, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(61, 61, 61)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtTGCa, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6))
-                                .addGap(75, 75, 75)
-                                .addComponent(txtNgayDenSan, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel7))
-                        .addGap(59, 59, 59)
-                        .addComponent(txtTenSan, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(txttenKH, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(45, 45, 45)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtTGCa, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
+                        .addGap(42, 42, 42)
+                        .addComponent(txtNgayDenSan, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel7))
+                .addGap(54, 54, 54)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTenSan, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addGap(49, 49, 49)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtGiaSan, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
@@ -550,6 +586,18 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txtDatePropertyChange
 
+    private void txtNgayDenSanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNgayDenSanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNgayDenSanActionPerformed
+
+    private void txtTenSanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenSanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTenSanActionPerformed
+
+    private void txtGiaSanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGiaSanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtGiaSanActionPerformed
+
     private void createSanCaFollowDate(Date ngayTao) {
         if (sanCaService.getByNgayTao(ngayTao).size() <= 0) {
 
@@ -609,6 +657,7 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -626,6 +675,7 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
     private javax.swing.JPanel panelTong;
     private com.toedter.calendar.JDateChooser txtDate;
     private javax.swing.JTextArea txtGhiChu;
+    private javax.swing.JTextField txtGiaSan;
     private javax.swing.JTextField txtNgayDenSan;
     private javax.swing.JTextField txtTGCa;
     private javax.swing.JTextField txtTenSan;
