@@ -103,4 +103,40 @@ public class DoThueRepositoryImpl implements IDoThueRepository {
         return count;
     }
 
+    @Override
+    public boolean saveOrUpdate(DoThue doThue) {
+        boolean check = false;
+        Transaction tran = null;
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            tran = session.getTransaction();
+            tran.begin();
+            session.saveOrUpdate(doThue);
+            check = true;
+            tran.commit();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+            tran.commit();
+        }
+        return check;
+    }
+
+    @Override
+    public boolean delete(String id) {
+        int check = 0;
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            Transaction tran = session.getTransaction();
+            tran.begin();
+            try {
+                String hql = "Delete DoThue n Where n.id = :id";
+                Query query = session.createQuery(hql);
+                query.setParameter("id", id);
+                check = query.executeUpdate();
+                tran.commit();
+            } catch (Exception e) {
+                e.printStackTrace(System.out);
+            }
+        }
+        return check > 0;
+    }
+
 }

@@ -169,4 +169,8 @@ public class NuocUongServiceImpl implements INuocUongService {
         }
         return listQLNuocUong;
     }
+    public static void main(String[] args) {
+        String id = new NuocUongServiceImpl().deleteNuocUongById("6cfc66a3-fbfc-4dc0-80ea-05a7add6abfd");
+        System.out.println(""+id);
+    }
 }

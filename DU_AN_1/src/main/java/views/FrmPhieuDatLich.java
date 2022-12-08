@@ -79,13 +79,15 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
     private ILoaiSanService loaiSanService = new LoaiSanServiceImpl();
     private JLabel labelHome;
     private JPanel pnTong;
+    private Date ngayTao = new Date();
 
     /**
      * Creates new form FrmPhieuDatLich
      */
-    public FrmPhieuDatLich(QLKhachHang qLKhachHang, QLSanCa sanCa, Acount acountentity, JLabel lbHome, JPanel pnTong) {
+    public FrmPhieuDatLich(QLKhachHang qLKhachHang, QLSanCa sanCa, Acount acountentity, JLabel lbHome,JPanel pnTong, Date ngayTao) {
         initComponents();
-        this.labelHome = lbHome;
+        this.ngayTao = ngayTao;
+        this.labelHome=lbHome;
         this.pnTong = pnTong;
         acount = acountentity;
         qlKhachHang = qLKhachHang;
@@ -403,8 +405,8 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
 
                     QLLichSuDatLich qLLichSuDatLich = new QLLichSuDatLich(null, qLPhieuDatLich, maLichSu, ngayTao, ngayDen, trangThaiLichSuDatLich.DA_DAT_LICH);
                     iLichSuDatLichService.save(qLLichSuDatLich);
-
-                    HomeController controller = new HomeController(pnTong, qLAcount, new Date());
+                    
+                    HomeController controller = new HomeController(pnTong,qLAcount,ngayTao);
                     controller.setView(labelHome);
                     this.dispose();
                 } else {
@@ -423,7 +425,7 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        FrmKhachHang frmKhachHang = new FrmKhachHang(sanCa, acount, labelHome, pnTong);
+        FrmKhachHang frmKhachHang = new FrmKhachHang(sanCa, acount,labelHome,pnTong,ngayTao);
         frmKhachHang.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed

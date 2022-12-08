@@ -26,4 +26,8 @@ public interface IDoThueRepository {
     List<DoThue> findByTrangThai(trangThaiDoThue trangThai);
 
     long totalCount();
+
+    boolean saveOrUpdate(DoThue doThue);
+
+    boolean delete(String id);
 }

@@ -9,6 +9,7 @@ import domainmodel.KhachHang;
 import domainmodel.SanCa;
 import enumclass.trangThaiKhachHang;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import javax.swing.JLabel;
@@ -34,12 +35,14 @@ public class FrmKhachHang extends javax.swing.JFrame {
     private Acount acount = new Acount();
     private JLabel labelHome;
     private JPanel pnTong;
+        private Date ngayTao = new Date();
 
     /**
      * Creates new form FrmKhachHang
      */
-    public FrmKhachHang(QLSanCa sanCa, Acount acountEntity,JLabel labHome,JPanel pnTong) {
+    public FrmKhachHang(QLSanCa sanCa, Acount acountEntity,JLabel labHome,JPanel pnTong,Date ngayTao) {
         initComponents();
+        this.ngayTao= ngayTao;
         this.labelHome =labHome;
         this.pnTong= pnTong;
         acount = acountEntity;
@@ -286,7 +289,7 @@ public class FrmKhachHang extends javax.swing.JFrame {
             if (check == JOptionPane.YES_OPTION) {
                 QLKhachHang qLKhachHang1 = new QLKhachHang(khachHang.getId(), khachHang.getMaKhachHang(), khachHang.getTenKhachHang(),
                         khachHang.getMail(), khachHang.getSoDienThoai(), khachHang.getGhiChu(), khachHang.getTrangThai());
-                new FrmPhieuDatLich(qLKhachHang1, sanCa, acount,labelHome,pnTong).setVisible(true);
+                new FrmPhieuDatLich(qLKhachHang1, sanCa, acount,labelHome,pnTong,ngayTao).setVisible(true);
                 this.dispose();
             }
         }else{
@@ -353,7 +356,7 @@ public class FrmKhachHang extends javax.swing.JFrame {
         fillData(index);
         QLKhachHang qLKhachHang = listKhachHang.get(index);
         if (check == JOptionPane.YES_OPTION) {
-            new FrmPhieuDatLich(qLKhachHang, sanCa, acount,labelHome,pnTong).setVisible(true);
+            new FrmPhieuDatLich(qLKhachHang, sanCa, acount,labelHome,pnTong,ngayTao).setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_jTable1MouseClicked
@@ -371,7 +374,7 @@ public class FrmKhachHang extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         QLKhachHang qLKhachHang = new QLKhachHang();
-        new FrmPhieuDatLich(qLKhachHang, sanCa, acount,labelHome,pnTong).setVisible(true);
+        new FrmPhieuDatLich(qLKhachHang, sanCa, acount,labelHome,pnTong,ngayTao).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

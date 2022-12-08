@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,12 +37,15 @@ public class JpnCheckIn extends javax.swing.JPanel {
     private DefaultTableModel tableModel;
     private List<PhieuDatLich> listPhieuDatLich = new ArrayList<>();
     private PhieuDatLich phieuDL = new PhieuDatLich();
+    private Date ngayTao;
+
 
     /**
      * Creates new form JpnCheckIn
      */
-    public JpnCheckIn(QLAcount qLAcount, JPanel pnTong, JLabel lbHome) {
+    public JpnCheckIn(QLAcount qLAcount, JPanel pnTong, JLabel lbHome,Date ngayTao) {
         initComponents();
+        this.ngayTao= ngayTao;
         this.pnTong = pnTong;
         this.qLAcount = qLAcount;
         this.lbHome = lbHome;
@@ -61,7 +65,7 @@ public class JpnCheckIn extends javax.swing.JPanel {
         iTemDoiLich.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new FrmDoiLichDat(phieuDL,qLAcount,pnTong,lbHome).setVisible(true);
+                new FrmDoiLichDat(phieuDL,qLAcount,pnTong,lbHome,ngayTao).setVisible(true);
                 PopupMenu.setVisible(false);
             }
         });
@@ -137,6 +141,11 @@ public class JpnCheckIn extends javax.swing.JPanel {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        txtSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearchActionPerformed(evt);
+            }
+        });
         txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtSearchKeyPressed(evt);
@@ -364,11 +373,15 @@ public class JpnCheckIn extends javax.swing.JPanel {
         try {
             int row = jTable1.getSelectedRow();
             PhieuDatLich phieuDatLich = listPhieuDatLich.get(row);
-            new FrmDoiLichDat(phieuDL,qLAcount,pnTong,lbHome).setVisible(true);
+            new FrmDoiLichDat(phieuDL,qLAcount,pnTong,lbHome,ngayTao).setVisible(true);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "chọn lên table");
         }
     }//GEN-LAST:event_btnDoiLichActionPerformed
+
+    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearchActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

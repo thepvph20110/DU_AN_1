@@ -145,11 +145,12 @@ public class SanCaServiceImpl implements ISanCaService {
         List<Ca> listQLCa = ica.getAll();
         List<SanBong> listSanBong = isb.getAll();
         listQLSanCa.clear();
+        List<SanCa> listSanCaEntity= new ArrayList<>();
         for (SanBong sanBong : listSanBong) {
-            map.put(sanBong.getTenSanBong(), sanBong);
+            map.put(sanBong.getId(), sanBong);
         }
         for (Ca ca : listQLCa) {
-            map.put(ca.getTenCa(), ca);
+            map.put(ca.getId(), ca);
         }
         for (QLSanCa qLSanCa : list) {
             Ca ca = new Ca();
@@ -161,13 +162,22 @@ public class SanCaServiceImpl implements ISanCaService {
                 sanBong = (SanBong) map.get(qLSanCa.getTenSanBong());
             }
             SanCa sanCa = new SanCa(null, ca, sanBong, qLSanCa.getNgayTao(), ca.getGiaCa() + sanBong.getGiaSan(), qLSanCa.getTrangThai());
-            lisSanCaDomain.add(sanCa);
+            listSanCaEntity.add(sanCa);
         }
-        if (re.saveOutSanCa(lisSanCaDomain)) {
+        try {
+            for (SanCa sanCa : listSanCaEntity) {
+                re.saveOutSanCa(sanCa);
+            }
             return "Save Complete";
-        } else {
+        } catch (Exception e) {
             return "Save Fail";
         }
+
+//        if (re.saveOutSanCa(lisSanCaDomain)) {
+//            
+//        } else {
+//            
+//        }
     }
 
     @Override

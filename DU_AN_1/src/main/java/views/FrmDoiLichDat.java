@@ -72,15 +72,18 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
     private JPanel pnTong;
     private JLabel lbHome;
     private ICaService caService = new CaServiceImpl();
+    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm:ss");
+    private Date ngayTao;
 
-    public FrmDoiLichDat(PhieuDatLich phieuDatLich, QLAcount qLAcount, JPanel pnTong, JLabel lbHome) {
+    public FrmDoiLichDat(PhieuDatLich phieuDatLich, QLAcount qLAcount, JPanel pnTong, JLabel lbHome,Date ngayTao) {
         initComponents();
         this.setExtendedState(this.MAXIMIZED_BOTH);
+        this.ngayTao= ngayTao;
         this.phieuDatLich = phieuDatLich;
         this.qLAcount = qLAcount;
         this.pnTong = pnTong;
         this.lbHome = lbHome;
-        listSanCa = sanCaService.getAll(new Date());
+        listSanCa = sanCaService.getAll(ngayTao);
         listSanBong = sanBongService.getAll();
         AddSan();
         txttenKH.setText(phieuDatLich.getKhachHang().getTenKhachHang());
@@ -110,6 +113,33 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
         for (Ca ca : listQLCa) {
             map.put(ca.getTenCa(), ca);
         }
+
+        txtDate.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+               String stringDate = sdf.format(txtDate.getDate());
+                try {
+                    createSanCaFollowDate(sdf.parse(stringDate));
+                    mapSanCa.clear();
+                    panelTong.removeAll();
+                    listSanCa = sanCaService.getAll(txtDate.getDate());
+                    for (QLSanCa qLSanCa : listSanCa) {
+                        mapSanCa.put(qLSanCa.getId(), qLSanCa);
+                    }
+                    List<Ca> listQLCa = caRepository.getAll();
+                    List<SanBong> listSanBong = sanBongRepository.getAll();
+                    AddSan();
+                    panelTong.validate();
+                    panelTong.repaint();
+                    for (SanBong sanBong : listSanBong) {
+                        map.put(sanBong.getTenSanBong(), sanBong);
+                    }
+                    for (Ca ca : listQLCa) {
+                        map.put(ca.getTenCa(), ca);
+                    }
+                } catch (Exception e) {
+                }
+            }
+        });
 
     }
 
@@ -220,7 +250,6 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         txtDate = new com.toedter.calendar.JDateChooser();
-        btbSearch = new javax.swing.JButton();
         btnDoiLich = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -339,13 +368,9 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Chọn ngày đặt sân"));
 
-        btbSearch.setBackground(new java.awt.Color(0, 102, 255));
-        btbSearch.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btbSearch.setForeground(new java.awt.Color(255, 255, 255));
-        btbSearch.setText("Tìm sân theo ngày");
-        btbSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btbSearchActionPerformed(evt);
+        txtDate.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                txtDatePropertyChange(evt);
             }
         });
 
@@ -355,18 +380,14 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(100, 100, 100)
-                .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(86, 86, 86)
-                .addComponent(btbSearch)
+                .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btbSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
+                .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
@@ -500,6 +521,8 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
                         phieuDatLich.getSanCa().getNgayTao(), phieuDatLich.getSanCa().getGiaSanCa(), phieuDatLich.getSanCa().getTrangThai());
                 sanCaCu.setTrangThai(trangThaiSanCa.DANG_TRONG);
                 phieuDatLich.setSanCa(sanCa);
+                phieuDatLich.setNgayDenSan(sanCa.getNgayTao());
+                phieuDatLich.setTongTienSan(sanCa.getGiaSanCa());
                 if (phieuDatLichService.updateTrangThai(phieuDatLich).equalsIgnoreCase("Sửa Trạng Thái Thành Công")) {
                     ByteArrayOutputStream byteArrayOutputStream = new QRCode().getQRCodeImage(phieuDatLich.getMaQR(), 200, 200);
                     String mess = new JavaMail().sendMail(phieuDatLich, byteArrayOutputStream);
@@ -508,7 +531,7 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
                     sanCaService.update(qLSanCa);
                     sanCaService.update(sanCaCu);
                     this.dispose();
-                    HomeController homeController = new HomeController(pnTong, qLAcount, new Date());
+                    HomeController homeController = new HomeController(pnTong, qLAcount, ngayTao);
                     homeController.setView(lbHome);
                 }
             } else {
@@ -522,30 +545,10 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void btbSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbSearchActionPerformed
+    private void txtDatePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_txtDatePropertyChange
         // TODO add your handling code here:
-        String stringDate = sdf.format(txtDate.getDate());
-        try {
-            createSanCaFollowDate(sdf.parse(stringDate));
-            mapSanCa.clear();
-            panelTong.removeAll();
-            AddSan();
-            listSanCa = sanCaService.getAll(txtDate.getDate());
-            for (QLSanCa qLSanCa : listSanCa) {
-                mapSanCa.put(qLSanCa.getId(), qLSanCa);
-            }
-            List<Ca> listQLCa = caRepository.getAll();
-            List<SanBong> listSanBong = sanBongRepository.getAll();
-            for (SanBong sanBong : listSanBong) {
-                map.put(sanBong.getTenSanBong(), sanBong);
-            }
-            for (Ca ca : listQLCa) {
-                map.put(ca.getTenCa(), ca);
-            }
-        } catch (Exception e) {
-        }
 
-    }//GEN-LAST:event_btbSearchActionPerformed
+    }//GEN-LAST:event_txtDatePropertyChange
 
     private void createSanCaFollowDate(Date ngayTao) {
         if (sanCaService.getByNgayTao(ngayTao).size() <= 0) {
@@ -557,7 +560,7 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
                 QLSanBong qLSanBong = listSanBong.get(i);
                 for (int j = 0; j < listCa.size(); j++) {
                     QLCa qLCa = listCa.get(j);
-                    QLSanCa qLSanCa = new QLSanCa(null, qLCa.getTenCa(), qLSanBong.getTenSanBong(), qLSanBong.getSucChua(), qLCa.getThoiGianBatDau(), qLCa.getThoiGianKetThuc(), ngayTao, qLSanBong.getGiaSan() + qLCa.getGiaCa(), trangThaiSanCa.DANG_TRONG);
+                    QLSanCa qLSanCa = new QLSanCa(null, qLCa.getId(), qLSanBong.getId(), qLSanBong.getSucChua(), qLCa.getThoiGianBatDau(), qLCa.getThoiGianKetThuc(), ngayTao, qLSanBong.getGiaSan() + qLCa.getGiaCa(), trangThaiSanCa.DANG_TRONG);
                     listSanCa.add(qLSanCa);
                 }
             }
@@ -602,7 +605,6 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btbSearch;
     private javax.swing.JButton btnDoiLich;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;

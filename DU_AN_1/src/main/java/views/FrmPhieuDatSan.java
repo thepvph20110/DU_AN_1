@@ -275,6 +275,10 @@ public class FrmPhieuDatSan extends javax.swing.JFrame {
         
         int click = JOptionPane.showConfirmDialog(rootPane, "Bạn Có Muốn Nhận Sân?", "Xác Nhận", JOptionPane.YES_NO_OPTION);
         if (click == JOptionPane.YES_OPTION) {
+             if(phieuDL.getSanCa().getNgayTao().after(new Date())){
+                JOptionPane.showMessageDialog(rootPane, "Chưa đến ngày nhận sân!!");
+                return;
+            }
             phieuDL.setTrangThai(trangThaiPhieuDL.DA_NHAN_SAN);
             String check = phieuDatLichService.updateTrangThai(phieuDL);
             if (check.equals("Sửa Trạng Thái Thành Công")) {
