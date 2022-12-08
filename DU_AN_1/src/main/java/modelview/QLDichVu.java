@@ -35,7 +35,7 @@ public class QLDichVu {
     private trangThaiDichVu trangThai = trangThaiDichVu.Dang_Su_Dung;
     
     public Object[] toRowData(){
-        return new Object[]{id, maDichVu, tenDoThue, soLuongDoThue, hoaDon, tenNuocUong, soLuongNuocUong, donGia, moTa,trangThai};
+        return new Object[]{maDichVu, tenDoThue, soLuongDoThue, hoaDon, tenNuocUong, soLuongNuocUong, donGia, moTa,trangThai};
     }
     
 }

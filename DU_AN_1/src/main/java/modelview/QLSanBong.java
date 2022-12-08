@@ -30,7 +30,7 @@ public class QLSanBong {
     private trangThaiSanBong trangThai = trangThaiSanBong.HOAT_DONG;
 
     public Object[] toDataRow() {
-        return new Object[]{id, giaSan, maSanBong, sucChua, tenSanBong, trangThai, tenLoaiSan};
+        return new Object[]{ giaSan, maSanBong, sucChua, tenSanBong, trangThai, tenLoaiSan};
     }
 
 }

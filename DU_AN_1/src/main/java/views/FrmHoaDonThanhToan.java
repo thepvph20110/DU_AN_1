@@ -121,11 +121,11 @@ public class FrmHoaDonThanhToan extends javax.swing.JFrame {
 
     private QLHoaDonThanhToan getHoaDonThanhToanFromInput() {
         QLHoaDonThanhToan qlHoaDonThanhToan = new QLHoaDonThanhToan();
-        qlHoaDonThanhToan.setMaHDTT(txtMaHoaDonTT.getText());
+        qlHoaDonThanhToan.setMaHDTT(txtMaHoaDonTT.getText().trim());
         qlHoaDonThanhToan.setHoaDon(cbbHoaDon.getSelectedItem().toString());
         qlHoaDonThanhToan.setThanhToan(cbbThanhToan.getSelectedItem().toString());
-        qlHoaDonThanhToan.setGhiChu(txtGhiChu.getText());
-        qlHoaDonThanhToan.setTongTien(Double.valueOf(txtTongTien.getText()));
+        qlHoaDonThanhToan.setGhiChu(txtGhiChu.getText().trim());
+        qlHoaDonThanhToan.setTongTien(Double.valueOf(txtTongTien.getText().trim()));
         return qlHoaDonThanhToan;
     }
 
