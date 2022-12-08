@@ -31,7 +31,7 @@ public class QLSanBong {
     private trangThaiSanBong trangThai = trangThaiSanBong.HOAT_DONG;
 
     public Object[] toDataRow() {
-        return new Object[]{id, new DecimalFormat("###,###,###").format(giaSan) + " " + "Vnd", maSanBong, sucChua, tenSanBong, trangThai, tenLoaiSan};
+        return new Object[]{new DecimalFormat("###,###,###").format(giaSan) + " " + "Vnd", maSanBong, sucChua, tenSanBong, trangThai, tenLoaiSan};
     }
 
 }
