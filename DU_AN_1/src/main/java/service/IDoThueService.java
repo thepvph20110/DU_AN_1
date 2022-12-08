@@ -22,7 +22,13 @@ public interface IDoThueService {
 
     long countAllDoThue();
 
-    List<QLDoThue> getNuocUongByTenDoThue(String tenDoThue);
+    List<QLDoThue> getDoThueByTenDoThue(String tenDoThue);
 
     List<QLDoThue> getDoThueByTranThai(trangThaiDoThue trangThai);
+
+    String createNewDoThue(QLDoThue qLDoThue);
+
+    String updateDoThueById(QLDoThue qLDoThue);
+
+    String deleteDoThueById(String id);
 }
