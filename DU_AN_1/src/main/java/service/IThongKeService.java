@@ -4,6 +4,7 @@
  */
 package service;
 
+import java.util.Date;
 import java.util.List;
 import response.ThanhToan.TongSoLuongDoThue;
 import response.ThanhToan.TongSoLuongNuocUong;
@@ -16,11 +17,12 @@ import response.ThanhToan.TongTienHoaDonResponse;
 public interface IThongKeService {
 
     List<TongTienHoaDonResponse> getTongTien();
-    
+
     List<TongSoLuongNuocUong> getTongNuocUong();
-    
+
     List<TongSoLuongDoThue> getTongDoThue();
-    
+
     List<TongTienHoaDonResponse> getTongTienByYear(String year);
-    
+
+    double getTongTienNgayHienTai(Date ngayHienTai);
 }

@@ -47,6 +47,7 @@ public class GiaoCaRepository implements IGiaoCaRepository {
         try {
             String a = "2022-12-06";
             Date date = format.parse(a);
+            System.out.println(new GiaoCaRepository().getTongTienMatHienTai(new Date(), new Date()));
         } catch (ParseException ex) {
             Logger.getLogger(GiaoCaRepository.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -75,9 +76,9 @@ public class GiaoCaRepository implements IGiaoCaRepository {
                 + "		JOIN dbo.PhieuDatLich ON dbo.PhieuDatLich.idAcount = dbo.Acount.id "
                 + "		JOIN dbo.HoaDon ON dbo.HoaDon.idPhieuDatLich = dbo.PhieuDatLich.id "
                 + "		JOIN dbo.HoaDonThanhToan ON dbo.HoaDonThanhToan.idHoaDon = dbo.HoaDon.id "
-                + "		JOIN dbo.ThanhToan ON dbo.HoaDonThanhToan.idThanhToan = dbo.ThanhToan.id WHERE dbo.ThanhToan.loaiHinhTT = 0 and dbo.GiaoCa.thoiGianNhanCa = :TimeNhanCa and dbo.GiaoCa.thoiGianGiaoCa = :TimeKT";
+                + "		JOIN dbo.ThanhToan ON dbo.HoaDonThanhToan.idThanhToan = dbo.ThanhToan.id ";
         try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
-            TongTIen = session.createSQLQuery(sql).setParameter("TimeNhanCa", thoiGianNhanCa).setParameter("TimeKT", thoiGianCuoiCa).setResultTransformer(
+            TongTIen = session.createSQLQuery(sql).setResultTransformer(
                     Transformers.aliasToBean(TongTienMatGiaoCa.class)).list();
             return TongTIen;
         } catch (Exception e) {
