@@ -106,16 +106,15 @@ public class SanCaRepository implements ISanCaRepository {
         }
         return check;
     }
-
-    public boolean saveOutSanCa(List<SanCa> listSanCa) {
+    
+    @Override
+    public boolean saveOutSanCa(SanCa sanCa) {
         boolean check;
         Transaction transaction = null;
         try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            for (SanCa sanCa : listSanCa) {
+  
                 session.save(sanCa);
-            }
-
             check = true;
             transaction.commit();
         } catch (Exception e) {

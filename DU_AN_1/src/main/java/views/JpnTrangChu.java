@@ -73,13 +73,15 @@ public class JpnTrangChu extends javax.swing.JPanel {
     private IHoaDonService hoaDonService = new HoaDonServiceImpl();
     private Map<String, QLHoaDon> mapQLHoaDon = new HashMap<>();
     private Map<String, PhieuDatLich> mapPhieuDatLich = new HashMap<>();
+    private Date ngayTao = new Date();
 
     /**
      * Creates new form TrangChuJPanel
      */
     public JpnTrangChu(QLAcount qLAcount, JLabel lbHome, JPanel pnTong,Date ngatTao) {
         initComponents();
-        listSanCa = sanCaService.getAll(ngatTao);
+        this.ngayTao= ngatTao;
+        listSanCa = sanCaService.getAll(ngayTao);
         listSanBong = sanBongService.getAll();
         this.qLAcount = qLAcount;
         labelHome = lbHome;
@@ -181,7 +183,7 @@ public class JpnTrangChu extends javax.swing.JPanel {
                     itemDoiLichDat.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            new FrmDoiLichDat(datLich,qLAcount,pnTong,labelHome).setVisible(true);
+                            new FrmDoiLichDat(datLich,qLAcount,pnTong,labelHome,ngayTao).setVisible(true);
                             jPopupMenu.setVisible(false);
                         }
                     });
@@ -244,7 +246,7 @@ public class JpnTrangChu extends javax.swing.JPanel {
                 qLAcount.getMatKhau(), qLAcount.getMoTa(), qLAcount.getTrangThai());
         QLSanCa qLSanCa = mapSanCa.get(idSanCa);
         QLKhachHang khachHang = new QLKhachHang();
-        new FrmPhieuDatLich(khachHang, qLSanCa, acount, labelHome, pnTong).setVisible(true);
+        new FrmPhieuDatLich(khachHang, qLSanCa, acount, labelHome, pnTong,ngayTao).setVisible(true);
     }
 
     /**

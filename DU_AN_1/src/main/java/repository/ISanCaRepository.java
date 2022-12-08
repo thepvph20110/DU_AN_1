@@ -24,7 +24,7 @@ public interface ISanCaRepository {
 
     boolean save(SanCa sanCa);
 
-    boolean saveOutSanCa(List<SanCa> listSanCa);
+    boolean saveOutSanCa(SanCa sanCa);
 
     List<SanCa> getByNgayTao(Date ngayTao);
 }
