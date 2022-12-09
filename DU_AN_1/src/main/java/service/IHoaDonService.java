@@ -23,7 +23,7 @@ public interface IHoaDonService {
 
     String delete(String id);
     
-    List<QLHoaDon> getAllByTrangThai();
+    QLHoaDon getByTrangThai(String idSanCa);
     
     List<QLHoaDon> searchByName(String name);
     

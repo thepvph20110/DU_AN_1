@@ -5,6 +5,7 @@
 package views;
 
 import domainmodel.Acount;
+import domainmodel.HoaDon;
 import domainmodel.PhieuDatLich;
 import enumclass.trangThaiSanCa;
 import java.awt.Color;
@@ -79,7 +80,6 @@ public class JpnTrangChu extends javax.swing.JPanel {
     private PhieuDatLich datLich;
     private IPhieuDatLichService phieuDatLichService = new PhieuDatLichServiceImpl();
     private IHoaDonService hoaDonService = new HoaDonServiceImpl();
-    private Map<String, QLHoaDon> mapQLHoaDon = new HashMap<>();
     private Map<String, PhieuDatLich> mapPhieuDatLich = new HashMap<>();
     private DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
     private Clip clip;
@@ -88,6 +88,7 @@ public class JpnTrangChu extends javax.swing.JPanel {
     private IThongKeService thongKeService = new ThongKeServiceImpl();
     private JButton tatthongBao = new JButton("Tắt Thông Báo");
     private JButton thongBao =    new JButton(" Thông Báo");
+    
 
     /**
      * Creates new form TrangChuJPanel
@@ -104,9 +105,6 @@ public class JpnTrangChu extends javax.swing.JPanel {
         AddSan();
         for (QLSanCa qLSanCa : listSanCa) {
             mapSanCa.put(qLSanCa.getId(), qLSanCa);
-        }
-        for (QLHoaDon qLHoaDon : hoaDonService.getAllByTrangThai()) {
-            mapQLHoaDon.put(qLHoaDon.getPhieuDatLich().getId(), qLHoaDon);
         }
         lbTongTien.setText(decimalFormat.format(thongKeService.getTongTienNgayHienTai(ngayTao)) + " " + "Vnd");
         
@@ -147,7 +145,7 @@ public class JpnTrangChu extends javax.swing.JPanel {
     }
 
     private void showThanhToan(String id) {
-        QLHoaDon hoaDon = mapQLHoaDon.get(id);
+        QLHoaDon hoaDon = hoaDonService.getByTrangThai(id);
         new FrmThanhToan(hoaDon).setVisible(true);
 
     }
@@ -202,14 +200,14 @@ public class JpnTrangChu extends javax.swing.JPanel {
                     labelLoaiSan.setForeground(Color.BLACK);
                     labelLoaiSan.setFont(new Font("Tahoma", 1, 14));
                     JLabel lableTenKH = new JLabel();
-                    if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.KHONG_TRONG || listSanCa.get(j).getTrangThai() == trangThaiSanCa.CHO_NHAN_SAN) {
-                        datLich = phieuDatLichService.getPhieuDatLich(labelIdSanCa.getText());
-                        lableTenKH.setText("Tên KH:" + datLich.getKhachHang().getTenKhachHang());
+                        
+                    if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.KHONG_TRONG) {
+                        QLHoaDon qlHoaDon = hoaDonService.getByTrangThai(labelIdSanCa.getText());
+                        lableTenKH.setText("Tên KH:" + qlHoaDon.getPhieuDatLich().getKhachHang().getTenKhachHang());
                         lableTenKH.setFont(new Font("Tahoma", 1, 10));
                         lableTenKH.setForeground(Color.BLACK);
                         labelLoaiSan.setFont(new Font("Tahoma", 1, 10));
                     }
-
                     JLabel labelTrangThai = new JLabel();
                     labelTrangThai.setForeground(Color.BLACK);
                     labelTrangThai.setPreferredSize(new Dimension(160, 15));
@@ -233,7 +231,7 @@ public class JpnTrangChu extends javax.swing.JPanel {
                     itemCheckOut.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            showThanhToan(datLich.getId());
+                            showThanhToan(labelIdSanCa.getText());
                             panelCa.setEnabled(false);
                             jPopupMenu.setVisible(false);
                         }
@@ -276,13 +274,19 @@ public class JpnTrangChu extends javax.swing.JPanel {
                     String ngayTaoSan = dateFormat.format(ngayTao);
                     String hienTai = dateFormat.format(homNay);
                     if (gioKT.getTime() < quaGio.getTime() && ngayTaoSan.equals(hienTai)) {
-                        panelCa.setBackground(new Color(189, 195, 199));
-                        itemCheckOut.setEnabled(true);
+                        if(listSanCa.get(j).getTrangThai()== trangThaiSanCa.KHONG_TRONG){
+                            panelCa.setBackground(new Color(153,255,255));
+                            labelTrangThai.setText("Trạng thái: " + "Chờ thanh toán");
+                        }else{
+                            panelCa.setBackground(new Color(189, 195, 199));
+                            labelTrangThai.setText("Trạng thái:" + " " + "Quá giờ");
+                        }
+                        
                         itemDatLich.setEnabled(false);
                         itemDoiLichDat.setEnabled(false);
                         itemThongbao.setEnabled(true);
                         itemTatThongbao.setEnabled(true);
-                        labelTrangThai.setText("Trạng thái:" + " " + "Quá giờ");
+                        
                     }
                     panelCa.add(labelCa);
                     panelCa.add(labelThoiGian);
@@ -435,8 +439,7 @@ public class JpnTrangChu extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 632, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 642, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
