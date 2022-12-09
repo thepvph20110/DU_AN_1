@@ -17,6 +17,8 @@ public interface IAcountService {
 
     Acount getOne();
 
+    Acount getOneByNameAcount(String ten);
+
     List<QLAcount> getAll();
 
     String save(QLAcount qLAcount);

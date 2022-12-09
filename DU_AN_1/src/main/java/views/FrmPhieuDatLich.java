@@ -406,7 +406,7 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
                     QLLichSuDatLich qLLichSuDatLich = new QLLichSuDatLich(null, qLPhieuDatLich, maLichSu, ngayTao, ngayDen, trangThaiLichSuDatLich.DA_DAT_LICH);
                     iLichSuDatLichService.save(qLLichSuDatLich);
                     
-                    HomeController controller = new HomeController(pnTong,qLAcount,sanCa.getNgayTao());
+                    HomeController controller = new HomeController(pnTong,qLAcount,sanCa.getNgayTao(),null);
                     controller.setView(labelHome);
                     this.dispose();
                 } else {

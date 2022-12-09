@@ -238,7 +238,6 @@ public class JpnTrangChu extends javax.swing.JPanel {
                     String hienTai = dateFormat.format(homNay);
                     if (gioKT.getTime() < quaGio.getTime() && ngayTaoSan.equals(hienTai)) {
                         panelCa.setBackground(new Color(189, 195, 199));
-                        itemCheckOut.setEnabled(true);
                         itemDatLich.setEnabled(false);
                         itemDoiLichDat.setEnabled(false);
                         itemThongbao.setEnabled(true);

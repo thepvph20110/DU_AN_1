@@ -18,6 +18,8 @@ public interface IAcountRepository {
 
     Acount getOne();
 
+    Acount getOneByNameAcount(String ten);
+
     boolean save(Acount acount);
 
     boolean update(Acount acount);

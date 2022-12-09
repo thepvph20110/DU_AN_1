@@ -567,7 +567,7 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
                     sanCaService.update(qLSanCa);
                     sanCaService.update(sanCaCu);
                     this.dispose();
-                    HomeController homeController = new HomeController(pnTong, qLAcount, ngayTao);
+                    HomeController homeController = new HomeController(pnTong, qLAcount, ngayTao,null);
                     homeController.setView(lbHome);
                 }
             } else {

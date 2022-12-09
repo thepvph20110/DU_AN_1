@@ -89,7 +89,7 @@
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="lbTenNv" min="-2" pref="54" max="-2" attributes="0"/>
-                                  <Component id="lbGioVaoCa" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <Component id="lbGioVaoCa" min="-2" pref="187" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -431,6 +431,7 @@
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt500ActionPerformed"/>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt500KeyTyped"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txt200">
@@ -662,7 +663,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Gi&#x1edd; v&#xe0;o ca:"/>
+                <Property name="text" type="java.lang.String" value="Gi&#x1edd; hi&#x1ec7;n t&#x1ea1;i:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lbGioVaoCa">

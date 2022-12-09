@@ -292,7 +292,7 @@ public class FrmPhieuDatSan extends javax.swing.JFrame {
             new SanCaRepository().update(sanCa);
             QLHoaDon qLHoaDon = new QLHoaDon(null, "HD005", phieuDL, null, null, null, phieuDL.getTongTienSan(), phieuDL.getTongTienSan(), null, trangThaiHoaDon.CHUA_THANH_TOAN);
             hoaDonService.save(qLHoaDon);
-            HomeController homeController = new HomeController(pnTong, qLAcount,new Date());
+            HomeController homeController = new HomeController(pnTong, qLAcount,new Date(),null);
             homeController.setView(lbHome);
             this.dispose();
         } else {
