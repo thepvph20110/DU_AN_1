@@ -4,11 +4,11 @@
  */
 package repository.impl;
 
-import domainmodel.Acount;
 import domainmodel.ChucVu;
 import java.util.List;
 import javax.persistence.Query;
 import org.hibernate.Session;
+import org.hibernate.query.NativeQuery;
 import repository.IChucVuRepository;
 import utill.HibernateConfig;
 
@@ -74,21 +74,22 @@ public class ChucVuRepository implements IChucVuRepository {
     }
 
     @Override
-    public String genMaChucVu() {
-        String top1 = null;
+    public int genMaChucVu() {
+        String maCV = "";
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
-            String hql = "FROM ChucVu cv order by cv.maChucVu DESC";
-            Query query = session.createQuery(hql);
-            session.getTransaction().begin();
-            query.setMaxResults(1);
-            ChucVu chucVu = (ChucVu) query.getSingleResult();
-            top1 = chucVu.getMaChucVu();
-            session.getTransaction().commit();
+            String hql = "Select MAX(CONVERT(INT,SUBSTRING(maCV,5,100))) from CHucVu ";
+            NativeQuery query = session.createNativeQuery(hql);
+            maCV = query.getSingleResult().toString();
         } catch (Exception e) {
-            System.out.println(e);
-            return top1;
+       
         }
-        return top1;
+        if(maCV == ""){
+            maCV = "1";
+            int ma = Integer.valueOf(maCV);
+            return  ma;
+        }
+        int ma = Integer.valueOf(maCV);
+        return  ++ma;
     }
-}
 
+}
