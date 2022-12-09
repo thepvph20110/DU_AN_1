@@ -1,10 +1,16 @@
- /*
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package repository.impl;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.hibernate.Session;
 import org.hibernate.transform.Transformers;
 import response.ThanhToan.TongTienHoaDonResponse;
@@ -85,6 +91,27 @@ public class ThongKeRepositoryImpl implements IThongKeRepository {
             e.printStackTrace(System.out);
         }
         return list;
+    }
+
+    @Override
+    public double getTongTienNgayHienTai(Date ngayHienTai) {
+        double listhienTais;
+        try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
+            SimpleDateFormat dau = new SimpleDateFormat("yyyy-MM-dd 00:00:00");
+            SimpleDateFormat cuoi = new SimpleDateFormat("yyyy-MM-dd 23:59:59");
+            String gD = dau.format(ngayHienTai);
+            String gC = cuoi.format(ngayHienTai);
+            Date gioDau = dau.parse(gD);
+            Date gioCuoi = cuoi.parse(gC);
+            String sql = "select SUM(hd.tongTien) AS TongTien from HoaDon hd Where hd.ngayThanhToan between :gioDau and :gioCuoi";
+            listhienTais = (Double) session.createSQLQuery(sql).setParameter("gioDau", gioDau).setParameter("gioCuoi", gC).getSingleResult();
+
+            return listhienTais;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 1.1;
+        }
+
     }
 
 }
