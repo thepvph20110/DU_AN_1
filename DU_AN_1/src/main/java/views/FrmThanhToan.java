@@ -29,6 +29,7 @@ import enumclass.loaiHinhThanhToan;
 import enumclass.trangThaiDichVu;
 import enumclass.trangThaiHoaDon;
 import enumclass.trangThaiSanCa;
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -74,7 +75,7 @@ import service.Impl.ThanhToanServiceImpl;
  * @author Admin
  */
 public class FrmThanhToan extends javax.swing.JFrame {
-
+    
     double giaCa;
     private QLHoaDon qLHoaDon;
     private String idQLHoaDon;
@@ -85,23 +86,23 @@ public class FrmThanhToan extends javax.swing.JFrame {
     private DefaultTableModel dtmCTDV = new DefaultTableModel();
     private List<QLHoaDon> qLHoaDons = new ArrayList<>();
     private IHoaDonService iHoaDonService = new HoaDonServiceImpl();
-
+    
     private List<DichVu> listDV = new ArrayList<>();
     private IDichVuRepository dichVuRepository = new DichVuRepositoryImpl();
-
+    
     private IThanhToanService iThanhToanService = new ThanhToanServiceImpl();
     private List<QLThanhToan> qLThanhToans = new ArrayList<>();
-
+    
     private List<QLNuocUong> listNC = new ArrayList<>();
     private INuocUongService nuocUongService = new NuocUongServiceImpl();
-
+    
     private List<QLDoThue> listDT = new ArrayList<>();
     private IDoThueService doThueService = new DoThueServiceImpl();
-
+    
     private IPhuPhiService phuPhiService = new PhuPhiServiceImpl();
     private List<QLPhuPhi> qLPhuPhis = new ArrayList<>();
     public static final String pathUnicode = "font\\unicode.ttf";
-
+    
     private List<QLHoaDon_PhuPhi> listHoaDonPhuPhi = new ArrayList<>();
     private IHoaDon_PhuPhiService qlHoaDonPhuPhi = new HoaDonPhuPhiServiceImpl();
 
@@ -128,7 +129,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
         txtStar.setText(qLHoaDon.getPhieuDatLich().getSanCa().getCa().getThoiGianBatDau().toString());
         txtEnd.setText(qLHoaDon.getPhieuDatLich().getSanCa().getCa().getThoiGianKetThuc().toString());
         LocalDate localDate = qLHoaDon.getPhieuDatLich().getNgayDenSan().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        ngayDenSan.setText(localDate.getDayOfMonth()+"-"+localDate.getMonthValue()+"-"+localDate.getYear());
+        ngayDenSan.setText(localDate.getDayOfMonth() + "-" + localDate.getMonthValue() + "-" + localDate.getYear());
         String tien = dinhDangTienTe(qLHoaDon.getPhieuDatLich().getSanCa().getSanbong().getGiaSan());
         txtGiaSan.setText(tien);
         listDV = dichVuRepository.findByIdHoaDon(qLHoaDon.getId());
@@ -152,13 +153,13 @@ public class FrmThanhToan extends javax.swing.JFrame {
         addDataRow(qLHoaDon);
         addDataRowDichVu(listDV);
     }
-
+    
     public String dinhDangTienTe(double tienTe) {
         Locale locale = new Locale("vi", "VN");
         NumberFormat format = NumberFormat.getInstance(locale);
-        return format.format(tienTe) + " " + "VNĐ";
+        return format.format(tienTe) + " " + "Vnd";
     }
-
+    
     public void loadCBPhuPhi() {
         dcbmPP.removeAllElements();
         qLPhuPhis = phuPhiService.getAllQLPhuPhis();
@@ -166,7 +167,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
             dcbmPP.addElement(qLPhuPhi.getTenPhuPhi());
         }
     }
-
+    
     public double fillGia() {
         giaCa = qLHoaDon.getPhieuDatLich().getTongTienSan();
         Set<DichVu> dichVus = iHoaDonService.findByHoaDonId(qLHoaDon.getId()).getDichVu();
@@ -180,7 +181,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
                 giaCa += dichVu.getSoLuongDoThue() * dichVu.getDoThue().getDonGia();
             }
         }
-
+        
         Set<PhuPhi_HoaDon> phuPhi_HoaDons = iHoaDonService.findByHoaDonId(qLHoaDon.getId()).getPhuPhi();
         List<PhuPhi_HoaDon> listHDTT = new ArrayList<>();
         listHDTT.addAll(phuPhi_HoaDons);
@@ -189,21 +190,21 @@ public class FrmThanhToan extends javax.swing.JFrame {
         }
         return giaCa;
     }
-
+    
     public void addDataRow(QLHoaDon qLHoaDon) {
         dtm.setRowCount(0);
         dtm.addRow(qLHoaDon.toDataRow());
     }
-
+    
     public void addDataRowDichVu(List<DichVu> listDV) {
         dtmCTDV.setRowCount(0);
         for (DichVu dichVu : listDV) {
             if (dichVu.getNuocUong() != null) {
                 Object[] data = {dichVu.getMaDichVu(), dichVu.getNuocUong().getTenNuocUong(), dichVu.getSoLuongNuocUong(),
-                    dinhDangTienTe(dichVu.getNuocUong().getGia()),dinhDangTienTe(dichVu.getNuocUong().getGia() * dichVu.getSoLuongNuocUong())};
+                    dinhDangTienTe(dichVu.getNuocUong().getGia()), dinhDangTienTe(dichVu.getNuocUong().getGia() * dichVu.getSoLuongNuocUong())};
                 dtmCTDV.addRow(data);
             }
-
+            
             if (dichVu.getDoThue() != null) {
                 Object[] data = {dichVu.getMaDichVu(), dichVu.getDoThue().getTenDoThue(), dichVu.getSoLuongDoThue(),
                     dinhDangTienTe(dichVu.getDoThue().getDonGia()), dinhDangTienTe(dichVu.getDoThue().getDonGia() * dichVu.getSoLuongDoThue())};
@@ -211,21 +212,21 @@ public class FrmThanhToan extends javax.swing.JFrame {
             }
         }
     }
-
+    
     public void addDataRowNuocUong(List<QLNuocUong> listNC) {
         dtmDV.setRowCount(0);
         for (QLNuocUong qLNuocUong : listNC) {
             dtmDV.addRow(qLNuocUong.toRowDataNuocUong());
         }
     }
-
+    
     public void addDataRowDoThue(List<QLDoThue> listDT) {
         dtmDV.setRowCount(0);
         for (QLDoThue qLDoThue : listDT) {
             dtmDV.addRow(qLDoThue.toRowDataDoThue());
         }
     }
-
+    
     public boolean createFilePDF() {
         String headerPDF[] = {"Mã", "Tên", "Số Lượng", "Giá", "Thành Tiền"};
 //        String headerTBDichVu[] = {"Mã", "Tên", "Số Lượng", "Giá", "Thành Tiền"};
@@ -248,13 +249,13 @@ public class FrmThanhToan extends javax.swing.JFrame {
             Document document = new Document(pdfDocument);
             float col = 280f;
             float columWidth[] = {col, col};
-
+            
             PdfFont font = PdfFontFactory.createFont(pathUnicode, BaseFont.IDENTITY_H);
-
+            
             Table table = new Table(columWidth);
             table.setBackgroundColor(new DeviceRgb(63, 169, 219)).setFontColor(Color.WHITE);
             table.setFont(font);
-
+            
             table.addCell(new Cell().add("DongDe Stadium").setTextAlignment(TextAlignment.CENTER)
                     .setVerticalAlignment(VerticalAlignment.MIDDLE)
                     .setMarginTop(30f)
@@ -266,42 +267,42 @@ public class FrmThanhToan extends javax.swing.JFrame {
                     .setMarginBottom(30f)
                     .setBorder(Border.NO_BORDER)
                     .setMarginRight(10f));
-
+            
             float colWidth[] = {220, 110, 200, 200};
             Table customerInforTable = new Table(colWidth);
             customerInforTable.setFont(font);
             customerInforTable.addCell(new Cell(0, 4)
                     .add("Thông tin khách hàng").setBold().setBorder(Border.NO_BORDER));
-
+            
             customerInforTable.addCell(new Cell().add("Họ tên KH:").setBorder(Border.NO_BORDER));
             customerInforTable.addCell(new Cell().add("" + jTen.getText()).setBorder(Border.NO_BORDER));
-
+            
             customerInforTable.addCell(new Cell().add("Họ Tên NV:").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
             customerInforTable.addCell(new Cell().add("" + jTable1.getValueAt(0, 1).toString()).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
-
+            
             customerInforTable.addCell(new Cell().add("Số điện thoại:").setBorder(Border.NO_BORDER));
             customerInforTable.addCell(new Cell().add("" + jTable1.getValueAt(0, 3).toString()).setBorder(Border.NO_BORDER));
-
+            
             customerInforTable.addCell(new Cell().add("").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
             customerInforTable.addCell(new Cell().add("").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
-
+            
             customerInforTable.addCell(new Cell().add("Tên Sân: ").setBorder(Border.NO_BORDER));
             customerInforTable.addCell(new Cell().add("" + jtenSan.getText()).setBorder(Border.NO_BORDER));
-
+            
             customerInforTable.addCell(new Cell().add("Ngày thanh toán:").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
             SimpleDateFormat sdf1 = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
             String ngayThanhToan = sdf1.format(new Date());
             customerInforTable.addCell(new Cell().add("" + ngayThanhToan).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
-
+            
             customerInforTable.addCell(new Cell().add("Ca số: ").setBorder(Border.NO_BORDER));
             customerInforTable.addCell(new Cell().add("" + txtCa.getText()).setBorder(Border.NO_BORDER));
-
+            
             customerInforTable.addCell(new Cell().add("").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
             customerInforTable.addCell(new Cell().add("").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
-
+            
             customerInforTable.addCell(new Cell().add("Tiền Sân: ").setBorder(Border.NO_BORDER));
             customerInforTable.addCell(new Cell().add("" + jTable1.getValueAt(0, 4).toString()).setBorder(Border.NO_BORDER));
-
+            
             float itemColWidth[] = {132, 132, 132, 132, 132};
             Table itemTable = new Table(itemColWidth);
             itemTable.setFont(font);
@@ -310,7 +311,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
             for (int i = 0; i < headerPDF.length; i++) {
                 itemTable.addCell(new Cell().add("" + headerPDF[i]).setBackgroundColor(new DeviceRgb(63, 169, 219)).setFontColor(Color.WHITE));
             }
-
+            
             for (int v = 0; v < jtbChiTietDichVu.getRowCount(); v++) {
                 for (int y = 0; y < headerPDF.length; y++) {
                     itemTable.addCell("" + jtbChiTietDichVu.getValueAt(v, y).toString());
@@ -331,18 +332,19 @@ public class FrmThanhToan extends javax.swing.JFrame {
             itemTable.addCell("" + jTable1.getValueAt(0, 4).toString());
             itemTable.addCell("" + jTable1.getValueAt(0, 4).toString());
             listHoaDonPhuPhi = qlHoaDonPhuPhi.getAllPhuPhi_HoaDonsByIdHoaDon(idQLHoaDon);
+            DecimalFormat formatter = new DecimalFormat("###,###,###");
             for (int l = 0; l < listHoaDonPhuPhi.size(); l++) {
                 itemTable.addCell(new Cell().add("" + listHoaDonPhuPhi.get(l).getPhuPhi().getMaPhuPhi()));
                 itemTable.addCell(new Cell().add("Phụ Phí_" + listHoaDonPhuPhi.get(l).getPhuPhi().getTenPhuPhi()));
                 itemTable.addCell(new Cell().add(""));
-                itemTable.addCell(new Cell().add("" + listHoaDonPhuPhi.get(l).getGiaPPHD()));
-                itemTable.addCell(new Cell().add("" + listHoaDonPhuPhi.get(l).getGiaPPHD()));
+                itemTable.addCell(new Cell().add("" + formatter.format(listHoaDonPhuPhi.get(l).getGiaPPHD()) + "Vnd"));
+                itemTable.addCell(new Cell().add("" + formatter.format(listHoaDonPhuPhi.get(l).getGiaPPHD()) + "Vnd"));
             }
             itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
             itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
             itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
             itemTable.addCell(new Cell().add("Tổng tiền").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER).setFontColor(Color.WHITE));
-            itemTable.addCell(new Cell().add("" + txtTongTien.getText() + " Vnd").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER).setFontColor(Color.WHITE));
+            itemTable.addCell(new Cell().add("" + txtTongTien.getText()).setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER).setFontColor(Color.WHITE));
             document.add(table);
             document.add(new Paragraph("\n"));
             document.add(new Paragraph("\n"));
@@ -1052,7 +1054,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
             } else if (jcbThanhToan.getSelectedItem() == loaiHinhThanhToan.Tien_Mat) {
                 if (!txtTienKhach.getText().isEmpty()) {
                     if (txtTienKhach.getText().isEmpty() || txtTienKhach.getText().matches("-?\\d+(\\.\\d+)?")) {
-
+                        
                         if (Integer.valueOf(txtTienKhach.getText()) < 1) {
                             JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập sô lớn hơn 0");
                             return;
@@ -1409,7 +1411,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
         // TODO add your handling code here:
         new FrmChiTietPhuPhi(qLHoaDon.getId(), this).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    
     public void setTxtGia() {
         txtTongTien.setText(dinhDangTienTe(fillGia()));
     }

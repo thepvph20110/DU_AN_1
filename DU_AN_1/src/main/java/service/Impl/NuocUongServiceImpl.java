@@ -64,10 +64,6 @@ public class NuocUongServiceImpl implements INuocUongService {
         if (nuocUong.getTenNuocUong() == null || String.valueOf(nuocUong.getGia()) == null || String.valueOf(nuocUong.getSoLuong()) == null) {
             return "Không được để trống";
         }
-        if (map.containsKey(nuocUong.getTenNuocUong())) {
-            return "Tên Nước trùng";
-        }
-
         if (nuocUong.getSoLuong() <= 0) {
             return "Nhập số lượng lớn hơn 0";
         }
