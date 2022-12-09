@@ -22,4 +22,6 @@ public interface IKhachHangRepository {
     boolean delete(KhachHang khachHang);
     
     List<KhachHang> searchByName(String ten);
+    
+    int genMaKH();
 }

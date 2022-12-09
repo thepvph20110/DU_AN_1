@@ -24,4 +24,6 @@ public interface ICaRepository {
     String saveCaNew(Ca ca);
 
     String xoaCa(String id);
+    
+    int genMaCa();
 }

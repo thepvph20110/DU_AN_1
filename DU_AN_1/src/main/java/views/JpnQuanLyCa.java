@@ -43,6 +43,7 @@ public class JpnQuanLyCa extends javax.swing.JPanel {
         String[] header = {"Mã Ca", "Tên Ca", "TG Bắt Đầu", "TG Kết Thúc", "Giá Ca", "Trạng Thái"};
         dtm.setColumnIdentifiers(header);
         listQLCa = ics.getAll();
+        txtMaCa.disable();
         showData(listQLCa);
     }
 
@@ -73,7 +74,6 @@ public class JpnQuanLyCa extends javax.swing.JPanel {
     }
 
     private void save() {
-        String maCa = txtMaCa.getText();
         String tenCa = txtTenCa.getText();
         String thoiGianBatDau = txtThoiGianBD.getText();
         String thoiGianKetThuc = txtTGKetThuc.getText();
@@ -84,7 +84,7 @@ public class JpnQuanLyCa extends javax.swing.JPanel {
         } else {
             qlCa.setTrangThai(trangThaiCa.GIO_CAO_DIEM);
         }
-        if (maCa.length() == 0 || tenCa.length() == 0 || thoiGianBatDau.length() == 0 || thoiGianKetThuc.length() == 0 || gia.length() == 0) {
+        if (tenCa.length() == 0 || thoiGianBatDau.length() == 0 || thoiGianKetThuc.length() == 0 || gia.length() == 0) {
             JOptionPane.showMessageDialog(this, "IsEmpty");
         } else if (gia.matches("^[a-zA-Z]+$")) {
             JOptionPane.showMessageDialog(this, "Gia la so");
@@ -93,7 +93,7 @@ public class JpnQuanLyCa extends javax.swing.JPanel {
         } else if ((Double.valueOf(gia) <= 0)) {
             JOptionPane.showMessageDialog(this, "Gia san sai dinh dang");
         } else {
-            QLCa qLCa = new QLCa(null, maCa, tenCa, Time.valueOf(thoiGianBatDau), Time.valueOf(thoiGianKetThuc), Double.valueOf(gia), qlCa.getTrangThai());
+            QLCa qLCa = new QLCa(null, ics.genMaCa(), tenCa, Time.valueOf(thoiGianBatDau), Time.valueOf(thoiGianKetThuc), Double.valueOf(gia), qlCa.getTrangThai());
             JOptionPane.showMessageDialog(this, ics.save(qLCa));
             listQLCa = ics.getAll();
             showData(listQLCa);
@@ -113,7 +113,7 @@ public class JpnQuanLyCa extends javax.swing.JPanel {
         } else {
             qlCa.setTrangThai(trangThaiCa.GIO_CAO_DIEM);
         }
-        if (maCa.length() == 0 || tenCa.length() == 0 || thoiGianBatDau.length() == 0 || thoiGianKetThuc.length() == 0 || gia.length() == 0) {
+        if (tenCa.length() == 0 || thoiGianBatDau.length() == 0 || thoiGianKetThuc.length() == 0 || gia.length() == 0) {
             JOptionPane.showMessageDialog(this, "IsEmpty");
         } else if (gia.matches("^[a-zA-Z]+$")) {
             JOptionPane.showMessageDialog(this, "Gia la so");
@@ -122,7 +122,7 @@ public class JpnQuanLyCa extends javax.swing.JPanel {
         } else if ((Double.valueOf(gia) <= 0)) {
             JOptionPane.showMessageDialog(this, "Gia san sai dinh dang");
         } else {
-            Ca ca = new Ca(id, maCa, tenCa, Time.valueOf(thoiGianBatDau), Time.valueOf(thoiGianKetThuc), Double.valueOf(gia), qlCa.getTrangThai());
+            Ca ca = new Ca(id, ics.genMaCa(), tenCa, Time.valueOf(thoiGianBatDau), Time.valueOf(thoiGianKetThuc), Double.valueOf(gia), qlCa.getTrangThai());
             JOptionPane.showMessageDialog(this, ics.saveNewCa(ca));
             listQLCa = ics.getAll();
             showData(listQLCa);
@@ -149,7 +149,7 @@ public class JpnQuanLyCa extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Selected row ???");
 
         } else {
-            if (maCa.length() == 0 || tenCa.length() == 0 || thoiGianBatDau.length() == 0 || thoiGianKetThuc.length() == 0 || gia.length() == 0) {
+            if (tenCa.length() == 0 || thoiGianBatDau.length() == 0 || thoiGianKetThuc.length() == 0 || gia.length() == 0) {
                 JOptionPane.showMessageDialog(this, "IsEmpty");
             } else if (!thoiGianBatDau.matches("^\\d{2}:\\d{2}:\\d{2}$") || !thoiGianKetThuc.matches("^\\d{2}:\\d{2}:\\d{2}$")) {
                 JOptionPane.showMessageDialog(this, "Incorrect format time (hh:mm:ss)");
@@ -158,7 +158,7 @@ public class JpnQuanLyCa extends javax.swing.JPanel {
             } else if ((Double.valueOf(gia) <= 0)) {
                 JOptionPane.showMessageDialog(this, "Gia san sai dinh dang");
             } else {
-                QLCa qLCa = new QLCa(mountClick().getId(), maCa, tenCa, Time.valueOf(thoiGianBatDau), Time.valueOf(thoiGianKetThuc), Double.valueOf(gia), qlCa.getTrangThai());
+                QLCa qLCa = new QLCa(mountClick().getId(), ics.genMaCa(), tenCa, Time.valueOf(thoiGianBatDau), Time.valueOf(thoiGianKetThuc), Double.valueOf(gia), qlCa.getTrangThai());
                 JOptionPane.showMessageDialog(this, ics.update(qLCa));
                 listQLCa = ics.getAll();
                 showData(listQLCa);
@@ -182,7 +182,7 @@ public class JpnQuanLyCa extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Selected row ???");
 
         } else {
-            QLCa qLCa = new QLCa(mountClick().getId(), maCa, tenCa, Time.valueOf(thoiGianBatDau), Time.valueOf(thoiGianKetThuc), Double.valueOf(gia), qlCa.getTrangThai());
+            QLCa qLCa = new QLCa(mountClick().getId(), ics.genMaCa(), tenCa, Time.valueOf(thoiGianBatDau), Time.valueOf(thoiGianKetThuc), Double.valueOf(gia), qlCa.getTrangThai());
             JOptionPane.showMessageDialog(this, ics.delete(qLCa));
             listQLCa = ics.getAll();
             showData(listQLCa);

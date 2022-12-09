@@ -27,4 +27,6 @@ public interface ICaService {
     String saveNewCa(Ca ca);
 
     String xoaCa(String id);
+    
+    String genMaCa();
 }

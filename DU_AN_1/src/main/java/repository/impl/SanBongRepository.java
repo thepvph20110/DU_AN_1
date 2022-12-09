@@ -11,6 +11,7 @@ import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.NativeQuery;
 import repository.ISanBongRepository;
 import utill.HibernateConfig;
 
@@ -128,5 +129,24 @@ public class SanBongRepository implements ISanBongRepository {
             transaction.rollback();
             return "Xóa thất bại";
         }
+    }
+
+    @Override
+    public int genMaSanBong() {
+        String maAC = "";
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            String hql = "Select MAX(CONVERT(INT,SUBSTRING(maSanBong,5,100))) from SanBong ";
+            NativeQuery query = session.createNativeQuery(hql);
+            maAC = query.getSingleResult().toString();
+        } catch (Exception e) {
+       
+        }
+        if(maAC == ""){
+            maAC = "1";
+            int ma = Integer.valueOf(maAC);
+            return  ma;
+        }
+        int ma = Integer.valueOf(maAC);
+        return  ++ma;
     }
 }

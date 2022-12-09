@@ -10,6 +10,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.NativeQuery;
 import repository.ILoaiSanRepository;
 import utill.HibernateConfig;
 
@@ -88,5 +89,24 @@ public class LoaiSanRepository implements ILoaiSanRepository {
             e.printStackTrace(System.out);
         }
         return null;
+    }
+
+    @Override
+    public int genMaLoaiSan() {
+        String maAC = "";
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            String hql = "Select MAX(CONVERT(INT,SUBSTRING(maLoaiSan,5,100))) from LoaiSan ";
+            NativeQuery query = session.createNativeQuery(hql);
+            maAC = query.getSingleResult().toString();
+        } catch (Exception e) {
+       
+        }
+        if(maAC == ""){
+            maAC = "1";
+            int ma = Integer.valueOf(maAC);
+            return  ma;
+        }
+        int ma = Integer.valueOf(maAC);
+        return  ++ma;
     }
 }

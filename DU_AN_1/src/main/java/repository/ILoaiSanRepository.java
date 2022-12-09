@@ -22,4 +22,6 @@ public interface ILoaiSanRepository {
     List<LoaiSan> searchByName(String ten);
 
     LoaiSan getOne(String tenLoai);
+    
+    int genMaLoaiSan();
 }

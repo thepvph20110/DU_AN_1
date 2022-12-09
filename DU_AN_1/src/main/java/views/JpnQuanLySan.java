@@ -60,6 +60,7 @@ public class JpnQuanLySan extends javax.swing.JPanel {
         listQLLoaiSan = iLoaiSanService.getAll();
         listQLSanBong = iSanBongService.getAll();
         loadCbbLoaiSan();
+        txtMaSanBong.disable();
         showData(listQLSanBong);
         List<LoaiSan> listLoaiSan = loaiSanRepository.getAll();
         for (LoaiSan loaiSan : listLoaiSan) {
@@ -98,7 +99,7 @@ public class JpnQuanLySan extends javax.swing.JPanel {
         } else {
             qlsb.setTrangThai(trangThaiSanBong.SUA_CHUA);
         }
-        if (maSanBong.length() == 0 || tenSanBong.length() == 0 || giaSan.length() == 0 || sucChua.length() == 0) {
+        if ( tenSanBong.length() == 0 || giaSan.length() == 0 || sucChua.length() == 0) {
             JOptionPane.showMessageDialog(this, "IsEmpty");
         } else if (sucChua.matches("^[a-zA-Z]+$")) {
             JOptionPane.showMessageDialog(this, "Suc chua la so");
@@ -110,7 +111,7 @@ public class JpnQuanLySan extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Suc chua sai dinh dang");
         } else {
             LoaiSan loaiSan = iLoaiSanService.getOne(cbbLoaiSan.getSelectedItem().toString());
-            SanBong sanBong = new SanBong(id, maSanBong, tenSanBong, Double.valueOf(giaSan), Integer.valueOf(sucChua), loaiSan, qlsb.getTrangThai());
+            SanBong sanBong = new SanBong(id, iSanBongService.genMaSanBong(), tenSanBong, Double.valueOf(giaSan), Integer.valueOf(sucChua), loaiSan, qlsb.getTrangThai());
             JOptionPane.showMessageDialog(null, iSanBongService.saveSanBong(sanBong));
             listQLSanBong = iSanBongService.getAll();
             showData(listQLSanBong);
@@ -137,7 +138,7 @@ public class JpnQuanLySan extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Selected Row ???");
         } else {
             
-            QLSanBong qLSanBong = new QLSanBong(mountClick().getId(), maSanBong, tenSanBong, Double.valueOf(giaSan), Integer.valueOf(sucChua), cbbLoaiSan.getSelectedItem().toString(), qlsb.getTrangThai());
+            QLSanBong qLSanBong = new QLSanBong(mountClick().getId(), iSanBongService.genMaSanBong(), tenSanBong, Double.valueOf(giaSan), Integer.valueOf(sucChua), cbbLoaiSan.getSelectedItem().toString(), qlsb.getTrangThai());
             JOptionPane.showMessageDialog(this, iSanBongService.update(qLSanBong));
             listQLSanBong = iSanBongService.getAll();
             showData(listQLSanBong);
