@@ -10,6 +10,7 @@ import domainmodel.SanCa;
 import enumclass.trangThaiHoaDon;
 import enumclass.trangThaiPhieuDL;
 import enumclass.trangThaiSanCa;
+import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.UUID;
 import javax.swing.JLabel;
@@ -35,6 +36,8 @@ public class FrmPhieuDatSan extends javax.swing.JFrame {
     private QLAcount qLAcount;
     private JPanel pnTong;
     private JLabel lbHome;
+        private DecimalFormat df = new DecimalFormat("###,###,###");
+
     
     public FrmPhieuDatSan(PhieuDatLich phieuDatLich,QLAcount qLAcount,JPanel pnTong, JLabel lbHome) {
         initComponents();
@@ -47,7 +50,7 @@ public class FrmPhieuDatSan extends javax.swing.JFrame {
         lblTenSanBong.setText(phieuDL.getSanCa().getSanbong().getTenSanBong());
         lblNgayDenSan.setText(String.valueOf(phieuDL.getNgayDenSan()));
         jtaGhiChu.setText(phieuDL.getGhiChu());
-        lblTongTien.setText(phieuDL.getTongTienSan() + " VND");
+        lblTongTien.setText(df.format(phieuDL.getTongTienSan() )+ " VND");
     }
 
     /**

@@ -124,7 +124,7 @@ public class GenDB {
 
             //Gen Đồ Thuê
             DoThue dt1 = new DoThue();
-            dt1.setDonGia(300);
+            dt1.setDonGia(30000);
             dt1.setMaDoThue("DT001");
             dt1.setSoLuong(44);
             dt1.setTenDoThue("Áo Chống Nắng");
@@ -135,7 +135,7 @@ public class GenDB {
             session.save(dt1);
 
             DoThue dt2 = new DoThue();
-            dt2.setDonGia(400);
+            dt2.setDonGia(50000);
             dt2.setMaDoThue("DT002");
             dt2.setSoLuong(20);
             dt2.setTenDoThue("Áo Thi Đấu");
@@ -146,7 +146,7 @@ public class GenDB {
             session.save(dt2);
 
             DoThue dt3 = new DoThue();
-            dt3.setDonGia(100);
+            dt3.setDonGia(50000);
             dt3.setMaDoThue("DT003");
             dt3.setSoLuong(15);
             dt3.setTenDoThue("Giay Đá Bóng");
@@ -157,7 +157,7 @@ public class GenDB {
             session.save(dt3);
 
             DoThue dt4 = new DoThue();
-            dt4.setDonGia(300);
+            dt4.setDonGia(30000);
             dt4.setMaDoThue("DT001");
             dt4.setSoLuong(44);
             dt4.setTenDoThue("Áo Chống Nắng");
@@ -169,7 +169,7 @@ public class GenDB {
 
             //Gen Nuoc Uong
             NuocUong nc1 = new NuocUong();
-            nc1.setGia(200);
+            nc1.setGia(15000);
             nc1.setMaNuocUong("NU001");
             nc1.setSoLuong(2);
             nc1.setTenNuocUong("Trà Thảo Mộc Doctor Thanh");
@@ -177,7 +177,7 @@ public class GenDB {
             session.save(nc1);
 
             NuocUong nc2 = new NuocUong();
-            nc2.setGia(250);
+            nc2.setGia(25000);
             nc2.setMaNuocUong("NU002");
             nc2.setSoLuong(33);
             nc2.setTenNuocUong("Trà Xanh 0 Độ");
@@ -185,7 +185,7 @@ public class GenDB {
             session.save(nc2);
 
             NuocUong nc3 = new NuocUong();
-            nc3.setGia(250);
+            nc3.setGia(25000);
             nc3.setMaNuocUong("NU003");
             nc3.setSoLuong(22);
             nc3.setTenNuocUong("MU");
@@ -193,7 +193,7 @@ public class GenDB {
             session.save(nc3);
 
             NuocUong nc4 = new NuocUong();
-            nc4.setGia(500);
+            nc4.setGia(50000);
             nc4.setMaNuocUong("NU004");
             nc4.setSoLuong(52);
             nc4.setTenNuocUong("Nước Tranh Muối");
@@ -221,16 +221,16 @@ public class GenDB {
 
             //Gen Sân Bóng
             SanBong sb1 = new SanBong();
-            sb1.setGiaSan(200);
+            sb1.setGiaSan(200000);
             sb1.setMaSanBong("SB001");
-            sb1.setSucChua(7);
+            sb1.setSucChua(5);
             sb1.setTenSanBong("Sân Bóng 1");
             sb1.setLoaiSan(ls1);
             sb1.setTrangThai(trangThaiSanBong.HOAT_DONG);
             session.save(sb1);
 
             SanBong sb2 = new SanBong();
-            sb2.setGiaSan(300);
+            sb2.setGiaSan(350000);
             sb2.setMaSanBong("SB002");
             sb2.setSucChua(7);
             sb2.setTenSanBong("Sân Bóng 2");
@@ -239,7 +239,7 @@ public class GenDB {
             session.save(sb2);
 
             SanBong sb3 = new SanBong();
-            sb3.setGiaSan(200);
+            sb3.setGiaSan(500000);
             sb3.setMaSanBong("SB003");
             sb3.setSucChua(12);
             sb3.setTenSanBong("Sân Bóng 3");
@@ -249,7 +249,7 @@ public class GenDB {
 
             //Gen Ca
             Ca ca1 = new Ca();
-            ca1.setGiaCa(20);
+            ca1.setGiaCa(200000);
             ca1.setMaCa("CA001");
             ca1.setTenCa("Ca 1");
             Time tCa1bd = new Time(7, 0, 0);
@@ -260,7 +260,7 @@ public class GenDB {
             session.save(ca1);
 
             Ca ca2 = new Ca();
-            ca2.setGiaCa(20);
+            ca2.setGiaCa(200000);
             ca2.setMaCa("CA002");
             ca2.setTenCa("Ca 2");
             Time tCa2bd = new Time(9, 30, 0);
@@ -271,7 +271,7 @@ public class GenDB {
             session.save(ca2);
 
             Ca ca3 = new Ca();
-            ca3.setGiaCa(20);
+            ca3.setGiaCa(200000);
             ca3.setMaCa("CA003");
             ca3.setTenCa("Ca 3");
             Time tCa3bd = new Time(14, 0, 0);
@@ -282,18 +282,18 @@ public class GenDB {
             session.save(ca3);
 
             Ca ca4 = new Ca();
-            ca4.setGiaCa(20);
+            ca4.setGiaCa(200000);
             ca4.setMaCa("CA004");
             ca4.setTenCa("Ca 4");
             Time tCa4bd = new Time(16, 30, 0);
             ca4.setThoiGianBatDau(tCa4bd);
             Time tCa4kt = new Time(18, 30, 0);
             ca4.setThoiGianKetThuc(tCa4kt);
-            ca4.setTrangThai(trangThaiCa.GIO_BINH_THUONG);
+            ca4.setTrangThai(trangThaiCa.GIO_CAO_DIEM);
             session.save(ca4);
 
             Ca ca5 = new Ca();
-            ca5.setGiaCa(30);
+            ca5.setGiaCa(300000);
             ca5.setMaCa("CA005");
             ca5.setTenCa("Ca 5");
             Time tCa5bd = new Time(19, 00, 0);
@@ -304,7 +304,7 @@ public class GenDB {
             session.save(ca5);
 
             Ca ca6 = new Ca();
-            ca6.setGiaCa(30);
+            ca6.setGiaCa(300000);
             ca6.setMaCa("CA006");
             ca6.setTenCa("Ca 6");
             Time tCa6bd = new Time(21, 30, 0);
@@ -747,9 +747,8 @@ public class GenDB {
             giaoCa1.setIdNhanVienCaTiepTheo(acc2.getId());
             giaoCa1.setIdNhanVienTrongCa(acc1.getId());
             giaoCa1.setGhiChuPhatSinh("oke");
-            Date date1 = new Date(2022, 11, 12);
-            giaoCa1.setThoiGianGiaoCa(date1);
             giaoCa1.setThoiGianNhanCa(new Date());
+            giaoCa1.setThoiGianGiaoCa(new Date());
             giaoCa1.setThoiGianReset(new Date());
             giaoCa1.setTienBanDau(100);
             giaoCa1.setTongTienKhac(200);
@@ -762,14 +761,13 @@ public class GenDB {
 
             //Giao ca 2
             GiaoCa giaoCa2 = new GiaoCa();
-            giaoCa2.setMa("GC001");
-            giaoCa2.setIdAcount(acc1);
+            giaoCa2.setMa("GC002");
+            giaoCa2.setIdAcount(acc2);
             giaoCa2.setIdNhanVienCaTiepTheo(acc3.getId());
             giaoCa2.setIdNhanVienTrongCa(acc2.getId());
             giaoCa2.setGhiChuPhatSinh("oke");
-            Date date2 = new Date(2022, 11, 15);
-            giaoCa2.setThoiGianGiaoCa(date2);
             giaoCa2.setThoiGianNhanCa(new Date());
+            giaoCa2.setThoiGianGiaoCa(new Date());
             giaoCa2.setThoiGianReset(new Date());
             giaoCa2.setTienBanDau(300);
             giaoCa2.setTongTienKhac(50);
@@ -779,6 +777,24 @@ public class GenDB {
             giaoCa2.setTongTienTrongCa(100);
             giaoCa2.setTrangThai(trangThaiGiaoCa.NHAN_CA);
             session.save(giaoCa2);
+            //Giao ca 3
+            GiaoCa giaoCa3 = new GiaoCa();
+            giaoCa3.setMa("GC003");
+            giaoCa3.setIdAcount(acc3);
+            giaoCa3.setIdNhanVienCaTiepTheo(acc1.getId());
+            giaoCa3.setIdNhanVienTrongCa(acc3.getId());
+            giaoCa3.setGhiChuPhatSinh("oke");
+            giaoCa3.setThoiGianNhanCa(new Date());
+            giaoCa3.setThoiGianGiaoCa(new Date());
+            giaoCa3.setThoiGianReset(new Date());
+            giaoCa3.setTienBanDau(300);
+            giaoCa3.setTongTienKhac(50);
+            giaoCa3.setTongTienMat(400);
+            giaoCa3.setTongTienMatCaTruoc(300);
+            giaoCa3.setTongTienMatRut(100);
+            giaoCa3.setTongTienTrongCa(100);
+            giaoCa3.setTrangThai(trangThaiGiaoCa.NHAN_CA);
+            session.save(giaoCa3);
             // db generator : gen bảng tự động
             trans.commit();
         } catch (Exception e) {

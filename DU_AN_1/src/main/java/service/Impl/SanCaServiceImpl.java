@@ -190,4 +190,9 @@ public class SanCaServiceImpl implements ISanCaService {
         return listQlSC;
     }
 
+    @Override
+    public List<SanCa> getSanCaByIdSanBong(String id, Date ngayTaoSanCa) {
+        return re.getSanCaByIdSanBong(id, ngayTaoSanCa);
+    }
+
 }

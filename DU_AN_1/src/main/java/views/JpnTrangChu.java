@@ -16,6 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.sql.Time;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -48,6 +49,9 @@ import service.Impl.HoaDonServiceImpl;
 import service.Impl.PhieuDatLichServiceImpl;
 import service.Impl.SanBongServiceImpl;
 import service.Impl.SanCaServiceImpl;
+import java.io.File;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 /**
  *
@@ -73,12 +77,15 @@ public class JpnTrangChu extends javax.swing.JPanel {
     private IHoaDonService hoaDonService = new HoaDonServiceImpl();
     private Map<String, QLHoaDon> mapQLHoaDon = new HashMap<>();
     private Map<String, PhieuDatLich> mapPhieuDatLich = new HashMap<>();
+    private DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+    private Clip clip;
     private Date ngayTao = new Date();
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd / MM / yyyy");
 
     /**
      * Creates new form TrangChuJPanel
      */
-    public JpnTrangChu(QLAcount qLAcount, JLabel lbHome, JPanel pnTong,Date ngatTao) {
+    public JpnTrangChu(QLAcount qLAcount, JLabel lbHome, JPanel pnTong, Date ngatTao) {
         initComponents();
         this.ngayTao= ngatTao;
         listSanCa = sanCaService.getAll(ngayTao);
@@ -86,6 +93,7 @@ public class JpnTrangChu extends javax.swing.JPanel {
         this.qLAcount = qLAcount;
         labelHome = lbHome;
         this.pnTong = pnTong;
+        txtNgay.setText("Ngày: "+ sdf.format(ngatTao));
         AddSan();
         for (QLSanCa qLSanCa : listSanCa) {
             mapSanCa.put(qLSanCa.getId(), qLSanCa);
@@ -99,6 +107,16 @@ public class JpnTrangChu extends javax.swing.JPanel {
         QLHoaDon hoaDon = mapQLHoaDon.get(id);
         new FrmThanhToan(hoaDon).setVisible(true);
 
+    }
+
+    private void PlaySound() {
+        try {
+            clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(new File("D:\\thongbao.wav")));
+            clip.start();
+            Thread.sleep(1000);
+        } catch (Exception e) {
+        }
     }
 
     public void AddSan() {
@@ -116,9 +134,13 @@ public class JpnTrangChu extends javax.swing.JPanel {
                     JMenuItem itemDatLich = new JMenuItem("Đặt Lịch");
                     JMenuItem itemCheckOut = new JMenuItem("Chi tiết sân đặt");
                     JMenuItem itemDoiLichDat = new JMenuItem("Đổi lịch đặt");
+                    JMenuItem itemThongbao = new JMenuItem("Thông báo");
+                    JMenuItem itemTatThongbao = new JMenuItem("Tắt thông báo");
                     jPopupMenu.add(itemDatLich);
                     jPopupMenu.add(itemCheckOut);
                     jPopupMenu.add(itemDoiLichDat);
+                    jPopupMenu.add(itemThongbao);
+                    jPopupMenu.add(itemTatThongbao);
                     JPanel panelCa = new JPanel();
 
                     panelCa.setLayout(new FlowLayout());
@@ -137,7 +159,7 @@ public class JpnTrangChu extends javax.swing.JPanel {
                     labelLoaiSan.setForeground(Color.BLACK);
                     labelLoaiSan.setFont(new Font("Tahoma", 1, 14));
                     JLabel lableTenKH = new JLabel();
-                    if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.KHONG_TRONG || listSanCa.get(j).getTrangThai() == trangThaiSanCa.CHO_NHAN_SAN ) {
+                    if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.KHONG_TRONG || listSanCa.get(j).getTrangThai() == trangThaiSanCa.CHO_NHAN_SAN) {
                         datLich = phieuDatLichService.getPhieuDatLich(labelIdSanCa.getText());
                         lableTenKH.setText("Tên KH:" + datLich.getKhachHang().getTenKhachHang());
                         lableTenKH.setFont(new Font("Tahoma", 1, 10));
@@ -149,7 +171,7 @@ public class JpnTrangChu extends javax.swing.JPanel {
                     labelTrangThai.setForeground(Color.BLACK);
                     labelTrangThai.setPreferredSize(new Dimension(160, 15));
                     labelTrangThai.setFont(new Font("Tahoma", 1, 12));
-                    JLabel labelGiaSan = new JLabel("Giá: " + String.valueOf(listSanCa.get(j).getGiaCaSan()));
+                    JLabel labelGiaSan = new JLabel("Giá: " + decimalFormat.format(listSanCa.get(j).getGiaCaSan()) + " " + "Vnd");
                     labelGiaSan.setFont(new Font("Tahoma", 1, 12));
                     labelGiaSan.setForeground(Color.BLACK);
                     panelCa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -183,12 +205,26 @@ public class JpnTrangChu extends javax.swing.JPanel {
                     itemDoiLichDat.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            new FrmDoiLichDat(datLich,qLAcount,pnTong,labelHome,ngayTao).setVisible(true);
+                            new FrmDoiLichDat(datLich, qLAcount, pnTong, labelHome,ngayTao).setVisible(true);
+                            jPopupMenu.setVisible(false);
+                        }
+                    });
+                    itemThongbao.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            PlaySound();
+                            jPopupMenu.setVisible(false);
+                        }
+                    });
+                    itemTatThongbao.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            clip.stop();
                             jPopupMenu.setVisible(false);
                         }
                     });
 
-                    customTrangThai(listSanCa.get(j).getTrangThai(), itemDatLich, panelCa, labelTrangThai, itemDoiLichDat, itemCheckOut);
+                    customTrangThai(listSanCa.get(j).getTrangThai(), itemDatLich, panelCa, labelTrangThai, itemDoiLichDat, itemCheckOut, itemThongbao, itemTatThongbao);
                     Time gioKT = new Time(listSanCa.get(j).getThoiGianKetThuc().getHours(), listSanCa.get(j).getThoiGianKetThuc().getMinutes(), listSanCa.get(j).getThoiGianKetThuc().getSeconds());
                     Time quaGio = new Time(now.getHours(), now.getMinutes(), now.getSeconds());
                     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -201,6 +237,8 @@ public class JpnTrangChu extends javax.swing.JPanel {
                         itemCheckOut.setEnabled(true);
                         itemDatLich.setEnabled(false);
                         itemDoiLichDat.setEnabled(false);
+                        itemThongbao.setEnabled(true);
+                        itemTatThongbao.setEnabled(true);
                         labelTrangThai.setText("Trạng thái:" + " " + "Quá giờ");
                     }
                     panelCa.add(labelCa);
@@ -219,10 +257,13 @@ public class JpnTrangChu extends javax.swing.JPanel {
 
     }
 
-    private void customTrangThai(trangThaiSanCa ttSanCa, JMenuItem itemDatLich, JPanel panelSanCa, JLabel labelTrangThai, JMenuItem iTemDoiLich, JMenuItem itemCheckOut) {
+    private void customTrangThai(trangThaiSanCa ttSanCa, JMenuItem itemDatLich, JPanel panelSanCa, JLabel labelTrangThai, JMenuItem iTemDoiLich, JMenuItem itemCheckOut, JMenuItem itemThongbao, JMenuItem itemTatThongbao) {
         if (ttSanCa == trangThaiSanCa.CHO_NHAN_SAN) {
             itemCheckOut.setEnabled(false);
             itemDatLich.setEnabled(false);
+            itemThongbao.setEnabled(false);
+            itemTatThongbao.setEnabled(false);
+            iTemDoiLich.setEnabled(true);
             labelTrangThai.setText(" Trạng thái: " + "Chờ nhận sân");
             panelSanCa.setBackground(new Color(255, 255, 0));
         } else if (ttSanCa == trangThaiSanCa.KHONG_TRONG) {
@@ -231,11 +272,15 @@ public class JpnTrangChu extends javax.swing.JPanel {
             iTemDoiLich.setEnabled(false);
             itemDatLich.setEnabled(false);
             itemCheckOut.setEnabled(true);
+            itemThongbao.setEnabled(true);
+            itemTatThongbao.setEnabled(true);
             panelSanCa.setBackground(new Color(255, 0, 51));
         } else {
-            itemCheckOut.setEnabled(true);
+            itemDatLich.setEnabled(true);
             itemCheckOut.setEnabled(false);
             iTemDoiLich.setEnabled(false);
+            itemThongbao.setEnabled(false);
+            itemTatThongbao.setEnabled(false);
             labelTrangThai.setText(" Trạng thái: " + "Đang trống");
             panelSanCa.setBackground(new Color(0, 153, 0));
         }
@@ -260,37 +305,68 @@ public class JpnTrangChu extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         panelTong = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        txtNgay = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 204));
+        setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout panelTongLayout = new javax.swing.GroupLayout(panelTong);
         panelTong.setLayout(panelTongLayout);
         panelTongLayout.setHorizontalGroup(
             panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 816, Short.MAX_VALUE)
+            .addGap(0, 930, Short.MAX_VALUE)
         );
         panelTongLayout.setVerticalGroup(
             panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 645, Short.MAX_VALUE)
+            .addGap(0, 727, Short.MAX_VALUE)
         );
 
         jScrollPane1.setViewportView(panelTong);
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        txtNgay.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txtNgay.setText("Ngày: ");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(txtNgay, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtNgay, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 818, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 642, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panelTong;
+    private javax.swing.JLabel txtNgay;
     // End of variables declaration//GEN-END:variables
 }

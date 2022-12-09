@@ -6,9 +6,12 @@ package service.Impl;
 
 import domainModel.GiaoCa;
 import enumclass.trangThaiGiaoCa;
+import java.util.Date;
+import java.util.List;
 import modelview.QLGiaoCa;
 import repository.IGiaoCaRepository;
 import repository.impl.GiaoCaRepository;
+import response.ThanhToan.TongTienMatGiaoCa;
 import service.IGiaoCaService;
 
 /**
@@ -29,6 +32,16 @@ public class GiaoCaServiceImpl implements IGiaoCaService {
     @Override
     public String saveOrUpdate(QLGiaoCa qLGiaoCa) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<TongTienMatGiaoCa> getTongTienMatHienTai(Date thoiGianNhanCa, Date thoiGianCuoiCa) {
+        return giaoCaRepo.getTongTienMatHienTai(thoiGianNhanCa, thoiGianNhanCa);
+    }
+
+    @Override
+    public List<TongTienMatGiaoCa> getTongTienKhacHienTai(Date thoiGianNhanCa, Date thoiGianCuoiCa) {
+        return giaoCaRepo.getTongTienKhacHienTai(thoiGianNhanCa, thoiGianNhanCa);
     }
 
 }
