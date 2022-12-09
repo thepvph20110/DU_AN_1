@@ -4,6 +4,7 @@
  */
 package service.Impl;
 
+import java.util.Date;
 import java.util.List;
 import repository.IThongKeRepository;
 import repository.impl.ThongKeRepositoryImpl;
@@ -40,4 +41,8 @@ public class ThongKeServiceImpl implements IThongKeService {
         return thongKeService.getTongTienByYear(year);
     }
 
+    @Override
+    public double getTongTienNgayHienTai(Date ngayHienTai) {
+            return thongKeService.getTongTienNgayHienTai(ngayHienTai);
+    }
 }
