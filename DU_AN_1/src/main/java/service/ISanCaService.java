@@ -23,4 +23,13 @@ public interface ISanCaService {
     String update(QLSanCa qLSanCa);
 
     String delete(QLSanCa qLSanCa);
+<<<<<<< HEAD
+=======
+
+    String addListSanCa(List<QLSanCa> list);
+
+    List<QLSanCa> getByNgayTao(Date ngayTao);
+
+    List<SanCa> getSanCaByIdSanBong(String id, Date ngayTaoSanCa);
+>>>>>>> c5c370ffe9329ee44f3bb07c8fe6fec2fcb3fca2
 }

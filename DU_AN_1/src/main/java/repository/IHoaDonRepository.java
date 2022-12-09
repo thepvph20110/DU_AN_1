@@ -6,7 +6,6 @@ package repository;
 
 import domainmodel.HoaDon;
 import java.util.List;
-import java.util.UUID;
 
 /**
  *
@@ -30,6 +29,10 @@ public interface IHoaDonRepository {
     HoaDon findByHoaDonId(String uuid);
 
     
+<<<<<<< HEAD
     String genMaHoaDon();
 
+=======
+    int genMaHoaDon();
+>>>>>>> c5c370ffe9329ee44f3bb07c8fe6fec2fcb3fca2
 }

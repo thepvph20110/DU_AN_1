@@ -29,6 +29,10 @@ import enumclass.loaiHinhThanhToan;
 import enumclass.trangThaiDichVu;
 import enumclass.trangThaiHoaDon;
 import enumclass.trangThaiSanCa;
+<<<<<<< HEAD
+=======
+import java.text.NumberFormat;
+>>>>>>> c5c370ffe9329ee44f3bb07c8fe6fec2fcb3fca2
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -115,6 +119,15 @@ public class FrmThanhToan extends javax.swing.JFrame {
         jTen.setText(qLHoaDon.getPhieuDatLich().getKhachHang().getTenKhachHang());
         jtenSan.setText(qLHoaDon.getPhieuDatLich().getSanCa().getSanbong().getTenSanBong());
         txtCa.setText(qLHoaDon.getPhieuDatLich().getSanCa().getCa().getTenCa());
+<<<<<<< HEAD
+=======
+        txtStar.setText(qLHoaDon.getPhieuDatLich().getSanCa().getCa().getThoiGianBatDau().toString());
+        txtEnd.setText(qLHoaDon.getPhieuDatLich().getSanCa().getCa().getThoiGianKetThuc().toString());
+        LocalDate localDate = qLHoaDon.getPhieuDatLich().getNgayDenSan().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        ngayDenSan.setText(localDate.getDayOfMonth()+"-"+localDate.getMonthValue()+"-"+localDate.getYear());
+        String tien = dinhDangTienTe(qLHoaDon.getPhieuDatLich().getSanCa().getSanbong().getGiaSan());
+        txtGiaSan.setText(tien);
+>>>>>>> c5c370ffe9329ee44f3bb07c8fe6fec2fcb3fca2
         listDV = dichVuRepository.findByIdHoaDon(qLHoaDon.getId());
         jcbThanhToan.setModel(dcbmTT);
         qLThanhToans = iThanhToanService.getAllThanhToans();
@@ -129,7 +142,11 @@ public class FrmThanhToan extends javax.swing.JFrame {
             txtTienKhach.setEnabled(true);
             txtNganHang.setEnabled(false);
         }
+<<<<<<< HEAD
         txtTongTien.setText(String.valueOf(fillGia()));
+=======
+        txtTongTien.setText(dinhDangTienTe(fillGia()));
+>>>>>>> c5c370ffe9329ee44f3bb07c8fe6fec2fcb3fca2
         listNC = nuocUongService.getNuocUongNoPagination();
         loadCBPhuPhi();
         addDataRowNuocUong(listNC);
@@ -137,6 +154,15 @@ public class FrmThanhToan extends javax.swing.JFrame {
         addDataRowDichVu(listDV);
     }
 
+<<<<<<< HEAD
+=======
+    public String dinhDangTienTe(double tienTe) {
+        Locale locale = new Locale("vi", "VN");
+        NumberFormat format = NumberFormat.getInstance(locale);
+        return format.format(tienTe) + " " + "VNĐ";
+    }
+
+>>>>>>> c5c370ffe9329ee44f3bb07c8fe6fec2fcb3fca2
     public void loadCBPhuPhi() {
         dcbmPP.removeAllElements();
         qLPhuPhis = phuPhiService.getAllQLPhuPhis();
@@ -178,13 +204,13 @@ public class FrmThanhToan extends javax.swing.JFrame {
         for (DichVu dichVu : listDV) {
             if (dichVu.getNuocUong() != null) {
                 Object[] data = {dichVu.getMaDichVu(), dichVu.getNuocUong().getTenNuocUong(), dichVu.getSoLuongNuocUong(),
-                    dichVu.getNuocUong().getGia(), dichVu.getNuocUong().getGia() * dichVu.getSoLuongNuocUong()};
+                    dinhDangTienTe(dichVu.getNuocUong().getGia()),dinhDangTienTe(dichVu.getNuocUong().getGia() * dichVu.getSoLuongNuocUong())};
                 dtmCTDV.addRow(data);
             }
 
             if (dichVu.getDoThue() != null) {
                 Object[] data = {dichVu.getMaDichVu(), dichVu.getDoThue().getTenDoThue(), dichVu.getSoLuongDoThue(),
-                    dichVu.getDoThue().getDonGia(), dichVu.getDoThue().getDonGia() * dichVu.getSoLuongDoThue()};
+                    dinhDangTienTe(dichVu.getDoThue().getDonGia()), dinhDangTienTe(dichVu.getDoThue().getDonGia() * dichVu.getSoLuongDoThue())};
                 dtmCTDV.addRow(data);
             }
         }
@@ -972,18 +998,28 @@ public class FrmThanhToan extends javax.swing.JFrame {
 
     private void jMenuXoaDichVuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuXoaDichVuActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
         DichVu dichVu = dichVuRepository.findByIdHoaDon(qLHoaDon.getId()).get(jtbChiTietDichVu.getSelectedRow());
         if (dichVuRepository.delete(dichVu.getId())) {
             JOptionPane.showMessageDialog(rootPane, "Xóa Thành Công");
             addDataRowDichVu(dichVuRepository.findByIdHoaDon(qLHoaDon.getId()));
             txtTongTien.setText(String.valueOf(fillGia()));
+=======
+        int i = JOptionPane.showConfirmDialog(rootPane, "Xác Nhận Xóa !!");
+        if (i == 0) {
+            DichVu dichVu = dichVuRepository.findByIdHoaDon(qLHoaDon.getId()).get(jtbChiTietDichVu.getSelectedRow());
+            if (dichVuRepository.delete(dichVu.getId())) {
+                JOptionPane.showMessageDialog(rootPane, "Xóa Thành Công");
+                addDataRowDichVu(dichVuRepository.findByIdHoaDon(qLHoaDon.getId()));
+                txtTongTien.setText(dinhDangTienTe(fillGia()));
+            }
+>>>>>>> c5c370ffe9329ee44f3bb07c8fe6fec2fcb3fca2
         }
     }//GEN-LAST:event_jMenuXoaDichVuActionPerformed
 
     private void btnThanhToan1ActionPerformed(java.awt.event.ActionEvent evt) {                                              
         // TODO add your handling code here:
         FrmHoaDon frmHoaDon = new FrmHoaDon();
-        frmHoaDon.setVisible(true);
         this.dispose();
     }                                             
 
@@ -1008,8 +1044,12 @@ public class FrmThanhToan extends javax.swing.JFrame {
                 }
             }
         }
+<<<<<<< HEAD
         txtTongTien.setText(String.valueOf(fillGia()));
     }                                               
+=======
+        txtTongTien.setText(dinhDangTienTe(fillGia()));
+>>>>>>> c5c370ffe9329ee44f3bb07c8fe6fec2fcb3fca2
 
     private void btnAddPhuPhiActionPerformed(java.awt.event.ActionEvent evt) {                                             
         // TODO add your handling code here
@@ -1059,7 +1099,11 @@ public class FrmThanhToan extends javax.swing.JFrame {
                     dichVuRepository.saveOrUpdate(dichVu);
                     listDV = dichVuRepository.findByIdHoaDon(qLHoaDon.getId());
                     addDataRowDichVu(listDV);
+<<<<<<< HEAD
                     txtTongTien.setText(String.valueOf(fillGia()));
+=======
+                    txtTongTien.setText(dinhDangTienTe(fillGia()));
+>>>>>>> c5c370ffe9329ee44f3bb07c8fe6fec2fcb3fca2
                 }
             } else {
                 String soLuong = JOptionPane.showInputDialog(rootPane, "Mời Nhập Số Lượng");
@@ -1071,7 +1115,11 @@ public class FrmThanhToan extends javax.swing.JFrame {
                     dichVuRepository.saveOrUpdate(dichVu);
                     listDV = dichVuRepository.findByIdHoaDon(qLHoaDon.getId());
                     addDataRowDichVu(listDV);
+<<<<<<< HEAD
                     txtTongTien.setText(String.valueOf(fillGia()));
+=======
+                    txtTongTien.setText(dinhDangTienTe(fillGia()));
+>>>>>>> c5c370ffe9329ee44f3bb07c8fe6fec2fcb3fca2
                 }
             }
         } else {
@@ -1086,7 +1134,11 @@ public class FrmThanhToan extends javax.swing.JFrame {
                     dichVuRepository.saveOrUpdate(dichVu);
                     listDV = dichVuRepository.findByIdHoaDon(qLHoaDon.getId());
                     addDataRowDichVu(listDV);
+<<<<<<< HEAD
                     txtTongTien.setText(String.valueOf(fillGia()));
+=======
+                    txtTongTien.setText(dinhDangTienTe(fillGia()));
+>>>>>>> c5c370ffe9329ee44f3bb07c8fe6fec2fcb3fca2
                 }
             } else {
                 String soLuong = JOptionPane.showInputDialog(rootPane, "Mời Nhập Số Lượng!!");
@@ -1099,7 +1151,11 @@ public class FrmThanhToan extends javax.swing.JFrame {
                     dichVuRepository.saveOrUpdate(dichVu);
                     listDV = dichVuRepository.findByIdHoaDon(qLHoaDon.getId());
                     addDataRowDichVu(listDV);
+<<<<<<< HEAD
                     txtTongTien.setText(String.valueOf(fillGia()));
+=======
+                    txtTongTien.setText(dinhDangTienTe(fillGia()));
+>>>>>>> c5c370ffe9329ee44f3bb07c8fe6fec2fcb3fca2
                 }
             }
         }
@@ -1179,11 +1235,17 @@ public class FrmThanhToan extends javax.swing.JFrame {
                 }
             }
         }
+<<<<<<< HEAD
         loadCBPhuPhi();
     }//GEN-LAST:event_btnAddPhuPhiActionPerformed
+=======
+        txtTongTien.setText(dinhDangTienTe(fillGia()));
+    }//GEN-LAST:event_btnAddPPActionPerformed
+>>>>>>> c5c370ffe9329ee44f3bb07c8fe6fec2fcb3fca2
 
     private void jcbPhuPhiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbPhuPhiActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
         String gia = JOptionPane.showInputDialog(rootPane, "Xin Mời Nhập Gía");
         if (gia == null) {
             return;
@@ -1204,6 +1266,14 @@ public class FrmThanhToan extends javax.swing.JFrame {
     }//GEN-LAST:event_jcbPhuPhiActionPerformed
                                        
         
+=======
+        new FrmChiTietPhuPhi(qLHoaDon.getId(), this).setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    public void setTxtGia() {
+        txtTongTien.setText(dinhDangTienTe(fillGia()));
+    }
+>>>>>>> c5c370ffe9329ee44f3bb07c8fe6fec2fcb3fca2
     /**
      * @param args the command line arguments
      */

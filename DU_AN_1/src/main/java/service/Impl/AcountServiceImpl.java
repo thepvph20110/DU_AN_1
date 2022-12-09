@@ -82,9 +82,8 @@ public class AcountServiceImpl implements IAcountService {
 
     @Override
     public String genMaAccount() {
-        String pp = acountRepo.genMaAccount();
-        int newPP = (Integer.parseInt(pp.substring(2))) + 1;
-        return pp.substring(0, 2) + "00" + newPP;
+        int maAC = acountRepo.genMaAccount();
+        return "AC00"+maAC;
     }
 
     @Override

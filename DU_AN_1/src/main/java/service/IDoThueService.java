@@ -4,6 +4,7 @@
  */
 package service;
 
+import enumclass.trangThaiDoThue;
 import java.util.List;
 import modelview.QLDoThue;
 
@@ -18,6 +19,21 @@ public interface IDoThueService {
     String AddorUpdate(QLDoThue qLDoThue);
 
     String Delete(QLDoThue qLDoThue);
+<<<<<<< HEAD
     
     List<QLDoThue> searchByName(String ten);
+=======
+
+    long countAllDoThue();
+
+    List<QLDoThue> getDoThueByTenDoThue(String tenDoThue);
+
+    List<QLDoThue> getDoThueByTranThai(trangThaiDoThue trangThai);
+
+    String createNewDoThue(QLDoThue qLDoThue);
+
+    String updateDoThueById(QLDoThue qLDoThue);
+
+    String deleteDoThueById(String id);
+>>>>>>> c5c370ffe9329ee44f3bb07c8fe6fec2fcb3fca2
 }

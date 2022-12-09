@@ -21,6 +21,10 @@ public interface IChucVuRepository {
 
     boolean delete(String id);
     
+<<<<<<< HEAD
     String genMaChucVu();
 
+=======
+    int genMaChucVu();
+>>>>>>> c5c370ffe9329ee44f3bb07c8fe6fec2fcb3fca2
 }

@@ -47,7 +47,7 @@ public class NuocUongRepositoryImpl implements INuocUongRepository {
             Transaction tran = session.getTransaction();
             tran.begin();
             try {
-                String hql = "Delete NuocUong n Where n.id = :id";
+                String hql = "Delete NuocUong Where id = :id";
                 Query query = session.createQuery(hql);
                 query.setParameter("id", id);
                 check = query.executeUpdate();

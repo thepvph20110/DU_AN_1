@@ -6,7 +6,11 @@
 package repository;
 
 import domainModel.GiaoCa;
+import java.util.Date;
+import java.util.List;
 import modelview.QLGiaoCa;
+import response.ThanhToan.TongTienMatGiaoCa;
+
 /**
  *
  * @author DANG VAN SY
@@ -17,5 +21,8 @@ public interface IGiaoCaRepository {
 
     String saveOrUpdate(GiaoCa giaoCa);
 
+    List<TongTienMatGiaoCa> getTongTienMatHienTai(Date thoiGianNhanCa,Date thoiGianCuoiCa);
+
+    List<TongTienMatGiaoCa> getTongTienKhacHienTai(Date thoiGianNhanCa,Date thoiGianCuoiCa);
 
 }

@@ -106,7 +106,11 @@ public class SanCaServiceImpl implements ISanCaService {
         if (map.containsKey(qLSanCa.getTenSanBong())) {
             sanBong = (SanBong) map.get(qLSanCa.getTenSanBong());
         }
+<<<<<<< HEAD
         SanCa sanCa = new SanCa(qLSanCa.getId(), ca, sanBong, new Date(),ca.getGiaCa()+sanBong.getGiaSan(), qLSanCa.getTrangThai());
+=======
+        SanCa sanCa = new SanCa(qLSanCa.getId(), ca, sanBong, qLSanCa.getNgayTao(), ca.getGiaCa() + sanBong.getGiaSan(), qLSanCa.getTrangThai());
+>>>>>>> c5c370ffe9329ee44f3bb07c8fe6fec2fcb3fca2
         if (re.update(sanCa)) {
             return "Update Complete";
         } else {
@@ -139,4 +143,62 @@ public class SanCaServiceImpl implements ISanCaService {
         return sanCa;
     }
 
+<<<<<<< HEAD
+=======
+    @Override
+    public String addListSanCa(List<QLSanCa> list) {
+        List<Ca> listQLCa = ica.getAll();
+        List<SanBong> listSanBong = isb.getAll();
+        listQLSanCa.clear();
+        List<SanCa> listSanCaEntity= new ArrayList<>();
+        for (SanBong sanBong : listSanBong) {
+            map.put(sanBong.getId(), sanBong);
+        }
+        for (Ca ca : listQLCa) {
+            map.put(ca.getId(), ca);
+        }
+        for (QLSanCa qLSanCa : list) {
+            Ca ca = new Ca();
+            if (map.containsKey(qLSanCa.getTenCa())) {
+                ca = (Ca) map.get(qLSanCa.getTenCa());
+            }
+            SanBong sanBong = new SanBong();
+            if (map.containsKey(qLSanCa.getTenSanBong())) {
+                sanBong = (SanBong) map.get(qLSanCa.getTenSanBong());
+            }
+            SanCa sanCa = new SanCa(null, ca, sanBong, qLSanCa.getNgayTao(), ca.getGiaCa() + sanBong.getGiaSan(), qLSanCa.getTrangThai());
+            listSanCaEntity.add(sanCa);
+        }
+        try {
+            for (SanCa sanCa : listSanCaEntity) {
+                re.saveOutSanCa(sanCa);
+            }
+            return "Save Complete";
+        } catch (Exception e) {
+            return "Save Fail";
+        }
+
+//        if (re.saveOutSanCa(lisSanCaDomain)) {
+//            
+//        } else {
+//            
+//        }
+    }
+
+    @Override
+    public List<QLSanCa> getByNgayTao(Date ngayTao) {
+        List<QLSanCa> listQlSC = new ArrayList<>();
+        for (SanCa sanCa : re.getByNgayTao(ngayTao)) {
+            QLSanCa qLSanCa = new QLSanCa(sanCa.getId(), sanCa.getCa().getTenCa(), sanCa.getSanbong().getTenSanBong(), sanCa.getSanbong().getSucChua(), sanCa.getCa().getThoiGianBatDau(), sanCa.getCa().getThoiGianKetThuc(), sanCa.getNgayTao(), sanCa.getGiaSanCa(), sanCa.getTrangThai());
+            listQlSC.add(qLSanCa);
+        }
+        return listQlSC;
+    }
+
+    @Override
+    public List<SanCa> getSanCaByIdSanBong(String id, Date ngayTaoSanCa) {
+        return re.getSanCaByIdSanBong(id, ngayTaoSanCa);
+    }
+
+>>>>>>> c5c370ffe9329ee44f3bb07c8fe6fec2fcb3fca2
 }

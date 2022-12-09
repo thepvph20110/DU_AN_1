@@ -98,4 +98,48 @@ public class SanCaRepository implements ISanCaRepository {
         }
         return check;
     }
+<<<<<<< HEAD
+=======
+    
+    @Override
+    public boolean saveOutSanCa(SanCa sanCa) {
+        boolean check;
+        Transaction transaction = null;
+        try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
+            transaction = session.beginTransaction();
+  
+                session.save(sanCa);
+            check = true;
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+            check = false;
+            transaction.rollback();
+        }
+        return check;
+    }
+
+    public List<SanCa> getByNgayTao(Date ngayTao) {
+        String hql = "From SanCa sc Where sc.ngayTao = :ngayTaoSan";
+        try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
+            Query q = session.createQuery(hql).setParameter("ngayTaoSan", ngayTao);
+            return q.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return null;
+    }
+
+    @Override
+    public List<SanCa> getSanCaByIdSanBong(String id,Date ngayTaoSanCa) {
+        String hql = "From SanCa sc WHERE sc.sanbong.id = :idSanBong and sc.ngayTao = :ngayTao";
+        try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
+            Query q = session.createQuery(hql).setParameter("idSanBong", id).setParameter("ngayTao", ngayTaoSanCa);
+            return q.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+>>>>>>> c5c370ffe9329ee44f3bb07c8fe6fec2fcb3fca2
 }

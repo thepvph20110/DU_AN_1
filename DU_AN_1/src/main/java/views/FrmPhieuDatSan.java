@@ -10,6 +10,11 @@ import domainmodel.SanCa;
 import enumclass.trangThaiHoaDon;
 import enumclass.trangThaiPhieuDL;
 import enumclass.trangThaiSanCa;
+<<<<<<< HEAD
+=======
+import java.text.DecimalFormat;
+import java.util.Date;
+>>>>>>> c5c370ffe9329ee44f3bb07c8fe6fec2fcb3fca2
 import java.util.UUID;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -34,6 +39,8 @@ public class FrmPhieuDatSan extends javax.swing.JFrame {
     private QLAcount qLAcount;
     private JPanel pnTong;
     private JLabel lbHome;
+        private DecimalFormat df = new DecimalFormat("###,###,###");
+
     
     public FrmPhieuDatSan(PhieuDatLich phieuDatLich,QLAcount qLAcount,JPanel pnTong, JLabel lbHome) {
         initComponents();
@@ -46,7 +53,7 @@ public class FrmPhieuDatSan extends javax.swing.JFrame {
         lblTenSanBong.setText(phieuDL.getSanCa().getSanbong().getTenSanBong());
         lblNgayDenSan.setText(String.valueOf(phieuDL.getNgayDenSan()));
         jtaGhiChu.setText(phieuDL.getGhiChu());
-        lblTongTien.setText(phieuDL.getTongTienSan() + " VND");
+        lblTongTien.setText(df.format(phieuDL.getTongTienSan() )+ " VND");
     }
 
     /**
@@ -274,6 +281,10 @@ public class FrmPhieuDatSan extends javax.swing.JFrame {
         
         int click = JOptionPane.showConfirmDialog(rootPane, "Bạn Có Muốn Nhận Sân?", "Xác Nhận", JOptionPane.YES_NO_OPTION);
         if (click == JOptionPane.YES_OPTION) {
+             if(phieuDL.getSanCa().getNgayTao().after(new Date())){
+                JOptionPane.showMessageDialog(rootPane, "Chưa đến ngày nhận sân!!");
+                return;
+            }
             phieuDL.setTrangThai(trangThaiPhieuDL.DA_NHAN_SAN);
             String check = phieuDatLichService.updateTrangThai(phieuDL);
             if (check.equals("Sửa Trạng Thái Thành Công")) {

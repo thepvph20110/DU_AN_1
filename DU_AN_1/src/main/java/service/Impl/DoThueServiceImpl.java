@@ -52,15 +52,13 @@ public class DoThueServiceImpl implements IDoThueService {
 
     @Override
     public String AddorUpdate(QLDoThue qLDoThue) {
-        if (mapma.containsKey(qLDoThue.getMaDoThue())) {
-            return "Trùng Mã";
-        } else {
+
             NhaSanXuat nsx = nhaSanXuatRepositoryImpl.getOne(qLDoThue.getMaNhaSanXuat());
             MauSac ms = mauSacRepositoryImpl.getOne(qLDoThue.getMaMauSac());
             KichThuoc kt = kichThuocRepositoryImpl.getOne(qLDoThue.getMaKichThuoc());
             DoThue dt = new DoThue(qLDoThue.getId(), qLDoThue.getMaDoThue(), qLDoThue.getTenDoThue(), kt, ms, nsx, qLDoThue.getSoLuong(), qLDoThue.getDonGia(), qLDoThue.getTrangThai());
             return doThueRepositoryImpl.AddorUpdate(dt);
-        }
+        
     }
 
     @Override
@@ -73,13 +71,78 @@ public class DoThueServiceImpl implements IDoThueService {
     }
 
     @Override
+<<<<<<< HEAD
     public List<QLDoThue> searchByName(String ten) {
         List<QLDoThue> qLDoThues = new ArrayList<>();
         for (DoThue doThue : doThueRepositoryImpl.searchByName(ten)) {
+=======
+    public long countAllDoThue() {
+        return doThueRepositoryImpl.totalCount();
+    }
+
+    @Override
+    public List<QLDoThue> getDoThueByTenDoThue(String tenDoThue) {
+        listDT = doThueRepositoryImpl.findByTenDoThue(tenDoThue);
+        for (DoThue doThue : listDT) {
+            mapma.put(doThue.getMaDoThue(), doThue);
+            QLDoThue qldt = new QLDoThue(doThue.getId(), doThue.getMaDoThue(), doThue.getTenDoThue(), doThue.getKichThuoc().getMaSize(), String.valueOf(doThue.getKichThuoc().getSize()), doThue.getMauSac().getMaMauSac(), doThue.getMauSac().getTenMauSac(), doThue.getNhaSanXuat().getMaNSX(), doThue.getNhaSanXuat().getTenNSX(), doThue.getSoLuong(), doThue.getDonGia(), doThue.getTrangThai());
+            listqldt.add(qldt);
+
+        }
+        return listqldt;
+    }
+
+    @Override
+    public List<QLDoThue> getDoThueByTranThai(trangThaiDoThue trangThai) {
+        listDT = doThueRepositoryImpl.findByTrangThai(trangThai);
+        for (DoThue doThue : listDT) {
+>>>>>>> c5c370ffe9329ee44f3bb07c8fe6fec2fcb3fca2
             mapma.put(doThue.getMaDoThue(), doThue);
             QLDoThue qldt = new QLDoThue(doThue.getId(), doThue.getMaDoThue(), doThue.getTenDoThue(), doThue.getKichThuoc().getMaSize(), String.valueOf(doThue.getKichThuoc().getSize()), doThue.getMauSac().getMaMauSac(), doThue.getMauSac().getTenMauSac(), doThue.getNhaSanXuat().getMaNSX(), doThue.getNhaSanXuat().getTenNSX(), doThue.getSoLuong(), doThue.getDonGia(), doThue.getTrangThai());
             listqldt.add(qldt);
         }
+<<<<<<< HEAD
         return qLDoThues;
+=======
+        return listqldt;
+    }
+
+    @Override
+    public String createNewDoThue(QLDoThue qLDoThue) {
+        NhaSanXuat nsx = nhaSanXuatRepositoryImpl.getOne(qLDoThue.getMaNhaSanXuat());
+        MauSac ms = mauSacRepositoryImpl.getOne(qLDoThue.getMaMauSac());
+        KichThuoc kt = kichThuocRepositoryImpl.getOne(qLDoThue.getMaKichThuoc());
+        DoThue dt = new DoThue(qLDoThue.getId(), qLDoThue.getMaDoThue(), qLDoThue.getTenDoThue(), kt, ms, nsx, qLDoThue.getSoLuong(), qLDoThue.getDonGia(), qLDoThue.getTrangThai());
+        boolean save = doThueRepositoryImpl.saveOrUpdate(dt);
+        if (save) {
+            return "Thêm Mới Đồ Thuê Thành Công";
+        } else {
+            return "Thêm Mới Đồ Thuê Không Thành Công";
+        }
+    }
+
+    @Override
+    public String updateDoThueById(QLDoThue qLDoThue) {
+        NhaSanXuat nsx = nhaSanXuatRepositoryImpl.getOne(qLDoThue.getMaNhaSanXuat());
+        MauSac ms = mauSacRepositoryImpl.getOne(qLDoThue.getMaMauSac());
+        KichThuoc kt = kichThuocRepositoryImpl.getOne(qLDoThue.getMaKichThuoc());
+        DoThue dt = new DoThue(qLDoThue.getId(), qLDoThue.getMaDoThue(), qLDoThue.getTenDoThue(), kt, ms, nsx, qLDoThue.getSoLuong(), qLDoThue.getDonGia(), qLDoThue.getTrangThai());
+        boolean save = doThueRepositoryImpl.saveOrUpdate(dt);
+        if (save) {
+            return "Cập Nhập Đồ Thuê Thành Công";
+        } else {
+            return "Cập Nhập Đồ Thuê Không Thành Công";
+        }
+    }
+
+    @Override
+    public String deleteDoThueById(String id) {
+        boolean delete = doThueRepositoryImpl.delete(id);
+        if (delete) {
+            return "Xóa Đồ Thuê Thành Công";
+        } else {
+            return "Xóa Đồ Thuê Không Thành Công";
+        }
+>>>>>>> c5c370ffe9329ee44f3bb07c8fe6fec2fcb3fca2
     }
 }
