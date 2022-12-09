@@ -1214,8 +1214,9 @@ public class JpnHoaDon extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Số lượng đồ thuê không đúng định dạng");
         } else if (Integer.valueOf(soLuong) <= 0) {
             JOptionPane.showMessageDialog(this, "Không để số lượng đồ thuê <= 0");
-//        } else if (donGia.matches("[0-9]+") == false) {
-//            JOptionPane.showMessageDialog(this, "Giá đồ thuê phải là số");
+        } else if (donGia.matches("[a-z A-Z]+")) {
+            JOptionPane.showMessageDialog(this, "Giá đồ thuê phải là số");
+            
         } else if (Double.valueOf(donGia) <= 0) {
             JOptionPane.showMessageDialog(this, "Không để đơn giá đồ thuê <=0 ");
         } else {
