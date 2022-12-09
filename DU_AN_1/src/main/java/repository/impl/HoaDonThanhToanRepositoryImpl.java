@@ -11,6 +11,7 @@ import java.util.UUID;
 import javax.persistence.TypedQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import repository.IHoaDonThanhToanRepository;
 import utill.HibernateConfig;
@@ -85,5 +86,24 @@ public class HoaDonThanhToanRepositoryImpl implements IHoaDonThanhToanRepository
             e.printStackTrace(System.out);
         }
         return null;
+    }
+
+    @Override
+    public int genMaHoaDonThanhToan() {
+                String maAC = "";
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            String hql = "Select MAX(CONVERT(INT,SUBSTRING(maHDTT,5,100))) from HoaDonThanhToan ";
+            NativeQuery query = session.createNativeQuery(hql);
+            maAC = query.getSingleResult().toString();
+        } catch (Exception e) {
+       
+        }
+        if(maAC == ""){
+            maAC = "1";
+            int ma = Integer.valueOf(maAC);
+            return  ma;
+        }
+        int ma = Integer.valueOf(maAC);
+        return  ++ma;
     }
 }

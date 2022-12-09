@@ -46,4 +46,10 @@ public class MauSacServiceImpl implements IMauSacService {
         return mauSacRepositoryImpl.getOne(ma);
     }
 
+    @Override
+    public String genMaMauSac() {
+        int maAC = mauSacRepositoryImpl.genMaMauSac();
+        return "MS00"+maAC;
+    }
+
 }

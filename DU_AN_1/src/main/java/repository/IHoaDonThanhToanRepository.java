@@ -17,4 +17,6 @@ public interface IHoaDonThanhToanRepository {
     boolean delete(String id);
 
     long totalCount();
+    
+    int genMaHoaDonThanhToan();
 }

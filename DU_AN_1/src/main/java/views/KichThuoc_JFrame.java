@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.bytebuddy.implementation.bytecode.Remainder;
 import service.Impl.KichThuocServiceImpl;
 
 /**
@@ -131,6 +132,7 @@ public class KichThuoc_JFrame extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(255, 51, 51));
         jButton2.setText("Thoát");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -213,9 +215,14 @@ public class KichThuoc_JFrame extends javax.swing.JFrame {
         if (sz.isEmpty() == true) {
             JOptionPane.showMessageDialog(this, "không được để trống");
         } else {
-            KichThuoc kt = new KichThuoc(null, ma, Integer.valueOf(sz));
-            JOptionPane.showMessageDialog(this, kichThuocServiceImpl.AddorUpdate(kt));
-            listKT.clear();
+            int confirm = JOptionPane.showConfirmDialog(this, "Bạn Có Muốn Thêm Kích Thước", "Xác Nhận", JOptionPane.YES_NO_OPTION);
+            if (confirm == JOptionPane.YES_OPTION) {
+                KichThuoc kt = new KichThuoc(null, kichThuocServiceImpl.genMaKichThuoc(), Integer.valueOf(sz));
+                JOptionPane.showMessageDialog(this, kichThuocServiceImpl.AddorUpdate(kt));
+                listKT.clear();
+            } else {
+                JOptionPane.showMessageDialog(this, "Bạn đã hủy thêm kích thước");
+            }
             loadData();
         }
 
@@ -229,11 +236,18 @@ public class KichThuoc_JFrame extends javax.swing.JFrame {
         }
         String ma = txtMa.getText();
         String sz = txtSize.getText().trim();
+        kt.setMaSize(ma);
+        kt.setSize(Integer.valueOf(sz));
         if (sz.isEmpty() == true) {
             JOptionPane.showMessageDialog(this, "không được để trống");
         } else {
-            JOptionPane.showMessageDialog(this, kichThuocServiceImpl.AddorUpdate(kt));
-            listKT.clear();
+            int confirm = JOptionPane.showConfirmDialog(this, "Bạn Có Muốn Sửa Kích Thước", "Xác Nhận", JOptionPane.YES_NO_OPTION);
+            if (confirm == JOptionPane.YES_OPTION) {
+                JOptionPane.showMessageDialog(this, kichThuocServiceImpl.AddorUpdate(kt));
+                listKT.clear();
+            } else {
+                JOptionPane.showMessageDialog(this, "Bạn đã hủy sửa kích thước");
+            }
             loadData();
         }
 
@@ -249,10 +263,13 @@ public class KichThuoc_JFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Xin mời chọn đối tượng");
             return;
         }
-        String ma = txtMa.getText();
-        String sz = txtSize.getText().trim();
-        JOptionPane.showMessageDialog(this, kichThuocServiceImpl.Delete(kt));
-        listKT.clear();
+        int confirm = JOptionPane.showConfirmDialog(this, "Bạn Có Muốn Xóa Kích Thước", "Xác Nhận", JOptionPane.YES_NO_OPTION);
+        if (confirm == JOptionPane.YES_OPTION) {
+            JOptionPane.showMessageDialog(this, kichThuocServiceImpl.Delete(kt));
+            listKT.clear();
+        } else {
+            JOptionPane.showMessageDialog(this, "Bạn đã hủy xóa kích thước");
+        }
         loadData();
     }//GEN-LAST:event_btnXoaActionPerformed
 
@@ -263,7 +280,7 @@ public class KichThuoc_JFrame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         txtMa.setText("");
         txtSize.setText("0");
-        
+
         loadData();
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -124,6 +124,7 @@ public class NSX_JFrame extends javax.swing.JFrame {
 
         jLabel3.setText("TÊN");
 
+        jButton1.setBackground(new java.awt.Color(255, 51, 51));
         jButton1.setText("Thoát");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -208,9 +209,14 @@ public class NSX_JFrame extends javax.swing.JFrame {
         if (ten.isEmpty() == true) {
             JOptionPane.showMessageDialog(this, "Không được để trống tên NSX");
         } else {
-            NhaSanXuat nsx = new NhaSanXuat(null, ma, ten);
-            JOptionPane.showMessageDialog(this, nhaSanXuatServiceImpl.AddorUpdate(nsx));
-            listNSX.clear();
+            int confirm = JOptionPane.showConfirmDialog(this, "Bạn Có Muốn Thêm NSX", "Xác Nhận", JOptionPane.YES_NO_OPTION);
+            if (confirm == JOptionPane.YES_OPTION) {
+                NhaSanXuat nsx = new NhaSanXuat(null, nhaSanXuatServiceImpl.genMaNSX(), ten);
+                JOptionPane.showMessageDialog(this, nhaSanXuatServiceImpl.AddorUpdate(nsx));
+                listNSX.clear();
+            } else {
+                JOptionPane.showMessageDialog(this, "Bạn đã hủy thêm nsx ");
+            }
             loadData();
         }
 
@@ -224,11 +230,18 @@ public class NSX_JFrame extends javax.swing.JFrame {
         }
         String ma = txtMa.getText();
         String ten = txtTen.getText().trim();
+        nsx.setMaNSX(ma);
+        nsx.setTenNSX(ten);
         if (ten.isEmpty() == true) {
             JOptionPane.showMessageDialog(this, "Không được để trống tên NSX");
         } else {
-            JOptionPane.showMessageDialog(this, nhaSanXuatServiceImpl.AddorUpdate(mouclick()));
-            listNSX.clear();
+            int confirm = JOptionPane.showConfirmDialog(this, "Bạn Có Muốn Sửa NSX", "Xác Nhận", JOptionPane.YES_NO_OPTION);
+            if (confirm == JOptionPane.YES_OPTION) {
+                JOptionPane.showMessageDialog(this, nhaSanXuatServiceImpl.AddorUpdate(nsx));
+                listNSX.clear();
+            } else {
+                JOptionPane.showMessageDialog(this, "Bạn đã hủy sửa nsx");
+            }
             loadData();
         }
     }//GEN-LAST:event_btnSuaActionPerformed
@@ -243,10 +256,16 @@ public class NSX_JFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Yêu Cầu Chọn Đối Tượng");
             return;
         }
-        String ma = txtMa.getText();
-        String ten = txtTen.getText();
-        JOptionPane.showMessageDialog(this, nhaSanXuatServiceImpl.Delete(mouclick()));
-        listNSX.clear();
+//        String ma = txtMa.getText();
+//        String ten = txtTen.getText();
+        int confirm = JOptionPane.showConfirmDialog(this, "Bạn Có Muốn Xóa NSX", "Xác Nhận", JOptionPane.YES_NO_OPTION);
+        if (confirm == JOptionPane.YES_OPTION) {
+            JOptionPane.showMessageDialog(this, nhaSanXuatServiceImpl.Delete(nsx));
+            listNSX.clear();
+        } else {
+            JOptionPane.showMessageDialog(this, "Bạn đã hủy xóa nsx");
+        }
+        
         loadData();
     }//GEN-LAST:event_btnXoaActionPerformed
 

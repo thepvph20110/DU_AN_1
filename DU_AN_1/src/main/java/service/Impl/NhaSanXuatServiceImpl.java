@@ -46,4 +46,10 @@ public class NhaSanXuatServiceImpl implements INhaSanXuatService {
         return nhaSanXuatRepositoryImpl.getOne(ma);
     }
 
+    @Override
+    public String genMaNSX() {
+        int maAC = nhaSanXuatRepositoryImpl.genMaNSX();
+        return "NSX00"+maAC;
+    }
+
 }

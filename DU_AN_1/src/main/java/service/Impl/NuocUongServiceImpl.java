@@ -23,13 +23,6 @@ public class NuocUongServiceImpl implements INuocUongService {
 
     @Override
     public String createNewNuocUong(QLNuocUong nuocUong) {
-        if (nuocUong.getTenNuocUong() == null || String.valueOf(nuocUong.getGia()) == null || String.valueOf(nuocUong.getSoLuong()) == null) {
-            return "không được để trống";
-        }
-        if (map.containsKey(nuocUong.getMaNuocUong())) {
-            return "Mã trùng";
-        }
-
         if (map.containsKey(nuocUong.getTenNuocUong())) {
             return "Tên Nước trùng";
         }
@@ -53,9 +46,6 @@ public class NuocUongServiceImpl implements INuocUongService {
 
     @Override
     public String updateNuocUongById(QLNuocUong nuocUong) {
-        if (nuocUong.getTenNuocUong() == null || String.valueOf(nuocUong.getGia()) == null || String.valueOf(nuocUong.getSoLuong()) == null) {
-            return "Không được để trống";
-        }
         boolean save = nuocUongRepositoryImpl.saveOrUpdate(
                 new NuocUong(nuocUong.getId(),
                         nuocUong.getMaNuocUong(),
@@ -154,5 +144,11 @@ public class NuocUongServiceImpl implements INuocUongService {
     public static void main(String[] args) {
         String id = new NuocUongServiceImpl().deleteNuocUongById("6cfc66a3-fbfc-4dc0-80ea-05a7add6abfd");
         System.out.println(""+id);
+    }
+
+    @Override
+    public String genNuocUong() {
+        int maAC = nuocUongRepositoryImpl.genMaNuocUong();
+        return "NU00"+maAC;
     }
 }

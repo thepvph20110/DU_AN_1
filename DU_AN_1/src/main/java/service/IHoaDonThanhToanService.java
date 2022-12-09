@@ -23,4 +23,6 @@ public interface IHoaDonThanhToanService {
     String deleteHoaDonThanhToanById(String id);
 
     long countAllHoaDonThanhToan();
+    
+    String genMaHoaDonThanhToan();
 }

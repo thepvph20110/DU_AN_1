@@ -20,4 +20,6 @@ public interface INhaSanXuatRepository {
     String Delete(NhaSanXuat nhaSanXuat);
     
     NhaSanXuat getOne(String ma);
+    
+    int genMaNSX();
 }

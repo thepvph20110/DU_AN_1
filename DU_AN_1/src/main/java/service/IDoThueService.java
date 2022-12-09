@@ -31,4 +31,6 @@ public interface IDoThueService {
     String updateDoThueById(QLDoThue qLDoThue);
 
     String deleteDoThueById(String id);
+    
+    String genMaDoThue();
 }

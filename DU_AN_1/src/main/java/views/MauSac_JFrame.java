@@ -131,6 +131,7 @@ public class MauSac_JFrame extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(255, 51, 51));
         jButton2.setText("Thoát");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -212,9 +213,14 @@ public class MauSac_JFrame extends javax.swing.JFrame {
         if (ten.isEmpty() == true) {
             JOptionPane.showMessageDialog(this, "Tên màu không được để trống");
         } else {
-            MauSac ms = new MauSac(null, ma, ten);
-            JOptionPane.showMessageDialog(this, mauSacServiceImpl.AddorUpdate(ms));
-            listMS.clear();
+            int confirm = JOptionPane.showConfirmDialog(this, "Bạn Có Muốn Thêm Màu Sắc", "Xác Nhận", JOptionPane.YES_NO_OPTION);
+            if (confirm == JOptionPane.YES_OPTION) {
+                MauSac ms = new MauSac(null, mauSacServiceImpl.genMaMauSac(), ten);
+                JOptionPane.showMessageDialog(this, mauSacServiceImpl.AddorUpdate(ms));
+                listMS.clear();
+            } else {
+                JOptionPane.showMessageDialog(this, "Bạn đã hủy thêm màu sắc");
+            }
             loadData();
         }
 
@@ -232,10 +238,15 @@ public class MauSac_JFrame extends javax.swing.JFrame {
         if (ten.isEmpty() == true) {
             JOptionPane.showMessageDialog(this, "Tên màu không được để trống");
         } else {
-            MauSac ms = new MauSac(mau.getId(), ma, ten);
-            JOptionPane.showMessageDialog(this, mauSacServiceImpl.AddorUpdate(ms));
-            listMS.clear();
-            listMS = mauSacServiceImpl.getAll();
+            int confirm = JOptionPane.showConfirmDialog(this, "Bạn Có Muốn Sửa Màu Sắc", "Xác Nhận", JOptionPane.YES_NO_OPTION);
+            if (confirm == JOptionPane.YES_OPTION) {
+                MauSac ms = new MauSac(mau.getId(), ma, ten);
+                JOptionPane.showMessageDialog(this, mauSacServiceImpl.AddorUpdate(ms));
+                listMS.clear();
+                listMS = mauSacServiceImpl.getAll();
+            } else {
+                JOptionPane.showMessageDialog(this, "Bạn đã hủy sửa màu sắc");
+            }
             loadData();
         }
 
@@ -247,11 +258,14 @@ public class MauSac_JFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Yêu cầu chọn màu sắc");
             return;
         }
-        String ma = txtMa.getText();
-        String ten = txtTen.getText();
-        MauSac ms = new MauSac(null, ma, ten);
-        JOptionPane.showMessageDialog(this, mauSacServiceImpl.Delete(mau));
-        listMS.clear();
+        int confirm = JOptionPane.showConfirmDialog(this, "Bạn Có Muốn Xóa Màu Sắc", "Xác Nhận", JOptionPane.YES_NO_OPTION);
+        if (confirm == JOptionPane.YES_OPTION) {
+            JOptionPane.showMessageDialog(this, mauSacServiceImpl.Delete(mau));
+            listMS.clear();
+        } else {
+            JOptionPane.showMessageDialog(this, "Bạn đã hủy xóa màu sắc");
+        }
+
         loadData();
     }//GEN-LAST:event_btnXoaActionPerformed
 

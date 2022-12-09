@@ -32,4 +32,6 @@ public interface IDichVuRepository {
     List<DichVu> findByMaDichVu(String maDichVu);
 
     List<DichVu> findByTrangThai(trangThaiDichVu trangThai);
+    
+    int genMaDichVu();
 }

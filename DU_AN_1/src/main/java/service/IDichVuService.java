@@ -28,4 +28,6 @@ public interface IDichVuService {
     List<QLDichVu> getDichVuByMaDichVu(String maDichVu);
 
     List<QLDichVu> getDichVuByTrangThai(trangThaiDichVu trangThai);
+    
+    String genMaDichVu();
 }

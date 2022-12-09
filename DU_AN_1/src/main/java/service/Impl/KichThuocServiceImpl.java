@@ -46,4 +46,10 @@ public class KichThuocServiceImpl implements IKichThuocService {
         return kichThuocRepositoryImpl.getOne(ma);
     }
 
+    @Override
+    public String genMaKichThuoc() {
+        int maAC = kichThuocRepositoryImpl.genMaKicThuoc();
+        return "KT00"+maAC;
+    }
+
 }
