@@ -21,5 +21,5 @@ public interface IChucVuRepository {
     
     boolean delete(String id);
     
-    String genMaChucVu();
+    int genMaChucVu();
 }

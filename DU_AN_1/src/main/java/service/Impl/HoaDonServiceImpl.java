@@ -5,10 +5,8 @@
 package service.Impl;
 
 import domainmodel.HoaDon;
-import domainmodel.PhuPhi_HoaDon;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 import modelview.QLHoaDon;
 import repository.IHoaDonRepository;
 import repository.impl.HoaDonRepositoryImpl;
@@ -93,9 +91,7 @@ public class HoaDonServiceImpl implements IHoaDonService {
 
     @Override
     public String genMaHoaDon() {
-        String pp = hoaDonRepo.genMaHoaDon();
-        int newPP = (Integer.parseInt(pp.substring(2))) + 1;
-        return  pp.substring(0, 2) + "00"+ newPP ;
+        return "HD00"+hoaDonRepo.genMaHoaDon();
     }
 
 }
