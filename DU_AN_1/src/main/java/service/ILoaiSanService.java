@@ -25,5 +25,7 @@ public interface ILoaiSanService {
     List<QLLoaiSan> searchByName(String ten);
 
     LoaiSan getOne(String tenSan);
+    
+    String genMaLoaiSan();
 
 }
