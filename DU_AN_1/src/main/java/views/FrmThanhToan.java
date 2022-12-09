@@ -130,7 +130,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
         LocalDate localDate = qLHoaDon.getPhieuDatLich().getNgayDenSan().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         ngayDenSan.setText(localDate.getDayOfMonth()+"-"+localDate.getMonthValue()+"-"+localDate.getYear());
         String tien = dinhDangTienTe(qLHoaDon.getPhieuDatLich().getSanCa().getSanbong().getGiaSan());
-        txtGiaSan.setText(tien);
+        txtGiaSan.setText(dinhDangTienTe(qLHoaDon.getPhieuDatLich().getTongTienSan()));
         listDV = dichVuRepository.findByIdHoaDon(qLHoaDon.getId());
         jcbThanhToan.setModel(dcbmTT);
         qLThanhToans = iThanhToanService.getAllThanhToans();

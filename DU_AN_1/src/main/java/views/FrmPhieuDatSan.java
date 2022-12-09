@@ -28,7 +28,7 @@ import service.Impl.PhieuDatLichServiceImpl;
 import service.Impl.SanCaServiceImpl;
 
 public class FrmPhieuDatSan extends javax.swing.JFrame {
-    
+
     private PhieuDatLich phieuDL = new PhieuDatLich();
     private IPhieuDatLichService phieuDatLichService = new PhieuDatLichServiceImpl();
     private ISanCaService sanCaService = new SanCaServiceImpl();
@@ -36,21 +36,20 @@ public class FrmPhieuDatSan extends javax.swing.JFrame {
     private QLAcount qLAcount;
     private JPanel pnTong;
     private JLabel lbHome;
-        private DecimalFormat df = new DecimalFormat("###,###,###");
+    private DecimalFormat df = new DecimalFormat("###,###,###");
 
-    
-    public FrmPhieuDatSan(PhieuDatLich phieuDatLich,QLAcount qLAcount,JPanel pnTong, JLabel lbHome) {
+    public FrmPhieuDatSan(PhieuDatLich phieuDatLich, QLAcount qLAcount, JPanel pnTong, JLabel lbHome) {
         initComponents();
         phieuDL = phieuDatLich;
-        this.qLAcount =qLAcount;
-        this.pnTong= pnTong;
-        this.lbHome= lbHome;
+        this.qLAcount = qLAcount;
+        this.pnTong = pnTong;
+        this.lbHome = lbHome;
         lblTenKhachHang.setText(phieuDL.getKhachHang().getTenKhachHang());
         lblThoiGianCa.setText(String.valueOf(phieuDL.getSanCa().getCa().getThoiGianBatDau()) + " - " + String.valueOf(phieuDL.getSanCa().getCa().getThoiGianKetThuc()));
         lblTenSanBong.setText(phieuDL.getSanCa().getSanbong().getTenSanBong());
         lblNgayDenSan.setText(String.valueOf(phieuDL.getNgayDenSan()));
         jtaGhiChu.setText(phieuDL.getGhiChu());
-        lblTongTien.setText(df.format(phieuDL.getTongTienSan() )+ " VND");
+        lblTongTien.setText(df.format(phieuDL.getTongTienSan()) + " VND");
     }
 
     /**
@@ -275,10 +274,10 @@ public class FrmPhieuDatSan extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNhanSanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhanSanActionPerformed
-        
+
         int click = JOptionPane.showConfirmDialog(rootPane, "Bạn Có Muốn Nhận Sân?", "Xác Nhận", JOptionPane.YES_NO_OPTION);
         if (click == JOptionPane.YES_OPTION) {
-             if(phieuDL.getSanCa().getNgayTao().after(new Date())){
+            if (phieuDL.getSanCa().getNgayTao().after(new Date())) {
                 JOptionPane.showMessageDialog(rootPane, "Chưa đến ngày nhận sân!!");
                 return;
             }
@@ -290,9 +289,10 @@ public class FrmPhieuDatSan extends javax.swing.JFrame {
             SanCa sanCa = phieuDL.getSanCa();
             sanCa.setTrangThai(trangThaiSanCa.KHONG_TRONG);
             new SanCaRepository().update(sanCa);
-            QLHoaDon qLHoaDon = new QLHoaDon(null, "HD005", phieuDL, null, null, null, phieuDL.getTongTienSan(), phieuDL.getTongTienSan(), null, trangThaiHoaDon.CHUA_THANH_TOAN);
+            String maHoaDon =hoaDonService.genMaHoaDon();
+            QLHoaDon qLHoaDon = new QLHoaDon(null, maHoaDon, phieuDL, null, null, null, phieuDL.getTongTienSan(), phieuDL.getTongTienSan(), null, trangThaiHoaDon.CHUA_THANH_TOAN);
             hoaDonService.save(qLHoaDon);
-            HomeController homeController = new HomeController(pnTong, qLAcount,new Date());
+            HomeController homeController = new HomeController(pnTong, qLAcount, new Date());
             homeController.setView(lbHome);
             this.dispose();
         } else {
