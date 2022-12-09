@@ -55,7 +55,9 @@ import java.io.File;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.JButton;
+import service.IGiaoCaService;
 import service.IThongKeService;
+import service.Impl.GiaoCaServiceImpl;
 import service.Impl.ThongKeServiceImpl;
 
 /**
@@ -87,8 +89,8 @@ public class JpnTrangChu extends javax.swing.JPanel {
     private SimpleDateFormat sdf = new SimpleDateFormat("dd / MM / yyyy");
     private IThongKeService thongKeService = new ThongKeServiceImpl();
     private JButton tatthongBao = new JButton("Tắt Thông Báo");
-    private JButton thongBao =    new JButton(" Thông Báo");
-    
+    private JButton thongBao = new JButton(" Thông Báo");
+    private IGiaoCaService giaoCaService = new GiaoCaServiceImpl();
 
     /**
      * Creates new form TrangChuJPanel
@@ -106,15 +108,20 @@ public class JpnTrangChu extends javax.swing.JPanel {
         for (QLSanCa qLSanCa : listSanCa) {
             mapSanCa.put(qLSanCa.getId(), qLSanCa);
         }
-        lbTongTien.setText(decimalFormat.format(thongKeService.getTongTienNgayHienTai(ngayTao)) + " " + "Vnd");
-        
+        double tongTienss = thongKeService.getTongTienNgayHienTai(ngayTao);
+        if (tongTienss != 0) {
+            lbTongTien.setText(decimalFormat.format(tongTienss) + " " + "Vnd");
+        } else {
+            lbTongTien.setText("0");
+        }
+
         thongBao.setBackground(Color.BLUE);
         thongBao.setForeground(Color.white);
         panelThongBao.setLayout(new GridLayout());
         panelThongBao.add(thongBao);
         panelThongBao.validate();
         panelThongBao.repaint();
-        
+
         tatthongBao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 panelThongBao.removeAll();
@@ -132,21 +139,21 @@ public class JpnTrangChu extends javax.swing.JPanel {
                 panelThongBao.removeAll();
                 tatthongBao.setBackground(Color.red);
                 tatthongBao.setForeground(Color.white);
-                
+
                 panelThongBao.setLayout(new GridLayout());
                 panelThongBao.add(tatthongBao);
                 panelThongBao.validate();
                 panelThongBao.repaint();
                 PlaySound();
-                
+
             }
         });
-        
+
     }
 
     private void showThanhToan(String id) {
         QLHoaDon hoaDon = hoaDonService.getByTrangThai(id);
-        new FrmThanhToan(hoaDon).setVisible(true);
+        new FrmThanhToan(hoaDon, pnTong, qLAcount, labelHome).setVisible(true);
 
     }
 
@@ -200,7 +207,7 @@ public class JpnTrangChu extends javax.swing.JPanel {
                     labelLoaiSan.setForeground(Color.BLACK);
                     labelLoaiSan.setFont(new Font("Tahoma", 1, 14));
                     JLabel lableTenKH = new JLabel();
-                        
+
                     if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.KHONG_TRONG) {
                         QLHoaDon qlHoaDon = hoaDonService.getByTrangThai(labelIdSanCa.getText());
                         lableTenKH.setText("Tên KH:" + qlHoaDon.getPhieuDatLich().getKhachHang().getTenKhachHang());
@@ -231,16 +238,25 @@ public class JpnTrangChu extends javax.swing.JPanel {
                     itemCheckOut.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            showThanhToan(labelIdSanCa.getText());
-                            panelCa.setEnabled(false);
-                            jPopupMenu.setVisible(false);
+                            if (giaoCaService.getOneGiaoCaByIdAndTrangThai(qLAcount.getId()) == null) {
+                                JOptionPane.showMessageDialog(null, "Vui lòng nhận ca");
+                            } else {
+                                showThanhToan(labelIdSanCa.getText());
+                                panelCa.setEnabled(false);
+                                jPopupMenu.setVisible(false);
+                            }
+
                         }
                     });
                     itemDatLich.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            showDetail(labelIdSanCa.getText());
-                            jPopupMenu.setVisible(false);
+                            if (giaoCaService.getOneGiaoCaByIdAndTrangThai(qLAcount.getId()) == null) {
+                                JOptionPane.showMessageDialog(null, "Vui lòng nhận ca");
+                            } else {
+                                showDetail(labelIdSanCa.getText());
+                                jPopupMenu.setVisible(false);
+                            }
                         }
                     });
                     itemDoiLichDat.addActionListener(new ActionListener() {
@@ -274,19 +290,19 @@ public class JpnTrangChu extends javax.swing.JPanel {
                     String ngayTaoSan = dateFormat.format(ngayTao);
                     String hienTai = dateFormat.format(homNay);
                     if (gioKT.getTime() < quaGio.getTime() && ngayTaoSan.equals(hienTai)) {
-                        if(listSanCa.get(j).getTrangThai()== trangThaiSanCa.KHONG_TRONG){
-                            panelCa.setBackground(new Color(153,255,255));
+                        if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.KHONG_TRONG) {
+                            panelCa.setBackground(new Color(153, 255, 255));
                             labelTrangThai.setText("Trạng thái: " + "Chờ thanh toán");
-                        }else{
+                        } else {
                             panelCa.setBackground(new Color(189, 195, 199));
                             labelTrangThai.setText("Trạng thái:" + " " + "Quá giờ");
                         }
-                        
+
                         itemDatLich.setEnabled(false);
                         itemDoiLichDat.setEnabled(false);
                         itemThongbao.setEnabled(true);
                         itemTatThongbao.setEnabled(true);
-                        
+
                     }
                     panelCa.add(labelCa);
                     panelCa.add(labelThoiGian);

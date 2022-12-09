@@ -407,7 +407,6 @@ public class JpnDichVu extends javax.swing.JPanel {
             giaoCa.setTrangThai(trangThaiGiaoCa.KET_THUC_CA);
             giaoCa.setGhiChuPhatSinh(txtGhiChu.getText());
             String tb = giaoCaService.GiaoCa(giaoCa);
-            JOptionPane.showMessageDialog(null, tb);
             if (tb.equals("Giao ca thành công")) {
                 home.dispose();
                 new Detaillogin(null, true).setVisible(true);
