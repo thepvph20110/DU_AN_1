@@ -18,6 +18,7 @@ import enumclass.trangThaiPhieuDL;
 import enumclass.trangThaiSanCa;
 import java.awt.event.WindowEvent;
 import java.io.ByteArrayOutputStream;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -80,6 +81,7 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
     private JLabel labelHome;
     private JPanel pnTong;
     private Date ngayTao = new Date();
+    private DecimalFormat df = new DecimalFormat("###,###,###");
 
     /**
      * Creates new form FrmPhieuDatLich
@@ -97,7 +99,7 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
         txtTenSanca.setText(this.sanCa.getTenSanBong() + " - " + this.sanCa.getTenCa());
         txtTenSanca.setEnabled(false);
 
-        txtTienSanBong.setText(sanCa.getGiaCaSan() + "");
+        txtTienSanBong.setText(df.format(sanCa.getGiaCaSan()) + " VND");
         txtTienSanBong.setEnabled(false);
 
         txtTenKhachHang.setText(qlKhachHang.getTenKhachHang());

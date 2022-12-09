@@ -135,4 +135,10 @@ public class DoThueServiceImpl implements IDoThueService {
             return "Xóa Đồ Thuê Không Thành Công";
         }
     }
+
+    @Override
+    public String genMaDoThue() {
+        int maAC = doThueRepositoryImpl.genMaDoThue();
+        return "DT00"+maAC;
+    }
 }

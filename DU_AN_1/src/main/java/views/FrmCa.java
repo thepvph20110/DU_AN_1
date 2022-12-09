@@ -31,9 +31,10 @@ public class FrmCa extends javax.swing.JFrame {
         initComponents();
         listQLCa = new ArrayList<>();
         jTable1.setModel(dtm = new DefaultTableModel());
-        String[] header = {"ID", "Mã Ca", "Tên Ca", "TG Bắt Đầu", "TG Kết Thúc", "Giá Ca", "Trạng Thái"};
+        String[] header = {"Mã Ca", "Tên Ca", "TG Bắt Đầu", "TG Kết Thúc", "Giá Ca", "Trạng Thái"};
         dtm.setColumnIdentifiers(header);
         listQLCa = ics.getAll();
+        txtMaCa.disable();
         showData(listQLCa);
     }
 
@@ -153,47 +154,43 @@ public class FrmCa extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(74, 74, 74)
+                                .addGap(140, 140, 140)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnSave)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(66, 66, 66)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel4)
-                                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(27, 27, 27)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(txtGiaCa, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(txtMaCa, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(txtThoiGianBD, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(txtTGKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(txtTenCa, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                            .addComponent(jLabel5)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(btnUpdate)
-                                                        .addGap(50, 50, 50))
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(jLabel6)
-                                                        .addGap(34, 34, 34)
-                                                        .addComponent(radioGioBinhThuong)
-                                                        .addGap(36, 36, 36)))
-                                                .addComponent(radioGioCaoDiem))))
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(27, 27, 27)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtGiaCa, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtMaCa, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtThoiGianBD, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtTGKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtTenCa, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabel5)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnDelete))))
+                                        .addComponent(jLabel6)
+                                        .addGap(34, 34, 34)
+                                        .addComponent(radioGioBinhThuong)
+                                        .addGap(36, 36, 36)
+                                        .addComponent(radioGioCaoDiem))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(255, 255, 255)
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 155, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addComponent(btnSave)
+                .addGap(137, 137, 137)
+                .addComponent(btnUpdate)
+                .addGap(114, 114, 114)
+                .addComponent(btnDelete)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,14 +226,14 @@ public class FrmCa extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(radioGioBinhThuong)
                     .addComponent(radioGioCaoDiem))
-                .addGap(18, 18, 18)
+                .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSave)
                     .addComponent(btnUpdate)
                     .addComponent(btnDelete))
-                .addGap(28, 28, 28)
+                .addGap(20, 20, 20)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
+                .addContainerGap())
         );
 
         pack();
@@ -317,7 +314,7 @@ public class FrmCa extends javax.swing.JFrame {
     private void fillData(int index) {
         QLCa qLCa = listQLCa.get(index);
         txtGiaCa.setText(String.valueOf(qLCa.getGiaCa()));
-        txtMaCa.setText(qLCa.getTenCa());
+        txtMaCa.setText(qLCa.getMaCa());
         txtTenCa.setText(qLCa.getTenCa());
         txtTGKetThuc.setText(String.valueOf(qLCa.getThoiGianKetThuc()));
         txtThoiGianBD.setText(String.valueOf(qLCa.getThoiGianKetThuc()));
@@ -329,7 +326,6 @@ public class FrmCa extends javax.swing.JFrame {
     }
 
     private void save() {
-        String maCa = txtMaCa.getText();
         String tenCa = txtTenCa.getText();
         String thoiGianBatDau = txtThoiGianBD.getText();
         String thoiGianKetThuc = txtTGKetThuc.getText();
@@ -340,22 +336,24 @@ public class FrmCa extends javax.swing.JFrame {
         } else {
             qlCa.setTrangThai(trangThaiCa.GIO_CAO_DIEM);
         }
-        if (maCa.length() == 0 || tenCa.length() == 0 || thoiGianBatDau.length() == 0 || thoiGianKetThuc.length() == 0 || gia.length() == 0) {
+        if (tenCa.length() == 0 || thoiGianBatDau.length() == 0 || thoiGianKetThuc.length() == 0 || gia.length() == 0) {
             JOptionPane.showMessageDialog(this, "IsEmpty");
-        } else if (!gia.matches("^[0-9]+$")) {
+        } else if (gia.matches("^[a-zA-Z]+$")) {
             JOptionPane.showMessageDialog(this, "Please enter number Gia");
         } else if (!thoiGianBatDau.matches("^\\d{2}:\\d{2}:\\d{2}$") || !thoiGianKetThuc.matches("^\\d{2}:\\d{2}:\\d{2}$")) {
             JOptionPane.showMessageDialog(this, "Incorrect format time (hh:mm:ss)");
+        } else if ((Double.valueOf(gia) <= 0)) {
+            JOptionPane.showMessageDialog(this, "Gia san sai dinh dang");
         } else {
-            QLCa qLCa = new QLCa(null, maCa, tenCa, Time.valueOf(thoiGianBatDau), Time.valueOf(thoiGianKetThuc), Double.valueOf(gia), qlCa.getTrangThai());
+            QLCa qLCa = new QLCa(null, ics.genMaCa(), tenCa, Time.valueOf(thoiGianBatDau), Time.valueOf(thoiGianKetThuc), Double.valueOf(gia), qlCa.getTrangThai());
             JOptionPane.showMessageDialog(this, ics.save(qLCa));
+            ics.save(qLCa);
             listQLCa = ics.getAll();
             showData(listQLCa);
         }
     }
 
     private void update() {
-        String maCa = txtMaCa.getText().trim();
         String tenCa = txtTenCa.getText().trim();
         String thoiGianBatDau = txtThoiGianBD.getText().trim();
         String thoiGianKetThuc = txtTGKetThuc.getText().trim();
@@ -368,14 +366,17 @@ public class FrmCa extends javax.swing.JFrame {
         }
         if (jTable1.getSelectedRow() < 0) {
             JOptionPane.showMessageDialog(this, "Selected row ???");
-
         } else {
-            if (maCa.length() == 0 || tenCa.length() == 0 || thoiGianBatDau.length() == 0 || thoiGianKetThuc.length() == 0 || gia.length() == 0) {
+            if (tenCa.length() == 0 || thoiGianBatDau.length() == 0 || thoiGianKetThuc.length() == 0 || gia.length() == 0) {
                 JOptionPane.showMessageDialog(this, "IsEmpty");
             } else if (!thoiGianBatDau.matches("^\\d{2}:\\d{2}:\\d{2}$") || !thoiGianKetThuc.matches("^\\d{2}:\\d{2}:\\d{2}$")) {
                 JOptionPane.showMessageDialog(this, "Incorrect format time (hh:mm:ss)");
+            } else if (gia.matches("^[a-zA-Z]+$")) {
+                JOptionPane.showMessageDialog(this, "Please enter number Gia");
+            } else if ((Double.valueOf(gia) <= 0)) {
+                JOptionPane.showMessageDialog(this, "Gia san sai dinh dang");
             } else {
-                QLCa qLCa = new QLCa(mountClick().getId(), maCa, tenCa, Time.valueOf(thoiGianBatDau), Time.valueOf(thoiGianKetThuc), Double.valueOf(gia), qlCa.getTrangThai());
+                QLCa qLCa = new QLCa(mountClick().getId(), ics.genMaCa(), tenCa, Time.valueOf(thoiGianBatDau), Time.valueOf(thoiGianKetThuc), Double.valueOf(gia), qlCa.getTrangThai());
                 JOptionPane.showMessageDialog(this, ics.update(qLCa));
                 listQLCa = ics.getAll();
                 showData(listQLCa);
@@ -384,7 +385,6 @@ public class FrmCa extends javax.swing.JFrame {
     }
 
     private void delete() {
-        String maCa = txtMaCa.getText();
         String tenCa = txtTenCa.getText();
         String thoiGianBatDau = txtThoiGianBD.getText();
         String thoiGianKetThuc = txtTGKetThuc.getText();
@@ -399,7 +399,7 @@ public class FrmCa extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Selected row ???");
 
         } else {
-            QLCa qLCa = new QLCa(mountClick().getId(), maCa, tenCa, Time.valueOf(thoiGianBatDau), Time.valueOf(thoiGianKetThuc), Double.valueOf(gia), qlCa.getTrangThai());
+            QLCa qLCa = new QLCa(mountClick().getId(), ics.genMaCa(), tenCa, Time.valueOf(thoiGianBatDau), Time.valueOf(thoiGianKetThuc), Double.valueOf(gia), qlCa.getTrangThai());
             JOptionPane.showMessageDialog(this, ics.delete(qLCa));
             listQLCa = ics.getAll();
             showData(listQLCa);

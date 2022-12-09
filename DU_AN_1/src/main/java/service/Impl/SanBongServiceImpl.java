@@ -127,4 +127,9 @@ public class SanBongServiceImpl implements ISanBongService {
         return re.xoaSaṇ̣̣̣̣(id);
     }
 
+    @Override
+    public String genMaSanBong() {
+        return "SB00" + re.genMaSanBong();
+    }
+
 }

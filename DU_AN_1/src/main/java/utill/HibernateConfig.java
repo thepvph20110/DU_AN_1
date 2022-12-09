@@ -40,10 +40,10 @@ public class HibernateConfig {
         properties.put(Environment.DRIVER, "com.microsoft.sqlserver.jdbc.SQLServerDriver");
         properties.put(Environment.URL, "jdbc:sqlserver://localhost:1433;databaseName=QLSanBongDongDe");
         properties.put(Environment.USER, "sa");
-        properties.put(Environment.PASS, "songlong");
+        properties.put(Environment.PASS, "");
         properties.put(Environment.SHOW_SQL, "true");
         properties.put(Environment.FORMAT_SQL, "true");
-        properties.put(Environment.HBM2DDL_AUTO, "none");
+        properties.put(Environment.HBM2DDL_AUTO, "");
 
         conf.setProperties(properties);
         conf.addAnnotatedClass(SanBong.class);

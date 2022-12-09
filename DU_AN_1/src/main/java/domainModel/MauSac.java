@@ -36,6 +36,6 @@ public class MauSac {
     private String tenMauSac;
 
     public Object[] todata() {
-        return new Object[]{id, maMauSac, tenMauSac};
+        return new Object[]{maMauSac, tenMauSac};
     }
 }

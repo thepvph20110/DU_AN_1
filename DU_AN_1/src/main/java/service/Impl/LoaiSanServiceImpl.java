@@ -82,4 +82,9 @@ public class LoaiSanServiceImpl implements ILoaiSanService {
     public LoaiSan getOne(String tenSan) {
         return re.getOne(tenSan);
     }
+
+    @Override
+    public String genMaLoaiSan() {
+        return "LS00"+re.genMaLoaiSan();
+    }
 }

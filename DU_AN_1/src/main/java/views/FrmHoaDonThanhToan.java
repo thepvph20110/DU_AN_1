@@ -412,13 +412,13 @@ public class FrmHoaDonThanhToan extends javax.swing.JFrame {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         QLHoaDonThanhToan qLHoaDonThanhToan = getHoaDonThanhToanFromInput();
+        qLHoaDonThanhToan.setMaHDTT(hoaDonThanhToanService.genMaHoaDonThanhToan());
         int checkConFirm = JOptionPane.showConfirmDialog(this, "Bạn Có Muốn Tạo Hóa Đơn Thanh Toán", "Xác Nhận", JOptionPane.YES_NO_OPTION);
         if (checkConFirm == JOptionPane.YES_OPTION) {
             JOptionPane.showMessageDialog(this, hoaDonThanhToanService.createNewHoaDonThanhToan(qLHoaDonThanhToan));
         } else {
             JOptionPane.showMessageDialog(this, "Bạn Đã Hủy Tạo Hóa Đơn Thanh Toán");
         }
-
         loadDataToTable();
     }//GEN-LAST:event_btnThemActionPerformed
 

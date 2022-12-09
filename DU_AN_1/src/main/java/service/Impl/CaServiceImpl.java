@@ -87,4 +87,9 @@ public class CaServiceImpl implements ICaService {
     public String xoaCa(String id) {
         return re.xoaCa(id);
     }
+
+    @Override
+    public String genMaCa() {
+        return "CA00"+re.genMaCa();
+    }
 }

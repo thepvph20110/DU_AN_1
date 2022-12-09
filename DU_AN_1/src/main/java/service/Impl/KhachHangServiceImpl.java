@@ -74,4 +74,9 @@ public class KhachHangServiceImpl implements IKhachHangService {
         return qLKhachHang;
     }
 
+    @Override
+    public String genMaKH() {
+        return "KH00"+re.genMaKH();
+    }
+
 }

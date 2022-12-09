@@ -33,6 +33,6 @@ public class QLCa {
     private trangThaiCa trangThai = trangThaiCa.GIO_BINH_THUONG;
 
     public Object toDataRow() {
-        return new Object[]{id, maCa, tenCa, thoiGianBatDau, thoiGianKetThuc, new DecimalFormat("###,###,###").format(giaCa) +" "+ "Vnd", trangThai};
+        return new Object[]{maCa, tenCa, thoiGianBatDau, thoiGianKetThuc, new DecimalFormat("###,###,###").format(giaCa) +" "+ "Vnd", trangThai};
     }
 }

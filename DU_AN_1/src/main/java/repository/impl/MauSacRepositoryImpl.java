@@ -8,6 +8,7 @@ import domainmodel.MauSac;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import repository.IMauSacRepository;
 import utill.HibernateConfig;
@@ -66,6 +67,25 @@ public class MauSacRepositoryImpl implements IMauSacRepository {
     public MauSac getOne(String ma) {
         String hql = " FROM MauSac ms WHERE ms.maMauSac = :MaMS ";
         return session.createQuery(hql, MauSac.class).setParameter("MaMS", ma).uniqueResult();
+    }
+
+    @Override
+    public int genMaMauSac() {
+                String maAC = "";
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            String hql = "Select MAX(CONVERT(INT,SUBSTRING(ma,5,100))) from MauSac ";
+            NativeQuery query = session.createNativeQuery(hql);
+            maAC = query.getSingleResult().toString();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        if(maAC == ""){
+            maAC = "1";
+            int ma = Integer.valueOf(maAC);
+            return  ma;
+        }
+        int ma = Integer.valueOf(maAC);
+        return  ++ma;
     }
 
 }
