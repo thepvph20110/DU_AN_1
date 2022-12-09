@@ -11,12 +11,15 @@ import java.awt.event.MouseListener;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import modelview.QLAcount;
+import service.Impl.GiaoCaServiceImpl;
 import views.Home;
 import views.JpnCheckIn;
 import views.JpnDichVu;
 import views.JpnHoaDon;
+import views.JpnKhaiBaoTienDauCa;
 import views.JpnLichDat;
 import views.JpnLichSu;
 import views.JpnQuanLyCa;
@@ -36,11 +39,13 @@ public class HomeController {
     private QLAcount qLAcount;
     private JLabel labelHome;
     private Date ngatTao;
+    private Home home;
 
-    public HomeController(JPanel JPnRoot, QLAcount qLAcount,Date ngayTao) {
+    public HomeController(JPanel JPnRoot, QLAcount qLAcount, Date ngayTao, Home home) {
         this.root = JPnRoot;
         this.qLAcount = qLAcount;
-        this.ngatTao =ngayTao;
+        this.ngatTao = ngayTao;
+        this.home = home;
     }
 
     public HomeController() {
@@ -50,7 +55,7 @@ public class HomeController {
         labelHome = jblItem;
         // mặc định cái được chọn là trang chu jpanel 
         kindSelected = "TrangChu";
-        JpnTrangChu nood = new JpnTrangChu(qLAcount, jblItem, root,ngatTao);
+        JpnTrangChu nood = new JpnTrangChu(qLAcount, jblItem, root, ngatTao);
         root.removeAll();
         root.setLayout(new BorderLayout());
         root.add(nood);
@@ -80,13 +85,13 @@ public class HomeController {
         public void mouseClicked(MouseEvent e) {
             switch (kind) {
                 case "TrangChu":
-                    node = new JpnTrangChu(qLAcount, labelHome, root,ngatTao);
+                    node = new JpnTrangChu(qLAcount, labelHome, root, ngatTao);
                     break;
-                case "LichDat":
-                    node = new JpnLichDat();
-                    break;
+//                case "LichDat":
+//                    node = new JpnKhaiBaoTienDauCa(qLAcount);
+//                    break;
                 case "CheckIn":
-                    node = new JpnCheckIn(qLAcount,root,labelHome,ngatTao);
+                    node = new JpnCheckIn(qLAcount, root, labelHome, ngatTao);
                     break;
                 case "QLSan":
                     node = new JpnQuanLySan();
@@ -95,7 +100,11 @@ public class HomeController {
                     node = new JpnQuanLyCa();
                     break;
                 case "DichVu":
-                    node = new JpnDichVu(qLAcount);
+                    if (new GiaoCaServiceImpl().checkCaTrong(qLAcount.getId()) == true) {
+                        node = new JpnDichVu(qLAcount, home, root, labelHome);
+                    } else {
+                        node = new JpnKhaiBaoTienDauCa(qLAcount, root, labelHome);
+                    }
                     break;
                 case "HoaDon":
                     node = new JpnHoaDon();
