@@ -43,9 +43,13 @@ public class QLDoThue {
     }
 
     public Object[] toData() {
-        return new Object[]{maDoThue, tenDoThue, maMauSac, maKichThuoc, maNhaSanXuat, soLuong, donGia, trangThai};
+        return new Object[]{maDoThue, tenDoThue, maMauSac, maKichThuoc, maNhaSanXuat, soLuong, dinhDang(donGia), trangThai};
     }
-
+    public String dinhDang(double tienTe) {
+        Locale locale = new Locale("vi", "VN");
+        NumberFormat format = NumberFormat.getInstance(locale);
+        return format.format(tienTe);
+    }
     public String dinhDangTienTe(double tienTe) {
         Locale locale = new Locale("vi", "VN");
         NumberFormat format = NumberFormat.getInstance(locale);

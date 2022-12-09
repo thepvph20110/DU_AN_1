@@ -30,4 +30,6 @@ public interface IDoThueRepository {
     boolean saveOrUpdate(DoThue doThue);
 
     boolean delete(String id);
+    
+    int genMaDoThue();
 }

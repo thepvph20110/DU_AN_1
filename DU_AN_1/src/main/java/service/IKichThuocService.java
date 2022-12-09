@@ -20,4 +20,6 @@ public interface IKichThuocService {
     String Delete(KichThuoc kichThuoc);
 
     KichThuoc getOne(String ma);
+    
+    String genMaKichThuoc();
 }

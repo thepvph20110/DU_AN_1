@@ -33,14 +33,7 @@ public class NhaSanXuatServiceImpl implements INhaSanXuatService {
 
     @Override
     public String AddorUpdate(NhaSanXuat nhaSanXuat) {
-        if (mapma.containsKey(nhaSanXuat.getMaNSX())) {
-            return "Trùng Mã";
-        } else if (nhaSanXuat.getMaNSX().isBlank() || nhaSanXuat.getTenNSX().isBlank()) {
-            return "Mã Nhà Sản Xuất - Tên Nhà Sản Xuất ĐANG TRỐNG";
-        }
-        {
-            return nhaSanXuatRepositoryImpl.AddorUpdate(nhaSanXuat);
-        }
+        return nhaSanXuatRepositoryImpl.AddorUpdate(nhaSanXuat);
     }
 
     @Override
@@ -51,6 +44,12 @@ public class NhaSanXuatServiceImpl implements INhaSanXuatService {
     @Override
     public NhaSanXuat getOne(String ma) {
         return nhaSanXuatRepositoryImpl.getOne(ma);
+    }
+
+    @Override
+    public String genMaNSX() {
+        int maAC = nhaSanXuatRepositoryImpl.genMaNSX();
+        return "NSX00"+maAC;
     }
 
 }

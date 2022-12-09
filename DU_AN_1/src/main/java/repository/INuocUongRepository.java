@@ -31,4 +31,6 @@ public interface INuocUongRepository {
     List<NuocUong> findByTenNuocUong(String ten);
     
     List<NuocUong> findByTrangThai(trangThaiNuocUong trangThai);
+    
+    int genMaNuocUong();
 }

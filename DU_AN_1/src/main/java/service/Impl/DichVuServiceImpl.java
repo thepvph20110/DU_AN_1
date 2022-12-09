@@ -214,4 +214,10 @@ public class DichVuServiceImpl implements IDichVuService {
         }
         return listQLDichVu;
     }
+
+    @Override
+    public String genMaDichVu() {
+        int maDV = dichVuRepositoryImpl.genMaDichVu();
+        return "DV00"+maDV;
+    }
 }

@@ -18,6 +18,8 @@ public interface IKichThuocRepository {
     String AddorUpdate(KichThuoc kichThuoc);
 
     String Delete(KichThuoc kichThuoc);
-    
+
     KichThuoc getOne(String ma);
+
+    int genMaKicThuoc();
 }
