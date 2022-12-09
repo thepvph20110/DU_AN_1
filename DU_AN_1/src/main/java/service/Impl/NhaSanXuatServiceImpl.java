@@ -33,14 +33,7 @@ public class NhaSanXuatServiceImpl implements INhaSanXuatService {
 
     @Override
     public String AddorUpdate(NhaSanXuat nhaSanXuat) {
-        if (mapma.containsKey(nhaSanXuat.getMaNSX())) {
-            return "Trùng Mã";
-        } else if (nhaSanXuat.getMaNSX().isBlank() || nhaSanXuat.getTenNSX().isBlank()) {
-            return "Mã Nhà Sản Xuất - Tên Nhà Sản Xuất ĐANG TRỐNG";
-        }
-        {
-            return nhaSanXuatRepositoryImpl.AddorUpdate(nhaSanXuat);
-        }
+        return nhaSanXuatRepositoryImpl.AddorUpdate(nhaSanXuat);
     }
 
     @Override
