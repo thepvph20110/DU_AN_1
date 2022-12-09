@@ -29,6 +29,7 @@ public class MauSac_JFrame extends javax.swing.JFrame {
         initComponents();
         loadData();
         txtMa.setEditable(false);
+        this.setTitle("Quản Lý Màu Sắc");
     }
 
     private void showData(List<MauSac> list) {

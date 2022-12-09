@@ -30,6 +30,7 @@ public class KichThuoc_JFrame extends javax.swing.JFrame {
         loadData();
         txtSize.setText("0");
         txtMa.setEditable(false);
+        this.setTitle("Quản Lý Kích Thước");
     }
 
     private void showData(List<KichThuoc> list) {
