@@ -100,6 +100,14 @@ public class JpnQuanLySan extends javax.swing.JPanel {
         }
         if (maSanBong.length() == 0 || tenSanBong.length() == 0 || giaSan.length() == 0 || sucChua.length() == 0) {
             JOptionPane.showMessageDialog(this, "IsEmpty");
+        } else if (sucChua.matches("^[a-zA-Z]+$")) {
+            JOptionPane.showMessageDialog(this, "Suc chua la so");
+        } else if (giaSan.matches("^[a-zA-Z]+$")) {
+            JOptionPane.showMessageDialog(this, "Gia San la so");
+        } else if ((Double.valueOf(giaSan) <= 0)) {
+            JOptionPane.showMessageDialog(this, "Gia san sai dinh dang");
+        } else if ((Integer.valueOf(sucChua) <= 0)) {
+            JOptionPane.showMessageDialog(this, "Suc chua sai dinh dang");
         } else {
             LoaiSan loaiSan = iLoaiSanService.getOne(cbbLoaiSan.getSelectedItem().toString());
             SanBong sanBong = new SanBong(id, maSanBong, tenSanBong, Double.valueOf(giaSan), Integer.valueOf(sucChua), loaiSan, qlsb.getTrangThai());
@@ -128,7 +136,7 @@ public class JpnQuanLySan extends javax.swing.JPanel {
         if (jTable1.getSelectedRow() < 0) {
             JOptionPane.showMessageDialog(this, "Selected Row ???");
         } else {
-
+            
             QLSanBong qLSanBong = new QLSanBong(mountClick().getId(), maSanBong, tenSanBong, Double.valueOf(giaSan), Integer.valueOf(sucChua), cbbLoaiSan.getSelectedItem().toString(), qlsb.getTrangThai());
             JOptionPane.showMessageDialog(this, iSanBongService.update(qLSanBong));
             listQLSanBong = iSanBongService.getAll();

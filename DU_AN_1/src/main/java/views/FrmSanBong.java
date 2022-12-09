@@ -139,8 +139,10 @@ public class FrmSanBong extends javax.swing.JFrame {
         buttonGroup1.add(radioHoatDong);
         radioHoatDong.setText("Hoạt động");
 
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setText("Search");
 
+        txtSearch.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtSearchKeyReleased(evt);
@@ -353,11 +355,15 @@ public class FrmSanBong extends javax.swing.JFrame {
         }
         if (maSanBong.length() == 0 || tenSanBong.length() == 0 || giaSan.length() == 0 || sucChua.length() == 0) {
             JOptionPane.showMessageDialog(this, "IsEmpty");
-        } else if ((Integer.valueOf(giaSan) <= 0)) {
+        } else if (sucChua.matches("^[a-zA-Z]+$")) {
+            JOptionPane.showMessageDialog(this, "Suc chua la so");
+        } else if (giaSan.matches("^[a-zA-Z]+$")) {
+            JOptionPane.showMessageDialog(this, "Gia San la so");
+        } else if ((Double.valueOf(giaSan) <= 0)) {
             JOptionPane.showMessageDialog(this, "Gia san sai dinh dang");
         } else if ((Integer.valueOf(sucChua) <= 0)) {
             JOptionPane.showMessageDialog(this, "Suc chua sai dinh dang");
-        }else {
+        } else {
             QLSanBong qLSanBong = new QLSanBong(null, maSanBong, tenSanBong, Double.valueOf(giaSan), Integer.valueOf(sucChua), cbbLoaiSan.getSelectedItem().toString(), qlsb.getTrangThai());
             JOptionPane.showMessageDialog(this, iSanBongService.save(qLSanBong));
             listQLSanBong = iSanBongService.getAll();
@@ -379,28 +385,37 @@ public class FrmSanBong extends javax.swing.JFrame {
         }
         if (jTable1.getSelectedRow() < 0) {
             JOptionPane.showMessageDialog(this, "Selected Row ???");
-        }else if(maSanBong.length() == 0 || tenSanBong.length() == 0 || giaSan.length() == 0 || sucChua.length() == 0) {
-            JOptionPane.showMessageDialog(this, "IsEmpty");
-        } else if ((Double.valueOf(giaSan) <= 0)) {
-            JOptionPane.showMessageDialog(this, "Gia san sai dinh dang");
-        } else if ((Integer.valueOf(sucChua) <= 0)) {
-            JOptionPane.showMessageDialog(this, "Suc chua sai dinh dang");
-        }else {
+        } else {
+            if (maSanBong.length() == 0 || tenSanBong.length() == 0 || giaSan.length() == 0 || sucChua.length() == 0) {
+                JOptionPane.showMessageDialog(this, "IsEmpty");
+            } else if (sucChua.matches("^[a-zA-Z]+$")) {
+                JOptionPane.showMessageDialog(this, "Suc chua la so");
+            } else if (giaSan.matches("^[a-zA-Z]+$")) {
+                JOptionPane.showMessageDialog(this, "Gia San la so");
+            } else if ((Double.valueOf(giaSan) <= 0)) {
+                JOptionPane.showMessageDialog(this, "Gia san sai dinh dang");
+            } else if ((Integer.valueOf(sucChua) <= 0)) {
+                JOptionPane.showMessageDialog(this, "Suc chua sai dinh dang");
+            } else {
 
-            QLSanBong qLSanBong = new QLSanBong(mountClick().getId(), maSanBong, tenSanBong, Double.valueOf(giaSan), Integer.valueOf(sucChua), cbbLoaiSan.getSelectedItem().toString(), qlsb.getTrangThai());
-            JOptionPane.showMessageDialog(this, iSanBongService.update(qLSanBong));
-            listQLSanBong = iSanBongService.getAll();
-            showData(listQLSanBong);
+                QLSanBong qLSanBong = new QLSanBong(mountClick().getId(), maSanBong, tenSanBong, Double.valueOf(giaSan), Integer.valueOf(sucChua), cbbLoaiSan.getSelectedItem().toString(), qlsb.getTrangThai());
+                JOptionPane.showMessageDialog(this, iSanBongService.update(qLSanBong));
+                listQLSanBong = iSanBongService.getAll();
+                showData(listQLSanBong);
 
+            }
         }
 
     }
 
     private void delete() {
-        JOptionPane.showMessageDialog(this, iSanBongService.delete(mountClick()));
-        listQLSanBong = iSanBongService.getAll();
-        showData(listQLSanBong);
-
+        if (jTable1.getSelectedRow() < 0) {
+            JOptionPane.showMessageDialog(this, "Selected Row ???");
+        } else {
+            JOptionPane.showMessageDialog(this, iSanBongService.delete(mountClick()));
+            listQLSanBong = iSanBongService.getAll();
+            showData(listQLSanBong);
+        }
     }
 
     private void fillData(int index) {

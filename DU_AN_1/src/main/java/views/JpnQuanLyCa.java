@@ -61,7 +61,7 @@ public class JpnQuanLyCa extends javax.swing.JPanel {
     private void fillData(int index) {
         QLCa qLCa = listQLCa.get(index);
         txtGiaCa.setText(String.valueOf(qLCa.getGiaCa()));
-        txtMaCa.setText(qLCa.getTenCa());
+        txtMaCa.setText(qLCa.getMaCa());
         txtTenCa.setText(qLCa.getTenCa());
         txtTGKetThuc.setText(String.valueOf(qLCa.getThoiGianKetThuc()));
         txtThoiGianBD.setText(String.valueOf(qLCa.getThoiGianBatDau()));
@@ -86,10 +86,12 @@ public class JpnQuanLyCa extends javax.swing.JPanel {
         }
         if (maCa.length() == 0 || tenCa.length() == 0 || thoiGianBatDau.length() == 0 || thoiGianKetThuc.length() == 0 || gia.length() == 0) {
             JOptionPane.showMessageDialog(this, "IsEmpty");
-        } else if (!gia.matches("^[0-9]+$")) {
-            JOptionPane.showMessageDialog(this, "Please enter number Gia");
+        } else if (gia.matches("^[a-zA-Z]+$")) {
+            JOptionPane.showMessageDialog(this, "Gia la so");
         } else if (!thoiGianBatDau.matches("^\\d{2}:\\d{2}:\\d{2}$") || !thoiGianKetThuc.matches("^\\d{2}:\\d{2}:\\d{2}$")) {
             JOptionPane.showMessageDialog(this, "Incorrect format time (hh:mm:ss)");
+        } else if ((Double.valueOf(gia) <= 0)) {
+            JOptionPane.showMessageDialog(this, "Gia san sai dinh dang");
         } else {
             QLCa qLCa = new QLCa(null, maCa, tenCa, Time.valueOf(thoiGianBatDau), Time.valueOf(thoiGianKetThuc), Double.valueOf(gia), qlCa.getTrangThai());
             JOptionPane.showMessageDialog(this, ics.save(qLCa));
@@ -113,10 +115,12 @@ public class JpnQuanLyCa extends javax.swing.JPanel {
         }
         if (maCa.length() == 0 || tenCa.length() == 0 || thoiGianBatDau.length() == 0 || thoiGianKetThuc.length() == 0 || gia.length() == 0) {
             JOptionPane.showMessageDialog(this, "IsEmpty");
-        } else if (!gia.matches("^[0-9]+$")) {
-            JOptionPane.showMessageDialog(this, "Please enter number Gia");
+        } else if (gia.matches("^[a-zA-Z]+$")) {
+            JOptionPane.showMessageDialog(this, "Gia la so");
         } else if (!thoiGianBatDau.matches("^\\d{2}:\\d{2}:\\d{2}$") || !thoiGianKetThuc.matches("^\\d{2}:\\d{2}:\\d{2}$")) {
             JOptionPane.showMessageDialog(this, "Incorrect format time (hh:mm:ss)");
+        } else if ((Double.valueOf(gia) <= 0)) {
+            JOptionPane.showMessageDialog(this, "Gia san sai dinh dang");
         } else {
             Ca ca = new Ca(id, maCa, tenCa, Time.valueOf(thoiGianBatDau), Time.valueOf(thoiGianKetThuc), Double.valueOf(gia), qlCa.getTrangThai());
             JOptionPane.showMessageDialog(this, ics.saveNewCa(ca));
@@ -149,6 +153,10 @@ public class JpnQuanLyCa extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "IsEmpty");
             } else if (!thoiGianBatDau.matches("^\\d{2}:\\d{2}:\\d{2}$") || !thoiGianKetThuc.matches("^\\d{2}:\\d{2}:\\d{2}$")) {
                 JOptionPane.showMessageDialog(this, "Incorrect format time (hh:mm:ss)");
+            } else if (gia.matches("^[a-zA-Z]+$")) {
+                JOptionPane.showMessageDialog(this, "Gia la so");
+            } else if ((Double.valueOf(gia) <= 0)) {
+                JOptionPane.showMessageDialog(this, "Gia san sai dinh dang");
             } else {
                 QLCa qLCa = new QLCa(mountClick().getId(), maCa, tenCa, Time.valueOf(thoiGianBatDau), Time.valueOf(thoiGianKetThuc), Double.valueOf(gia), qlCa.getTrangThai());
                 JOptionPane.showMessageDialog(this, ics.update(qLCa));
