@@ -24,7 +24,7 @@ public interface IAcountRepository {
 
     boolean delete(String id);
 
-    String genMaAccount();
+    int genMaAccount();
 
     Acount getByUseNameAndPass(String tenAccount, String matKhau);
 }
