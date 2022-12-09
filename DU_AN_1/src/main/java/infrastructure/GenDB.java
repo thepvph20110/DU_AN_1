@@ -61,64 +61,64 @@ public class GenDB {
 
             //Gen Nha San Xuat
             NhaSanXuat nsx1 = new NhaSanXuat();
-            nsx1.setMaNSX("NSX01");
+            nsx1.setMaNSX("NSX001");
             nsx1.setTenNSX("Nike");
             session.save(nsx1);
 
             NhaSanXuat nsx2 = new NhaSanXuat();
-            nsx2.setMaNSX("NSX02");
+            nsx2.setMaNSX("NSX002");
             nsx2.setTenNSX("Adidas");
             session.save(nsx2);
 
             NhaSanXuat nsx3 = new NhaSanXuat();
-            nsx3.setMaNSX("NSX03");
+            nsx3.setMaNSX("NSX003");
             nsx3.setTenNSX("Puma");
             session.save(nsx3);
 
             NhaSanXuat nsx4 = new NhaSanXuat();
-            nsx4.setMaNSX("NSX04");
+            nsx4.setMaNSX("NSX004");
             nsx4.setTenNSX("Anta");
             session.save(nsx4);
 
             //Gen Mau Sac
             MauSac ms1 = new MauSac();
-            ms1.setMaMauSac("MS01");
+            ms1.setMaMauSac("MS001");
             ms1.setTenMauSac("Đỏ");
             session.save(ms1);
 
             MauSac ms2 = new MauSac();
-            ms2.setMaMauSac("MS02");
+            ms2.setMaMauSac("MS002");
             ms2.setTenMauSac("Vàng");
             session.save(ms2);
 
             MauSac ms3 = new MauSac();
-            ms3.setMaMauSac("MS03");
+            ms3.setMaMauSac("MS003");
             ms3.setTenMauSac("Trắng");
             session.save(ms3);
 
             MauSac ms4 = new MauSac();
-            ms4.setMaMauSac("MS04");
+            ms4.setMaMauSac("MS004");
             ms4.setTenMauSac("Xanh");
             session.save(ms4);
 
             //Gen Size
             KichThuoc kt = new KichThuoc();
-            kt.setMaSize("KT01");
+            kt.setMaSize("KT001");
             kt.setSize(42);
             session.save(kt);
 
             KichThuoc kt2 = new KichThuoc();
-            kt2.setMaSize("KT02");
+            kt2.setMaSize("KT002");
             kt2.setSize(43);
             session.save(kt2);
 
             KichThuoc kt3 = new KichThuoc();
-            kt3.setMaSize("KT03");
+            kt3.setMaSize("KT003");
             kt3.setSize(41);
             session.save(kt3);
 
             KichThuoc kt4 = new KichThuoc();
-            kt4.setMaSize("KT04");
+            kt4.setMaSize("KT004");
             kt4.setSize(40);
             session.save(kt4);
 
@@ -466,13 +466,13 @@ public class GenDB {
 
             //Gen Chức Vụ
             ChucVu cv1 = new ChucVu();
-            cv1.setMaChucVu("CV1");
+            cv1.setMaChucVu("CV001");
             cv1.setTenChucVu("Chủ Sân");
             cv1.setTrangThai(trangThaiChucVu.HOAT_DONG);
             session.save(cv1);
 
             ChucVu cv2 = new ChucVu();
-            cv2.setMaChucVu("CV2");
+            cv2.setMaChucVu("CV002");
             cv2.setTenChucVu("Quản Lý Sân");
             cv2.setTrangThai(trangThaiChucVu.HOAT_DONG);
             session.save(cv2);

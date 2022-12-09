@@ -52,6 +52,8 @@ import service.Impl.SanCaServiceImpl;
 import java.io.File;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import service.IThongKeService;
+import service.Impl.ThongKeServiceImpl;
 
 /**
  *
@@ -81,19 +83,20 @@ public class JpnTrangChu extends javax.swing.JPanel {
     private Clip clip;
     private Date ngayTao = new Date();
     private SimpleDateFormat sdf = new SimpleDateFormat("dd / MM / yyyy");
+    private IThongKeService thongKeService = new ThongKeServiceImpl();
 
     /**
      * Creates new form TrangChuJPanel
      */
     public JpnTrangChu(QLAcount qLAcount, JLabel lbHome, JPanel pnTong, Date ngatTao) {
         initComponents();
-        this.ngayTao= ngatTao;
+        this.ngayTao = ngatTao;
         listSanCa = sanCaService.getAll(ngayTao);
         listSanBong = sanBongService.getAll();
         this.qLAcount = qLAcount;
         labelHome = lbHome;
         this.pnTong = pnTong;
-        txtNgay.setText("Ngày: "+ sdf.format(ngatTao));
+        txtNgay.setText("Ngày: " + sdf.format(ngatTao));
         AddSan();
         for (QLSanCa qLSanCa : listSanCa) {
             mapSanCa.put(qLSanCa.getId(), qLSanCa);
@@ -101,6 +104,7 @@ public class JpnTrangChu extends javax.swing.JPanel {
         for (QLHoaDon qLHoaDon : hoaDonService.getAllByTrangThai()) {
             mapQLHoaDon.put(qLHoaDon.getPhieuDatLich().getId(), qLHoaDon);
         }
+        lbTongTien.setText(decimalFormat.format(thongKeService.getTongTienNgayHienTai(ngayTao)) + " " + "Vnd");
     }
 
     private void showThanhToan(String id) {
@@ -205,7 +209,7 @@ public class JpnTrangChu extends javax.swing.JPanel {
                     itemDoiLichDat.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            new FrmDoiLichDat(datLich, qLAcount, pnTong, labelHome,ngayTao).setVisible(true);
+                            new FrmDoiLichDat(datLich, qLAcount, pnTong, labelHome, ngayTao).setVisible(true);
                             jPopupMenu.setVisible(false);
                         }
                     });
@@ -291,7 +295,7 @@ public class JpnTrangChu extends javax.swing.JPanel {
                 qLAcount.getMatKhau(), qLAcount.getMoTa(), qLAcount.getTrangThai());
         QLSanCa qLSanCa = mapSanCa.get(idSanCa);
         QLKhachHang khachHang = new QLKhachHang();
-        new FrmPhieuDatLich(khachHang, qLSanCa, acount, labelHome, pnTong,ngayTao).setVisible(true);
+        new FrmPhieuDatLich(khachHang, qLSanCa, acount, labelHome, pnTong, ngayTao).setVisible(true);
     }
 
     /**
@@ -307,6 +311,8 @@ public class JpnTrangChu extends javax.swing.JPanel {
         panelTong = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         txtNgay = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        lbTongTien = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -328,6 +334,12 @@ public class JpnTrangChu extends javax.swing.JPanel {
         txtNgay.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         txtNgay.setText("Ngày: ");
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("Tổng tiền trong ngày:");
+
+        lbTongTien.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lbTongTien.setText("jLabel2");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -335,13 +347,20 @@ public class JpnTrangChu extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(txtNgay, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(195, 195, 195)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(lbTongTien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txtNgay, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNgay, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(lbTongTien))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -364,8 +383,10 @@ public class JpnTrangChu extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbTongTien;
     private javax.swing.JPanel panelTong;
     private javax.swing.JLabel txtNgay;
     // End of variables declaration//GEN-END:variables
