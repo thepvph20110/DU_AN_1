@@ -4,17 +4,27 @@
  */
 package views;
 
+import controller.HomeController;
+import domainModel.GiaoCa;
+import domainmodel.Acount;
+import enumclass.trangThaiGiaoCa;
 import java.awt.Color;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
+import modelview.QLAcount;
+import service.IGiaoCaService;
+import service.Impl.GiaoCaServiceImpl;
+import utill.MaRanDom;
 
 /**
  *
@@ -22,14 +32,21 @@ import javax.swing.JTextField;
  */
 public class JpnKhaiBaoTienDauCa extends javax.swing.JPanel {
 
-    /**
-     * Creates new form jpnKhaiBaoTienDauCa
-     */
-    public JpnKhaiBaoTienDauCa() {
+    private QLAcount qLAcount;
+    private IGiaoCaService giaoCaService = new GiaoCaServiceImpl();
+    private JPanel pnTOng;
+    private JLabel lableHome;
+
+    public JpnKhaiBaoTienDauCa(QLAcount qLAcount, JPanel pnTOng, JLabel lableHome) {
         initComponents();
+        this.qLAcount = qLAcount;
+        this.lableHome = lableHome;
+        this.pnTOng = pnTOng;
         lbMenhGia.setBackground(new Color(160, 132, 157));
         labelSoLuong.setBackground(new Color(160, 132, 157));
         labelThanhTien.setBackground(new Color(160, 132, 157));
+        lbTenNv.setText(qLAcount.getTenAcount());
+        lbGioVaoCa.setText(String.valueOf(gioNhanCa()));
 
     }
 
@@ -154,6 +171,11 @@ public class JpnKhaiBaoTienDauCa extends javax.swing.JPanel {
         txt500.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt500ActionPerformed(evt);
+            }
+        });
+        txt500.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt500KeyTyped(evt);
             }
         });
 
@@ -387,7 +409,7 @@ public class JpnKhaiBaoTienDauCa extends javax.swing.JPanel {
 
         lbTenNv.setText("jLabel3");
 
-        jLabel3.setText("Giờ vào ca:");
+        jLabel3.setText("Giờ hiện tại:");
 
         lbGioVaoCa.setText("jLabel4");
 
@@ -411,7 +433,7 @@ public class JpnKhaiBaoTienDauCa extends javax.swing.JPanel {
                         .addGap(27, 27, 27)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbTenNv, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbGioVaoCa, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(lbGioVaoCa, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -511,9 +533,17 @@ public class JpnKhaiBaoTienDauCa extends javax.swing.JPanel {
     }//GEN-LAST:event_txt1ActionPerformed
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        gioNhanCa();
-        tienBanDau();
+        Acount acount = new Acount();
+        acount.setId(qLAcount.getId());
+        GiaoCa giaoCa = new GiaoCa(null, new MaRanDom().genMa("GiaoCa"), new Date(), null, qLAcount.getId(), null, Float.valueOf(txtTongTien.getText()), 0, 0, 0, " ", 0, null, acount, 0, trangThaiGiaoCa.NHAN_CA);
+        JOptionPane.showMessageDialog(null, giaoCaService.NhanCa(giaoCa));
+        HomeController controller = new HomeController(pnTOng, qLAcount, new Date(), null);
+        controller.setView(lableHome);
     }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void txt500KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt500KeyTyped
+        tinhTien(500000, txt500.getText(), lbTT500);
+    }//GEN-LAST:event_txt500KeyTyped
     public Date gioNhanCa() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy - hh:mm:ss a");
         return new Timestamp(new Date().getTime());

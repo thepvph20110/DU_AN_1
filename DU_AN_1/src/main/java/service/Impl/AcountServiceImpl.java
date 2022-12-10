@@ -76,7 +76,7 @@ public class AcountServiceImpl implements IAcountService {
     @Override
     public String genMaAccount() {
         int maAC = acountRepo.genMaAccount();
-        return "AC00"+maAC;
+        return "AC00" + maAC;
     }
 
     @Override
@@ -92,6 +92,11 @@ public class AcountServiceImpl implements IAcountService {
             ChucVu chucVu = acount.getChucVu();
             return new QLAcount(acount.getId(), acount.getMaAcount(), acount.getTenAcount(), chucVu, acount.getMatKhau(), acount.getMoTa(), acount.getTrangThai());
         }
+    }
+
+    @Override
+    public Acount getOneByNameAcount(String ten) {
+        return acountRepo.getOneByNameAcount(ten);
     }
 
 }

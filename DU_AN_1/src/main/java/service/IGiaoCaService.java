@@ -4,6 +4,7 @@
  */
 package service;
 
+import domainModel.GiaoCa;
 import java.util.Date;
 import java.util.List;
 import modelview.QLGiaoCa;
@@ -17,9 +18,23 @@ public interface IGiaoCaService {
 
     QLGiaoCa getOne(String ma);
 
-    String saveOrUpdate(QLGiaoCa qLGiaoCa);
+    String NhanCa(GiaoCa giaoCa);
 
-    List<TongTienMatGiaoCa> getTongTienMatHienTai(Date thoiGianNhanCa,Date thoiGianCuoiCa);
+    String GiaoCa(GiaoCa giaoCa);
 
-    List<TongTienMatGiaoCa> getTongTienKhacHienTai(Date thoiGianNhanCa,Date thoiGianCuoiCa);
+    GiaoCa getOneByIdNV(String id);
+
+    double tongTienCaHienTaiByIdNV(String id);
+
+    int tongHoaDOnDaTT(String id);
+
+    int tongHoaDOnChuaTT(String id);
+
+    double tongTienNganHang(String id);
+
+    boolean checkCaTrong(String idNhanVienTrongCa);
+
+    GiaoCa checkCoNhanVIenKo();
+
+    GiaoCa getOneGiaoCaByIdAndTrangThai(String id);
 }

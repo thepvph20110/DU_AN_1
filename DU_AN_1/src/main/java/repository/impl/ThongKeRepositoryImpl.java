@@ -105,11 +105,9 @@ public class ThongKeRepositoryImpl implements IThongKeRepository {
             Date gioCuoi = cuoi.parse(gC);
             String sql = "select SUM(hd.tongTien) AS TongTien from HoaDon hd Where hd.ngayThanhToan between :gioDau and :gioCuoi";
             listhienTais = (Double) session.createSQLQuery(sql).setParameter("gioDau", gioDau).setParameter("gioCuoi", gC).getSingleResult();
-
             return listhienTais;
         } catch (Exception e) {
-            e.printStackTrace();
-            return 1.1;
+            return 0;
         }
 
     }

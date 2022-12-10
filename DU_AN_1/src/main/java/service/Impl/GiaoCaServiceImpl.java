@@ -30,18 +30,57 @@ public class GiaoCaServiceImpl implements IGiaoCaService {
     }
 
     @Override
-    public String saveOrUpdate(QLGiaoCa qLGiaoCa) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public String NhanCa(GiaoCa giaoCa) {
+        return giaoCaRepo.NhanCa(giaoCa);
     }
 
     @Override
-    public List<TongTienMatGiaoCa> getTongTienMatHienTai(Date thoiGianNhanCa, Date thoiGianCuoiCa) {
-        return giaoCaRepo.getTongTienMatHienTai(thoiGianNhanCa, thoiGianNhanCa);
+    public GiaoCa getOneByIdNV(String id) {
+        return giaoCaRepo.getOneGiaoCaById(id);
     }
 
     @Override
-    public List<TongTienMatGiaoCa> getTongTienKhacHienTai(Date thoiGianNhanCa, Date thoiGianCuoiCa) {
-        return giaoCaRepo.getTongTienKhacHienTai(thoiGianNhanCa, thoiGianNhanCa);
+    public double tongTienCaHienTaiByIdNV(String id) {
+        return giaoCaRepo.tongTienCaHienTaiByIdNV(id);
+    }
+
+    @Override
+    public int tongHoaDOnDaTT(String id) {
+        return giaoCaRepo.tongHoaDOnDaTT(id);
+    }
+
+    @Override
+    public int tongHoaDOnChuaTT(String id) {
+        return giaoCaRepo.tongHoaDOnChuaTT(id);
+    }
+
+    @Override
+    public double tongTienNganHang(String id) {
+        return giaoCaRepo.tongTienNganHang(id);
+    }
+
+    @Override
+    public String GiaoCa(GiaoCa giaoCa) {
+        return giaoCaRepo.GiaoCa(giaoCa);
+    }
+
+    @Override
+    public boolean checkCaTrong(String idNhanVienTrongCa) {
+        if (giaoCaRepo.checkCaTrong(idNhanVienTrongCa).size() == 0) {
+            return false;
+        }
+        return true;
+
+    }
+
+    @Override
+    public GiaoCa checkCoNhanVIenKo() {
+        return giaoCaRepo.checkCoNhanVIenKo();
+    }
+
+    @Override
+    public GiaoCa getOneGiaoCaByIdAndTrangThai(String id) {
+        return giaoCaRepo.getOneGiaoCaByIdAndTrangThai(id);
     }
 
 }
