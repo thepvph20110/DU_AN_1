@@ -91,7 +91,11 @@ public class HomeController {
 //                    node = new JpnKhaiBaoTienDauCa(qLAcount);
 //                    break;
                 case "CheckIn":
-                    node = new JpnCheckIn(qLAcount, root, labelHome, ngatTao);
+                    if (new GiaoCaServiceImpl().getOneGiaoCaByIdAndTrangThai(qLAcount.getId()) == null) {
+                        JOptionPane.showMessageDialog(null, "Vui lòng nhận ca!");
+                    } else {
+                        node = new JpnCheckIn(qLAcount, root, labelHome, ngatTao);
+                    }
                     break;
                 case "QLSan":
                     node = new JpnQuanLySan();

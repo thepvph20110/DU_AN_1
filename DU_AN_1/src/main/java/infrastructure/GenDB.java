@@ -740,61 +740,61 @@ public class GenDB {
 //            pphd3.setHoaDon(hd3);
 //            session.save(pphd3);
 //
-            //Giao ca 1
-            GiaoCa giaoCa1 = new GiaoCa();
-            giaoCa1.setMa("GC001");
-            giaoCa1.setIdAcount(acc1);
-            giaoCa1.setIdNhanVienCaTiepTheo(acc2.getId());
-            giaoCa1.setIdNhanVienTrongCa(acc1.getId());
-            giaoCa1.setGhiChuPhatSinh("oke");
-            giaoCa1.setThoiGianNhanCa(new Date());
-            giaoCa1.setThoiGianGiaoCa(new Date());
-            giaoCa1.setThoiGianReset(new Date());
-            giaoCa1.setTienBanDau(100);
-            giaoCa1.setTongTienKhac(200);
-            giaoCa1.setTongTienMat(150);
-            giaoCa1.setTongTienMatCaTruoc(50);
-            giaoCa1.setTongTienMatRut(50);
-            giaoCa1.setTongTienTrongCa(100);
-            giaoCa1.setTrangThai(trangThaiGiaoCa.NHAN_CA);
-            session.save(giaoCa1);
-
-            //Giao ca 2
-            GiaoCa giaoCa2 = new GiaoCa();
-            giaoCa2.setMa("GC002");
-            giaoCa2.setIdAcount(acc2);
-            giaoCa2.setIdNhanVienCaTiepTheo(acc3.getId());
-            giaoCa2.setIdNhanVienTrongCa(acc2.getId());
-            giaoCa2.setGhiChuPhatSinh("oke");
-            giaoCa2.setThoiGianNhanCa(new Date());
-            giaoCa2.setThoiGianGiaoCa(new Date());
-            giaoCa2.setThoiGianReset(new Date());
-            giaoCa2.setTienBanDau(300);
-            giaoCa2.setTongTienKhac(50);
-            giaoCa2.setTongTienMat(400);
-            giaoCa2.setTongTienMatCaTruoc(300);
-            giaoCa2.setTongTienMatRut(100);
-            giaoCa2.setTongTienTrongCa(100);
-            giaoCa2.setTrangThai(trangThaiGiaoCa.NHAN_CA);
-            session.save(giaoCa2);
-            //Giao ca 3
-            GiaoCa giaoCa3 = new GiaoCa();
-            giaoCa3.setMa("GC003");
-            giaoCa3.setIdAcount(acc3);
-            giaoCa3.setIdNhanVienCaTiepTheo(acc1.getId());
-            giaoCa3.setIdNhanVienTrongCa(acc3.getId());
-            giaoCa3.setGhiChuPhatSinh("oke");
-            giaoCa3.setThoiGianNhanCa(new Date());
-            giaoCa3.setThoiGianGiaoCa(new Date());
-            giaoCa3.setThoiGianReset(new Date());
-            giaoCa3.setTienBanDau(300);
-            giaoCa3.setTongTienKhac(50);
-            giaoCa3.setTongTienMat(400);
-            giaoCa3.setTongTienMatCaTruoc(300);
-            giaoCa3.setTongTienMatRut(100);
-            giaoCa3.setTongTienTrongCa(100);
-            giaoCa3.setTrangThai(trangThaiGiaoCa.NHAN_CA);
-            session.save(giaoCa3);
+//            //Giao ca 1
+//            GiaoCa giaoCa1 = new GiaoCa();
+//            giaoCa1.setMa("GC001");
+//            giaoCa1.setIdAcount(acc1);
+//            giaoCa1.setIdNhanVienCaTiepTheo(acc2.getId());
+//            giaoCa1.setIdNhanVienTrongCa(acc1.getId());
+//            giaoCa1.setGhiChuPhatSinh("oke");
+//            giaoCa1.setThoiGianNhanCa(new Date());
+//            giaoCa1.setThoiGianGiaoCa(new Date());
+//            giaoCa1.setThoiGianReset(new Date());
+//            giaoCa1.setTienBanDau(100);
+//            giaoCa1.setTongTienKhac(200);
+//            giaoCa1.setTongTienMat(150);
+//            giaoCa1.setTongTienMatCaTruoc(50);
+//            giaoCa1.setTongTienMatRut(50);
+//            giaoCa1.setTongTienTrongCa(100);
+//            giaoCa1.setTrangThai(trangThaiGiaoCa.NHAN_CA);
+//            session.save(giaoCa1);
+//
+//            //Giao ca 2
+//            GiaoCa giaoCa2 = new GiaoCa();
+//            giaoCa2.setMa("GC002");
+//            giaoCa2.setIdAcount(acc2);
+//            giaoCa2.setIdNhanVienCaTiepTheo(acc3.getId());
+//            giaoCa2.setIdNhanVienTrongCa(acc2.getId());
+//            giaoCa2.setGhiChuPhatSinh("oke");
+//            giaoCa2.setThoiGianNhanCa(new Date());
+//            giaoCa2.setThoiGianGiaoCa(new Date());
+//            giaoCa2.setThoiGianReset(new Date());
+//            giaoCa2.setTienBanDau(300);
+//            giaoCa2.setTongTienKhac(50);
+//            giaoCa2.setTongTienMat(400);
+//            giaoCa2.setTongTienMatCaTruoc(300);
+//            giaoCa2.setTongTienMatRut(100);
+//            giaoCa2.setTongTienTrongCa(100);
+//            giaoCa2.setTrangThai(trangThaiGiaoCa.NHAN_CA);
+//            session.save(giaoCa2);
+//            //Giao ca 3
+//            GiaoCa giaoCa3 = new GiaoCa();
+//            giaoCa3.setMa("GC003");
+//            giaoCa3.setIdAcount(acc3);
+//            giaoCa3.setIdNhanVienCaTiepTheo(acc1.getId());
+//            giaoCa3.setIdNhanVienTrongCa(acc3.getId());
+//            giaoCa3.setGhiChuPhatSinh("oke");
+//            giaoCa3.setThoiGianNhanCa(new Date());
+//            giaoCa3.setThoiGianGiaoCa(new Date());
+//            giaoCa3.setThoiGianReset(new Date());
+//            giaoCa3.setTienBanDau(300);
+//            giaoCa3.setTongTienKhac(50);
+//            giaoCa3.setTongTienMat(400);
+//            giaoCa3.setTongTienMatCaTruoc(300);
+//            giaoCa3.setTongTienMatRut(100);
+//            giaoCa3.setTongTienTrongCa(100);
+//            giaoCa3.setTrangThai(trangThaiGiaoCa.NHAN_CA);
+//            session.save(giaoCa3);
             // db generator : gen bảng tự động
             trans.commit();
         } catch (Exception e) {
