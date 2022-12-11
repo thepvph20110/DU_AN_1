@@ -29,6 +29,7 @@ public class ChucVuView extends javax.swing.JFrame {
      */
     public ChucVuView() {
         initComponents();
+        txtMaCV.setEnabled(false);
         jTable1.setModel(dtm);
         String headers[] = {"Mã Chức Vụ", "Tên Chức Vụ"};
         dtm.setColumnIdentifiers(headers);
@@ -194,7 +195,7 @@ public class ChucVuView extends javax.swing.JFrame {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
-        QLChucVu qLChucVu = new QLChucVu(null, txtMaCV.getText(), txtTenCV.getText(), trangThaiChucVu.HOAT_DONG);
+        QLChucVu qLChucVu = new QLChucVu(null, new ChucVuServiceImpl().genMaChucVu(), txtTenCV.getText(), trangThaiChucVu.HOAT_DONG);
         JOptionPane.showMessageDialog(rootPane, chucVuService.save(qLChucVu));
         addToRow(chucVuService.getAll());
     }//GEN-LAST:event_btnThemActionPerformed
