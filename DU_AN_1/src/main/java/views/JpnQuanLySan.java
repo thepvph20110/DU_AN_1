@@ -214,7 +214,7 @@ public class JpnQuanLySan extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        setBackground(new java.awt.Color(13, 180, 185));
+        setBackground(new java.awt.Color(186, 228, 229));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("QUẢN LÝ SÂN BÓNG");
@@ -447,7 +447,6 @@ public class JpnQuanLySan extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JRadioButton radioHoatDong;
     private javax.swing.JRadioButton radioSuaChua;
