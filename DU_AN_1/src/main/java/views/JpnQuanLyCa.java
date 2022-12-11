@@ -263,7 +263,7 @@ public class JpnQuanLyCa extends javax.swing.JPanel {
         radioGioCaoDiem.setText("Giờ Cao Điểm");
 
         btnSave.setBackground(new java.awt.Color(51, 102, 255));
-        btnSave.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnSave.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnSave.setForeground(new java.awt.Color(255, 255, 255));
         btnSave.setText("Save");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
@@ -273,7 +273,7 @@ public class JpnQuanLyCa extends javax.swing.JPanel {
         });
 
         btnUpdate.setBackground(new java.awt.Color(51, 102, 255));
-        btnUpdate.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnUpdate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -283,7 +283,7 @@ public class JpnQuanLyCa extends javax.swing.JPanel {
         });
 
         btnDelete.setBackground(new java.awt.Color(51, 102, 255));
-        btnDelete.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnDelete.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnDelete.setForeground(new java.awt.Color(255, 255, 255));
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {

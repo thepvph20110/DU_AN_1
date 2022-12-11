@@ -180,7 +180,7 @@ public class JpnDichVu extends javax.swing.JPanel {
         jScrollPane1.setViewportView(txtGhiChu);
 
         btnKetCa.setBackground(new java.awt.Color(51, 102, 255));
-        btnKetCa.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnKetCa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnKetCa.setForeground(new java.awt.Color(255, 255, 255));
         btnKetCa.setText("Kết ca");
         btnKetCa.addActionListener(new java.awt.event.ActionListener() {
@@ -190,7 +190,7 @@ public class JpnDichVu extends javax.swing.JPanel {
         });
 
         btnHuy.setBackground(new java.awt.Color(255, 0, 0));
-        btnHuy.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnHuy.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnHuy.setForeground(new java.awt.Color(255, 255, 255));
         btnHuy.setText("Hủy");
         btnHuy.addActionListener(new java.awt.event.ActionListener() {
@@ -276,9 +276,9 @@ public class JpnDichVu extends javax.swing.JPanel {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(panelTongLayout.createSequentialGroup()
                                 .addGap(28, 28, 28)
-                                .addComponent(btnKetCa)
-                                .addGap(72, 72, 72)
-                                .addComponent(btnHuy, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnKetCa, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(46, 46, 46)
+                                .addComponent(btnHuy, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(panelTongLayout.createSequentialGroup()
                                 .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -346,7 +346,7 @@ public class JpnDichVu extends javax.swing.JPanel {
                             .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(87, 87, 87))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTongLayout.createSequentialGroup()
-                        .addGap(0, 26, Short.MAX_VALUE)
+                        .addGap(0, 19, Short.MAX_VALUE)
                         .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(lbGioHienTai, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -364,8 +364,8 @@ public class JpnDichVu extends javax.swing.JPanel {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(54, 54, 54)
                         .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnKetCa, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnHuy, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnKetCa, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnHuy, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(147, 147, 147))))
             .addGroup(panelTongLayout.createSequentialGroup()
                 .addContainerGap()
