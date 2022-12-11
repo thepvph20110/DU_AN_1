@@ -83,4 +83,19 @@ public class GiaoCaServiceImpl implements IGiaoCaService {
         return giaoCaRepo.getOneGiaoCaByIdAndTrangThai(id);
     }
 
+    @Override
+    public double tongTienMat(String id) {
+        return giaoCaRepo.tongTienMat(id);
+    }
+
+    @Override
+    public GiaoCa getNvCaTT() {
+        return giaoCaRepo.TimKiemNVCaTiepTheo();
+    }
+
+    @Override
+    public List<GiaoCa> getAll() {
+        return giaoCaRepo.getAll();
+    }
+
 }

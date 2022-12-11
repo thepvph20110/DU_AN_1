@@ -32,9 +32,15 @@ public interface IGiaoCaService {
 
     double tongTienNganHang(String id);
 
+    double tongTienMat(String id);
+
     boolean checkCaTrong(String idNhanVienTrongCa);
 
     GiaoCa checkCoNhanVIenKo();
 
     GiaoCa getOneGiaoCaByIdAndTrangThai(String id);
+
+    GiaoCa getNvCaTT();
+
+    List<GiaoCa> getAll();
 }

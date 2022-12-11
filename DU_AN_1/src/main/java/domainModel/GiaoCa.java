@@ -44,9 +44,10 @@ public class GiaoCa implements Serializable {
     private String idNhanVienTrongCa;
     private String idNhanVienCaTiepTheo;
     private float tienBanDau;
-    private float tongTienTrongCa;
     private float tongTienMat;
     private float tongTienKhac;
+    private float tongTienTrongCa;
+    private float tienPhatSinh;
     @Column(columnDefinition = "nvarchar(Max)")
     private String ghiChuPhatSinh;
     private float tongTienMatCaTruoc;
