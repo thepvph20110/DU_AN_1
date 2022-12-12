@@ -350,6 +350,8 @@ public class JpnTrangChu extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
+        panelTong.setBackground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout panelTongLayout = new javax.swing.GroupLayout(panelTong);
         panelTong.setLayout(panelTongLayout);
         panelTongLayout.setHorizontalGroup(
@@ -363,6 +365,7 @@ public class JpnTrangChu extends javax.swing.JPanel {
 
         jScrollPane1.setViewportView(panelTong);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         txtNgay.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
