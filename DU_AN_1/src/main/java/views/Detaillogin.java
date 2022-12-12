@@ -198,7 +198,7 @@ public class Detaillogin extends javax.swing.JDialog {
                         this.dispose();
                         new Home(qLAcount).setVisible(true);
                     } else {
-                        JOptionPane.showMessageDialog(null, "Bạn không phải là nhân viên trong ca!");
+                        JOptionPane.showMessageDialog(null, "Bạn không phải là nhân viên trong ca tiếp theo!");
                     }
                 }
             }

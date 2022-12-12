@@ -98,4 +98,9 @@ public class GiaoCaServiceImpl implements IGiaoCaService {
         return giaoCaRepo.getAll();
     }
 
+    @Override
+    public List<GiaoCa> searchByName(String name) {
+        return giaoCaRepo.searchByName(name);
+    }
+
 }

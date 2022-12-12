@@ -54,7 +54,15 @@ public class JpnDichVu extends javax.swing.JPanel {
         lbGioHienTai.setText(sdf.format(timestamp));
         lbGioVaoCa.setText(sdf.format(hienTHiNV().getThoiGianNhanCa()));
         TongTien();
+        phanQuyen();
+    }
 
+    private void phanQuyen() {
+        if (qLAcount.getChucVu().getTenChucVu().equals("Quản Lý Sân")) {
+            btnReset.setEnabled(false);
+        } else {
+            btnReset.setEnabled(true);
+        }
     }
 
     private void TongTien() {
@@ -110,7 +118,7 @@ public class JpnDichVu extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtGhiChu = new javax.swing.JTextArea();
         btnKetCa = new javax.swing.JButton();
-        btnHuy = new javax.swing.JButton();
+        btnReset = new javax.swing.JButton();
         maNCCaHienTai = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         lbGioVaoCa = new javax.swing.JLabel();
@@ -201,11 +209,11 @@ public class JpnDichVu extends javax.swing.JPanel {
             }
         });
 
-        btnHuy.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnHuy.setText("Reset Và Rút tiền");
-        btnHuy.addActionListener(new java.awt.event.ActionListener() {
+        btnReset.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnReset.setText("Reset Và Rút tiền");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHuyActionPerformed(evt);
+                btnResetActionPerformed(evt);
             }
         });
 
@@ -258,8 +266,10 @@ public class JpnDichVu extends javax.swing.JPanel {
                         .addGap(252, 252, 252))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTongLayout.createSequentialGroup()
                         .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel15)
+                            .addGroup(panelTongLayout.createSequentialGroup()
+                                .addComponent(jLabel15)
+                                .addGap(30, 30, 30)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(panelTongLayout.createSequentialGroup()
                                     .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,17 +283,12 @@ public class JpnDichVu extends javax.swing.JPanel {
                                                 .addGroup(panelTongLayout.createSequentialGroup()
                                                     .addComponent(lbGioVaoCa, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addGap(0, 0, Short.MAX_VALUE))
-                                                .addGroup(panelTongLayout.createSequentialGroup()
-                                                    .addComponent(lbNhanVienCaHienTai, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTongLayout.createSequentialGroup()
+                                                    .addGap(0, 0, Short.MAX_VALUE)
                                                     .addComponent(maNCCaHienTai, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTongLayout.createSequentialGroup()
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(lbTOngHoaDOnTT, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGroup(panelTongLayout.createSequentialGroup()
-                                    .addComponent(jLabel7)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lbTienBanDau, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(panelTongLayout.createSequentialGroup()
                                     .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel16)
@@ -291,7 +296,13 @@ public class JpnDichVu extends javax.swing.JPanel {
                                     .addGap(70, 70, 70)
                                     .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(lbTOngHoaDOnChuaTT, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtTienPhatSinh, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(txtTienPhatSinh, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTongLayout.createSequentialGroup()
+                                    .addComponent(jLabel7)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lbNhanVienCaHienTai, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lbTienBanDau, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(105, 105, 105)))
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -307,7 +318,7 @@ public class JpnDichVu extends javax.swing.JPanel {
                                     .addGap(28, 28, 28)
                                     .addComponent(btnKetCa)
                                     .addGap(72, 72, 72)
-                                    .addComponent(btnHuy))
+                                    .addComponent(btnReset))
                                 .addGroup(panelTongLayout.createSequentialGroup()
                                     .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -382,15 +393,15 @@ public class JpnDichVu extends javax.swing.JPanel {
                         .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel16)
                             .addComponent(lbTOngHoaDOnChuaTT, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                         .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(txtTienPhatSinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtTienPhatSinh, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(38, 38, 38)
-                        .addComponent(jLabel15)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42))
+                        .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel15)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(77, 77, 77))
                     .addGroup(panelTongLayout.createSequentialGroup()
                         .addGap(2, 2, 2)
                         .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -419,7 +430,7 @@ public class JpnDichVu extends javax.swing.JPanel {
                         .addGap(111, 111, 111)
                         .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnKetCa, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnHuy, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(79, 79, 79))))
             .addGroup(panelTongLayout.createSequentialGroup()
                 .addContainerGap()
@@ -441,9 +452,9 @@ public class JpnDichVu extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
 
-    }//GEN-LAST:event_btnHuyActionPerformed
+    }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnKetCaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKetCaActionPerformed
         int chon = JOptionPane.showConfirmDialog(panelTong, "Bạn có chắc chắn kết thúc ca?", null, JOptionPane.YES_NO_OPTION);
@@ -470,6 +481,22 @@ public class JpnDichVu extends javax.swing.JPanel {
                         home.dispose();
                         new Detaillogin(null, true).setVisible(true);
                     }
+                }
+            } else {
+                Acount acounttenNVTT = acountService.getOneByNameAcount(cbbNhanVienNhanCa.getSelectedItem().toString());
+                giaoCa.setIdAcount(acountService.getOneByNameAcount(lbNhanVienCaHienTai.getText()));
+                giaoCa.setIdNhanVienCaTiepTheo(acounttenNVTT.getId());
+                giaoCa.setThoiGianGiaoCa(new Date());
+                giaoCa.setTongTienKhac((float) giaoCaService.tongTienNganHang(qLAcount.getId()));
+                giaoCa.setTongTienTrongCa((float) (giaoCaService.tongTienCaHienTaiByIdNV(qLAcount.getId()) + hienTHiNV().getTienBanDau()) - Float.valueOf(txtTienPhatSinh.getText()));
+                giaoCa.setTongTienMat((float) (giaoCaService.tongTienMat(qLAcount.getId()) + Float.valueOf(hienTHiNV().getTienBanDau())));
+                giaoCa.setTrangThai(trangThaiGiaoCa.KET_THUC_CA);
+                giaoCa.setGhiChuPhatSinh("");
+                giaoCa.setTienPhatSinh(0);
+                String tb = giaoCaService.GiaoCa(giaoCa);
+                if (tb.equals("Giao ca thành công")) {
+                    home.dispose();
+                    new Detaillogin(null, true).setVisible(true);
                 }
             }
 
@@ -505,8 +532,8 @@ public class JpnDichVu extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnHuy;
     private javax.swing.JButton btnKetCa;
+    private javax.swing.JButton btnReset;
     private javax.swing.JComboBox<String> cbbNhanVienNhanCa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

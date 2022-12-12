@@ -45,8 +45,11 @@
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane1" alignment="0" min="-2" pref="339" max="-2" attributes="0"/>
-                              <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="jScrollPane1" min="-2" pref="339" max="-2" attributes="0"/>
+                              </Group>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -62,9 +65,8 @@
                                                       <Component id="lbGioVaoCa" min="-2" pref="230" max="-2" attributes="0"/>
                                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                                   </Group>
-                                                  <Group type="102" attributes="0">
-                                                      <Component id="lbNhanVienCaHienTai" min="-2" pref="147" max="-2" attributes="0"/>
-                                                      <EmptySpace max="32767" attributes="0"/>
+                                                  <Group type="102" alignment="1" attributes="0">
+                                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                                       <Component id="maNCCaHienTai" min="-2" pref="64" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
@@ -76,11 +78,6 @@
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="lbTienBanDau" min="-2" pref="231" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -89,6 +86,14 @@
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="lbTOngHoaDOnChuaTT" min="-2" pref="231" max="-2" attributes="0"/>
                                           <Component id="txtTienPhatSinh" min="-2" pref="219" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="lbNhanVienCaHienTai" min="-2" pref="147" max="-2" attributes="0"/>
+                                          <Component id="lbTienBanDau" min="-2" pref="231" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -111,7 +116,7 @@
                                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                                       <Component id="btnKetCa" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
-                                      <Component id="btnHuy" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnReset" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="1" attributes="0">
@@ -218,16 +223,17 @@
                               <Component id="jLabel16" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="lbTOngHoaDOnChuaTT" alignment="1" min="-2" pref="23" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="45" max="32767" attributes="0"/>
+                          <EmptySpace pref="41" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtTienPhatSinh" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtTienPhatSinh" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                          <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" min="-2" pref="94" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                              <Component id="jScrollPane1" min="-2" pref="94" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
@@ -263,7 +269,7 @@
                           <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="btnKetCa" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                              <Component id="btnHuy" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                              <Component id="btnReset" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
                       </Group>
@@ -511,7 +517,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnKetCaActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnHuy">
+        <Component class="javax.swing.JButton" name="btnReset">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="0"/>
@@ -519,7 +525,7 @@
             <Property name="text" type="java.lang.String" value="Reset V&#xe0; R&#xfa;t ti&#x1ec1;n"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHuyActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnResetActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="maNCCaHienTai">

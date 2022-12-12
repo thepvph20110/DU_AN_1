@@ -43,4 +43,6 @@ public interface IGiaoCaService {
     GiaoCa getNvCaTT();
 
     List<GiaoCa> getAll();
+
+    List<GiaoCa> searchByName(String name);
 }

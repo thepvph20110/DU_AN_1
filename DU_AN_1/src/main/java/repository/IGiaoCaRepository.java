@@ -45,4 +45,5 @@ public interface IGiaoCaRepository {
 
     List<GiaoCa> getAll();
 
+    List<GiaoCa> searchByName(String name);
 }

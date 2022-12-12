@@ -246,4 +246,18 @@ public class GiaoCaRepository implements IGiaoCaRepository {
         }
         return list;
     }
+
+    @Override
+    public List<GiaoCa> searchByName(String name) {
+        List<GiaoCa> list = new ArrayList<>();
+        String hql = "From GiaoCa gc WHERE gc.idAcount.tenAcount like :ten";
+        try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
+            Query q = session.createQuery(hql, GiaoCa.class).setParameter("ten", "%" + name + "%");
+            list = q.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return list;
+        }
+        return list;
+    }
 }
