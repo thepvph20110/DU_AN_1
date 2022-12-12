@@ -29,6 +29,8 @@ public interface IGiaoCaRepository {
 
     double tongTienNganHang(String id);
 
+    double tongTienMat(String id);
+
     int tongHoaDOnDaTT(String id);
 
     int tongHoaDOnChuaTT(String id);
@@ -38,4 +40,10 @@ public interface IGiaoCaRepository {
     GiaoCa checkCoNhanVIenKo();
 
     GiaoCa getOneGiaoCaByIdAndTrangThai(String id);
+
+    GiaoCa TimKiemNVCaTiepTheo();
+
+    List<GiaoCa> getAll();
+
+    List<GiaoCa> searchByName(String name);
 }

@@ -5,7 +5,9 @@
 package views;
 
 import java.awt.Color;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import modelview.QLAcount;
 import service.IAcountService;
 import service.Impl.AcountServiceImpl;
@@ -18,7 +20,7 @@ import service.Impl.GiaoCaServiceImpl;
 public class Detaillogin extends javax.swing.JDialog {
 
     private IAcountService acountService = new AcountServiceImpl();
-    
+
     public Detaillogin(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -173,21 +175,32 @@ public class Detaillogin extends javax.swing.JDialog {
     }//GEN-LAST:event_CheckBoxHienThiActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+//        JpnDichVu jdv = new JpnDichVu(qLAcount, home, PaneTongLogIn, jLabel1);
         String use = txtUseName.getText();
         String pass = txtPass.getText();
         QLAcount qLAcount = acountService.getByUseNameAndPass(use, pass);
         if (qLAcount != null) {
-           
-            if (new GiaoCaServiceImpl().checkCoNhanVIenKo()!=null) {
+
+            if (new GiaoCaServiceImpl().checkCoNhanVIenKo() != null) {
                 if (new GiaoCaServiceImpl().getOneGiaoCaByIdAndTrangThai(qLAcount.getId()) != null) {
+
                     this.dispose();
                     new Home(qLAcount).setVisible(true);
-                }else{
-                    JOptionPane.showMessageDialog(null, "Đã có nhân viên khác trong ca! Không được đăng nhập"); 
-                }              
-            }else{
-                 this.dispose();
-            new Home(qLAcount).setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Đã có nhân viên khác trong ca! Không được đăng nhập");
+                }
+            } else {
+                if (new GiaoCaServiceImpl().getAll().size() == 0) {
+                    this.dispose();
+                    new Home(qLAcount).setVisible(true);
+                } else {
+                    if (new GiaoCaServiceImpl().getNvCaTT().getIdNhanVienCaTiepTheo().equals(qLAcount.getId())) {
+                        this.dispose();
+                        new Home(qLAcount).setVisible(true);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Bạn không phải là nhân viên trong ca tiếp theo!");
+                    }
+                }
             }
         }
     }//GEN-LAST:event_btnLoginActionPerformed
