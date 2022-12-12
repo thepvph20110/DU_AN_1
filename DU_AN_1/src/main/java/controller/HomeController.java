@@ -87,9 +87,9 @@ public class HomeController {
                 case "TrangChu":
                     node = new JpnTrangChu(qLAcount, labelHome, root, ngatTao);
                     break;
-//                case "LichDat":
-//                    node = new JpnKhaiBaoTienDauCa(qLAcount);
-//                    break;
+                case "LichDat":
+                    node = new JpnLichDat(qLAcount);
+                    break;
                 case "CheckIn":
                     if (new GiaoCaServiceImpl().getOneGiaoCaByIdAndTrangThai(qLAcount.getId()) == null) {
                         JOptionPane.showMessageDialog(null, "Vui lòng nhận ca!");

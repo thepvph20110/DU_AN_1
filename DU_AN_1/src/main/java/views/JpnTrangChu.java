@@ -258,7 +258,7 @@ public class JpnTrangChu extends javax.swing.JPanel {
                     itemDoiLichDat.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            new FrmDoiLichDat(datLich, qLAcount, pnTong, labelHome, ngayTao).setVisible(true);
+                            showDoiLichDat(labelIdSanCa.getText());
                             jPopupMenu.setVisible(false);
                         }
                     });
@@ -329,6 +329,10 @@ public class JpnTrangChu extends javax.swing.JPanel {
         QLSanCa qLSanCa = mapSanCa.get(idSanCa);
         QLKhachHang khachHang = new QLKhachHang();
         new FrmPhieuDatLich(khachHang, qLSanCa, acount, labelHome, pnTong, ngayTao).setVisible(true);
+    }
+     private void showDoiLichDat(String idSanCa) {
+        PhieuDatLich phieuDatLich = phieuDatLichService.getPDLByTrangThai(idSanCa);
+        new FrmDoiLichDat(phieuDatLich, qLAcount, pnTong, labelHome, ngayTao).setVisible(true);
     }
 
     /**
