@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import modelview.QLAcount;
+import modelview.QLSanCa;
 import service.Impl.GiaoCaServiceImpl;
 import views.Home;
 import views.JpnCheckIn;
@@ -87,9 +88,9 @@ public class HomeController {
                 case "TrangChu":
                     node = new JpnTrangChu(qLAcount, labelHome, root, ngatTao);
                     break;
-//                case "LichDat":
-//                    node = new JpnKhaiBaoTienDauCa(qLAcount);
-//                    break;
+                case "LichDat":
+                    node = new JpnLichDat(new QLSanCa(),qLAcount,labelHome,root);
+                    break;
                 case "CheckIn":
                     if (new GiaoCaServiceImpl().getOneGiaoCaByIdAndTrangThai(qLAcount.getId()) == null) {
                         JOptionPane.showMessageDialog(null, "Vui lòng nhận ca!");

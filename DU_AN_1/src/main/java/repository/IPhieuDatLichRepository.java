@@ -27,4 +27,6 @@ public interface IPhieuDatLichRepository {
     boolean delete(String id);
 
     PhieuDatLich getByIdSanCa(String id);
+    
+    PhieuDatLich getPDLByTrangThai(String id);
 }

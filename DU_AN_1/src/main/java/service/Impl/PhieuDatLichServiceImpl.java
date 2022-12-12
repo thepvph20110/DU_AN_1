@@ -115,4 +115,9 @@ public class PhieuDatLichServiceImpl implements IPhieuDatLichService {
         }
         return null;
     }
+
+    @Override
+    public PhieuDatLich getPDLByTrangThai(String id) {
+        return phieuRepo.getPDLByTrangThai(id);
+    }
 }

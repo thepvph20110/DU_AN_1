@@ -32,4 +32,6 @@ public interface IPhieuDatLichService {
     String datLich(PhieuDatLich phieuDatLich);
 
     PhieuDatLich getPhieuDatLich(String id);
+    
+    PhieuDatLich getPDLByTrangThai(String id);
 }
