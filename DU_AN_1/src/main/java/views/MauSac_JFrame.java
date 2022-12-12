@@ -30,6 +30,7 @@ public class MauSac_JFrame extends javax.swing.JFrame {
         loadData();
         txtMa.setEditable(false);
         this.setTitle("Quản Lý Màu Sắc");
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
 
     private void showData(List<MauSac> list) {
@@ -83,6 +84,7 @@ public class MauSac_JFrame extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
