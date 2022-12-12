@@ -7,6 +7,8 @@ package domainModel;
 import domainmodel.Acount;
 import enumclass.trangThaiGiaoCa;
 import java.io.Serializable;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,7 +32,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Setter
 @Entity
 public class GiaoCa implements Serializable {
-
+    
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
@@ -44,9 +46,10 @@ public class GiaoCa implements Serializable {
     private String idNhanVienTrongCa;
     private String idNhanVienCaTiepTheo;
     private float tienBanDau;
-    private float tongTienTrongCa;
     private float tongTienMat;
     private float tongTienKhac;
+    private float tongTienTrongCa;
+    private float tienPhatSinh;
     @Column(columnDefinition = "nvarchar(Max)")
     private String ghiChuPhatSinh;
     private float tongTienMatCaTruoc;
@@ -57,4 +60,10 @@ public class GiaoCa implements Serializable {
     private Acount idAcount;
     private float tongTienMatRut;
     private trangThaiGiaoCa trangThai = trangThaiGiaoCa.NHAN_CA;
+    
+    public Object[] toData() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy - hh:mm:ss");
+        DecimalFormat format = new DecimalFormat("###,###,###");
+        return new Object[]{idAcount.getTenAcount(), sdf.format(thoiGianNhanCa), sdf.format(thoiGianGiaoCa), format.format(tongTienMat), format.format(tongTienKhac), format.format(tienPhatSinh)};
+    }
 }
