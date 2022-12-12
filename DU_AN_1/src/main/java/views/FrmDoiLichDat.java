@@ -89,11 +89,16 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
         listSanBong = sanBongService.getAll();
         AddSan();
         txttenKH.setText(phieuDatLich.getKhachHang().getTenKhachHang());
-        txtNgayDenSan.setEnabled(false);
-        txttenKH.setEnabled(false);
-        txtTenSan.setEnabled(false);
-        txtTGCa.setEnabled(false);
-        txtGiaSan.setEnabled(false);
+//        txtNgayDenSan.setEnabled(false);
+//        txttenKH.setEnabled(false);
+//        txtTenSan.setEnabled(false);
+//        txtTGCa.setEnabled(false);
+//        txtGiaSan.setEnabled(false);
+        txtNgayDenSan.setEditable(false);
+        txttenKH.setEditable(false);
+        txtTenSan.setEditable(false);
+        txtTGCa.setEditable(false);
+        txtGiaSan.setEditable(false);
         txtGiaSan.setText(df.format(phieuDatLich.getSanCa().getGiaSanCa()) + " VND");
         txtTenSan.setText(phieuDatLich.getSanCa().getSanbong().getTenSanBong());
         txtNgayDenSan.setText(sdf.format(phieuDatLich.getNgayDenSan()));
@@ -333,6 +338,8 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Chọn sân bóng", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
 
+        panelTong.setBackground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout panelTongLayout = new javax.swing.GroupLayout(panelTong);
         panelTong.setLayout(panelTongLayout);
         panelTongLayout.setHorizontalGroup(
@@ -356,6 +363,7 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
 
         jLabel4.setText("Sân trống");
 
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Tìm Kiếm"));
 
         txtDate.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -451,15 +459,18 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
                             .addComponent(txtNgayDenSan)
                             .addComponent(txtTGCa)
                             .addComponent(txttenKH)))
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(228, 228, 228)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
-                        .addComponent(btnDoiLich)
-                        .addGap(174, 174, 174)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(146, 146, 146)
+                                .addComponent(jScrollPane2))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(89, 89, 89)
+                                .addComponent(btnDoiLich)
+                                .addGap(174, 174, 174)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(55, 55, 55)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -495,9 +506,9 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
                         .addGap(51, 51, 51)
                         .addComponent(jLabel10))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
+                        .addGap(36, 36, 36)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(64, 64, 64)
+                .addGap(70, 70, 70)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDoiLich, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -514,13 +525,11 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(491, 491, 491)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(624, 624, 624))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
