@@ -30,6 +30,7 @@ public class NSX_JFrame extends javax.swing.JFrame {
         loadData();
         this.setTitle("Quản Lý Nhà Sản Xuất");
         txtMa.setEditable(false);
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
 
     private void showData(List<NhaSanXuat> list) {
@@ -83,6 +84,7 @@ public class NSX_JFrame extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         btnAdd.setText("Add");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
