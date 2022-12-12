@@ -53,7 +53,7 @@ public class QLDoThue {
     public String dinhDangTienTe(double tienTe) {
         Locale locale = new Locale("vi", "VN");
         NumberFormat format = NumberFormat.getInstance(locale);
-        return format.format(tienTe) + " " + "VNĐ";
+        return format.format(tienTe) + " " + "Vnd";
     }
 
     public Object[] toRowDataDoThue() {
