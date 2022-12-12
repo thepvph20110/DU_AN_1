@@ -44,7 +44,7 @@ public class FrmChiTietPhuPhi extends javax.swing.JFrame {
     public String dinhDangTienTe(double tienTe) {
         Locale locale = new Locale("vi", "VN");
         NumberFormat format = NumberFormat.getInstance(locale);
-        return format.format(tienTe) + " " + "VNĐ";
+        return format.format(tienTe) + " " + "Vnd";
     }
 
     public void addToRow(List<QLHoaDon_PhuPhi> listHDPP) {
@@ -107,8 +107,8 @@ public class FrmChiTietPhuPhi extends javax.swing.JFrame {
             }
         ));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jTable1MouseReleased(evt);
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -150,7 +150,7 @@ public class FrmChiTietPhuPhi extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+//
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         this.dispose();
@@ -165,6 +165,7 @@ public class FrmChiTietPhuPhi extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Xoa That Bai");
             }
+            addToRow(don_PhuPhiService.getAllPhuPhi_HoaDonsByIdHoaDon(idHoaDon));
             frmThanhToan.setTxtGia();
         }
     }//GEN-LAST:event_jMenuXoaPPActionPerformed
@@ -187,18 +188,10 @@ public class FrmChiTietPhuPhi extends javax.swing.JFrame {
         frmThanhToan.setTxtGia();
     }//GEN-LAST:event_jMenuSuaGiaPPActionPerformed
 
-    private void jTable1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseReleased
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-        if (jTable1.getSelectedRow() >= 0) {
-            if (evt.isPopupTrigger()) {
-                jpopChiTietPP.show(jScrollPane1, evt.getPoint().x, evt.getPoint().y);
-            }
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "Xin Mời Chọn!!!");
-        }
-        addToRow(listHDPP);
-        frmThanhToan.setTxtGia();
-    }//GEN-LAST:event_jTable1MouseReleased
+        jpopChiTietPP.show(jTable1, evt.getPoint().x, evt.getPoint().y);
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
