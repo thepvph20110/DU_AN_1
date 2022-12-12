@@ -103,4 +103,9 @@ public class GiaoCaServiceImpl implements IGiaoCaService {
         return giaoCaRepo.searchByName(name);
     }
 
+    @Override
+    public List<GiaoCa> giaoCaCoPhuPhiPhatSinh() {
+        return giaoCaRepo.giaoCaCoPhuPhiPhatSinh();
+    }
+
 }

@@ -483,7 +483,7 @@ public class JpnDichVu extends javax.swing.JPanel {
                         new Detaillogin(null, true).setVisible(true);
                     }
                 }
-            } else {
+            } else if (txtTienPhatSinh.getText().length() == 0) {
                 Acount acounttenNVTT = acountService.getOneByNameAcount(cbbNhanVienNhanCa.getSelectedItem().toString());
                 giaoCa.setIdAcount(acountService.getOneByNameAcount(lbNhanVienCaHienTai.getText()));
                 giaoCa.setIdNhanVienCaTiepTheo(acounttenNVTT.getId());
@@ -498,7 +498,9 @@ public class JpnDichVu extends javax.swing.JPanel {
                 if (tb.equals("Giao ca thành công")) {
                     home.dispose();
                     new Detaillogin(null, true).setVisible(true);
+                    return;
                 }
+
             }
 
         }
