@@ -141,12 +141,6 @@ public class GiaoCaRepository implements IGiaoCaRepository {
         }
     }
 
-    public static void main(String[] args) {
-        List<GiaoCa> lsist = new ArrayList<>();
-        System.out.println(lsist.size());
-
-    }
-
     @Override
     public String GiaoCa(GiaoCa giaoCa) {
         Transaction transaction = null;
@@ -187,7 +181,8 @@ public class GiaoCaRepository implements IGiaoCaRepository {
         }
         return null;
     }
- @Override
+
+    @Override
     public GiaoCa getOneGiaoCaByIdAndTrangThai(String id) {
         GiaoCa giaoCa;
         String hql = "From GiaoCa gc WHERE gc.idNhanVienTrongCa = :idNhanvien and gc.trangThai = 0 ";
@@ -197,7 +192,72 @@ public class GiaoCaRepository implements IGiaoCaRepository {
             return giaoCa;
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
-        return null;
+
+    }
+
+    @Override
+    public double tongTienMat(String id) {
+        String hql = "SELECT SUM(HoaDon.tongTien) AS TongTien\n"
+                + "FROM    dbo.GiaoCa JOIN dbo.Acount ON dbo.GiaoCa.idNhanVienTrongCa =  dbo.Acount.id\n"
+                + "		JOIN dbo.PhieuDatLich ON dbo.PhieuDatLich.idAcount = dbo.Acount.id \n"
+                + "		JOIN dbo.HoaDon ON dbo.HoaDon.idPhieuDatLich = dbo.PhieuDatLich.id \n"
+                + "		JOIN dbo.HoaDonThanhToan ON dbo.HoaDonThanhToan.idHoaDon = dbo.HoaDon.id \n"
+                + "		JOIN dbo.ThanhToan ON dbo.HoaDonThanhToan.idThanhToan = dbo.ThanhToan.id\n"
+                + "WHERE GiaoCa.idNhanVienTrongCa = :idNhanVienTrongCa and GiaoCa.trangThai = 0 and ThanhToan.loaiHinhTT = 0";
+        try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
+            return (double) session.createSQLQuery(hql).setParameter("idNhanVienTrongCa", id).getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    @Override
+    public GiaoCa TimKiemNVCaTiepTheo() {
+        String hql = "From GiaoCa gc "
+                + "  ORDER By gc.thoiGianNhanCa DESC";
+        try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
+            Query query = session.createQuery(hql, GiaoCa.class);
+            query.setFirstResult(0);
+            query.setMaxResults(1);
+            return (GiaoCa) query.getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new GiaoCaRepository().TimKiemNVCaTiepTheo().getId());
+    }
+
+    @Override
+    public List<GiaoCa> getAll() {
+        List<GiaoCa> list = new ArrayList<>();
+        String hql = "From GiaoCa";
+        try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
+            Query q = session.createQuery(hql, GiaoCa.class);
+            list = q.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return list;
+        }
+        return list;
+    }
+
+    @Override
+    public List<GiaoCa> searchByName(String name) {
+        List<GiaoCa> list = new ArrayList<>();
+        String hql = "From GiaoCa gc WHERE gc.idAcount.tenAcount like :ten";
+        try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
+            Query q = session.createQuery(hql, GiaoCa.class).setParameter("ten", "%" + name + "%");
+            list = q.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return list;
+        }
+        return list;
     }
 }

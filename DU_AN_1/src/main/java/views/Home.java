@@ -72,7 +72,7 @@ public class Home extends javax.swing.JFrame {
                     createSanCaFollowDate(sdf.parse(stringDate));
                 } catch (Exception e) {
                 }
-                HomeController controller = new HomeController(panelTong, qLAcount, txtDate.getDate(),null);
+                HomeController controller = new HomeController(panelTong, qLAcount, txtDate.getDate(), null);
                 controller.setView(lbHome);
                 txtDate.cleanup();
             }
@@ -81,7 +81,7 @@ public class Home extends javax.swing.JFrame {
 
     public void displayHome() {
 
-        HomeController conTrolerHome = new HomeController(panelTong, this.qLAcount, txtDate.getDate(),this);
+        HomeController conTrolerHome = new HomeController(panelTong, this.qLAcount, txtDate.getDate(), this);
         conTrolerHome.setView(this.lbHome);
 
         List<DanhMuc> listItem = new ArrayList<>();
