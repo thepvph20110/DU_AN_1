@@ -32,6 +32,7 @@ public class KichThuoc_JFrame extends javax.swing.JFrame {
         txtSize.setText("0");
         txtMa.setEditable(false);
         this.setTitle("Quản Lý Kích Thước");
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
 
     private void showData(List<KichThuoc> list) {
@@ -84,6 +85,7 @@ public class KichThuoc_JFrame extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         btnAdd.setText("Add");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {

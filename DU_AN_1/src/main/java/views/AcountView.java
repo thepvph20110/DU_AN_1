@@ -38,6 +38,7 @@ public class AcountView extends javax.swing.JFrame {
      */
     public AcountView() {
         initComponents();
+        txtMa.setEnabled(false);
         jTable3.setModel(dtm);
         jcbCV.setModel(dcbm);
         String headers[] = {"Mã Account", "Tên Account", "Tên Chức Vụ", "Mô Tả"};
@@ -249,7 +250,7 @@ public class AcountView extends javax.swing.JFrame {
         // TODO add your handling code here:
         QLChucVu qLChucVu = chucVuService.getAll().get(jcbCV.getSelectedIndex());
         ChucVu chucVu = new ChucVu(qLChucVu.getId(), qLChucVu.getMaChucVu(), qLChucVu.getTenChucVu(), trangThaiChucVu.HOAT_DONG);
-        QLAcount qLAcount = new QLAcount(null, txtMa.getText(), txtTen.getText(), chucVu,
+        QLAcount qLAcount = new QLAcount(null, new AcountServiceImpl().genMaAccount(), txtTen.getText(), chucVu,
                 txtMatKhau.getText(), txtMoTa.getText(), trangThaiAcount.Da_Xac_Minh);
         JOptionPane.showMessageDialog(rootPane, acountService.save(qLAcount));
         qLAcounts = acountService.getAll();
