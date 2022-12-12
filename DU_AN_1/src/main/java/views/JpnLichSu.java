@@ -38,6 +38,11 @@ public class JpnLichSu extends javax.swing.JPanel {
         lstQLLichSuDatLichs = iLichSuDatLichService.getAllLichSuDatLichs();
         showDataTable(lstQLLichSuDatLichs);
         loadDataComBo();
+        txtTenKhachHang.setEnabled(false);
+        txtNgayDatLich.setEnabled(false);
+        txtTrangThai.setEnabled(false);
+        txtTenCa.setEnabled(false);
+        txtTenSanBong.setEnabled(false);
     }
 
     private void loadDataComBo() {
@@ -286,8 +291,8 @@ public class JpnLichSu extends javax.swing.JPanel {
                 .addGap(12, 12, 12)
                 .addComponent(txtDanhSach)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(208, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
