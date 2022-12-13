@@ -84,7 +84,7 @@ public class JpnDichVu extends javax.swing.JPanel {
         }
     }
 
-    private GiaoCa hienTHiNV() {
+    public GiaoCa hienTHiNV() {
         return giaoCaService.getOneByIdNV(qLAcount.getId());
     }
 
@@ -458,7 +458,7 @@ public class JpnDichVu extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-        new ResetRutTien().setVisible(true);
+        new ResetRutTien(qLAcount, panelTong, home, lableHome).setVisible(true);
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnKetCaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKetCaActionPerformed

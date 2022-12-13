@@ -7,9 +7,13 @@ package views;
 import domainModel.GiaoCa;
 import domainmodel.Acount;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import modelview.QLAcount;
 import service.IAcountService;
 import service.IGiaoCaService;
 import service.Impl.AcountServiceImpl;
@@ -24,16 +28,28 @@ public class ResetRutTien extends javax.swing.JFrame {
     private DefaultTableModel dtm;
     private IGiaoCaService giaoCaService = new GiaoCaServiceImpl();
     private List<GiaoCa> listGiaoCa = new ArrayList<>();
+    private QLAcount qLAcount;
+    private JPanel panelTong;
+    private Home home;
+    private JLabel labelHome;
 
-    public ResetRutTien() {
+    public ResetRutTien(QLAcount qLAcount, JPanel panelTong, Home home, JLabel labelHome) {
         initComponents();
+        this.qLAcount = qLAcount;
+        this.panelTong = panelTong;
+        this.home = home;
+        this.labelHome = labelHome;
         listGiaoCa = giaoCaService.getAllTrangThaiDaNhanCa();
         showTB(listGiaoCa);
     }
 
+    private GiaoCa HienThi() {
+        return new JpnDichVu(qLAcount, home, panelTong, labelHome).hienTHiNV();
+    }
+
     public void showTB(List<GiaoCa> list) {
         jTable1.setModel(dtm = new DefaultTableModel());
-        String[] header = {"Teen Nhân Viên", "Thời gian nhận ca", "Thời gian giao ca", "Tônge tiền mặt trong ca", "Tổng tiền ngân hàng trong ca", "Tiền phát sinh"};
+        String[] header = {"Tên Nhân Viên", "Thời gian nhận ca", "Thời gian giao ca", "Tổng tiền mặt trong ca", "Tổng tiền ngân hàng trong ca", "Tiền phát sinh","Tổng tiền rút","Thời gian rút"};
         dtm.setColumnIdentifiers(header);
         dtm.setRowCount(0);
         for (GiaoCa giaoca : list) {
@@ -219,7 +235,16 @@ public class ResetRutTien extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int chon = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn với số tiền rút?", null, JOptionPane.YES_NO_OPTION);
         if (chon == 0) {
-
+            GiaoCa giaoCa = HienThi();
+            giaoCa.setThoiGianReset(new Date());
+            giaoCa.setTongTienMatRut(Float.valueOf(txtSoTienRut.getText()));
+            String tb = new GiaoCaServiceImpl().GiaoCa(giaoCa);
+            if (tb.equals("Giao ca thành công")) {
+                JOptionPane.showMessageDialog(null, "Rút tiền thành công");
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Rút tiền thất bại");
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -245,37 +270,37 @@ public class ResetRutTien extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ResetRutTien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ResetRutTien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ResetRutTien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ResetRutTien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ResetRutTien().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(ResetRutTien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(ResetRutTien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(ResetRutTien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(ResetRutTien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new ResetRutTien(qLAcount, panelTong, home, labelHome).setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox cbGiaoCaCoPhuPhi;
