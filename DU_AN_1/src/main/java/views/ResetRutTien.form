@@ -180,6 +180,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Giao ca c&#xf3; ph&#x1ee5; ph&#xed; ph&#xe1;t sinh"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cbGiaoCaCoPhuPhiMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>

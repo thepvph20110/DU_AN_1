@@ -250,7 +250,7 @@ public class GiaoCaRepository implements IGiaoCaRepository {
     @Override
     public List<GiaoCa> searchByName(String name) {
         List<GiaoCa> list = new ArrayList<>();
-        String hql = "From GiaoCa gc WHERE gc.idAcount.tenAcount like :ten";
+        String hql = "From GiaoCa gc WHERE gc.idAcount.tenAcount like :ten and gc.trangThai = 1";
         try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
             Query q = session.createQuery(hql, GiaoCa.class).setParameter("ten", "%" + name + "%");
             list = q.getResultList();

@@ -29,7 +29,6 @@ public class ResetRutTien extends javax.swing.JFrame {
         initComponents();
         listGiaoCa = giaoCaService.getAllTrangThaiDaNhanCa();
         showTB(listGiaoCa);
-        checkBox();
     }
 
     public void showTB(List<GiaoCa> list) {
@@ -95,6 +94,11 @@ public class ResetRutTien extends javax.swing.JFrame {
         cbGiaoCaCoPhuPhi.setBackground(new java.awt.Color(186, 228, 229));
         cbGiaoCaCoPhuPhi.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         cbGiaoCaCoPhuPhi.setText("Giao ca có phụ phí phát sinh");
+        cbGiaoCaCoPhuPhi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cbGiaoCaCoPhuPhiMouseClicked(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Lọc");
@@ -215,11 +219,18 @@ public class ResetRutTien extends javax.swing.JFrame {
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         this.dispose();
     }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void cbGiaoCaCoPhuPhiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbGiaoCaCoPhuPhiMouseClicked
+        checkBox();
+    }//GEN-LAST:event_cbGiaoCaCoPhuPhiMouseClicked
     private void checkBox() {
         List<GiaoCa> lisstCheck = giaoCaService.giaoCaCoPhuPhiPhatSinh();
         if (cbGiaoCaCoPhuPhi.isSelected()) {
             listGiaoCa.clear();
             showTB(lisstCheck);
+        } else {
+            lisstCheck.clear();
+            showTB(listGiaoCa);
         }
     }
 
