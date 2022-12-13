@@ -154,7 +154,7 @@ public class FromChiTietThongKe extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(186, 228, 229));
 
-        jPanel1.setBackground(new java.awt.Color(186, 228, 229));
+        jPanel1.setBackground(new java.awt.Color(65, 147, 169));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -346,7 +346,7 @@ public class FromChiTietThongKe extends javax.swing.JFrame {
             .addComponent(jpn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jPanel7.setBackground(new java.awt.Color(186, 228, 229));
+        jPanel7.setBackground(new java.awt.Color(65, 147, 169));
 
         jButton2.setBackground(new java.awt.Color(255, 51, 51));
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N

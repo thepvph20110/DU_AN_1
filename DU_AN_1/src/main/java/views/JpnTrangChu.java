@@ -179,7 +179,7 @@ public class JpnTrangChu extends javax.swing.JPanel {
             for (int j = 0; j < listSanCa.size(); j++) {
                 if (listSanBong.get(i).getTenSanBong().equals(listSanCa.get(j).getTenSanBong())) {
                     JPopupMenu jPopupMenu = new JPopupMenu();
-                    JMenuItem itemDatLich = new JMenuItem("Đặt Lịch");
+                    JMenuItem itemDatLich = new JMenuItem("Đặt lịch nhanh");
                     JMenuItem itemCheckOut = new JMenuItem("Chi tiết sân đặt");
                     JMenuItem itemDoiLichDat = new JMenuItem("Đổi lịch đặt");
                     jPopupMenu.add(itemDatLich);

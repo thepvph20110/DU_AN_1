@@ -290,9 +290,10 @@ public class JpnHoaDon extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jpnViewNuocUong.setBackground(new java.awt.Color(186, 228, 229));
+        jpnViewNuocUong.setBackground(new java.awt.Color(65, 147, 169));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Quản Lý Dịch Vụ");
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
