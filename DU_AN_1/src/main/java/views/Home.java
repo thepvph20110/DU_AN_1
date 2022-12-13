@@ -189,6 +189,7 @@ public class Home extends javax.swing.JFrame {
         txtDate = new com.toedter.calendar.JDateChooser();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         CheckQR.setText("Check QR Code");
         CheckQR.addActionListener(new java.awt.event.ActionListener() {
@@ -236,7 +237,6 @@ public class Home extends javax.swing.JFrame {
 
         lbHome.setBackground(new java.awt.Color(166, 145, 92));
         lbHome.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        lbHome.setForeground(new java.awt.Color(255, 255, 255));
         lbHome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbHome.setText("Home");
         lbHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -244,7 +244,6 @@ public class Home extends javax.swing.JFrame {
 
         lbQLCa.setBackground(new java.awt.Color(166, 145, 92));
         lbQLCa.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbQLCa.setForeground(new java.awt.Color(255, 255, 255));
         lbQLCa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbQLCa.setText("Quản Lí Ca");
         lbQLCa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -263,7 +262,6 @@ public class Home extends javax.swing.JFrame {
 
         lbHoaD.setBackground(new java.awt.Color(166, 145, 92));
         lbHoaD.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbHoaD.setForeground(new java.awt.Color(255, 255, 255));
         lbHoaD.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbHoaD.setText("Hóa Đơn");
         lbHoaD.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -282,7 +280,6 @@ public class Home extends javax.swing.JFrame {
 
         lbLichSu.setBackground(new java.awt.Color(166, 145, 92));
         lbLichSu.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbLichSu.setForeground(new java.awt.Color(255, 255, 255));
         lbLichSu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbLichSu.setText("Lịch Sử");
         lbLichSu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -301,7 +298,6 @@ public class Home extends javax.swing.JFrame {
 
         lbDangXuat.setBackground(new java.awt.Color(166, 145, 92));
         lbDangXuat.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbDangXuat.setForeground(new java.awt.Color(255, 255, 255));
         lbDangXuat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbDangXuat.setText("Đăng Xuất");
         lbDangXuat.setToolTipText("");
@@ -321,7 +317,6 @@ public class Home extends javax.swing.JFrame {
 
         lbQLSan.setBackground(new java.awt.Color(166, 145, 92));
         lbQLSan.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbQLSan.setForeground(new java.awt.Color(255, 255, 255));
         lbQLSan.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbQLSan.setText("Quản Lí Sân");
         lbQLSan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -340,7 +335,6 @@ public class Home extends javax.swing.JFrame {
 
         lbLichDat.setBackground(new java.awt.Color(166, 145, 92));
         lbLichDat.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbLichDat.setForeground(new java.awt.Color(255, 255, 255));
         lbLichDat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbLichDat.setText("Lịch Đặt");
         lbLichDat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -359,7 +353,6 @@ public class Home extends javax.swing.JFrame {
 
         lbThongKe.setBackground(new java.awt.Color(166, 145, 92));
         lbThongKe.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbThongKe.setForeground(new java.awt.Color(255, 255, 255));
         lbThongKe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbThongKe.setText("Thống Kê");
         lbThongKe.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -375,7 +368,6 @@ public class Home extends javax.swing.JFrame {
 
         lbCheckIn.setBackground(new java.awt.Color(166, 145, 92));
         lbCheckIn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbCheckIn.setForeground(new java.awt.Color(255, 255, 255));
         lbCheckIn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbCheckIn.setText("Check In");
         lbCheckIn.setToolTipText("");
@@ -395,7 +387,6 @@ public class Home extends javax.swing.JFrame {
 
         lbDichVu1.setBackground(new java.awt.Color(166, 145, 92));
         lbDichVu1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbDichVu1.setForeground(new java.awt.Color(255, 255, 255));
         lbDichVu1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbDichVu1.setText("Dịch Vụ");
         lbDichVu1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -451,9 +442,9 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(lbLichSu, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addComponent(lbThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
+                .addGap(29, 29, 29)
                 .addComponent(lbDangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
+                .addGap(46, 46, 46))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                     .addContainerGap(446, Short.MAX_VALUE)
@@ -542,6 +533,11 @@ public class Home extends javax.swing.JFrame {
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel21.setText("Chờ Thanh Toán");
 
+        jButton1.setBackground(new java.awt.Color(51, 102, 255));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Đặt Lịch Nhanh");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -551,9 +547,11 @@ public class Home extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(139, 139, 139)
+                        .addGap(62, 62, 62)
                         .addComponent(lbMaQR, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(76, 76, 76)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel7)
@@ -585,11 +583,9 @@ public class Home extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(lbMaQR, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtDate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lbTime, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -605,7 +601,14 @@ public class Home extends javax.swing.JFrame {
                             .addComponent(jLabel17)
                             .addComponent(jLabel19)
                             .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel21))))
+                            .addComponent(jLabel21)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbMaQR, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(4, 4, 4)))))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -841,6 +844,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JMenuItem CheckPhone;
     private javax.swing.JMenuItem CheckQR;
     private javax.swing.JPopupMenu San1Ca1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
