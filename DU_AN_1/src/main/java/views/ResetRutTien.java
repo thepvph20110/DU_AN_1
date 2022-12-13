@@ -27,7 +27,7 @@ public class ResetRutTien extends javax.swing.JFrame {
 
     public ResetRutTien() {
         initComponents();
-        listGiaoCa = giaoCaService.getAll();
+        listGiaoCa = giaoCaService.getAllTrangThaiDaNhanCa();
         showTB(listGiaoCa);
         checkBox();
     }

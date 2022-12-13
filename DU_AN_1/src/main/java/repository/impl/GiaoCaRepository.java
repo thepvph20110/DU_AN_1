@@ -274,4 +274,18 @@ public class GiaoCaRepository implements IGiaoCaRepository {
         }
         return list;
     }
+
+    @Override
+    public List<GiaoCa> getAllTrangThaiDaNhanCa() {
+        List<GiaoCa> list = new ArrayList<>();
+        String hql = "From GiaoCa gc WHERE gc.trangThai = 1";
+        try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
+            Query q = session.createQuery(hql, GiaoCa.class);
+            list = q.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return list;
+        }
+        return list;
+    }
 }

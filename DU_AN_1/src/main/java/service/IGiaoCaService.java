@@ -47,4 +47,6 @@ public interface IGiaoCaService {
     List<GiaoCa> searchByName(String name);
 
     List<GiaoCa> giaoCaCoPhuPhiPhatSinh();
+
+    List<GiaoCa> getAllTrangThaiDaNhanCa();
 }
