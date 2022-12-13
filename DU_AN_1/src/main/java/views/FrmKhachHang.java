@@ -43,7 +43,7 @@ public class FrmKhachHang extends javax.swing.JFrame {
      */
     public FrmKhachHang(QLSanCa sanCa, Acount acountEntity, JLabel labHome, JPanel pnTong, Date ngayTao) {
         initComponents();
-        bg.setBackground(new Color(186, 228, 229));
+        bg.setBackground(new Color(186,228,229));
         this.ngayTao = ngayTao;
         this.labelHome = labHome;
         this.pnTong = pnTong;
@@ -55,6 +55,7 @@ public class FrmKhachHang extends javax.swing.JFrame {
         listKhachHang = iKhachHangService.getAll();
         txtMaKH.disable();
         showData(listKhachHang);
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
 
     /**
@@ -96,6 +97,7 @@ public class FrmKhachHang extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 255, 255));
         setUndecorated(true);
+        setResizable(false);
 
         buttonGroup1.add(radioCanhBao);
         radioCanhBao.setText("Cảnh cáo");
@@ -129,7 +131,7 @@ public class FrmKhachHang extends javax.swing.JFrame {
         btnSave.setBackground(new java.awt.Color(51, 102, 255));
         btnSave.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnSave.setForeground(new java.awt.Color(255, 255, 255));
-        btnSave.setText("Save");
+        btnSave.setText("Thêm");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSaveActionPerformed(evt);
@@ -142,7 +144,7 @@ public class FrmKhachHang extends javax.swing.JFrame {
         btnUpdate.setBackground(new java.awt.Color(51, 102, 255));
         btnUpdate.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
-        btnUpdate.setText("Update");
+        btnUpdate.setText("Cập Nhật");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
@@ -155,7 +157,7 @@ public class FrmKhachHang extends javax.swing.JFrame {
         btnDelete.setBackground(new java.awt.Color(51, 102, 255));
         btnDelete.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnDelete.setForeground(new java.awt.Color(255, 255, 255));
-        btnDelete.setText("Delete");
+        btnDelete.setText("Xóa");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
@@ -210,14 +212,14 @@ public class FrmKhachHang extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(126, 126, 126)
                 .addComponent(jLabel7)
-                .addGap(51, 51, 51)
+                .addGap(18, 18, 18)
                 .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(131, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

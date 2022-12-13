@@ -86,10 +86,10 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
     /**
      * Creates new form FrmPhieuDatLich
      */
-    public FrmPhieuDatLich(QLKhachHang qLKhachHang, QLSanCa sanCa, Acount acountentity, JLabel lbHome,JPanel pnTong, Date ngayTao) {
+    public FrmPhieuDatLich(QLKhachHang qLKhachHang, QLSanCa sanCa, Acount acountentity, JLabel lbHome, JPanel pnTong, Date ngayTao) {
         initComponents();
         this.ngayTao = ngayTao;
-        this.labelHome=lbHome;
+        this.labelHome = lbHome;
         this.pnTong = pnTong;
         acount = acountentity;
         qlKhachHang = qLKhachHang;
@@ -97,20 +97,24 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
         setTitle("Phiếu Đặt Lịch");
 
         txtTenSanca.setText(this.sanCa.getTenSanBong() + " - " + this.sanCa.getTenCa());
-        txtTenSanca.setEnabled(false);
+//        txtTenSanca.setEnabled(false);
+        txtTenSanca.setEditable(false);
 
         txtTienSanBong.setText(df.format(sanCa.getGiaCaSan()) + " VND");
-        txtTienSanBong.setEnabled(false);
+//        txtTienSanBong.setEnabled(false);
+        txtTienSanBong.setEditable(false);
 
         txtTenKhachHang.setText(qlKhachHang.getTenKhachHang());
-        txtTenKhachHang.setEnabled(false);
-
+//        txtTenKhachHang.setEnabled(false);
+        txtTenKhachHang.setEditable(false);
+        
         txtQuanLy.setText(acount.getTenAcount());
-        txtQuanLy.setEnabled(false);
+//        txtQuanLy.setEnabled(false);
+        txtQuanLy.setEditable(false);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         txtNgayDenSan.setText(sdf.format(sanCa.getNgayTao()) + "");
-        txtNgayDenSan.setEnabled(false);
-
+//        txtNgayDenSan.setEnabled(false);
+        txtNgayDenSan.setEditable(false);
         txtMaQR.setIcon(new ImageIcon(byteArrayOutputStream.toByteArray()));
 
         listSanBong = sanBongService.getAll();
@@ -415,8 +419,8 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
 
                     QLLichSuDatLich qLLichSuDatLich = new QLLichSuDatLich(null, qLPhieuDatLich, maLichSu, ngayTao, ngayDen, trangThaiLichSuDatLich.DA_DAT_LICH);
                     iLichSuDatLichService.save(qLLichSuDatLich);
-                    
-                    HomeController controller = new HomeController(pnTong,qLAcount,sanCa.getNgayTao(),null);
+
+                    HomeController controller = new HomeController(pnTong, qLAcount, sanCa.getNgayTao(), null);
                     controller.setView(labelHome);
                     this.dispose();
                 } else {
@@ -435,7 +439,7 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        FrmKhachHang frmKhachHang = new FrmKhachHang(sanCa, acount,labelHome,pnTong,ngayTao);
+        FrmKhachHang frmKhachHang = new FrmKhachHang(sanCa, acount, labelHome, pnTong, ngayTao);
         frmKhachHang.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
