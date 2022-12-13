@@ -29,7 +29,7 @@ public class Detaillogin extends javax.swing.JDialog {
 
     private void setBackRough() {
         PaneTongLogIn.setBackground(new Color(186, 228, 229));
-        txtUseName.setText("AC001");
+        txtUseName.setText("CaoDinh");
         txtPass.setText("1234");
     }
 

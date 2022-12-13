@@ -87,7 +87,7 @@ public class HoaDonRepositoryImpl implements IHoaDonRepository{
     public HoaDon getByTrangThai(String idSanCa) {
         HoaDon hoaDon = new HoaDon();
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
-            Query q = session.createQuery("FROM HoaDon hd WHERE hd.trangThai =:statusand hd.phieuDatLich.sanCa.id = :idSC");
+            Query q = session.createQuery("FROM HoaDon hd WHERE hd.trangThai =:status and hd.phieuDatLich.sanCa.id = :idSC");
             hoaDon = (HoaDon)q.setParameter("status", trangThaiHoaDon.CHUA_THANH_TOAN).setParameter("idSC", idSanCa).getSingleResult(); 
             return hoaDon;
         }catch(Exception e){

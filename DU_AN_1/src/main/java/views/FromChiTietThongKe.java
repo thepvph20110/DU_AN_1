@@ -6,9 +6,11 @@ package views;
 
 import controller.ChiTietThongKeController;
 import java.text.DateFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import javax.swing.JOptionPane;
 import response.ChiTietThanhToan.ChiTietTongTienTheoNgayResponse;
 import service.IChiTietThongKeService;
@@ -19,7 +21,7 @@ import service.Impl.ChiTietThongKeServiceImpl;
  * @author Admin
  */
 public class FromChiTietThongKe extends javax.swing.JFrame {
-
+    
     private IChiTietThongKeService chiTietThongKeService = new ChiTietThongKeServiceImpl();
     private ChiTietThongKeController chiTietThongKeController = new ChiTietThongKeController();
 
@@ -34,85 +36,91 @@ public class FromChiTietThongKe extends javax.swing.JFrame {
         chiTietThongKeController.thongKeDoThue(jpn2);
         setTextDataTongTien();
     }
-
+    
     public void setTextDataTongTien() {
         ChiTietTongTienTheoNgayResponse chiTietTongTienTheoNgayResponse = chiTietThongKeService.chiTietTongTien();
         if (chiTietTongTienTheoNgayResponse == null) {
-            txtBagCash.setText(txtBagCash.getText() + " " + "0.0");
+            txtBagCash.setText(txtBagCash.getText() + " " + "0.0 Vnd");
             Date date = Calendar.getInstance().getTime();
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             String strDate = dateFormat.format(date);
             txtTongTienCuaNgay.setText(txtTongTienCuaNgay.getText() + " " + strDate);
         } else {
-            txtBagCash.setText(txtBagCash.getText() + " " + String.valueOf(chiTietTongTienTheoNgayResponse.getTongtien()));
+            txtBagCash.setText(txtBagCash.getText() + " " + dinhDangTienTe(chiTietTongTienTheoNgayResponse.getTongtien()));
             txtTongTienCuaNgay.setText(txtTongTienCuaNgay.getText() + " " + chiTietTongTienTheoNgayResponse.getNgay() + "-" + chiTietTongTienTheoNgayResponse.getThang() + "-" + chiTietTongTienTheoNgayResponse.getNam());
         }
 
         //Get Tien Ngan Hang
         ChiTietTongTienTheoNgayResponse tongTienMat = chiTietThongKeService.getTongTienMat();
         if (tongTienMat == null) {
-            txtCash.setText(txtCash.getText() + " " + "0.0");
+            txtCash.setText(txtCash.getText() + " " + "0.0 Vnd");
             Date date = Calendar.getInstance().getTime();
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             String strDate = dateFormat.format(date);
             txtTienMat.setText(txtTienMat.getText() + " " + strDate);
         } else {
-            txtCash.setText(txtCash.getText() + " " + String.valueOf(tongTienMat.getTongtien()));
+            txtCash.setText(txtCash.getText() + " " + dinhDangTienTe(tongTienMat.getTongtien()));
             txtTienMat.setText(txtTienMat.getText() + " " + tongTienMat.getNgay() + "-" + tongTienMat.getThang() + "-" + tongTienMat.getNam());
-
+            
         }
         //Get tong Tien Mat
         ChiTietTongTienTheoNgayResponse tongNganHang = chiTietThongKeService.getTongTienNganHang();
         if (tongNganHang == null) {
-            txtCreditCash.setText(txtCreditCash.getText() + " " + "0.0");
+            txtCreditCash.setText(txtCreditCash.getText() + " " + "0.0 Vnd");
             Date date = Calendar.getInstance().getTime();
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             String strDate = dateFormat.format(date);
             txtNganHang.setText(txtNganHang.getText() + " " + strDate);
         } else {
-            txtCreditCash.setText(txtCreditCash.getText() + " " + String.valueOf(tongNganHang.getTongtien()));
+            txtCreditCash.setText(txtCreditCash.getText() + " " + dinhDangTienTe(tongNganHang.getTongtien()));
             txtNganHang.setText(txtNganHang.getText() + " " + tongNganHang.getNgay() + "-" + tongNganHang.getThang() + "-" + tongNganHang.getNam());
         }
     }
-
+    
     public void clearText() {
-       txtBagCash.setText("Tổng Tiền:");
-       txtTongTienCuaNgay.setText("Tổng Tiền Của Ngày:");
-       txtCash.setText("Tổng Tiền:");
-       txtTienMat.setText("Tổng Tiền Mặt Của Ngày:");
-       txtCreditCash.setText("Tổng Tiền:");
-       txtNganHang.setText("Tổng Tiền Chuyển Khoản Của Ngày:");
+        txtBagCash.setText("Tổng Tiền:");
+        txtTongTienCuaNgay.setText("Tổng Tiền Của Ngày:");
+        txtCash.setText("Tổng Tiền:");
+        txtTienMat.setText("Tổng Tiền Mặt Của Ngày:");
+        txtCreditCash.setText("Tổng Tiền:");
+        txtNganHang.setText("Tổng Tiền Chuyển Khoản Của Ngày:");
     }
-
+    
+    public String dinhDangTienTe(double tienTe) {
+        Locale locale = new Locale("vi", "VN");
+        NumberFormat format = NumberFormat.getInstance(locale);
+        return format.format(tienTe) + " " + "Vnd";
+    }
+    
     public void setTextDataTongTienByDate(Date date) {
         ChiTietTongTienTheoNgayResponse chiTietTongTienTheoNgayResponse = chiTietThongKeService.chiTietTongTienByDate(date);
         clearText();
         if (chiTietTongTienTheoNgayResponse == null) {
-            txtBagCash.setText(txtBagCash.getText() + " " + "0.0");
+            txtBagCash.setText(txtBagCash.getText() + " " + "0.0 Vnd");
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             String strDate = dateFormat.format(date);
             txtTongTienCuaNgay.setText(txtTongTienCuaNgay.getText() + " " + strDate);
         } else {
-            txtBagCash.setText(txtBagCash.getText() + " " + String.valueOf(chiTietTongTienTheoNgayResponse.getTongtien()));
+            txtBagCash.setText(txtBagCash.getText() + " " + dinhDangTienTe(chiTietTongTienTheoNgayResponse.getTongtien()));
             txtTongTienCuaNgay.setText(txtTongTienCuaNgay.getText() + " " + chiTietTongTienTheoNgayResponse.getNgay() + "-" + chiTietTongTienTheoNgayResponse.getThang() + "-" + chiTietTongTienTheoNgayResponse.getNam());
         }
 
         //Get Tien Ngan Hang
         ChiTietTongTienTheoNgayResponse tongTienMat = chiTietThongKeService.getTongTienMatByDate(date);
         if (tongTienMat == null) {
-            txtCash.setText(txtCash.getText() + " " + "0.0");
+            txtCash.setText(txtCash.getText() + " " + "0.0 Vnd");
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             String strDate = dateFormat.format(date);
             txtTienMat.setText(txtTienMat.getText() + " " + strDate);
         } else {
-            txtCash.setText(txtCash.getText() + " " + String.valueOf(tongTienMat.getTongtien()));
+            txtCash.setText(txtCash.getText() + " " + dinhDangTienTe(tongTienMat.getTongtien()));
             txtTienMat.setText(txtTienMat.getText() + " " + tongTienMat.getNgay() + "-" + tongTienMat.getThang() + "-" + tongTienMat.getNam());
-
+            
         }
         //Get tong Tien Mat
         ChiTietTongTienTheoNgayResponse tongNganHang = chiTietThongKeService.getTongTienNganHangByDate(date);
         if (tongNganHang == null) {
-            txtCreditCash.setText(txtCreditCash.getText() + " " + "0.0");
+            txtCreditCash.setText(txtCreditCash.getText() + " " + "0.0 Vnd");
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             String strDate = dateFormat.format(date);
             txtNganHang.setText(txtNganHang.getText() + " " + strDate);
