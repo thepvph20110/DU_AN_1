@@ -117,7 +117,7 @@ public class AcountRepository implements IAcountRepository {
     @Override
     public Acount getByUseNameAndPass(String tenAccount, String matKhau) {
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
-            String hql = "From Acount ac Where  ac.tenAcount = :use and ac.matKhau = :pass";
+            String hql = "From Acount ac Where  ac.maAcount = :use and ac.matKhau = :pass";
             return session.createQuery(hql, Acount.class).setParameter("use", tenAccount).setParameter("pass", matKhau).uniqueResult();
         } catch (Exception e) {
             e.printStackTrace(System.out);
