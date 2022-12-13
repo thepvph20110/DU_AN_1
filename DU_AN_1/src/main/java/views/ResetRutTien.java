@@ -32,13 +32,15 @@ public class ResetRutTien extends javax.swing.JFrame {
     private JPanel panelTong;
     private Home home;
     private JLabel labelHome;
+    private JpnDichVu jdv;
 
-    public ResetRutTien(QLAcount qLAcount, JPanel panelTong, Home home, JLabel labelHome) {
+    public ResetRutTien(QLAcount qLAcount, JPanel panelTong, Home home, JLabel labelHome, JpnDichVu jdv) {
         initComponents();
         this.qLAcount = qLAcount;
         this.panelTong = panelTong;
         this.home = home;
         this.labelHome = labelHome;
+        this.jdv = jdv;
         listGiaoCa = giaoCaService.getAllTrangThaiDaNhanCa();
         showTB(listGiaoCa);
     }
@@ -49,7 +51,7 @@ public class ResetRutTien extends javax.swing.JFrame {
 
     public void showTB(List<GiaoCa> list) {
         jTable1.setModel(dtm = new DefaultTableModel());
-        String[] header = {"Tên Nhân Viên", "Thời gian nhận ca", "Thời gian giao ca", "Tổng tiền mặt trong ca", "Tổng tiền ngân hàng trong ca", "Tiền phát sinh","Tổng tiền rút","Thời gian rút"};
+        String[] header = {"Tên Nhân Viên", "Thời gian nhận ca", "Thời gian giao ca", "Tổng tiền mặt trong ca", "Tổng tiền ngân hàng trong ca", "Tiền phát sinh", "Tổng tiền rút", "Thời gian rút"};
         dtm.setColumnIdentifiers(header);
         dtm.setRowCount(0);
         for (GiaoCa giaoca : list) {
@@ -235,16 +237,13 @@ public class ResetRutTien extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int chon = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn với số tiền rút?", null, JOptionPane.YES_NO_OPTION);
         if (chon == 0) {
-            GiaoCa giaoCa = HienThi();
-            giaoCa.setThoiGianReset(new Date());
-            giaoCa.setTongTienMatRut(Float.valueOf(txtSoTienRut.getText()));
-            String tb = new GiaoCaServiceImpl().GiaoCa(giaoCa);
-            if (tb.equals("Giao ca thành công")) {
-                JOptionPane.showMessageDialog(null, "Rút tiền thành công");
-                this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(null, "Rút tiền thất bại");
+            if (Float.valueOf(txtSoTienRut.getText())> jdv.GetTTongTienMatTrongCa()) {
+                JOptionPane.showMessageDialog(null, "Số tiền rút vượt quá số tiền mặt hiện đang có!");
+            }else{
+                jdv.Ham(Float.valueOf(txtSoTienRut.getText()), new Date());
+                this.dispose(); 
             }
+            
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

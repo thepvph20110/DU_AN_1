@@ -187,7 +187,7 @@ public class JpnDichVu extends javax.swing.JPanel {
         jLabel12.setText("Bàn giao ca");
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel13.setText("Tổng tiền mặt trong ca: (1) - (2)");
+        jLabel13.setText("Tổng tiền mặt trong ca: (1) + (3) - (2)");
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel14.setText("Nhân viên nhận ca:");
@@ -311,7 +311,7 @@ public class JpnDichVu extends javax.swing.JPanel {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelTongLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 391, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 430, Short.MAX_VALUE)
                         .addComponent(jLabel12)
                         .addGap(271, 271, 271))
                     .addGroup(panelTongLayout.createSequentialGroup()
@@ -458,9 +458,87 @@ public class JpnDichVu extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-        new ResetRutTien(qLAcount, panelTong, home, lableHome).setVisible(true);
+        new ResetRutTien(qLAcount, panelTong, home, lableHome, this).setVisible(true);
     }//GEN-LAST:event_btnResetActionPerformed
+    public float GetTTongTienMatTrongCa() {
+        return (float) (giaoCaService.tongTienCaHienTaiByIdNV(qLAcount.getId()) + hienTHiNV().getTienBanDau());
+    }
 
+    public void Ham(float tienRut, Date thoiGianReset) {
+        GiaoCa giaoCa = hienTHiNV();
+        if (!txtTienPhatSinh.getText().isBlank()) {
+            if (Float.valueOf(txtTienPhatSinh.getText()) == 0) {
+                Acount acounttenNVTT = acountService.getOneByNameAcount(cbbNhanVienNhanCa.getSelectedItem().toString());
+                giaoCa.setIdAcount(acountService.getOneByNameAcount(lbNhanVienCaHienTai.getText()));
+                giaoCa.setIdNhanVienCaTiepTheo(acounttenNVTT.getId());
+                giaoCa.setThoiGianGiaoCa(new Date());
+                giaoCa.setTongTienKhac((float) giaoCaService.tongTienNganHang(qLAcount.getId()));
+                giaoCa.setTongTienTrongCa((float) (giaoCaService.tongTienCaHienTaiByIdNV(qLAcount.getId()) + hienTHiNV().getTienBanDau() - Float.valueOf(txtTienPhatSinh.getText())));
+                giaoCa.setTongTienMat((float) (giaoCaService.tongTienMat(qLAcount.getId()) + Float.valueOf(hienTHiNV().getTienBanDau()) - Float.valueOf(txtTienPhatSinh.getText())));
+                giaoCa.setTrangThai(trangThaiGiaoCa.KET_THUC_CA);
+                giaoCa.setTongTienMatRut(tienRut);
+                giaoCa.setThoiGianReset(thoiGianReset);
+                giaoCa.setGhiChuPhatSinh("");
+                giaoCa.setTienPhatSinh(0);
+                String tb = giaoCaService.GiaoCa(giaoCa);
+                if (tb.equals("Giao ca thành công")) {
+                    JOptionPane.showMessageDialog(null, "Rút tiền vào kết ca thành công");
+                    home.dispose();
+                    new Detaillogin(null, true).setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Rút tiền vào kết ca thất bại");
+                }
+            } else {
+                if (txtGhiChu.getText().isBlank()) {
+                    JOptionPane.showMessageDialog(null, "Vui lòng nhập ghi chú phát sinh");
+                    return;
+                } else {
+                    Acount acounttenNVTT = acountService.getOneByNameAcount(cbbNhanVienNhanCa.getSelectedItem().toString());
+                    giaoCa.setIdAcount(acountService.getOneByNameAcount(lbNhanVienCaHienTai.getText()));
+                    giaoCa.setIdNhanVienCaTiepTheo(acounttenNVTT.getId());
+                    giaoCa.setThoiGianGiaoCa(new Date());
+                    giaoCa.setTongTienKhac((float) giaoCaService.tongTienNganHang(qLAcount.getId()));
+                    giaoCa.setTongTienTrongCa((float) (giaoCaService.tongTienCaHienTaiByIdNV(qLAcount.getId()) + hienTHiNV().getTienBanDau() - Float.valueOf(txtTienPhatSinh.getText())));
+                    giaoCa.setTongTienMat((float) (giaoCaService.tongTienMat(qLAcount.getId()) + Float.valueOf(hienTHiNV().getTienBanDau()) - Float.valueOf(txtTienPhatSinh.getText())));
+                    giaoCa.setTrangThai(trangThaiGiaoCa.KET_THUC_CA);
+                    giaoCa.setGhiChuPhatSinh(txtGhiChu.getText());
+                    giaoCa.setTienPhatSinh(Float.valueOf(txtTienPhatSinh.getText()));
+                    giaoCa.setTongTienMatRut(tienRut);
+                    giaoCa.setThoiGianReset(thoiGianReset);
+                    String tb = giaoCaService.GiaoCa(giaoCa);
+                    if (tb.equals("Giao ca thành công")) {
+                        JOptionPane.showMessageDialog(null, "Rút tiền vào kết ca thành công");
+                        home.dispose();
+                        new Detaillogin(null, true).setVisible(true);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Rút tiền vào kết ca thất bại");
+                    }
+                }
+            }
+
+        } else {
+            Acount acounttenNVTT = acountService.getOneByNameAcount(cbbNhanVienNhanCa.getSelectedItem().toString());
+            giaoCa.setIdAcount(acountService.getOneByNameAcount(lbNhanVienCaHienTai.getText()));
+            giaoCa.setIdNhanVienCaTiepTheo(acounttenNVTT.getId());
+            giaoCa.setThoiGianGiaoCa(new Date());
+            giaoCa.setTongTienKhac((float) giaoCaService.tongTienNganHang(qLAcount.getId()));
+            giaoCa.setTongTienTrongCa((float) (giaoCaService.tongTienCaHienTaiByIdNV(qLAcount.getId()) + hienTHiNV().getTienBanDau()));
+            giaoCa.setTongTienMat((float) (giaoCaService.tongTienMat(qLAcount.getId()) + Float.valueOf(hienTHiNV().getTienBanDau())));
+            giaoCa.setTrangThai(trangThaiGiaoCa.KET_THUC_CA);
+            giaoCa.setGhiChuPhatSinh("");
+            giaoCa.setTienPhatSinh(0);
+            giaoCa.setTongTienMatRut(tienRut);
+            giaoCa.setThoiGianReset(thoiGianReset);
+            String tb = giaoCaService.GiaoCa(giaoCa);
+            if (tb.equals("Giao ca thành công")) {
+                JOptionPane.showMessageDialog(null, "Rút tiền vào kết ca thất bại");
+                home.dispose();
+                new Detaillogin(null, true).setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Rút tiền vào kết ca thất bại");
+            }
+        }
+    }
     private void btnKetCaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKetCaActionPerformed
         int chon = JOptionPane.showConfirmDialog(panelTong, "Bạn có chắc chắn kết thúc ca?", null, JOptionPane.YES_NO_OPTION);
         if (chon == 0) {
@@ -472,8 +550,8 @@ public class JpnDichVu extends javax.swing.JPanel {
                     giaoCa.setIdNhanVienCaTiepTheo(acounttenNVTT.getId());
                     giaoCa.setThoiGianGiaoCa(new Date());
                     giaoCa.setTongTienKhac((float) giaoCaService.tongTienNganHang(qLAcount.getId()));
-                    giaoCa.setTongTienTrongCa((float) (giaoCaService.tongTienCaHienTaiByIdNV(qLAcount.getId()) + hienTHiNV().getTienBanDau()));
-                    giaoCa.setTongTienMat((float) (giaoCaService.tongTienMat(qLAcount.getId()) + Float.valueOf(hienTHiNV().getTienBanDau())));
+                    giaoCa.setTongTienTrongCa((float) (giaoCaService.tongTienCaHienTaiByIdNV(qLAcount.getId()) + hienTHiNV().getTienBanDau() - Float.valueOf(txtTienPhatSinh.getText())));
+                    giaoCa.setTongTienMat((float) (giaoCaService.tongTienMat(qLAcount.getId()) + Float.valueOf(hienTHiNV().getTienBanDau()) - Float.valueOf(txtTienPhatSinh.getText())));
                     giaoCa.setTrangThai(trangThaiGiaoCa.KET_THUC_CA);
                     giaoCa.setGhiChuPhatSinh("");
                     giaoCa.setTienPhatSinh(0);
@@ -493,8 +571,8 @@ public class JpnDichVu extends javax.swing.JPanel {
                         giaoCa.setIdNhanVienCaTiepTheo(acounttenNVTT.getId());
                         giaoCa.setThoiGianGiaoCa(new Date());
                         giaoCa.setTongTienKhac((float) giaoCaService.tongTienNganHang(qLAcount.getId()));
-                        giaoCa.setTongTienTrongCa((float) (giaoCaService.tongTienCaHienTaiByIdNV(qLAcount.getId()) + hienTHiNV().getTienBanDau()));
-                        giaoCa.setTongTienMat((float) (giaoCaService.tongTienMat(qLAcount.getId()) + Float.valueOf(hienTHiNV().getTienBanDau())));
+                        giaoCa.setTongTienTrongCa((float) (giaoCaService.tongTienCaHienTaiByIdNV(qLAcount.getId()) + hienTHiNV().getTienBanDau() - Float.valueOf(txtTienPhatSinh.getText())));
+                        giaoCa.setTongTienMat((float) (giaoCaService.tongTienMat(qLAcount.getId()) + Float.valueOf(hienTHiNV().getTienBanDau() - Float.valueOf(txtTienPhatSinh.getText()))));
                         giaoCa.setTrangThai(trangThaiGiaoCa.KET_THUC_CA);
                         giaoCa.setGhiChuPhatSinh(txtGhiChu.getText());
                         giaoCa.setTienPhatSinh(Float.valueOf(txtTienPhatSinh.getText()));
