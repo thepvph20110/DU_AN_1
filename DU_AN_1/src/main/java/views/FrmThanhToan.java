@@ -121,6 +121,8 @@ public class FrmThanhToan extends javax.swing.JFrame {
      */
     public FrmThanhToan(QLHoaDon qLHoaDon, JPanel panelTong, QLAcount qLAcount, JLabel lableHome) {
         initComponents();
+        getContentPane().setBackground(new java.awt.Color(255,255,255));
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.setExtendedState(this.MAXIMIZED_BOTH);
         this.qLHoaDon = qLHoaDon;
         this.idQLHoaDon = qLHoaDon.getId();
@@ -466,13 +468,16 @@ public class FrmThanhToan extends javax.swing.JFrame {
         jpopChiTietDV.add(jMenuSuaSoLuong);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
+        setResizable(false);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
-        jPanel4.setBackground(new java.awt.Color(153, 153, 0));
+        jPanel4.setBackground(new java.awt.Color(186, 228, 229));
         jPanel4.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Chi Tiết Đặt Sân");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -480,9 +485,9 @@ public class FrmThanhToan extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(316, 316, 316)
+                .addGap(392, 392, 392)
                 .addComponent(jLabel1)
-                .addContainerGap(489, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -532,21 +537,22 @@ public class FrmThanhToan extends javax.swing.JFrame {
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
-        jPanel5.setBackground(new java.awt.Color(153, 153, 0));
+        jPanel5.setBackground(new java.awt.Color(186, 228, 229));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Hóa Đơn");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(208, 208, 208)
                 .addComponent(jLabel2)
-                .addGap(176, 176, 176))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -592,8 +598,9 @@ public class FrmThanhToan extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel16.setText("Trả Lại");
 
-        btnThanhToan.setBackground(new java.awt.Color(102, 102, 0));
-        btnThanhToan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnThanhToan.setBackground(new java.awt.Color(51, 102, 255));
+        btnThanhToan.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnThanhToan.setForeground(new java.awt.Color(255, 255, 255));
         btnThanhToan.setText("Thanh Toán");
         btnThanhToan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -601,8 +608,9 @@ public class FrmThanhToan extends javax.swing.JFrame {
             }
         });
 
-        btnThanhToan1.setBackground(new java.awt.Color(204, 204, 0));
-        btnThanhToan1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnThanhToan1.setBackground(new java.awt.Color(255, 0, 0));
+        btnThanhToan1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnThanhToan1.setForeground(new java.awt.Color(255, 255, 255));
         btnThanhToan1.setText("Thoát");
         btnThanhToan1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -615,8 +623,9 @@ public class FrmThanhToan extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel10.setText("Phụ Phí");
 
-        btnAddPhuPhi.setBackground(new java.awt.Color(102, 102, 0));
-        btnAddPhuPhi.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnAddPhuPhi.setBackground(new java.awt.Color(51, 102, 255));
+        btnAddPhuPhi.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnAddPhuPhi.setForeground(new java.awt.Color(255, 255, 255));
         btnAddPhuPhi.setText("Thêm Phụ Phí");
         btnAddPhuPhi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -635,8 +644,9 @@ public class FrmThanhToan extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(153, 153, 0));
+        jButton1.setBackground(new java.awt.Color(51, 102, 255));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Chi Tiết Phụ Phí");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -644,6 +654,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
             }
         });
 
+        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
         jPanel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -868,9 +879,9 @@ public class FrmThanhToan extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
-        jPanel6.setBackground(new java.awt.Color(153, 153, 0));
+        jPanel6.setBackground(new java.awt.Color(186, 228, 229));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Chi Tiết Dịch Vụ");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -878,19 +889,19 @@ public class FrmThanhToan extends javax.swing.JFrame {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(355, 355, 355)
+                .addGap(362, 362, 362)
                 .addComponent(jLabel4)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
-        jPanel7.setBackground(new java.awt.Color(153, 153, 0));
+        jPanel7.setBackground(new java.awt.Color(186, 228, 229));
         jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -927,13 +938,13 @@ public class FrmThanhToan extends javax.swing.JFrame {
 
         jScrollPane3.setViewportView(jScrollPane4);
 
-        jPanel8.setBackground(new java.awt.Color(153, 153, 0));
+        jPanel8.setBackground(new java.awt.Color(186, 228, 229));
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 894, Short.MAX_VALUE)
+            .addGap(0, 898, Short.MAX_VALUE)
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -961,7 +972,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
         jScrollPane5.setViewportView(jScrollPane2);
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel12.setText("Chi Tiet Dich Vu");
+        jLabel12.setText("Chi Tiết Dịch Vụ");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -979,7 +990,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jcbDichVu, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel12))
-                .addContainerGap(609, Short.MAX_VALUE))
+                .addContainerGap(610, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1032,7 +1043,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 452, Short.MAX_VALUE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 453, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
