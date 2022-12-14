@@ -49,4 +49,6 @@ public interface IGiaoCaService {
     List<GiaoCa> giaoCaCoPhuPhiPhatSinh();
 
     List<GiaoCa> getAllTrangThaiDaNhanCa();
+
+    List<GiaoCa> giaoCaCoTienDuocRut();
 }

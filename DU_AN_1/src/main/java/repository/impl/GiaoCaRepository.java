@@ -288,4 +288,18 @@ public class GiaoCaRepository implements IGiaoCaRepository {
         }
         return list;
     }
+
+    @Override
+    public List<GiaoCa> giaoCaCoTienDuocRut() {
+        List<GiaoCa> list = new ArrayList<>();
+        String hql = "From GiaoCa gc WHERE gc.tongTienMatRut > 0";
+        try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
+            Query q = session.createQuery(hql, GiaoCa.class);
+            list = q.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return list;
+        }
+        return list;
+    }
 }

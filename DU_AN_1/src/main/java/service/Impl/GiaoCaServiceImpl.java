@@ -113,4 +113,9 @@ public class GiaoCaServiceImpl implements IGiaoCaService {
         return giaoCaRepo.getAllTrangThaiDaNhanCa();
     }
 
+    @Override
+    public List<GiaoCa> giaoCaCoTienDuocRut() {
+        return giaoCaRepo.giaoCaCoTienDuocRut();
+    }
+
 }

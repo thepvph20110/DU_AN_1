@@ -49,5 +49,7 @@ public interface IGiaoCaRepository {
 
     List<GiaoCa> giaoCaCoPhuPhiPhatSinh();
 
+    List<GiaoCa> giaoCaCoTienDuocRut();
+
     List<GiaoCa> searchByName(String name);
 }

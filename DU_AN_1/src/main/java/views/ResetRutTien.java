@@ -80,6 +80,7 @@ public class ResetRutTien extends javax.swing.JFrame {
         txtSearch = new utill.SearChTenNV();
         jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        cbTienDuocRut = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -147,6 +148,15 @@ public class ResetRutTien extends javax.swing.JFrame {
             }
         });
 
+        cbTienDuocRut.setBackground(new java.awt.Color(186, 228, 229));
+        cbTienDuocRut.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        cbTienDuocRut.setText("Giao ca có rút tiền");
+        cbTienDuocRut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cbTienDuocRutMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -173,8 +183,10 @@ public class ResetRutTien extends javax.swing.JFrame {
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(121, 121, 121)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cbGiaoCaCoPhuPhi))))
+                            .addComponent(cbTienDuocRut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cbGiaoCaCoPhuPhi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 284, Short.MAX_VALUE)
@@ -201,8 +213,10 @@ public class ResetRutTien extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(cbGiaoCaCoPhuPhi))
                 .addGap(18, 18, 18)
+                .addComponent(cbTienDuocRut)
+                .addGap(18, 18, 18)
                 .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -250,6 +264,18 @@ public class ResetRutTien extends javax.swing.JFrame {
     private void cbGiaoCaCoPhuPhiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbGiaoCaCoPhuPhiMouseClicked
         checkBox();
     }//GEN-LAST:event_cbGiaoCaCoPhuPhiMouseClicked
+
+    private void cbTienDuocRutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbTienDuocRutMouseClicked
+        List<GiaoCa> lisstCheck = giaoCaService.giaoCaCoTienDuocRut();
+         if (cbTienDuocRut.isSelected()) {
+            listGiaoCa.clear();
+            showTB(lisstCheck);
+        } else {
+            lisstCheck.clear();
+            listGiaoCa = giaoCaService.getAllTrangThaiDaNhanCa();
+            showTB(listGiaoCa);
+        }
+    }//GEN-LAST:event_cbTienDuocRutMouseClicked
     private void checkBox() {
         List<GiaoCa> lisstCheck = giaoCaService.giaoCaCoPhuPhiPhatSinh();
         if (cbGiaoCaCoPhuPhi.isSelected()) {
@@ -299,6 +325,7 @@ public class ResetRutTien extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox cbGiaoCaCoPhuPhi;
+    private javax.swing.JCheckBox cbTienDuocRut;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
