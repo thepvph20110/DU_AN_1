@@ -563,76 +563,51 @@ public class JpnDichVu extends javax.swing.JPanel {
             }
         }
     }
+
+    private void ketCa(String ghiChu, float tienPhatSinh, float tienTru) {
+        GiaoCa giaoCa = hienTHiNV();
+        Acount acounttenNVTT = acountService.getOneByNameAcount(cbbNhanVienNhanCa.getSelectedItem().toString());
+        giaoCa.setIdAcount(acountService.getOneByNameAcount(lbNhanVienCaHienTai.getText()));
+        giaoCa.setIdNhanVienCaTiepTheo(acounttenNVTT.getId());
+        giaoCa.setThoiGianGiaoCa(new Date());
+        giaoCa.setTongTienKhac((float) giaoCaService.tongTienNganHang(qLAcount.getId()));
+        giaoCa.setTongTienTrongCa((float) (giaoCaService.tongTienCaHienTaiByIdNV(qLAcount.getId()) + hienTHiNV().getTienBanDau() - tienTru));
+        giaoCa.setTongTienMat((float) (giaoCaService.tongTienMat(qLAcount.getId()) + Float.valueOf(hienTHiNV().getTienBanDau()) - tienTru));
+        giaoCa.setTrangThai(trangThaiGiaoCa.KET_THUC_CA);
+        giaoCa.setGhiChuPhatSinh(ghiChu);
+        giaoCa.setTienPhatSinh(tienPhatSinh);
+        String tb = giaoCaService.GiaoCa(giaoCa);
+        JOptionPane.showMessageDialog(null, tb);
+        if (tb.equals("Giao ca thành công")) {
+            home.dispose();
+            new Detaillogin(null, true).setVisible(true);
+        }
+    }
     private void btnKetCaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKetCaActionPerformed
         int chon = JOptionPane.showConfirmDialog(panelTong, "Bạn có chắc chắn kết thúc ca?", null, JOptionPane.YES_NO_OPTION);
         if (chon == 0) {
             GiaoCa giaoCa = hienTHiNV();
             if (!txtTienPhatSinh.getText().isBlank()) {
                 if (Float.valueOf(txtTienPhatSinh.getText()) == 0) {
-                    Acount acounttenNVTT = acountService.getOneByNameAcount(cbbNhanVienNhanCa.getSelectedItem().toString());
-                    giaoCa.setIdAcount(acountService.getOneByNameAcount(lbNhanVienCaHienTai.getText()));
-                    giaoCa.setIdNhanVienCaTiepTheo(acounttenNVTT.getId());
-                    giaoCa.setThoiGianGiaoCa(new Date());
-                    giaoCa.setTongTienKhac((float) giaoCaService.tongTienNganHang(qLAcount.getId()));
-                    giaoCa.setTongTienTrongCa((float) (giaoCaService.tongTienCaHienTaiByIdNV(qLAcount.getId()) + hienTHiNV().getTienBanDau() - Float.valueOf(txtTienPhatSinh.getText())));
-                    giaoCa.setTongTienMat((float) (giaoCaService.tongTienMat(qLAcount.getId()) + Float.valueOf(hienTHiNV().getTienBanDau()) - Float.valueOf(txtTienPhatSinh.getText())));
-                    giaoCa.setTrangThai(trangThaiGiaoCa.KET_THUC_CA);
-                    giaoCa.setGhiChuPhatSinh("");
-//                    giaoCa.setThoiGianReset(0);
-                    giaoCa.setTienPhatSinh(0);
-                    String tb = giaoCaService.GiaoCa(giaoCa);
-                    JOptionPane.showMessageDialog(null, tb);
-                    if (tb.equals("Giao ca thành công")) {
-                        home.dispose();
-                        new Detaillogin(null, true).setVisible(true);
-                    }
+                    ketCa("", 0, Float.valueOf(txtTienPhatSinh.getText()));
                 } else {
                     if (txtGhiChu.getText().isBlank()) {
                         JOptionPane.showMessageDialog(null, "Vui lòng nhập ghi chú phát sinh");
                         return;
                     } else {
-                        Acount acounttenNVTT = acountService.getOneByNameAcount(cbbNhanVienNhanCa.getSelectedItem().toString());
-                        giaoCa.setIdAcount(acountService.getOneByNameAcount(lbNhanVienCaHienTai.getText()));
-                        giaoCa.setIdNhanVienCaTiepTheo(acounttenNVTT.getId());
-                        giaoCa.setThoiGianGiaoCa(new Date());
-                        giaoCa.setTongTienKhac((float) giaoCaService.tongTienNganHang(qLAcount.getId()));
-                        giaoCa.setTongTienTrongCa((float) (giaoCaService.tongTienCaHienTaiByIdNV(qLAcount.getId()) + hienTHiNV().getTienBanDau() - Float.valueOf(txtTienPhatSinh.getText())));
-                        giaoCa.setTongTienMat((float) (giaoCaService.tongTienMat(qLAcount.getId()) + Float.valueOf(hienTHiNV().getTienBanDau() - Float.valueOf(txtTienPhatSinh.getText()))));
-                        giaoCa.setTrangThai(trangThaiGiaoCa.KET_THUC_CA);
-                        giaoCa.setGhiChuPhatSinh(txtGhiChu.getText());
-                        giaoCa.setTienPhatSinh(Float.valueOf(txtTienPhatSinh.getText()));
-                        String tb = giaoCaService.GiaoCa(giaoCa);
-                        JOptionPane.showMessageDialog(null, tb);
-                        if (tb.equals("Giao ca thành công")) {
-                            home.dispose();
-                            new Detaillogin(null, true).setVisible(true);
-                        }
+                        ketCa(txtGhiChu.getText(), Float.valueOf(txtTienPhatSinh.getText()), Float.valueOf(txtTienPhatSinh.getText()));
                     }
                 }
 
             } else {
-                Acount acounttenNVTT = acountService.getOneByNameAcount(cbbNhanVienNhanCa.getSelectedItem().toString());
-                giaoCa.setIdAcount(acountService.getOneByNameAcount(lbNhanVienCaHienTai.getText()));
-                giaoCa.setIdNhanVienCaTiepTheo(acounttenNVTT.getId());
-                giaoCa.setThoiGianGiaoCa(new Date());
-                giaoCa.setTongTienKhac((float) giaoCaService.tongTienNganHang(qLAcount.getId()));
-                giaoCa.setTongTienTrongCa((float) (giaoCaService.tongTienCaHienTaiByIdNV(qLAcount.getId()) + hienTHiNV().getTienBanDau()));
-                giaoCa.setTongTienMat((float) (giaoCaService.tongTienMat(qLAcount.getId()) + Float.valueOf(hienTHiNV().getTienBanDau())));
-                giaoCa.setTrangThai(trangThaiGiaoCa.KET_THUC_CA);
-                giaoCa.setGhiChuPhatSinh("");
-                giaoCa.setTienPhatSinh(0);
-                String tb = giaoCaService.GiaoCa(giaoCa);
-                JOptionPane.showMessageDialog(null, tb);
-                if (tb.equals("Giao ca thành công")) {
-                    home.dispose();
-                    new Detaillogin(null, true).setVisible(true);
-                }
+                ketCa("", 0, 0);
             }
 
         }
     }//GEN-LAST:event_btnKetCaActionPerformed
 
     private void txtTienPhatSinhKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTienPhatSinhKeyTyped
+        DecimalFormat df = new DecimalFormat("###,###,###");
         String tien = txtTienPhatSinh.getText() + evt.getKeyChar();
         if (!tien.matches("\\d+")) {
             txtTienPhatSinh.setText("");
@@ -647,9 +622,9 @@ public class JpnDichVu extends javax.swing.JPanel {
                 txtTienPhatSinh.setText("");
             } else {
                 if (tien.length() == 0) {
-                    labelTongTIenMatTrongCa.setText(String.valueOf(giaoCaService.tongTienMat(qLAcount.getId()) + Float.valueOf(hienTHiNV().getTienBanDau()) - 0));
+                    labelTongTIenMatTrongCa.setText(df.format(giaoCaService.tongTienMat(qLAcount.getId()) + Float.valueOf(hienTHiNV().getTienBanDau()) - 0));
                 } else {
-                    labelTongTIenMatTrongCa.setText(String.valueOf(giaoCaService.tongTienMat(qLAcount.getId()) + Float.valueOf(hienTHiNV().getTienBanDau()) - tienPhatSInh));
+                    labelTongTIenMatTrongCa.setText(df.format(giaoCaService.tongTienMat(qLAcount.getId()) + Float.valueOf(hienTHiNV().getTienBanDau()) - tienPhatSInh));
                 }
 
             }

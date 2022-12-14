@@ -32,7 +32,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Setter
 @Entity
 public class GiaoCa implements Serializable {
-
+    
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
@@ -60,10 +60,10 @@ public class GiaoCa implements Serializable {
     private Acount idAcount;
     private float tongTienMatRut;
     private trangThaiGiaoCa trangThai = trangThaiGiaoCa.NHAN_CA;
-
+    
     public Object[] toData() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy - hh:mm:ss a");
         DecimalFormat format = new DecimalFormat("###,###,###");
-        return new Object[]{idAcount.getTenAcount(), sdf.format(thoiGianNhanCa), sdf.format(thoiGianGiaoCa), format.format(tongTienMat), format.format(tongTienKhac), format.format(tienPhatSinh), format.format(tongTienMatRut), thoiGianReset,ghiChuPhatSinh};
+        return new Object[]{idAcount.getTenAcount(), sdf.format(thoiGianNhanCa), sdf.format(thoiGianGiaoCa), format.format(tienBanDau), format.format(tongTienMat), format.format(tongTienKhac), format.format(tienPhatSinh), format.format(tongTienMatRut), thoiGianReset, ghiChuPhatSinh};
     }
 }
