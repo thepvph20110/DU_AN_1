@@ -38,7 +38,7 @@ public class FrmLichSuDatSan extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(186, 228, 229));
+        jPanel1.setBackground(new java.awt.Color(65, 147, 169));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("Tìm kiếm ");
@@ -63,7 +63,9 @@ public class FrmLichSuDatSan extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tbLichSu);
 
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Lịch Sử Đặt Sân");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
