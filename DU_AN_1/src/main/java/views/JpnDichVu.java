@@ -53,6 +53,7 @@ public class JpnDichVu extends javax.swing.JPanel {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy - hh:mm:ss a");
         lbGioHienTai.setText(sdf.format(timestamp));
         lbGioVaoCa.setText(sdf.format(hienTHiNV().getThoiGianNhanCa()));
+        txtTienPhatSinh.setText("0");
         TongTien();
         phanQuyen();
     }
@@ -69,11 +70,11 @@ public class JpnDichVu extends javax.swing.JPanel {
         DecimalFormat df = new DecimalFormat("###,###,###");
         lbTienBanDau.setText(df.format(hienTHiNV().getTienBanDau()));
         lbTongTienThuTrongCa.setText(df.format(giaoCaService.tongTienCaHienTaiByIdNV(qLAcount.getId())));
-        lbTOngHoaDOnTT.setText(df.format(giaoCaService.tongHoaDOnDaTT(qLAcount.getId())));
+        lbTOngHoaDOnTT.setText(String.valueOf(giaoCaService.tongHoaDOnDaTT(qLAcount.getId())));
         lbTOngHoaDOnChuaTT.setText(String.valueOf(giaoCaService.tongHoaDOnChuaTT(qLAcount.getId())));
         lbTOngTIenNganHang.setText(df.format(giaoCaService.tongTienNganHang(qLAcount.getId())));
-        lbTongTIenThanhTOanBangTienMa.setText(String.valueOf(giaoCaService.tongTienMat(qLAcount.getId())));
-        labelTongTIenMatTrongCa.setText(String.valueOf(giaoCaService.tongTienMat(qLAcount.getId()) + Float.valueOf(hienTHiNV().getTienBanDau())));
+        lbTongTIenThanhTOanBangTienMa.setText(df.format(giaoCaService.tongTienMat(qLAcount.getId())));
+        labelTongTIenMatTrongCa.setText(df.format(giaoCaService.tongTienMat(qLAcount.getId()) + Float.valueOf(hienTHiNV().getTienBanDau())));
     }
 
     private void loadCbbNhanVien() {
@@ -83,7 +84,7 @@ public class JpnDichVu extends javax.swing.JPanel {
         }
     }
 
-    private GiaoCa hienTHiNV() {
+    public GiaoCa hienTHiNV() {
         return giaoCaService.getOneByIdNV(qLAcount.getId());
     }
 
@@ -148,7 +149,7 @@ public class JpnDichVu extends javax.swing.JPanel {
         lbNhanVienCaHienTai.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel7.setText("Tiền ban đầu: ");
+        jLabel7.setText("Tiền ban đầu: (1) ");
 
         lbTienBanDau.setBackground(new java.awt.Color(204, 204, 204));
         lbTienBanDau.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -156,7 +157,7 @@ public class JpnDichVu extends javax.swing.JPanel {
         lbTienBanDau.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setText("Tổng tiền thu trong ca: ");
+        jLabel8.setText("Tổng tiền thu trong ca: (3) + (4)");
 
         lbTongTienThuTrongCa.setBackground(new java.awt.Color(204, 204, 204));
         lbTongTienThuTrongCa.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -164,7 +165,7 @@ public class JpnDichVu extends javax.swing.JPanel {
         lbTongTienThuTrongCa.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel10.setText("Tổng tiền thanh toán bằng ngân hàng:");
+        jLabel10.setText("Tổng tiền thanh toán bằng ngân hàng: (4)");
 
         lbTOngTIenNganHang.setBackground(new java.awt.Color(204, 204, 204));
         lbTOngTIenNganHang.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -186,7 +187,7 @@ public class JpnDichVu extends javax.swing.JPanel {
         jLabel12.setText("Bàn giao ca");
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel13.setText("Tổng tiền mặt trong ca : ");
+        jLabel13.setText("Tổng tiền mặt trong ca: (1) + (3) - (2)");
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel14.setText("Nhân viên nhận ca:");
@@ -241,7 +242,7 @@ public class JpnDichVu extends javax.swing.JPanel {
         lbTOngHoaDOnChuaTT.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel5.setText("Tiền phát sinh:");
+        jLabel5.setText("Tiền phát sinh: (2)");
 
         txtTienPhatSinh.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -252,7 +253,7 @@ public class JpnDichVu extends javax.swing.JPanel {
         labelTongTIenMatTrongCa.setText("jLabel9");
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel17.setText("Tổng tiền thanh toán bằng tiền mặt:");
+        jLabel17.setText("Tổng tiền thanh toán bằng tiền mặt: (3)");
 
         lbTongTIenThanhTOanBangTienMa.setForeground(new java.awt.Color(255, 0, 51));
         lbTongTIenThanhTOanBangTienMa.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -262,7 +263,7 @@ public class JpnDichVu extends javax.swing.JPanel {
         panelTongLayout.setHorizontalGroup(
             panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelTongLayout.createSequentialGroup()
-                .addContainerGap(13, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTongLayout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -310,46 +311,47 @@ public class JpnDichVu extends javax.swing.JPanel {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelTongLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 336, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 430, Short.MAX_VALUE)
                         .addComponent(jLabel12)
                         .addGap(271, 271, 271))
                     .addGroup(panelTongLayout.createSequentialGroup()
                         .addGap(103, 103, 103)
-                        .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(panelTongLayout.createSequentialGroup()
-                                    .addGap(28, 28, 28)
-                                    .addComponent(btnKetCa)
-                                    .addGap(72, 72, 72)
-                                    .addComponent(btnReset))
-                                .addGroup(panelTongLayout.createSequentialGroup()
-                                    .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jLabel13))
-                                            .addComponent(jLabel4))
-                                        .addComponent(jLabel8))
-                                    .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(panelTongLayout.createSequentialGroup()
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(cbbNhanVienNhanCa, 0, 406, Short.MAX_VALUE)
-                                                .addComponent(lbGioHienTai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                        .addGroup(panelTongLayout.createSequentialGroup()
-                                            .addGap(22, 22, 22)
-                                            .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(lbTongTienThuTrongCa, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(labelTongTIenMatTrongCa, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelTongLayout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addComponent(btnKetCa)
+                                .addGap(72, 72, 72)
+                                .addComponent(btnReset))
                             .addGroup(panelTongLayout.createSequentialGroup()
                                 .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel13))
+                                        .addComponent(jLabel4))
+                                    .addComponent(jLabel8))
+                                .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelTongLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(lbGioHienTai, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
+                                            .addGroup(panelTongLayout.createSequentialGroup()
+                                                .addComponent(cbbNhanVienNhanCa, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGap(106, 106, 106))))
+                                    .addGroup(panelTongLayout.createSequentialGroup()
+                                        .addGap(103, 103, 103)
+                                        .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(lbTongTienThuTrongCa, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                                            .addComponent(labelTongTIenMatTrongCa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(54, 54, 54))))
+                            .addGroup(panelTongLayout.createSequentialGroup()
+                                .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel17)
                                     .addComponent(jLabel10))
-                                .addGap(18, 18, 18)
+                                .addGap(32, 32, 32)
                                 .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lbTOngTIenNganHang, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lbTongTIenThanhTOanBangTienMa, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(64, 64, 64)))
+                                    .addComponent(lbTongTIenThanhTOanBangTienMa, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTongLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -418,15 +420,15 @@ public class JpnDichVu extends javax.swing.JPanel {
                         .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel13)
                             .addComponent(labelTongTIenMatTrongCa, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(33, 33, 33)
-                        .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(27, 27, 27)
+                        .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel8)
                             .addComponent(lbTongTienThuTrongCa, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel17)
-                            .addComponent(lbTongTIenThanhTOanBangTienMa, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
+                        .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lbTongTIenThanhTOanBangTienMa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(37, 37, 37)
                         .addGroup(panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lbTOngTIenNganHang, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -456,15 +458,62 @@ public class JpnDichVu extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-
+        new ResetRutTien(qLAcount, panelTong, home, lableHome, this).setVisible(true);
     }//GEN-LAST:event_btnResetActionPerformed
+    public float GetTTongTienMatTrongCa() {
+        return (float) (giaoCaService.tongTienCaHienTaiByIdNV(qLAcount.getId()) + hienTHiNV().getTienBanDau());
+    }
 
-    private void btnKetCaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKetCaActionPerformed
-        int chon = JOptionPane.showConfirmDialog(panelTong, "Bạn có chắc chắn kết thúc ca?", null, JOptionPane.YES_NO_OPTION);
-        if (chon == 0) {
-            GiaoCa giaoCa = hienTHiNV();
-            if (txtTienPhatSinh.getText().length() > 0) {
-                if (txtGhiChu.getText().length() == 0) {
+    public void Ham(float tienRut, Date thoiGianReset) {
+        GiaoCa giaoCa = hienTHiNV();
+        if (!txtTienPhatSinh.getText().isBlank()) {
+            if (Float.valueOf(txtTienPhatSinh.getText()) == 0) {
+                if (String.valueOf(tienRut).isBlank()) {
+
+                    Acount acounttenNVTT = acountService.getOneByNameAcount(cbbNhanVienNhanCa.getSelectedItem().toString());
+                    giaoCa.setIdAcount(acountService.getOneByNameAcount(lbNhanVienCaHienTai.getText()));
+                    giaoCa.setIdNhanVienCaTiepTheo(acounttenNVTT.getId());
+                    giaoCa.setThoiGianGiaoCa(new Date());
+                    giaoCa.setTongTienKhac((float) giaoCaService.tongTienNganHang(qLAcount.getId()));
+                    giaoCa.setTongTienTrongCa((float) (giaoCaService.tongTienCaHienTaiByIdNV(qLAcount.getId()) + hienTHiNV().getTienBanDau() - Float.valueOf(txtTienPhatSinh.getText())));
+                    giaoCa.setTongTienMat((float) (giaoCaService.tongTienMat(qLAcount.getId()) + Float.valueOf(hienTHiNV().getTienBanDau()) - Float.valueOf(txtTienPhatSinh.getText())));
+                    giaoCa.setTrangThai(trangThaiGiaoCa.KET_THUC_CA);
+                    giaoCa.setTongTienMatRut(0);
+                    giaoCa.setThoiGianReset(thoiGianReset);
+                    giaoCa.setGhiChuPhatSinh("");
+                    giaoCa.setTienPhatSinh(0);
+                    String tb = giaoCaService.GiaoCa(giaoCa);
+                    if (tb.equals("Giao ca thành công")) {
+                        JOptionPane.showMessageDialog(null, "Rút tiền vào kết ca thành công");
+                        home.dispose();
+                        new Detaillogin(null, true).setVisible(true);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Rút tiền vào kết ca thất bại");
+                    }
+                } else {
+                    Acount acounttenNVTT = acountService.getOneByNameAcount(cbbNhanVienNhanCa.getSelectedItem().toString());
+                    giaoCa.setIdAcount(acountService.getOneByNameAcount(lbNhanVienCaHienTai.getText()));
+                    giaoCa.setIdNhanVienCaTiepTheo(acounttenNVTT.getId());
+                    giaoCa.setThoiGianGiaoCa(new Date());
+                    giaoCa.setTongTienKhac((float) giaoCaService.tongTienNganHang(qLAcount.getId()));
+                    giaoCa.setTongTienTrongCa((float) (giaoCaService.tongTienCaHienTaiByIdNV(qLAcount.getId()) + hienTHiNV().getTienBanDau() - Float.valueOf(txtTienPhatSinh.getText())));
+                    giaoCa.setTongTienMat((float) (giaoCaService.tongTienMat(qLAcount.getId()) + Float.valueOf(hienTHiNV().getTienBanDau()) - Float.valueOf(txtTienPhatSinh.getText())));
+                    giaoCa.setTrangThai(trangThaiGiaoCa.KET_THUC_CA);
+                    giaoCa.setTongTienMatRut(tienRut);
+                    giaoCa.setThoiGianReset(thoiGianReset);
+                    giaoCa.setGhiChuPhatSinh("");
+                    giaoCa.setTienPhatSinh(0);
+                    String tb = giaoCaService.GiaoCa(giaoCa);
+                    if (tb.equals("Giao ca thành công")) {
+                        JOptionPane.showMessageDialog(null, "Rút tiền vào kết ca thành công");
+                        home.dispose();
+                        new Detaillogin(null, true).setVisible(true);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Rút tiền vào kết ca thất bại");
+                    }
+                }
+            } else {
+                if (txtGhiChu.getText().isBlank()) {
                     JOptionPane.showMessageDialog(null, "Vui lòng nhập ghi chú phát sinh");
                     return;
                 } else {
@@ -473,40 +522,92 @@ public class JpnDichVu extends javax.swing.JPanel {
                     giaoCa.setIdNhanVienCaTiepTheo(acounttenNVTT.getId());
                     giaoCa.setThoiGianGiaoCa(new Date());
                     giaoCa.setTongTienKhac((float) giaoCaService.tongTienNganHang(qLAcount.getId()));
-                    giaoCa.setTongTienTrongCa((float) (giaoCaService.tongTienCaHienTaiByIdNV(qLAcount.getId()) + hienTHiNV().getTienBanDau()) - Float.valueOf(txtTienPhatSinh.getText()));
-                    giaoCa.setTongTienMat((float) (giaoCaService.tongTienMat(qLAcount.getId()) + Float.valueOf(hienTHiNV().getTienBanDau())));
+                    giaoCa.setTongTienTrongCa((float) (giaoCaService.tongTienCaHienTaiByIdNV(qLAcount.getId()) + hienTHiNV().getTienBanDau() - Float.valueOf(txtTienPhatSinh.getText())));
+                    giaoCa.setTongTienMat((float) (giaoCaService.tongTienMat(qLAcount.getId()) + Float.valueOf(hienTHiNV().getTienBanDau()) - Float.valueOf(txtTienPhatSinh.getText())));
                     giaoCa.setTrangThai(trangThaiGiaoCa.KET_THUC_CA);
                     giaoCa.setGhiChuPhatSinh(txtGhiChu.getText());
                     giaoCa.setTienPhatSinh(Float.valueOf(txtTienPhatSinh.getText()));
+                    giaoCa.setTongTienMatRut(tienRut);
+                    giaoCa.setThoiGianReset(thoiGianReset);
                     String tb = giaoCaService.GiaoCa(giaoCa);
-                    JOptionPane.showMessageDialog(null, tb);
                     if (tb.equals("Giao ca thành công")) {
+                        JOptionPane.showMessageDialog(null, "Rút tiền vào kết ca thành công");
                         home.dispose();
                         new Detaillogin(null, true).setVisible(true);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Rút tiền vào kết ca thất bại");
                     }
                 }
+            }
+
+        } else {
+            Acount acounttenNVTT = acountService.getOneByNameAcount(cbbNhanVienNhanCa.getSelectedItem().toString());
+            giaoCa.setIdAcount(acountService.getOneByNameAcount(lbNhanVienCaHienTai.getText()));
+            giaoCa.setIdNhanVienCaTiepTheo(acounttenNVTT.getId());
+            giaoCa.setThoiGianGiaoCa(new Date());
+            giaoCa.setTongTienKhac((float) giaoCaService.tongTienNganHang(qLAcount.getId()));
+            giaoCa.setTongTienTrongCa((float) (giaoCaService.tongTienCaHienTaiByIdNV(qLAcount.getId()) + hienTHiNV().getTienBanDau()));
+            giaoCa.setTongTienMat((float) (giaoCaService.tongTienMat(qLAcount.getId()) + Float.valueOf(hienTHiNV().getTienBanDau())));
+            giaoCa.setTrangThai(trangThaiGiaoCa.KET_THUC_CA);
+            giaoCa.setGhiChuPhatSinh("");
+            giaoCa.setTienPhatSinh(0);
+            giaoCa.setTongTienMatRut(tienRut);
+            giaoCa.setThoiGianReset(thoiGianReset);
+            String tb = giaoCaService.GiaoCa(giaoCa);
+            if (tb.equals("Giao ca thành công")) {
+                JOptionPane.showMessageDialog(null, "Rút tiền vào kết ca thất bại");
+                home.dispose();
+                new Detaillogin(null, true).setVisible(true);
             } else {
-                Acount acounttenNVTT = acountService.getOneByNameAcount(cbbNhanVienNhanCa.getSelectedItem().toString());
-                giaoCa.setIdAcount(acountService.getOneByNameAcount(lbNhanVienCaHienTai.getText()));
-                giaoCa.setIdNhanVienCaTiepTheo(acounttenNVTT.getId());
-                giaoCa.setThoiGianGiaoCa(new Date());
-                giaoCa.setTongTienKhac((float) giaoCaService.tongTienNganHang(qLAcount.getId()));
-                giaoCa.setTongTienTrongCa((float) (giaoCaService.tongTienCaHienTaiByIdNV(qLAcount.getId()) + hienTHiNV().getTienBanDau()) - Float.valueOf(txtTienPhatSinh.getText()));
-                giaoCa.setTongTienMat((float) (giaoCaService.tongTienMat(qLAcount.getId()) + Float.valueOf(hienTHiNV().getTienBanDau())));
-                giaoCa.setTrangThai(trangThaiGiaoCa.KET_THUC_CA);
-                giaoCa.setGhiChuPhatSinh("");
-                giaoCa.setTienPhatSinh(0);
-                String tb = giaoCaService.GiaoCa(giaoCa);
-                if (tb.equals("Giao ca thành công")) {
-                    home.dispose();
-                    new Detaillogin(null, true).setVisible(true);
+                JOptionPane.showMessageDialog(null, "Rút tiền vào kết ca thất bại");
+            }
+        }
+    }
+
+    private void ketCa(String ghiChu, float tienPhatSinh, float tienTru) {
+        GiaoCa giaoCa = hienTHiNV();
+        Acount acounttenNVTT = acountService.getOneByNameAcount(cbbNhanVienNhanCa.getSelectedItem().toString());
+        giaoCa.setIdAcount(acountService.getOneByNameAcount(lbNhanVienCaHienTai.getText()));
+        giaoCa.setIdNhanVienCaTiepTheo(acounttenNVTT.getId());
+        giaoCa.setThoiGianGiaoCa(new Date());
+        giaoCa.setTongTienKhac((float) giaoCaService.tongTienNganHang(qLAcount.getId()));
+        giaoCa.setTongTienTrongCa((float) (giaoCaService.tongTienCaHienTaiByIdNV(qLAcount.getId()) + hienTHiNV().getTienBanDau() - tienTru));
+        giaoCa.setTongTienMat((float) (giaoCaService.tongTienMat(qLAcount.getId()) + Float.valueOf(hienTHiNV().getTienBanDau()) - tienTru));
+        giaoCa.setTrangThai(trangThaiGiaoCa.KET_THUC_CA);
+        giaoCa.setGhiChuPhatSinh(ghiChu);
+        giaoCa.setTienPhatSinh(tienPhatSinh);
+        String tb = giaoCaService.GiaoCa(giaoCa);
+        JOptionPane.showMessageDialog(null, tb);
+        if (tb.equals("Giao ca thành công")) {
+            home.dispose();
+            new Detaillogin(null, true).setVisible(true);
+        }
+    }
+    private void btnKetCaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKetCaActionPerformed
+        int chon = JOptionPane.showConfirmDialog(panelTong, "Bạn có chắc chắn kết thúc ca?", null, JOptionPane.YES_NO_OPTION);
+        if (chon == 0) {
+            GiaoCa giaoCa = hienTHiNV();
+            if (!txtTienPhatSinh.getText().isBlank()) {
+                if (Float.valueOf(txtTienPhatSinh.getText()) == 0) {
+                    ketCa("", 0, Float.valueOf(txtTienPhatSinh.getText()));
+                } else {
+                    if (txtGhiChu.getText().isBlank()) {
+                        JOptionPane.showMessageDialog(null, "Vui lòng nhập ghi chú phát sinh");
+                        return;
+                    } else {
+                        ketCa(txtGhiChu.getText(), Float.valueOf(txtTienPhatSinh.getText()), Float.valueOf(txtTienPhatSinh.getText()));
+                    }
                 }
+
+            } else {
+                ketCa("", 0, 0);
             }
 
         }
     }//GEN-LAST:event_btnKetCaActionPerformed
 
     private void txtTienPhatSinhKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTienPhatSinhKeyTyped
+        DecimalFormat df = new DecimalFormat("###,###,###");
         String tien = txtTienPhatSinh.getText() + evt.getKeyChar();
         if (!tien.matches("\\d+")) {
             txtTienPhatSinh.setText("");
@@ -518,11 +619,12 @@ public class JpnDichVu extends javax.swing.JPanel {
             float tienMatCuoiCa = (float) (giaoCaService.tongTienMat(qLAcount.getId()) + Float.valueOf(hienTHiNV().getTienBanDau()) - tienPhatSInh);
             if (tienMatCuoiCa <= 0) {
                 JOptionPane.showMessageDialog(null, "Tiền mặt trong két không đủ");
+                txtTienPhatSinh.setText("");
             } else {
                 if (tien.length() == 0) {
-                    labelTongTIenMatTrongCa.setText(String.valueOf(giaoCaService.tongTienMat(qLAcount.getId()) + Float.valueOf(hienTHiNV().getTienBanDau()) - 0));
+                    labelTongTIenMatTrongCa.setText(df.format(giaoCaService.tongTienMat(qLAcount.getId()) + Float.valueOf(hienTHiNV().getTienBanDau()) - 0));
                 } else {
-                    labelTongTIenMatTrongCa.setText(String.valueOf(giaoCaService.tongTienMat(qLAcount.getId()) + Float.valueOf(hienTHiNV().getTienBanDau()) - tienPhatSInh));
+                    labelTongTIenMatTrongCa.setText(df.format(giaoCaService.tongTienMat(qLAcount.getId()) + Float.valueOf(hienTHiNV().getTienBanDau()) - tienPhatSInh));
                 }
 
             }

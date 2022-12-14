@@ -6,7 +6,9 @@ package controller;
 
 import java.awt.CardLayout;
 import java.awt.Dimension;
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -42,7 +44,7 @@ public class ThongKeController {
 
             JFreeChart barChart = ChartFactory.createBarChart(
                     "Biểu đồ thống kê tông tiền theo tháng".toUpperCase(),
-                    "Tổng Tiền Của Năm " + listItem.get(0).getNam() + " : " + tongTien, "Tổng Tiền Từng Tháng",
+                    "Tổng Tiền Của Năm " + listItem.get(0).getNam() + " : " + dinhDangTienTe(tongTien), "Tổng Tiền Từng Tháng",
                     dataset, PlotOrientation.VERTICAL, false, true, false);
 
             ChartPanel chartPanel = new ChartPanel(barChart);
@@ -71,6 +73,12 @@ public class ThongKeController {
         }
     }
 
+    public String dinhDangTienTe(double tienTe) {
+        Locale locale = new Locale("vi", "VN");
+        NumberFormat format = NumberFormat.getInstance(locale);
+        return format.format(tienTe) + " " + "Vnd";
+    }
+
     public void setTongTienByYear(JPanel jpnItem, String year) {
         List<TongTienHoaDonResponse> listItem = thongKeService.getTongTienByYear(year);
         if (listItem.size() > 0) {
@@ -85,7 +93,7 @@ public class ThongKeController {
 
             JFreeChart barChart = ChartFactory.createBarChart(
                     "Biểu đồ thống kê tông tiền theo tháng".toUpperCase(),
-                    "Tổng Tiền Của Năm " + listItem.get(0).getNam() + " : " + tongTien, "Tổng Tiền Từng Tháng",
+                    "Tổng Tiền Của Năm " + listItem.get(0).getNam() + " : " + dinhDangTienTe(tongTien), "Tổng Tiền Từng Tháng",
                     dataset, PlotOrientation.VERTICAL, false, true, false);
 
             ChartPanel chartPanel = new ChartPanel(barChart);
@@ -186,5 +194,4 @@ public class ThongKeController {
 //            jpnItem.repaint();
 //        }
 //    }
-
 }

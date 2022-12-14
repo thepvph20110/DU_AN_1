@@ -31,12 +31,12 @@ import utill.MaRanDom;
  * @author DANG VAN SY
  */
 public class JpnKhaiBaoTienDauCa extends javax.swing.JPanel {
-
+    
     private QLAcount qLAcount;
     private IGiaoCaService giaoCaService = new GiaoCaServiceImpl();
     private JPanel pnTOng;
     private JLabel lableHome;
-
+    
     public JpnKhaiBaoTienDauCa(QLAcount qLAcount, JPanel pnTOng, JLabel lableHome) {
         initComponents();
         this.qLAcount = qLAcount;
@@ -46,8 +46,8 @@ public class JpnKhaiBaoTienDauCa extends javax.swing.JPanel {
         labelSoLuong.setBackground(new Color(160, 132, 157));
         labelThanhTien.setBackground(new Color(160, 132, 157));
         lbTenNv.setText(qLAcount.getTenAcount());
-        lbGioVaoCa.setText(String.valueOf(gioNhanCa()));
-
+        lbGioVaoCa.setText(new SimpleDateFormat("dd/MM/yyyy - hh:mm:ss a").format(gioNhanCa()));
+        
     }
 
     /**
@@ -506,13 +506,13 @@ public class JpnKhaiBaoTienDauCa extends javax.swing.JPanel {
         } else {
             ThanhTien.setText(String.valueOf(Integer.valueOf(soLuong) * menhGia));
             return Integer.valueOf(soLuong) * menhGia;
-
+            
         }
     }
-
+    
     private void tongTIen() {
         txtTongTien.setText(String.valueOf(Integer.valueOf(lbTT500.getText()) + Integer.valueOf(lbTT200.getText()) + Integer.valueOf(lbTT100.getText()) + Integer.valueOf(lbTT50.getText()) + Integer.valueOf(lbTT10.getText()) + Integer.valueOf(lbTT5.getText()) + Integer.valueOf(lbTT2.getText()) + Integer.valueOf(lbTT1.getText())));
-
+        
     }
     private void lbNhanCaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbNhanCaMouseClicked
         Acount acount = new Acount();
@@ -572,7 +572,7 @@ public class JpnKhaiBaoTienDauCa extends javax.swing.JPanel {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy - hh:mm:ss a");
         return new Timestamp(new Date().getTime());
     }
-
+    
     public double tienBanDau() {
         return Double.valueOf(txtTongTien.getText());
     }

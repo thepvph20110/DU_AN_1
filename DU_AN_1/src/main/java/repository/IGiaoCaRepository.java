@@ -45,5 +45,11 @@ public interface IGiaoCaRepository {
 
     List<GiaoCa> getAll();
 
+    List<GiaoCa> getAllTrangThaiDaNhanCa();
+
+    List<GiaoCa> giaoCaCoPhuPhiPhatSinh();
+
+    List<GiaoCa> giaoCaCoTienDuocRut();
+
     List<GiaoCa> searchByName(String name);
 }

@@ -6,8 +6,10 @@ package controller;
 
 import java.awt.CardLayout;
 import java.awt.Dimension;
+import java.text.NumberFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -24,9 +26,9 @@ import service.Impl.ChiTietThongKeServiceImpl;
  * @author Admin
  */
 public class ChiTietThongKeController {
-
+    
     private IChiTietThongKeService chiTietThongKeService = new ChiTietThongKeServiceImpl();
-
+    
     public void thongKeNuocUong(JPanel jpnItem) {
         List<ChiTietDichVuRespone> listItem = chiTietThongKeService.thongKeNuocUong();
         if (listItem.size() > 0 || listItem != null) {
@@ -38,12 +40,12 @@ public class ChiTietThongKeController {
             }
             JFreeChart barChart = ChartFactory.createBarChart(
                     "Biểu Đồ Thống Kê Số Lượng Nước Uống Được Mua Theo Ngày".toUpperCase(),
-                    "Tổng Tiền : " + tongTien, "Số Lượng Loại Nước Uống Được Mua",
+                    "Tổng Tiền : " + dinhDangTienTe(tongTien), "Số Lượng Loại Nước Uống Được Mua",
                     dataset, PlotOrientation.VERTICAL, false, true, false);
-
+            
             ChartPanel chartPanel = new ChartPanel(barChart);
             chartPanel.setPreferredSize(new Dimension(jpnItem.getWidth(), 321));
-
+            
             jpnItem.removeAll();
             jpnItem.setLayout(new CardLayout());
             jpnItem.add(chartPanel);
@@ -55,10 +57,10 @@ public class ChiTietThongKeController {
                     "Biểu Đồ Thống Kê Số Lượng Nước Uống Được Mua Theo Ngày".toUpperCase(),
                     "Không Có Dữ Liệu", "Số Lượng Loại Nước Uống Được Mua",
                     dataset, PlotOrientation.VERTICAL, false, true, false);
-
+            
             ChartPanel chartPanel = new ChartPanel(barChart);
             chartPanel.setPreferredSize(new Dimension(jpnItem.getWidth(), jpnItem.getHeight()));
-
+            
             jpnItem.removeAll();
             jpnItem.setLayout(new CardLayout());
             jpnItem.add(chartPanel);
@@ -66,7 +68,13 @@ public class ChiTietThongKeController {
             jpnItem.repaint();
         }
     }
-
+    
+    public String dinhDangTienTe(double tienTe) {
+        Locale locale = new Locale("vi", "VN");
+        NumberFormat format = NumberFormat.getInstance(locale);
+        return format.format(tienTe) + " " + "Vnd";
+    }
+    
     public void thongKeDoThue(JPanel jpnItem) {
         List<ChiTietDoThueResponse> listItem = chiTietThongKeService.thongKeDoThue();
         if (listItem.size() > 0 || listItem != null) {
@@ -74,16 +82,16 @@ public class ChiTietThongKeController {
             DefaultCategoryDataset dataset = new DefaultCategoryDataset();
             for (ChiTietDoThueResponse chiTietDichVuRespone : listItem) {
                 tongTien += chiTietDichVuRespone.getTongTien();
-                dataset.addValue(chiTietDichVuRespone.getSoluong(), "Tổng Tiền : " + chiTietDichVuRespone.getTongTien(), chiTietDichVuRespone.getTenDoThue());
+                dataset.addValue(chiTietDichVuRespone.getSoluong(), "Tổng Tiền : " + dinhDangTienTe(chiTietDichVuRespone.getTongTien()), chiTietDichVuRespone.getTenDoThue());
             }
             JFreeChart barChart = ChartFactory.createBarChart(
                     "Biểu Đồ Thống Kê Số Lượng Đồ Thuê Được Thuê Theo Ngày".toUpperCase(),
-                    "Tổng Tiền : " + tongTien, "Số Lượng Đồ Được Thuê",
+                    "Tổng Tiền : " + dinhDangTienTe(tongTien), "Số Lượng Đồ Được Thuê",
                     dataset, PlotOrientation.VERTICAL, false, true, false);
-
+            
             ChartPanel chartPanel = new ChartPanel(barChart);
             chartPanel.setPreferredSize(new Dimension(jpnItem.getWidth(), 321));
-
+            
             jpnItem.removeAll();
             jpnItem.setLayout(new CardLayout());
             jpnItem.add(chartPanel);
@@ -95,10 +103,10 @@ public class ChiTietThongKeController {
                     "Biểu Đồ Thống Kê Số Lượng Đồ Thuê Được Thuê Theo Ngày".toUpperCase(),
                     "Không Có Dữ Liệu", "Số Lượng Đồ Được Thuê",
                     dataset, PlotOrientation.VERTICAL, false, true, false);
-
+            
             ChartPanel chartPanel = new ChartPanel(barChart);
             chartPanel.setPreferredSize(new Dimension(jpnItem.getWidth(), jpnItem.getHeight()));
-
+            
             jpnItem.removeAll();
             jpnItem.setLayout(new CardLayout());
             jpnItem.add(chartPanel);
@@ -108,23 +116,23 @@ public class ChiTietThongKeController {
     }
 
     //By date
-    public void thongKeNuocUongByDate(JPanel jpnItem,Date date) {
+    public void thongKeNuocUongByDate(JPanel jpnItem, Date date) {
         List<ChiTietDichVuRespone> listItem = chiTietThongKeService.thongKeNuocUongByDate(date);
         if (listItem.size() > 0 || listItem != null) {
             double tongTien = 0;
             DefaultCategoryDataset dataset = new DefaultCategoryDataset();
             for (ChiTietDichVuRespone chiTietDichVuRespone : listItem) {
                 tongTien += chiTietDichVuRespone.getTongTien().doubleValue();
-                dataset.addValue(chiTietDichVuRespone.getSoluong(), "Tổng Tiền : " + chiTietDichVuRespone.getTongTien(), chiTietDichVuRespone.getTen());
+                dataset.addValue(chiTietDichVuRespone.getSoluong(), "Tổng Tiền : " + dinhDangTienTe(chiTietDichVuRespone.getTongTien().doubleValue()), chiTietDichVuRespone.getTen());
             }
             JFreeChart barChart = ChartFactory.createBarChart(
                     "Biểu Đồ Thống Kê Số Lượng Nước Uống Được Mua Theo Ngày".toUpperCase(),
-                    "Tổng Tiền : " + tongTien, "Số Lượng Loại Nước Uống Được Mua",
+                    "Tổng Tiền : " + dinhDangTienTe(tongTien), "Số Lượng Loại Nước Uống Được Mua",
                     dataset, PlotOrientation.VERTICAL, false, true, false);
-
+            
             ChartPanel chartPanel = new ChartPanel(barChart);
             chartPanel.setPreferredSize(new Dimension(jpnItem.getWidth(), 321));
-
+            
             jpnItem.removeAll();
             jpnItem.setLayout(new CardLayout());
             jpnItem.add(chartPanel);
@@ -136,10 +144,10 @@ public class ChiTietThongKeController {
                     "Biểu Đồ Thống Kê Số Lượng Nước Uống Được Mua Theo Ngày".toUpperCase(),
                     "Không Có Dữ Liệu", "Số Lượng Loại Nước Uống Được Mua",
                     dataset, PlotOrientation.VERTICAL, false, true, false);
-
+            
             ChartPanel chartPanel = new ChartPanel(barChart);
             chartPanel.setPreferredSize(new Dimension(jpnItem.getWidth(), jpnItem.getHeight()));
-
+            
             jpnItem.removeAll();
             jpnItem.setLayout(new CardLayout());
             jpnItem.add(chartPanel);
@@ -147,24 +155,24 @@ public class ChiTietThongKeController {
             jpnItem.repaint();
         }
     }
-
-    public void thongKeDoThueByDate(JPanel jpnItem,Date date) {
+    
+    public void thongKeDoThueByDate(JPanel jpnItem, Date date) {
         List<ChiTietDoThueResponse> listItem = chiTietThongKeService.thongKeDoThueByDate(date);
         if (listItem.size() > 0 || listItem != null) {
             double tongTien = 0;
             DefaultCategoryDataset dataset = new DefaultCategoryDataset();
             for (ChiTietDoThueResponse chiTietDichVuRespone : listItem) {
                 tongTien += chiTietDichVuRespone.getTongTien();
-                dataset.addValue(chiTietDichVuRespone.getSoluong(), "Tổng Tiền : " + chiTietDichVuRespone.getTongTien(), chiTietDichVuRespone.getTenDoThue());
+                dataset.addValue(chiTietDichVuRespone.getSoluong(), "Tổng Tiền : " + dinhDangTienTe(chiTietDichVuRespone.getTongTien()), chiTietDichVuRespone.getTenDoThue());
             }
             JFreeChart barChart = ChartFactory.createBarChart(
                     "Biểu Đồ Thống Kê Số Lượng Đồ Thuê Được Thuê Theo Ngày".toUpperCase(),
-                    "Tổng Tiền : " + tongTien, "Số Lượng Đồ Được Thuê",
+                    "Tổng Tiền : " + dinhDangTienTe(tongTien), "Số Lượng Đồ Được Thuê",
                     dataset, PlotOrientation.VERTICAL, false, true, false);
-
+            
             ChartPanel chartPanel = new ChartPanel(barChart);
             chartPanel.setPreferredSize(new Dimension(jpnItem.getWidth(), 321));
-
+            
             jpnItem.removeAll();
             jpnItem.setLayout(new CardLayout());
             jpnItem.add(chartPanel);
@@ -176,10 +184,10 @@ public class ChiTietThongKeController {
                     "Biểu Đồ Thống Kê Số Lượng Đồ Thuê Được Thuê Theo Ngày".toUpperCase(),
                     "Không Có Dữ Liệu", "Số Lượng Đồ Được Thuê",
                     dataset, PlotOrientation.VERTICAL, false, true, false);
-
+            
             ChartPanel chartPanel = new ChartPanel(barChart);
             chartPanel.setPreferredSize(new Dimension(jpnItem.getWidth(), jpnItem.getHeight()));
-
+            
             jpnItem.removeAll();
             jpnItem.setLayout(new CardLayout());
             jpnItem.add(chartPanel);
