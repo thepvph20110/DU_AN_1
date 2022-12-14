@@ -165,7 +165,7 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
         setBackground(new java.awt.Color(204, 255, 255));
         setUndecorated(true);
 
-        jPanel1.setBackground(new java.awt.Color(186, 228, 229));
+        jPanel1.setBackground(new java.awt.Color(65, 147, 169));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(255, 204, 204), new java.awt.Color(255, 204, 204), new java.awt.Color(255, 204, 204), new java.awt.Color(255, 204, 204)));
 
         jButton1.setBackground(new java.awt.Color(51, 102, 255));
@@ -208,7 +208,7 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel2.setBackground(new java.awt.Color(186, 228, 229));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -306,7 +306,7 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel4.setBackground(new java.awt.Color(186, 228, 229));
+        jPanel4.setBackground(new java.awt.Color(65, 147, 169));
         jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         btnDatLich.setBackground(new java.awt.Color(51, 102, 255));

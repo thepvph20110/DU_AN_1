@@ -40,7 +40,7 @@ public class JpnThongKe extends javax.swing.JPanel {
         txtSearch = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(186, 228, 229));
+        setBackground(new java.awt.Color(65, 147, 169));
 
         jButton2.setBackground(new java.awt.Color(51, 102, 255));
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
