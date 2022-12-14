@@ -62,8 +62,8 @@ public class GiaoCa implements Serializable {
     private trangThaiGiaoCa trangThai = trangThaiGiaoCa.NHAN_CA;
 
     public Object[] toData() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy - hh:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy - hh:mm:ss a");
         DecimalFormat format = new DecimalFormat("###,###,###");
-        return new Object[]{idAcount.getTenAcount(), sdf.format(thoiGianNhanCa), sdf.format(thoiGianGiaoCa), format.format(tongTienMat), format.format(tongTienKhac), format.format(tienPhatSinh), format.format(tongTienMatRut), sdf.format(thoiGianReset)};
+        return new Object[]{idAcount.getTenAcount(), sdf.format(thoiGianNhanCa), sdf.format(thoiGianGiaoCa), format.format(tongTienMat), format.format(tongTienKhac), format.format(tienPhatSinh), format.format(tongTienMatRut), thoiGianReset,ghiChuPhatSinh};
     }
 }

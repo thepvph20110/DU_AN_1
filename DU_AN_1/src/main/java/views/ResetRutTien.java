@@ -51,7 +51,7 @@ public class ResetRutTien extends javax.swing.JFrame {
 
     public void showTB(List<GiaoCa> list) {
         jTable1.setModel(dtm = new DefaultTableModel());
-        String[] header = {"Tên Nhân Viên", "Thời gian nhận ca", "Thời gian giao ca", "Tổng tiền mặt trong ca", "Tổng tiền ngân hàng trong ca", "Tiền phát sinh", "Tổng tiền rút", "Thời gian rút"};
+        String[] header = {"Tên Nhân Viên", "Thời gian nhận ca", "Thời gian giao ca", "Tổng tiền mặt trong ca", "Tổng tiền ngân hàng trong ca", "Tiền phát sinh", "Tổng tiền rút", "Thời gian rút","Ghi chú phát sinh"};
         dtm.setColumnIdentifiers(header);
         dtm.setRowCount(0);
         for (GiaoCa giaoca : list) {
@@ -110,6 +110,7 @@ public class ResetRutTien extends javax.swing.JFrame {
         jLabel3.setText("Số tiền mặt rút");
 
         txtSoTienRut.setForeground(new java.awt.Color(255, 0, 0));
+        txtSoTienRut.setText("0");
 
         cbGiaoCaCoPhuPhi.setBackground(new java.awt.Color(186, 228, 229));
         cbGiaoCaCoPhuPhi.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -158,32 +159,27 @@ public class ResetRutTien extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(176, 176, 176)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(340, 340, 340)
+                        .addGap(230, 230, 230)
                         .addComponent(jLabel2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(64, 64, 64)
-                                .addComponent(txtSoTienRut))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(121, 121, 121)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cbGiaoCaCoPhuPhi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel3)
+                        .addGap(64, 64, 64)
+                        .addComponent(txtSoTienRut))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 309, Short.MAX_VALUE)
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18))))
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(121, 121, 121)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbGiaoCaCoPhuPhi))))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 284, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(18, 18, 18))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

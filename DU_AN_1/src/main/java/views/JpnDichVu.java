@@ -468,25 +468,49 @@ public class JpnDichVu extends javax.swing.JPanel {
         GiaoCa giaoCa = hienTHiNV();
         if (!txtTienPhatSinh.getText().isBlank()) {
             if (Float.valueOf(txtTienPhatSinh.getText()) == 0) {
-                Acount acounttenNVTT = acountService.getOneByNameAcount(cbbNhanVienNhanCa.getSelectedItem().toString());
-                giaoCa.setIdAcount(acountService.getOneByNameAcount(lbNhanVienCaHienTai.getText()));
-                giaoCa.setIdNhanVienCaTiepTheo(acounttenNVTT.getId());
-                giaoCa.setThoiGianGiaoCa(new Date());
-                giaoCa.setTongTienKhac((float) giaoCaService.tongTienNganHang(qLAcount.getId()));
-                giaoCa.setTongTienTrongCa((float) (giaoCaService.tongTienCaHienTaiByIdNV(qLAcount.getId()) + hienTHiNV().getTienBanDau() - Float.valueOf(txtTienPhatSinh.getText())));
-                giaoCa.setTongTienMat((float) (giaoCaService.tongTienMat(qLAcount.getId()) + Float.valueOf(hienTHiNV().getTienBanDau()) - Float.valueOf(txtTienPhatSinh.getText())));
-                giaoCa.setTrangThai(trangThaiGiaoCa.KET_THUC_CA);
-                giaoCa.setTongTienMatRut(tienRut);
-                giaoCa.setThoiGianReset(thoiGianReset);
-                giaoCa.setGhiChuPhatSinh("");
-                giaoCa.setTienPhatSinh(0);
-                String tb = giaoCaService.GiaoCa(giaoCa);
-                if (tb.equals("Giao ca thành công")) {
-                    JOptionPane.showMessageDialog(null, "Rút tiền vào kết ca thành công");
-                    home.dispose();
-                    new Detaillogin(null, true).setVisible(true);
+                if (String.valueOf(tienRut).isBlank()) {
+
+                    Acount acounttenNVTT = acountService.getOneByNameAcount(cbbNhanVienNhanCa.getSelectedItem().toString());
+                    giaoCa.setIdAcount(acountService.getOneByNameAcount(lbNhanVienCaHienTai.getText()));
+                    giaoCa.setIdNhanVienCaTiepTheo(acounttenNVTT.getId());
+                    giaoCa.setThoiGianGiaoCa(new Date());
+                    giaoCa.setTongTienKhac((float) giaoCaService.tongTienNganHang(qLAcount.getId()));
+                    giaoCa.setTongTienTrongCa((float) (giaoCaService.tongTienCaHienTaiByIdNV(qLAcount.getId()) + hienTHiNV().getTienBanDau() - Float.valueOf(txtTienPhatSinh.getText())));
+                    giaoCa.setTongTienMat((float) (giaoCaService.tongTienMat(qLAcount.getId()) + Float.valueOf(hienTHiNV().getTienBanDau()) - Float.valueOf(txtTienPhatSinh.getText())));
+                    giaoCa.setTrangThai(trangThaiGiaoCa.KET_THUC_CA);
+                    giaoCa.setTongTienMatRut(0);
+                    giaoCa.setThoiGianReset(thoiGianReset);
+                    giaoCa.setGhiChuPhatSinh("");
+                    giaoCa.setTienPhatSinh(0);
+                    String tb = giaoCaService.GiaoCa(giaoCa);
+                    if (tb.equals("Giao ca thành công")) {
+                        JOptionPane.showMessageDialog(null, "Rút tiền vào kết ca thành công");
+                        home.dispose();
+                        new Detaillogin(null, true).setVisible(true);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Rút tiền vào kết ca thất bại");
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Rút tiền vào kết ca thất bại");
+                    Acount acounttenNVTT = acountService.getOneByNameAcount(cbbNhanVienNhanCa.getSelectedItem().toString());
+                    giaoCa.setIdAcount(acountService.getOneByNameAcount(lbNhanVienCaHienTai.getText()));
+                    giaoCa.setIdNhanVienCaTiepTheo(acounttenNVTT.getId());
+                    giaoCa.setThoiGianGiaoCa(new Date());
+                    giaoCa.setTongTienKhac((float) giaoCaService.tongTienNganHang(qLAcount.getId()));
+                    giaoCa.setTongTienTrongCa((float) (giaoCaService.tongTienCaHienTaiByIdNV(qLAcount.getId()) + hienTHiNV().getTienBanDau() - Float.valueOf(txtTienPhatSinh.getText())));
+                    giaoCa.setTongTienMat((float) (giaoCaService.tongTienMat(qLAcount.getId()) + Float.valueOf(hienTHiNV().getTienBanDau()) - Float.valueOf(txtTienPhatSinh.getText())));
+                    giaoCa.setTrangThai(trangThaiGiaoCa.KET_THUC_CA);
+                    giaoCa.setTongTienMatRut(tienRut);
+                    giaoCa.setThoiGianReset(thoiGianReset);
+                    giaoCa.setGhiChuPhatSinh("");
+                    giaoCa.setTienPhatSinh(0);
+                    String tb = giaoCaService.GiaoCa(giaoCa);
+                    if (tb.equals("Giao ca thành công")) {
+                        JOptionPane.showMessageDialog(null, "Rút tiền vào kết ca thành công");
+                        home.dispose();
+                        new Detaillogin(null, true).setVisible(true);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Rút tiền vào kết ca thất bại");
+                    }
                 }
             } else {
                 if (txtGhiChu.getText().isBlank()) {
@@ -554,6 +578,7 @@ public class JpnDichVu extends javax.swing.JPanel {
                     giaoCa.setTongTienMat((float) (giaoCaService.tongTienMat(qLAcount.getId()) + Float.valueOf(hienTHiNV().getTienBanDau()) - Float.valueOf(txtTienPhatSinh.getText())));
                     giaoCa.setTrangThai(trangThaiGiaoCa.KET_THUC_CA);
                     giaoCa.setGhiChuPhatSinh("");
+//                    giaoCa.setThoiGianReset(0);
                     giaoCa.setTienPhatSinh(0);
                     String tb = giaoCaService.GiaoCa(giaoCa);
                     JOptionPane.showMessageDialog(null, tb);
@@ -619,6 +644,7 @@ public class JpnDichVu extends javax.swing.JPanel {
             float tienMatCuoiCa = (float) (giaoCaService.tongTienMat(qLAcount.getId()) + Float.valueOf(hienTHiNV().getTienBanDau()) - tienPhatSInh);
             if (tienMatCuoiCa <= 0) {
                 JOptionPane.showMessageDialog(null, "Tiền mặt trong két không đủ");
+                txtTienPhatSinh.setText("");
             } else {
                 if (tien.length() == 0) {
                     labelTongTIenMatTrongCa.setText(String.valueOf(giaoCaService.tongTienMat(qLAcount.getId()) + Float.valueOf(hienTHiNV().getTienBanDau()) - 0));
