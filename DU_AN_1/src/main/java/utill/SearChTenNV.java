@@ -20,7 +20,7 @@ public class SearChTenNV extends JTextField{
     public SearChTenNV(){
         
     }
-    private final String hint = "Tìm kiếm theo tên nhân viên";
+    private final String hint = "Tìm kiếm theo tên nhân viên...";
         @Override
     public void paint(Graphics g) {
         super.paint(g);
