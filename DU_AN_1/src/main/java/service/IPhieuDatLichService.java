@@ -18,14 +18,20 @@ public interface IPhieuDatLichService {
     List<QLPhieuDatLich> getAll();
 
     String save(QLPhieuDatLich qLPhieuDatLich);
-    
+
     String update(QLPhieuDatLich qLPhieuDatLich);
 
     String delete(String id);
-    
+
     List<PhieuDatLich> getPhieuDatLichByTT();
     
-    String updateTrangThai(PhieuDatLich phieuDatLich);
-    
-}
+    List<PhieuDatLich> getPhieuDatLichBySDT(String sdt);
 
+    String updateTrangThai(PhieuDatLich phieuDatLich);
+
+    String datLich(PhieuDatLich phieuDatLich);
+
+    PhieuDatLich getPhieuDatLich(String id);
+    
+    PhieuDatLich getPDLByTrangThai(String id);
+}

@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import repository.IPhieuDatLichRepository;
 import utill.HibernateConfig;
@@ -25,35 +26,39 @@ import utill.HibernateConfig;
  *
  * @author ADMIN
  */
-public class PhieuDatLichRepositoryImpl implements IPhieuDatLichRepository{
-    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+public class PhieuDatLichRepositoryImpl implements IPhieuDatLichRepository {
 
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    
     @Override
     public List<PhieuDatLich> getAll() {
         List<PhieuDatLich> listPhieus;
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             Query q = session.createQuery("FROM PhieuDatLich");
             listPhieus = q.getResultList();
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
         return listPhieus;
     }
-
+    
     @Override
     public boolean save(PhieuDatLich phieuDatLich) {
+        Transaction transaction = null;
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
-            session.getTransaction().begin();
+            transaction = session.getTransaction();
+            transaction.begin();
             session.save(phieuDatLich);
-            session.getTransaction().commit();
+            transaction.commit();
         } catch (Exception e) {
-            System.out.println(e);
+            transaction.rollback();
+            e.printStackTrace();
             return false;
         }
         return true;
     }
-
+    
     @Override
     public boolean update(PhieuDatLich phieuDatLich) {
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
@@ -66,7 +71,7 @@ public class PhieuDatLichRepositoryImpl implements IPhieuDatLichRepository{
         }
         return true;
     }
-
+    
     @Override
     public boolean delete(String id) {
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
@@ -82,12 +87,26 @@ public class PhieuDatLichRepositoryImpl implements IPhieuDatLichRepository{
         }
         return true;
     }
-
+    
     @Override
     public List<PhieuDatLich> getPhieuDatLichByTT() {
         List<PhieuDatLich> listPhieus;
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             Query q = session.createQuery("FROM PhieuDatLich where trangThai ='0'");
+            listPhieus = q.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return listPhieus;
+    }
+
+    @Override
+    public List<PhieuDatLich> getPhieuDatLichBySDT(String sdt) {
+         List<PhieuDatLich> listPhieus;
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            Query q = session.createQuery("FROM PhieuDatLich p where p.khachHang.soDienThoai = :SoDienThoai and trangThai ='0'");
+            q.setParameter("SoDienThoai", sdt);
             listPhieus = q.getResultList();
         }catch(Exception e){
             e.printStackTrace();
@@ -96,4 +115,24 @@ public class PhieuDatLichRepositoryImpl implements IPhieuDatLichRepository{
         return listPhieus;
     }
     
+    @Override
+    public PhieuDatLich getByIdSanCa(String id) {
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            return (PhieuDatLich) session.createQuery("From PhieuDatLich p WHERE p.sanCa.id = :IdSanCa").setParameter("IdSanCa", id).uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }   
+    }
+    
+    @Override
+    public PhieuDatLich getPDLByTrangThai(String id) {
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            return (PhieuDatLich) session.createQuery("From PhieuDatLich p WHERE p.sanCa.trangThai='1' and p.sanCa.id = :IdSanCa").setParameter("IdSanCa", id).uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }   
+    }
+
 }

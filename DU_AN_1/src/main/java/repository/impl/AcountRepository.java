@@ -9,6 +9,7 @@ import java.util.List;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import org.hibernate.Session;
+import org.hibernate.query.NativeQuery;
 import repository.IAcountRepository;
 import utill.HibernateConfig;
 
@@ -90,25 +91,48 @@ public class AcountRepository implements IAcountRepository {
     }
 
     public static void main(String[] args) {
-        Acount ac = new AcountRepository().getOne();
-        System.out.println("" + ac.getTenAcount());
+        new AcountRepository().getOne();
+        System.out.println(new AcountRepository().genMaAccount());
     }
 
     @Override
-    public String genMaAccount() {
-       String top1 = null;
+    public int genMaAccount() {
+        String maAC = "";
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
-            String hql = "FROM Account a order by a.maAcount DESC";
-            Query query = session.createQuery(hql);
-            session.getTransaction().begin();
-            query.setMaxResults(1);
-            Acount acount = (Acount) query.getSingleResult();
-            top1 = acount.getMaAcount();
-            session.getTransaction().commit();
+            String hql = "Select MAX(CONVERT(INT,SUBSTRING(maAcount,5,100))) from Acount ";
+            NativeQuery query = session.createNativeQuery(hql);
+            maAC = query.getSingleResult().toString();
         } catch (Exception e) {
-            System.out.println(e);
-            return top1;
+
         }
-        return top1;
+        if (maAC == "") {
+            maAC = "1";
+            int ma = Integer.valueOf(maAC);
+            return ma;
+        }
+        int ma = Integer.valueOf(maAC);
+        return ++ma;
+    }
+
+    @Override
+    public Acount getByUseNameAndPass(String tenAccount, String matKhau) {
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            String hql = "From Acount ac Where  ac.tenAcount = :use and ac.matKhau = :pass";
+            return session.createQuery(hql, Acount.class).setParameter("use", tenAccount).setParameter("pass", matKhau).uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+            return null;
+        }
+    }
+
+    @Override
+    public Acount getOneByNameAcount(String ten) {
+        List<Acount> listAcount;
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            return (Acount) session.createQuery("FROM Acount ac WHERE ac.tenAcount = :TenAc").setParameter("TenAc", ten).uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

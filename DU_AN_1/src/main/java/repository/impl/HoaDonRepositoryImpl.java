@@ -11,6 +11,7 @@ import java.util.UUID;
 import javax.persistence.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.NativeQuery;
 import repository.IHoaDonRepository;
 import utill.HibernateConfig;
 
@@ -83,17 +84,16 @@ public class HoaDonRepositoryImpl implements IHoaDonRepository{
     }
 
     @Override
-    public List<HoaDon> getAllByTrangThai() {
-        List<HoaDon> listHds;
+    public HoaDon getByTrangThai(String idSanCa) {
+        HoaDon hoaDon = new HoaDon();
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
-            Query q = session.createQuery("FROM HoaDon hd WHERE hd.trangThai =:status");
-            q.setParameter("status", trangThaiHoaDon.CHUA_THANH_TOAN);
-            listHds = q.getResultList();
+            Query q = session.createQuery("FROM HoaDon hd WHERE hd.trangThai =:status and hd.phieuDatLich.sanCa.id = :idSC");
+            hoaDon = (HoaDon)q.setParameter("status", trangThaiHoaDon.CHUA_THANH_TOAN).setParameter("idSC", idSanCa).getSingleResult(); 
+            return hoaDon;
         }catch(Exception e){
             e.printStackTrace();
             return null;
         }
-        return listHds;
     }
 
     @Override
@@ -125,21 +125,22 @@ public class HoaDonRepositoryImpl implements IHoaDonRepository{
     }
 
     @Override
-    public String genMaHoaDon() {
-        String top1 = null;
+    public int genMaHoaDon() {
+        String maHD = "";
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
-            String hql = "FROM HoaDon hd order by hd.maHoaDon DESC";
-            Query query = session.createQuery(hql);
-            session.getTransaction().begin();
-            query.setMaxResults(1);
-            HoaDon hoaDon = (HoaDon) query.getSingleResult();
-            top1 = hoaDon.getMaHoaDon();
-            session.getTransaction().commit();
+            String hql = "Select MAX(CONVERT(INT,SUBSTRING(maHoaDon,5,100))) from HoaDon ";
+            NativeQuery query = session.createNativeQuery(hql);
+            maHD = query.getSingleResult().toString();
         } catch (Exception e) {
-            System.out.println(e);
-            return top1;
+       
         }
-        return top1;
+        if(maHD == ""){
+            maHD = "1";
+            int ma = Integer.valueOf(maHD);
+            return  ma;
+        }
+        int ma = Integer.valueOf(maHD);
+        return  ++ma;
     }
     
 }

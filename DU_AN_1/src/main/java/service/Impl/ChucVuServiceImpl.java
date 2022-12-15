@@ -66,9 +66,8 @@ public class ChucVuServiceImpl implements IChucVuService {
 
     @Override
     public String genMaChucVu() {
-        String pp = chucVuRepo.genMaChucVu();
-        int newPP = (Integer.parseInt(pp.substring(2))) + 1;
-        return  pp.substring(0, 2) + "00"+ newPP ;
+        int ma = chucVuRepo.genMaChucVu();
+        return  "CV00"+ma;
     }
 
 }

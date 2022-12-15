@@ -4,31 +4,53 @@
  */
 package views;
 
+import controller.HomeController;
+import domainmodel.Acount;
 import domainmodel.Ca;
+import domainmodel.KhachHang;
+import domainmodel.LoaiSan;
 import domainmodel.PhieuDatLich;
-import enumclass.trangThaiHoaDon;
+import domainmodel.SanBong;
+import domainmodel.SanCa;
+import enumclass.trangThaiAcount;
+import enumclass.trangThaiLichSuDatLich;
 import enumclass.trangThaiPhieuDL;
 import enumclass.trangThaiSanCa;
+import java.awt.event.WindowEvent;
 import java.io.ByteArrayOutputStream;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import modelview.QLAcount;
 import modelview.QLCa;
-import modelview.QLHoaDon;
 import modelview.QLKhachHang;
+import modelview.QLLichSuDatLich;
+import modelview.QLLoaiSan;
 import modelview.QLPhieuDatLich;
+import modelview.QLSanBong;
 import modelview.QLSanCa;
 import service.ICaService;
 import service.IHoaDonService;
+import service.ILichSuDatLichService;
+import service.ILoaiSanService;
 import service.IPhieuDatLichService;
+import service.ISanBongService;
 import service.ISanCaService;
 import service.Impl.CaServiceImpl;
 import service.Impl.HoaDonServiceImpl;
+import service.Impl.LichSuDatLichServiceImpl;
+import service.Impl.LoaiSanServiceImpl;
 import service.Impl.PhieuDatLichServiceImpl;
+import service.Impl.SanBongServiceImpl;
 import service.Impl.SanCaServiceImpl;
 import utill.JavaMail;
 import utill.QRCode;
@@ -40,44 +62,74 @@ import utill.QRCode;
 public class FrmPhieuDatLich extends javax.swing.JFrame {
 
     private IPhieuDatLichService phieuDatLichService = new PhieuDatLichServiceImpl();
-    private QLKhachHang khachHang = new QLKhachHang();
-    private QLAcount acount = new QLAcount();
+    private ILichSuDatLichService iLichSuDatLichService = new LichSuDatLichServiceImpl();
+    private QLKhachHang qlKhachHang = new QLKhachHang();
+    private Acount acount = new Acount();
     private String maQr = UUID.randomUUID().toString();
     private QLSanCa sanCa = new QLSanCa();
     private ISanCaService sanCaService = new SanCaServiceImpl();
     private ByteArrayOutputStream byteArrayOutputStream = new QRCode().getQRCodeImage(maQr, 200, 200);
-    private Map<String, QLCa> mapCa = new HashMap<>();
+    private Map<String, Object> map = new HashMap<>();
     private ICaService caService = new CaServiceImpl();
     private IHoaDonService hoaDonService = new HoaDonServiceImpl();
+    private List<QLSanBong> listSanBong = new ArrayList<>();
+    private List<QLCa> listca = new ArrayList<>();
+    private List<QLLichSuDatLich> lstQLLichSuDatLichs = new ArrayList<>();
+    private List<QLLoaiSan> listLoaiSan = new ArrayList<>();
+    private ISanBongService sanBongService = new SanBongServiceImpl();
+    private ILoaiSanService loaiSanService = new LoaiSanServiceImpl();
+    private JLabel labelHome;
+    private JPanel pnTong;
+    private Date ngayTao = new Date();
+    private DecimalFormat df = new DecimalFormat("###,###,###");
 
     /**
      * Creates new form FrmPhieuDatLich
      */
-    public FrmPhieuDatLich(QLKhachHang qLKhachHang, QLSanCa qLSanCa, QLAcount qLAcount) {
+    public FrmPhieuDatLich(QLKhachHang qLKhachHang, QLSanCa sanCa, Acount acountentity, JLabel lbHome, JPanel pnTong, Date ngayTao) {
         initComponents();
-
-        acount = qLAcount;
-        khachHang = qLKhachHang;
-        sanCa = qLSanCa;
+        this.ngayTao = ngayTao;
+        this.labelHome = lbHome;
+        this.pnTong = pnTong;
+        acount = acountentity;
+        qlKhachHang = qLKhachHang;
+        this.sanCa = sanCa;
         setTitle("Phiếu Đặt Lịch");
 
-        txtTenSanca.setText(qLSanCa.getTenSanBong()+ " - " + qLSanCa.getTenCa());
-        txtTenSanca.setEnabled(false);
+        txtTenSanca.setText(this.sanCa.getTenSanBong() + " - " + this.sanCa.getTenCa());
+//        txtTenSanca.setEnabled(false);
+        txtTenSanca.setEditable(false);
 
-        txtTienSanBong.setText(sanCa.getGiaCaSan()+"");
-        txtTienSanBong.setEnabled(false);
+        txtTienSanBong.setText(df.format(sanCa.getGiaCaSan()) + " VND");
+//        txtTienSanBong.setEnabled(false);
+        txtTienSanBong.setEditable(false);
 
-        txtTenKhachHang.setText(khachHang.getTenKhachHang());
-        txtTenKhachHang.setEnabled(false);
+        txtTenKhachHang.setText(qlKhachHang.getTenKhachHang());
+//        txtTenKhachHang.setEnabled(false);
+        txtTenKhachHang.setEditable(false);
         
         txtQuanLy.setText(acount.getTenAcount());
-        txtQuanLy.setEnabled(false);
-
-//        mapCa.clear();
+//        txtQuanLy.setEnabled(false);
+        txtQuanLy.setEditable(false);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        txtNgayDenSan.setText(sdf.format(sanCa.getNgayTao()) + "");
+//        txtNgayDenSan.setEnabled(false);
+        txtNgayDenSan.setEditable(false);
         txtMaQR.setIcon(new ImageIcon(byteArrayOutputStream.toByteArray()));
-        for (QLCa qLCa : caService.getAll()) {
-            mapCa.put(qLCa.getTenCa(), qLCa);
+
+        listSanBong = sanBongService.getAll();
+        for (QLSanBong qLSanBong : listSanBong) {
+            map.put(qLSanBong.getTenSanBong(), qLSanBong);
         }
+        listca = caService.getAll();
+        for (QLCa qLCa : listca) {
+            map.put(qLCa.getTenCa(), qLCa);
+        }
+        listLoaiSan = loaiSanService.getAll();
+        for (QLLoaiSan qLLoaiSan : listLoaiSan) {
+            map.put(qLLoaiSan.getTenLoaiSan(), qLLoaiSan);
+        }
+        lstQLLichSuDatLichs = iLichSuDatLichService.getAllLichSuDatLichs();
     }
 
     @SuppressWarnings("unchecked")
@@ -98,11 +150,11 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtQuanLy = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        dateNgayDen = new com.toedter.calendar.JDateChooser();
         jLabel9 = new javax.swing.JLabel();
         txtMaQR = new javax.swing.JLabel();
         txtTenSanca = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        txtNgayDenSan = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         btnDatLich = new javax.swing.JButton();
         btnThoat = new javax.swing.JButton();
@@ -111,11 +163,14 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 255, 255));
+        setUndecorated(true);
 
-        jPanel1.setBackground(new java.awt.Color(255, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(65, 147, 169));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(255, 204, 204), new java.awt.Color(255, 204, 204), new java.awt.Color(255, 204, 204), new java.awt.Color(255, 204, 204)));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton1.setBackground(new java.awt.Color(51, 102, 255));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Thông tin khách hàng");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,45 +190,49 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txtTenKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtTenKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtTenKhachHang)
+                        .addGap(5, 5, 5))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                        .addComponent(jLabel3)))
                 .addContainerGap())
         );
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Ghi Chú");
 
         txtGhiChu.setColumns(20);
         txtGhiChu.setRows(5);
         jScrollPane1.setViewportView(txtGhiChu);
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Tiền sân bóng");
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("Tên Quản Lý");
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("Ngày đến sân");
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setText("Mã QR");
 
-        txtMaQR.setBackground(new java.awt.Color(255, 255, 255));
+        txtMaQR.setBackground(new java.awt.Color(186, 228, 229));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Tên sân ca");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -198,16 +257,15 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
                                         .addComponent(txtTenSanca, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGroup(jPanel2Layout.createSequentialGroup()
                             .addGap(25, 25, 25)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(44, 44, 44)
-                                    .addComponent(txtQuanLy, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(dateNgayDen, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel6)
+                            .addGap(37, 37, 37)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtQuanLy, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtNgayDenSan, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(37, 37, 37)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(65, 65, 65)
+                        .addComponent(jLabel2)
+                        .addGap(54, 54, 54)
                         .addComponent(jScrollPane1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,24 +279,24 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(txtTenSanca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTenSanca, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(24, 24, 24)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtTienSanBong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTienSanBong, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
-                        .addGap(54, 54, 54)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(dateNgayDen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))
-                        .addGap(54, 54, 54)
+                        .addGap(57, 57, 57)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(txtNgayDenSan, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(51, 51, 51)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(txtQuanLy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                            .addComponent(txtQuanLy, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2)))
@@ -248,9 +306,10 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jPanel4.setBackground(new java.awt.Color(65, 147, 169));
         jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        btnDatLich.setBackground(new java.awt.Color(51, 51, 255));
+        btnDatLich.setBackground(new java.awt.Color(51, 102, 255));
         btnDatLich.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnDatLich.setForeground(new java.awt.Color(255, 255, 255));
         btnDatLich.setText("Đặt lịch");
@@ -260,8 +319,9 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
             }
         });
 
-        btnThoat.setBackground(new java.awt.Color(204, 204, 204));
-        btnThoat.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnThoat.setBackground(new java.awt.Color(255, 51, 51));
+        btnThoat.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnThoat.setForeground(new java.awt.Color(255, 255, 255));
         btnThoat.setText("Thoát");
         btnThoat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -327,36 +387,59 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
 
     private void btnDatLichActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatLichActionPerformed
         // TODO add your handling code here:
-        String maPhieuLichDat = UUID.randomUUID().toString();
-        Date ngayDen = dateNgayDen.getDate();
-        String ghiChu = txtGhiChu.getText();
-        Date ngayTao = new Date();
+        int Request = JOptionPane.showConfirmDialog(rootPane, "Xác nhận Đặt lịch", "Thông Báo", JOptionPane.YES_NO_OPTION);
+        if (Request == JOptionPane.YES_OPTION && !(txtTenKhachHang.getText().isBlank())) {
+            String maPhieuLichDat = UUID.randomUUID().toString();
+            Date ngayDen = sanCa.getNgayTao();
+            String ghiChu = txtGhiChu.getText();
+            Date ngayTao = new Date();
+            QLCa qLCa = (QLCa) map.get(sanCa.getTenCa());
+            QLSanBong qLSanBong = (QLSanBong) map.get(sanCa.getTenSanBong());
+            QLLoaiSan qLLoaiSan = (QLLoaiSan) map.get(qLSanBong.getTenLoaiSan());
+            Ca caEntity = new Ca(qLCa.getId(), qLCa.getMaCa(), qLCa.getTenCa(), qLCa.getThoiGianBatDau(), qLCa.getThoiGianKetThuc(), qLCa.getGiaCa(), qLCa.getTrangThai());
+            LoaiSan loaiSanEnity = new LoaiSan(qLLoaiSan.getId(), qLLoaiSan.getMaLoaiSan(), qLLoaiSan.getTenLoaiSan(), qLLoaiSan.getMoTa());
+            SanBong sanBongEntity = new SanBong(qLSanBong.getId(), qLSanBong.getMaSanBong(), qLSanBong.getTenSanBong(), qLSanBong.getGiaSan(), qLSanBong.getSucChua(),
+                    loaiSanEnity, qLSanBong.getTrangThai());
+            SanCa sanCaEntity = new SanCa(sanCa.getId(), caEntity, sanBongEntity, sanCa.getNgayTao(), sanCa.getGiaCaSan(), sanCa.getTrangThai());
+            KhachHang khachHang = new KhachHang(qlKhachHang.getId(), qlKhachHang.getMaKhachHang(), qlKhachHang.getTenKhachHang(), qlKhachHang.getMail(), qlKhachHang.getSoDienThoai(), qlKhachHang.getGhiChu(), qlKhachHang.getTrangThai());
+            PhieuDatLich phieuDatLich = new PhieuDatLich(maPhieuLichDat, acount, khachHang, sanCaEntity, ngayTao, ngayDen, null, ghiChu, maQr, sanCa.getGiaCaSan(), trangThaiPhieuDL.CHUA_NHAN_SAN);
 
-        QLPhieuDatLich qLPhieuDatLich = new QLPhieuDatLich(maPhieuLichDat, acount, khachHang, sanCa, ngayTao, ngayDen, null, ghiChu, maQr, sanCa.getGiaCaSan(), trangThaiPhieuDL.CHUA_NHAN_SAN);
+            try {
+                String check = phieuDatLichService.datLich(phieuDatLich);
+                if (check.equalsIgnoreCase("Lưu Thành Công")) {
+                    JOptionPane.showMessageDialog(rootPane, new JavaMail().sendMail(phieuDatLich, byteArrayOutputStream));
+                    sanCa.setTrangThai(trangThaiSanCa.CHO_NHAN_SAN);
+                    sanCaService.update(sanCa);
+                    QLAcount qLAcount = new QLAcount(acount.getId(), acount.getMaAcount(), acount.getTenAcount(), acount.getChucVu(), acount.getMatKhau(), acount.getMoTa(), acount.getTrangThai());
+                    QLPhieuDatLich qLPhieuDatLich = new QLPhieuDatLich();
+                    String id = phieuDatLich.getId();
+                    qLPhieuDatLich.setId(id);
+                    // new hoàn thành
+                    String maLichSu = iLichSuDatLichService.genMaLichSu(lstQLLichSuDatLichs);
 
-        try {
-            String check = phieuDatLichService.save(qLPhieuDatLich);
-            if (check.equalsIgnoreCase("Lưu Thành Công")) {
-                sanCa.setTrangThai(trangThaiSanCa.CHO_NHAN_SAN);
-                JOptionPane.showMessageDialog(rootPane, new JavaMail().sendMail(mapCa.get(sanCa.getTenCa()), qLPhieuDatLich, byteArrayOutputStream));
-                sanCaService.update(sanCa);
-                PhieuDatLich phieuDatLich = new PhieuDatLich(maPhieuLichDat, null, null, null, null, null, null, null, null, 0, trangThaiPhieuDL.CHUA_NHAN_SAN);
-                QLHoaDon qLHoaDon = new QLHoaDon(null, null, phieuDatLich, null,null, ngayTao, 0, 0, null,trangThaiHoaDon.CHUA_THANH_TOAN);
-                hoaDonService.save(qLHoaDon);
-                this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(rootPane, check);
+                    QLLichSuDatLich qLLichSuDatLich = new QLLichSuDatLich(null, qLPhieuDatLich, maLichSu, ngayTao, ngayDen, trangThaiLichSuDatLich.DA_DAT_LICH);
+                    iLichSuDatLichService.save(qLLichSuDatLich);
+
+                    HomeController controller = new HomeController(pnTong, qLAcount, sanCa.getNgayTao(), null);
+                    controller.setView(labelHome);
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, check);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(rootPane, "lỗi hệ thống");
             }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(rootPane, "lỗi hệ thống");
+        } else if (txtTenKhachHang.getText().isBlank()) {
+            JOptionPane.showMessageDialog(pnTong, "Chọn Khách Hàng !");
         }
+
     }//GEN-LAST:event_btnDatLichActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        FrmKhachHang frmKhachHang = new FrmKhachHang(sanCa, acount);
+        FrmKhachHang frmKhachHang = new FrmKhachHang(sanCa, acount, labelHome, pnTong, ngayTao);
         frmKhachHang.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -365,7 +448,6 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDatLich;
     private javax.swing.JButton btnThoat;
-    private com.toedter.calendar.JDateChooser dateNgayDen;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -381,6 +463,7 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JTextArea txtGhiChu;
     private javax.swing.JLabel txtMaQR;
+    private javax.swing.JTextField txtNgayDenSan;
     private javax.swing.JTextField txtQuanLy;
     private javax.swing.JTextField txtTenKhachHang;
     private javax.swing.JTextField txtTenSanca;

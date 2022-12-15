@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  *
@@ -19,6 +20,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString
 public class QLKhachHang {
 
     private String id;
@@ -27,10 +29,9 @@ public class QLKhachHang {
     private String mail;
     private String soDienThoai;
     private String ghiChu;
-    private String maQR;
     private trangThaiKhachHang trangThai = trangThaiKhachHang.BINH_THUONG;
     
     public Object toDataRow(){
-        return new Object[] {id, maKhachHang, tenKhachHang,mail, soDienThoai, ghiChu, trangThai};
+        return new Object[] { maKhachHang, tenKhachHang,mail, soDienThoai, ghiChu, trangThai};
     }
 }

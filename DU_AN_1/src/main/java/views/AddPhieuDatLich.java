@@ -55,7 +55,7 @@ public class AddPhieuDatLich extends javax.swing.JFrame {
         dtm.setColumnIdentifiers(header);
         listAcount = iAcountService.getAll();
         listKhachHang = iKhachHangService.getAll();
-        listQLSanCa = iSanCaService.getAll();
+        listQLSanCa = iSanCaService.getAll(new Date());
         listPhieuDatLich = iPhieuDatLichService.getAll();
         loadCbbAcount();
         loadCbbKhachHang();
@@ -348,7 +348,7 @@ public class AddPhieuDatLich extends javax.swing.JFrame {
         } else if (!time.matches("^\\d{2}:\\d{2}:\\d{2}$")) {
             JOptionPane.showMessageDialog(this, "Format time");
         } else {
-            QLKhachHang khachHang = new QLKhachHang(setKhachHang(), null, null, null, null, null, null,null);
+            QLKhachHang khachHang = new QLKhachHang(setKhachHang(), null, null, null,  null, null,null);
             QLSanCa sanCa = new QLSanCa(setSanCa(), null, null,0,null,null, null, 0, null);
             QLAcount acount = new QLAcount(setAcount(), null, null, null, null, null, null);
             QLPhieuDatLich lich = new QLPhieuDatLich(null, acount, khachHang, sanCa, d, ngayDenSan, Time.valueOf(time), ghiChu,qLPhieuDatLich.getMaQR(), Double.valueOf(tongTien), qLPhieuDatLich.getTrangThai());
@@ -383,7 +383,7 @@ public class AddPhieuDatLich extends javax.swing.JFrame {
             } else if (!time.matches("^\\d{2}:\\d{2}:\\d{2}$")) {
                 JOptionPane.showMessageDialog(this, "Format time");
             } else {
-                QLKhachHang khachHang = new QLKhachHang(setKhachHang(), null, null, null, null, null, null,null);
+                QLKhachHang khachHang = new QLKhachHang(setKhachHang(), null, null, null, null, null,null);
                 QLSanCa sanCa = new QLSanCa(setSanCa(), null, null,0,null,null, null, 0, null);
                 QLAcount acount = new QLAcount(setAcount(), null, null, null, null, null, null);
                 QLPhieuDatLich lich = new QLPhieuDatLich(mountClick().getId(), acount, khachHang, sanCa, d, ngayDenSan, Time.valueOf(time), ghiChu,qLPhieuDatLich.getMaQR(), Double.valueOf(tongTien), qLPhieuDatLich.getTrangThai());

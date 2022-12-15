@@ -10,8 +10,6 @@ import java.util.UUID;
 
 public interface IHoaDonThanhToanRepository {
 
-    List<HoaDonThanhToan> fillAll(int position, int pageSize);
-
     List<HoaDonThanhToan> fillAllHoaDonThanhToan();
     
     boolean saveOrUpdate(HoaDonThanhToan hoaDonThanhToan);
@@ -19,4 +17,6 @@ public interface IHoaDonThanhToanRepository {
     boolean delete(String id);
 
     long totalCount();
+    
+    int genMaHoaDonThanhToan();
 }

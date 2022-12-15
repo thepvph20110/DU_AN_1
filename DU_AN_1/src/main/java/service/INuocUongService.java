@@ -4,6 +4,7 @@
  */
 package service;
 
+import enumclass.trangThaiNuocUong;
 import java.util.List;
 import java.util.UUID;
 import modelview.QLNuocUong;
@@ -14,11 +15,9 @@ import modelview.QLNuocUong;
  */
 public interface INuocUongService {
 
-    List<QLNuocUong> getNuocUong(int firstResult, int maxResults);
-
     List<QLNuocUong> getNuocUongNoPagination();
 
-    UUID getNuocUongByName(String ten);
+    String getNuocUongByName(String ten);
 
     String createNewNuocUong(QLNuocUong nuocUong);
 
@@ -27,4 +26,10 @@ public interface INuocUongService {
     String deleteNuocUongById(String id);
 
     long countAllNuocUong();
+
+    List<QLNuocUong> getNuocUongByTenNuocUong(String tenNuocUong);
+
+    List<QLNuocUong> getNuocUongByTranThai(trangThaiNuocUong trangThai);
+    
+    String genNuocUong();
 }

@@ -5,13 +5,19 @@
 package service.Impl;
 
 import domainmodel.Acount;
+import domainmodel.ChucVu;
 import enumclass.trangThaiAcount;
+import enumclass.trangThaiChucVu;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import modelview.QLAcount;
 import repository.IAcountRepository;
 import repository.impl.AcountRepository;
 import service.IAcountService;
+import views.Detaillogin;
+import views.Home;
 
 /**
  *
@@ -34,7 +40,7 @@ public class AcountServiceImpl implements IAcountService {
 
     @Override
     public String save(QLAcount qLAcount) {
-        Acount acount = new Acount(null, qLAcount.getMaAcount(), qLAcount.getTenAcount(), qLAcount.getChucVu(),
+        Acount acount = new Acount(null, genMaAccount(), qLAcount.getTenAcount(), qLAcount.getChucVu(),
                 qLAcount.getMatKhau(), qLAcount.getMoTa(), trangThaiAcount.Da_Xac_Minh);
         if (acountRepo.save(acount) == true) {
             return "Lưu Thành Công";
@@ -61,18 +67,36 @@ public class AcountServiceImpl implements IAcountService {
     }
 
     @Override
-    public QLAcount getOne() {
+    public Acount getOne() {
         Acount acount = acountRepo.getOne();
         QLAcount qlAcount = new QLAcount(acount.getId(), acount.getMaAcount(), acount.getTenAcount(), acount.getChucVu(), acount.getMatKhau(), acount.getMoTa(), acount.getTrangThai());
-        return qlAcount;
+        return acount;
     }
 
     @Override
     public String genMaAccount() {
-        String pp = acountRepo.genMaAccount();
-        int newPP = (Integer.parseInt(pp.substring(2))) + 1;
-        return  pp.substring(0, 2) + "00"+ newPP ;
+        int maAC = acountRepo.genMaAccount();
+        return "AC00" + maAC;
     }
 
-    
+    @Override
+    public QLAcount getByUseNameAndPass(String UseName, String pass) {
+        Acount acount = acountRepo.getByUseNameAndPass(UseName, pass);
+        if (UseName.isBlank() || pass.isBlank()) {
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập Use và PassWord");
+            return null;
+        } else if (acount == null) {
+            JOptionPane.showMessageDialog(null, "Sai UseName hoặc PassWord");
+            return null;
+        } else {
+            ChucVu chucVu = acount.getChucVu();
+            return new QLAcount(acount.getId(), acount.getMaAcount(), acount.getTenAcount(), chucVu, acount.getMatKhau(), acount.getMoTa(), acount.getTrangThai());
+        }
+    }
+
+    @Override
+    public Acount getOneByNameAcount(String ten) {
+        return acountRepo.getOneByNameAcount(ten);
+    }
+
 }

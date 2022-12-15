@@ -14,8 +14,6 @@ import modelview.QLHoaDonThanhToan;
  */
 public interface IHoaDonThanhToanService {
 
-    List<QLHoaDonThanhToan> getHoaDonThanhToan(int position, int pageSize);
-
     List<QLHoaDonThanhToan> getHoaDonThanhToanNoPagination();
 
     String createNewHoaDonThanhToan(QLHoaDonThanhToan hoaDonThanhToan);
@@ -25,4 +23,6 @@ public interface IHoaDonThanhToanService {
     String deleteHoaDonThanhToanById(String id);
 
     long countAllHoaDonThanhToan();
+    
+    String genMaHoaDonThanhToan();
 }

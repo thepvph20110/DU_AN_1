@@ -36,6 +36,6 @@ public class NhaSanXuat {
     private String tenNSX;
 
     public Object[] toData() {
-        return new Object[]{id, maNSX, tenNSX};
+        return new Object[]{maNSX, tenNSX};
     }
 }

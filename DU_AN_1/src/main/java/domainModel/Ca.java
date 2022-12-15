@@ -19,7 +19,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
-
 @Table(name = "Ca")
 @AllArgsConstructor
 @NoArgsConstructor
@@ -42,5 +41,5 @@ public class Ca {
     private Time thoiGianKetThuc;
     private double giaCa;
     @Column(nullable = false)
-    private trangThaiCa trangThai= trangThaiCa.GIO_BINH_THUONG;
+    private trangThaiCa trangThai = trangThaiCa.GIO_BINH_THUONG;
 }

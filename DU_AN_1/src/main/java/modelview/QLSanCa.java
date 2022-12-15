@@ -34,7 +34,7 @@ public class QLSanCa {
     private trangThaiSanCa trangThai = trangThaiSanCa.DANG_TRONG;
 
     public Object[] toDataRow() {
-        return new Object[]{id, ngayTao, tenCa, tenSanBong,sucChua, thoiGianBatDau, thoiGianKetThuc, giaCaSan, trangThai};
+        return new Object[]{ ngayTao, tenCa, tenSanBong,sucChua, thoiGianBatDau, thoiGianKetThuc, giaCaSan, trangThai};
     }
 
 }

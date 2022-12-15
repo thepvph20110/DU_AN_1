@@ -15,4 +15,8 @@ public interface IThanhToanRepository {
     boolean update(ThanhToan thanhToan);
 
     boolean delete(String id);
+
+    String genMaThanhToan();
+
+    ThanhToan fillBymaThanhToan(String maThanhToan);
 }

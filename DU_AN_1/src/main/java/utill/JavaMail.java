@@ -4,11 +4,11 @@
  */
 package utill;
 
-import domainmodel.Ca;
 import domainmodel.PhieuDatLich;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
 import javax.activation.DataHandler;
@@ -24,8 +24,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
-import modelview.QLCa;
-import modelview.QLPhieuDatLich;
 
 /**
  *
@@ -33,7 +31,7 @@ import modelview.QLPhieuDatLich;
  */
 public class JavaMail {
 
-    public String sendMail(QLCa ca,QLPhieuDatLich phieuDatLich,ByteArrayOutputStream byteArrayOuputStream) {
+    public String sendMail(PhieuDatLich phieuDatLich, ByteArrayOutputStream byteArrayOuputStream) {
         final String from = "hshsggdh235@gmail.com";
         final String password = "tvrmnzhlbihpdvpk";
         final String to = phieuDatLich.getKhachHang().getMail();
@@ -71,6 +69,8 @@ public class JavaMail {
 
             // first part  (the html)
             BodyPart messageBodyPart = new MimeBodyPart();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            String ngayDenSan = sdf.format(phieuDatLich.getNgayDenSan());
 
             String html = "<!DOCTYPE html>"
                     + "<html lang=\"en\">"
@@ -97,13 +97,13 @@ public class JavaMail {
                     + "        <label style=\"color: blue;font-size: 17px;font-weight: bold;\">Người Đặt: </label> <span>" + phieuDatLich.getKhachHang().getTenKhachHang() + "</span>\n"
                     + "        <br>\n"
                     + "        <br>\n"
-                    + "        <label style=\"color: blue;font-size: 17px;font-weight: bold;\">Tên sân bóng: </label><span>" + phieuDatLich.getSanCa().getTenSanBong()+ "</span>\n"
+                    + "        <label style=\"color: blue;font-size: 17px;font-weight: bold;\">Tên sân bóng: </label><span>" + phieuDatLich.getSanCa().getSanbong().getTenSanBong() + "</span>\n"
                     + "        <br>\n"
                     + "        <br>\n"
-                    + "        <label style=\"color: blue;font-size: 17px;font-weight: bold;\">Ngày nhận sân: </label><span>" + phieuDatLich.getNgayDenSan() + "</span>\n"
+                    + "        <label style=\"color: blue;font-size: 17px;font-weight: bold;\">Ngày nhận sân: </label><span>" + ngayDenSan + "</span>\n"
                     + "        <br>\n"
                     + "        <br>\n"
-                    + "        <label style=\"color: blue;font-size: 17px;font-weight: bold;\">Thời gian: </label><span>" + ca.getThoiGianBatDau() + " - " + ca.getThoiGianKetThuc() + "</span>\n"
+                    + "        <label style=\"color: blue;font-size: 17px;font-weight: bold;\">Thời gian: </label><span>" + phieuDatLich.getSanCa().getCa().getThoiGianBatDau() + " - " + phieuDatLich.getSanCa().getCa().getThoiGianKetThuc() + "</span>\n"
                     + " </div>"
                     + " <hr>\n"
                     + "    <h3 style=\"color: black;\">Mã QR nhận sân:</h3>\n"

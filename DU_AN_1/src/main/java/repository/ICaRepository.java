@@ -4,21 +4,26 @@
  */
 package repository;
 
-
 import domainmodel.Ca;
 import java.util.List;
-
 
 /**
  *
  * @author hp
  */
 public interface ICaRepository {
-    
+
     List<Ca> getAll();
-    
+
     boolean saveOrUpdate(Ca ca);
-    
+
     boolean deleteCa(Ca ca);
+
+    List<Ca> searchByName(String ten);
+
+    String saveCaNew(Ca ca);
+
+    String xoaCa(String id);
     
+    int genMaCa();
 }

@@ -28,7 +28,7 @@ public class CaServiceImpl implements ICaService {
         listQLCa.clear();
         for (Ca ca : re.getAll()) {
             map.put(ca.getMaCa(), ca);
-            map.put(ca.getTenCa(),ca);
+            map.put(ca.getTenCa(), ca);
             QLCa qLCa = new QLCa(ca.getId(), ca.getMaCa(), ca.getTenCa(), ca.getThoiGianBatDau(), ca.getThoiGianKetThuc(), ca.getGiaCa(), ca.getTrangThai());
             listQLCa.add(qLCa);
         }
@@ -37,7 +37,7 @@ public class CaServiceImpl implements ICaService {
 
     @Override
     public String save(QLCa qLCa) {
-        if(map.containsKey(qLCa.getMaCa()) || map.containsKey(qLCa.getTenCa())){
+        if (map.containsKey(qLCa.getMaCa()) || map.containsKey(qLCa.getTenCa())) {
             return "Ma trung";
         }
         Ca ca = new Ca(null, qLCa.getMaCa(), qLCa.getTenCa(), qLCa.getThoiGianBatDau(), qLCa.getThoiGianKetThuc(), qLCa.getGiaCa(), qLCa.getTrangThai());
@@ -68,4 +68,28 @@ public class CaServiceImpl implements ICaService {
         }
     }
 
+    @Override
+    public List<QLCa> searchByName(String ten) {
+        List<QLCa> qLCas = new ArrayList<>();
+        for (Ca ca : re.searchByName(ten)) {
+            QLCa qLCa = new QLCa(ca.getId(), ca.getMaCa(), ca.getTenCa(), ca.getThoiGianBatDau(), ca.getThoiGianKetThuc(), ca.getGiaCa(), ca.getTrangThai());
+            qLCas.add(qLCa);
+        }
+        return qLCas;
+    }
+
+    @Override
+    public String saveNewCa(Ca ca) {
+        return re.saveCaNew(ca);
+    }
+
+    @Override
+    public String xoaCa(String id) {
+        return re.xoaCa(id);
+    }
+
+    @Override
+    public String genMaCa() {
+        return "CA00"+re.genMaCa();
+    }
 }

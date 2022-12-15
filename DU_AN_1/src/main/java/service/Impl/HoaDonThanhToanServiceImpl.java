@@ -34,24 +34,6 @@ public class HoaDonThanhToanServiceImpl implements IHoaDonThanhToanService {
     private IThanhToanRepository thanhToanRepositoryImpl = new ThanhToanRepository();
 
     @Override
-    public List<QLHoaDonThanhToan> getHoaDonThanhToan(int position, int pageSize) {
-        List<HoaDonThanhToan> listHoaDonThanhToan = hoaDonThanhToanRepositoryImpl.fillAll(position, pageSize);
-        List<QLHoaDonThanhToan> listQLHoaDonThanhToan = new ArrayList<>();
-        for (HoaDonThanhToan hoaDonTT : listHoaDonThanhToan) {
-            //id,maThanhToan, hoaDon, thanhToan, tongTien, ghiChu
-            listQLHoaDonThanhToan.add(
-                    new QLHoaDonThanhToan(
-                            hoaDonTT.getId(),
-                            hoaDonTT.getMaHDTT(),
-                            String.valueOf(hoaDonTT.getHoaDon().getId()),
-                            hoaDonTT.getThanhToan().getMaThanhToan(),
-                            hoaDonTT.getTongTien(),
-                            hoaDonTT.getGhiChu()));
-        }
-        return listQLHoaDonThanhToan;
-    }
-
-    @Override
     public List<QLHoaDonThanhToan> getHoaDonThanhToanNoPagination() {
         // map hoaDon;
         List<HoaDon> listHoaDon = hoaDonRepositoryImpl.getAll();
@@ -73,7 +55,7 @@ public class HoaDonThanhToanServiceImpl implements IHoaDonThanhToanService {
                     new QLHoaDonThanhToan(
                             hoaDonTT.getId(),
                             hoaDonTT.getMaHDTT(),
-                            String.valueOf(hoaDonTT.getHoaDon().getId()),
+                            String.valueOf(hoaDonTT.getHoaDon().getMaHoaDon()),
                             hoaDonTT.getThanhToan().getMaThanhToan(),
                             hoaDonTT.getTongTien(),
                             hoaDonTT.getGhiChu()));
@@ -160,5 +142,11 @@ public class HoaDonThanhToanServiceImpl implements IHoaDonThanhToanService {
         ql.forEach(c -> System.out.println("" + c.getId()));
         List<QLHoaDonThanhToan> qlHDTT = new HoaDonThanhToanServiceImpl().getHoaDonThanhToanNoPagination();
         qlHDTT.forEach(c -> System.out.println("" + c.getHoaDon()));
+    }
+
+    @Override
+    public String genMaHoaDonThanhToan() {
+        int maAC = hoaDonThanhToanRepositoryImpl.genMaHoaDonThanhToan();
+        return "HDTT00"+maAC;
     }
 }

@@ -4,6 +4,8 @@
  */
 package service;
 
+import domainmodel.SanCa;
+import java.util.Date;
 import java.util.List;
 import modelview.QLSanCa;
 
@@ -13,13 +15,21 @@ import modelview.QLSanCa;
  */
 public interface ISanCaService {
 
-    QLSanCa getOne();
+    SanCa getOne();
 
-    List<QLSanCa> getAll();
+    List<QLSanCa> getAll(Date ngayTao);
 
     String save(QLSanCa qLSanCa);
 
     String update(QLSanCa qLSanCa);
 
     String delete(QLSanCa qLSanCa);
+
+    String addListSanCa(List<QLSanCa> list);
+
+    List<QLSanCa> getByNgayTao(Date ngayTao);
+
+    List<SanCa> getSanCaByIdSanBong(String id, Date ngayTaoSanCa);
+    
+    List<QLSanCa> getAllByNgayTao(String ngayTao);
 }

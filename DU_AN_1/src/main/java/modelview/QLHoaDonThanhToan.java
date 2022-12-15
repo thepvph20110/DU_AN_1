@@ -23,7 +23,7 @@ public class QLHoaDonThanhToan {
     private String ghiChu;
     
     public Object[] toRowData() {
-        return new Object[]{id ,maHDTT, hoaDon, thanhToan, tongTien, ghiChu};
+        return new Object[]{maHDTT, hoaDon, thanhToan, tongTien, ghiChu};
     }
     
 }

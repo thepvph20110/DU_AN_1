@@ -4,6 +4,7 @@
  */
 package service;
 
+import enumclass.trangThaiDichVu;
 import java.util.List;
 import java.util.UUID;
 import modelview.QLDichVu;
@@ -14,8 +15,6 @@ import modelview.QLDichVu;
  */
 public interface IDichVuService {
 
-    List<QLDichVu> getDichVu(int position, int pageSize);
-
     List<QLDichVu> getDichVuNoPagination();
 
     String createNewDichVu(QLDichVu dichVu);
@@ -25,4 +24,10 @@ public interface IDichVuService {
     String deleteDichVuById(String id);
 
     long countAllDichVu();
+
+    List<QLDichVu> getDichVuByMaDichVu(String maDichVu);
+
+    List<QLDichVu> getDichVuByTrangThai(trangThaiDichVu trangThai);
+    
+    String genMaDichVu();
 }

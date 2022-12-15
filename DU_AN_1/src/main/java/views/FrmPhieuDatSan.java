@@ -4,28 +4,52 @@
  */
 package views;
 
+import controller.HomeController;
 import domainmodel.PhieuDatLich;
+import domainmodel.SanCa;
+import enumclass.trangThaiHoaDon;
 import enumclass.trangThaiPhieuDL;
+import enumclass.trangThaiSanCa;
+import java.text.DecimalFormat;
+import java.util.Date;
 import java.util.UUID;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import modelview.QLAcount;
+import modelview.QLHoaDon;
+import modelview.QLSanCa;
+import repository.impl.SanCaRepository;
+import service.IHoaDonService;
 import service.IPhieuDatLichService;
+import service.ISanCaService;
+import service.Impl.HoaDonServiceImpl;
 import service.Impl.PhieuDatLichServiceImpl;
+import service.Impl.SanCaServiceImpl;
 
 public class FrmPhieuDatSan extends javax.swing.JFrame {
 
     private PhieuDatLich phieuDL = new PhieuDatLich();
     private IPhieuDatLichService phieuDatLichService = new PhieuDatLichServiceImpl();
+    private ISanCaService sanCaService = new SanCaServiceImpl();
+    private IHoaDonService hoaDonService = new HoaDonServiceImpl();
+    private QLAcount qLAcount;
+    private JPanel pnTong;
+    private JLabel lbHome;
+    private DecimalFormat df = new DecimalFormat("###,###,###");
 
-    public FrmPhieuDatSan(PhieuDatLich phieuDatLich) {
+    public FrmPhieuDatSan(PhieuDatLich phieuDatLich, QLAcount qLAcount, JPanel pnTong, JLabel lbHome) {
         initComponents();
         phieuDL = phieuDatLich;
-
+        this.qLAcount = qLAcount;
+        this.pnTong = pnTong;
+        this.lbHome = lbHome;
         lblTenKhachHang.setText(phieuDL.getKhachHang().getTenKhachHang());
         lblThoiGianCa.setText(String.valueOf(phieuDL.getSanCa().getCa().getThoiGianBatDau()) + " - " + String.valueOf(phieuDL.getSanCa().getCa().getThoiGianKetThuc()));
         lblTenSanBong.setText(phieuDL.getSanCa().getSanbong().getTenSanBong());
         lblNgayDenSan.setText(String.valueOf(phieuDL.getNgayDenSan()));
         jtaGhiChu.setText(phieuDL.getGhiChu());
-        lblTongTien.setText(phieuDL.getTongTienSan() + " VND");
+        lblTongTien.setText(df.format(phieuDL.getTongTienSan()) + " VND");
     }
 
     /**
@@ -60,19 +84,28 @@ public class FrmPhieuDatSan extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(65, 147, 169));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Phiếu Đặt Sân");
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Thông Tin Phiếu Đặt"));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông Tin Phiếu Đặt", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Tên Khách Hàng");
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Thời Gian Ca");
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Tên Sân Bóng");
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("Ngày Đến Sân");
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setText("Ghi Chú");
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -147,8 +180,12 @@ public class FrmPhieuDatSan extends javax.swing.JFrame {
                 .addGap(40, 40, 40))
         );
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        btnHuyLich.setBackground(new java.awt.Color(255, 0, 0));
+        btnHuyLich.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnHuyLich.setForeground(new java.awt.Color(255, 255, 255));
         btnHuyLich.setText("Hủy Lịch");
         btnHuyLich.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,6 +193,9 @@ public class FrmPhieuDatSan extends javax.swing.JFrame {
             }
         });
 
+        btnNhanSan.setBackground(new java.awt.Color(51, 102, 255));
+        btnNhanSan.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnNhanSan.setForeground(new java.awt.Color(255, 255, 255));
         btnNhanSan.setText("Nhận Sân");
         btnNhanSan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,6 +203,9 @@ public class FrmPhieuDatSan extends javax.swing.JFrame {
             }
         });
 
+        btnThoat.setBackground(new java.awt.Color(255, 0, 0));
+        btnThoat.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnThoat.setForeground(new java.awt.Color(255, 255, 255));
         btnThoat.setText("Thoát");
         btnThoat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -175,23 +218,24 @@ public class FrmPhieuDatSan extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnHuyLich, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnNhanSan, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
-                    .addComponent(btnThoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnNhanSan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnThoat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnHuyLich, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(btnNhanSan)
-                .addGap(30, 30, 30)
-                .addComponent(btnHuyLich)
-                .addGap(32, 32, 32)
-                .addComponent(btnThoat)
-                .addContainerGap(149, Short.MAX_VALUE))
+                .addGap(15, 15, 15)
+                .addComponent(btnNhanSan, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(77, 77, 77)
+                .addComponent(btnHuyLich, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -201,11 +245,11 @@ public class FrmPhieuDatSan extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(274, 274, 274)
+                .addGap(333, 333, 333)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -214,7 +258,7 @@ public class FrmPhieuDatSan extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
+                        .addGap(8, 8, 8)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -245,19 +289,39 @@ public class FrmPhieuDatSan extends javax.swing.JFrame {
 
         int click = JOptionPane.showConfirmDialog(rootPane, "Bạn Có Muốn Nhận Sân?", "Xác Nhận", JOptionPane.YES_NO_OPTION);
         if (click == JOptionPane.YES_OPTION) {
+            if (phieuDL.getSanCa().getNgayTao().after(new Date())) {
+                JOptionPane.showMessageDialog(rootPane, "Chưa đến ngày nhận sân!!");
+                return;
+            }
             phieuDL.setTrangThai(trangThaiPhieuDL.DA_NHAN_SAN);
-            JOptionPane.showMessageDialog(rootPane, phieuDatLichService.updateTrangThai(phieuDL));
-        }else{
+            String check = phieuDatLichService.updateTrangThai(phieuDL);
+            if (check.equals("Sửa Trạng Thái Thành Công")) {
+                JOptionPane.showMessageDialog(rootPane, "Nhận sân thành công");
+            }
+            SanCa sanCa = phieuDL.getSanCa();
+            sanCa.setTrangThai(trangThaiSanCa.KHONG_TRONG);
+            new SanCaRepository().update(sanCa);
+            String maHoaDon =hoaDonService.genMaHoaDon();
+            QLHoaDon qLHoaDon = new QLHoaDon(null, maHoaDon, phieuDL, null, null, null, phieuDL.getTongTienSan(), phieuDL.getTongTienSan(), null, trangThaiHoaDon.CHUA_THANH_TOAN);
+            hoaDonService.save(qLHoaDon);
+            HomeController homeController = new HomeController(pnTong, qLAcount,new Date(),null);
+            homeController.setView(lbHome);
+            this.dispose();
+        } else {
             JOptionPane.showMessageDialog(this, "Nhận Sân Không Thành Công");
         }
     }//GEN-LAST:event_btnNhanSanActionPerformed
 
     private void btnHuyLichActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyLichActionPerformed
-       int click = JOptionPane.showConfirmDialog(rootPane, "Bạn Có Muốn Hủy Sân", "Xác Nhận", JOptionPane.YES_NO_OPTION);
+        int click = JOptionPane.showConfirmDialog(rootPane, "Bạn Có Muốn Hủy Sân", "Xác Nhận", JOptionPane.YES_NO_OPTION);
         if (click == JOptionPane.YES_OPTION) {
             phieuDL.setTrangThai(trangThaiPhieuDL.DA_HUY);
-            JOptionPane.showMessageDialog(rootPane, phieuDatLichService.updateTrangThai(phieuDL));
-        }else{
+            String check = phieuDatLichService.updateTrangThai(phieuDL);
+            if (check.equals("Sửa Trạng Thái Thành Công")) {
+                JOptionPane.showMessageDialog(rootPane, "Đã hủy lịch đặt");
+                this.dispose();
+            }
+        } else {
             JOptionPane.showMessageDialog(this, "Hủy Sân Không Thành Công");
         }
     }//GEN-LAST:event_btnHuyLichActionPerformed
@@ -269,7 +333,6 @@ public class FrmPhieuDatSan extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHuyLich;

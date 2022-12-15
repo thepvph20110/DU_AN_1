@@ -4,6 +4,7 @@
  */
 package service;
 
+import domainmodel.LoaiSan;
 import java.util.List;
 import modelview.QLLoaiSan;
 
@@ -20,5 +21,11 @@ public interface ILoaiSanService {
     String update(QLLoaiSan qLLoaiSan);
 
     String delete(QLLoaiSan qLLoaiSan);
+
+    List<QLLoaiSan> searchByName(String ten);
+
+    LoaiSan getOne(String tenSan);
+    
+    String genMaLoaiSan();
 
 }

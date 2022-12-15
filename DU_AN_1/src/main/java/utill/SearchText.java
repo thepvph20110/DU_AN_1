@@ -20,7 +20,7 @@ public class SearchText extends JTextField{
     public SearchText(){
         
     }
-    private final String hint = "Tìm kiếm...";
+    private final String hint = "Tìm kiếm số điện thoại...";
         @Override
     public void paint(Graphics g) {
         super.paint(g);

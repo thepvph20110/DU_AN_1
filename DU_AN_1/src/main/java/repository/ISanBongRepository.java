@@ -4,7 +4,6 @@
  */
 package repository;
 
-
 import domainmodel.SanBong;
 import java.util.List;
 
@@ -13,10 +12,20 @@ import java.util.List;
  * @author hp
  */
 public interface ISanBongRepository {
+
     List<SanBong> getAll();
-    
+
     boolean saveOrUpdate(SanBong sanBong);
-    
+
     boolean deleteSanBong(SanBong sanBong);
+
+    List<SanBong> searchByName(String ten);
+
+    String saveSanBong(SanBong sanBong);
+
+    SanBong getOne(String id);
+
+    String xoaSaṇ̣̣̣̣(String id);
     
+    int genMaSanBong();
 }

@@ -7,8 +7,10 @@ package repository.impl;
 import domainmodel.LoaiSan;
 import java.util.List;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.NativeQuery;
 import repository.ILoaiSanRepository;
 import utill.HibernateConfig;
 
@@ -64,4 +66,47 @@ public class LoaiSanRepository implements ILoaiSanRepository {
         return check;
     }
 
+    @Override
+    public List<LoaiSan> searchByName(String ten) {
+        List<LoaiSan> listNuocUong = null;
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            String hql = "From LoaiSan Where tenLoaiSan like :ten ";
+            TypedQuery<LoaiSan> query = session.createQuery(hql, LoaiSan.class);
+            query.setParameter("ten", "%" + ten + "%");
+            listNuocUong = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return listNuocUong;
+    }
+
+    @Override
+    public LoaiSan getOne(String tenLoai) {
+        String hql = "From LoaiSan ls WHERE ls.tenLoaiSan = :ten";
+        try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
+            return (LoaiSan) session.createQuery(hql).setParameter("ten", tenLoai).uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return null;
+    }
+
+    @Override
+    public int genMaLoaiSan() {
+        String maAC = "";
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            String hql = "Select MAX(CONVERT(INT,SUBSTRING(maLoaiSan,5,100))) from LoaiSan ";
+            NativeQuery query = session.createNativeQuery(hql);
+            maAC = query.getSingleResult().toString();
+        } catch (Exception e) {
+       
+        }
+        if(maAC == ""){
+            maAC = "1";
+            int ma = Integer.valueOf(maAC);
+            return  ma;
+        }
+        int ma = Integer.valueOf(maAC);
+        return  ++ma;
+    }
 }

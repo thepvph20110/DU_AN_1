@@ -1,5 +1,7 @@
 package utill;
 
+import domainModel.GiaoCa;
+import domainModel.LichSuDatLich;
 import domainmodel.Acount;
 import domainmodel.Ca;
 import domainmodel.ChucVu;
@@ -63,6 +65,8 @@ public class HibernateConfig {
         conf.addAnnotatedClass(ThanhToan.class);
         conf.addAnnotatedClass(PhuPhi_HoaDon.class);
         conf.addAnnotatedClass(HoaDonThanhToan.class);
+        conf.addAnnotatedClass(GiaoCa.class);
+        conf.addAnnotatedClass(LichSuDatLich.class);
 
         ServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .applySettings(conf.getProperties()).build();

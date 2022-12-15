@@ -5,6 +5,7 @@
 package modelview;
 
 import enumclass.trangThaiSanBong;
+import java.text.DecimalFormat;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,7 +31,7 @@ public class QLSanBong {
     private trangThaiSanBong trangThai = trangThaiSanBong.HOAT_DONG;
 
     public Object[] toDataRow() {
-        return new Object[]{id, giaSan, maSanBong, sucChua, tenSanBong, trangThai, tenLoaiSan};
+        return new Object[]{new DecimalFormat("###,###,###").format(giaSan) + " " + "Vnd", maSanBong, sucChua, tenSanBong, trangThai, tenLoaiSan};
     }
 
 }

@@ -20,4 +20,6 @@ public interface IMauSacService {
     String Delete(MauSac mauSac);
     
     MauSac getOne(String ma);
+    
+    String genMaMauSac();
 }

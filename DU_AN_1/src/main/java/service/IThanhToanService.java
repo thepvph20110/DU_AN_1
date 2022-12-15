@@ -1,5 +1,6 @@
 package service;
 
+import domainmodel.ThanhToan;
 import java.util.List;
 import modelview.QLThanhToan;
 
@@ -12,4 +13,8 @@ public interface IThanhToanService {
     boolean update(QLThanhToan qLThanhToan);
 
     boolean delete(String id);
+
+    String genMaThanhToan(List<QLThanhToan> lstQLThanhToans);
+
+    QLThanhToan fillByMaThanhToan(String maThanhToan);
 }

@@ -20,4 +20,6 @@ public interface IMauSacRepository {
     String Delete(MauSac mauSac);
     
     MauSac getOne(String ma);
+    
+    int genMaMauSac();
 }

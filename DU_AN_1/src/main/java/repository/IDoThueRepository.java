@@ -5,6 +5,7 @@
 package repository;
 
 import domainmodel.DoThue;
+import enumclass.trangThaiDoThue;
 import java.util.List;
 import modelview.QLDoThue;
 
@@ -13,11 +14,22 @@ import modelview.QLDoThue;
  * @author Admin
  */
 public interface IDoThueRepository {
-    
+
     List<DoThue> getAll();
-    
+
     String AddorUpdate(DoThue doThue);
-    
+
     String Delete(DoThue doThue);
+
+    List<DoThue> findByTenDoThue(String ten);
+
+    List<DoThue> findByTrangThai(trangThaiDoThue trangThai);
+
+    long totalCount();
+
+    boolean saveOrUpdate(DoThue doThue);
+
+    boolean delete(String id);
     
+    int genMaDoThue();
 }

@@ -33,14 +33,7 @@ public class MauSacServiceImpl implements IMauSacService {
 
     @Override
     public String AddorUpdate(MauSac mauSac) {
-        if (mapma.containsKey(mauSac.getMaMauSac())) {
-            return "Trùng Mã";
-        } else if (mauSac.getMaMauSac().isBlank() || mauSac.getTenMauSac().isBlank()) {
-            return "Mã Màu Sắc - Tên Màu Sắc ĐANG TRỐNG";
-        } else {
             return mauSacRepositoryImpl.AddorUpdate(mauSac);
-        }
-
     }
 
     @Override
@@ -51,6 +44,12 @@ public class MauSacServiceImpl implements IMauSacService {
     @Override
     public MauSac getOne(String ma) {
         return mauSacRepositoryImpl.getOne(ma);
+    }
+
+    @Override
+    public String genMaMauSac() {
+        int maAC = mauSacRepositoryImpl.genMaMauSac();
+        return "MS00"+maAC;
     }
 
 }

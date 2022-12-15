@@ -5,6 +5,7 @@
 package service.Impl;
 
 import domainmodel.NuocUong;
+import enumclass.trangThaiNuocUong;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,34 +22,7 @@ public class NuocUongServiceImpl implements INuocUongService {
     private Map<String, Object> map = new HashMap<>();
 
     @Override
-    public List<QLNuocUong> getNuocUong(int firstResult, int maxResults) {
-        List<NuocUong> listNuocUong = nuocUongRepositoryImpl.fillAll(firstResult, maxResults);
-
-        List<QLNuocUong> listQLNuocUong = new ArrayList<>();
-
-        for (NuocUong x : listNuocUong) {
-            //id, maNuocUong, tenNuocUong, soLuong, gia, trangThai
-            listQLNuocUong.add(
-                    new QLNuocUong(
-                            x.getId(),
-                            x.getMaNuocUong(),
-                            x.getTenNuocUong(),
-                            x.getSoLuong(),
-                            x.getGia(),
-                            x.getTrangThai()
-                    )
-            );
-        }
-
-        return listQLNuocUong;
-    }
-
-    @Override
     public String createNewNuocUong(QLNuocUong nuocUong) {
-        if (map.containsKey(nuocUong.getMaNuocUong())) {
-            return "Mã trùng";
-        }
-
         if (map.containsKey(nuocUong.getTenNuocUong())) {
             return "Tên Nước trùng";
         }
@@ -66,7 +40,7 @@ public class NuocUongServiceImpl implements INuocUongService {
         if (save) {
             return "Tạo mới Nước Uống Thành Công";
         } else {
-            return "Tạo mới Nước Uống Không Công";
+            return "Tạo mới Nước Uống Không Thành Công";
         }
     }
 
@@ -84,7 +58,7 @@ public class NuocUongServiceImpl implements INuocUongService {
         if (save) {
             return "Cập Nhập Nước Uống Thành Công";
         } else {
-            return "Cập Nhập Nước Uống Không Công";
+            return "Cập Nhập Nước Uống Không Thành Công";
         }
     }
 
@@ -94,7 +68,7 @@ public class NuocUongServiceImpl implements INuocUongService {
         if (delete) {
             return "Xóa Nước Uống Thành Công";
         } else {
-            return "Xóa Nước Uống Không Công";
+            return "Xóa Nước Uống Không Thành Công";
         }
     }
 
@@ -130,8 +104,51 @@ public class NuocUongServiceImpl implements INuocUongService {
     }
 
     @Override
-    public UUID getNuocUongByName(String ten) {
+    public String getNuocUongByName(String ten) {
         return nuocUongRepositoryImpl.fillByName(ten);
     }
 
+    @Override
+    public List<QLNuocUong> getNuocUongByTenNuocUong(String tenNuocUong) {
+        List<NuocUong> listNuocUong = nuocUongRepositoryImpl.findByTenNuocUong(tenNuocUong);
+        List<QLNuocUong> listQLNuocUong = new ArrayList<>();
+        for (NuocUong nuocUong : listNuocUong) {
+            listQLNuocUong.add(
+                    new QLNuocUong(
+                            nuocUong.getId(),
+                            nuocUong.getMaNuocUong(),
+                            nuocUong.getTenNuocUong(),
+                            nuocUong.getSoLuong(),
+                            nuocUong.getGia(),
+                            nuocUong.getTrangThai()));
+        }
+        return listQLNuocUong;
+    }
+
+    @Override
+    public List<QLNuocUong> getNuocUongByTranThai(trangThaiNuocUong trangThai) {
+        List<NuocUong> listNuocUong = nuocUongRepositoryImpl.findByTrangThai(trangThai);
+        List<QLNuocUong> listQLNuocUong = new ArrayList<>();
+        for (NuocUong nuocUong : listNuocUong) {
+            listQLNuocUong.add(
+                    new QLNuocUong(
+                            nuocUong.getId(),
+                            nuocUong.getMaNuocUong(),
+                            nuocUong.getTenNuocUong(),
+                            nuocUong.getSoLuong(),
+                            nuocUong.getGia(),
+                            nuocUong.getTrangThai()));
+        }
+        return listQLNuocUong;
+    }
+    public static void main(String[] args) {
+        String id = new NuocUongServiceImpl().deleteNuocUongById("6cfc66a3-fbfc-4dc0-80ea-05a7add6abfd");
+        System.out.println(""+id);
+    }
+
+    @Override
+    public String genNuocUong() {
+        int maAC = nuocUongRepositoryImpl.genMaNuocUong();
+        return "NU00"+maAC;
+    }
 }
