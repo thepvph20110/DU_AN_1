@@ -149,7 +149,7 @@ public class HomeController {
         @Override
         public void mouseExited(MouseEvent e) {
             if (kindSelected.equalsIgnoreCase(kind)) {
-                jlbItem.setBackground(new Color(166, 145, 92));
+                jlbItem.setBackground(new Color(65,147,169));
             }
         }
     }

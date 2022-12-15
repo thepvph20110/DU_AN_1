@@ -60,7 +60,8 @@ public class JpnQuanLySan extends javax.swing.JPanel {
         listQLLoaiSan = iLoaiSanService.getAll();
         listQLSanBong = iSanBongService.getAll();
         loadCbbLoaiSan();
-        txtMaSanBong.disable();
+//        txtMaSanBong.disable();
+        txtMaSanBong.setEditable(false);
         showData(listQLSanBong);
         List<LoaiSan> listLoaiSan = loaiSanRepository.getAll();
         for (LoaiSan loaiSan : listLoaiSan) {
@@ -222,7 +223,7 @@ public class JpnQuanLySan extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Quản Lý Sân Bóng");
+        jLabel1.setText("Quản Lí Sân Bóng");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông Tin Sân Bóng", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
@@ -291,7 +292,7 @@ public class JpnQuanLySan extends javax.swing.JPanel {
         jLabel7.setText("Loại Sân");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel2.setForeground(new java.awt.Color(242, 242, 242));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -376,14 +377,11 @@ public class JpnQuanLySan extends javax.swing.JPanel {
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(67, 67, 67)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtSucChua, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(5, 5, 5))
+                            .addComponent(txtSucChua, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(radioSuaChua)
                                 .addGap(93, 93, 93)
-                                .addComponent(radioHoatDong)
-                                .addGap(35, 35, 35))
+                                .addComponent(radioHoatDong))
                             .addComponent(txtGiaSan, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
