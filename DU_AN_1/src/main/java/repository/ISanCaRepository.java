@@ -29,4 +29,6 @@ public interface ISanCaRepository {
     List<SanCa> getByNgayTao(Date ngayTao);
 
     List<SanCa> getSanCaByIdSanBong(String id, Date ngayTaoSanCa);
+    
+    List<SanCa> getAllByNgayTao(String ngayTao);
 }

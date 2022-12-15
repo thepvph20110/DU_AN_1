@@ -30,4 +30,6 @@ public interface ISanCaService {
     List<QLSanCa> getByNgayTao(Date ngayTao);
 
     List<SanCa> getSanCaByIdSanBong(String id, Date ngayTaoSanCa);
+    
+    List<QLSanCa> getAllByNgayTao(String ngayTao);
 }

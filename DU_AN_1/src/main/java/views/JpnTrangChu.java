@@ -204,7 +204,8 @@ public class JpnTrangChu extends javax.swing.JPanel {
                     labelLoaiSan.setFont(new Font("Tahoma", 1, 14));
                     JLabel lableTenKH = new JLabel();
 
-                    if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.KHONG_TRONG) {
+                    if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.KHONG_TRONG &&
+                            listSanCa.get(j).getTrangThai() == trangThaiSanCa.CHO_NHAN_SAN) {
                         QLHoaDon qlHoaDon = hoaDonService.getByTrangThai(labelIdSanCa.getText());
                         lableTenKH.setText("Tên KH:" + qlHoaDon.getPhieuDatLich().getKhachHang().getTenKhachHang());
                         lableTenKH.setFont(new Font("Tahoma", 1, 10));

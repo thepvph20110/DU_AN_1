@@ -195,4 +195,14 @@ public class SanCaServiceImpl implements ISanCaService {
         return re.getSanCaByIdSanBong(id, ngayTaoSanCa);
     }
 
+    @Override
+    public List<QLSanCa> getAllByNgayTao(String ngayTao) {
+         List<QLSanCa> listQlSC = new ArrayList<>();
+        for (SanCa sanCa : re.getAllByNgayTao(ngayTao)) {
+            QLSanCa qLSanCa = new QLSanCa(sanCa.getId(), sanCa.getCa().getTenCa(), sanCa.getSanbong().getTenSanBong(), sanCa.getSanbong().getSucChua(), sanCa.getCa().getThoiGianBatDau(), sanCa.getCa().getThoiGianKetThuc(), sanCa.getNgayTao(), sanCa.getGiaSanCa(), sanCa.getTrangThai());
+            listQlSC.add(qLSanCa);
+        }
+        return listQlSC;
+    }
+
 }

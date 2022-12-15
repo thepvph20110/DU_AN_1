@@ -156,10 +156,11 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
         panelTong.setLayout(new GridLayout(10000, 1, 20, 20));
         Date now = new Date();
         for (int i = 0; i < listSanBong.size(); i++) {
+            int sizeSanCa = 150;
             TitledBorder border = new TitledBorder(listSanBong.get(i).getTenSanBong());
             JPanel panelSan = new JPanel();
             panelSan.setBorder(border);
-            panelSan.setPreferredSize(new Dimension(1000, 150));
+            panelSan.setPreferredSize(new Dimension(sizeSanCa, 150));
             panelSan.setLayout(new GridLayout(1, 100, 20, 20));
             for (int j = 0; j < listSanCa.size(); j++) {
                 Time gioKT = new Time(listSanCa.get(j).getThoiGianKetThuc().getHours(), listSanCa.get(j).getThoiGianKetThuc().getMinutes(), listSanCa.get(j).getThoiGianKetThuc().getSeconds());
@@ -173,7 +174,7 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
                         !(gioKT.getTime() < quaGio.getTime() && ngayTaoSan.equals(hienTai))) {
 
                     if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.DANG_TRONG) {
-
+                        sizeSanCa = sizeSanCa+150;
                         JPanel panelCa = new JPanel();
 
                         panelCa.setLayout(new FlowLayout());
@@ -186,17 +187,17 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
                         JLabel labelNgay = new JLabel(sdf.format(listSanCa.get(j).getNgayTao()));
                         JLabel labelThoiGian = new JLabel(listSanCa.get(j).getThoiGianBatDau() + " - " + String.valueOf(listSanCa.get(j).getThoiGianKetThuc()));
                         JLabel labelLoaiSan = new JLabel("Loại sân" + " " + listSanCa.get(j).getSucChua());
-                        labelCa.setForeground(Color.white);
+                        labelCa.setForeground(Color.black);
                         labelCa.setFont(new Font("Tahoma", 1, 9));
-                        labelNgay.setForeground(Color.white);
+                        labelNgay.setForeground(Color.black);
                         labelNgay.setFont(new Font("Tahoma", 1, 9));
-                        labelThoiGian.setForeground(Color.white);
+                        labelThoiGian.setForeground(Color.black);
                         labelThoiGian.setFont(new Font("Tahoma", 1, 8));
-                        labelLoaiSan.setForeground(Color.white);
+                        labelLoaiSan.setForeground(Color.black);
                         labelLoaiSan.setFont(new Font("Tahoma", 1, 8));
                         JLabel labelGiaSan = new JLabel("Giá: " + df.format(listSanCa.get(j).getGiaCaSan()) + " VND");
                         labelGiaSan.setFont(new Font("Tahoma", 1, 8));
-                        labelGiaSan.setForeground(Color.white);
+                        labelGiaSan.setForeground(Color.black);
 
                         panelCa.add(labelCa);
                         panelCa.add(labelThoiGian);
@@ -208,7 +209,7 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
                                 for (JPanel jPanel : listPaneCa) {
                                     jPanel.setBackground(new Color(0, 204, 51));
                                 }
-                                panelCa.setBackground(new Color(51, 51, 255));
+                                panelCa.setBackground(new Color(255,255,153));
                                 addQlSanCa(labelIdSanCa.getText());
                             }
                         });
