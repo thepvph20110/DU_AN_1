@@ -35,5 +35,10 @@ public interface IDoThueService {
     String updateDoThueById(QLDoThue qLDoThue);
 
     String deleteDoThueById(String id);
+<<<<<<< HEAD
 >>>>>>> c5c370ffe9329ee44f3bb07c8fe6fec2fcb3fca2
+=======
+    
+    String genMaDoThue();
+>>>>>>> 0a5f77edf23f153047e199a5ac27bd4547d84bb5
 }

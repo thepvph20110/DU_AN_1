@@ -23,4 +23,6 @@ public interface IKhachHangService {
     String delete(QLKhachHang qLKhachHang);
     
     List<QLKhachHang> searchByName(String ten);
+    
+    String genMaKH();
 }

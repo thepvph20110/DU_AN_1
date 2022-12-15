@@ -11,6 +11,7 @@ import javax.persistence.TypedQuery;
 import modelview.QLDoThue;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import repository.IDoThueRepository;
 import utill.HibernateConfig;
@@ -153,5 +154,27 @@ public class DoThueRepositoryImpl implements IDoThueRepository {
         return check > 0;
     }
 
+<<<<<<< HEAD
 >>>>>>> c5c370ffe9329ee44f3bb07c8fe6fec2fcb3fca2
+=======
+    @Override
+    public int genMaDoThue() {
+        String maAC = "";
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            String hql = "Select MAX(CONVERT(INT,SUBSTRING(maDoThue,5,100))) from DoThue ";
+            NativeQuery query = session.createNativeQuery(hql);
+            maAC = query.getSingleResult().toString();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        if (maAC == "") {
+            maAC = "1";
+            int ma = Integer.valueOf(maAC);
+            return ma;
+        }
+        int ma = Integer.valueOf(maAC);
+        return ++ma;
+    }
+
+>>>>>>> 0a5f77edf23f153047e199a5ac27bd4547d84bb5
 }

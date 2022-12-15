@@ -77,4 +77,22 @@ public class CaServiceImpl implements ICaService {
         }
         return qLCas;
     }
+<<<<<<< HEAD
+=======
+
+    @Override
+    public String saveNewCa(Ca ca) {
+        return re.saveCaNew(ca);
+    }
+
+    @Override
+    public String xoaCa(String id) {
+        return re.xoaCa(id);
+    }
+
+    @Override
+    public String genMaCa() {
+        return "CA00"+re.genMaCa();
+    }
+>>>>>>> 0a5f77edf23f153047e199a5ac27bd4547d84bb5
 }

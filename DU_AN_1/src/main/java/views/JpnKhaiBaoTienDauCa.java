@@ -4,33 +4,50 @@
  */
 package views;
 
+import controller.HomeController;
+import domainModel.GiaoCa;
+import domainmodel.Acount;
+import enumclass.trangThaiGiaoCa;
 import java.awt.Color;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
+import modelview.QLAcount;
+import service.IGiaoCaService;
+import service.Impl.GiaoCaServiceImpl;
+import utill.MaRanDom;
 
 /**
  *
  * @author DANG VAN SY
  */
 public class JpnKhaiBaoTienDauCa extends javax.swing.JPanel {
-
-    /**
-     * Creates new form jpnKhaiBaoTienDauCa
-     */
-    public JpnKhaiBaoTienDauCa() {
+    
+    private QLAcount qLAcount;
+    private IGiaoCaService giaoCaService = new GiaoCaServiceImpl();
+    private JPanel pnTOng;
+    private JLabel lableHome;
+    
+    public JpnKhaiBaoTienDauCa(QLAcount qLAcount, JPanel pnTOng, JLabel lableHome) {
         initComponents();
+        this.qLAcount = qLAcount;
+        this.lableHome = lableHome;
+        this.pnTOng = pnTOng;
         lbMenhGia.setBackground(new Color(160, 132, 157));
         labelSoLuong.setBackground(new Color(160, 132, 157));
         labelThanhTien.setBackground(new Color(160, 132, 157));
-
+        lbTenNv.setText(qLAcount.getTenAcount());
+        lbGioVaoCa.setText(new SimpleDateFormat("dd/MM/yyyy - hh:mm:ss a").format(gioNhanCa()));
+        
     }
 
     /**
@@ -77,12 +94,14 @@ public class JpnKhaiBaoTienDauCa extends javax.swing.JPanel {
         lbTT1 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         txtTongTien = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        lbNhanCa = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         lbTenNv = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         lbGioVaoCa = new javax.swing.JLabel();
+
+        panelTong.setBackground(new java.awt.Color(65, 147, 169));
 
         jPanel2.setBackground(new java.awt.Color(11, 127, 171));
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -151,125 +170,138 @@ public class JpnKhaiBaoTienDauCa extends javax.swing.JPanel {
 
         txt500.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt500.setText("0");
-        txt500.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt500ActionPerformed(evt);
+        txt500.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt500KeyTyped(evt);
             }
         });
 
         txt200.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt200.setText("0");
-        txt200.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt200ActionPerformed(evt);
+        txt200.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt200KeyTyped(evt);
             }
         });
 
         txt100.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt100.setText("0");
-        txt100.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt100ActionPerformed(evt);
+        txt100.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt100KeyTyped(evt);
             }
         });
 
         txt50.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt50.setText("0");
-        txt50.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt50ActionPerformed(evt);
+        txt50.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt50KeyTyped(evt);
             }
         });
 
         txt20.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt20.setText("0");
-        txt20.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt20ActionPerformed(evt);
+        txt20.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt20KeyTyped(evt);
             }
         });
 
         txt10.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt10.setText("0");
-        txt10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt10ActionPerformed(evt);
+        txt10.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt10KeyTyped(evt);
             }
         });
 
         txt5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt5.setText("0");
-        txt5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt5ActionPerformed(evt);
+        txt5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt5KeyTyped(evt);
             }
         });
 
         txt2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt2.setText("0");
-        txt2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt2ActionPerformed(evt);
+        txt2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt2KeyTyped(evt);
             }
         });
 
         txt1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt1.setText("0");
-        txt1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt1ActionPerformed(evt);
+        txt1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt1KeyTyped(evt);
             }
         });
 
+        lbTT500.setForeground(new java.awt.Color(255, 0, 0));
         lbTT500.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbTT500.setText("0 Vnd");
+        lbTT500.setText("0");
         lbTT500.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        lbTT200.setForeground(new java.awt.Color(255, 0, 0));
         lbTT200.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbTT200.setText("0 Vnd");
+        lbTT200.setText("0");
         lbTT200.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        lbTT100.setForeground(new java.awt.Color(255, 0, 0));
         lbTT100.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbTT100.setText("0 Vnd");
+        lbTT100.setText("0");
         lbTT100.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        lbTT50.setForeground(new java.awt.Color(255, 0, 0));
         lbTT50.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbTT50.setText("0 Vnd");
+        lbTT50.setText("0");
         lbTT50.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        lbTT20.setForeground(new java.awt.Color(255, 0, 0));
         lbTT20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbTT20.setText("0 Vnd");
+        lbTT20.setText("0");
         lbTT20.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        lbTT10.setForeground(new java.awt.Color(255, 0, 0));
         lbTT10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbTT10.setText("0 Vnd");
+        lbTT10.setText("0");
         lbTT10.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        lbTT5.setForeground(new java.awt.Color(255, 0, 0));
         lbTT5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbTT5.setText("0 Vnd");
+        lbTT5.setText("0");
         lbTT5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        lbTT2.setForeground(new java.awt.Color(255, 0, 0));
         lbTT2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbTT2.setText("0 Vnd");
+        lbTT2.setText("0");
         lbTT2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        lbTT1.setForeground(new java.awt.Color(255, 0, 0));
         lbTT1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbTT1.setText("0 Vnd");
+        lbTT1.setText("0");
         lbTT1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jLabel25.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel25.setText("Tổng tiền đầu ca:");
+        jLabel25.setText("Tổng tiền mặt đầu ca:");
         jLabel25.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel4.setBackground(new java.awt.Color(0, 153, 51));
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Nhận ca");
-        jLabel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtTongTien.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtTongTien.setForeground(new java.awt.Color(255, 0, 0));
+
+        lbNhanCa.setBackground(new java.awt.Color(0, 153, 51));
+        lbNhanCa.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lbNhanCa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbNhanCa.setText("Nhận ca");
+        lbNhanCa.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        lbNhanCa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lbNhanCa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
+                lbNhanCaMouseClicked(evt);
             }
         });
 
@@ -279,7 +311,7 @@ public class JpnKhaiBaoTienDauCa extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel25, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel25, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lbMenhGia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -317,7 +349,7 @@ public class JpnKhaiBaoTienDauCa extends javax.swing.JPanel {
                     .addComponent(lbTT2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbTT1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtTongTien)))
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lbNhanCa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -376,19 +408,22 @@ public class JpnKhaiBaoTienDauCa extends javax.swing.JPanel {
                     .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtTongTien, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbNhanCa, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Khai báo tiền đầu ca");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Khai Báo Tiền Đầu Ca");
 
         jLabel2.setText("Nhân viên:");
 
+        lbTenNv.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbTenNv.setText("jLabel3");
 
-        jLabel3.setText("Giờ vào ca:");
+        jLabel3.setText("Giờ hiện tại:");
 
+        lbGioVaoCa.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbGioVaoCa.setText("jLabel4");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -401,25 +436,24 @@ public class JpnKhaiBaoTienDauCa extends javax.swing.JPanel {
                         .addGap(10, 10, 10)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(39, 39, 39)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2))
                         .addGap(27, 27, 27)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbTenNv, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbGioVaoCa, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(lbGioVaoCa, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbTenNv, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(jLabel1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(lbTenNv))
@@ -437,16 +471,16 @@ public class JpnKhaiBaoTienDauCa extends javax.swing.JPanel {
         panelTongLayout.setHorizontalGroup(
             panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTongLayout.createSequentialGroup()
-                .addContainerGap(471, Short.MAX_VALUE)
+                .addContainerGap(472, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(455, 455, 455))
+                .addGap(454, 454, 454))
         );
         panelTongLayout.setVerticalGroup(
             panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelTongLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(46, 46, 46)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(192, Short.MAX_VALUE))
+                .addContainerGap(145, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -467,58 +501,80 @@ public class JpnKhaiBaoTienDauCa extends javax.swing.JPanel {
     public int tinhTien(int menhGia, String soLuong, JLabel ThanhTien) {
         if (!soLuong.matches("\\d+")) {
             JOptionPane.showMessageDialog(null, "Số lượng phải là số nguyên!");
+            return 0;
         } else if (Integer.valueOf(soLuong) < 0) {
             JOptionPane.showMessageDialog(null, "Số lượng phải lớn hơn 0");
+            return -1;
         } else {
+            ThanhTien.setText(String.valueOf(Integer.valueOf(soLuong) * menhGia));
             return Integer.valueOf(soLuong) * menhGia;
+            
         }
-        return -1;
     }
-    private void txt500ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt500ActionPerformed
-        tinhTien(500000, txt500.getText(), lbTT500);
-    }//GEN-LAST:event_txt500ActionPerformed
+    
+    private void tongTIen() {
+        txtTongTien.setText(String.valueOf(Integer.valueOf(lbTT500.getText()) + Integer.valueOf(lbTT200.getText()) + Integer.valueOf(lbTT100.getText()) + Integer.valueOf(lbTT50.getText()) + Integer.valueOf(lbTT10.getText()) + Integer.valueOf(lbTT5.getText()) + Integer.valueOf(lbTT2.getText()) + Integer.valueOf(lbTT1.getText())));
+        
+    }
+    private void lbNhanCaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbNhanCaMouseClicked
+        Acount acount = new Acount();
+        acount.setId(qLAcount.getId());
+        GiaoCa giaoCa = new GiaoCa(null, new MaRanDom().genMa("GiaoCa"), new Date(), null, qLAcount.getId(), null, Float.valueOf(txtTongTien.getText()), 0, 0, 0, 0, " ", 0, null, acount, 0, trangThaiGiaoCa.NHAN_CA);
+        JOptionPane.showMessageDialog(null, giaoCaService.NhanCa(giaoCa));
+        HomeController controller = new HomeController(pnTOng, qLAcount, new Date(), null);
+        controller.setView(lableHome);
 
-    private void txt200ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt200ActionPerformed
-        tinhTien(200000, txt200.getText(), lbTT200);
-    }//GEN-LAST:event_txt200ActionPerformed
+    }//GEN-LAST:event_lbNhanCaMouseClicked
 
-    private void txt100ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt100ActionPerformed
-        tinhTien(100000, txt100.getText(), lbTT100);
-    }//GEN-LAST:event_txt100ActionPerformed
+    private void txt500KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt500KeyTyped
+        tinhTien(500000, txt500.getText() + evt.getKeyChar(), lbTT500);
+        tongTIen();
+    }//GEN-LAST:event_txt500KeyTyped
 
-    private void txt50ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt50ActionPerformed
-        tinhTien(50000, txt50.getText(), lbTT50);
-    }//GEN-LAST:event_txt50ActionPerformed
+    private void txt200KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt200KeyTyped
+        tinhTien(200000, txt200.getText() + evt.getKeyChar(), lbTT200);
+        tongTIen();
+    }//GEN-LAST:event_txt200KeyTyped
 
-    private void txt20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt20ActionPerformed
-        tinhTien(20000, txt20.getText(), lbTT20);
-    }//GEN-LAST:event_txt20ActionPerformed
+    private void txt100KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt100KeyTyped
+        tinhTien(100000, txt100.getText() + evt.getKeyChar(), lbTT100);
+        tongTIen();
+    }//GEN-LAST:event_txt100KeyTyped
 
-    private void txt10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt10ActionPerformed
-        tinhTien(10000, txt10.getText(), lbTT10);
-    }//GEN-LAST:event_txt10ActionPerformed
+    private void txt50KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt50KeyTyped
+        tinhTien(50000, txt50.getText() + evt.getKeyChar(), lbTT50);
+        tongTIen();
+    }//GEN-LAST:event_txt50KeyTyped
 
-    private void txt5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt5ActionPerformed
-        tinhTien(5000, txt50.getText(), lbTT5);
-    }//GEN-LAST:event_txt5ActionPerformed
+    private void txt20KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt20KeyTyped
+        tinhTien(20000, txt20.getText() + evt.getKeyChar(), lbTT20);
+        tongTIen();
+    }//GEN-LAST:event_txt20KeyTyped
 
-    private void txt2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt2ActionPerformed
-        tinhTien(2000, txt2.getText(), lbTT2);
-    }//GEN-LAST:event_txt2ActionPerformed
+    private void txt10KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt10KeyTyped
+        tinhTien(10000, txt10.getText() + evt.getKeyChar(), lbTT10);
+        tongTIen();
+    }//GEN-LAST:event_txt10KeyTyped
 
-    private void txt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt1ActionPerformed
-        tinhTien(1000, txt1.getText(), lbTT1);
-    }//GEN-LAST:event_txt1ActionPerformed
+    private void txt5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt5KeyTyped
+        tinhTien(5000, txt5.getText() + evt.getKeyChar(), lbTT5);
+        tongTIen();
+    }//GEN-LAST:event_txt5KeyTyped
 
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        gioNhanCa();
-        tienBanDau();
-    }//GEN-LAST:event_jLabel4MouseClicked
+    private void txt2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt2KeyTyped
+        tinhTien(2000, txt2.getText() + evt.getKeyChar(), lbTT2);
+        tongTIen();
+    }//GEN-LAST:event_txt2KeyTyped
+
+    private void txt1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt1KeyTyped
+        tinhTien(1000, txt1.getText() + evt.getKeyChar(), lbTT1);
+        tongTIen();
+    }//GEN-LAST:event_txt1KeyTyped
     public Date gioNhanCa() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy - hh:mm:ss a");
         return new Timestamp(new Date().getTime());
     }
-
+    
     public double tienBanDau() {
         return Double.valueOf(txtTongTien.getText());
     }
@@ -533,7 +589,6 @@ public class JpnKhaiBaoTienDauCa extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -543,6 +598,7 @@ public class JpnKhaiBaoTienDauCa extends javax.swing.JPanel {
     private javax.swing.JLabel labelThanhTien;
     private javax.swing.JLabel lbGioVaoCa;
     private javax.swing.JLabel lbMenhGia;
+    private javax.swing.JLabel lbNhanCa;
     private javax.swing.JLabel lbTT1;
     private javax.swing.JLabel lbTT10;
     private javax.swing.JLabel lbTT100;

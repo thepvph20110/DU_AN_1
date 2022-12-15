@@ -103,4 +103,31 @@ public class SanBongServiceImpl implements ISanBongService {
         return qLSanBongs;
     }
 
+<<<<<<< HEAD
+=======
+    @Override
+    public String saveSanBong(SanBong sanBong) {
+        return re.saveSanBong(sanBong);
+    }
+
+    @Override
+    public String deleteSanBongNew(SanBong sanBong) {
+        if (re.deleteSanBong(sanBong) == true) {
+            return "Delete Complete";
+        } else {
+            return "Delete Fail";
+        }
+    }
+
+    @Override
+    public String xoaSan(String id) {
+        return re.xoaSaṇ̣̣̣̣(id);
+    }
+
+    @Override
+    public String genMaSanBong() {
+        return "SB00" + re.genMaSanBong();
+    }
+
+>>>>>>> 0a5f77edf23f153047e199a5ac27bd4547d84bb5
 }

@@ -15,13 +15,31 @@ import java.util.UUID;
 public interface IPhieuDatLichRepository {
 
     List<PhieuDatLich> getAll();
+<<<<<<< HEAD
     
     List<PhieuDatLich> getPhieuDatLichByTT();
  
+=======
+
+    List<PhieuDatLich> getPhieuDatLichByTT();
+
+    List<PhieuDatLich> getPhieuDatLichBySDT(String sdt);
+
+>>>>>>> 0a5f77edf23f153047e199a5ac27bd4547d84bb5
     boolean save(PhieuDatLich phieuDatLich);
 
     boolean update(PhieuDatLich phieuDatLich);
 
     boolean delete(UUID id);
 
+<<<<<<< HEAD
+=======
+    PhieuDatLich getByIdSanCa(String id);
+
+    PhieuDatLich getPDLByTrangThai(String id);
+
+    List<PhieuDatLich> getPhieuTheoTTHD();
+
+    List<PhieuDatLich> getPhieuChuaTT();
+>>>>>>> 0a5f77edf23f153047e199a5ac27bd4547d84bb5
 }

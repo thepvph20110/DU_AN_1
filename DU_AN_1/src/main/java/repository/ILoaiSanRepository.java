@@ -20,4 +20,11 @@ public interface ILoaiSanRepository {
     boolean deleteLoaiSan(LoaiSan loaiSan);
     
     List<LoaiSan> searchByName(String ten);
+<<<<<<< HEAD
+=======
+
+    LoaiSan getOne(String tenLoai);
+    
+    int genMaLoaiSan();
+>>>>>>> 0a5f77edf23f153047e199a5ac27bd4547d84bb5
 }

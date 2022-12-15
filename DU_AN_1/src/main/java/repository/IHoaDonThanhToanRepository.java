@@ -17,4 +17,6 @@ public interface IHoaDonThanhToanRepository {
     boolean delete(UUID id);
 
     long totalCount();
+    
+    int genMaHoaDonThanhToan();
 }

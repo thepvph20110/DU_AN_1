@@ -10,9 +10,11 @@ import domainmodel.KhachHang;
 import domainmodel.PhieuDatLich;
 import enumclass.trangThaiAcount;
 import enumclass.trangThaiChucVu;
+import enumclass.trangThaiHoaDon;
 import enumclass.trangThaiKhachHang;
 import enumclass.trangThaiPhieuDL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -29,6 +31,7 @@ import utill.HibernateConfig;
 public class PhieuDatLichRepositoryImpl implements IPhieuDatLichRepository{
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
+<<<<<<< HEAD
     public void createPhieuDatLich() {
         try (Session session = HibernateConfig.getFACTORY().openSession()) {
             
@@ -62,6 +65,8 @@ public class PhieuDatLichRepositoryImpl implements IPhieuDatLichRepository{
 
 
 
+=======
+>>>>>>> 0a5f77edf23f153047e199a5ac27bd4547d84bb5
     @Override
     public List<PhieuDatLich> getAll() {
         List<PhieuDatLich> listPhieus;
@@ -126,12 +131,94 @@ public class PhieuDatLichRepositoryImpl implements IPhieuDatLichRepository{
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             Query q = session.createQuery("FROM PhieuDatLich where trangThai ='0'");
             listPhieus = q.getResultList();
+<<<<<<< HEAD
         }catch(Exception e){
+=======
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
         return listPhieus;
     }
 
+    @Override
+    public List<PhieuDatLich> getPhieuDatLichBySDT(String sdt) {
+        List<PhieuDatLich> listPhieus;
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            Query q = session.createQuery("FROM PhieuDatLich p where p.khachHang.soDienThoai = :SoDienThoai and trangThai ='0'");
+            q.setParameter("SoDienThoai", sdt);
+            listPhieus = q.getResultList();
+        } catch (Exception e) {
+>>>>>>> 0a5f77edf23f153047e199a5ac27bd4547d84bb5
+            e.printStackTrace();
+            return null;
+        }
+        return listPhieus;
+    }
+<<<<<<< HEAD
+
  
 }
+=======
+
+    @Override
+    public PhieuDatLich getByIdSanCa(String id) {
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            return (PhieuDatLich) session.createQuery("From PhieuDatLich p WHERE p.sanCa.id = :IdSanCa").setParameter("IdSanCa", id).uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public PhieuDatLich getPDLByTrangThai(String id) {
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            return (PhieuDatLich) session.createQuery("From PhieuDatLich p WHERE p.sanCa.trangThai='1' and p.sanCa.id = :IdSanCa").setParameter("IdSanCa", id).uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public List<PhieuDatLich> getPhieuTheoTTHD() {
+        List<PhieuDatLich> listPhieus;
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            Query q = session.createQuery("FROM PhieuDatLich pdl WHERE pdl.trangThai = :tt");
+            q.setParameter("tt", trangThaiPhieuDL.CHUA_NHAN_SAN);
+            listPhieus = q.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return listPhieus;
+    }
+
+    @Override
+    public List<PhieuDatLich> getPhieuChuaTT() {
+        List<PhieuDatLich> listPhieus;
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            Query q = session.createQuery("FROM PhieuDatLich pdl WHERE pdl.hoaDon.trangThai = :tt");
+            q.setParameter("tt", trangThaiHoaDon.CHUA_THANH_TOAN);
+            listPhieus = q.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return listPhieus;
+    }
+
+    public static void main(String[] args) {
+        List<PhieuDatLich> list1 = new PhieuDatLichRepositoryImpl().getPhieuChuaTT();
+        List<PhieuDatLich> list12 = new PhieuDatLichRepositoryImpl().getPhieuTheoTTHD();
+        list1.addAll(list12);
+        Acount acount = new Acount();
+        acount.setId("01baa483-4d01-438e-ad14-8780e1b24126");
+        for (PhieuDatLich phieuDatLich : list1) {
+            phieuDatLich.setAcount(acount);
+            new PhieuDatLichRepositoryImpl().update(phieuDatLich);
+        }
+    }
+}
+>>>>>>> 0a5f77edf23f153047e199a5ac27bd4547d84bb5

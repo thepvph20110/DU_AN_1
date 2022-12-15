@@ -34,5 +34,10 @@ public interface IDoThueRepository {
     boolean saveOrUpdate(DoThue doThue);
 
     boolean delete(String id);
+<<<<<<< HEAD
 >>>>>>> c5c370ffe9329ee44f3bb07c8fe6fec2fcb3fca2
+=======
+    
+    int genMaDoThue();
+>>>>>>> 0a5f77edf23f153047e199a5ac27bd4547d84bb5
 }

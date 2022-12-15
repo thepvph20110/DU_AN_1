@@ -36,6 +36,6 @@ public class KichThuoc {
     private int size;
 
     public Object[] todata() {
-        return new Object[]{id, maSize, size};
+        return new Object[]{maSize, size};
     }
 }

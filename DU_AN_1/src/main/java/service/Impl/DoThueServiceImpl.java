@@ -145,4 +145,10 @@ public class DoThueServiceImpl implements IDoThueService {
         }
 >>>>>>> c5c370ffe9329ee44f3bb07c8fe6fec2fcb3fca2
     }
+
+    @Override
+    public String genMaDoThue() {
+        int maAC = doThueRepositoryImpl.genMaDoThue();
+        return "DT00"+maAC;
+    }
 }

@@ -33,14 +33,7 @@ public class KichThuocServiceImpl implements IKichThuocService {
 
     @Override
     public String AddorUpdate(KichThuoc kichThuoc) {
-        if (mapma.containsKey(kichThuoc.getMaSize())) {
-            return "Trùng Mã";
-        } else if (kichThuoc.getMaSize().isBlank() || String.valueOf(kichThuoc.getSize()).isBlank()) {
-            return "Mã SIZE - SIZE ĐANG TRỐNG";
-        }
-        {
-            return kichThuocRepositoryImpl.AddorUpdate(kichThuoc);
-        }
+        return kichThuocRepositoryImpl.AddorUpdate(kichThuoc);
     }
 
     @Override
@@ -52,4 +45,14 @@ public class KichThuocServiceImpl implements IKichThuocService {
     public KichThuoc getOne(String ma) {
         return kichThuocRepositoryImpl.getOne(ma);
     }
+<<<<<<< HEAD
+=======
+
+    @Override
+    public String genMaKichThuoc() {
+        int maAC = kichThuocRepositoryImpl.genMaKicThuoc();
+        return "KT00"+maAC;
+    }
+
+>>>>>>> 0a5f77edf23f153047e199a5ac27bd4547d84bb5
 }

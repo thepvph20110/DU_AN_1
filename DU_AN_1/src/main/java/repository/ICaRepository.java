@@ -22,5 +22,14 @@ public interface ICaRepository {
     boolean deleteCa(Ca ca);
     
     List<Ca> searchByName(String ten);
+<<<<<<< HEAD
     
+=======
+
+    String saveCaNew(Ca ca);
+
+    String xoaCa(String id);
+    
+    int genMaCa();
+>>>>>>> 0a5f77edf23f153047e199a5ac27bd4547d84bb5
 }

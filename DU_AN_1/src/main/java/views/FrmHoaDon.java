@@ -7,6 +7,7 @@ package views;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import modelview.QLHoaDon;
 import service.IHoaDonService;
@@ -21,7 +22,7 @@ public class FrmHoaDon extends javax.swing.JFrame {
     private DefaultTableModel dtm = new DefaultTableModel();
     private List<QLHoaDon> qLHoaDons = new ArrayList<>();
     private IHoaDonService iHoaDonService = new HoaDonServiceImpl();
-            
+
     /**
      * Creates new form FrmHoaDon
      */
@@ -29,13 +30,13 @@ public class FrmHoaDon extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         jTable1.setModel(dtm);
-        String headers[] = {"Mã Hóa Đơn","Tên Tài Khoản","Tên Khách Hàng","SDT","Tiền Sân","Ngày Tạo Phiếu","Trạng Thái"};
+        String headers[] = {"Mã Hóa Đơn", "Tên Tài Khoản", "Tên Khách Hàng", "SDT", "Tiền Sân", "Ngày Tạo Phiếu", "Trạng Thái"};
         dtm.setColumnIdentifiers(headers);
-        qLHoaDons = iHoaDonService.getAllByTrangThai();
+//        qLHoaDons = iHoaDonService.getAllByTrangThai();
         addDataRow(qLHoaDons);
     }
-    
-    public void addDataRow(List<QLHoaDon> qLHoaDons){
+
+    public void addDataRow(List<QLHoaDon> qLHoaDons) {
         dtm.setRowCount(0);
         for (QLHoaDon qLHoaDon : qLHoaDons) {
             dtm.addRow(qLHoaDon.toDataRow());
@@ -158,10 +159,10 @@ public class FrmHoaDon extends javax.swing.JFrame {
     private void jTable1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MousePressed
         // TODO add your handling code here:
         int tt = JOptionPane.showConfirmDialog(rootPane, "Thanh Toán");
-        if(tt == 0 ){
+        if (tt == 0) {
             int row = jTable1.getSelectedRow();
-            FrmThanhToan frmThanhToan = new FrmThanhToan(qLHoaDons.get(row));
-            frmThanhToan.setVisible(true);
+//            FrmThanhToan frmThanhToan = new FrmThanhToan(qLHoaDons.get(row),);
+//            frmThanhToan.setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_jTable1MousePressed

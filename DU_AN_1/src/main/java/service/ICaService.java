@@ -22,4 +22,13 @@ public interface ICaService {
     String delete(QLCa qLCa);
     
     List<QLCa> searchByName(String ten);
+<<<<<<< HEAD
+=======
+
+    String saveNewCa(Ca ca);
+
+    String xoaCa(String id);
+    
+    String genMaCa();
+>>>>>>> 0a5f77edf23f153047e199a5ac27bd4547d84bb5
 }

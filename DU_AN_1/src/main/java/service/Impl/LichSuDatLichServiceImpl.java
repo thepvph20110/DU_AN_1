@@ -131,7 +131,7 @@ public class LichSuDatLichServiceImpl implements ILichSuDatLichService {
         List<QLLichSuDatLich> lstKhachHang = new ArrayList<>();
         var lichSuDatLich = repository.getAllLichSuDatLichs();
         for (LichSuDatLich lstLichSu : lichSuDatLich) {
-            if (lstLichSu.getPhieuDatLich().getKhachHang().getSoDienThoai().equals(soDienThoai)) {
+            if (lstLichSu.getPhieuDatLich().getKhachHang().getSoDienThoai().equals(soDienThoai.trim())) {
                 QLAcount qLAcount = new QLAcount(lstLichSu.getPhieuDatLich().getAcount().getId(), null, lstLichSu.getPhieuDatLich().getAcount().getTenAcount(), null, null, null, null);
 
                 QLKhachHang qLKhachHang = new QLKhachHang(lstLichSu.getPhieuDatLich().getKhachHang().getId(), lstLichSu.getPhieuDatLich().getKhachHang().getMaKhachHang(), lstLichSu.getPhieuDatLich().getKhachHang().getTenKhachHang(), null, lstLichSu.getPhieuDatLich().getKhachHang().getSoDienThoai(), null, null);
@@ -154,7 +154,7 @@ public class LichSuDatLichServiceImpl implements ILichSuDatLichService {
         List<QLLichSuDatLich> lstKhachHang = new ArrayList<>();
         var lichSuDatLich = repository.getAllLichSuDatLichs();
         for (LichSuDatLich lstLichSu : lichSuDatLich) {
-            if (lstLichSu.getPhieuDatLich().getKhachHang().getTenKhachHang().equals(tenKhachHang)) {
+            if (lstLichSu.getPhieuDatLich().getKhachHang().getTenKhachHang().startsWith(tenKhachHang.trim())) {
                 QLAcount qLAcount = new QLAcount(lstLichSu.getPhieuDatLich().getAcount().getId(), null, lstLichSu.getPhieuDatLich().getAcount().getTenAcount(), null, null, null, null);
 
                 QLKhachHang qLKhachHang = new QLKhachHang(lstLichSu.getPhieuDatLich().getKhachHang().getId(), lstLichSu.getPhieuDatLich().getKhachHang().getMaKhachHang(), lstLichSu.getPhieuDatLich().getKhachHang().getTenKhachHang(), null, lstLichSu.getPhieuDatLich().getKhachHang().getSoDienThoai(), null, null);

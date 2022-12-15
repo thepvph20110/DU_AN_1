@@ -23,4 +23,11 @@ public interface ILoaiSanService {
     
     List<QLLoaiSan> searchByName(String ten);
 
+<<<<<<< HEAD
+=======
+    LoaiSan getOne(String tenSan);
+    
+    String genMaLoaiSan();
+
+>>>>>>> 0a5f77edf23f153047e199a5ac27bd4547d84bb5
 }

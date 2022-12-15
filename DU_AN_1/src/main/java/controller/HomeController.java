@@ -10,12 +10,16 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import modelview.QLAcount;
+import modelview.QLSanCa;
+import service.Impl.GiaoCaServiceImpl;
 import views.Home;
 import views.JpnCheckIn;
 import views.JpnDichVu;
 import views.JpnHoaDon;
+import views.JpnKhaiBaoTienDauCa;
 import views.JpnLichDat;
 import views.JpnLichSu;
 import views.JpnQuanLyCa;
@@ -34,10 +38,21 @@ public class HomeController {
     private List<DanhMuc> listDanhMuc;
     private QLAcount qLAcount;
     private JLabel labelHome;
+<<<<<<< HEAD
 
     public HomeController(JPanel JPnRoot, QLAcount qLAcount) {
         this.root = JPnRoot;
         this.qLAcount = qLAcount;
+=======
+    private Date ngatTao;
+    private Home home;
+
+    public HomeController(JPanel JPnRoot, QLAcount qLAcount, Date ngayTao, Home home) {
+        this.root = JPnRoot;
+        this.qLAcount = qLAcount;
+        this.ngatTao = ngayTao;
+        this.home = home;
+>>>>>>> 0a5f77edf23f153047e199a5ac27bd4547d84bb5
     }
 
     public HomeController() {
@@ -47,7 +62,11 @@ public class HomeController {
         labelHome = jblItem;
         // mặc định cái được chọn là trang chu jpanel 
         kindSelected = "TrangChu";
+<<<<<<< HEAD
         JpnTrangChu nood = new JpnTrangChu(qLAcount, jblItem, root);
+=======
+        JpnTrangChu nood = new JpnTrangChu(qLAcount, jblItem, root, ngatTao);
+>>>>>>> 0a5f77edf23f153047e199a5ac27bd4547d84bb5
         root.removeAll();
         root.setLayout(new BorderLayout());
         root.add(nood);
@@ -77,17 +96,29 @@ public class HomeController {
         public void mouseClicked(MouseEvent e) {
             switch (kind) {
                 case "TrangChu":
+<<<<<<< HEAD
                     node = new JpnTrangChu(qLAcount, labelHome, root);
+=======
+                    node = new JpnTrangChu(qLAcount, labelHome, root, ngatTao);
+>>>>>>> 0a5f77edf23f153047e199a5ac27bd4547d84bb5
                     break;
                 case "LichDat":
-                    node = new JpnLichDat();
+                    node = new JpnLichDat(new QLSanCa(),qLAcount,labelHome,root);
                     break;
                 case "CheckIn":
+<<<<<<< HEAD
 
                     node = new JpnCheckIn();
 
                     node = new JpnCheckIn(qLAcount,root,labelHome,ngatTao);
 
+=======
+                    if (new GiaoCaServiceImpl().getOneGiaoCaByIdAndTrangThai(qLAcount.getId()) == null) {
+                        JOptionPane.showMessageDialog(null, "Vui lòng nhận ca!");
+                    } else {
+                        node = new JpnCheckIn(qLAcount, root, labelHome, ngatTao);
+                    }
+>>>>>>> 0a5f77edf23f153047e199a5ac27bd4547d84bb5
                     break;
                 case "QLSan":
                     node = new JpnQuanLySan();
@@ -96,7 +127,15 @@ public class HomeController {
                     node = new JpnQuanLyCa();
                     break;
                 case "DichVu":
+<<<<<<< HEAD
                     node = new JpnDichVu();
+=======
+                    if (new GiaoCaServiceImpl().checkCaTrong(qLAcount.getId()) == true) {
+                        node = new JpnDichVu(qLAcount, home, root, labelHome);
+                    } else {
+                        node = new JpnKhaiBaoTienDauCa(qLAcount, root, labelHome);
+                    }
+>>>>>>> 0a5f77edf23f153047e199a5ac27bd4547d84bb5
                     break;
                 case "HoaDon":
                     node = new JpnHoaDon();
@@ -136,7 +175,7 @@ public class HomeController {
         @Override
         public void mouseExited(MouseEvent e) {
             if (kindSelected.equalsIgnoreCase(kind)) {
-                jlbItem.setBackground(new Color(166, 145, 92));
+                jlbItem.setBackground(new Color(65,147,169));
             }
         }
     }

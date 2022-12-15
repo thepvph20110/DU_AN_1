@@ -31,5 +31,10 @@ public interface ISanCaService {
     List<QLSanCa> getByNgayTao(Date ngayTao);
 
     List<SanCa> getSanCaByIdSanBong(String id, Date ngayTaoSanCa);
+<<<<<<< HEAD
 >>>>>>> c5c370ffe9329ee44f3bb07c8fe6fec2fcb3fca2
+=======
+    
+    List<QLSanCa> getAllByNgayTao(String ngayTao);
+>>>>>>> 0a5f77edf23f153047e199a5ac27bd4547d84bb5
 }

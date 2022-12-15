@@ -145,5 +145,13 @@ public class HoaDonThanhToanServiceImpl implements IHoaDonThanhToanService {
         qlHDTT.forEach(c -> System.out.println("" + c.getHoaDon()));
     }
 
+<<<<<<< HEAD
     
+=======
+    @Override
+    public String genMaHoaDonThanhToan() {
+        int maAC = hoaDonThanhToanRepositoryImpl.genMaHoaDonThanhToan();
+        return "HDTT00"+maAC;
+    }
+>>>>>>> 0a5f77edf23f153047e199a5ac27bd4547d84bb5
 }

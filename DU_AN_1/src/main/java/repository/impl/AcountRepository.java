@@ -92,7 +92,7 @@ public class AcountRepository implements IAcountRepository {
 
     public static void main(String[] args) {
         new AcountRepository().getOne();
-        System.out.println( new AcountRepository().genMaAccount());
+        System.out.println(new AcountRepository().genMaAccount());
     }
 
     @Override
@@ -103,15 +103,15 @@ public class AcountRepository implements IAcountRepository {
             NativeQuery query = session.createNativeQuery(hql);
             maAC = query.getSingleResult().toString();
         } catch (Exception e) {
-       
+
         }
-        if(maAC == ""){
+        if (maAC == "") {
             maAC = "1";
             int ma = Integer.valueOf(maAC);
-            return  ma;
+            return ma;
         }
         int ma = Integer.valueOf(maAC);
-        return  ++ma;
+        return ++ma;
     }
 
     @Override
@@ -121,6 +121,17 @@ public class AcountRepository implements IAcountRepository {
             return session.createQuery(hql, Acount.class).setParameter("use", tenAccount).setParameter("pass", matKhau).uniqueResult();
         } catch (Exception e) {
             e.printStackTrace(System.out);
+            return null;
+        }
+    }
+
+    @Override
+    public Acount getOneByNameAcount(String ten) {
+        List<Acount> listAcount;
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            return (Acount) session.createQuery("FROM Acount ac WHERE ac.tenAcount = :TenAc").setParameter("TenAc", ten).uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace();
             return null;
         }
     }

@@ -6,9 +6,11 @@ package views;
 
 import controller.ChiTietThongKeController;
 import java.text.DateFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import javax.swing.JOptionPane;
 import response.ChiTietThanhToan.ChiTietTongTienTheoNgayResponse;
 import service.IChiTietThongKeService;
@@ -19,7 +21,7 @@ import service.Impl.ChiTietThongKeServiceImpl;
  * @author Admin
  */
 public class FromChiTietThongKe extends javax.swing.JFrame {
-
+    
     private IChiTietThongKeService chiTietThongKeService = new ChiTietThongKeServiceImpl();
     private ChiTietThongKeController chiTietThongKeController = new ChiTietThongKeController();
 
@@ -34,88 +36,106 @@ public class FromChiTietThongKe extends javax.swing.JFrame {
         chiTietThongKeController.thongKeDoThue(jpn2);
         setTextDataTongTien();
     }
-
+    
     public void setTextDataTongTien() {
         ChiTietTongTienTheoNgayResponse chiTietTongTienTheoNgayResponse = chiTietThongKeService.chiTietTongTien();
         if (chiTietTongTienTheoNgayResponse == null) {
-            txtBagCash.setText(txtBagCash.getText() + " " + "0.0");
+            txtBagCash.setText(txtBagCash.getText() + " " + "0.0 Vnd");
             Date date = Calendar.getInstance().getTime();
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             String strDate = dateFormat.format(date);
             txtTongTienCuaNgay.setText(txtTongTienCuaNgay.getText() + " " + strDate);
         } else {
-            txtBagCash.setText(txtBagCash.getText() + " " + String.valueOf(chiTietTongTienTheoNgayResponse.getTongtien()));
+            txtBagCash.setText(txtBagCash.getText() + " " + dinhDangTienTe(chiTietTongTienTheoNgayResponse.getTongtien()));
             txtTongTienCuaNgay.setText(txtTongTienCuaNgay.getText() + " " + chiTietTongTienTheoNgayResponse.getNgay() + "-" + chiTietTongTienTheoNgayResponse.getThang() + "-" + chiTietTongTienTheoNgayResponse.getNam());
         }
 
         //Get Tien Ngan Hang
         ChiTietTongTienTheoNgayResponse tongTienMat = chiTietThongKeService.getTongTienMat();
         if (tongTienMat == null) {
-            txtCash.setText(txtCash.getText() + " " + "0.0");
+            txtCash.setText(txtCash.getText() + " " + "0.0 Vnd");
             Date date = Calendar.getInstance().getTime();
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             String strDate = dateFormat.format(date);
             txtTienMat.setText(txtTienMat.getText() + " " + strDate);
         } else {
-            txtCash.setText(txtCash.getText() + " " + String.valueOf(tongTienMat.getTongtien()));
+            txtCash.setText(txtCash.getText() + " " + dinhDangTienTe(tongTienMat.getTongtien()));
             txtTienMat.setText(txtTienMat.getText() + " " + tongTienMat.getNgay() + "-" + tongTienMat.getThang() + "-" + tongTienMat.getNam());
-
+            
         }
         //Get tong Tien Mat
         ChiTietTongTienTheoNgayResponse tongNganHang = chiTietThongKeService.getTongTienNganHang();
         if (tongNganHang == null) {
-            txtCreditCash.setText(txtCreditCash.getText() + " " + "0.0");
+            txtCreditCash.setText(txtCreditCash.getText() + " " + "0.0 Vnd");
             Date date = Calendar.getInstance().getTime();
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             String strDate = dateFormat.format(date);
             txtNganHang.setText(txtNganHang.getText() + " " + strDate);
         } else {
-            txtCreditCash.setText(txtCreditCash.getText() + " " + String.valueOf(tongNganHang.getTongtien()));
+            txtCreditCash.setText(txtCreditCash.getText() + " " + dinhDangTienTe(tongNganHang.getTongtien()));
             txtNganHang.setText(txtNganHang.getText() + " " + tongNganHang.getNgay() + "-" + tongNganHang.getThang() + "-" + tongNganHang.getNam());
         }
     }
-
+    
     public void clearText() {
-       txtBagCash.setText("Tổng Tiền:");
-       txtTongTienCuaNgay.setText("Tổng Tiền Của Ngày:");
-       txtCash.setText("Tổng Tiền:");
-       txtTienMat.setText("Tổng Tiền Mặt Của Ngày:");
-       txtCreditCash.setText("Tổng Tiền:");
-       txtNganHang.setText("Tổng Tiền Chuyển Khoản Của Ngày:");
+        txtBagCash.setText("Tổng Tiền:");
+        txtTongTienCuaNgay.setText("Tổng Tiền Của Ngày:");
+        txtCash.setText("Tổng Tiền:");
+        txtTienMat.setText("Tổng Tiền Mặt Của Ngày:");
+        txtCreditCash.setText("Tổng Tiền:");
+        txtNganHang.setText("Tổng Tiền Chuyển Khoản Của Ngày:");
     }
-
+    
+    public String dinhDangTienTe(double tienTe) {
+        Locale locale = new Locale("vi", "VN");
+        NumberFormat format = NumberFormat.getInstance(locale);
+        return format.format(tienTe) + " " + "Vnd";
+    }
+    
     public void setTextDataTongTienByDate(Date date) {
         ChiTietTongTienTheoNgayResponse chiTietTongTienTheoNgayResponse = chiTietThongKeService.chiTietTongTienByDate(date);
         clearText();
         if (chiTietTongTienTheoNgayResponse == null) {
+<<<<<<< HEAD
             txtBagCash.setText(txtBagCash.getText() + " " + "0.0");
             Date date1 = Calendar.getInstance().getTime();
+=======
+            txtBagCash.setText(txtBagCash.getText() + " " + "0.0 Vnd");
+>>>>>>> 0a5f77edf23f153047e199a5ac27bd4547d84bb5
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             String strDate = dateFormat.format(date1);
             txtTongTienCuaNgay.setText(txtTongTienCuaNgay.getText() + " " + strDate);
         } else {
-            txtBagCash.setText(txtBagCash.getText() + " " + String.valueOf(chiTietTongTienTheoNgayResponse.getTongtien()));
+            txtBagCash.setText(txtBagCash.getText() + " " + dinhDangTienTe(chiTietTongTienTheoNgayResponse.getTongtien()));
             txtTongTienCuaNgay.setText(txtTongTienCuaNgay.getText() + " " + chiTietTongTienTheoNgayResponse.getNgay() + "-" + chiTietTongTienTheoNgayResponse.getThang() + "-" + chiTietTongTienTheoNgayResponse.getNam());
         }
 
         //Get Tien Ngan Hang
         ChiTietTongTienTheoNgayResponse tongTienMat = chiTietThongKeService.getTongTienMatByDate(date);
         if (tongTienMat == null) {
+<<<<<<< HEAD
             txtCash.setText(txtCash.getText() + " " + "0.0");
             Date date1 = Calendar.getInstance().getTime();
+=======
+            txtCash.setText(txtCash.getText() + " " + "0.0 Vnd");
+>>>>>>> 0a5f77edf23f153047e199a5ac27bd4547d84bb5
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             String strDate = dateFormat.format(date1);
             txtTienMat.setText(txtTienMat.getText() + " " + strDate);
         } else {
-            txtCash.setText(txtCash.getText() + " " + String.valueOf(tongTienMat.getTongtien()));
+            txtCash.setText(txtCash.getText() + " " + dinhDangTienTe(tongTienMat.getTongtien()));
             txtTienMat.setText(txtTienMat.getText() + " " + tongTienMat.getNgay() + "-" + tongTienMat.getThang() + "-" + tongTienMat.getNam());
-
+            
         }
         //Get tong Tien Mat
         ChiTietTongTienTheoNgayResponse tongNganHang = chiTietThongKeService.getTongTienNganHangByDate(date);
         if (tongNganHang == null) {
+<<<<<<< HEAD
             txtCreditCash.setText(txtCreditCash.getText() + " " + "0.0");
             Date date1 = Calendar.getInstance().getTime();
+=======
+            txtCreditCash.setText(txtCreditCash.getText() + " " + "0.0 Vnd");
+>>>>>>> 0a5f77edf23f153047e199a5ac27bd4547d84bb5
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             String strDate = dateFormat.format(date1);
             txtNganHang.setText(txtNganHang.getText() + " " + strDate);
@@ -151,16 +171,21 @@ public class FromChiTietThongKe extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jpn1 = new javax.swing.JPanel();
         jpn2 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(186, 228, 229));
 
+        jPanel1.setBackground(new java.awt.Color(65, 147, 169));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Chọn Ngày");
 
-        jButton1.setBackground(new java.awt.Color(255, 204, 0));
+        jButton1.setBackground(new java.awt.Color(51, 102, 255));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Tìm Kiếm");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -173,22 +198,22 @@ public class FromChiTietThongKe extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(27, 27, 27)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jdate, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(887, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(9, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton1)
-                    .addComponent(jLabel1)
-                    .addComponent(jdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addContainerGap())
         );
 
@@ -322,11 +347,15 @@ public class FromChiTietThongKe extends javax.swing.JFrame {
         jpn2.setLayout(jpn2Layout);
         jpn2Layout.setHorizontalGroup(
             jpn2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 649, Short.MAX_VALUE)
         );
         jpn2Layout.setVerticalGroup(
             jpn2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
             .addGap(0, 393, Short.MAX_VALUE)
+=======
+            .addGap(0, 442, Short.MAX_VALUE)
+>>>>>>> 0a5f77edf23f153047e199a5ac27bd4547d84bb5
         );
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -344,9 +373,33 @@ public class FromChiTietThongKe extends javax.swing.JFrame {
             .addComponent(jpn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jButton2.setBackground(new java.awt.Color(255, 102, 102));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jPanel7.setBackground(new java.awt.Color(65, 147, 169));
+
+        jButton2.setBackground(new java.awt.Color(255, 51, 51));
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Thoát");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(76, 76, 76))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addGap(0, 6, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -355,10 +408,14 @@ public class FromChiTietThongKe extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+<<<<<<< HEAD
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(65, 65, 65))
+=======
+            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+>>>>>>> 0a5f77edf23f153047e199a5ac27bd4547d84bb5
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -367,10 +424,16 @@ public class FromChiTietThongKe extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+<<<<<<< HEAD
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                 .addContainerGap())
+=======
+                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+>>>>>>> 0a5f77edf23f153047e199a5ac27bd4547d84bb5
         );
 
         pack();
@@ -387,6 +450,11 @@ public class FromChiTietThongKe extends javax.swing.JFrame {
             chiTietThongKeController.thongKeDoThueByDate(jpn2, jdate.getDate());
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -433,6 +501,7 @@ public class FromChiTietThongKe extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private com.toedter.calendar.JDateChooser jdate;
     private javax.swing.JPanel jpn1;
     private javax.swing.JPanel jpn2;

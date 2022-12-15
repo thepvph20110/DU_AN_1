@@ -21,7 +21,7 @@ public interface IHoaDonRepository {
 
     boolean delete(String id);
     
-    List<HoaDon> getAllByTrangThai();
+    HoaDon getByTrangThai(String idSanCa);
     
     List<HoaDon> searchByTen(String name);
     

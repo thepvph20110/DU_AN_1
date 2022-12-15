@@ -30,4 +30,6 @@ public interface INuocUongService {
     List<QLNuocUong> getNuocUongByTenNuocUong(String tenNuocUong);
 
     List<QLNuocUong> getNuocUongByTranThai(trangThaiNuocUong trangThai);
+    
+    String genNuocUong();
 }

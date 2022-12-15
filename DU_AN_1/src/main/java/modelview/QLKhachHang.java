@@ -32,7 +32,7 @@ public class QLKhachHang {
     private trangThaiKhachHang trangThai = trangThaiKhachHang.BINH_THUONG;
     
     public Object toDataRow(){
-        return new Object[] {id, maKhachHang, tenKhachHang,mail, soDienThoai, ghiChu, trangThai};
+        return new Object[] { maKhachHang, tenKhachHang,mail, soDienThoai, ghiChu, trangThai};
     }
 
     Object getTenKhachHang() {

@@ -129,6 +129,17 @@ public class SanCaRepository implements ISanCaRepository {
         }
         return null;
     }
+    @Override
+    public List<SanCa> getAllByNgayTao(String ngayTao) {
+        String hql = "From SanCa sc  "+ ngayTao;
+        try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
+            Query q = session.createQuery(hql);
+            return q.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return null;
+    }
 
     @Override
     public List<SanCa> getSanCaByIdSanBong(String id,Date ngayTaoSanCa) {

@@ -19,10 +19,39 @@ public interface IGiaoCaRepository {
 
     GiaoCa getOne(String ma);
 
-    String saveOrUpdate(GiaoCa giaoCa);
+    String NhanCa(GiaoCa giaoCa);
 
-    List<TongTienMatGiaoCa> getTongTienMatHienTai(Date thoiGianNhanCa,Date thoiGianCuoiCa);
+    String GiaoCa(GiaoCa giaoCa);
 
-    List<TongTienMatGiaoCa> getTongTienKhacHienTai(Date thoiGianNhanCa,Date thoiGianCuoiCa);
+    GiaoCa getOneGiaoCaById(String id);
 
+    double tongTienCaHienTaiByIdNV(String id);
+
+    double tongTienNganHang(String id);
+
+    double tongTienMat(String id);
+
+    int tongHoaDOnDaTT(String id);
+
+    int tongHoaDOnChuaTT(String id);
+
+    List<GiaoCa> checkCaTrong(String idNhanVienTrongCa);
+
+    GiaoCa checkCoNhanVIenKo();
+
+    GiaoCa getOneGiaoCaByIdAndTrangThai(String id);
+
+    GiaoCa TimKiemNVCaTiepTheo();
+
+    List<GiaoCa> getAll();
+
+    List<GiaoCa> getAllTrangThaiDaNhanCa();
+
+    List<GiaoCa> giaoCaCoPhuPhiPhatSinh();
+
+    List<GiaoCa> giaoCaCoTienDuocRut();
+
+    List<GiaoCa> searchByName(String name);
+
+    GiaoCa getAcoutAndPhieuDatLich();
 }

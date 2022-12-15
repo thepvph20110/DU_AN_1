@@ -6,7 +6,9 @@ package controller;
 
 import java.awt.CardLayout;
 import java.awt.Dimension;
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -42,7 +44,7 @@ public class ThongKeController {
 
             JFreeChart barChart = ChartFactory.createBarChart(
                     "Biểu đồ thống kê tông tiền theo tháng".toUpperCase(),
-                    "Tổng Tiền Của Năm " + listItem.get(0).getNam() + " : " + tongTien, "Tổng Tiền Từng Tháng",
+                    "Tổng Tiền Của Năm " + listItem.get(0).getNam() + " : " + dinhDangTienTe(tongTien), "Tổng Tiền Từng Tháng",
                     dataset, PlotOrientation.VERTICAL, false, true, false);
 
             ChartPanel chartPanel = new ChartPanel(barChart);
@@ -71,6 +73,12 @@ public class ThongKeController {
         }
     }
 
+    public String dinhDangTienTe(double tienTe) {
+        Locale locale = new Locale("vi", "VN");
+        NumberFormat format = NumberFormat.getInstance(locale);
+        return format.format(tienTe) + " " + "Vnd";
+    }
+
     public void setTongTienByYear(JPanel jpnItem, String year) {
         List<TongTienHoaDonResponse> listItem = thongKeService.getTongTienByYear(year);
         if (listItem.size() > 0) {
@@ -85,7 +93,7 @@ public class ThongKeController {
 
             JFreeChart barChart = ChartFactory.createBarChart(
                     "Biểu đồ thống kê tông tiền theo tháng".toUpperCase(),
-                    "Tổng Tiền Của Năm " + listItem.get(0).getNam() + " : " + tongTien, "Tổng Tiền Từng Tháng",
+                    "Tổng Tiền Của Năm " + listItem.get(0).getNam() + " : " + dinhDangTienTe(tongTien), "Tổng Tiền Từng Tháng",
                     dataset, PlotOrientation.VERTICAL, false, true, false);
 
             ChartPanel chartPanel = new ChartPanel(barChart);
@@ -114,6 +122,7 @@ public class ThongKeController {
         }
     }
 
+<<<<<<< HEAD
     public void setDataSoLuongNuocUong(JPanel jpnItem) {
         List<TongSoLuongNuocUong> listItem = thongKeService.getTongNuocUong();
         if (listItem.size() > 0) {
@@ -187,4 +196,78 @@ public class ThongKeController {
         }
     }
 
+=======
+//    public void setDataSoLuongNuocUong(JPanel jpnItem) {
+//        List<TongSoLuongNuocUong> listItem = thongKeService.getTongNuocUong();
+//        if (listItem.size() > 0) {
+//            DefaultPieDataset dataset = new DefaultPieDataset();
+//            if (listItem != null) {
+//                for (TongSoLuongNuocUong item : listItem) {
+//                    dataset.setValue(item.getTen(), item.getSoluongnuocuong());
+//                }
+//            }
+//
+//            JFreeChart pieChart = ChartFactory.createPieChart(
+//                    "Tổng Nước Uống Được Mua Nhiều Nhất", dataset, true, true, true);
+//
+//            ChartPanel chartPanel = new ChartPanel(pieChart);
+//            chartPanel.setPreferredSize(new Dimension(50, 50));
+//
+//            jpnItem.removeAll();
+//            jpnItem.setLayout(new CardLayout());
+//            jpnItem.add(chartPanel);
+//            jpnItem.validate();
+//            jpnItem.repaint();
+//        } else {
+//            DefaultPieDataset dataset = new DefaultPieDataset();
+//            JFreeChart pieChart = ChartFactory.createPieChart(
+//                    "Không Có Dữ Liệu", dataset, true, true, true);
+//
+//            ChartPanel chartPanel = new ChartPanel(pieChart);
+//            chartPanel.setPreferredSize(new Dimension(50, 50));
+//
+//            jpnItem.removeAll();
+//            jpnItem.setLayout(new CardLayout());
+//            jpnItem.add(chartPanel);
+//            jpnItem.validate();
+//            jpnItem.repaint();
+//        }
+//    }
+//
+//    public void setDataSoLuongDoThue(JPanel jpnItem) {
+//        List<TongSoLuongDoThue> listItem = thongKeService.getTongDoThue();
+//        if (listItem.size() > 0) {
+//            DefaultPieDataset dataset = new DefaultPieDataset();
+//            if (listItem != null) {
+//                for (TongSoLuongDoThue item : listItem) {
+//                    dataset.setValue(item.getTenDoThue(), item.getSoluongdothue());
+//                }
+//            }
+//
+//            JFreeChart pieChart = ChartFactory.createPieChart(
+//                    "Tổng Đồ Thuê Được Thuê Nhiều Nhất", dataset, true, true, true);
+//
+//            ChartPanel chartPanel = new ChartPanel(pieChart);
+//            chartPanel.setPreferredSize(new Dimension(50, 50));
+//
+//            jpnItem.removeAll();
+//            jpnItem.setLayout(new CardLayout());
+//            jpnItem.add(chartPanel);
+//            jpnItem.validate();
+//            jpnItem.repaint();
+//        } else {
+//            DefaultPieDataset dataset = new DefaultPieDataset();
+//            JFreeChart pieChart = ChartFactory.createPieChart(
+//                    "Không Có Dữ Liệu", dataset, true, true, true);
+//            ChartPanel chartPanel = new ChartPanel(pieChart);
+//            chartPanel.setPreferredSize(new Dimension(50, 50));
+//
+//            jpnItem.removeAll();
+//            jpnItem.setLayout(new CardLayout());
+//            jpnItem.add(chartPanel);
+//            jpnItem.validate();
+//            jpnItem.repaint();
+//        }
+//    }
+>>>>>>> 0a5f77edf23f153047e199a5ac27bd4547d84bb5
 }

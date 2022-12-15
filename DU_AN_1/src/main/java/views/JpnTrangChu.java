@@ -5,6 +5,7 @@
 package views;
 
 import domainmodel.Acount;
+import domainmodel.HoaDon;
 import domainmodel.PhieuDatLich;
 import enumclass.trangThaiSanCa;
 import java.awt.Color;
@@ -16,7 +17,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+import static java.awt.image.ImageObserver.WIDTH;
+>>>>>>> 0a5f77edf23f153047e199a5ac27bd4547d84bb5
 import java.sql.Time;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -48,7 +53,10 @@ import service.Impl.SanCaServiceImpl;
 import java.io.File;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.swing.JButton;
+import service.IGiaoCaService;
 import service.IThongKeService;
+import service.Impl.GiaoCaServiceImpl;
 import service.Impl.ThongKeServiceImpl;
 
 /**
@@ -75,14 +83,19 @@ public class JpnTrangChu extends javax.swing.JPanel {
     private PhieuDatLich datLich;
     private IPhieuDatLichService phieuDatLichService = new PhieuDatLichServiceImpl();
     private IHoaDonService hoaDonService = new HoaDonServiceImpl();
-    private Map<String, QLHoaDon> mapQLHoaDon = new HashMap<>();
     private Map<String, PhieuDatLich> mapPhieuDatLich = new HashMap<>();
     private DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
     private Clip clip;
     private Date ngayTao = new Date();
     private SimpleDateFormat sdf = new SimpleDateFormat("dd / MM / yyyy");
     private IThongKeService thongKeService = new ThongKeServiceImpl();
+<<<<<<< HEAD
 >>>>>>> c5c370ffe9329ee44f3bb07c8fe6fec2fcb3fca2
+=======
+    private JButton tatthongBao = new JButton("Tắt Thông Báo");
+    private JButton thongBao = new JButton(" Thông Báo");
+    private IGiaoCaService giaoCaService = new GiaoCaServiceImpl();
+>>>>>>> 0a5f77edf23f153047e199a5ac27bd4547d84bb5
 
     /**
      * Creates new form TrangChuJPanel
@@ -107,16 +120,58 @@ public class JpnTrangChu extends javax.swing.JPanel {
             mapSanCa.put(qLSanCa.getId(), qLSanCa);
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         for (QLHoaDon qLHoaDon : hoaDonService.getAllByTrangThai()) {
             mapQLHoaDon.put(qLHoaDon.getPhieuDatLich().getId(), qLHoaDon);
+=======
+        double tongTienss = thongKeService.getTongTienNgayHienTai(ngayTao);
+        if (tongTienss != 0) {
+            lbTongTien.setText(decimalFormat.format(tongTienss) + " " + "Vnd");
+        } else {
+            lbTongTien.setText("0");
+>>>>>>> 0a5f77edf23f153047e199a5ac27bd4547d84bb5
         }
-        lbTongTien.setText(decimalFormat.format(thongKeService.getTongTienNgayHienTai(ngayTao)) + " " + "Vnd");
+
+        thongBao.setBackground(Color.BLUE);
+        thongBao.setForeground(Color.white);
+        panelThongBao.setLayout(new GridLayout());
+        panelThongBao.add(thongBao);
+        panelThongBao.validate();
+        panelThongBao.repaint();
+
+        tatthongBao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                panelThongBao.removeAll();
+                thongBao.setBackground(Color.BLUE);
+                thongBao.setForeground(Color.white);
+                panelThongBao.setLayout(new GridLayout());
+                panelThongBao.add(thongBao);
+                panelThongBao.validate();
+                panelThongBao.repaint();
+                clip.stop();
+            }
+        });
+        thongBao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                panelThongBao.removeAll();
+                tatthongBao.setBackground(Color.red);
+                tatthongBao.setForeground(Color.white);
+
+                panelThongBao.setLayout(new GridLayout());
+                panelThongBao.add(tatthongBao);
+                panelThongBao.validate();
+                panelThongBao.repaint();
+                PlaySound();
+
+            }
+        });
+
     }
 
     private void showThanhToan(String id) {
-        QLHoaDon hoaDon = mapQLHoaDon.get(id);
-        new FrmThanhToan(hoaDon).setVisible(true);
+        QLHoaDon hoaDon = hoaDonService.getByTrangThai(id);
+        new FrmThanhToan(hoaDon, pnTong, qLAcount, labelHome).setVisible(true);
 
 >>>>>>> c5c370ffe9329ee44f3bb07c8fe6fec2fcb3fca2
     }
@@ -143,19 +198,25 @@ public class JpnTrangChu extends javax.swing.JPanel {
             for (int j = 0; j < listSanCa.size(); j++) {
                 if (listSanBong.get(i).getTenSanBong().equals(listSanCa.get(j).getTenSanBong())) {
                     JPopupMenu jPopupMenu = new JPopupMenu();
+<<<<<<< HEAD
                     JMenuItem itemDatLich = new JMenuItem("Đặt Lịch");
                     JMenuItem itemCheckOut = new JMenuItem("Check Out");
+=======
+                    JMenuItem itemDatLich = new JMenuItem("Đặt lịch nhanh");
+                    JMenuItem itemCheckOut = new JMenuItem("Chi tiết sân đặt");
+>>>>>>> 0a5f77edf23f153047e199a5ac27bd4547d84bb5
                     JMenuItem itemDoiLichDat = new JMenuItem("Đổi lịch đặt");
-                    JMenuItem itemThongbao = new JMenuItem("Thông báo");
-                    JMenuItem itemTatThongbao = new JMenuItem("Tắt thông báo");
                     jPopupMenu.add(itemDatLich);
                     jPopupMenu.add(itemCheckOut);
 <<<<<<< HEAD
 =======
                     jPopupMenu.add(itemDoiLichDat);
+<<<<<<< HEAD
                     jPopupMenu.add(itemThongbao);
                     jPopupMenu.add(itemTatThongbao);
 >>>>>>> c5c370ffe9329ee44f3bb07c8fe6fec2fcb3fca2
+=======
+>>>>>>> 0a5f77edf23f153047e199a5ac27bd4547d84bb5
                     JPanel panelCa = new JPanel();
                     panelCa.setLayout(new FlowLayout());
                     panelCa.setPreferredSize(new Dimension(174, 254));
@@ -175,14 +236,15 @@ public class JpnTrangChu extends javax.swing.JPanel {
                     labelLoaiSan.setForeground(Color.BLACK);
                     labelLoaiSan.setFont(new Font("Tahoma", 1, 14));
                     JLabel lableTenKH = new JLabel();
-                    if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.KHONG_TRONG || listSanCa.get(j).getTrangThai() == trangThaiSanCa.CHO_NHAN_SAN) {
-                        datLich = phieuDatLichService.getPhieuDatLich(labelIdSanCa.getText());
-                        lableTenKH.setText("Tên KH:" + datLich.getKhachHang().getTenKhachHang());
+
+                    if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.KHONG_TRONG &&
+                            listSanCa.get(j).getTrangThai() == trangThaiSanCa.CHO_NHAN_SAN) {
+                        QLHoaDon qlHoaDon = hoaDonService.getByTrangThai(labelIdSanCa.getText());
+                        lableTenKH.setText("Tên KH:" + qlHoaDon.getPhieuDatLich().getKhachHang().getTenKhachHang());
                         lableTenKH.setFont(new Font("Tahoma", 1, 10));
                         lableTenKH.setForeground(Color.BLACK);
                         labelLoaiSan.setFont(new Font("Tahoma", 1, 10));
                     }
-
                     JLabel labelTrangThai = new JLabel();
                     labelTrangThai.setForeground(Color.BLACK);
                     labelTrangThai.setPreferredSize(new Dimension(160, 15));
@@ -207,15 +269,30 @@ public class JpnTrangChu extends javax.swing.JPanel {
                     itemCheckOut.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
+<<<<<<< HEAD
                             JOptionPane.showMessageDialog(panelSan, "Sân này chưa có người đá! Không thể Check Out!");
                             jPopupMenu.setVisible(false);
+=======
+                            if (giaoCaService.getOneGiaoCaByIdAndTrangThai(qLAcount.getId()) == null) {
+                                JOptionPane.showMessageDialog(null, "Vui lòng nhận ca");
+                            } else {
+                                showThanhToan(labelIdSanCa.getText());
+                                panelCa.setEnabled(false);
+                                jPopupMenu.setVisible(false);
+                            }
+
+>>>>>>> 0a5f77edf23f153047e199a5ac27bd4547d84bb5
                         }
                     });
                     itemDatLich.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            showDetail(labelIdSanCa.getText());
-                            jPopupMenu.setVisible(false);
+                            if (giaoCaService.getOneGiaoCaByIdAndTrangThai(qLAcount.getId()) == null) {
+                                JOptionPane.showMessageDialog(null, "Vui lòng nhận ca");
+                            } else {
+                                showDetail(labelIdSanCa.getText());
+                                jPopupMenu.setVisible(false);
+                            }
                         }
                     });
 <<<<<<< HEAD
@@ -258,26 +335,12 @@ public class JpnTrangChu extends javax.swing.JPanel {
                     itemDoiLichDat.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            new FrmDoiLichDat(datLich, qLAcount, pnTong, labelHome, ngayTao).setVisible(true);
+                            showDoiLichDat(labelIdSanCa.getText());
                             jPopupMenu.setVisible(false);
                         }
                     });
-                    itemThongbao.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            PlaySound();
-                            jPopupMenu.setVisible(false);
-                        }
-                    });
-                    itemTatThongbao.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            clip.stop();
-                            jPopupMenu.setVisible(false);
-                        }
-                    });
-
-                    customTrangThai(listSanCa.get(j).getTrangThai(), itemDatLich, panelCa, labelTrangThai, itemDoiLichDat, itemCheckOut, itemThongbao, itemTatThongbao);
+                  
+                    customTrangThai(listSanCa.get(j).getTrangThai(), itemDatLich, panelCa, labelTrangThai, itemDoiLichDat, itemCheckOut);
                     Time gioKT = new Time(listSanCa.get(j).getThoiGianKetThuc().getHours(), listSanCa.get(j).getThoiGianKetThuc().getMinutes(), listSanCa.get(j).getThoiGianKetThuc().getSeconds());
                     Time quaGio = new Time(now.getHours(), now.getMinutes(), now.getSeconds());
                     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -286,13 +349,17 @@ public class JpnTrangChu extends javax.swing.JPanel {
                     String ngayTaoSan = dateFormat.format(ngayTao);
                     String hienTai = dateFormat.format(homNay);
                     if (gioKT.getTime() < quaGio.getTime() && ngayTaoSan.equals(hienTai)) {
-                        panelCa.setBackground(new Color(189, 195, 199));
-                        itemCheckOut.setEnabled(true);
+                        if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.KHONG_TRONG) {
+                            panelCa.setBackground(new Color(153, 255, 255));
+                            labelTrangThai.setText("Trạng thái: " + "Chờ thanh toán");
+                        } else {
+                            panelCa.setBackground(new Color(189, 195, 199));
+                            labelTrangThai.setText("Trạng thái:" + " " + "Quá giờ");
+                        }
+
                         itemDatLich.setEnabled(false);
                         itemDoiLichDat.setEnabled(false);
-                        itemThongbao.setEnabled(true);
-                        itemTatThongbao.setEnabled(true);
-                        labelTrangThai.setText("Trạng thái:" + " " + "Quá giờ");
+
                     }
 >>>>>>> c5c370ffe9329ee44f3bb07c8fe6fec2fcb3fca2
                     panelCa.add(labelCa);
@@ -311,6 +378,7 @@ public class JpnTrangChu extends javax.swing.JPanel {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     private void customTrangThai(trangThaiSanCa ttSanCa, JMenuItem item, JPanel panel, JLabel label) {
         if (ttSanCa == trangThaiSanCa.CHO_NHAN_SAN) {
             item.setEnabled(false);
@@ -318,11 +386,12 @@ public class JpnTrangChu extends javax.swing.JPanel {
             panel.setBackground(new Color(255, 255, 0));
 =======
     private void customTrangThai(trangThaiSanCa ttSanCa, JMenuItem itemDatLich, JPanel panelSanCa, JLabel labelTrangThai, JMenuItem iTemDoiLich, JMenuItem itemCheckOut, JMenuItem itemThongbao, JMenuItem itemTatThongbao) {
+=======
+    private void customTrangThai(trangThaiSanCa ttSanCa, JMenuItem itemDatLich, JPanel panelSanCa, JLabel labelTrangThai, JMenuItem iTemDoiLich, JMenuItem itemCheckOut) {
+>>>>>>> 0a5f77edf23f153047e199a5ac27bd4547d84bb5
         if (ttSanCa == trangThaiSanCa.CHO_NHAN_SAN) {
             itemCheckOut.setEnabled(false);
             itemDatLich.setEnabled(false);
-            itemThongbao.setEnabled(false);
-            itemTatThongbao.setEnabled(false);
             iTemDoiLich.setEnabled(true);
             labelTrangThai.setText(" Trạng thái: " + "Chờ nhận sân");
             panelSanCa.setBackground(new Color(255, 255, 0));
@@ -339,15 +408,11 @@ public class JpnTrangChu extends javax.swing.JPanel {
             iTemDoiLich.setEnabled(false);
             itemDatLich.setEnabled(false);
             itemCheckOut.setEnabled(true);
-            itemThongbao.setEnabled(true);
-            itemTatThongbao.setEnabled(true);
             panelSanCa.setBackground(new Color(255, 0, 51));
         } else {
             itemDatLich.setEnabled(true);
             itemCheckOut.setEnabled(false);
             iTemDoiLich.setEnabled(false);
-            itemThongbao.setEnabled(false);
-            itemTatThongbao.setEnabled(false);
             labelTrangThai.setText(" Trạng thái: " + "Đang trống");
             panelSanCa.setBackground(new Color(0, 153, 0));
 >>>>>>> c5c370ffe9329ee44f3bb07c8fe6fec2fcb3fca2
@@ -356,10 +421,14 @@ public class JpnTrangChu extends javax.swing.JPanel {
 
     private void showDetail(String idSanCa) {
         Acount acount = new Acount(qLAcount.getId(), qLAcount.getMaAcount(), qLAcount.getTenAcount(), qLAcount.getChucVu(),
-                qLAcount.getMatKhau(), qLAcount.getMoTa(), qLAcount.getTrangThai());
+                qLAcount.getMatKhau(), qLAcount.getMoTa(), qLAcount.getTrangThai(),null);
         QLSanCa qLSanCa = mapSanCa.get(idSanCa);
         QLKhachHang khachHang = new QLKhachHang();
         new FrmPhieuDatLich(khachHang, qLSanCa, acount, labelHome, pnTong, ngayTao).setVisible(true);
+    }
+     private void showDoiLichDat(String idSanCa) {
+        PhieuDatLich phieuDatLich = phieuDatLichService.getPDLByTrangThai(idSanCa);
+        new FrmDoiLichDat(phieuDatLich, qLAcount, pnTong, labelHome, ngayTao).setVisible(true);
     }
 
     /**
@@ -377,14 +446,17 @@ public class JpnTrangChu extends javax.swing.JPanel {
         txtNgay = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         lbTongTien = new javax.swing.JLabel();
+        panelThongBao = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+
+        panelTong.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout panelTongLayout = new javax.swing.GroupLayout(panelTong);
         panelTong.setLayout(panelTongLayout);
         panelTongLayout.setHorizontalGroup(
             panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 930, Short.MAX_VALUE)
+            .addGap(0, 1080, Short.MAX_VALUE)
         );
         panelTongLayout.setVerticalGroup(
             panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -393,6 +465,7 @@ public class JpnTrangChu extends javax.swing.JPanel {
 
         jScrollPane1.setViewportView(panelTong);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         txtNgay.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -404,6 +477,19 @@ public class JpnTrangChu extends javax.swing.JPanel {
         lbTongTien.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lbTongTien.setText("jLabel2");
 
+        panelThongBao.setMaximumSize(new java.awt.Dimension(0, 0));
+
+        javax.swing.GroupLayout panelThongBaoLayout = new javax.swing.GroupLayout(panelThongBao);
+        panelThongBao.setLayout(panelThongBaoLayout);
+        panelThongBaoLayout.setHorizontalGroup(
+            panelThongBaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 159, Short.MAX_VALUE)
+        );
+        panelThongBaoLayout.setVerticalGroup(
+            panelThongBaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -414,25 +500,31 @@ public class JpnTrangChu extends javax.swing.JPanel {
                 .addGap(195, 195, 195)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(lbTongTien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(lbTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelThongBao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNgay, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(lbTongTien))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelThongBao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 818, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1099, Short.MAX_VALUE)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -440,8 +532,7 @@ public class JpnTrangChu extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 642, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 642, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -451,6 +542,7 @@ public class JpnTrangChu extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbTongTien;
+    private javax.swing.JPanel panelThongBao;
     private javax.swing.JPanel panelTong;
     private javax.swing.JLabel txtNgay;
     // End of variables declaration//GEN-END:variables

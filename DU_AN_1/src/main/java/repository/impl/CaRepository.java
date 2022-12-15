@@ -13,6 +13,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.NativeQuery;
 
 /**
  *
@@ -83,4 +84,58 @@ public class CaRepository implements ICaRepository {
         }
         return listNuocUong;
     }
+<<<<<<< HEAD
+=======
+
+    @Override
+    public String saveCaNew(Ca ca) {
+        Transaction transaction = null;
+        try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
+            transaction = session.beginTransaction();
+            session.save(ca);
+            transaction.commit();
+            return "Thêm thành công";
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+            transaction.rollback();
+            return "Thêm thất bại";
+        }
+    }
+
+    @Override
+    public String xoaCa(String id) {
+        String hql = "DELETE FROM Ca c WHERE c.id = :ID";
+        Transaction transaction = null;
+        try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
+            transaction = session.beginTransaction();
+            Query q = session.createQuery(hql).setParameter("ID", id);
+            q.executeUpdate();
+            transaction.commit();
+            return "Thêm thành công";
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+            transaction.rollback();
+            return "Thêm thất bại";
+        }
+    }
+
+    @Override
+    public int genMaCa() {
+        String maAC = "";
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            String hql = "Select MAX(CONVERT(INT,SUBSTRING(maCa,5,100))) from Ca ";
+            NativeQuery query = session.createNativeQuery(hql);
+            maAC = query.getSingleResult().toString();
+        } catch (Exception e) {
+       
+        }
+        if(maAC == ""){
+            maAC = "1";
+            int ma = Integer.valueOf(maAC);
+            return  ma;
+        }
+        int ma = Integer.valueOf(maAC);
+        return  ++ma;
+    }
+>>>>>>> 0a5f77edf23f153047e199a5ac27bd4547d84bb5
 }

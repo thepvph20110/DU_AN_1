@@ -20,5 +20,16 @@ public interface ISanBongRepository {
     boolean deleteSanBong(SanBong sanBong);
     
     List<SanBong> searchByName(String ten);
+<<<<<<< HEAD
     
+=======
+
+    String saveSanBong(SanBong sanBong);
+
+    SanBong getOne(String id);
+
+    String xoaSaṇ̣̣̣̣(String id);
+    
+    int genMaSanBong();
+>>>>>>> 0a5f77edf23f153047e199a5ac27bd4547d84bb5
 }
