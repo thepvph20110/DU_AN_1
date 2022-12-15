@@ -41,7 +41,7 @@ public class AcountServiceImpl implements IAcountService {
     @Override
     public String save(QLAcount qLAcount) {
         Acount acount = new Acount(null, genMaAccount(), qLAcount.getTenAcount(), qLAcount.getChucVu(),
-                qLAcount.getMatKhau(), qLAcount.getMoTa(), trangThaiAcount.Da_Xac_Minh);
+                qLAcount.getMatKhau(), qLAcount.getMoTa(), trangThaiAcount.Da_Xac_Minh, null);
         if (acountRepo.save(acount) == true) {
             return "Lưu Thành Công";
         }
@@ -51,7 +51,7 @@ public class AcountServiceImpl implements IAcountService {
     @Override
     public String update(QLAcount qLAcount, String id) {
         Acount acount = new Acount(id, qLAcount.getMaAcount(), qLAcount.getTenAcount(), qLAcount.getChucVu(),
-                qLAcount.getMatKhau(), qLAcount.getMoTa(), trangThaiAcount.Da_Xac_Minh);
+                qLAcount.getMatKhau(), qLAcount.getMoTa(), trangThaiAcount.Da_Xac_Minh, null);
         if (acountRepo.update(acount) == true) {
             return "Sua Thành Công";
         }

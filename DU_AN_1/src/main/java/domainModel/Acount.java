@@ -5,14 +5,17 @@
 package domainmodel;
 
 import enumclass.trangThaiAcount;
+import java.util.List;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -44,5 +47,6 @@ public class Acount {
     private String moTa;
     @Column(nullable = false)
     private trangThaiAcount trangThai = trangThaiAcount.Chua_Xac_Minh;
-
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "acount")
+    private List<PhieuDatLich> listPhieuDatLich;
 }
