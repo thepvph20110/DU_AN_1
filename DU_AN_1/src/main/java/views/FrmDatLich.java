@@ -97,7 +97,7 @@ public class FrmDatLich extends javax.swing.JFrame {
                 Calendar calendar = txtDate.getSelectedDate();
                 try {
                     if (format.parse(format.format(calendar.getTime())).before(format.parse(format.format(new Date())))) {
-                        JOptionPane.showMessageDialog(null, "Chọn ngày sau ngay hiện tại");
+                        JOptionPane.showMessageDialog(null, "Chọn ngày sau ngày hiện tại");
                     } else {
                         listCalendars.clear();
                         PeriodSet periodSet = txtDate.getSelectedPeriodSet();

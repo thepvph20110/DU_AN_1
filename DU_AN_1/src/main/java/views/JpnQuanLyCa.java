@@ -86,13 +86,13 @@ public class JpnQuanLyCa extends javax.swing.JPanel {
             qlCa.setTrangThai(trangThaiCa.GIO_CAO_DIEM);
         }
         if (tenCa.length() == 0 || thoiGianBatDau.length() == 0 || thoiGianKetThuc.length() == 0 || gia.length() == 0) {
-            JOptionPane.showMessageDialog(this, "IsEmpty");
+            JOptionPane.showMessageDialog(this, "Không được để trống");
         } else if (gia.matches("^[a-zA-Z]+$")) {
-            JOptionPane.showMessageDialog(this, "Gia la so");
+            JOptionPane.showMessageDialog(this, "Giá là số");
         } else if (!thoiGianBatDau.matches("^\\d{2}:\\d{2}:\\d{2}$") || !thoiGianKetThuc.matches("^\\d{2}:\\d{2}:\\d{2}$")) {
             JOptionPane.showMessageDialog(this, "Incorrect format time (hh:mm:ss)");
         } else if ((Double.valueOf(gia) <= 0)) {
-            JOptionPane.showMessageDialog(this, "Gia san sai dinh dang");
+            JOptionPane.showMessageDialog(this, "Giá sân sai định dạng");
         } else {
             QLCa qLCa = new QLCa(null, ics.genMaCa(), tenCa, Time.valueOf(thoiGianBatDau), Time.valueOf(thoiGianKetThuc), Double.valueOf(gia), qlCa.getTrangThai());
             JOptionPane.showMessageDialog(this, ics.save(qLCa));
@@ -115,13 +115,13 @@ public class JpnQuanLyCa extends javax.swing.JPanel {
             qlCa.setTrangThai(trangThaiCa.GIO_CAO_DIEM);
         }
         if (tenCa.length() == 0 || thoiGianBatDau.length() == 0 || thoiGianKetThuc.length() == 0 || gia.length() == 0) {
-            JOptionPane.showMessageDialog(this, "IsEmpty");
+            JOptionPane.showMessageDialog(this, "Không được để trống");
         } else if (gia.matches("^[a-zA-Z]+$")) {
             JOptionPane.showMessageDialog(this, "Gia la so");
         } else if (!thoiGianBatDau.matches("^\\d{2}:\\d{2}:\\d{2}$") || !thoiGianKetThuc.matches("^\\d{2}:\\d{2}:\\d{2}$")) {
-            JOptionPane.showMessageDialog(this, "Incorrect format time (hh:mm:ss)");
+            JOptionPane.showMessageDialog(this, "Sai định dạng thời gian(hh:mm:ss)");
         } else if ((Double.valueOf(gia) <= 0)) {
-            JOptionPane.showMessageDialog(this, "Gia san sai dinh dang");
+            JOptionPane.showMessageDialog(this, "Giá sân sai định dạng");
         } else {
             Ca ca = new Ca(id, ics.genMaCa(), tenCa, Time.valueOf(thoiGianBatDau), Time.valueOf(thoiGianKetThuc), Double.valueOf(gia), qlCa.getTrangThai());
             JOptionPane.showMessageDialog(this, ics.saveNewCa(ca));
