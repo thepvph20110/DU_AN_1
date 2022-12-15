@@ -121,7 +121,7 @@ public class FrmThanhToan extends javax.swing.JFrame {
      */
     public FrmThanhToan(QLHoaDon qLHoaDon, JPanel panelTong, QLAcount qLAcount, JLabel lableHome) {
         initComponents();
-        getContentPane().setBackground(new java.awt.Color(255,255,255));
+        getContentPane().setBackground(new java.awt.Color(255, 255, 255));
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.setExtendedState(this.MAXIMIZED_BOTH);
         this.qLHoaDon = qLHoaDon;
@@ -1129,6 +1129,8 @@ public class FrmThanhToan extends javax.swing.JFrame {
             Date date = new Date();
             hoaDon.setNgayThanhToan(date);
             new HoaDonRepositoryImpl().update(hoaDon);
+            HomeController controller = new HomeController(panelTong, qLAcount, new Date(), null);
+            controller.setView(lableHome);
             this.dispose();
         } else if (confirm == 1) {
             JOptionPane.showMessageDialog(rootPane, "Bạn Đã Chọn không In hóa đơn");
@@ -1183,6 +1185,8 @@ public class FrmThanhToan extends javax.swing.JFrame {
             Date date = new Date();
             hoaDon.setNgayThanhToan(date);
             new HoaDonRepositoryImpl().update(hoaDon);
+            HomeController controller = new HomeController(panelTong, qLAcount, new Date(), null);
+            controller.setView(lableHome);
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(rootPane, "Bạn Đã Chọn Hủy Bỏ Không In Hóa Đơn");
