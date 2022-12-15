@@ -141,7 +141,7 @@ public class JpnCheckIn extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(186, 228, 229));
 
-        jPanel1.setBackground(new java.awt.Color(186, 228, 229));
+        jPanel1.setBackground(new java.awt.Color(65, 147, 169));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông Tin Khách Hàng", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
@@ -295,7 +295,8 @@ public class JpnCheckIn extends javax.swing.JPanel {
         );
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel2.setText("Quản Lý Khách Hàng Check In");
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Quản Lí Khách Hàng Check In");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

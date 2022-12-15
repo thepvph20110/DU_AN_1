@@ -45,4 +45,10 @@ public interface IGiaoCaService {
     List<GiaoCa> getAll();
 
     List<GiaoCa> searchByName(String name);
+
+    List<GiaoCa> giaoCaCoPhuPhiPhatSinh();
+
+    List<GiaoCa> getAllTrangThaiDaNhanCa();
+
+    List<GiaoCa> giaoCaCoTienDuocRut();
 }

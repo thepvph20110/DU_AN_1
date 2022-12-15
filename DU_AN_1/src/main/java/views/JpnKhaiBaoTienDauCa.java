@@ -31,12 +31,12 @@ import utill.MaRanDom;
  * @author DANG VAN SY
  */
 public class JpnKhaiBaoTienDauCa extends javax.swing.JPanel {
-
+    
     private QLAcount qLAcount;
     private IGiaoCaService giaoCaService = new GiaoCaServiceImpl();
     private JPanel pnTOng;
     private JLabel lableHome;
-
+    
     public JpnKhaiBaoTienDauCa(QLAcount qLAcount, JPanel pnTOng, JLabel lableHome) {
         initComponents();
         this.qLAcount = qLAcount;
@@ -46,8 +46,8 @@ public class JpnKhaiBaoTienDauCa extends javax.swing.JPanel {
         labelSoLuong.setBackground(new Color(160, 132, 157));
         labelThanhTien.setBackground(new Color(160, 132, 157));
         lbTenNv.setText(qLAcount.getTenAcount());
-        lbGioVaoCa.setText(String.valueOf(gioNhanCa()));
-
+        lbGioVaoCa.setText(new SimpleDateFormat("dd/MM/yyyy - hh:mm:ss a").format(gioNhanCa()));
+        
     }
 
     /**
@@ -100,6 +100,8 @@ public class JpnKhaiBaoTienDauCa extends javax.swing.JPanel {
         lbTenNv = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         lbGioVaoCa = new javax.swing.JLabel();
+
+        panelTong.setBackground(new java.awt.Color(65, 147, 169));
 
         jPanel2.setBackground(new java.awt.Color(11, 127, 171));
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -410,8 +412,9 @@ public class JpnKhaiBaoTienDauCa extends javax.swing.JPanel {
                 .addGap(27, 27, 27))
         );
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Khai báo tiền đầu ca");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Khai Báo Tiền Đầu Ca");
 
         jLabel2.setText("Nhân viên:");
 
@@ -433,9 +436,6 @@ public class JpnKhaiBaoTienDauCa extends javax.swing.JPanel {
                         .addGap(10, 10, 10)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(39, 39, 39)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -443,15 +443,17 @@ public class JpnKhaiBaoTienDauCa extends javax.swing.JPanel {
                         .addGap(27, 27, 27)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbGioVaoCa, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbTenNv, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(lbTenNv, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(jLabel1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(lbTenNv))
@@ -476,9 +478,9 @@ public class JpnKhaiBaoTienDauCa extends javax.swing.JPanel {
         panelTongLayout.setVerticalGroup(
             panelTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelTongLayout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(46, 46, 46)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(164, Short.MAX_VALUE))
+                .addContainerGap(145, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -506,13 +508,13 @@ public class JpnKhaiBaoTienDauCa extends javax.swing.JPanel {
         } else {
             ThanhTien.setText(String.valueOf(Integer.valueOf(soLuong) * menhGia));
             return Integer.valueOf(soLuong) * menhGia;
-
+            
         }
     }
-
+    
     private void tongTIen() {
         txtTongTien.setText(String.valueOf(Integer.valueOf(lbTT500.getText()) + Integer.valueOf(lbTT200.getText()) + Integer.valueOf(lbTT100.getText()) + Integer.valueOf(lbTT50.getText()) + Integer.valueOf(lbTT10.getText()) + Integer.valueOf(lbTT5.getText()) + Integer.valueOf(lbTT2.getText()) + Integer.valueOf(lbTT1.getText())));
-
+        
     }
     private void lbNhanCaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbNhanCaMouseClicked
         Acount acount = new Acount();
@@ -572,7 +574,7 @@ public class JpnKhaiBaoTienDauCa extends javax.swing.JPanel {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy - hh:mm:ss a");
         return new Timestamp(new Date().getTime());
     }
-
+    
     public double tienBanDau() {
         return Double.valueOf(txtTongTien.getText());
     }

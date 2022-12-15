@@ -250,9 +250,51 @@ public class GiaoCaRepository implements IGiaoCaRepository {
     @Override
     public List<GiaoCa> searchByName(String name) {
         List<GiaoCa> list = new ArrayList<>();
-        String hql = "From GiaoCa gc WHERE gc.idAcount.tenAcount like :ten";
+        String hql = "From GiaoCa gc WHERE gc.idAcount.tenAcount like :ten and gc.trangThai = 1";
         try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
             Query q = session.createQuery(hql, GiaoCa.class).setParameter("ten", "%" + name + "%");
+            list = q.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return list;
+        }
+        return list;
+    }
+
+    @Override
+    public List<GiaoCa> giaoCaCoPhuPhiPhatSinh() {
+        List<GiaoCa> list = new ArrayList<>();
+        String hql = "From GiaoCa gc WHERE gc.tienPhatSinh > 0";
+        try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
+            Query q = session.createQuery(hql, GiaoCa.class);
+            list = q.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return list;
+        }
+        return list;
+    }
+
+    @Override
+    public List<GiaoCa> getAllTrangThaiDaNhanCa() {
+        List<GiaoCa> list = new ArrayList<>();
+        String hql = "From GiaoCa gc WHERE gc.trangThai = 1";
+        try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
+            Query q = session.createQuery(hql, GiaoCa.class);
+            list = q.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return list;
+        }
+        return list;
+    }
+
+    @Override
+    public List<GiaoCa> giaoCaCoTienDuocRut() {
+        List<GiaoCa> list = new ArrayList<>();
+        String hql = "From GiaoCa gc WHERE gc.tongTienMatRut > 0";
+        try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
+            Query q = session.createQuery(hql, GiaoCa.class);
             list = q.getResultList();
         } catch (Exception e) {
             e.printStackTrace();

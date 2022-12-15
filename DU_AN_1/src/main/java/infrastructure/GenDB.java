@@ -482,7 +482,7 @@ public class GenDB {
             acc1.setMaAcount("AC001");
             acc1.setMatKhau("1234");
             acc1.setMoTa("Tk Vip");
-            acc1.setTenAcount("Cao Dinh");
+            acc1.setTenAcount("CaoDinh");
             acc1.setTrangThai(trangThaiAcount.Da_Xac_Minh);
             acc1.setChucVu(cv1);
             session.save(acc1);
@@ -491,7 +491,7 @@ public class GenDB {
             acc2.setMaAcount("AC002");
             acc2.setMatKhau("2233");
             acc2.setMoTa("Tk Vip");
-            acc2.setTenAcount("Trien Ngu");
+            acc2.setTenAcount("TienTrien");
             acc2.setTrangThai(trangThaiAcount.Da_Xac_Minh);
             acc2.setChucVu(cv1);
             session.save(acc2);
@@ -500,7 +500,7 @@ public class GenDB {
             acc3.setMaAcount("AC003");
             acc3.setMatKhau("1111");
             acc3.setMoTa("Tk Vip");
-            acc3.setTenAcount("Cuoc Tuan");
+            acc3.setTenAcount("QuocTuan");
             acc3.setTrangThai(trangThaiAcount.Da_Xac_Minh);
             acc3.setChucVu(cv2);
             session.save(acc3);

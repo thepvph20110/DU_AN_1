@@ -6,9 +6,11 @@ package views;
 
 import controller.ChiTietThongKeController;
 import java.text.DateFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import javax.swing.JOptionPane;
 import response.ChiTietThanhToan.ChiTietTongTienTheoNgayResponse;
 import service.IChiTietThongKeService;
@@ -19,7 +21,7 @@ import service.Impl.ChiTietThongKeServiceImpl;
  * @author Admin
  */
 public class FromChiTietThongKe extends javax.swing.JFrame {
-
+    
     private IChiTietThongKeService chiTietThongKeService = new ChiTietThongKeServiceImpl();
     private ChiTietThongKeController chiTietThongKeController = new ChiTietThongKeController();
 
@@ -34,85 +36,91 @@ public class FromChiTietThongKe extends javax.swing.JFrame {
         chiTietThongKeController.thongKeDoThue(jpn2);
         setTextDataTongTien();
     }
-
+    
     public void setTextDataTongTien() {
         ChiTietTongTienTheoNgayResponse chiTietTongTienTheoNgayResponse = chiTietThongKeService.chiTietTongTien();
         if (chiTietTongTienTheoNgayResponse == null) {
-            txtBagCash.setText(txtBagCash.getText() + " " + "0.0");
+            txtBagCash.setText(txtBagCash.getText() + " " + "0.0 Vnd");
             Date date = Calendar.getInstance().getTime();
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             String strDate = dateFormat.format(date);
             txtTongTienCuaNgay.setText(txtTongTienCuaNgay.getText() + " " + strDate);
         } else {
-            txtBagCash.setText(txtBagCash.getText() + " " + String.valueOf(chiTietTongTienTheoNgayResponse.getTongtien()));
+            txtBagCash.setText(txtBagCash.getText() + " " + dinhDangTienTe(chiTietTongTienTheoNgayResponse.getTongtien()));
             txtTongTienCuaNgay.setText(txtTongTienCuaNgay.getText() + " " + chiTietTongTienTheoNgayResponse.getNgay() + "-" + chiTietTongTienTheoNgayResponse.getThang() + "-" + chiTietTongTienTheoNgayResponse.getNam());
         }
 
         //Get Tien Ngan Hang
         ChiTietTongTienTheoNgayResponse tongTienMat = chiTietThongKeService.getTongTienMat();
         if (tongTienMat == null) {
-            txtCash.setText(txtCash.getText() + " " + "0.0");
+            txtCash.setText(txtCash.getText() + " " + "0.0 Vnd");
             Date date = Calendar.getInstance().getTime();
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             String strDate = dateFormat.format(date);
             txtTienMat.setText(txtTienMat.getText() + " " + strDate);
         } else {
-            txtCash.setText(txtCash.getText() + " " + String.valueOf(tongTienMat.getTongtien()));
+            txtCash.setText(txtCash.getText() + " " + dinhDangTienTe(tongTienMat.getTongtien()));
             txtTienMat.setText(txtTienMat.getText() + " " + tongTienMat.getNgay() + "-" + tongTienMat.getThang() + "-" + tongTienMat.getNam());
-
+            
         }
         //Get tong Tien Mat
         ChiTietTongTienTheoNgayResponse tongNganHang = chiTietThongKeService.getTongTienNganHang();
         if (tongNganHang == null) {
-            txtCreditCash.setText(txtCreditCash.getText() + " " + "0.0");
+            txtCreditCash.setText(txtCreditCash.getText() + " " + "0.0 Vnd");
             Date date = Calendar.getInstance().getTime();
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             String strDate = dateFormat.format(date);
             txtNganHang.setText(txtNganHang.getText() + " " + strDate);
         } else {
-            txtCreditCash.setText(txtCreditCash.getText() + " " + String.valueOf(tongNganHang.getTongtien()));
+            txtCreditCash.setText(txtCreditCash.getText() + " " + dinhDangTienTe(tongNganHang.getTongtien()));
             txtNganHang.setText(txtNganHang.getText() + " " + tongNganHang.getNgay() + "-" + tongNganHang.getThang() + "-" + tongNganHang.getNam());
         }
     }
-
+    
     public void clearText() {
-       txtBagCash.setText("Tổng Tiền:");
-       txtTongTienCuaNgay.setText("Tổng Tiền Của Ngày:");
-       txtCash.setText("Tổng Tiền:");
-       txtTienMat.setText("Tổng Tiền Mặt Của Ngày:");
-       txtCreditCash.setText("Tổng Tiền:");
-       txtNganHang.setText("Tổng Tiền Chuyển Khoản Của Ngày:");
+        txtBagCash.setText("Tổng Tiền:");
+        txtTongTienCuaNgay.setText("Tổng Tiền Của Ngày:");
+        txtCash.setText("Tổng Tiền:");
+        txtTienMat.setText("Tổng Tiền Mặt Của Ngày:");
+        txtCreditCash.setText("Tổng Tiền:");
+        txtNganHang.setText("Tổng Tiền Chuyển Khoản Của Ngày:");
     }
-
+    
+    public String dinhDangTienTe(double tienTe) {
+        Locale locale = new Locale("vi", "VN");
+        NumberFormat format = NumberFormat.getInstance(locale);
+        return format.format(tienTe) + " " + "Vnd";
+    }
+    
     public void setTextDataTongTienByDate(Date date) {
         ChiTietTongTienTheoNgayResponse chiTietTongTienTheoNgayResponse = chiTietThongKeService.chiTietTongTienByDate(date);
         clearText();
         if (chiTietTongTienTheoNgayResponse == null) {
-            txtBagCash.setText(txtBagCash.getText() + " " + "0.0");
+            txtBagCash.setText(txtBagCash.getText() + " " + "0.0 Vnd");
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             String strDate = dateFormat.format(date);
             txtTongTienCuaNgay.setText(txtTongTienCuaNgay.getText() + " " + strDate);
         } else {
-            txtBagCash.setText(txtBagCash.getText() + " " + String.valueOf(chiTietTongTienTheoNgayResponse.getTongtien()));
+            txtBagCash.setText(txtBagCash.getText() + " " + dinhDangTienTe(chiTietTongTienTheoNgayResponse.getTongtien()));
             txtTongTienCuaNgay.setText(txtTongTienCuaNgay.getText() + " " + chiTietTongTienTheoNgayResponse.getNgay() + "-" + chiTietTongTienTheoNgayResponse.getThang() + "-" + chiTietTongTienTheoNgayResponse.getNam());
         }
 
         //Get Tien Ngan Hang
         ChiTietTongTienTheoNgayResponse tongTienMat = chiTietThongKeService.getTongTienMatByDate(date);
         if (tongTienMat == null) {
-            txtCash.setText(txtCash.getText() + " " + "0.0");
+            txtCash.setText(txtCash.getText() + " " + "0.0 Vnd");
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             String strDate = dateFormat.format(date);
             txtTienMat.setText(txtTienMat.getText() + " " + strDate);
         } else {
-            txtCash.setText(txtCash.getText() + " " + String.valueOf(tongTienMat.getTongtien()));
+            txtCash.setText(txtCash.getText() + " " + dinhDangTienTe(tongTienMat.getTongtien()));
             txtTienMat.setText(txtTienMat.getText() + " " + tongTienMat.getNgay() + "-" + tongTienMat.getThang() + "-" + tongTienMat.getNam());
-
+            
         }
         //Get tong Tien Mat
         ChiTietTongTienTheoNgayResponse tongNganHang = chiTietThongKeService.getTongTienNganHangByDate(date);
         if (tongNganHang == null) {
-            txtCreditCash.setText(txtCreditCash.getText() + " " + "0.0");
+            txtCreditCash.setText(txtCreditCash.getText() + " " + "0.0 Vnd");
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             String strDate = dateFormat.format(date);
             txtNganHang.setText(txtNganHang.getText() + " " + strDate);
@@ -154,7 +162,7 @@ public class FromChiTietThongKe extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(186, 228, 229));
 
-        jPanel1.setBackground(new java.awt.Color(186, 228, 229));
+        jPanel1.setBackground(new java.awt.Color(65, 147, 169));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -175,22 +183,22 @@ public class FromChiTietThongKe extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(27, 27, 27)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jdate, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(887, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(9, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton1)
                     .addComponent(jdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(jLabel1))
                 .addContainerGap())
         );
 
@@ -346,7 +354,7 @@ public class FromChiTietThongKe extends javax.swing.JFrame {
             .addComponent(jpn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jPanel7.setBackground(new java.awt.Color(186, 228, 229));
+        jPanel7.setBackground(new java.awt.Color(65, 147, 169));
 
         jButton2.setBackground(new java.awt.Color(255, 51, 51));
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
