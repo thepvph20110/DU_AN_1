@@ -173,7 +173,7 @@ public class FrmChiTietPhuPhi extends javax.swing.JFrame {
     private void jMenuSuaGiaPPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSuaGiaPPActionPerformed
         // TODO add your handling code here:
         QLHoaDon_PhuPhi qLHoaDon_PhuPhi = listHDPP.get(jTable1.getSelectedRow());
-        String soLuong = JOptionPane.showInputDialog(rootPane, "Mời Nhập Số Lượng Dịch Vụ !!");
+        String soLuong = JOptionPane.showInputDialog(rootPane, "Mời Nhập giá phụ phí!!");
         if (soLuong == null) {
             return;
         } else {
