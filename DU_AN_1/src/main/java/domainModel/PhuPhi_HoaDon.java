@@ -36,7 +36,7 @@ public class PhuPhi_HoaDon {
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(name = "id", updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
     private String id;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "idHoaDon")
     private HoaDon hoaDon;
     @ManyToOne(cascade = CascadeType.ALL)

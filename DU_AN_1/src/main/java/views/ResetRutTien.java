@@ -51,7 +51,7 @@ public class ResetRutTien extends javax.swing.JFrame {
 
     public void showTB(List<GiaoCa> list) {
         jTable1.setModel(dtm = new DefaultTableModel());
-        String[] header = {"Tên Nhân Viên", "Thời gian nhận ca", "Thời gian giao ca","Tiền ban đầu", "Tổng tiền mặt trong ca", "Tổng tiền ngân hàng trong ca", "Tiền phát sinh", "Tổng tiền rút", "Thời gian rút", "Ghi chú phát sinh"};
+        String[] header = {"Tên Nhân Viên", "Thời gian nhận ca", "Thời gian giao ca", "Tiền ban đầu", "Tổng tiền mặt trong ca", "Tổng tiền ngân hàng trong ca", "Tiền phát sinh", "Tổng tiền rút", "Thời gian rút", "Ghi chú phát sinh"};
         dtm.setColumnIdentifiers(header);
         dtm.setRowCount(0);
         for (GiaoCa giaoca : list) {
@@ -241,9 +241,11 @@ public class ResetRutTien extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int chon = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn với số tiền rút?", null, JOptionPane.YES_NO_OPTION);
         if (chon == 0) {
-            if(!txtSoTienRut.getText().matches("\\d+") || Float.valueOf(txtSoTienRut.getText()) < 0){
-                JOptionPane.showMessageDialog(this, "Nhập số tiền rút đúng định dạng hoặc > 0");
-            }else{
+            if (txtSoTienRut.getText().isBlank()) {
+                JOptionPane.showMessageDialog(null, "Vui lòng không để trống tền rút");
+            } else if (!txtSoTienRut.getText().matches("\\d+") || Float.valueOf(txtSoTienRut.getText()) < 0) {
+                JOptionPane.showMessageDialog(this, "Vui lòng nhập số tiền rút đúng định dạng hoặc > 0");
+            } else {
                 if (Float.valueOf(txtSoTienRut.getText()) > jdv.GetTTongTienMatTrongCa()) {
                     JOptionPane.showMessageDialog(null, "Số tiền rút vượt quá số tiền mặt hiện đang có!");
                 } else {
