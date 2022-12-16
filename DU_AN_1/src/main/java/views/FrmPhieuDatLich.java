@@ -402,7 +402,7 @@ public class FrmPhieuDatLich extends javax.swing.JFrame {
                     loaiSanEnity, qLSanBong.getTrangThai());
             SanCa sanCaEntity = new SanCa(sanCa.getId(), caEntity, sanBongEntity, sanCa.getNgayTao(), sanCa.getGiaCaSan(), sanCa.getTrangThai());
             KhachHang khachHang = new KhachHang(qlKhachHang.getId(), qlKhachHang.getMaKhachHang(), qlKhachHang.getTenKhachHang(), qlKhachHang.getMail(), qlKhachHang.getSoDienThoai(), qlKhachHang.getGhiChu(), qlKhachHang.getTrangThai());
-            PhieuDatLich phieuDatLich = new PhieuDatLich(maPhieuLichDat, acount, khachHang, sanCaEntity, ngayTao, ngayDen, null, ghiChu, maQr, sanCa.getGiaCaSan(), trangThaiPhieuDL.CHUA_NHAN_SAN);
+            PhieuDatLich phieuDatLich = new PhieuDatLich(maPhieuLichDat, acount, khachHang, sanCaEntity, ngayTao, ngayDen, null, ghiChu, maQr, sanCa.getGiaCaSan(), trangThaiPhieuDL.CHUA_NHAN_SAN,null);
 
             try {
                 String check = phieuDatLichService.datLich(phieuDatLich);

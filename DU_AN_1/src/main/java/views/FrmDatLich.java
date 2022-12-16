@@ -585,7 +585,7 @@ jTable1.setModel(new javax.swing.table.DefaultTableModel(
     private void btnAddKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddKHActionPerformed
         // TODO add your handling code here:
         Acount acount = new Acount(qLAcount.getId(), qLAcount.getMaAcount(), qLAcount.getTenAcount(), qLAcount.getChucVu(),
-                qLAcount.getMatKhau(), qLAcount.getMoTa(), qLAcount.getTrangThai());
+                qLAcount.getMatKhau(), qLAcount.getMoTa(), qLAcount.getTrangThai(),null);
         FrmKhachHangDL frmKhachHang = new FrmKhachHangDL(qLSanCa, acount, labelHome, panelTong, new Date());
         frmKhachHang.setVisible(true);
     }//GEN-LAST:event_btnAddKHActionPerformed

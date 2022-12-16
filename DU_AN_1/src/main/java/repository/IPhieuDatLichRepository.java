@@ -17,9 +17,9 @@ public interface IPhieuDatLichRepository {
     List<PhieuDatLich> getAll();
 
     List<PhieuDatLich> getPhieuDatLichByTT();
-    
+
     List<PhieuDatLich> getPhieuDatLichBySDT(String sdt);
- 
+
     boolean save(PhieuDatLich phieuDatLich);
 
     boolean update(PhieuDatLich phieuDatLich);
@@ -27,6 +27,10 @@ public interface IPhieuDatLichRepository {
     boolean delete(String id);
 
     PhieuDatLich getByIdSanCa(String id);
-    
+
     PhieuDatLich getPDLByTrangThai(String id);
+
+    List<PhieuDatLich> getPhieuTheoTTHD();
+
+    List<PhieuDatLich> getPhieuChuaTT();
 }

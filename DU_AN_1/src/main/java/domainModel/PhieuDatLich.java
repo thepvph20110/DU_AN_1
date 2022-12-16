@@ -61,4 +61,7 @@ public class PhieuDatLich {
     private double tongTienSan;
     @Column(nullable = false)
     private trangThaiPhieuDL trangThai = trangThaiPhieuDL.CHUA_NHAN_SAN;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "phieuDatLich")
+    private HoaDon hoaDon;
+
 }

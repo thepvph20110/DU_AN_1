@@ -5,6 +5,8 @@
 package repository.impl;
 
 import domainModel.GiaoCa;
+import domainmodel.Acount;
+import domainmodel.PhieuDatLich;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -229,10 +231,6 @@ public class GiaoCaRepository implements IGiaoCaRepository {
         }
     }
 
-    public static void main(String[] args) {
-        System.out.println(new GiaoCaRepository().TimKiemNVCaTiepTheo().getId());
-    }
-
     @Override
     public List<GiaoCa> getAll() {
         List<GiaoCa> list = new ArrayList<>();
@@ -301,5 +299,39 @@ public class GiaoCaRepository implements IGiaoCaRepository {
             return list;
         }
         return list;
+    }
+
+    @Override
+    public GiaoCa getAcoutAndPhieuDatLich() {
+        GiaoCa giaoCa;
+        String hql = "From GiaoCa gc ORDER BY gc.thoiGianNhanCa DESC ";
+        try ( Session session = new HibernateConfig().getFACTORY().openSession()) {
+            Query query = session.createQuery(hql, GiaoCa.class);
+            query.setFirstResult(0);
+            query.setMaxResults(1);
+            giaoCa = (GiaoCa) query.getSingleResult();
+            return giaoCa;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static void main(String[] args) {
+//            for (PhieuDatLich phieuDatLich : new GiaoCaRepository().getAcoutAndPhieuDatLich().getIdAcount().getListPhieuDatLich()) {
+//                System.out.println(phieuDatLich.getHoaDon().getId());
+//            }
+        GiaoCa gc = new GiaoCaRepository().getAcoutAndPhieuDatLich();
+        gc.setTienPhatSinh(945534);
+        Acount acount = new Acount();
+        acount.setId("c31edce2-e16d-407e-9881-044462a4b19a");
+
+        List<PhieuDatLich> listPDL = new GiaoCaRepository().getAcoutAndPhieuDatLich().getIdAcount().getListPhieuDatLich();
+        for (int i = 0; i < listPDL.size(); i++) {
+            listPDL.get(i).setAcount(acount);
+            System.out.println(listPDL.get(i).getAcount().getId());
+        }
+        gc.getIdAcount().setListPhieuDatLich(listPDL);
+        System.out.println(new GiaoCaRepository().GiaoCa(gc));
     }
 }
