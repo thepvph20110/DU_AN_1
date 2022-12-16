@@ -500,11 +500,11 @@ public class JpnDichVu extends javax.swing.JPanel {
                     giaoCa.setTienPhatSinh(0);
                     String tb = giaoCaService.GiaoCa(giaoCa);
                     if (tb.equals("Giao ca thành công")) {
-                        JOptionPane.showMessageDialog(null, "Rút tiền vào kết ca thành công");
+                        JOptionPane.showMessageDialog(null, "Rút tiền và kết ca thành công");
                         home.dispose();
                         new Detaillogin(null, true).setVisible(true);
                     } else {
-                        JOptionPane.showMessageDialog(null, "Rút tiền vào kết ca thất bại");
+                        JOptionPane.showMessageDialog(null, "Rút tiền và kết ca thất bại");
                     }
                 } else {
                     Acount acounttenNVTT = acountService.getOneByNameAcount(cbbNhanVienNhanCa.getSelectedItem().toString());
@@ -521,11 +521,11 @@ public class JpnDichVu extends javax.swing.JPanel {
                     giaoCa.setTienPhatSinh(0);
                     String tb = giaoCaService.GiaoCa(giaoCa);
                     if (tb.equals("Giao ca thành công")) {
-                        JOptionPane.showMessageDialog(null, "Rút tiền vào kết ca thành công");
+                        JOptionPane.showMessageDialog(null, "Rút tiền và kết ca thành công");
                         home.dispose();
                         new Detaillogin(null, true).setVisible(true);
                     } else {
-                        JOptionPane.showMessageDialog(null, "Rút tiền vào kết ca thất bại");
+                        JOptionPane.showMessageDialog(null, "Rút tiền và kết ca thất bại");
                     }
                 }
             } else {
@@ -547,11 +547,11 @@ public class JpnDichVu extends javax.swing.JPanel {
                     giaoCa.setThoiGianReset(thoiGianReset);
                     String tb = giaoCaService.GiaoCa(giaoCa);
                     if (tb.equals("Giao ca thành công")) {
-                        JOptionPane.showMessageDialog(null, "Rút tiền vào kết ca thành công");
+                        JOptionPane.showMessageDialog(null, "Rút tiền và kết ca thành công");
                         home.dispose();
                         new Detaillogin(null, true).setVisible(true);
                     } else {
-                        JOptionPane.showMessageDialog(null, "Rút tiền vào kết ca thất bại");
+                        JOptionPane.showMessageDialog(null, "Rút tiền và kết ca thất bại");
                     }
                 }
             }
@@ -571,11 +571,11 @@ public class JpnDichVu extends javax.swing.JPanel {
             giaoCa.setThoiGianReset(thoiGianReset);
             String tb = giaoCaService.GiaoCa(giaoCa);
             if (tb.equals("Giao ca thành công")) {
-                JOptionPane.showMessageDialog(null, "Rút tiền vào kết ca thất bại");
+                JOptionPane.showMessageDialog(null, "Rút tiền và kết ca thất bại");
                 home.dispose();
                 new Detaillogin(null, true).setVisible(true);
             } else {
-                JOptionPane.showMessageDialog(null, "Rút tiền vào kết ca thất bại");
+                JOptionPane.showMessageDialog(null, "Rút tiền và kết ca thất bại");
             }
         }
     }

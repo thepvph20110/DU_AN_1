@@ -4,14 +4,21 @@
  */
 package views;
 
+import domainmodel.Acount;
+import domainmodel.PhieuDatLich;
+import enumclass.trangThaiAcount;
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import modelview.QLAcount;
 import service.IAcountService;
+import service.IPhieuDatLichService;
 import service.Impl.AcountServiceImpl;
 import service.Impl.GiaoCaServiceImpl;
+import service.Impl.PhieuDatLichServiceImpl;
 
 /**
  *
@@ -20,6 +27,7 @@ import service.Impl.GiaoCaServiceImpl;
 public class Detaillogin extends javax.swing.JDialog {
 
     private IAcountService acountService = new AcountServiceImpl();
+    private IPhieuDatLichService phieuDatLichService = new PhieuDatLichServiceImpl();
 
     public Detaillogin(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -220,33 +228,74 @@ public class Detaillogin extends javax.swing.JDialog {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         //        JpnDichVu jdv = new JpnDichVu(qLAcount, home, PaneTongLogIn, jLabel1);
+        List<PhieuDatLich> listPDL = new ArrayList<>();
+        List<PhieuDatLich> listPhieuChuaTT = phieuDatLichService.getPhieuChuaTT();
+        List<PhieuDatLich> listPhieuTheoTTHD = phieuDatLichService.getPhieuTheoTTHD();
+        listPDL.addAll(listPhieuChuaTT);
+        listPDL.addAll(listPhieuTheoTTHD);
         String use = txtUseName.getText();
         String pass = txtPass.getText();
         QLAcount qLAcount = acountService.getByUseNameAndPass(use, pass);
         if (qLAcount != null) {
-
-            if (new GiaoCaServiceImpl().checkCoNhanVIenKo() != null) {
-                if (new GiaoCaServiceImpl().getOneGiaoCaByIdAndTrangThai(qLAcount.getId()) != null) {
-
-                    this.dispose();
-                    new Home(qLAcount).setVisible(true);
-                } else {
-                    JOptionPane.showMessageDialog(null, "Đã có nhân viên khác trong ca! Không được đăng nhập");
-                }
-            } else {
-                if (new GiaoCaServiceImpl().getAll().size() == 0) {
-                    this.dispose();
-                    new Home(qLAcount).setVisible(true);
-                } else {
-                    if (new GiaoCaServiceImpl().getNvCaTT().getIdNhanVienCaTiepTheo().equals(qLAcount.getId())) {
+            if (listPDL.size() == 0) {
+                if (new GiaoCaServiceImpl().checkCoNhanVIenKo() != null) {
+                    if (new GiaoCaServiceImpl().getOneGiaoCaByIdAndTrangThai(qLAcount.getId()) != null) {
                         this.dispose();
                         new Home(qLAcount).setVisible(true);
                     } else {
-                        JOptionPane.showMessageDialog(null, "Bạn không phải là nhân viên trong ca tiếp theo!");
+                        JOptionPane.showMessageDialog(null, "Đã có nhân viên khác trong ca! Không được đăng nhập");
+                    }
+                } else {
+                    if (new GiaoCaServiceImpl().getAll().size() == 0) {
+                        this.dispose();
+                        new Home(qLAcount).setVisible(true);
+                    } else {
+                        if (new GiaoCaServiceImpl().getNvCaTT().getIdNhanVienCaTiepTheo().equals(qLAcount.getId())) {
+                            this.dispose();
+                            new Home(qLAcount).setVisible(true);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Bạn không phải là nhân viên trong ca tiếp theo!");
+                        }
+                    }
+                }
+            } else {
+                if (new GiaoCaServiceImpl().checkCoNhanVIenKo() != null) {
+                    if (new GiaoCaServiceImpl().getOneGiaoCaByIdAndTrangThai(qLAcount.getId()) != null) {
+                        Acount acount = new Acount(qLAcount.getId(), qLAcount.getMaAcount(), qLAcount.getTenAcount(), qLAcount.getChucVu(), qLAcount.getMatKhau(), qLAcount.getMoTa(), qLAcount.getTrangThai(), null);
+                        acount.setId(qLAcount.getId());
+                        for (PhieuDatLich phieuDatLich : listPDL) {
+                            phieuDatLich.setAcount(acount);
+                            new PhieuDatLichServiceImpl().updatePDL(phieuDatLich);
+                        }
+                        this.dispose();
+                        new Home(qLAcount).setVisible(true);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Đã có nhân viên khác trong ca! Không được đăng nhập");
+                    }
+                } else {
+                    if (new GiaoCaServiceImpl().getAll().size() == 0) {
+                        this.dispose();
+                        new Home(qLAcount).setVisible(true);
+                    } else {
+                        if (new GiaoCaServiceImpl().getNvCaTT().getIdNhanVienCaTiepTheo().equals(qLAcount.getId())) {
+                            Acount acount = new Acount(qLAcount.getId(), qLAcount.getMaAcount(), qLAcount.getTenAcount(), qLAcount.getChucVu(), qLAcount.getMatKhau(), qLAcount.getMoTa(), qLAcount.getTrangThai(), null);
+                            acount.setId(qLAcount.getId());
+                            for (PhieuDatLich phieuDatLich : listPDL) {
+                                phieuDatLich.setAcount(acount);
+                                new PhieuDatLichServiceImpl().updatePDL(phieuDatLich);
+                            }
+                            this.dispose();
+                            new Home(qLAcount).setVisible(true);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Bạn không phải là nhân viên trong ca tiếp theo!");
+                        }
                     }
                 }
             }
+
         }
+        //
+
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void CheckBoxHienThiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBoxHienThiActionPerformed

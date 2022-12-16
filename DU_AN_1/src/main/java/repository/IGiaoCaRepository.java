@@ -52,4 +52,6 @@ public interface IGiaoCaRepository {
     List<GiaoCa> giaoCaCoTienDuocRut();
 
     List<GiaoCa> searchByName(String name);
+
+    GiaoCa getAcoutAndPhieuDatLich();
 }

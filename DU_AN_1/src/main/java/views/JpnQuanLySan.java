@@ -101,15 +101,15 @@ public class JpnQuanLySan extends javax.swing.JPanel {
             qlsb.setTrangThai(trangThaiSanBong.SUA_CHUA);
         }
         if ( tenSanBong.length() == 0 || giaSan.length() == 0 || sucChua.length() == 0) {
-            JOptionPane.showMessageDialog(this, "IsEmpty");
+            JOptionPane.showMessageDialog(this, "KHông được để trống");
         } else if (sucChua.matches("^[a-zA-Z]+$")) {
-            JOptionPane.showMessageDialog(this, "Suc chua la so");
+            JOptionPane.showMessageDialog(this, "Sức chứa là sôs");
         } else if (giaSan.matches("^[a-zA-Z]+$")) {
-            JOptionPane.showMessageDialog(this, "Gia San la so");
+            JOptionPane.showMessageDialog(this, "Giá sân là số");
         } else if ((Double.valueOf(giaSan) <= 0)) {
-            JOptionPane.showMessageDialog(this, "Gia san sai dinh dang");
+            JOptionPane.showMessageDialog(this, "Giá sân sai định dạng");
         } else if ((Integer.valueOf(sucChua) <= 0)) {
-            JOptionPane.showMessageDialog(this, "Suc chua sai dinh dang");
+            JOptionPane.showMessageDialog(this, "Sức chứa sai định dạng");
         } else {
             LoaiSan loaiSan = iLoaiSanService.getOne(cbbLoaiSan.getSelectedItem().toString());
             SanBong sanBong = new SanBong(id, iSanBongService.genMaSanBong(), tenSanBong, Double.valueOf(giaSan), Integer.valueOf(sucChua), loaiSan, qlsb.getTrangThai());

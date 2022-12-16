@@ -97,7 +97,7 @@ public class FrmDatLich extends javax.swing.JFrame {
                 Calendar calendar = txtDate.getSelectedDate();
                 try {
                     if (format.parse(format.format(calendar.getTime())).before(format.parse(format.format(new Date())))) {
-                        JOptionPane.showMessageDialog(null, "Chọn ngày sau ngay hiện tại");
+                        JOptionPane.showMessageDialog(null, "Chọn ngày sau ngày hiện tại");
                     } else {
                         listCalendars.clear();
                         PeriodSet periodSet = txtDate.getSelectedPeriodSet();
@@ -585,7 +585,7 @@ jTable1.setModel(new javax.swing.table.DefaultTableModel(
     private void btnAddKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddKHActionPerformed
         // TODO add your handling code here:
         Acount acount = new Acount(qLAcount.getId(), qLAcount.getMaAcount(), qLAcount.getTenAcount(), qLAcount.getChucVu(),
-                qLAcount.getMatKhau(), qLAcount.getMoTa(), qLAcount.getTrangThai());
+                qLAcount.getMatKhau(), qLAcount.getMoTa(), qLAcount.getTrangThai(),null);
         FrmKhachHangDL frmKhachHang = new FrmKhachHangDL(qLSanCa, acount, labelHome, panelTong, new Date());
         frmKhachHang.setVisible(true);
     }//GEN-LAST:event_btnAddKHActionPerformed

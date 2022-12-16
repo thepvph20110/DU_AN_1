@@ -83,6 +83,7 @@ public class FrmPhieuDatSan extends javax.swing.JFrame {
         btnThoat = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(65, 147, 169));
 
@@ -316,6 +317,7 @@ public class FrmPhieuDatSan extends javax.swing.JFrame {
         int click = JOptionPane.showConfirmDialog(rootPane, "Bạn Có Muốn Hủy Sân", "Xác Nhận", JOptionPane.YES_NO_OPTION);
         if (click == JOptionPane.YES_OPTION) {
             phieuDL.setTrangThai(trangThaiPhieuDL.DA_HUY);
+            phieuDL.getSanCa().setTrangThai(trangThaiSanCa.DANG_TRONG);
             String check = phieuDatLichService.updateTrangThai(phieuDL);
             if (check.equals("Sửa Trạng Thái Thành Công")) {
                 JOptionPane.showMessageDialog(rootPane, "Đã hủy lịch đặt");
