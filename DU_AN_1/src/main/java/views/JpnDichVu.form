@@ -387,32 +387,6 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel8" alignment="0" min="-2" pref="254" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel14" min="-2" pref="150" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Component id="jLabel17" alignment="0" min="-2" pref="311" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lbTongTienThuTrongCa" min="-2" pref="250" max="-2" attributes="0"/>
-                                  <Component id="labelTongTIenMatTrongCa" min="-2" pref="250" max="-2" attributes="0"/>
-                                  <Component id="cbbNhanVienNhanCa" min="-2" pref="250" max="-2" attributes="0"/>
-                                  <Component id="lbGioHienTai" min="-2" pref="250" max="-2" attributes="0"/>
-                                  <Component id="lbTongTIenThanhTOanBangTienMa" min="-2" pref="250" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel13" min="-2" pref="294" max="-2" attributes="0"/>
-                          </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
@@ -426,8 +400,38 @@
                               </Group>
                               <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="btnReset" min="-2" max="-2" attributes="0"/>
                                   <Component id="lbTOngTIenNganHang" min="-2" pref="250" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="cbKetcaCuoiNgay" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="btnReset" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel8" alignment="0" min="-2" pref="254" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel14" min="-2" pref="150" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Component id="jLabel17" alignment="0" min="-2" pref="311" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="lbTongTienThuTrongCa" min="-2" pref="250" max="-2" attributes="0"/>
+                                          <Component id="labelTongTIenMatTrongCa" min="-2" pref="250" max="-2" attributes="0"/>
+                                          <Component id="cbbNhanVienNhanCa" min="-2" pref="250" max="-2" attributes="0"/>
+                                          <Component id="lbGioHienTai" min="-2" pref="250" max="-2" attributes="0"/>
+                                          <Component id="lbTongTIenThanhTOanBangTienMa" min="-2" pref="250" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Component id="jLabel13" alignment="0" min="-2" pref="294" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -483,6 +487,8 @@
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
+                      <Component id="cbKetcaCuoiNgay" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnReset" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
                           <Component id="btnKetCa" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
@@ -658,6 +664,14 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="B&#xe0;n Giao Sang Ca Ti&#x1ebf;p Theo"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="cbKetcaCuoiNgay">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="K&#x1ebf;t ca v&#xe0;o cu&#x1ed1;i ng&#xe0;y"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cbKetcaCuoiNgayMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
