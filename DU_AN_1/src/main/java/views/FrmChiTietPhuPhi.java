@@ -39,6 +39,7 @@ public class FrmChiTietPhuPhi extends javax.swing.JFrame {
         dtm.setColumnIdentifiers(headers);
         addToRow(listHDPP);
         this.setLocationRelativeTo(null);
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
 
     public String dinhDangTienTe(double tienTe) {
@@ -91,6 +92,7 @@ public class FrmChiTietPhuPhi extends javax.swing.JFrame {
         jpopChiTietPP.add(jMenuSuaGiaPP);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Chi Tiết Phụ Phí");

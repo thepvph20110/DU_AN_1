@@ -40,7 +40,6 @@ public class SanBongServiceImpl implements ISanBongService {
         List<LoaiSan> listLoaiSan = ire.getAll();
         for (LoaiSan loaiSan : listLoaiSan) {
             map.put(loaiSan.getTenLoaiSan(), loaiSan);
-            map.put(loaiSan.getMaLoaiSan(), loaiSan);
         }
         listQLSanBong.clear();
         for (SanBong sanBong : re.getAll()) {
@@ -51,8 +50,8 @@ public class SanBongServiceImpl implements ISanBongService {
 
     @Override
     public String save(QLSanBong qLSanBong) {
-        if (map.containsKey(qLSanBong.getMaSanBong()) || map.containsKey(qLSanBong.getTenSanBong())) {
-            return "Ma or Ten Trung";
+        if (map.containsKey(qLSanBong.getTenSanBong())) {
+            return "Tên sân trùng";
         }
         LoaiSan loaiSan = new LoaiSan();
         if (map.containsKey(qLSanBong.getTenLoaiSan())) {
