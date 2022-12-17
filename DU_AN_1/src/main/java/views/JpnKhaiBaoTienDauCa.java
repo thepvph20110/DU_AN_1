@@ -339,7 +339,7 @@ public class JpnKhaiBaoTienDauCa extends javax.swing.JPanel {
                             .addComponent(txt1))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelThanhTien, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                    .addComponent(labelThanhTien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbTT500, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbTT200, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbTT100, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -434,9 +434,6 @@ public class JpnKhaiBaoTienDauCa extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(39, 39, 39)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -448,7 +445,8 @@ public class JpnKhaiBaoTienDauCa extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(57, 57, 57)
                         .addComponent(jLabel1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -500,7 +498,7 @@ public class JpnKhaiBaoTienDauCa extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     public int tinhTien(int menhGia, String soLuong, JLabel ThanhTien) {
-        if (!soLuong.matches("\\d+")) {
+        if (soLuong.matches("[a-z A-Z]+")) {
             JOptionPane.showMessageDialog(null, "Số lượng phải là số nguyên!");
             return 0;
         } else if (Integer.valueOf(soLuong) < 0) {
@@ -514,7 +512,7 @@ public class JpnKhaiBaoTienDauCa extends javax.swing.JPanel {
     }
 
     private void tongTIen() {
-        txtTongTien.setText(String.valueOf(Integer.valueOf(lbTT500.getText()) + Integer.valueOf(lbTT200.getText()) + Integer.valueOf(lbTT100.getText()) + Integer.valueOf(lbTT50.getText()) + Integer.valueOf(lbTT10.getText()) + Integer.valueOf(lbTT5.getText()) + Integer.valueOf(lbTT2.getText()) + Integer.valueOf(lbTT1.getText())));
+        txtTongTien.setText(String.valueOf(Integer.valueOf(lbTT500.getText()) + Integer.valueOf(lbTT200.getText()) + Integer.valueOf(lbTT100.getText()) + Integer.valueOf(lbTT50.getText()) + Integer.valueOf(lbTT20.getText()) + Integer.valueOf(lbTT10.getText()) + Integer.valueOf(lbTT5.getText()) + Integer.valueOf(lbTT2.getText()) + Integer.valueOf(lbTT1.getText())));
 
     }
     private void lbNhanCaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbNhanCaMouseClicked
