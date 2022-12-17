@@ -24,7 +24,7 @@ import service.Impl.GiaoCaServiceImpl;
  * @author DANG VAN SY
  */
 public class ResetRutTien extends javax.swing.JFrame {
-
+    
     private DefaultTableModel dtm;
     private IGiaoCaService giaoCaService = new GiaoCaServiceImpl();
     private List<GiaoCa> listGiaoCa = new ArrayList<>();
@@ -33,7 +33,7 @@ public class ResetRutTien extends javax.swing.JFrame {
     private Home home;
     private JLabel labelHome;
     private JpnDichVu jdv;
-
+    
     public ResetRutTien(QLAcount qLAcount, JPanel panelTong, Home home, JLabel labelHome, JpnDichVu jdv) {
         initComponents();
         this.qLAcount = qLAcount;
@@ -44,11 +44,11 @@ public class ResetRutTien extends javax.swing.JFrame {
         listGiaoCa = giaoCaService.getAllTrangThaiDaNhanCa();
         showTB(listGiaoCa);
     }
-
+    
     private GiaoCa HienThi() {
         return new JpnDichVu(qLAcount, home, panelTong, labelHome).hienTHiNV();
     }
-
+    
     public void showTB(List<GiaoCa> list) {
         jTable1.setModel(dtm = new DefaultTableModel());
         String[] header = {"Tên Nhân Viên", "Thời gian nhận ca", "Thời gian giao ca", "Tiền ban đầu", "Tổng tiền mặt trong ca", "Tổng tiền ngân hàng trong ca", "Tiền phát sinh", "Tổng tiền rút", "Thời gian rút", "Ghi chú phát sinh"};
@@ -152,6 +152,12 @@ public class ResetRutTien extends javax.swing.JFrame {
         cbTienDuocRut.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cbTienDuocRutMouseClicked(evt);
+            }
+        });
+
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtSearchKeyTyped(evt);
             }
         });
 
@@ -275,6 +281,18 @@ public class ResetRutTien extends javax.swing.JFrame {
             showTB(listGiaoCa);
         }
     }//GEN-LAST:event_cbTienDuocRutMouseClicked
+
+    private void txtSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyTyped
+        List<GiaoCa> listSearch = new GiaoCaServiceImpl().searchByName(txtSearch.getText());
+        if (listSearch.size() > 0) {
+            listGiaoCa.clear();
+            showTB(listSearch);
+        } else {
+            listSearch.clear();
+            showTB(listGiaoCa);
+        }
+        
+    }//GEN-LAST:event_txtSearchKeyTyped
     private void checkBox() {
         List<GiaoCa> lisstCheck = giaoCaService.giaoCaCoPhuPhiPhatSinh();
         if (cbGiaoCaCoPhuPhi.isSelected()) {
