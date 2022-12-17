@@ -638,8 +638,7 @@ public class JpnDichVu extends javax.swing.JPanel {
         DecimalFormat df = new DecimalFormat("###,###,###");
         String tien = txtTienPhatSinh.getText() + evt.getKeyChar();
         if (!tien.matches("\\d+")) {
-            txtTienPhatSinh.setText("");
-            JOptionPane.showMessageDialog(null, "Tiền phát sinh không đúng định dạng");
+            tien.substring(evt.getKeyChar());
         } else if (Float.valueOf(tien) < 0) {
             JOptionPane.showMessageDialog(null, "Tiền phát sinh phải lớn hơn 0");
         } else {

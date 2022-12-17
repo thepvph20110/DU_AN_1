@@ -1075,6 +1075,10 @@ public class FrmThanhToan extends javax.swing.JFrame {
                             JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập sô lớn hơn 0");
                             return;
                         }
+                        if (Float.valueOf(txtNganHang.getText()) < giaCa) {
+                            JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập tiền ngân hàng lớn hơn hoặc bằng tổng tiền");
+                            return;
+                        }
                         ThanhToan tt = new ThanhToanRepository().findOneByTrangThai(loaiHinhThanhToan.Chuyen_Khoan);
                         HoaDonThanhToan hdtt = new HoaDonThanhToan(null, new HoaDonThanhToanServiceImpl().genMaHoaDonThanhToan(), hoaDon, tt, giaCa, null);
                         new HoaDonThanhToanRepositoryImpl().saveOrUpdate(hdtt);
@@ -1100,6 +1104,10 @@ public class FrmThanhToan extends javax.swing.JFrame {
 
                         if (Integer.valueOf(txtTienKhach.getText()) < 1) {
                             JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập sô lớn hơn 0");
+                            return;
+                        }
+                        if (Float.valueOf(txtTienKhach.getText()) < giaCa) {
+                            JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập tiền khách lớn hơn hoặc bằng tổng tiền");
                             return;
                         }
                         ThanhToan tt = new ThanhToanRepository().findOneByTrangThai(loaiHinhThanhToan.Tien_Mat);
@@ -1142,6 +1150,10 @@ public class FrmThanhToan extends javax.swing.JFrame {
                             JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập sô lớn hơn 0");
                             return;
                         }
+                        if (Float.valueOf(txtNganHang.getText()) < giaCa) {
+                            JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập tiền ngân hàng lớn hơn hoặc bằng tổng tiền");
+                            return;
+                        }
                         ThanhToan tt = new ThanhToanRepository().findOneByTrangThai(loaiHinhThanhToan.Chuyen_Khoan);
                         HoaDonThanhToan hdtt = new HoaDonThanhToan(null, new HoaDonThanhToanServiceImpl().genMaHoaDonThanhToan(), hoaDon, tt, giaCa, null);
                         new HoaDonThanhToanRepositoryImpl().saveOrUpdate(hdtt);
@@ -1161,6 +1173,10 @@ public class FrmThanhToan extends javax.swing.JFrame {
                     if (txtTienKhach.getText().isEmpty() || txtTienKhach.getText().matches("-?\\d+(\\.\\d+)?")) {
                         if (Integer.valueOf(txtTienKhach.getText()) < 1) {
                             JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập sô lớn hơn 0");
+                            return;
+                        }
+                        if (Float.valueOf(txtTienKhach.getText()) < giaCa) {
+                            JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập tiền khách lớn hơn hoặc bằng tổng tiền");
                             return;
                         }
                         ThanhToan tt = new ThanhToanRepository().findOneByTrangThai(loaiHinhThanhToan.Tien_Mat);

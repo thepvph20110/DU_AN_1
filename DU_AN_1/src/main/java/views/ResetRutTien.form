@@ -257,6 +257,9 @@
           </Events>
         </Component>
         <Component class="utill.SearChTenNV" name="txtSearch">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtSearchKeyTyped"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

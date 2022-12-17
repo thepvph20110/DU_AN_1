@@ -135,7 +135,7 @@ public class GenDB {
             session.save(dt1);
 
             DoThue dt2 = new DoThue();
-            dt2.setDonGia(50000);
+            dt2.setDonGia(5000);
             dt2.setMaDoThue("DT002");
             dt2.setSoLuong(20);
             dt2.setTenDoThue("Áo Thi Đấu");
@@ -146,10 +146,10 @@ public class GenDB {
             session.save(dt2);
 
             DoThue dt3 = new DoThue();
-            dt3.setDonGia(50000);
+            dt3.setDonGia(25000);
             dt3.setMaDoThue("DT003");
             dt3.setSoLuong(15);
-            dt3.setTenDoThue("Giay Đá Bóng");
+            dt3.setTenDoThue("Giày Đá Bóng");
             dt3.setTrangThai(trangThaiDoThue.Con_Hang);
             dt3.setKichThuoc(kt3);
             dt3.setMauSac(ms3);
@@ -157,7 +157,7 @@ public class GenDB {
             session.save(dt3);
 
             DoThue dt4 = new DoThue();
-            dt4.setDonGia(30000);
+            dt4.setDonGia(20000);
             dt4.setMaDoThue("DT001");
             dt4.setSoLuong(44);
             dt4.setTenDoThue("Áo Chống Nắng");
@@ -177,7 +177,7 @@ public class GenDB {
             session.save(nc1);
 
             NuocUong nc2 = new NuocUong();
-            nc2.setGia(25000);
+            nc2.setGia(12000);
             nc2.setMaNuocUong("NU002");
             nc2.setSoLuong(33);
             nc2.setTenNuocUong("Trà Xanh 0 Độ");
@@ -193,12 +193,36 @@ public class GenDB {
             session.save(nc3);
 
             NuocUong nc4 = new NuocUong();
-            nc4.setGia(50000);
+            nc4.setGia(10000);
             nc4.setMaNuocUong("NU004");
             nc4.setSoLuong(52);
             nc4.setTenNuocUong("Nước Tranh Muối");
             nc4.setTrangThai(trangThaiNuocUong.Con_Hang);
             session.save(nc4);
+
+            NuocUong nc5 = new NuocUong();
+            nc5.setGia(12000);
+            nc5.setMaNuocUong("NU005");
+            nc5.setSoLuong(22);
+            nc5.setTenNuocUong("NumBer 1");
+            nc5.setTrangThai(trangThaiNuocUong.Con_Hang);
+            session.save(nc5);
+
+            NuocUong nc6 = new NuocUong();
+            nc6.setGia(10000);
+            nc6.setMaNuocUong("NU006");
+            nc6.setSoLuong(22);
+            nc6.setTenNuocUong("Sting");
+            nc6.setTrangThai(trangThaiNuocUong.Het_Hang);
+            session.save(nc6);
+
+            NuocUong nc7 = new NuocUong();
+            nc7.setGia(10000);
+            nc7.setMaNuocUong("NU007");
+            nc7.setSoLuong(22);
+            nc7.setTenNuocUong("Bò Húc");
+            nc7.setTrangThai(trangThaiNuocUong.Con_Hang);
+            session.save(nc7);
 
             //Gen Loại Sân
             LoaiSan ls1 = new LoaiSan();
@@ -209,14 +233,14 @@ public class GenDB {
 
             LoaiSan ls2 = new LoaiSan();
             ls2.setMaLoaiSan("LS002");
-            ls2.setMoTa("Sân Super VIP");
+            ls2.setMoTa("Sân Thường");
             ls2.setTenLoaiSan("Sân Double Pro Vip");
             session.save(ls2);
 
             LoaiSan ls3 = new LoaiSan();
             ls3.setMaLoaiSan("LS003");
             ls3.setMoTa("Sân VIP 3");
-            ls3.setTenLoaiSan("Sân Double Pro 2");
+            ls3.setTenLoaiSan("Sân Siêu VIP");
             session.save(ls3);
 
             //Gen Sân Bóng
