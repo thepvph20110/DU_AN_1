@@ -128,6 +128,10 @@ public class FrmDoiLichDat extends javax.swing.JFrame {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 String stringDate = sdf.format(txtDate.getDate());
                 try {
+                    if(sdf.parse(stringDate).before(sdf.parse(sdf.format(new Date())))){
+                        JOptionPane.showMessageDialog(null , "chọn sau ngày hiện tại");
+                        return;
+                    }
                     createSanCaFollowDate(sdf.parse(stringDate));
                     mapSanCa.clear();
                     panelTong.removeAll();

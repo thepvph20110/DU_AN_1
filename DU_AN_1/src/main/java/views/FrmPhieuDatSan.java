@@ -10,7 +10,9 @@ import domainmodel.SanCa;
 import enumclass.trangThaiHoaDon;
 import enumclass.trangThaiPhieuDL;
 import enumclass.trangThaiSanCa;
+import java.sql.Time;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 import javax.swing.JLabel;
@@ -37,6 +39,7 @@ public class FrmPhieuDatSan extends javax.swing.JFrame {
     private JPanel pnTong;
     private JLabel lbHome;
     private DecimalFormat df = new DecimalFormat("###,###,###");
+    private SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
 
     public FrmPhieuDatSan(PhieuDatLich phieuDatLich, QLAcount qLAcount, JPanel pnTong, JLabel lbHome) {
         initComponents();
@@ -294,6 +297,7 @@ public class FrmPhieuDatSan extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Chưa đến ngày nhận sân!!");
                 return;
             }
+            String dateNow = sdf.format(new Date());
             phieuDL.setTrangThai(trangThaiPhieuDL.DA_NHAN_SAN);
             String check = phieuDatLichService.updateTrangThai(phieuDL);
             if (check.equals("Sửa Trạng Thái Thành Công")) {
