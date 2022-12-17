@@ -158,9 +158,9 @@ public class GenDB {
 
             DoThue dt4 = new DoThue();
             dt4.setDonGia(20000);
-            dt4.setMaDoThue("DT001");
+            dt4.setMaDoThue("DT004");
             dt4.setSoLuong(44);
-            dt4.setTenDoThue("Áo Chống Nắng");
+            dt4.setTenDoThue("Bóng đá");
             dt4.setTrangThai(trangThaiDoThue.Con_Hang);
             dt4.setKichThuoc(kt);
             dt4.setMauSac(ms1);
