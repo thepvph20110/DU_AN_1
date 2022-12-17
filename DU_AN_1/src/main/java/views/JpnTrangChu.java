@@ -204,21 +204,21 @@ public class JpnTrangChu extends javax.swing.JPanel {
                     labelLoaiSan.setFont(new Font("Tahoma", 1, 14));
                     JLabel lableTenKH = new JLabel();
 
-                    if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.KHONG_TRONG ) {
+                    if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.KHONG_TRONG) {
                         QLHoaDon qlHoaDon = hoaDonService.getByTrangThai(labelIdSanCa.getText());
                         lableTenKH.setText("Tên KH:" + qlHoaDon.getPhieuDatLich().getKhachHang().getTenKhachHang());
                         lableTenKH.setFont(new Font("Tahoma", 1, 10));
                         lableTenKH.setForeground(Color.BLACK);
                         labelLoaiSan.setFont(new Font("Tahoma", 1, 10));
                     }
-                    if(listSanCa.get(j).getTrangThai() == trangThaiSanCa.CHO_NHAN_SAN) {
+                    if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.CHO_NHAN_SAN) {
                         PhieuDatLich phieuDatLich = phieuDatLichService.getPDLByTrangThai(labelIdSanCa.getText());
                         lableTenKH.setText("Tên KH:" + phieuDatLich.getKhachHang().getTenKhachHang());
                         lableTenKH.setFont(new Font("Tahoma", 1, 10));
                         lableTenKH.setForeground(Color.BLACK);
                         labelLoaiSan.setFont(new Font("Tahoma", 1, 10));
                     }
-                    
+
                     JLabel labelTrangThai = new JLabel();
                     labelTrangThai.setForeground(Color.BLACK);
                     labelTrangThai.setPreferredSize(new Dimension(160, 15));
@@ -255,22 +255,30 @@ public class JpnTrangChu extends javax.swing.JPanel {
                     itemDatLich.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            if (giaoCaService.getOneGiaoCaByIdAndTrangThai(qLAcount.getId()) == null) {
-                                JOptionPane.showMessageDialog(null, "Vui lòng nhận ca");
-                            } else {
-                                showDetail(labelIdSanCa.getText());
-                                jPopupMenu.setVisible(false);
+                            try {
+                                if (giaoCaService.getOneGiaoCaByIdAndTrangThai(qLAcount.getId()) == null) {
+                                    JOptionPane.showMessageDialog(null, "Vui lòng nhận ca");
+                                } else {
+                                    showDetail(labelIdSanCa.getText());
+                                    jPopupMenu.setVisible(false);
+                                }
+                            } catch (Exception a) {
                             }
+
                         }
                     });
                     itemDoiLichDat.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            showDoiLichDat(labelIdSanCa.getText());
-                            jPopupMenu.setVisible(false);
+                            try {
+                                showDoiLichDat(labelIdSanCa.getText());
+                                jPopupMenu.setVisible(false);
+                            } catch (Exception a) {
+                            }
+
                         }
                     });
-                  
+
                     customTrangThai(listSanCa.get(j).getTrangThai(), itemDatLich, panelCa, labelTrangThai, itemDoiLichDat, itemCheckOut);
                     Time gioKT = new Time(listSanCa.get(j).getThoiGianKetThuc().getHours(), listSanCa.get(j).getThoiGianKetThuc().getMinutes(), listSanCa.get(j).getThoiGianKetThuc().getSeconds());
                     Time quaGio = new Time(now.getHours(), now.getMinutes(), now.getSeconds());
@@ -333,12 +341,13 @@ public class JpnTrangChu extends javax.swing.JPanel {
 
     private void showDetail(String idSanCa) {
         Acount acount = new Acount(qLAcount.getId(), qLAcount.getMaAcount(), qLAcount.getTenAcount(), qLAcount.getChucVu(),
-                qLAcount.getMatKhau(), qLAcount.getMoTa(), qLAcount.getTrangThai(),null);
+                qLAcount.getMatKhau(), qLAcount.getMoTa(), qLAcount.getTrangThai(), null);
         QLSanCa qLSanCa = mapSanCa.get(idSanCa);
         QLKhachHang khachHang = new QLKhachHang();
         new FrmPhieuDatLich(khachHang, qLSanCa, acount, labelHome, pnTong, ngayTao).setVisible(true);
     }
-     private void showDoiLichDat(String idSanCa) {
+
+    private void showDoiLichDat(String idSanCa) {
         PhieuDatLich phieuDatLich = phieuDatLichService.getPDLByTrangThai(idSanCa);
         new FrmDoiLichDat(phieuDatLich, qLAcount, pnTong, labelHome, ngayTao).setVisible(true);
     }
