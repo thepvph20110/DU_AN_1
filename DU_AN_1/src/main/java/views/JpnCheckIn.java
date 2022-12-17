@@ -6,6 +6,7 @@ package views;
 
 import domainmodel.PhieuDatLich;
 import enumclass.trangThaiPhieuDL;
+import enumclass.trangThaiSanCa;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -370,6 +371,7 @@ public class JpnCheckIn extends javax.swing.JPanel {
             int checkOption = JOptionPane.showConfirmDialog(this, "Xác nhận hủy lịch đặt", "Thông Báo", JOptionPane.YES_NO_OPTION);
             if (checkOption == JOptionPane.YES_OPTION) {
                 phieuDatLich.setTrangThai(trangThaiPhieuDL.DA_HUY);
+                phieuDatLich.getSanCa().setTrangThai(trangThaiSanCa.DANG_TRONG);
                 String check = phieuDatLichService.updateTrangThai(phieuDatLich);
                 if (check.equals("Sửa Trạng Thái Thành Công")) {
                     JOptionPane.showMessageDialog(this, "Đã hủy lịch đặt");

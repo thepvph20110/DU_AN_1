@@ -204,14 +204,21 @@ public class JpnTrangChu extends javax.swing.JPanel {
                     labelLoaiSan.setFont(new Font("Tahoma", 1, 14));
                     JLabel lableTenKH = new JLabel();
 
-                    if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.KHONG_TRONG &&
-                            listSanCa.get(j).getTrangThai() == trangThaiSanCa.CHO_NHAN_SAN) {
+                    if (listSanCa.get(j).getTrangThai() == trangThaiSanCa.KHONG_TRONG ) {
                         QLHoaDon qlHoaDon = hoaDonService.getByTrangThai(labelIdSanCa.getText());
                         lableTenKH.setText("Tên KH:" + qlHoaDon.getPhieuDatLich().getKhachHang().getTenKhachHang());
                         lableTenKH.setFont(new Font("Tahoma", 1, 10));
                         lableTenKH.setForeground(Color.BLACK);
                         labelLoaiSan.setFont(new Font("Tahoma", 1, 10));
                     }
+                    if(listSanCa.get(j).getTrangThai() == trangThaiSanCa.CHO_NHAN_SAN) {
+                        PhieuDatLich phieuDatLich = phieuDatLichService.getPDLByTrangThai(labelIdSanCa.getText());
+                        lableTenKH.setText("Tên KH:" + phieuDatLich.getKhachHang().getTenKhachHang());
+                        lableTenKH.setFont(new Font("Tahoma", 1, 10));
+                        lableTenKH.setForeground(Color.BLACK);
+                        labelLoaiSan.setFont(new Font("Tahoma", 1, 10));
+                    }
+                    
                     JLabel labelTrangThai = new JLabel();
                     labelTrangThai.setForeground(Color.BLACK);
                     labelTrangThai.setPreferredSize(new Dimension(160, 15));
