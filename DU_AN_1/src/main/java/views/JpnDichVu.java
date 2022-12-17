@@ -489,7 +489,7 @@ public class JpnDichVu extends javax.swing.JPanel {
         new ResetRutTien(qLAcount, panelTong, home, lableHome, this).setVisible(true);
     }//GEN-LAST:event_btnResetActionPerformed
     public float GetTTongTienMatTrongCa() {
-        return (float) (giaoCaService.tongTienCaHienTaiByIdNV(qLAcount.getId()) + hienTHiNV().getTienBanDau());
+        return (float) (giaoCaService.tongTienCaHienTaiByIdNV(qLAcount.getId()) + hienTHiNV().getTienBanDau() - Float.valueOf(txtTienPhatSinh.getText()));
     }
 
     public void Ham(float tienRut, Date thoiGianReset) {
