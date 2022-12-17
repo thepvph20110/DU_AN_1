@@ -100,10 +100,16 @@ public class JpnQuanLySan extends javax.swing.JPanel {
         } else {
             qlsb.setTrangThai(trangThaiSanBong.SUA_CHUA);
         }
-        if ( tenSanBong.length() == 0 || giaSan.length() == 0 || sucChua.length() == 0) {
-            JOptionPane.showMessageDialog(this, "KHông được để trống");
+        for (QLSanBong qlSan : listQLSanBong) {
+            if (tenSanBong.equalsIgnoreCase(qlSan.getTenSanBong())) {
+                JOptionPane.showMessageDialog(this, "Tên sân trùng");
+                return;
+            }
+        }
+        if (tenSanBong.length() == 0 || giaSan.length() == 0 || sucChua.length() == 0) {
+            JOptionPane.showMessageDialog(this, "Không được để trống");
         } else if (sucChua.matches("^[a-zA-Z]+$")) {
-            JOptionPane.showMessageDialog(this, "Sức chứa là sôs");
+            JOptionPane.showMessageDialog(this, "Sức chứa là số");
         } else if (giaSan.matches("^[a-zA-Z]+$")) {
             JOptionPane.showMessageDialog(this, "Giá sân là số");
         } else if ((Double.valueOf(giaSan) <= 0)) {
@@ -138,12 +144,22 @@ public class JpnQuanLySan extends javax.swing.JPanel {
         if (jTable1.getSelectedRow() < 0) {
             JOptionPane.showMessageDialog(this, "Selected Row ???");
         } else {
-            
-            QLSanBong qLSanBong = new QLSanBong(mountClick().getId(), iSanBongService.genMaSanBong(), tenSanBong, Double.valueOf(giaSan), Integer.valueOf(sucChua), cbbLoaiSan.getSelectedItem().toString(), qlsb.getTrangThai());
-            JOptionPane.showMessageDialog(this, iSanBongService.update(qLSanBong));
-            listQLSanBong = iSanBongService.getAll();
-            showData(listQLSanBong);
-
+            if (tenSanBong.length() == 0 || giaSan.length() == 0 || sucChua.length() == 0) {
+                JOptionPane.showMessageDialog(this, "Không được để trống");
+            } else if (sucChua.matches("^[a-zA-Z]+$")) {
+                JOptionPane.showMessageDialog(this, "Sức chứa là số");
+            } else if (giaSan.matches("^[a-zA-Z]+$")) {
+                JOptionPane.showMessageDialog(this, "Giá sân là số");
+            } else if ((Double.valueOf(giaSan) <= 0)) {
+                JOptionPane.showMessageDialog(this, "Giá sân sai định dạng");
+            } else if ((Integer.valueOf(sucChua) <= 0)) {
+                JOptionPane.showMessageDialog(this, "Sức chứa sai định dạng");
+            } else {
+                QLSanBong qLSanBong = new QLSanBong(mountClick().getId(), iSanBongService.genMaSanBong(), tenSanBong, Double.valueOf(giaSan), Integer.valueOf(sucChua), cbbLoaiSan.getSelectedItem().toString(), qlsb.getTrangThai());
+                JOptionPane.showMessageDialog(this, iSanBongService.update(qLSanBong));
+                listQLSanBong = iSanBongService.getAll();
+                showData(listQLSanBong);
+            }
         }
 
     }

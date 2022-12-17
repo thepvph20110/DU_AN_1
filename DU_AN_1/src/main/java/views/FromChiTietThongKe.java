@@ -35,6 +35,7 @@ public class FromChiTietThongKe extends javax.swing.JFrame {
         chiTietThongKeController.thongKeNuocUong(jpn1);
         chiTietThongKeController.thongKeDoThue(jpn2);
         setTextDataTongTien();
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
     
     public void setTextDataTongTien() {
@@ -161,6 +162,7 @@ public class FromChiTietThongKe extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(186, 228, 229));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(65, 147, 169));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));

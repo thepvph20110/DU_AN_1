@@ -1216,8 +1216,8 @@ public class JpnHoaDon extends javax.swing.JPanel {
         String maMS = cbbMauSac1.getSelectedItem().toString();
         String maKT = cbbKT.getSelectedItem().toString();
         String maNSX = cbbNSX.getSelectedItem().toString();
-        String soLuong = txtSoLuongDoThue.getText().trim();
-        String donGia = txtGiaDoThue.getText().trim();
+        String soLuong = txtSoLuongDoThue.getText().trim().replaceAll(" ", "");
+        String donGia = txtGiaDoThue.getText().trim().replaceAll(" ", "");
         trangThaiDoThue tdt = trangThaiDoThue.Con_Hang;
         if (rdoHetHangDoThue.isSelected()) {
             tdt = trangThaiDoThue.Het_Hang;
@@ -1255,11 +1255,17 @@ public class JpnHoaDon extends javax.swing.JPanel {
         String maMS = cbbMauSac1.getSelectedItem().toString();
         String maKT = cbbKT.getSelectedItem().toString().trim();
         String maNSX = cbbNSX.getSelectedItem().toString().trim();
-        String soLuong = txtSoLuongDoThue.getText().trim();
-        String donGia = txtGiaDoThue.getText().trim();
+        String soLuong = txtSoLuongDoThue.getText().trim().replaceAll(" ", "");
+        String donGia = txtGiaDoThue.getText().trim().replaceAll(" ", "");
         trangThaiDoThue tdt = trangThaiDoThue.Con_Hang;
         if (rdoHetHangDoThue.isSelected()) {
             tdt = trangThaiDoThue.Het_Hang;
+        }
+        for(QLDoThue qlDoThue : listQLDoThue){
+            if(tenDoThue.equalsIgnoreCase(qlDoThue.getTenDoThue())){
+                JOptionPane.showMessageDialog(this, "Tên đồ thuê trùng");
+                return;
+            }
         }
         if (tenDoThue.isEmpty() == true || soLuong.isEmpty() == true || donGia.isEmpty() == true) {
             JOptionPane.showMessageDialog(this, "Không để trống các trường");
@@ -1267,9 +1273,9 @@ public class JpnHoaDon extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Số lượng đồ thuê không đúng định dạng");
         } else if (Integer.valueOf(soLuong) <= 0) {
             JOptionPane.showMessageDialog(this, "Không để số Lượng <= 0");
-        } else if (donGia.matches("[0-9]+") == false) {
+        } else if (donGia.trim().matches("[a-z A-Z]+")) {
             JOptionPane.showMessageDialog(this, "Đơn giá đồ thuê không đúng định dạng");
-        } else if (Double.valueOf(donGia) <= 0) {
+        } else if (Double.valueOf(donGia.trim()) <= 0) {
             JOptionPane.showMessageDialog(this, "Không để đơn giá đồ thuê <=0 ");
         } else {
             int confirm = JOptionPane.showConfirmDialog(this, "Bạn Có Muốn Thêm Đồ Thuê", "Xác Nhận", JOptionPane.YES_NO_OPTION);

@@ -90,7 +90,7 @@ public class JpnQuanLyCa extends javax.swing.JPanel {
         } else if (gia.matches("^[a-zA-Z]+$")) {
             JOptionPane.showMessageDialog(this, "Giá là số");
         } else if (!thoiGianBatDau.matches("^\\d{2}:\\d{2}:\\d{2}$") || !thoiGianKetThuc.matches("^\\d{2}:\\d{2}:\\d{2}$")) {
-            JOptionPane.showMessageDialog(this, "Incorrect format time (hh:mm:ss)");
+            JOptionPane.showMessageDialog(this, "Sai ịnh dạng thời gian (hh:mm:ss)");
         } else if ((Double.valueOf(gia) <= 0)) {
             JOptionPane.showMessageDialog(this, "Giá sân sai định dạng");
         } else {
@@ -114,10 +114,16 @@ public class JpnQuanLyCa extends javax.swing.JPanel {
         } else {
             qlCa.setTrangThai(trangThaiCa.GIO_CAO_DIEM);
         }
+        for(QLCa listCa:listQLCa){
+            if(tenCa.equalsIgnoreCase(listCa.getTenCa())){
+            JOptionPane.showMessageDialog(this, "Tên ca trùng");
+            return;
+            }
+        }
         if (tenCa.length() == 0 || thoiGianBatDau.length() == 0 || thoiGianKetThuc.length() == 0 || gia.length() == 0) {
             JOptionPane.showMessageDialog(this, "Không được để trống");
         } else if (gia.matches("^[a-zA-Z]+$")) {
-            JOptionPane.showMessageDialog(this, "Gia la so");
+            JOptionPane.showMessageDialog(this, "Giá là số");
         } else if (!thoiGianBatDau.matches("^\\d{2}:\\d{2}:\\d{2}$") || !thoiGianKetThuc.matches("^\\d{2}:\\d{2}:\\d{2}$")) {
             JOptionPane.showMessageDialog(this, "Sai định dạng thời gian(hh:mm:ss)");
         } else if ((Double.valueOf(gia) <= 0)) {
@@ -147,17 +153,17 @@ public class JpnQuanLyCa extends javax.swing.JPanel {
             qlCa.setTrangThai(trangThaiCa.GIO_CAO_DIEM);
         }
         if (jTable1.getSelectedRow() < 0) {
-            JOptionPane.showMessageDialog(this, "Selected row ???");
+            JOptionPane.showMessageDialog(this, "Chọn dòng cần sửa ???");
 
         } else {
             if (tenCa.length() == 0 || thoiGianBatDau.length() == 0 || thoiGianKetThuc.length() == 0 || gia.length() == 0) {
-                JOptionPane.showMessageDialog(this, "IsEmpty");
+                JOptionPane.showMessageDialog(this, "Không được để trống");
             } else if (!thoiGianBatDau.matches("^\\d{2}:\\d{2}:\\d{2}$") || !thoiGianKetThuc.matches("^\\d{2}:\\d{2}:\\d{2}$")) {
-                JOptionPane.showMessageDialog(this, "Incorrect format time (hh:mm:ss)");
+                JOptionPane.showMessageDialog(this, "Sai định dạng thời gian (hh:mm:ss)");
             } else if (gia.matches("^[a-zA-Z]+$")) {
-                JOptionPane.showMessageDialog(this, "Gia la so");
+                JOptionPane.showMessageDialog(this, "Giá là số");
             } else if ((Double.valueOf(gia) <= 0)) {
-                JOptionPane.showMessageDialog(this, "Gia san sai dinh dang");
+                JOptionPane.showMessageDialog(this, "Giá sân sai định dạng");
             } else {
                 QLCa qLCa = new QLCa(mountClick().getId(), ics.genMaCa(), tenCa, Time.valueOf(thoiGianBatDau), Time.valueOf(thoiGianKetThuc), Double.valueOf(gia), qlCa.getTrangThai());
                 JOptionPane.showMessageDialog(this, ics.update(qLCa));
@@ -180,7 +186,7 @@ public class JpnQuanLyCa extends javax.swing.JPanel {
             qlCa.setTrangThai(trangThaiCa.GIO_CAO_DIEM);
         }
         if (jTable1.getSelectedRow() < 0) {
-            JOptionPane.showMessageDialog(this, "Selected row ???");
+            JOptionPane.showMessageDialog(this, "Chọn dòng cần xóa???");
 
         } else {
             QLCa qLCa = new QLCa(mountClick().getId(), ics.genMaCa(), tenCa, Time.valueOf(thoiGianBatDau), Time.valueOf(thoiGianKetThuc), Double.valueOf(gia), qlCa.getTrangThai());
